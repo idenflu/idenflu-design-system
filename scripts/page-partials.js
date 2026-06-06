@@ -226,6 +226,38 @@ ${tokens}
 </section>`;
 };
 
+const renderComponentUsageGuidance = (context) => {
+  const componentKey = getComponentKey(context);
+  const usage = readJson("component-usage.json").components?.[componentKey];
+
+  if (!usage) {
+    throw new Error(`Missing component usage guidance for ${componentKey}`);
+  }
+
+  const rows = [
+    ["Use", usage.use],
+    ["Avoid", usage.avoid],
+    ["Replace with", usage.replace],
+  ]
+    .map(
+      ([label, value]) => `    <article>
+      <strong>${escapeHtml(label)}</strong>
+      <p>${escapeHtml(value)}</p>
+    </article>`,
+    )
+    .join("\n");
+
+  return `<section id="component-usage-guidance" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Usage guidance</p>
+    <h2>idenflu 화면에서 쓰는 기준을 먼저 정합니다.</h2>
+  </div>
+  <div class="component-usage-guidance">
+${rows}
+  </div>
+</section>`;
+};
+
 const renderVisualQaCoverage = () => {
   const matrix = readJson("visual-qa-matrix.json");
 
@@ -265,6 +297,7 @@ const partials = {
   "component-token-contract": renderComponentTokenContract,
   "component-api-contract": renderComponentApiContract,
   "component-token-binding": renderComponentTokenBinding,
+  "component-usage-guidance": renderComponentUsageGuidance,
   "visual-qa-coverage": renderVisualQaCoverage,
 };
 

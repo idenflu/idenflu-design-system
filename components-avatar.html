@@ -23,6 +23,37 @@
 
     <div class="doc-layout">
       <aside class="sidebar" aria-label="Component pages">
+        <details class="sidebar-jump">
+          <summary>Component navigation</summary>
+          <div>
+          <a href="components.html"><span>Overview</span><small>Core components</small></a>
+          <a href="components-buttons.html"><span>Buttons</span><small>Core components</small></a>
+          <a href="components-icons.html"><span>Icons</span><small>Core components</small></a>
+          <a href="components-cards.html"><span>Cards</span><small>Core components</small></a>
+          <a class="active" href="components-avatar.html"><span>Avatar</span><small>Core components</small></a>
+          <a href="components-inputs.html"><span>Inputs</span><small>Input and choice</small></a>
+          <a href="components-controls.html"><span>Controls</span><small>Input and choice</small></a>
+          <a href="components-tabs.html"><span>Tabs</span><small>Input and choice</small></a>
+          <a href="components-menu.html"><span>Menu</span><small>Input and choice</small></a>
+          <a href="components-combobox.html"><span>Combobox</span><small>Input and choice</small></a>
+          <a href="components-badges.html"><span>Badges</span><small>Input and choice</small></a>
+          <a href="components-tooltips.html"><span>Tooltips</span><small>Input and choice</small></a>
+          <a href="components-search-toolbar.html"><span>Search toolbar</span><small>Data and workflow</small></a>
+          <a href="components-table.html"><span>Data table</span><small>Data and workflow</small></a>
+          <a href="components-attachments.html"><span>Attachments</span><small>Data and workflow</small></a>
+          <a href="components-date-time.html"><span>Date time</span><small>Data and workflow</small></a>
+          <a href="components-stepper.html"><span>Stepper</span><small>Data and workflow</small></a>
+          <a href="components-empty-states.html"><span>Empty states</span><small>Data and workflow</small></a>
+          <a href="components-examples.html"><span>Examples</span><small>System surfaces</small></a>
+          <a href="components-feedback.html"><span>Feedback</span><small>System surfaces</small></a>
+          <a href="components-overlays.html"><span>Overlays</span><small>System surfaces</small></a>
+          <a href="components-navigation.html"><span>Navigation</span><small>System surfaces</small></a>
+          <a href="#component-template-map"><span>Template</span><small>On this page</small></a>
+          <a href="#context-example"><span>Context</span><small>On this page</small></a>
+          <a href="#token-contract"><span>Tokens</span><small>On this page</small></a>
+          <a href="#component-usage-guidance"><span>Usage</span><small>On this page</small></a>
+          </div>
+        </details>
         <p class="sidebar-label">Core components</p>
         <a href="components.html">Overview</a>
         <a href="components-buttons.html">Buttons</a>
@@ -53,13 +84,14 @@
         <a href="#component-template-map">Template</a>
         <a href="#context-example">Context</a>
         <a href="#token-contract">Tokens</a>
+        <a href="#component-usage-guidance">Usage</a>
       </aside>
 
       <main>
 <section class="page-header component-page-header">
   <p class="eyebrow">Components</p>
   <h1>Avatar</h1>
-  <p class="lede">Identity, fallback initials, owner rows, and presence states.</p>
+  <p class="lede">owner, reviewer, creator를 텍스트와 함께 식별하는 기준입니다.</p>
 </section>
 
 <section id="component-standard" class="section surface-band">
@@ -192,6 +224,27 @@
     <span>{colors.surface-2}</span>
     <span>{colors.primary}</span>
     <span>{colors.hairline}</span>
+  </div>
+</section>
+
+<section id="component-usage-guidance" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Usage guidance</p>
+    <h2>idenflu 화면에서 쓰는 기준을 먼저 정합니다.</h2>
+  </div>
+  <div class="component-usage-guidance">
+    <article>
+      <strong>Use</strong>
+      <p>owner, reviewer, creator처럼 사람이 누구인지 빠르게 식별해야 할 때 씁니다.</p>
+    </article>
+    <article>
+      <strong>Avoid</strong>
+      <p>avatar만으로 사람을 식별하게 만들지 않습니다. 이름이나 역할 없이 이미지에 의존하지 않습니다.</p>
+    </article>
+    <article>
+      <strong>Replace with</strong>
+      <p>책임자 정보는 identity row, 그룹 상태는 avatar group + visible count를 씁니다.</p>
+    </article>
   </div>
 </section>
 

@@ -24,6 +24,7 @@ if (!exists("scripts/component-coverage-check.js")) failures.push("missing scrip
 if (!exists("scripts/page-partials.js")) failures.push("missing scripts/page-partials.js");
 if (!exists("component-token-usage.json")) failures.push("missing component-token-usage.json");
 if (!exists("component-api.json")) failures.push("missing component-api.json");
+if (!exists("component-usage.json")) failures.push("missing component-usage.json");
 if (!exists("component-groups.json")) failures.push("missing component-groups.json");
 if (!exists("component-docs.json")) failures.push("missing component-docs.json");
 if (!exists("visual-qa-matrix.json")) failures.push("missing visual-qa-matrix.json");
@@ -96,7 +97,7 @@ if (config) {
       if (!html.includes(`id="${id}"`)) failures.push(`${file}: missing ${id}`);
     });
 
-    ["#component-template-map", "#context-example", "#token-contract"].forEach((href) => {
+    ["#component-template-map", "#context-example", "#token-contract", "#component-usage-guidance"].forEach((href) => {
       if (!html.includes(`href="${href}"`)) failures.push(`${file}: missing sidebar anchor ${href}`);
     });
   });
@@ -293,6 +294,7 @@ if (config) {
     "component-template-map",
     "component-context-example",
     "component-token-contract",
+    "component-usage-guidance",
     "scenario-matrix",
     "screen-composition-demo",
     "token-usage-grid",
@@ -492,12 +494,12 @@ if (config) {
 
   componentPages.forEach((file) => {
     const source = read(path.join("src/pages", file));
-    ["<!-- partial:component-api-contract -->", "<!-- partial:component-token-binding -->"].forEach((marker) => {
+    ["<!-- partial:component-api-contract -->", "<!-- partial:component-token-binding -->", "<!-- partial:component-usage-guidance -->"].forEach((marker) => {
       if (!source.includes(marker)) failures.push(`${file}: missing ${marker}`);
     });
 
     const html = read(file);
-    ["component-api-contract", "component-token-binding", "Props", "States", "A11y", "Token usage"].forEach((marker) => {
+    ["component-api-contract", "component-token-binding", "component-usage-guidance", "Props", "States", "A11y", "Token usage", "Usage guidance", "Replace with"].forEach((marker) => {
       if (!html.includes(marker)) failures.push(`${file}: missing detailed API/token marker ${marker}`);
     });
   });

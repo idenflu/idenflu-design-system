@@ -12,21 +12,21 @@
     },
     {
       "label": "Forms",
-      "description": "Input, combobox, date time, validation helper가 label과 상태를 유지하는지 확인합니다.",
+      "description": "Input, combobox, date time, validation helper가 label, 상태, layout 폭을 유지하는지 확인합니다.",
       "checks": [
         "Label, helper, error는 field 안에서 연결됩니다.",
         "Combobox는 active option과 keyboard state를 노출합니다.",
         "Read-only와 disabled는 서로 다른 시각 상태를 가집니다."
       ],
-      "command": "node scripts/browser-qa-check.js --dry-run"
+      "command": "node scripts/browser-qa-check.js"
     },
     {
       "label": "Data",
-      "description": "Table, search toolbar, filter chip, attachment row가 dense layout에서도 정보를 잃지 않는지 확인합니다.",
+      "description": "Table, search toolbar, filter chip, attachment row가 작은 폭에서도 정보를 잃지 않는지 확인합니다.",
       "checks": [
         "Row action과 revision 정보가 작은 폭에서도 유지됩니다.",
         "Sort, selection, expanded row의 aria 상태를 검토합니다.",
-        "검색과 필터 해제 action이 같은 toolbar 안에 남습니다."
+        "검색과 필터 해제 action이 같은 toolbar 안에서 overflow 없이 남습니다."
       ],
       "command": "node scripts/component-coverage-check.js"
     },

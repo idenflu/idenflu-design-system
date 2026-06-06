@@ -23,6 +23,37 @@
 
     <div class="doc-layout">
       <aside class="sidebar" aria-label="Component pages">
+        <details class="sidebar-jump">
+          <summary>Component navigation</summary>
+          <div>
+          <a href="components.html"><span>Overview</span><small>Core components</small></a>
+          <a href="components-buttons.html"><span>Buttons</span><small>Core components</small></a>
+          <a href="components-icons.html"><span>Icons</span><small>Core components</small></a>
+          <a class="active" href="components-cards.html"><span>Cards</span><small>Core components</small></a>
+          <a href="components-avatar.html"><span>Avatar</span><small>Core components</small></a>
+          <a href="components-inputs.html"><span>Inputs</span><small>Input and choice</small></a>
+          <a href="components-controls.html"><span>Controls</span><small>Input and choice</small></a>
+          <a href="components-tabs.html"><span>Tabs</span><small>Input and choice</small></a>
+          <a href="components-menu.html"><span>Menu</span><small>Input and choice</small></a>
+          <a href="components-combobox.html"><span>Combobox</span><small>Input and choice</small></a>
+          <a href="components-badges.html"><span>Badges</span><small>Input and choice</small></a>
+          <a href="components-tooltips.html"><span>Tooltips</span><small>Input and choice</small></a>
+          <a href="components-search-toolbar.html"><span>Search toolbar</span><small>Data and workflow</small></a>
+          <a href="components-table.html"><span>Data table</span><small>Data and workflow</small></a>
+          <a href="components-attachments.html"><span>Attachments</span><small>Data and workflow</small></a>
+          <a href="components-date-time.html"><span>Date time</span><small>Data and workflow</small></a>
+          <a href="components-stepper.html"><span>Stepper</span><small>Data and workflow</small></a>
+          <a href="components-empty-states.html"><span>Empty states</span><small>Data and workflow</small></a>
+          <a href="components-examples.html"><span>Examples</span><small>System surfaces</small></a>
+          <a href="components-feedback.html"><span>Feedback</span><small>System surfaces</small></a>
+          <a href="components-overlays.html"><span>Overlays</span><small>System surfaces</small></a>
+          <a href="components-navigation.html"><span>Navigation</span><small>System surfaces</small></a>
+          <a href="#component-template-map"><span>Template</span><small>On this page</small></a>
+          <a href="#context-example"><span>Context</span><small>On this page</small></a>
+          <a href="#token-contract"><span>Tokens</span><small>On this page</small></a>
+          <a href="#component-usage-guidance"><span>Usage</span><small>On this page</small></a>
+          </div>
+        </details>
         <p class="sidebar-label">Core components</p>
         <a href="components.html">Overview</a>
         <a href="components-buttons.html">Buttons</a>
@@ -53,13 +84,14 @@
         <a href="#component-template-map">Template</a>
         <a href="#context-example">Context</a>
         <a href="#token-contract">Tokens</a>
+        <a href="#component-usage-guidance">Usage</a>
       </aside>
 
       <main>
 <section class="page-header component-page-header">
   <p class="eyebrow">Components</p>
   <h1>Cards</h1>
-  <p class="lede">Reusable object, metric, and activity containers.</p>
+  <p class="lede">캠페인, creator, metric, activity를 요약하고 다음 action을 붙이는 기준입니다.</p>
 </section>
 
 <section id="component-standard" class="section surface-band">
@@ -223,6 +255,27 @@
     <span>{typography.card-title}</span>
     <span>{spacing.lg}</span>
     <span>{colors.hairline}</span>
+  </div>
+</section>
+
+<section id="component-usage-guidance" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Usage guidance</p>
+    <h2>idenflu 화면에서 쓰는 기준을 먼저 정합니다.</h2>
+  </div>
+  <div class="component-usage-guidance">
+    <article>
+      <strong>Use</strong>
+      <p>캠페인, creator, metric, activity처럼 독립 객체를 요약하고 다음 action을 붙일 때 씁니다.</p>
+    </article>
+    <article>
+      <strong>Avoid</strong>
+      <p>서로 비교해야 하는 많은 데이터를 카드로 나열하지 않습니다. footer action을 본문 흐름 중간에 흩뜨리지 않습니다.</p>
+    </article>
+    <article>
+      <strong>Replace with</strong>
+      <p>비교와 정렬이 중요하면 table, 단순 상태 안내는 feedback 또는 empty state를 씁니다.</p>
+    </article>
   </div>
 </section>
 

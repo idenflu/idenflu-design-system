@@ -104,6 +104,8 @@ requireInFile("scripts/browser-qa-check.js", "menu responsive QA", "component-me
 requireInFile("scripts/browser-qa-check.js", "combobox responsive QA", "component-combobox-responsive");
 requireInFile("scripts/browser-qa-check.js", "table responsive QA", "component-table-responsive");
 requireInFile("scripts/browser-qa-check.js", "overlay responsive QA", "component-overlays-responsive");
+requireInFile("scripts/browser-qa-check.js", "layout audit selectors", "layoutAuditSelectors");
+requireInFile("scripts/browser-qa-check.js", "layout audit collector", "collectLayoutFailures");
 requireInFile("scripts/token-usage-report.js", "token usage check mode", "--check");
 requireInFile("scripts/component-coverage-check.js", "component coverage check", "collectCoverageFailures");
 requireInFile("scripts/page-partials.js", "partial expansion", "expandPagePartials");
@@ -121,6 +123,7 @@ requireInFile("visual-qa.html", "menu identity QA", "Menu and identity QA");
 requireInFile("visual-qa.html", "workflow recovery QA", "Workflow and recovery QA");
 requireInFile("visual-qa.html", "filter toolbar QA", "Filter toolbar QA");
 requireInFile("visual-qa.html", "browser QA command", "node scripts/browser-qa-check.js --dry-run");
+requireInFile("visual-qa.html", "browser layout audit command", "Browser layout audit");
 requireInFile("visual-qa.html", "token usage command", "node scripts/token-usage-report.js --check");
 requireInFile("components.html", "component API reference", "component-api-reference");
 requireInFile("components.html", "component API grid", "component-api-grid");

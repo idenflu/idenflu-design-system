@@ -56,6 +56,7 @@ const renderSidebar = (page) => {
     { label: "Template", href: "#component-template-map" },
     { label: "Context", href: "#context-example" },
     { label: "Tokens", href: "#token-contract" },
+    { label: "Usage", href: "#component-usage-guidance" },
   ].filter((link) => expandedSource.includes(`id="${link.href.slice(1)}"`));
   const sidebarGroups = pageAnchorLinks.length
     ? [
@@ -80,8 +81,26 @@ const renderSidebar = (page) => {
       return `        <p class="${labelClass}">${escapeHtml(group.label)}</p>\n${links}`;
     })
     .join("\n");
+  const jumpLinks = sidebarGroups
+    .flatMap((group) => group.links.map((link) => ({ ...link, group: group.label })))
+    .map((link) => {
+      const active = link.active ? ' class="active"' : "";
+      return `          <a${active} href="${link.href}"><span>${escapeHtml(link.label)}</span><small>${escapeHtml(link.group)}</small></a>`;
+    })
+    .join("\n");
+  const jump = jumpLinks
+    ? `        <details class="sidebar-jump">
+          <summary>${escapeHtml(page.componentSidebar ? "Component navigation" : "Page navigation")}</summary>
+          <div>
+${jumpLinks}
+          </div>
+        </details>
+`
+    : "";
 
-  return `      <aside class="sidebar" aria-label="${escapeHtml(page.sidebarAria || "Page sections")}">\n${body}\n      </aside>`;
+  return `      <aside class="sidebar" aria-label="${escapeHtml(page.sidebarAria || "Page sections")}">
+${jump}${body}
+      </aside>`;
 };
 
 const renderStyleLinks = (config) => {

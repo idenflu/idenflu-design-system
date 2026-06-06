@@ -23,6 +23,28 @@
 
     <div class="doc-layout">
       <aside class="sidebar" aria-label="Page sections">
+        <details class="sidebar-jump">
+          <summary>Page navigation</summary>
+          <div>
+          <a href="#qa-dashboard"><span>Dashboard</span><small>Visual QA</small></a>
+          <a href="#utilities"><span>Utilities</span><small>Visual QA</small></a>
+          <a href="#actions"><span>Actions</span><small>Visual QA</small></a>
+          <a href="#forms"><span>Forms</span><small>Visual QA</small></a>
+          <a href="#data"><span>Data</span><small>Visual QA</small></a>
+          <a href="#states"><span>States</span><small>Visual QA</small></a>
+          <a href="#checklist"><span>Checklist</span><small>Visual QA</small></a>
+          <a href="#automation"><span>Automation</span><small>Visual QA</small></a>
+          <a href="#themes"><span>Themes</span><small>Visual QA</small></a>
+          <a href="starter-kit.html"><span>Starter kit</span><small>Reference</small></a>
+          <a href="guidelines.html"><span>Guidelines</span><small>Reference</small></a>
+          <a href="states.html"><span>States</span><small>Reference</small></a>
+          <a href="accessibility.html"><span>Accessibility</span><small>Reference</small></a>
+          <a href="responsive.html"><span>Responsive</span><small>Reference</small></a>
+          <a href="enterprise.html"><span>Enterprise</span><small>Reference</small></a>
+          <a class="active" href="visual-qa.html"><span>Visual QA</span><small>Reference</small></a>
+          <a href="changelog.html"><span>Changelog</span><small>Reference</small></a>
+          </div>
+        </details>
         <p class="sidebar-label">Visual QA</p>
         <a href="#qa-dashboard">Dashboard</a>
         <a href="#utilities">Utilities</a>
@@ -114,15 +136,15 @@
     <article>
       <span>02</span>
       <strong>Forms</strong>
-      <p>Input, combobox, date time, validation helper가 label과 상태를 유지하는지 확인합니다.</p>
+      <p>Input, combobox, date time, validation helper가 label, 상태, layout 폭을 유지하는지 확인합니다.</p>
       <ul><li>Label, helper, error는 field 안에서 연결됩니다.</li><li>Combobox는 active option과 keyboard state를 노출합니다.</li><li>Read-only와 disabled는 서로 다른 시각 상태를 가집니다.</li></ul>
-      <code>node scripts/browser-qa-check.js --dry-run</code>
+      <code>node scripts/browser-qa-check.js</code>
     </article>
     <article>
       <span>03</span>
       <strong>Data</strong>
-      <p>Table, search toolbar, filter chip, attachment row가 dense layout에서도 정보를 잃지 않는지 확인합니다.</p>
-      <ul><li>Row action과 revision 정보가 작은 폭에서도 유지됩니다.</li><li>Sort, selection, expanded row의 aria 상태를 검토합니다.</li><li>검색과 필터 해제 action이 같은 toolbar 안에 남습니다.</li></ul>
+      <p>Table, search toolbar, filter chip, attachment row가 작은 폭에서도 정보를 잃지 않는지 확인합니다.</p>
+      <ul><li>Row action과 revision 정보가 작은 폭에서도 유지됩니다.</li><li>Sort, selection, expanded row의 aria 상태를 검토합니다.</li><li>검색과 필터 해제 action이 같은 toolbar 안에서 overflow 없이 남습니다.</li></ul>
       <code>node scripts/component-coverage-check.js</code>
     </article>
     <article>
@@ -438,7 +460,12 @@
     <article>
       <strong>Browser QA dry run</strong>
       <code>node scripts/browser-qa-check.js --dry-run</code>
-      <p>Screenshot/interaction scenario가 현재 HTML과 연결되는지 확인합니다.</p>
+      <p>Screenshot, interaction, layout audit scenario가 현재 HTML과 연결되는지 확인합니다.</p>
+    </article>
+    <article>
+      <strong>Browser layout audit</strong>
+      <code>node scripts/browser-qa-check.js</code>
+      <p>Playwright가 있는 QA 환경에서 console error와 문서 표/toolbar overflow를 확인합니다.</p>
     </article>
     <article>
       <strong>Token usage check</strong>

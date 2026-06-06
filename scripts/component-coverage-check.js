@@ -16,11 +16,13 @@ const collectCoverageFailures = () => {
   if (!exists("component-groups.json")) return ["missing component-groups.json"];
   if (!exists("component-api.json")) return ["missing component-api.json"];
   if (!exists("component-token-usage.json")) return ["missing component-token-usage.json"];
+  if (!exists("component-usage.json")) return ["missing component-usage.json"];
   if (!exists("site.config.json")) return ["missing site.config.json"];
 
   const groups = readJson("component-groups.json").groups || [];
   const api = readJson("component-api.json").components || {};
   const tokenUsage = readJson("component-token-usage.json").components || {};
+  const usage = readJson("component-usage.json").components || {};
   const config = readJson("site.config.json");
   const configuredFiles = new Set(config.pages.map((page) => page.file));
   const componentPages = config.pages.filter((page) => page.sidebarAria === "Component pages");
@@ -44,6 +46,7 @@ const collectCoverageFailures = () => {
   componentLinks.forEach((link) => {
     if (!api[link.componentKey]) failures.push(`component-api.json: missing ${link.componentKey}`);
     if (!tokenUsage[link.componentKey]) failures.push(`component-token-usage.json: missing ${link.componentKey}`);
+    if (!usage[link.componentKey]) failures.push(`component-usage.json: missing ${link.componentKey}`);
   });
 
   Object.keys(api).forEach((componentKey) => {
@@ -55,6 +58,12 @@ const collectCoverageFailures = () => {
   Object.keys(tokenUsage).forEach((componentKey) => {
     if (!componentLinks.some((link) => link.componentKey === componentKey)) {
       failures.push(`component-token-usage.json: ${componentKey} missing from component-groups.json`);
+    }
+  });
+
+  Object.keys(usage).forEach((componentKey) => {
+    if (!componentLinks.some((link) => link.componentKey === componentKey)) {
+      failures.push(`component-usage.json: ${componentKey} missing from component-groups.json`);
     }
   });
 

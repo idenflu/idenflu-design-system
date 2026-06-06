@@ -15,6 +15,17 @@ const viewports = [
 
 const themeModes = ["light", "dark"];
 
+const layoutAuditSelectors = [
+  ".component-token-contract",
+  ".component-api-contract",
+  ".spec-table",
+  ".decision-table",
+  ".state-table",
+  ".a11y-table",
+  ".tooltip-popover-board .tooltip-anchor",
+  ".filter-toolbar",
+];
+
 const screenshotScenarios = [
   {
     name: "component-depth-buttons",
@@ -153,6 +164,10 @@ const validateDryRun = () => {
     if (!fs.existsSync(path.join(rootDir, file))) failures.push(`missing ${file}`);
   });
 
+  ["layoutAuditSelectors", "collectLayoutFailures", "consoleFailures"].forEach((marker) => {
+    if (!fs.readFileSync(__filename, "utf8").includes(marker)) failures.push(`browser QA missing ${marker}`);
+  });
+
   if (failures.length) {
     console.error(failures.join("\n"));
     process.exit(1);
@@ -176,6 +191,47 @@ const runBrowserQa = async () => {
 
   const browser = await chromium.launch();
   const page = await browser.newPage();
+  const consoleFailures = [];
+
+  page.on("console", (message) => {
+    if (message.type() === "error") consoleFailures.push(message.text());
+  });
+  page.on("pageerror", (error) => {
+    consoleFailures.push(error.message);
+  });
+
+  const collectLayoutFailures = async (scenario, viewport, theme) =>
+    page.evaluate(
+      ({ selectors, scenarioName, viewportName, themeName }) => {
+        const failures = [];
+
+        selectors.forEach((selector) => {
+          document.querySelectorAll(selector).forEach((element) => {
+            const scrollWidth = Math.ceil(element.scrollWidth);
+            const clientWidth = Math.ceil(element.clientWidth);
+            if (scrollWidth > clientWidth + 2) {
+              failures.push(`${scenarioName}/${viewportName}/${themeName}: ${selector} overflow ${scrollWidth}/${clientWidth}`);
+            }
+          });
+        });
+
+        if (document.documentElement.scrollWidth > document.documentElement.clientWidth + 2) {
+          failures.push(
+            `${scenarioName}/${viewportName}/${themeName}: page overflow ${document.documentElement.scrollWidth}/${document.documentElement.clientWidth}`,
+          );
+        }
+
+        return failures;
+      },
+      {
+        selectors: layoutAuditSelectors,
+        scenarioName: scenario.name,
+        viewportName: viewport.name,
+        themeName: theme,
+      },
+    );
+
+  const layoutFailures = [];
 
   for (const scenario of screenshotScenarios) {
     for (const viewport of viewports) {
@@ -189,6 +245,8 @@ const runBrowserQa = async () => {
         for (const selector of scenario.requiredSelectors) {
           await page.waitForSelector(selector);
         }
+
+        layoutFailures.push(...(await collectLayoutFailures(scenario, viewport, theme)));
 
         await page.screenshot({
           path: path.join(screenshotDir, `${scenario.name}-${viewport.name}-${theme}.png`),
@@ -204,6 +262,11 @@ const runBrowserQa = async () => {
   }
 
   await browser.close();
+  if (consoleFailures.length || layoutFailures.length) {
+    console.error([...consoleFailures.map((failure) => `console: ${failure}`), ...layoutFailures].join("\n"));
+    process.exit(1);
+  }
+
   console.log(`browser QA ok (${screenshotScenarios.length * viewports.length * themeModes.length} screenshots, ${interactionScenarios.length} interactions)`);
 };
 

@@ -165,6 +165,27 @@
   </div>
 </section>
 
+
+<section class="section surface-band">
+  <div class="section-heading"><p class="eyebrow">Anatomy visual</p><h2>Combobox anatomy visual.</h2></div>
+  <div class="component-anatomy-visual">
+    <article><span class="anatomy-node primary">01</span><strong>Label</strong><p>Label 영역을 실제 화면 구조와 같은 순서로 확인합니다.</p></article>
+    <article><span class="anatomy-node">02</span><strong>Query input</strong><p>Query input 영역을 실제 화면 구조와 같은 순서로 확인합니다.</p></article>
+    <article><span class="anatomy-node">03</span><strong>Listbox</strong><p>Listbox 영역을 실제 화면 구조와 같은 순서로 확인합니다.</p></article>
+    <article><span class="anatomy-node">04</span><strong>Active option</strong><p>Active option 영역을 실제 화면 구조와 같은 순서로 확인합니다.</p></article>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="section-heading"><p class="eyebrow">Interaction contract</p><h2>Combobox interaction contract.</h2></div>
+  <div class="interaction-contract-grid">
+    <article><strong>Keyboard path</strong><p>input, option, selection</p><ul><li>Visible state</li><li>Keyboard reachable</li><li>Responsive layout retained</li></ul></article>
+    <article><strong>Focus state</strong><p>active option follows aria-activedescendant</p><ul><li>Visible state</li><li>Keyboard reachable</li><li>Responsive layout retained</li></ul></article>
+    <article><strong>State change</strong><p>empty and loading stay inside listbox</p><ul><li>Visible state</li><li>Keyboard reachable</li><li>Responsive layout retained</li></ul></article>
+  </div>
+</section>
+
 <section id="token-contract" class="section">
   <div class="section-heading">
     <p class="eyebrow">Token contract</p>
@@ -176,6 +197,33 @@
     <div class="token-contract-row"><span><strong>Popup</strong></span><span>{colors.surface-raised}</span><span>옵션 영역은 surface-raised와 hairline으로 구분합니다.</span></div>
     <div class="token-contract-row"><span><strong>Active</strong></span><span>{colors.primary-soft}</span><span>키보드 active option은 selected와 구분되는 soft surface를 씁니다.</span></div>
     <div class="token-contract-row"><span><strong>Focus</strong></span><span>{colors.primary}</span><span>입력 focus와 option active가 동시에 읽히도록 유지합니다.</span></div>
+  </div>
+</section>
+
+<section id="component-api-contract" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">API contract</p>
+    <h2>Combobox API 구현 계약.</h2>
+  </div>
+  <div class="component-api-contract">
+    <div class="component-api-row header"><span>Type</span><span>Contract</span></div>
+    <div class="component-api-row"><span><strong>Props</strong></span><span>label, query, options, active option, selection</span></div>
+    <div class="component-api-row"><span><strong>States</strong></span><span>collapsed, expanded, typing, active, empty, loading, disabled</span></div>
+    <div class="component-api-row"><span><strong>A11y</strong></span><span>role combobox, aria-controls, aria-activedescendant, keyboard option navigation</span></div>
+  </div>
+</section>
+
+<section id="component-token-binding" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Token usage</p>
+    <h2>Combobox tokens를 실제 token path에 연결합니다.</h2>
+  </div>
+  <div class="component-token-binding">
+    <span>{sizing.field-height}</span>
+    <span>{typography.body}</span>
+    <span>{colors.primary}</span>
+    <span>{colors.surface-raised}</span>
+    <span>{colors.hairline}</span>
   </div>
 </section>
 

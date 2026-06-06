@@ -24,6 +24,19 @@ const getComponentDoc = (context) => {
   return doc;
 };
 
+const getComponentKey = (context) => {
+  const componentGroups = readJson("component-groups.json");
+  const key = componentGroups.groups
+    .flatMap((group) => group.links)
+    .find((link) => link.href === context.file || link.href === context.source)?.componentKey;
+
+  if (!key) {
+    throw new Error(`Missing component key for ${context.file || context.source || "unknown page"}`);
+  }
+
+  return key;
+};
+
 const renderTokenUsageGrid = () => {
   const usage = readJson("component-token-usage.json");
 
@@ -160,6 +173,59 @@ ${rows}
 </section>`;
 };
 
+const renderComponentApiContract = (context) => {
+  const componentKey = getComponentKey(context);
+  const api = readJson("component-api.json").components?.[componentKey];
+
+  if (!api) {
+    throw new Error(`Missing component API for ${componentKey}`);
+  }
+
+  const rows = [
+    ["Props", api.props],
+    ["States", api.states],
+    ["A11y", api.accessibility],
+  ]
+    .map(
+      ([label, values]) => `    <div class="component-api-row"><span><strong>${escapeHtml(label)}</strong></span><span>${values.map(escapeHtml).join(", ")}</span></div>`,
+    )
+    .join("\n");
+
+  return `<section id="component-api-contract" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">API contract</p>
+    <h2>${escapeHtml(api.label)} 구현 계약.</h2>
+  </div>
+  <div class="component-api-contract">
+    <div class="component-api-row header"><span>Type</span><span>Contract</span></div>
+${rows}
+  </div>
+</section>`;
+};
+
+const renderComponentTokenBinding = (context) => {
+  const componentKey = getComponentKey(context);
+  const tokenUsage = readJson("component-token-usage.json").components?.[componentKey];
+
+  if (!tokenUsage) {
+    throw new Error(`Missing component token usage for ${componentKey}`);
+  }
+
+  const tokens = tokenUsage.tokens
+    .map((token) => `    <span>{${escapeHtml(token)}}</span>`)
+    .join("\n");
+
+  return `<section id="component-token-binding" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Token usage</p>
+    <h2>${escapeHtml(tokenUsage.label)}를 실제 token path에 연결합니다.</h2>
+  </div>
+  <div class="component-token-binding">
+${tokens}
+  </div>
+</section>`;
+};
+
 const renderVisualQaCoverage = () => {
   const matrix = readJson("visual-qa-matrix.json");
 
@@ -197,6 +263,8 @@ const partials = {
   "component-standard": renderComponentStandard,
   "component-template-map": renderComponentTemplateMap,
   "component-token-contract": renderComponentTokenContract,
+  "component-api-contract": renderComponentApiContract,
+  "component-token-binding": renderComponentTokenBinding,
   "visual-qa-coverage": renderVisualQaCoverage,
 };
 

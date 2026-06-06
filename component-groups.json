@@ -37,7 +37,7 @@
     {
       "label": "System surfaces",
       "links": [
-        { "label": "Examples", "href": "components-examples.html", "sectionId": "examples", "description": "Real product screen combinations for idenflu workflows." },
+        { "label": "Examples", "href": "components-examples.html", "componentKey": "examples", "sectionId": "examples", "description": "Real product screen combinations for idenflu workflows." },
         { "label": "Feedback", "href": "components-feedback.html", "componentKey": "feedback", "sectionId": "feedback", "description": "Notices, progress, toast, status communication." },
         { "label": "Overlays", "href": "components-overlays.html", "componentKey": "overlays", "sectionId": "overlays", "description": "Modal and sheet decision surfaces." },
         { "label": "Navigation", "href": "components-navigation.html", "componentKey": "navigation", "sectionId": "navigation", "description": "Toolbar and pagination patterns." }

@@ -170,13 +170,42 @@
   </div>
 </section>
 
+<section id="component-api-contract" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">API contract</p>
+    <h2>Attachment API 구현 계약.</h2>
+  </div>
+  <div class="component-api-contract">
+    <div class="component-api-row header"><span>Type</span><span>Contract</span></div>
+    <div class="component-api-row"><span><strong>Props</strong></span><span>file name, file type, size, progress, preview, action</span></div>
+    <div class="component-api-row"><span><strong>States</strong></span><span>empty, uploading, complete, failed, scanning, disabled</span></div>
+    <div class="component-api-row"><span><strong>A11y</strong></span><span>file input label, progress text, error reason, remove action aria-label</span></div>
+  </div>
+</section>
+
+<section id="component-token-binding" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Token usage</p>
+    <h2>Attachment tokens를 실제 token path에 연결합니다.</h2>
+  </div>
+  <div class="component-token-binding">
+    <span>{typography.body-sm}</span>
+    <span>{colors.surface-raised}</span>
+    <span>{colors.hairline}</span>
+    <span>{colors.accent-coral}</span>
+    <span>{spacing.md}</span>
+  </div>
+</section>
+
 <section id="attachments" class="section">
   <div class="section-heading"><p class="eyebrow">Attachments</p><h2>업로드와 첨부 파일 상태를 같은 row 구조로 관리합니다.</h2></div>
-  <div class="utility-component-grid">
+  <div class="attachment-demo-surface">
+    <strong>Upload queue surface</strong>
     <article class="attachment-list">
       <div class="attachment-row"><span class="file-thumb">CSV</span><span><strong>export-report.csv</strong><small>814 KB · Ready</small></span><button class="button ghost small" type="button">Download</button></div>
       <div class="attachment-row failed"><span class="file-thumb">PNG</span><span><strong>asset-proof.png</strong><small>Attachment upload QA · Failed</small></span><button class="button ghost small" type="button">Retry</button></div>
     </article>
+    <p>Failed upload recovery는 파일명과 상태 metadata를 유지한 채 retry action을 제공합니다.</p>
   </div>
 </section>
       </main>

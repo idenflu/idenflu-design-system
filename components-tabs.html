@@ -161,6 +161,16 @@
   </div>
 </section>
 
+
+<section class="section">
+  <div class="section-heading"><p class="eyebrow">Interaction contract</p><h2>Tabs interaction contract.</h2></div>
+  <div class="interaction-contract-grid">
+    <article><strong>Keyboard path</strong><p>arrow keys move between tabs</p><ul><li>Visible state</li><li>Keyboard reachable</li><li>Responsive layout retained</li></ul></article>
+    <article><strong>Focus state</strong><p>selected tab and focused tab are visible</p><ul><li>Visible state</li><li>Keyboard reachable</li><li>Responsive layout retained</li></ul></article>
+    <article><strong>State change</strong><p>panel label follows selected tab</p><ul><li>Visible state</li><li>Keyboard reachable</li><li>Responsive layout retained</li></ul></article>
+  </div>
+</section>
+
 <section id="token-contract" class="section">
   <div class="section-heading">
     <p class="eyebrow">Token contract</p>
@@ -172,6 +182,32 @@
     <div class="token-contract-row"><span><strong>Selected</strong></span><span>{colors.primary}</span><span>선택 상태는 primary text와 underline/border로 표현합니다.</span></div>
     <div class="token-contract-row"><span><strong>Panel</strong></span><span>{colors.surface-raised}</span><span>Panel은 tablist와 같은 표면 흐름 안에 둡니다.</span></div>
     <div class="token-contract-row"><span><strong>Focus</strong></span><span>{colors.primary}</span><span>Arrow 이동 후 focus 위치가 시각적으로 보여야 합니다.</span></div>
+  </div>
+</section>
+
+<section id="component-api-contract" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">API contract</p>
+    <h2>Tab API 구현 계약.</h2>
+  </div>
+  <div class="component-api-contract">
+    <div class="component-api-row header"><span>Type</span><span>Contract</span></div>
+    <div class="component-api-row"><span><strong>Props</strong></span><span>tabs, selected, panel, disabled, overflow</span></div>
+    <div class="component-api-row"><span><strong>States</strong></span><span>selected, hover, focus, disabled, loading panel</span></div>
+    <div class="component-api-row"><span><strong>A11y</strong></span><span>role tablist, aria-selected, aria-controls, arrow key navigation</span></div>
+  </div>
+</section>
+
+<section id="component-token-binding" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Token usage</p>
+    <h2>Tab tokens를 실제 token path에 연결합니다.</h2>
+  </div>
+  <div class="component-token-binding">
+    <span>{typography.body-emphasis}</span>
+    <span>{colors.primary}</span>
+    <span>{colors.surface-raised}</span>
+    <span>{colors.hairline}</span>
   </div>
 </section>
 

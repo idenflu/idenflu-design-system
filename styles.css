@@ -1164,7 +1164,15 @@ h3 {
 }
 
 .menu-demo-grid,
-.combobox-demo-grid {
+.combobox-demo-grid,
+.badge-demo-grid,
+.tooltip-demo-grid,
+.identity-demo-grid,
+.date-time-demo-grid,
+.recovery-demo-grid,
+.screen-scenario-grid,
+.interaction-contract-grid,
+.component-anatomy-visual {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr));
   gap: var(--space-md);
@@ -1172,13 +1180,102 @@ h3 {
 }
 
 .menu-demo-grid > .menu-demo-surface,
-.combobox-demo-surface {
+.combobox-demo-surface,
+.badge-demo-surface,
+.tooltip-demo-surface,
+.identity-demo-surface,
+.toolbar-demo-surface,
+.attachment-demo-surface,
+.date-time-demo-surface,
+.stepper-demo-surface,
+.recovery-demo-surface,
+.qa-scope-group,
+.screen-scenario-grid article,
+.interaction-contract-grid article,
+.component-anatomy-visual article {
   display: grid;
   align-content: start;
   gap: var(--space-md);
   border: 1px solid var(--hairline);
   padding: var(--space-lg);
   background: var(--surface-raised);
+}
+
+.toolbar-demo-surface,
+.attachment-demo-surface,
+.stepper-demo-surface {
+  margin-bottom: var(--space-lg);
+}
+
+.component-api-contract {
+  overflow-x: auto;
+  border: 1px solid var(--hairline);
+  background: var(--surface-raised);
+}
+
+.component-api-row {
+  display: grid;
+  grid-template-columns: 160px minmax(320px, 1fr);
+  min-width: 680px;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.component-api-row:last-child {
+  border-bottom: 0;
+}
+
+.component-api-row.header {
+  background: var(--surface-1);
+  font-weight: 750;
+}
+
+.component-api-row span {
+  padding: 13px var(--space-md);
+  color: var(--ink-muted);
+  font-size: 13px;
+}
+
+.component-api-row strong {
+  color: var(--ink);
+}
+
+.component-token-binding {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.component-token-binding span,
+.anatomy-node {
+  border: 1px solid var(--hairline);
+  padding: 7px 10px;
+  background: var(--surface-raised);
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.anatomy-node.primary {
+  border-color: var(--primary);
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+.visual-qa-control-panel {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+.qa-scope-group ul,
+.interaction-contract-grid ul {
+  display: grid;
+  gap: var(--space-xs);
+  margin: 0;
+  padding-left: 18px;
+  color: var(--ink-muted);
+  font-size: 13px;
 }
 
 .menu-trigger-row {
@@ -4332,6 +4429,15 @@ mark.status {
   .component-template-map,
   .component-context-example,
   .card-context-preview,
+  .component-anatomy-visual,
+  .interaction-contract-grid,
+  .screen-scenario-grid,
+  .visual-qa-control-panel,
+  .badge-demo-grid,
+  .tooltip-demo-grid,
+  .identity-demo-grid,
+  .date-time-demo-grid,
+  .recovery-demo-grid,
   .scenario-matrix,
   .token-usage-grid,
   .component-api-grid,
@@ -4457,6 +4563,15 @@ mark.status {
   .component-template-map,
   .component-context-example,
   .card-context-preview,
+  .component-anatomy-visual,
+  .interaction-contract-grid,
+  .screen-scenario-grid,
+  .visual-qa-control-panel,
+  .badge-demo-grid,
+  .tooltip-demo-grid,
+  .identity-demo-grid,
+  .date-time-demo-grid,
+  .recovery-demo-grid,
   .scenario-matrix,
   .screen-composition-demo,
   .token-usage-grid,

@@ -35,6 +35,10 @@
 
 <!-- partial:component-token-contract -->
 
+<!-- partial:component-api-contract -->
+
+<!-- partial:component-token-binding -->
+
 <section id="example-blueprint" class="section">
   <div class="section-heading">
     <p class="eyebrow">Example blueprint</p>
@@ -77,6 +81,30 @@
         <button class="button primary" type="button">Resolve selected</button>
       </div>
     </div>
+  </div>
+</section>
+
+<section id="screen-scenarios" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Screen scenarios</p>
+    <h2>컴포넌트 조합을 실제 화면 판단 단위로 검토합니다.</h2>
+  </div>
+  <div class="screen-scenario-grid">
+    <article>
+      <strong>Review queue scenario</strong>
+      <p>Search toolbar, table row state, badge, row action, feedback을 함께 확인합니다.</p>
+      <span class="status amber">Queue</span>
+    </article>
+    <article>
+      <strong>Approval detail scenario</strong>
+      <p>Card structure, attachment row, overlay action, permission recovery를 한 흐름으로 봅니다.</p>
+      <span class="status coral">Approval</span>
+    </article>
+    <article>
+      <strong>Permission settings scenario</strong>
+      <p>Readonly field, switch, checkbox, locked helper가 admin 화면에서 같이 동작합니다.</p>
+      <span class="status blue">Settings</span>
+    </article>
   </div>
 </section>
 

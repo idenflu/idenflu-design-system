@@ -31,12 +31,18 @@
 
 <!-- partial:component-token-contract -->
 
+<!-- partial:component-api-contract -->
+
+<!-- partial:component-token-binding -->
+
 <section id="attachments" class="section">
   <div class="section-heading"><p class="eyebrow">Attachments</p><h2>업로드와 첨부 파일 상태를 같은 row 구조로 관리합니다.</h2></div>
-  <div class="utility-component-grid">
+  <div class="attachment-demo-surface">
+    <strong>Upload queue surface</strong>
     <article class="attachment-list">
       <div class="attachment-row"><span class="file-thumb">CSV</span><span><strong>export-report.csv</strong><small>814 KB · Ready</small></span><button class="button ghost small" type="button">Download</button></div>
       <div class="attachment-row failed"><span class="file-thumb">PNG</span><span><strong>asset-proof.png</strong><small>Attachment upload QA · Failed</small></span><button class="button ghost small" type="button">Retry</button></div>
     </article>
+    <p>Failed upload recovery는 파일명과 상태 metadata를 유지한 채 retry action을 제공합니다.</p>
   </div>
 </section>

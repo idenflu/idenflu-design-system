@@ -172,6 +172,16 @@
   </div>
 </section>
 
+
+<section class="section">
+  <div class="section-heading"><p class="eyebrow">Interaction contract</p><h2>Overlay interaction contract.</h2></div>
+  <div class="interaction-contract-grid">
+    <article><strong>Keyboard path</strong><p>trigger, surface, close action</p><ul><li>Visible state</li><li>Keyboard reachable</li><li>Responsive layout retained</li></ul></article>
+    <article><strong>Focus state</strong><p>focus trap stays inside modal</p><ul><li>Visible state</li><li>Keyboard reachable</li><li>Responsive layout retained</li></ul></article>
+    <article><strong>State change</strong><p>open, validation, locked states remain visible</p><ul><li>Visible state</li><li>Keyboard reachable</li><li>Responsive layout retained</li></ul></article>
+  </div>
+</section>
+
 <section id="token-contract" class="section">
   <div class="section-heading">
     <p class="eyebrow">Token contract</p>
@@ -183,6 +193,32 @@
     <div class="token-contract-row"><span><strong>Depth</strong></span><span>{shadow.panel}</span><span>Modal과 drawer에만 panel shadow를 쓰고 popover는 가볍게 유지합니다.</span></div>
     <div class="token-contract-row"><span><strong>Spacing</strong></span><span>{spacing.xl}</span><span>Header, body, footer의 판단 단위를 충분히 분리합니다.</span></div>
     <div class="token-contract-row"><span><strong>Focus</strong></span><span>{colors.primary}</span><span>Overlay 내부 focus와 trigger restore를 같은 primary ring으로 연결합니다.</span></div>
+  </div>
+</section>
+
+<section id="component-api-contract" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">API contract</p>
+    <h2>Overlay API 구현 계약.</h2>
+  </div>
+  <div class="component-api-contract">
+    <div class="component-api-row header"><span>Type</span><span>Contract</span></div>
+    <div class="component-api-row"><span><strong>Props</strong></span><span>trigger, surface, backdrop, placement, close rule</span></div>
+    <div class="component-api-row"><span><strong>States</strong></span><span>closed, open, pending, validation, locked, destructive</span></div>
+    <div class="component-api-row"><span><strong>A11y</strong></span><span>role dialog, aria-modal, aria-labelledby, focus trap, focus restore</span></div>
+  </div>
+</section>
+
+<section id="component-token-binding" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Token usage</p>
+    <h2>Overlay tokens를 실제 token path에 연결합니다.</h2>
+  </div>
+  <div class="component-token-binding">
+    <span>{shadow.panel}</span>
+    <span>{spacing.xl}</span>
+    <span>{colors.surface-raised}</span>
+    <span>{colors.primary}</span>
   </div>
 </section>
 

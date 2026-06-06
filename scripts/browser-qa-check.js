@@ -9,6 +9,7 @@ const baseUrl = baseUrlArg ? baseUrlArg.split("=")[1] : `file://${rootDir}/`;
 
 const viewports = [
   { name: "desktop", width: 1440, height: 1100 },
+  { name: "tablet", width: 768, height: 900 },
   { name: "mobile", width: 390, height: 900 },
 ];
 
@@ -20,6 +21,30 @@ const screenshotScenarios = [
     file: "components-buttons.html",
     hash: "#component-template-map",
     requiredSelectors: ["#component-template-map", "#context-example", "#token-contract"],
+  },
+  {
+    name: "component-menu-responsive",
+    file: "components-menu.html",
+    hash: "#menu",
+    requiredSelectors: ["#menu", ".menu-demo-grid", ".menu-demo-surface", ".interaction-contract-grid"],
+  },
+  {
+    name: "component-combobox-responsive",
+    file: "components-combobox.html",
+    hash: "#combobox",
+    requiredSelectors: ["#combobox", ".combobox-demo-grid", ".combobox-demo-surface", ".interaction-contract-grid"],
+  },
+  {
+    name: "component-table-responsive",
+    file: "components-table.html",
+    hash: "#table",
+    requiredSelectors: ["#table", ".table-shell", ".component-anatomy-visual", ".interaction-contract-grid"],
+  },
+  {
+    name: "component-overlays-responsive",
+    file: "components-overlays.html",
+    hash: "#overlay-interactions",
+    requiredSelectors: ["#overlay-interactions", ".overlay-case-grid", ".interaction-contract-grid"],
   },
   {
     name: "component-depth-overlays",

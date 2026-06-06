@@ -27,12 +27,27 @@
   </div>
 </section>
 
+
+<section class="section surface-band">
+  <div class="section-heading"><p class="eyebrow">Anatomy visual</p><h2>Empty state anatomy visual.</h2></div>
+  <div class="component-anatomy-visual">
+    <article><span class="anatomy-node primary">01</span><strong>Reason</strong><p>Reason 영역을 실제 화면 구조와 같은 순서로 확인합니다.</p></article>
+    <article><span class="anatomy-node">02</span><strong>Recovery copy</strong><p>Recovery copy 영역을 실제 화면 구조와 같은 순서로 확인합니다.</p></article>
+    <article><span class="anatomy-node">03</span><strong>Primary action</strong><p>Primary action 영역을 실제 화면 구조와 같은 순서로 확인합니다.</p></article>
+    <article><span class="anatomy-node">04</span><strong>Permission note</strong><p>Permission note 영역을 실제 화면 구조와 같은 순서로 확인합니다.</p></article>
+  </div>
+</section>
+
 <!-- partial:component-token-contract -->
+
+<!-- partial:component-api-contract -->
+
+<!-- partial:component-token-binding -->
 
 <section id="empty-states" class="section">
   <div class="section-heading"><p class="eyebrow">Empty states</p><h2>빈 상태, 오류, 권한 문제를 복구 가능한 표면으로 만듭니다.</h2></div>
-  <div class="utility-component-grid state-surface-grid">
-    <article class="empty-state compact"><strong>No campaigns yet</strong><p>Create the first campaign or import a saved template.</p><button class="button primary small" type="button">Create campaign</button></article>
-    <article class="locked-panel"><strong>Permission recovery</strong><p>Only the owner can approve this revision.</p><button class="button quiet small" type="button">Request access</button></article>
+  <div class="recovery-demo-grid">
+    <article class="recovery-demo-surface empty-state compact"><strong>Filtered empty</strong><p>No campaigns match the active filters.</p><button class="button quiet small" type="button">Clear filter</button></article>
+    <article class="recovery-demo-surface locked-panel"><strong>Permission recovery</strong><p>Only the owner can approve this revision.</p><button class="button quiet small" type="button">Request access</button></article>
   </div>
 </section>

@@ -28,10 +28,20 @@
 
 <!-- partial:component-token-contract -->
 
+<!-- partial:component-api-contract -->
+
+<!-- partial:component-token-binding -->
+
 <section id="tooltips" class="section">
   <div class="section-heading"><p class="eyebrow">Tooltips</p><h2>짧은 힌트와 작은 정보 표면을 분리합니다.</h2></div>
-  <div class="utility-component-grid">
-    <article class="tooltip-popover-board"><strong>Tooltip</strong><div class="tooltip-anchor"><button class="button quiet small" type="button" aria-describedby="risk-tip">Risk</button><span id="risk-tip" class="tooltip-bubble" role="tooltip">Disclosure copy needs owner review.</span></div></article>
-    <article class="tooltip-popover-board"><strong>Popover</strong><div class="popover-card"><strong>Owner activity</strong><p>Jiho requested changes 14 minutes ago.</p><button class="button ghost small" type="button">View activity</button></div></article>
+  <div class="tooltip-demo-grid">
+    <article class="tooltip-demo-surface tooltip-popover-board">
+      <strong>Tooltip hint</strong>
+      <div class="tooltip-anchor"><button class="button quiet small" type="button" aria-describedby="risk-tip">Risk</button><span id="risk-tip" class="tooltip-bubble" role="tooltip">Disclosure copy needs owner review.</span></div>
+    </article>
+    <article class="tooltip-demo-surface tooltip-popover-board">
+      <strong>Interactive popover</strong>
+      <div class="popover-card"><strong>Owner activity</strong><p>Jiho requested changes 14 minutes ago.</p><button class="button ghost small" type="button">View activity</button></div>
+    </article>
   </div>
 </section>

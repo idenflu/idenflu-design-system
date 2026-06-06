@@ -435,12 +435,81 @@ if (config) {
   [
     ".menu-demo-grid",
     ".combobox-demo-grid",
+    ".badge-demo-grid",
+    ".tooltip-demo-grid",
+    ".identity-demo-grid",
+    ".toolbar-demo-surface",
+    ".attachment-demo-surface",
+    ".date-time-demo-grid",
+    ".stepper-demo-surface",
+    ".recovery-demo-grid",
     ".menu-demo-surface",
     ".combobox-demo-surface",
     ".menu-trigger-row",
     ".combobox-field-demo",
+    ".component-anatomy-visual",
+    ".component-api-contract",
+    ".component-token-binding",
+    ".interaction-contract-grid",
+    ".screen-scenario-grid",
+    ".visual-qa-control-panel",
+    ".qa-scope-group",
   ].forEach((selector) => {
     if (!styles.includes(selector)) failures.push(`styles.css: missing ${selector}`);
+  });
+
+  const utilityDemoRequirements = {
+    "components-badges.html": ["badge-demo-grid", "badge-demo-surface", "Status badge set", "Filter chip set"],
+    "components-tooltips.html": ["tooltip-demo-grid", "tooltip-demo-surface", "Tooltip hint", "Interactive popover"],
+    "components-avatar.html": ["identity-demo-grid", "identity-demo-surface", "Owner identity", "Reviewer group"],
+    "components-search-toolbar.html": ["toolbar-demo-surface", "Filter toolbar surface", "Saved view controls"],
+    "components-attachments.html": ["attachment-demo-surface", "Upload queue surface", "Failed upload recovery"],
+    "components-date-time.html": ["date-time-demo-grid", "date-time-demo-surface", "Campaign period", "Invalid schedule"],
+    "components-stepper.html": ["stepper-demo-surface", "Approval progress surface", "Blocked step recovery"],
+    "components-empty-states.html": ["recovery-demo-grid", "recovery-demo-surface", "Filtered empty", "Permission recovery"],
+  };
+
+  Object.entries(utilityDemoRequirements).forEach(([file, markers]) => {
+    const source = read(path.join("src/pages", file));
+    markers.forEach((marker) => {
+      if (!source.includes(marker)) failures.push(`${file}: missing utility demo marker ${marker}`);
+    });
+  });
+
+  ["components-cards.html", "components-menu.html", "components-combobox.html", "components-table.html", "components-empty-states.html"].forEach((file) => {
+    const source = read(path.join("src/pages", file));
+    ["component-anatomy-visual", "anatomy-node", "Anatomy visual"].forEach((marker) => {
+      if (!source.includes(marker)) failures.push(`${file}: missing anatomy visual marker ${marker}`);
+    });
+  });
+
+  ["components-menu.html", "components-combobox.html", "components-tabs.html", "components-overlays.html", "components-table.html"].forEach((file) => {
+    const source = read(path.join("src/pages", file));
+    ["interaction-contract-grid", "Keyboard path", "Focus state", "State change"].forEach((marker) => {
+      if (!source.includes(marker)) failures.push(`${file}: missing interaction contract marker ${marker}`);
+    });
+  });
+
+  componentPages.forEach((file) => {
+    const source = read(path.join("src/pages", file));
+    ["<!-- partial:component-api-contract -->", "<!-- partial:component-token-binding -->"].forEach((marker) => {
+      if (!source.includes(marker)) failures.push(`${file}: missing ${marker}`);
+    });
+
+    const html = read(file);
+    ["component-api-contract", "component-token-binding", "Props", "States", "A11y", "Token usage"].forEach((marker) => {
+      if (!html.includes(marker)) failures.push(`${file}: missing detailed API/token marker ${marker}`);
+    });
+  });
+
+  const examplesEnhancementSource = read(path.join("src/pages", "components-examples.html"));
+  ["screen-scenario-grid", "Review queue scenario", "Approval detail scenario", "Permission settings scenario"].forEach((marker) => {
+    if (!examplesEnhancementSource.includes(marker)) failures.push(`components-examples.html: missing screen scenario marker ${marker}`);
+  });
+
+  const visualQaSource = read(path.join("src/pages", "visual-qa.html"));
+  ["visual-qa-control-panel", "qa-scope-group", "Manual review scope", "Automated checks", "Responsive breakpoints"].forEach((marker) => {
+    if (!visualQaSource.includes(marker)) failures.push(`visual-qa.html: missing visual QA grouping marker ${marker}`);
   });
 
   if (!styles.includes("backdrop-filter: blur(3px)")) {

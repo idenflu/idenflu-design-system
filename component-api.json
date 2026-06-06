@@ -61,6 +61,12 @@
       "states": ["active", "hover", "focus", "disabled", "collapsed", "current page"],
       "accessibility": ["nav landmark", "aria-current", "toolbar label", "pagination label"]
     },
+    "examples": {
+      "label": "Example Composition API",
+      "props": ["scenario", "component mix", "metadata", "decision action", "recovery state"],
+      "states": ["default", "review", "blocked", "permission", "empty", "error"],
+      "accessibility": ["visible scenario heading", "keyboard order follows screen flow", "recovery action label"]
+    },
     "menu": {
       "label": "Menu API",
       "props": ["trigger", "items", "group", "checked item", "danger item"],

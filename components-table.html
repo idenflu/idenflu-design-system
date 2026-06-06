@@ -162,6 +162,27 @@
   </div>
 </section>
 
+
+<section class="section surface-band">
+  <div class="section-heading"><p class="eyebrow">Anatomy visual</p><h2>Table anatomy visual.</h2></div>
+  <div class="component-anatomy-visual">
+    <article><span class="anatomy-node primary">01</span><strong>Toolbar</strong><p>Toolbar 영역을 실제 화면 구조와 같은 순서로 확인합니다.</p></article>
+    <article><span class="anatomy-node">02</span><strong>Header row</strong><p>Header row 영역을 실제 화면 구조와 같은 순서로 확인합니다.</p></article>
+    <article><span class="anatomy-node">03</span><strong>Data row</strong><p>Data row 영역을 실제 화면 구조와 같은 순서로 확인합니다.</p></article>
+    <article><span class="anatomy-node">04</span><strong>Row action</strong><p>Row action 영역을 실제 화면 구조와 같은 순서로 확인합니다.</p></article>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="section-heading"><p class="eyebrow">Interaction contract</p><h2>Table interaction contract.</h2></div>
+  <div class="interaction-contract-grid">
+    <article><strong>Keyboard path</strong><p>toolbar, header, row action</p><ul><li>Visible state</li><li>Keyboard reachable</li><li>Responsive layout retained</li></ul></article>
+    <article><strong>Focus state</strong><p>focused row remains visible in compact density</p><ul><li>Visible state</li><li>Keyboard reachable</li><li>Responsive layout retained</li></ul></article>
+    <article><strong>State change</strong><p>sort, selected, expanded row are announced</p><ul><li>Visible state</li><li>Keyboard reachable</li><li>Responsive layout retained</li></ul></article>
+  </div>
+</section>
+
 <section id="token-contract" class="section">
   <div class="section-heading">
     <p class="eyebrow">Token contract</p>
@@ -173,6 +194,32 @@
     <div class="token-contract-row"><span><strong>Row height</strong></span><span>{density.compact.rowHeight}</span><span>40px row 안에서도 row action과 metadata가 사라지면 안 됩니다.</span></div>
     <div class="token-contract-row"><span><strong>Typography</strong></span><span>{typography.body-sm}</span><span>반복 값은 body-sm, 객체명은 강조 weight로 구분합니다.</span></div>
     <div class="token-contract-row"><span><strong>Divider</strong></span><span>{colors.hairline}</span><span>행 구분은 hairline으로 유지하고 카드처럼 두꺼운 테두리를 반복하지 않습니다.</span></div>
+  </div>
+</section>
+
+<section id="component-api-contract" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">API contract</p>
+    <h2>Table API 구현 계약.</h2>
+  </div>
+  <div class="component-api-contract">
+    <div class="component-api-row header"><span>Type</span><span>Contract</span></div>
+    <div class="component-api-row"><span><strong>Props</strong></span><span>density, selection, sorting, row state, responsive</span></div>
+    <div class="component-api-row"><span><strong>States</strong></span><span>default, selected, expanded, loading, error, locked</span></div>
+    <div class="component-api-row"><span><strong>A11y</strong></span><span>role table, columnheader, aria-sort, row action without hover</span></div>
+  </div>
+</section>
+
+<section id="component-token-binding" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Token usage</p>
+    <h2>Table tokens를 실제 token path에 연결합니다.</h2>
+  </div>
+  <div class="component-token-binding">
+    <span>{density.compact}</span>
+    <span>{typography.body-sm}</span>
+    <span>{colors.surface-raised}</span>
+    <span>{colors.hairline}</span>
   </div>
 </section>
 

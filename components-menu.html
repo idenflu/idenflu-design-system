@@ -161,6 +161,27 @@
   </div>
 </section>
 
+
+<section class="section surface-band">
+  <div class="section-heading"><p class="eyebrow">Anatomy visual</p><h2>Menu anatomy visual.</h2></div>
+  <div class="component-anatomy-visual">
+    <article><span class="anatomy-node primary">01</span><strong>Trigger</strong><p>Trigger 영역을 실제 화면 구조와 같은 순서로 확인합니다.</p></article>
+    <article><span class="anatomy-node">02</span><strong>Menu surface</strong><p>Menu surface 영역을 실제 화면 구조와 같은 순서로 확인합니다.</p></article>
+    <article><span class="anatomy-node">03</span><strong>Checked item</strong><p>Checked item 영역을 실제 화면 구조와 같은 순서로 확인합니다.</p></article>
+    <article><span class="anatomy-node">04</span><strong>Danger item</strong><p>Danger item 영역을 실제 화면 구조와 같은 순서로 확인합니다.</p></article>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="section-heading"><p class="eyebrow">Interaction contract</p><h2>Menu interaction contract.</h2></div>
+  <div class="interaction-contract-grid">
+    <article><strong>Keyboard path</strong><p>trigger, item, Escape close</p><ul><li>Visible state</li><li>Keyboard reachable</li><li>Responsive layout retained</li></ul></article>
+    <article><strong>Focus state</strong><p>trigger restores after close</p><ul><li>Visible state</li><li>Keyboard reachable</li><li>Responsive layout retained</li></ul></article>
+    <article><strong>State change</strong><p>checked item updates visible text</p><ul><li>Visible state</li><li>Keyboard reachable</li><li>Responsive layout retained</li></ul></article>
+  </div>
+</section>
+
 <section id="token-contract" class="section">
   <div class="section-heading">
     <p class="eyebrow">Token contract</p>
@@ -172,6 +193,33 @@
     <div class="token-contract-row"><span><strong>Item height</strong></span><span>{sizing.control-height}</span><span>각 item은 버튼 높이와 같은 기준으로 tab target을 유지합니다.</span></div>
     <div class="token-contract-row"><span><strong>Text</strong></span><span>{typography.body-sm}</span><span>보조 액션은 13px body-sm를 사용해 테이블 밀도와 맞춥니다.</span></div>
     <div class="token-contract-row"><span><strong>Danger</strong></span><span>{colors.accent-coral}</span><span>위험 액션은 coral과 명시적인 action label을 함께 사용합니다.</span></div>
+  </div>
+</section>
+
+<section id="component-api-contract" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">API contract</p>
+    <h2>Menu API 구현 계약.</h2>
+  </div>
+  <div class="component-api-contract">
+    <div class="component-api-row header"><span>Type</span><span>Contract</span></div>
+    <div class="component-api-row"><span><strong>Props</strong></span><span>trigger, items, group, checked item, danger item</span></div>
+    <div class="component-api-row"><span><strong>States</strong></span><span>closed, open, hover, focus, checked, disabled, danger</span></div>
+    <div class="component-api-row"><span><strong>A11y</strong></span><span>aria-haspopup, aria-expanded, role menu, menuitem, Escape closes</span></div>
+  </div>
+</section>
+
+<section id="component-token-binding" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Token usage</p>
+    <h2>Menu tokens를 실제 token path에 연결합니다.</h2>
+  </div>
+  <div class="component-token-binding">
+    <span>{sizing.control-height}</span>
+    <span>{typography.body-sm}</span>
+    <span>{colors.surface-raised}</span>
+    <span>{colors.hairline}</span>
+    <span>{shadow.low}</span>
   </div>
 </section>
 

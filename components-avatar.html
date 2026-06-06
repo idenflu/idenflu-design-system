@@ -168,11 +168,38 @@
   </div>
 </section>
 
+<section id="component-api-contract" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">API contract</p>
+    <h2>Avatar API 구현 계약.</h2>
+  </div>
+  <div class="component-api-contract">
+    <div class="component-api-row header"><span>Type</span><span>Contract</span></div>
+    <div class="component-api-row"><span><strong>Props</strong></span><span>name, image, initials, size, presence, subtitle</span></div>
+    <div class="component-api-row"><span><strong>States</strong></span><span>image, initials, unassigned, online, busy, disabled</span></div>
+    <div class="component-api-row"><span><strong>A11y</strong></span><span>img alt when informative, decorative avatar hidden, visible name near identity rows</span></div>
+  </div>
+</section>
+
+<section id="component-token-binding" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Token usage</p>
+    <h2>Avatar tokens를 실제 token path에 연결합니다.</h2>
+  </div>
+  <div class="component-token-binding">
+    <span>{sizing.control-height}</span>
+    <span>{typography.body-emphasis}</span>
+    <span>{colors.surface-2}</span>
+    <span>{colors.primary}</span>
+    <span>{colors.hairline}</span>
+  </div>
+</section>
+
 <section id="avatar" class="section">
   <div class="section-heading"><p class="eyebrow">Avatar</p><h2>사람 정보는 avatar, 이름, 역할을 함께 보여줍니다.</h2></div>
-  <div class="utility-component-grid">
-    <article class="identity-row"><span class="avatar">MP</span><span><strong>Mina Park</strong><small>Campaign owner</small></span><span class="status mint">Online</span></article>
-    <article class="identity-row"><span class="avatar muted">?</span><span><strong>Unassigned</strong><small>Avatar fallback</small></span><button class="button ghost small" type="button">Assign</button></article>
+  <div class="identity-demo-grid">
+    <article class="identity-demo-surface identity-row"><span class="avatar">MP</span><span><strong>Owner identity</strong><small>Mina Park · Campaign owner</small></span><span class="status mint">Online</span></article>
+    <article class="identity-demo-surface"><strong>Reviewer group</strong><div class="avatar-cluster" aria-label="Reviewer group"><span class="avatar">MP</span><span class="avatar">JL</span><span class="avatar muted">+3</span></div><button class="button ghost small" type="button">Manage reviewers</button></article>
   </div>
 </section>
       </main>

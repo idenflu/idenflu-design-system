@@ -31,9 +31,15 @@
 
 <!-- partial:component-token-contract -->
 
+<!-- partial:component-api-contract -->
+
+<!-- partial:component-token-binding -->
+
 <section id="stepper-component" class="section">
   <div class="section-heading"><p class="eyebrow">Stepper</p><h2>순차 흐름은 현재 단계와 막힌 원인을 바로 보여줍니다.</h2></div>
-  <div class="utility-component-grid">
-    <article><ol class="workflow-stepper"><li class="complete"><span>01</span><strong>Setup</strong><small>Complete</small></li><li class="current" aria-current="step"><span>02</span><strong>Review</strong><small>In progress</small></li><li><span>03</span><strong>Publish</strong><small>Not started</small></li></ol></article>
+  <div class="stepper-demo-surface">
+    <strong>Approval progress surface</strong>
+    <ol class="workflow-stepper"><li class="complete"><span>01</span><strong>Setup</strong><small>Complete</small></li><li class="current" aria-current="step"><span>02</span><strong>Review</strong><small>In progress</small></li><li class="blocked"><span>03</span><strong>Publish</strong><small>Blocked step recovery required</small></li></ol>
+    <button class="button ghost small" type="button">Resolve blocked step</button>
   </div>
 </section>

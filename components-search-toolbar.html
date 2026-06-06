@@ -172,9 +172,37 @@
   </div>
 </section>
 
+<section id="component-api-contract" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">API contract</p>
+    <h2>Search Toolbar API 구현 계약.</h2>
+  </div>
+  <div class="component-api-contract">
+    <div class="component-api-row header"><span>Type</span><span>Contract</span></div>
+    <div class="component-api-row"><span><strong>Props</strong></span><span>query, filters, saved view, density, reset</span></div>
+    <div class="component-api-row"><span><strong>States</strong></span><span>empty query, typing, filtered, saved, loading, disabled</span></div>
+    <div class="component-api-row"><span><strong>A11y</strong></span><span>search landmark or label, filter button names, active filter text, reset action</span></div>
+  </div>
+</section>
+
+<section id="component-token-binding" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Token usage</p>
+    <h2>Search toolbar tokens를 실제 token path에 연결합니다.</h2>
+  </div>
+  <div class="component-token-binding">
+    <span>{sizing.field-height}</span>
+    <span>{density.compact}</span>
+    <span>{colors.surface-raised}</span>
+    <span>{colors.hairline}</span>
+    <span>{typography.body-sm}</span>
+  </div>
+</section>
+
 <section id="search-toolbar" class="section">
   <div class="section-heading"><p class="eyebrow">Search toolbar</p><h2>목록 조건과 복구 action을 한 줄에서 제공합니다.</h2></div>
-  <div class="utility-component-grid">
+  <div class="toolbar-demo-surface">
+    <strong>Filter toolbar surface</strong>
     <article class="filter-toolbar" role="search" aria-label="Review queue filters">
       <label class="field"><span>Search</span><input type="search" value="creator disclosure"></label>
       <button class="button quiet small" type="button">Saved view</button>
@@ -182,6 +210,7 @@
       <button class="filter-chip" type="button">Due today <span>8</span></button>
       <button class="button ghost small" type="button">Reset</button>
     </article>
+    <p>Saved view controls, active filters, reset action을 한 surface 안에서 확인합니다.</p>
   </div>
 </section>
       </main>

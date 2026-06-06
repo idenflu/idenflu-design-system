@@ -99,6 +99,11 @@ requireInFile("scripts/browser-qa-check.js", "browser QA scenarios", "screenshot
 requireInFile("scripts/browser-qa-check.js", "interaction scenarios", "interactionScenarios");
 requireInFile("scripts/browser-qa-check.js", "theme modes", "themeModes");
 requireInFile("scripts/browser-qa-check.js", "viewport matrix", "viewports");
+requireInFile("scripts/browser-qa-check.js", "tablet viewport", "tablet");
+requireInFile("scripts/browser-qa-check.js", "menu responsive QA", "component-menu-responsive");
+requireInFile("scripts/browser-qa-check.js", "combobox responsive QA", "component-combobox-responsive");
+requireInFile("scripts/browser-qa-check.js", "table responsive QA", "component-table-responsive");
+requireInFile("scripts/browser-qa-check.js", "overlay responsive QA", "component-overlays-responsive");
 requireInFile("scripts/token-usage-report.js", "token usage check mode", "--check");
 requireInFile("scripts/component-coverage-check.js", "component coverage check", "collectCoverageFailures");
 requireInFile("scripts/page-partials.js", "partial expansion", "expandPagePartials");

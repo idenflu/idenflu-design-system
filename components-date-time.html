@@ -169,11 +169,38 @@
   </div>
 </section>
 
+<section id="component-api-contract" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">API contract</p>
+    <h2>Date Time API 구현 계약.</h2>
+  </div>
+  <div class="component-api-contract">
+    <div class="component-api-row header"><span>Type</span><span>Contract</span></div>
+    <div class="component-api-row"><span><strong>Props</strong></span><span>value, timezone, range, min date, validation</span></div>
+    <div class="component-api-row"><span><strong>States</strong></span><span>empty, selected, range, disabled date, invalid, readonly</span></div>
+    <div class="component-api-row"><span><strong>A11y</strong></span><span>visible label, timezone text, aria-invalid, keyboard date navigation</span></div>
+  </div>
+</section>
+
+<section id="component-token-binding" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Token usage</p>
+    <h2>Date time tokens를 실제 token path에 연결합니다.</h2>
+  </div>
+  <div class="component-token-binding">
+    <span>{sizing.field-height}</span>
+    <span>{typography.body}</span>
+    <span>{colors.primary-soft}</span>
+    <span>{colors.hairline}</span>
+    <span>{colors.accent-coral}</span>
+  </div>
+</section>
+
 <section id="date-time" class="section">
   <div class="section-heading"><p class="eyebrow">Date time</p><h2>마감, 기간, 예약 시간을 같은 규칙으로 입력합니다.</h2></div>
-  <div class="utility-component-grid">
-    <article class="date-time-board"><label class="field"><span>Campaign period</span><input type="text" value="2026-06-10 to 2026-06-12"></label><span class="status blue">KST</span></article>
-    <article class="date-time-board"><label class="field invalid"><span>Publish time</span><input type="text" value="2026-06-01 09:00" aria-invalid="true"><small>Past dates cannot be scheduled.</small></label></article>
+  <div class="date-time-demo-grid">
+    <article class="date-time-demo-surface date-time-board"><strong>Campaign period</strong><label class="field"><span>Range</span><input type="text" value="2026-06-10 to 2026-06-12"></label><span class="status blue">KST</span></article>
+    <article class="date-time-demo-surface date-time-board"><strong>Invalid schedule</strong><label class="field invalid"><span>Publish time</span><input type="text" value="2026-06-01 09:00" aria-invalid="true"><small>Past dates cannot be scheduled.</small></label></article>
   </div>
 </section>
       </main>

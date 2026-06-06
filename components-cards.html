@@ -175,6 +175,17 @@
   </div>
 </section>
 
+
+<section class="section surface-band">
+  <div class="section-heading"><p class="eyebrow">Anatomy visual</p><h2>Card anatomy visual.</h2></div>
+  <div class="component-anatomy-visual">
+    <article><span class="anatomy-node primary">01</span><strong>Header</strong><p>Header 영역을 실제 화면 구조와 같은 순서로 확인합니다.</p></article>
+    <article><span class="anatomy-node">02</span><strong>Body</strong><p>Body 영역을 실제 화면 구조와 같은 순서로 확인합니다.</p></article>
+    <article><span class="anatomy-node">03</span><strong>Footer</strong><p>Footer 영역을 실제 화면 구조와 같은 순서로 확인합니다.</p></article>
+    <article><span class="anatomy-node">04</span><strong>Pinned action</strong><p>Pinned action 영역을 실제 화면 구조와 같은 순서로 확인합니다.</p></article>
+  </div>
+</section>
+
 <section id="token-contract" class="section">
   <div class="section-heading">
     <p class="eyebrow">Token contract</p>
@@ -186,6 +197,32 @@
     <div class="token-contract-row"><span><strong>Title</strong></span><span>{typography.card-title}</span><span>제목은 객체명만 쓰고 상태나 설명은 metadata로 내립니다.</span></div>
     <div class="token-contract-row"><span><strong>Spacing</strong></span><span>{spacing.lg} / {spacing.md}</span><span>Header, body, footer는 같은 padding 안에서 역할별 간격만 조정합니다.</span></div>
     <div class="token-contract-row"><span><strong>Border</strong></span><span>{colors.hairline}</span><span>Hover와 selected는 border/color 변화로 표현하고 nested card는 피합니다.</span></div>
+  </div>
+</section>
+
+<section id="component-api-contract" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">API contract</p>
+    <h2>Card API 구현 계약.</h2>
+  </div>
+  <div class="component-api-contract">
+    <div class="component-api-row header"><span>Type</span><span>Contract</span></div>
+    <div class="component-api-row"><span><strong>Props</strong></span><span>header, body, footer, metadata, action</span></div>
+    <div class="component-api-row"><span><strong>States</strong></span><span>default, hover, selected, loading, locked, error</span></div>
+    <div class="component-api-row"><span><strong>A11y</strong></span><span>card action separation, visible metadata, focus target, semantic heading</span></div>
+  </div>
+</section>
+
+<section id="component-token-binding" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Token usage</p>
+    <h2>Card tokens를 실제 token path에 연결합니다.</h2>
+  </div>
+  <div class="component-token-binding">
+    <span>{colors.surface-raised}</span>
+    <span>{typography.card-title}</span>
+    <span>{spacing.lg}</span>
+    <span>{colors.hairline}</span>
   </div>
 </section>
 

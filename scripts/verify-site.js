@@ -400,6 +400,49 @@ if (config) {
     }
   });
 
+  const menuSource = read(path.join("src/pages", "components-menu.html"));
+  [
+    "menu-demo-grid",
+    "menu-trigger-row",
+    "menu-demo-surface",
+    "Row action menu",
+    "Selection menu",
+  ].forEach((marker) => {
+    if (!menuSource.includes(marker)) {
+      failures.push(`components-menu.html: missing menu demo marker ${marker}`);
+    }
+  });
+  if (menuSource.includes("utility-component-grid")) {
+    failures.push("components-menu.html: should not use utility-component-grid for main examples");
+  }
+
+  const comboboxSource = read(path.join("src/pages", "components-combobox.html"));
+  [
+    "combobox-demo-grid",
+    "combobox-field-demo",
+    "combobox-demo-surface",
+    "Owner search",
+    "Label search",
+  ].forEach((marker) => {
+    if (!comboboxSource.includes(marker)) {
+      failures.push(`components-combobox.html: missing combobox demo marker ${marker}`);
+    }
+  });
+  if (comboboxSource.includes("utility-component-grid")) {
+    failures.push("components-combobox.html: should not use utility-component-grid for main examples");
+  }
+
+  [
+    ".menu-demo-grid",
+    ".combobox-demo-grid",
+    ".menu-demo-surface",
+    ".combobox-demo-surface",
+    ".menu-trigger-row",
+    ".combobox-field-demo",
+  ].forEach((selector) => {
+    if (!styles.includes(selector)) failures.push(`styles.css: missing ${selector}`);
+  });
+
   if (!styles.includes("backdrop-filter: blur(3px)")) {
     failures.push("styles.css: missing backdrop blur");
   }

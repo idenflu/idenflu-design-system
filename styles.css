@@ -1163,6 +1163,56 @@ h3 {
   gap: var(--space-sm);
 }
 
+.menu-demo-grid,
+.combobox-demo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr));
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+.menu-demo-grid > .menu-demo-surface,
+.combobox-demo-surface {
+  display: grid;
+  align-content: start;
+  gap: var(--space-md);
+  border: 1px solid var(--hairline);
+  padding: var(--space-lg);
+  background: var(--surface-raised);
+}
+
+.menu-trigger-row {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+.menu-trigger-row span {
+  display: grid;
+  min-width: 0;
+  gap: 2px;
+}
+
+.menu-trigger-row small {
+  overflow: hidden;
+  color: var(--ink-muted);
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.menu-demo-surface .menu-surface,
+.combobox-demo-surface .combobox-panel {
+  width: 100%;
+}
+
+.combobox-field-demo {
+  display: grid;
+  gap: var(--space-xs);
+}
+
 .menu-surface {
   border: 1px solid var(--hairline);
   background: var(--surface-raised);

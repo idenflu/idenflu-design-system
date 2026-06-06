@@ -15,8 +15,8 @@
   </div>
   <div class="component-context-example">
     <div class="context-preview">
-      <div class="context-preview-header"><strong>Campaign row menu</strong><button class="icon-button" type="button" aria-label="Open campaign actions" aria-haspopup="menu" aria-expanded="true"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-more"></use></svg></button></div>
-      <div class="menu-surface" role="menu" aria-label="Campaign actions">
+      <div class="menu-trigger-row"><span><strong>Campaign row menu</strong><small>Rev 03 · Due today</small></span><button class="icon-button" type="button" aria-label="Open campaign actions" aria-haspopup="menu" aria-expanded="true"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-more"></use></svg></button></div>
+      <div class="menu-surface menu-demo-surface" role="menu" aria-label="Campaign actions">
         <button type="button" role="menuitem">Open detail</button>
         <button type="button" role="menuitemcheckbox" aria-checked="true">Show revision column</button>
         <button type="button" role="menuitem" disabled>Duplicate campaign</button>
@@ -41,19 +41,29 @@
     <p class="eyebrow">Menu</p>
     <h2>정렬, 필터, row action을 작은 명령 목록으로 제공합니다.</h2>
   </div>
-  <div class="utility-component-grid">
-    <article class="menu-surface" role="menu" aria-label="Sort menu">
-      <strong>Sort by</strong>
-      <button type="button" role="menuitemcheckbox" aria-checked="true">Newest revision</button>
-      <button type="button" role="menuitemcheckbox" aria-checked="false">Due date</button>
-      <button type="button" role="menuitemcheckbox" aria-checked="false">Risk level</button>
+  <div class="menu-demo-grid">
+    <article class="menu-demo-surface">
+      <div class="menu-trigger-row">
+        <span><strong>Selection menu</strong><small>Toolbar sort and filter options</small></span>
+        <button class="button quiet small" type="button" aria-haspopup="menu" aria-expanded="true">Sort</button>
+      </div>
+      <div class="menu-surface" role="menu" aria-label="Sort menu">
+        <button type="button" role="menuitemcheckbox" aria-checked="true">Newest revision</button>
+        <button type="button" role="menuitemcheckbox" aria-checked="false">Due date</button>
+        <button type="button" role="menuitemcheckbox" aria-checked="false">Risk level</button>
+      </div>
     </article>
-    <article class="menu-surface" role="menu" aria-label="Action menu">
-      <strong>Actions</strong>
-      <button type="button" role="menuitem">Assign owner</button>
-      <button type="button" role="menuitem">Export selected</button>
-      <button type="button" role="menuitem" disabled>Approve locked item</button>
-      <button class="danger" type="button" role="menuitem">Remove from queue</button>
+    <article class="menu-demo-surface">
+      <div class="menu-trigger-row">
+        <span><strong>Row action menu</strong><small>Secondary actions stay near the row object</small></span>
+        <button class="icon-button" type="button" aria-label="Open row actions" aria-haspopup="menu" aria-expanded="true"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-more"></use></svg></button>
+      </div>
+      <div class="menu-surface" role="menu" aria-label="Action menu">
+        <button type="button" role="menuitem">Assign owner</button>
+        <button type="button" role="menuitem">Export selected</button>
+        <button type="button" role="menuitem" disabled>Approve locked item</button>
+        <button class="danger" type="button" role="menuitem">Remove from queue</button>
+      </div>
     </article>
   </div>
 </section>

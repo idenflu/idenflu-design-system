@@ -14,11 +14,13 @@
     <h2>Combobox는 검색 가능한 소유자와 label 선택에 사용합니다.</h2>
   </div>
   <div class="component-context-example">
-    <div class="context-preview">
-      <label class="field">
-        <span>Owner</span>
-        <div class="input-shell"><input type="text" role="combobox" aria-expanded="true" aria-controls="owner-options" aria-activedescendant="owner-mina" value="mi"></div>
-      </label>
+    <div class="context-preview combobox-demo-surface">
+      <div class="combobox-field-demo">
+        <label class="field">
+          <span>Owner search</span>
+          <div class="input-shell"><input type="text" role="combobox" aria-expanded="true" aria-controls="owner-options" aria-activedescendant="owner-mina" value="mi"></div>
+        </label>
+      </div>
       <div id="owner-options" class="combobox-panel" role="listbox" aria-label="Owner results">
         <div id="owner-mina" class="active" role="option" aria-selected="true"><strong>Mina Park</strong><small>Campaign owner</small></div>
         <div role="option"><strong>Minho Lee</strong><small>Reviewer</small></div>
@@ -43,16 +45,20 @@
     <p class="eyebrow">Combobox</p>
     <h2>검색 가능한 선택지는 입력과 결과 목록을 하나의 계약으로 봅니다.</h2>
   </div>
-  <div class="utility-component-grid">
-    <article class="combobox-demo">
-      <label class="field"><span>Campaign label</span><input type="text" role="combobox" aria-expanded="true" aria-controls="label-options" aria-activedescendant="label-risk" value="risk"></label>
+  <div class="combobox-demo-grid">
+    <article class="combobox-demo-surface">
+      <div class="combobox-field-demo">
+        <label class="field"><span>Label search</span><input type="text" role="combobox" aria-expanded="true" aria-controls="label-options" aria-activedescendant="label-risk" value="risk"></label>
+      </div>
       <div id="label-options" class="combobox-panel" role="listbox">
         <div id="label-risk" class="active" role="option" aria-selected="true"><strong>Disclosure risk</strong><small>3 matching campaigns</small></div>
         <div role="option"><strong>Deadline risk</strong><small>8 matching campaigns</small></div>
       </div>
     </article>
-    <article class="combobox-demo">
-      <label class="field"><span>Empty result</span><input type="text" role="combobox" aria-expanded="true" aria-controls="empty-options" value="unknown owner"></label>
+    <article class="combobox-demo-surface">
+      <div class="combobox-field-demo">
+        <label class="field"><span>Owner search</span><input type="text" role="combobox" aria-expanded="true" aria-controls="empty-options" value="unknown owner"></label>
+      </div>
       <div id="empty-options" class="combobox-panel empty" role="listbox"><strong>No matching owner</strong><small>Clear the query or invite a collaborator.</small></div>
     </article>
   </div>

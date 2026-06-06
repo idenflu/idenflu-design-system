@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Changelog - idenflu Design System</title>
+    <link rel="stylesheet" href="tokens.generated.css?v=20260606-token-pipeline">
+    <link rel="stylesheet" href="styles.css?v=20260606-system-complete">
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="index.html"><span class="brand-mark"></span><span>idenflu</span></a>
+      <nav class="topnav" aria-label="Primary">
+        <a href="index.html">Overview</a>
+        <a href="foundations.html">Foundations</a>
+        <a href="components.html">Components</a>
+        <a href="patterns.html">Patterns</a>
+        <a class="active" href="guidelines.html">Reference</a>
+      </nav>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode" aria-pressed="false">Dark</button>
+      <div class="topbar-meta">Versioning</div>
+    </header>
+
+    <div class="doc-layout">
+      <aside class="sidebar" aria-label="Page sections">
+        <p class="sidebar-label">Changelog</p>
+        <a href="#current">Current</a>
+        <a href="#history">History</a>
+        <a href="#deprecations">Deprecations</a>
+        <a href="#release-checklist">Release checklist</a>
+        <p class="sidebar-label reference-label">Reference</p>
+        <a href="starter-kit.html">Starter kit</a>
+        <a href="guidelines.html">Guidelines</a>
+        <a href="states.html">States</a>
+        <a href="accessibility.html">Accessibility</a>
+        <a href="responsive.html">Responsive</a>
+        <a href="enterprise.html">Enterprise</a>
+        <a href="visual-qa.html">Visual QA</a>
+        <a class="active" href="changelog.html">Changelog</a>
+      </aside>
+
+      <main>
+<section class="page-header">
+  <p class="eyebrow">Changelog</p>
+  <h1>디자인 시스템 변경을 버전과 영향도로 관리합니다.</h1>
+  <p class="lede">토큰, 컴포넌트, 패턴이 바뀔 때 어떤 화면과 구현이 영향을 받는지 추적해 제품 화면의 일관성을 유지합니다.</p>
+</section>
+
+<section id="current" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Current release</p>
+    <h2>Alpha · 2026-06-06.</h2>
+  </div>
+  <div class="version-grid">
+    <article class="version-card current">
+      <span class="version-tag">alpha</span>
+      <strong>Enterprise baseline</strong>
+      <p>White light mode, black-base dark mode, 0px radius, compact controls, component page split, visual QA, token export를 기준으로 고정했습니다.</p>
+    </article>
+    <article class="version-card">
+      <span class="version-tag">components</span>
+      <strong>Component documentation standard</strong>
+      <p>모든 상세 컴포넌트 페이지에 Anatomy, Variants, States, Accessibility, Examples, QA 기준을 추가했습니다.</p>
+    </article>
+    <article class="version-card">
+      <span class="version-tag">governance</span>
+      <strong>Build and verification flow</strong>
+      <p>공통 topbar/sidebar는 `site.config.json`과 `src/pages`에서 생성하고, 토큰/아이콘/페이지 링크는 검증 스크립트로 확인합니다.</p>
+    </article>
+  </div>
+</section>
+
+<section id="history" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">History</p>
+    <h2>최근 변경 내역.</h2>
+  </div>
+  <div class="decision-table">
+    <div class="decision-row header"><span>Date</span><span>Change</span><span>Impact</span></div>
+    <div class="decision-row"><span><strong>2026-06-06</strong></span><span>Starter kit과 low-detail layout recipe 추가, 문서 톤을 출발점 중심으로 완화</span><span>New screen onboarding, flexible guidance, lighter first pass</span></div>
+    <div class="decision-row"><span><strong>2026-06-06</strong></span><span>Responsive reference, overlay interaction demo, token CSS generation pipeline 추가</span><span>Mobile 기준, focus restore, token build/verify workflow</span></div>
+    <div class="decision-row"><span><strong>2026-06-06</strong></span><span>Buttons, Inputs, Data table 상세 스펙과 Visual QA 자동 검증 추가</span><span>Props, states, accessibility, edge cases, QA workflow</span></div>
+    <div class="decision-row"><span><strong>2026-06-06</strong></span><span>컴포넌트 상세 페이지 분리와 공통 문서 템플릿 추가</span><span>문서 IA, sidebar, component review flow</span></div>
+    <div class="decision-row"><span><strong>2026-06-06</strong></span><span>Visual QA, state matrix, accessibility matrix, density system 추가</span><span>상태 회귀 확인과 구현 계약</span></div>
+    <div class="decision-row"><span><strong>2026-06-06</strong></span><span>운영 아이콘 세트 확장</span><span>icon-user, file, table, alert, settings, lock</span></div>
+  </div>
+</section>
+
+<section id="deprecations" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Deprecations</p>
+    <h2>제거하거나 바꿔야 하는 패턴.</h2>
+  </div>
+  <div class="component-doc-grid">
+    <article class="component-doc-card">
+      <strong>Decorative gradients</strong>
+      <p>브랜드 느낌을 위해 쓰던 장식성 gradient는 제거합니다. 정보 구조, contrast, typography로 premium tone을 만듭니다.</p>
+    </article>
+    <article class="component-doc-card">
+      <strong>Rounded application chrome</strong>
+      <p>버튼, input, card, chip의 radius는 0px입니다. 예외가 필요하면 component contract에 사유를 남깁니다.</p>
+    </article>
+    <article class="component-doc-card">
+      <strong>Hidden operational metadata</strong>
+      <p>revision, owner, due date, risk는 hover나 tooltip 뒤로 보내지 않습니다. 본문 row 또는 card body에 노출합니다.</p>
+    </article>
+  </div>
+</section>
+
+<section id="release-checklist" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Release checklist</p>
+    <h2>토큰이나 컴포넌트 변경 전 확인합니다.</h2>
+  </div>
+  <div class="qa-check-grid">
+    <article class="qa-check-card">
+      <strong>Token sync</strong>
+      <p>`design.md`, `tokens.json`, `styles.css`의 색/타입/크기 값이 같은 의미로 유지되는지 확인합니다.</p>
+    </article>
+    <article class="qa-check-card">
+      <strong>Component impact</strong>
+      <p>변경된 token이 button, input, table, feedback, overlay에 어떤 상태 차이를 만드는지 확인합니다.</p>
+    </article>
+    <article class="qa-check-card">
+      <strong>Visual QA</strong>
+      <p>`visual-qa.html`에서 light/dark, hover, focus, selected, loading, disabled 상태를 한 번에 비교합니다.</p>
+    </article>
+    <article class="qa-check-card">
+      <strong>Accessibility</strong>
+      <p>Keyboard path, aria-label, aria-sort, aria-invalid, aria-describedby 연결이 깨지지 않았는지 확인합니다.</p>
+    </article>
+    <article class="qa-check-card">
+      <strong>Docs IA</strong>
+      <p>새 페이지가 topnav, sidebar, page map, Reference group에서 접근 가능한지 확인합니다.</p>
+    </article>
+    <article class="qa-check-card">
+      <strong>Implementation check</strong>
+      <p>빌드 스크립트와 검증 스크립트를 실행하고 HTML/CSS/JS/JSON/SVG 문법을 함께 확인합니다.</p>
+    </article>
+  </div>
+</section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

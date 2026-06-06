@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Examples - idenflu Design System</title>
+    <link rel="stylesheet" href="tokens.generated.css?v=20260606-token-pipeline">
+    <link rel="stylesheet" href="styles.css?v=20260606-system-complete">
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="index.html"><span class="brand-mark"></span><span>idenflu</span></a>
+      <nav class="topnav" aria-label="Primary">
+        <a href="index.html">Overview</a>
+        <a href="foundations.html">Foundations</a>
+        <a class="active" href="components.html">Components</a>
+        <a href="patterns.html">Patterns</a>
+        <a href="guidelines.html">Reference</a>
+      </nav>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode" aria-pressed="false">Dark</button>
+      <div class="topbar-meta">Examples</div>
+    </header>
+
+    <div class="doc-layout">
+      <aside class="sidebar" aria-label="Component pages">
+        <p class="sidebar-label">Components</p>
+        <a href="components.html">Overview</a>
+        <a href="components-buttons.html">Buttons</a>
+        <a href="components-icons.html">Icons</a>
+        <a href="components-inputs.html">Inputs</a>
+        <a href="components-controls.html">Controls</a>
+        <a href="components-tabs.html">Tabs</a>
+        <a href="components-cards.html">Cards</a>
+        <a href="components-table.html">Data table</a>
+        <a class="active" href="components-examples.html">Examples</a>
+        <a href="components-feedback.html">Feedback</a>
+        <a href="components-overlays.html">Overlays</a>
+        <a href="components-navigation.html">Navigation</a>
+      </aside>
+
+      <main>
+<section class="page-header">
+  <p class="eyebrow">Components</p>
+  <h1>Examples</h1>
+  <p class="lede">Real product screen combinations for campaign operations.</p>
+</section>
+
+<section id="component-standard" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Component standard</p>
+    <h2>Examples 문서의 공통 구조.</h2>
+  </div>
+  <div class="component-doc-grid">
+    <article id="doc-anatomy" class="component-doc-card">
+      <strong>Anatomy</strong>
+      <p>기본 구성요소를 정리해 구현과 디자인 리뷰의 출발점을 맞춥니다.</p>
+      <ul><li>Screen context</li><li>component mix</li><li>state sample</li><li>metadata</li><li>decision action</li></ul>
+    </article>
+    <article id="doc-variants" class="component-doc-card">
+      <strong>Variants</strong>
+      <p>Campaign detail, creator profile, review queue, admin, billing</p>
+    </article>
+    <article id="doc-states" class="component-doc-card">
+      <strong>States</strong>
+      <p>Default, hover, focus, selected, loading, disabled, error 또는 locked 상태를 같은 density로 비교합니다.</p>
+    </article>
+    <article id="doc-accessibility" class="component-doc-card">
+      <strong>Accessibility</strong>
+      <p>Keyboard path, visible focus, semantic role, accessible name, helper/error 연결을 함께 검토합니다.</p>
+    </article>
+    <article id="doc-examples" class="component-doc-card">
+      <strong>Examples</strong>
+      <p>단독 컴포넌트보다 campaign, creator, review, admin workflow 안에서 쓰이는 예시를 우선합니다.</p>
+    </article>
+    <article id="doc-qa" class="component-doc-card">
+      <strong>QA</strong>
+      <p>Visual QA에서 light/dark, compact density, disabled hover, focus, long text overflow를 다시 확인합니다.</p>
+    </article>
+  </div>
+</section>
+
+<section id="examples" class="section">
+          <div class="section-heading">
+            <p class="eyebrow">Example cases</p>
+            <h2>실제 운영 화면에 가까운 조합.</h2>
+          </div>
+          <div class="example-screen-grid">
+            <article class="example-screen campaign-detail">
+              <div class="example-topline">
+                <p class="eyebrow">Campaign detail</p>
+                <span class="status amber">Review</span>
+              </div>
+              <h3>Summer drop review</h3>
+              <div class="example-metrics">
+                <div><strong>8</strong><span>creators</span></div>
+                <div><strong>Rev 03</strong><span>current</span></div>
+                <div><strong>Today</strong><span>deadline</span></div>
+              </div>
+              <div class="review-checklist">
+                <label><input type="checkbox" checked> Visual asset approved</label>
+                <label><input type="checkbox"> Disclosure line verified</label>
+                <label><input type="checkbox" checked> Usage rights confirmed</label>
+              </div>
+              <div class="case-actions">
+                <button class="button quiet" type="button">Request changes</button>
+                <button class="button primary" type="button">Approve asset</button>
+              </div>
+            </article>
+            <article class="example-screen creator-profile">
+              <div class="example-topline">
+                <p class="eyebrow">Creator profile</p>
+                <span class="status mint">High fit</span>
+              </div>
+              <div class="creator-hero">
+                <span class="thumb mint"></span>
+                <div>
+                  <h3>@seoul.daily</h3>
+                  <p>Beauty · Seoul · 184K followers</p>
+                </div>
+              </div>
+              <div class="creator-score-grid">
+                <span><strong>92%</strong> audience fit</span>
+                <span><strong>2h</strong> reply time</span>
+                <span><strong>KRW 1.2M</strong> reel rate</span>
+              </div>
+              <div class="case-actions">
+                <button class="button ghost" type="button">Message</button>
+                <button class="button primary" type="button">Invite</button>
+              </div>
+            </article>
+            <article class="example-screen review-workbench wide">
+              <div class="example-topline">
+                <p class="eyebrow">Review queue</p>
+                <span class="status coral">3 blocked</span>
+              </div>
+              <div class="workbench-grid">
+                <div class="asset-preview">
+                  <span class="thumb coral"></span>
+                  <strong>Caption version · Rev 03</strong>
+                  <p>Disclosure copy is missing from the first caption line.</p>
+                </div>
+                <div class="review-list compact">
+                  <article><span class="status coral">Change</span><p>Caption needs disclosure before approval.</p></article>
+                  <article><span class="status amber">Check</span><p>Usage rights expire after 90 days.</p></article>
+                  <article><span class="status mint">Ready</span><p>Visual crop and tags are approved.</p></article>
+                </div>
+              </div>
+              <div class="case-actions">
+                <button class="button ghost" type="button">Open brief</button>
+                <button class="button quiet" type="button">Assign reviewer</button>
+                <button class="button primary" type="button">Resolve selected</button>
+              </div>
+            </article>
+            <article class="example-screen settings-permissions">
+              <div class="example-topline">
+                <p class="eyebrow">Settings / permissions</p>
+                <span class="status blue">Admin</span>
+              </div>
+              <div class="permission-list">
+                <label><span>Approve paid assets</span><input type="checkbox" checked></label>
+                <label><span>Invite creators</span><input type="checkbox" checked></label>
+                <label><span>Change billing owner</span><input type="checkbox"></label>
+              </div>
+              <label class="field">
+                <span>Default reviewer</span>
+                <div class="input-shell">
+                  <span class="input-prefix">@</span>
+                  <input type="text" value="mina">
+                  <span class="input-suffix">idenflu.com</span>
+                </div>
+              </label>
+            </article>
+            <article class="example-screen operational-states">
+              <div class="example-topline">
+                <p class="eyebrow">Loading / error / empty</p>
+                <span class="status amber">QA</span>
+              </div>
+              <div class="state-stack">
+                <div class="skeleton-block"><span></span><span></span><span></span></div>
+                <div class="inline-error"><strong>Sync failed</strong><p>Retry keeps existing table filters and selected rows.</p></div>
+                <div class="empty-state compact"><strong>No matching creators</strong><p>Clear one filter or broaden audience fit.</p></div>
+              </div>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

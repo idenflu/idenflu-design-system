@@ -1,0 +1,187 @@
+<section class="page-header">
+  <p class="eyebrow">Components</p>
+  <h1>Buttons</h1>
+  <p class="lede">Action hierarchy, size, icon, loading, disabled states.</p>
+</section>
+
+<section id="component-standard" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Component standard</p>
+    <h2>Buttons 문서의 공통 구조.</h2>
+  </div>
+  <div class="component-doc-grid">
+    <article id="doc-anatomy" class="component-doc-card">
+      <strong>Anatomy</strong>
+      <p>기본 구성요소를 정리해 구현과 디자인 리뷰의 출발점을 맞춥니다.</p>
+      <ul><li>Label</li><li>optional icon</li><li>fixed size</li><li>loading indicator</li><li>disabled reason</li></ul>
+    </article>
+    <article id="doc-variants" class="component-doc-card">
+      <strong>Variants</strong>
+      <p>Primary, secondary, quiet, ghost, danger, icon-only, sizes</p>
+    </article>
+    <article id="doc-states" class="component-doc-card">
+      <strong>States</strong>
+      <p>Default, hover, focus, selected, loading, disabled, error 또는 locked 상태를 같은 density로 비교합니다.</p>
+    </article>
+    <article id="doc-accessibility" class="component-doc-card">
+      <strong>Accessibility</strong>
+      <p>Keyboard path, visible focus, semantic role, accessible name, helper/error 연결을 함께 검토합니다.</p>
+    </article>
+    <article id="doc-examples" class="component-doc-card">
+      <strong>Examples</strong>
+      <p>단독 컴포넌트보다 campaign, creator, review, admin workflow 안에서 쓰이는 예시를 우선합니다.</p>
+    </article>
+    <article id="doc-qa" class="component-doc-card">
+      <strong>QA</strong>
+      <p>Visual QA에서 light/dark, compact density, disabled hover, focus, long text overflow를 다시 확인합니다.</p>
+    </article>
+  </div>
+</section>
+
+<section id="button-spec" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Button spec</p>
+    <h2>구현자가 바로 참조할 수 있는 상세 계약.</h2>
+  </div>
+  <div class="spec-table">
+    <div class="spec-row header"><span>Property</span><span>Values</span><span>Rule</span><span>Edge case</span></div>
+    <div class="spec-row"><span><strong>variant</strong></span><span>primary, secondary, quiet, ghost, danger</span><span>decision area마다 primary는 1개만 둡니다.</span><span>row 반복 액션은 ghost 또는 icon-only로 낮춥니다.</span></div>
+    <div class="spec-row"><span><strong>size</strong></span><span>small, medium, large</span><span>small 32px, medium 38px, large 44px 높이를 고정합니다.</span><span>긴 label은 wrap하지 않고 action label을 짧게 다시 씁니다.</span></div>
+    <div class="spec-row"><span><strong>icon</strong></span><span>leading, none, icon-only</span><span>텍스트 버튼 icon은 leading만 사용합니다.</span><span>icon-only는 aria-label을 함께 둡니다.</span></div>
+    <div class="spec-row"><span><strong>loading</strong></span><span>true, false</span><span>aria-busy와 inline indicator를 함께 사용하고 label은 유지합니다.</span><span>loading 중 중복 제출은 막고 width shift를 만들지 않습니다.</span></div>
+    <div class="spec-row"><span><strong>disabled</strong></span><span>true, false</span><span>disabled는 hover, active, focus style이 살아나면 안 됩니다.</span><span>승인 불가처럼 이유가 필요한 경우 주변 helper copy를 둡니다.</span></div>
+  </div>
+  <div class="decision-table">
+    <div class="decision-row header"><span>State</span><span>Visual contract</span><span>Accessibility contract</span></div>
+    <div class="decision-row"><span><strong>Focus</strong></span><span>Primary blue border + 3px focus ring</span><span>Tab 접근 순서가 시각 순서와 일치해야 합니다.</span></div>
+    <div class="decision-row"><span><strong>Selected</strong></span><span>Primary soft background + primary border</span><span>토글성 버튼이면 aria-pressed 또는 선택 상태 문맥을 제공합니다.</span></div>
+    <div class="decision-row"><span><strong>Danger</strong></span><span>Error fill + explicit destructive label</span><span>삭제/거절을 icon-only로 단독 표현하지 않습니다.</span></div>
+  </div>
+</section>
+
+<section id="buttons" class="section">
+          <div class="section-heading">
+            <p class="eyebrow">Buttons</p>
+            <h2>하나의 주요 액션과 명확한 보조 액션.</h2>
+          </div>
+          <div class="component-stage">
+            <button class="button primary" type="button"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-plus"></use></svg>Create campaign</button>
+            <button class="button secondary" type="button"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-download"></use></svg>Export report</button>
+            <button class="button quiet" type="button"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-filter"></use></svg>Filter creators</button>
+            <button class="button ghost" type="button">View details</button>
+            <button class="button danger" type="button"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-x"></use></svg>Reject asset</button>
+          </div>
+          <div class="icon-button-row" aria-label="Icon only button examples">
+            <button class="icon-button" type="button" aria-label="Search"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-search"></use></svg></button>
+            <button class="icon-button selected" type="button" aria-label="Filter"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-filter"></use></svg></button>
+            <button class="icon-button" type="button" aria-label="Refresh"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-refresh"></use></svg></button>
+            <button class="icon-button ghost" type="button" aria-label="Search creators"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-search"></use></svg></button>
+            <button class="icon-button danger" type="button" aria-label="Remove"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-x"></use></svg></button>
+            <button class="icon-button" type="button" aria-label="More actions"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-more"></use></svg></button>
+            <button class="icon-button" type="button" aria-label="Disabled download" disabled><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-download"></use></svg></button>
+          </div>
+          <div class="button-size-grid">
+            <article>
+              <span>Small · 32px</span>
+              <div class="case-actions">
+                <button class="button quiet small" type="button">Row action</button>
+                <button class="button ghost small" type="button">View</button>
+                <button class="icon-button small" type="button" aria-label="Small filter"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-filter"></use></svg></button>
+              </div>
+            </article>
+            <article>
+              <span>Medium · 38px</span>
+              <div class="case-actions">
+                <button class="button quiet" type="button">Default action</button>
+                <button class="button primary" type="button"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-check"></use></svg>Approve</button>
+                <button class="icon-button" type="button" aria-label="Medium refresh"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-refresh"></use></svg></button>
+              </div>
+            </article>
+            <article>
+              <span>Large · 44px</span>
+              <div class="case-actions">
+                <button class="button secondary large" type="button">Open report</button>
+                <button class="button primary large" type="button"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-plus"></use></svg>Create campaign</button>
+                <button class="icon-button large" type="button" aria-label="Large download"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-download"></use></svg></button>
+              </div>
+            </article>
+          </div>
+          <div class="button-state-grid">
+            <article>
+              <span>Default</span>
+              <button class="button quiet" type="button">Assign owner</button>
+            </article>
+            <article>
+              <span>Selected</span>
+              <button class="button quiet selected" type="button"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-check"></use></svg>Selected</button>
+            </article>
+            <article>
+              <span>Loading</span>
+              <button class="button primary loading" type="button" aria-busy="true">Syncing</button>
+            </article>
+            <article>
+              <span>Disabled</span>
+              <button class="button primary" type="button" disabled>Approve asset</button>
+            </article>
+            <article>
+              <span>Focus</span>
+              <button class="button quiet focus-demo" type="button">Keyboard focus</button>
+            </article>
+            <article>
+              <span>Danger</span>
+              <button class="button danger" type="button"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-x"></use></svg>Reject</button>
+            </article>
+            <article>
+              <span>Icon only</span>
+              <button class="icon-button" type="button" aria-label="Download report"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-download"></use></svg></button>
+            </article>
+            <article>
+              <span>Ghost icon</span>
+              <button class="icon-button ghost" type="button" aria-label="Search creators"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-search"></use></svg></button>
+            </article>
+            <article>
+              <span>Disabled icon</span>
+              <button class="icon-button" type="button" aria-label="Disabled refresh" disabled><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-refresh"></use></svg></button>
+            </article>
+          </div>
+          <div class="button-case-grid">
+            <article class="button-case">
+              <p class="eyebrow">Decision footer</p>
+              <strong>Asset approval</strong>
+              <div class="case-actions">
+                <button class="button quiet" type="button"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-x"></use></svg>Cancel</button>
+                <button class="button primary" type="button"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-check"></use></svg>Approve</button>
+              </div>
+            </article>
+            <article class="button-case">
+              <p class="eyebrow">Dense toolbar</p>
+              <strong>Review queue tools</strong>
+              <div class="case-actions">
+                <button class="icon-button small" type="button" aria-label="Filter queue"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-filter"></use></svg></button>
+                <button class="icon-button small" type="button" aria-label="Refresh queue"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-refresh"></use></svg></button>
+                <button class="button ghost small" type="button">Archive</button>
+              </div>
+            </article>
+            <article class="button-case">
+              <p class="eyebrow">Inline row actions</p>
+              <strong>Creator shortlist row</strong>
+              <div class="case-actions">
+                <button class="button ghost" type="button">View</button>
+                <button class="button ghost" type="button">Message</button>
+                <button class="button quiet" type="button">Shortlist</button>
+              </div>
+            </article>
+            <article class="button-case">
+              <p class="eyebrow">Disabled state</p>
+              <strong>Waiting for brief owner</strong>
+              <div class="case-actions">
+                <button class="button primary" type="button" disabled>Approve asset</button>
+                <button class="button ghost" type="button">Open brief</button>
+              </div>
+            </article>
+          </div>
+          <div class="usage-note">
+            <strong>Rule</strong>
+            <p>Primary는 decision area당 하나만 둡니다. 반복 액션은 quiet/ghost로 낮춰 화면의 소음을 줄입니다.</p>
+          </div>
+        </section>

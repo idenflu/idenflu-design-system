@@ -1,0 +1,208 @@
+<section class="page-header">
+  <p class="eyebrow">Accessibility</p>
+  <h1>운영 속도를 유지하면서 접근성을 기본값으로 둡니다.</h1>
+  <p class="lede">키보드 사용자, 스크린리더 사용자, 저시력 사용자가 같은 campaign 상태와 action을 놓치지 않도록 interaction contract를 고정합니다.</p>
+</section>
+
+<section id="focus" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Focus</p>
+    <h2>focus-visible은 모든 interactive element에서 보여야 합니다.</h2>
+  </div>
+  <div class="a11y-grid">
+    <article class="a11y-card">
+      <strong>Button focus</strong>
+      <div class="focus-strip">
+        <button class="button quiet focus-demo" type="button">Keyboard focus</button>
+        <button class="icon-button focus-demo" type="button" aria-label="Focused search"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-search"></use></svg></button>
+      </div>
+      <p>Focus ring은 primary blue 기반으로 3px ring을 사용합니다.</p>
+    </article>
+    <article class="a11y-card">
+      <label class="field">
+        <span>Focused field</span>
+        <input type="text" value="Review queue" class="focus-demo">
+      </label>
+      <p>Input focus는 border와 ring이 함께 바뀌어야 합니다.</p>
+    </article>
+    <article class="a11y-card">
+      <strong>Do not hide focus</strong>
+      <p>마우스 hover와 keyboard focus는 같은 상태가 아닙니다. focus-only path를 별도로 검증합니다.</p>
+      <code>:focus-visible</code>
+    </article>
+  </div>
+</section>
+
+<section id="keyboard" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Keyboard</p>
+    <h2>반복 업무는 키보드만으로 끝낼 수 있어야 합니다.</h2>
+  </div>
+  <div class="a11y-table">
+    <div class="a11y-row header"><span>Pattern</span><span>Keyboard behavior</span><span>Required signal</span></div>
+    <div class="a11y-row"><span><strong>Tabs</strong></span><span>Arrow keys move between tabs, Enter activates.</span><span>Selected state and panel label</span></div>
+    <div class="a11y-row"><span><strong>Menu</strong></span><span>Arrow keys move items, Esc closes, Enter selects.</span><span>Role and active item</span></div>
+    <div class="a11y-row"><span><strong>Modal</strong></span><span>Focus is trapped inside, Esc closes when safe.</span><span>Initial focus and restore target</span></div>
+    <div class="a11y-row"><span><strong>Table row</strong></span><span>Row actions are reachable without hover.</span><span>Visible action or row menu</span></div>
+  </div>
+</section>
+
+<section id="component-contracts" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Component contracts</p>
+    <h2>컴포넌트별 keyboard contract를 구현 전에 고정합니다.</h2>
+  </div>
+  <div class="spec-table">
+    <div class="spec-row header"><span>Component</span><span>Keyboard</span><span>ARIA / semantic rule</span><span>QA focus</span></div>
+    <div class="spec-row"><span><strong>Button</strong></span><span>Tab, Enter, Space</span><span>button element 우선, icon-only는 aria-label 필수</span><span>disabled hover leak, focus ring</span></div>
+    <div class="spec-row"><span><strong>Input</strong></span><span>Tab, native text editing</span><span>label 연결, error는 aria-invalid와 aria-describedby</span><span>helper text, validation summary link</span></div>
+    <div class="spec-row"><span><strong>Select</strong></span><span>Native select keyboard</span><span>가능하면 native select, 검색형은 combobox로 분리</span><span>selected value와 disabled reason</span></div>
+    <div class="spec-row"><span><strong>Table</strong></span><span>Header buttons, checkboxes, row actions tabbable</span><span>columnheader, aria-sort, checkbox accessible name</span><span>row action이 hover 없이 접근 가능</span></div>
+    <div class="spec-row"><span><strong>Modal</strong></span><span>Focus trap, Esc, restore trigger</span><span>role dialog, aria-modal, aria-labelledby</span><span>initial focus와 close 후 focus 위치</span></div>
+  </div>
+</section>
+
+<section id="aria-roles" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">ARIA role matrix</p>
+    <h2>필요한 role만 쓰고 native semantic을 우선합니다.</h2>
+  </div>
+  <div class="a11y-table">
+    <div class="a11y-row header"><span>Pattern</span><span>Role / attribute</span><span>When required</span></div>
+    <div class="a11y-row"><span><strong>Icon button</strong></span><span>aria-label</span><span>Visible text가 없는 모든 button</span></div>
+    <div class="a11y-row"><span><strong>Tabs</strong></span><span>tablist, tab, tabpanel, aria-selected, aria-controls</span><span>같은 위치에서 view mode를 전환할 때</span></div>
+    <div class="a11y-row"><span><strong>Combobox</strong></span><span>combobox, listbox, option, aria-expanded, aria-activedescendant</span><span>검색과 선택이 한 control 안에 있을 때</span></div>
+    <div class="a11y-row"><span><strong>Table sort</strong></span><span>aria-sort</span><span>현재 정렬된 column header에만 사용</span></div>
+    <div class="a11y-row"><span><strong>Validation</strong></span><span>aria-invalid, aria-describedby, role alert</span><span>사용자가 고쳐야 하는 오류를 표시할 때</span></div>
+  </div>
+</section>
+
+<section id="focus-order" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Focus order</p>
+    <h2>운영자가 읽는 순서대로 조작할 수 있어야 합니다.</h2>
+  </div>
+  <div class="component-doc-grid">
+    <article class="component-doc-card">
+      <strong>Review queue row</strong>
+      <p>Checkbox → campaign link → owner/status controls → row action → overflow 순서로 이동합니다.</p>
+      <ul>
+        <li>row 전체를 button으로 만들지 않습니다.</li>
+        <li>hover-only action은 피합니다.</li>
+        <li>overflow menu는 Esc로 닫고 trigger로 focus를 복귀합니다.</li>
+      </ul>
+    </article>
+    <article class="component-doc-card">
+      <strong>Form with errors</strong>
+      <p>Summary alert → 첫 error field → recovery action 순서로 이동합니다.</p>
+      <ul>
+        <li>summary link는 field helper id로 연결합니다.</li>
+        <li>submit 후 focus는 summary로 이동합니다.</li>
+        <li>field value는 보존합니다.</li>
+      </ul>
+    </article>
+    <article class="component-doc-card">
+      <strong>Modal decision</strong>
+      <p>Title → reason copy → secondary action → primary/danger action 순서로 이동합니다.</p>
+      <ul>
+        <li>초기 focus는 가장 안전한 control로 둡니다.</li>
+        <li>danger action은 마지막에 배치합니다.</li>
+        <li>닫힌 뒤 trigger로 focus를 복귀합니다.</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<section id="labels" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Labels</p>
+    <h2>아이콘만 있는 액션은 이름이 있어야 합니다.</h2>
+  </div>
+  <div class="a11y-grid">
+    <article class="a11y-card">
+      <strong>Icon button</strong>
+      <button class="icon-button" type="button" aria-label="Download report"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-download"></use></svg></button>
+      <p>시각적으로 아이콘만 보여도 accessible name은 구체적인 동사와 대상이어야 합니다.</p>
+      <code>aria-label="Download report"</code>
+    </article>
+    <article class="a11y-card">
+      <strong>Form field</strong>
+      <label class="field">
+        <span>Owner email</span>
+        <input type="email" value="mina@idenflu.com">
+      </label>
+      <p>Placeholder는 label이 아닙니다. 항상 visible label을 둡니다.</p>
+    </article>
+    <article class="a11y-card">
+      <strong>Status text</strong>
+      <span class="status amber">Due today</span>
+      <p>상태는 색상만 쓰지 않고 텍스트 label을 함께 제공합니다.</p>
+    </article>
+  </div>
+</section>
+
+<section id="contrast" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Contrast</p>
+    <h2>라이트/다크 모두 텍스트 우선 대비를 유지합니다.</h2>
+  </div>
+  <div class="a11y-grid">
+    <article class="contrast-pair">
+      <strong>Light surface</strong>
+      <div class="contrast-sample">Campaign status · Rev 03 · Due today</div>
+      <p>White canvas 위의 body text는 muted라도 읽을 수 있어야 합니다.</p>
+    </article>
+    <article class="contrast-pair">
+      <strong>Dark surface</strong>
+      <div class="contrast-sample inverse">Campaign status · Rev 03 · Due today</div>
+      <p>Black base dark mode에서도 hairline과 text hierarchy를 유지합니다.</p>
+    </article>
+    <article class="contrast-pair">
+      <strong>Semantic accent</strong>
+      <span class="status coral">Needs disclosure</span>
+      <p>Accent soft background 위에는 명확한 status text를 함께 둡니다.</p>
+    </article>
+  </div>
+</section>
+
+<section id="states" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Disabled vs readonly</p>
+    <h2>조작 불가와 읽기 전용은 다르게 표현합니다.</h2>
+  </div>
+  <div class="a11y-grid">
+    <article class="a11y-card">
+      <label class="field">
+        <span>Disabled approval</span>
+        <input type="text" value="Brief owner required" disabled>
+      </label>
+      <p>권한이나 상태 때문에 조작할 수 없을 때 사용합니다.</p>
+    </article>
+    <article class="a11y-card">
+      <label class="field">
+        <span>Readonly revision</span>
+        <input type="text" value="Rev 03" readonly>
+      </label>
+      <p>값은 읽고 복사할 수 있지만 편집만 막을 때 사용합니다.</p>
+    </article>
+    <article class="a11y-card">
+      <strong>Reason copy</strong>
+      <p>disabled control 근처에는 왜 잠겼는지, 누가 풀 수 있는지 설명합니다.</p>
+      <code>Only brief owner can approve</code>
+    </article>
+  </div>
+</section>
+
+<section id="qa" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">QA checklist</p>
+    <h2>출시 전 접근성 확인 항목.</h2>
+  </div>
+  <div class="a11y-checklist">
+    <label><input type="checkbox" checked> Tab 순서가 화면의 읽기 순서와 일치합니다.</label>
+    <label><input type="checkbox" checked> 모든 icon-only button에 aria-label이 있습니다.</label>
+    <label><input type="checkbox" checked> 색상 없이도 success, warning, error를 구분할 수 있습니다.</label>
+    <label><input type="checkbox" checked> modal, popover, menu가 Esc와 focus restore를 지원합니다.</label>
+    <label><input type="checkbox" checked> disabled control 근처에 reason copy가 있습니다.</label>
+  </div>
+</section>

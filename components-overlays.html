@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Overlays - idenflu Design System</title>
+    <link rel="stylesheet" href="tokens.generated.css?v=20260606-token-pipeline">
+    <link rel="stylesheet" href="styles.css?v=20260606-system-complete">
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="index.html"><span class="brand-mark"></span><span>idenflu</span></a>
+      <nav class="topnav" aria-label="Primary">
+        <a href="index.html">Overview</a>
+        <a href="foundations.html">Foundations</a>
+        <a class="active" href="components.html">Components</a>
+        <a href="patterns.html">Patterns</a>
+        <a href="guidelines.html">Reference</a>
+      </nav>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode" aria-pressed="false">Dark</button>
+      <div class="topbar-meta">Overlays</div>
+    </header>
+
+    <div class="doc-layout">
+      <aside class="sidebar" aria-label="Component pages">
+        <p class="sidebar-label">Components</p>
+        <a href="components.html">Overview</a>
+        <a href="components-buttons.html">Buttons</a>
+        <a href="components-icons.html">Icons</a>
+        <a href="components-inputs.html">Inputs</a>
+        <a href="components-controls.html">Controls</a>
+        <a href="components-tabs.html">Tabs</a>
+        <a href="components-cards.html">Cards</a>
+        <a href="components-table.html">Data table</a>
+        <a href="components-examples.html">Examples</a>
+        <a href="components-feedback.html">Feedback</a>
+        <a class="active" href="components-overlays.html">Overlays</a>
+        <a href="components-navigation.html">Navigation</a>
+      </aside>
+
+      <main>
+<section class="page-header">
+  <p class="eyebrow">Components</p>
+  <h1>Overlays</h1>
+  <p class="lede">Modal and sheet decision surfaces.</p>
+</section>
+
+<section id="component-standard" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Component standard</p>
+    <h2>Overlays 문서의 공통 구조.</h2>
+  </div>
+  <div class="component-doc-grid">
+    <article id="doc-anatomy" class="component-doc-card">
+      <strong>Anatomy</strong>
+      <p>기본 구성요소를 정리해 구현과 디자인 리뷰의 출발점을 맞춥니다.</p>
+      <ul><li>Trigger</li><li>surface</li><li>title</li><li>body</li><li>action row</li></ul>
+    </article>
+    <article id="doc-variants" class="component-doc-card">
+      <strong>Variants</strong>
+      <p>Tooltip, popover, modal, drawer, command palette</p>
+    </article>
+    <article id="doc-states" class="component-doc-card">
+      <strong>States</strong>
+      <p>Default, hover, focus, selected, loading, disabled, error 또는 locked 상태를 같은 density로 비교합니다.</p>
+    </article>
+    <article id="doc-accessibility" class="component-doc-card">
+      <strong>Accessibility</strong>
+      <p>Keyboard path, visible focus, semantic role, accessible name, helper/error 연결을 함께 검토합니다.</p>
+    </article>
+    <article id="doc-examples" class="component-doc-card">
+      <strong>Examples</strong>
+      <p>단독 컴포넌트보다 campaign, creator, review, admin workflow 안에서 쓰이는 예시를 우선합니다.</p>
+    </article>
+    <article id="doc-qa" class="component-doc-card">
+      <strong>QA</strong>
+      <p>Visual QA에서 light/dark, compact density, disabled hover, focus, long text overflow를 다시 확인합니다.</p>
+    </article>
+  </div>
+</section>
+
+<section id="overlay-interactions" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Interaction contract</p>
+    <h2>Overlay는 열리고 닫히는 순간의 focus가 핵심입니다.</h2>
+  </div>
+  <div class="spec-table">
+    <div class="spec-row header"><span>Pattern</span><span>Open trigger</span><span>Focus rule</span><span>Close rule</span></div>
+    <div class="spec-row"><span><strong>Dropdown menu</strong></span><span>Button with aria-expanded</span><span>첫 menuitem 또는 현재 선택 item</span><span>Esc, outside action, menuitem select 후 trigger로 복귀</span></div>
+    <div class="spec-row"><span><strong>Popover</strong></span><span>Contextual button</span><span>첫 interactive control</span><span>Esc 또는 Cancel 후 trigger로 복귀</span></div>
+    <div class="spec-row"><span><strong>Modal</strong></span><span>Decision button</span><span>가장 안전한 secondary action 또는 첫 field</span><span>Esc는 안전할 때만, close 후 trigger로 복귀</span></div>
+    <div class="spec-row"><span><strong>Drawer</strong></span><span>Row detail action</span><span>Drawer title 또는 close button</span><span>Esc, close button, save 후 원래 row action으로 복귀</span></div>
+  </div>
+  <div class="overlay-demo-stage">
+    <div class="overlay-trigger-row">
+      <button class="button quiet" type="button" aria-expanded="false" aria-controls="assign-popover" data-overlay-open="assign-popover">Assign reviewer</button>
+      <button class="button primary" type="button" aria-expanded="false" aria-controls="reject-modal" data-overlay-open="reject-modal">Reject asset</button>
+      <button class="button ghost" type="button" aria-expanded="false" aria-controls="creator-drawer" data-overlay-open="creator-drawer">Open drawer</button>
+    </div>
+    <div id="assign-popover" class="interactive-overlay-panel popover" role="dialog" aria-labelledby="assign-popover-title" hidden data-overlay>
+      <strong id="assign-popover-title">Assign reviewer</strong>
+      <p>Mina will receive review deadline alerts.</p>
+      <div class="modal-actions">
+        <button class="button quiet small" type="button" data-overlay-close>Cancel</button>
+        <button class="button primary small" type="button" data-overlay-close>Assign</button>
+      </div>
+    </div>
+    <div id="reject-modal" class="interactive-overlay-panel" role="dialog" aria-modal="true" aria-labelledby="reject-modal-title" hidden data-overlay>
+      <strong id="reject-modal-title">Reject asset?</strong>
+      <label class="field">
+        <span>Reason</span>
+        <textarea rows="3">Disclosure copy is missing from the opening caption.</textarea>
+      </label>
+      <div class="modal-actions">
+        <button class="button quiet" type="button" data-overlay-close>Cancel</button>
+        <button class="button danger" type="button" data-overlay-close>Reject asset</button>
+      </div>
+    </div>
+    <div id="creator-drawer" class="interactive-overlay-panel drawer" role="dialog" aria-labelledby="creator-drawer-title" hidden data-overlay>
+      <strong id="creator-drawer-title">Creator Hana</strong>
+      <p>Rev 03 · Disclosure missing · Due today</p>
+      <div class="sheet-row"><span>Owner</span><strong>Mina</strong></div>
+      <div class="sheet-row"><span>Next action</span><strong>Request caption change</strong></div>
+      <div class="modal-actions">
+        <button class="button quiet" type="button" data-overlay-close>Close</button>
+        <button class="button primary" type="button" data-overlay-close>Request changes</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="overlay-states" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Overlay states</p>
+    <h2>Open 상태만 만들지 말고 pending, validation, locked까지 정의합니다.</h2>
+  </div>
+  <div class="component-doc-grid">
+    <article class="component-doc-card">
+      <strong>Pending action</strong>
+      <p>Assign, save, reject처럼 네트워크가 필요한 action은 버튼 label과 loading state를 유지합니다.</p>
+      <ul>
+        <li>aria-busy 사용</li>
+        <li>중복 submit 방지</li>
+        <li>취소 가능 여부를 명확히 표현</li>
+      </ul>
+    </article>
+    <article class="component-doc-card">
+      <strong>Validation</strong>
+      <p>Popover나 modal 안의 field error는 overlay 안에서 해결되어야 합니다.</p>
+      <ul>
+        <li>첫 error로 focus 이동</li>
+        <li>aria-describedby 연결</li>
+        <li>값 보존 후 retry</li>
+      </ul>
+    </article>
+    <article class="component-doc-card">
+      <strong>Locked overlay</strong>
+      <p>권한이 없어 action이 불가능하면 dialog를 열기 전에 disabled + reason을 우선합니다.</p>
+      <ul>
+        <li>권한 요청 action 제공</li>
+        <li>owner 또는 policy 노출</li>
+        <li>숨겨진 destructive action은 피합니다</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<section id="overlay-focus" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Focus restore</p>
+    <h2>닫힌 뒤 사용자가 있던 자리로 돌아와야 합니다.</h2>
+  </div>
+  <div class="component-doc-grid">
+    <article class="component-doc-card">
+      <strong>Open</strong>
+      <ol class="focus-flow-list">
+        <li>Trigger stores restore target.</li>
+        <li>aria-expanded becomes true.</li>
+        <li>Overlay becomes visible.</li>
+        <li>First safe focus target receives focus.</li>
+      </ol>
+    </article>
+    <article class="component-doc-card">
+      <strong>Navigate</strong>
+      <ol class="focus-flow-list">
+        <li>Tab order stays inside modal or drawer.</li>
+        <li>Esc closes when it is non-destructive.</li>
+        <li>Menu arrow keys move active menuitem.</li>
+        <li>Validation sends focus to the first invalid field.</li>
+      </ol>
+    </article>
+    <article class="component-doc-card">
+      <strong>Close</strong>
+      <ol class="focus-flow-list">
+        <li>Overlay hidden state is restored.</li>
+        <li>aria-expanded becomes false.</li>
+        <li>Focus returns to trigger.</li>
+        <li>Selection/filter context remains unchanged.</li>
+      </ol>
+    </article>
+  </div>
+</section>
+
+<section id="overlays" class="section">
+          <div class="section-heading">
+            <p class="eyebrow">Overlays</p>
+            <h2>모달과 시트는 결정 영역만 분리합니다.</h2>
+          </div>
+          <div class="overlay-grid">
+            <article class="modal-sample">
+              <div class="modal-topline"><strong>Reject asset?</strong><span class="chip coral">Needs reason</span></div>
+              <p>반려 사유는 creator와 audit trail에 함께 남습니다.</p>
+              <label class="field">
+                <span>Reason</span>
+                <textarea rows="3">Disclosure copy is missing from the opening caption.</textarea>
+              </label>
+              <div class="modal-actions">
+                <button class="button quiet" type="button">Cancel</button>
+                <button class="button danger" type="button">Reject asset</button>
+              </div>
+            </article>
+            <article class="sheet-sample">
+              <div class="sheet-row"><span>Campaign</span><strong>Summer drop review</strong></div>
+              <div class="sheet-row"><span>Owner</span><strong>Mina</strong></div>
+              <div class="sheet-row"><span>Revision</span><strong>Rev 03</strong></div>
+              <div class="sheet-row"><span>Next action</span><strong>Approve or request changes</strong></div>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

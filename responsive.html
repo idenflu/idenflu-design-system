@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Responsive - idenflu Design System</title>
+    <link rel="stylesheet" href="tokens.generated.css?v=20260606-token-pipeline">
+    <link rel="stylesheet" href="styles.css?v=20260606-system-complete">
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="index.html"><span class="brand-mark"></span><span>idenflu</span></a>
+      <nav class="topnav" aria-label="Primary">
+        <a href="index.html">Overview</a>
+        <a href="foundations.html">Foundations</a>
+        <a href="components.html">Components</a>
+        <a href="patterns.html">Patterns</a>
+        <a class="active" href="guidelines.html">Reference</a>
+      </nav>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode" aria-pressed="false">Dark</button>
+      <div class="topbar-meta">Responsive rules</div>
+    </header>
+
+    <div class="doc-layout">
+      <aside class="sidebar" aria-label="Page sections">
+        <p class="sidebar-label">Responsive</p>
+        <a href="#breakpoints">Breakpoints</a>
+        <a href="#shell">Shell</a>
+        <a href="#tables">Tables</a>
+        <a href="#toolbar">Toolbar</a>
+        <a href="#text">Text stress</a>
+        <p class="sidebar-label reference-label">Reference</p>
+        <a href="starter-kit.html">Starter kit</a>
+        <a href="guidelines.html">Guidelines</a>
+        <a href="states.html">States</a>
+        <a href="accessibility.html">Accessibility</a>
+        <a class="active" href="responsive.html">Responsive</a>
+        <a href="enterprise.html">Enterprise</a>
+        <a href="visual-qa.html">Visual QA</a>
+        <a href="changelog.html">Changelog</a>
+      </aside>
+
+      <main>
+<section class="page-header">
+  <p class="eyebrow">Responsive</p>
+  <h1>좁은 화면에서도 운영 정보와 action을 잃지 않습니다.</h1>
+  <p class="lede">idenflu의 responsive 기준은 장식적 재배치가 아니라 table, toolbar, sidebar, long text가 실제 업무에서 계속 작동하게 하는 운영 규칙입니다.</p>
+</section>
+
+<section id="breakpoints" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Breakpoints</p>
+    <h2>화면 폭별로 정보 밀도와 navigation 방식을 정합니다.</h2>
+  </div>
+  <div class="spec-table">
+    <div class="spec-row header"><span>Range</span><span>Name</span><span>Layout rule</span><span>Primary risk</span></div>
+    <div class="spec-row"><span><strong>1280px+</strong></span><span>Desktop</span><span>Sidebar, topbar, full table, detail drawer를 동시에 지원합니다.</span><span>불필요한 카드 중첩과 과한 빈 공간</span></div>
+    <div class="spec-row"><span><strong>980-1279px</strong></span><span>Tablet wide</span><span>Sidebar는 horizontal section nav로 바뀌고 table은 가로 스크롤을 허용합니다.</span><span>Toolbar action overflow</span></div>
+    <div class="spec-row"><span><strong>640-979px</strong></span><span>Tablet narrow</span><span>2-column grid를 기본으로 하고 dense table은 핵심 컬럼만 유지합니다.</span><span>Metadata가 아래로 밀려 보이지 않음</span></div>
+    <div class="spec-row"><span><strong>0-639px</strong></span><span>Mobile</span><span>1-column layout, table card fallback, sticky action footer를 우선합니다.</span><span>Row action과 revision 정보 손실</span></div>
+  </div>
+</section>
+
+<section id="shell" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Shell behavior</p>
+    <h2>Navigation은 줄어도 현재 위치는 유지합니다.</h2>
+  </div>
+  <div class="component-doc-grid">
+    <article class="component-doc-card">
+      <strong>Sidebar collapse</strong>
+      <p>Desktop sidebar는 tablet 이하에서 horizontal section nav로 바뀝니다.</p>
+      <ul>
+        <li>현재 page group label은 유지합니다.</li>
+        <li>active item은 primary-soft로 유지합니다.</li>
+        <li>Reference group은 primary topnav를 늘리지 않습니다.</li>
+      </ul>
+    </article>
+    <article class="component-doc-card">
+      <strong>Topbar overflow</strong>
+      <p>Topbar는 brand, active section, theme/action만 남기고 부가 metadata는 숨깁니다.</p>
+      <ul>
+        <li>핵심 navigation은 horizontal scroll 허용</li>
+        <li>긴 label은 줄임보다 짧은 label 재작성 우선</li>
+        <li>CTA는 본문 action area로 이동 가능</li>
+      </ul>
+    </article>
+    <article class="component-doc-card">
+      <strong>Action footer</strong>
+      <p>승인, 저장, 반려처럼 중요한 mobile action은 화면 하단에 고정할 수 있습니다.</p>
+      <ul>
+        <li>Primary 1개 + quiet cancel</li>
+        <li>Danger action은 확인 modal에서 처리</li>
+        <li>Keyboard focus 순서는 본문 뒤에 위치</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<section id="tables" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Tables</p>
+    <h2>비교가 핵심이면 table을 유지하고, 조치가 핵심이면 card로 전환합니다.</h2>
+  </div>
+  <div class="responsive-preview">
+    <div class="device-preview desktop">
+      <strong>Desktop table</strong>
+      <div class="data-table enhanced" role="table" aria-label="Responsive desktop table sample">
+        <div class="data-row header" role="row">
+          <span role="columnheader"><input type="checkbox" aria-label="Select all responsive rows"></span>
+          <span role="columnheader"><button type="button" aria-sort="ascending">Campaign</button></span>
+          <span role="columnheader"><button type="button">Status</button></span>
+          <span role="columnheader"><button type="button">Owner</button></span>
+          <span role="columnheader"><button type="button">Revision</button></span>
+          <span role="columnheader"><button type="button">Due</button></span>
+          <span role="columnheader"><button type="button">Risk</button></span>
+          <span role="columnheader">Actions</span>
+        </div>
+        <div class="data-row" role="row">
+          <span role="cell"><input type="checkbox" aria-label="Select Summer drop review"></span>
+          <span class="primary-cell" role="cell"><strong>Summer drop review</strong><small>8 creators · Instagram reels</small></span>
+          <span role="cell"><mark class="status amber">Review</mark></span>
+          <span role="cell">Mina</span>
+          <span role="cell">Rev 03</span>
+          <span role="cell">Today</span>
+          <span role="cell"><mark class="status coral">Disclosure</mark></span>
+          <span class="table-actions" role="cell"><button class="button ghost small" type="button">Open</button></span>
+        </div>
+      </div>
+    </div>
+    <div class="device-preview mobile">
+      <strong>Mobile row card</strong>
+      <div class="mobile-card-list">
+        <article>
+          <div>
+            <strong>Summer drop review</strong>
+            <p>Mina · Rev 03 · Today · Disclosure risk</p>
+          </div>
+          <button class="button ghost small" type="button">Open</button>
+        </article>
+        <article>
+          <div>
+            <strong>Paid social assets</strong>
+            <p>Jae · Rev 04 · Jun 12 · Healthy</p>
+          </div>
+          <button class="button ghost small" type="button">Open</button>
+        </article>
+      </div>
+    </div>
+  </div>
+  <div class="decision-table">
+    <div class="decision-row header"><span>Data</span><span>Keep visible</span><span>Can move into detail</span></div>
+    <div class="decision-row"><span><strong>Campaign</strong></span><span>Title, status, owner, revision, due, risk, row action</span><span>Channel, creator count, secondary tags</span></div>
+    <div class="decision-row"><span><strong>Creator</strong></span><span>Name, platform, fit, availability, last action</span><span>Long bio, historical rates, notes</span></div>
+    <div class="decision-row"><span><strong>Billing</strong></span><span>Invoice status, amount, owner, due, hold reason</span><span>Line-item breakdown</span></div>
+  </div>
+</section>
+
+<section id="toolbar" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Toolbar overflow</p>
+    <h2>좁은 화면에서는 action priority를 다시 계산합니다.</h2>
+  </div>
+  <div class="toolbar-overflow-demo">
+    <button class="button quiet small" type="button"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-filter"></use></svg>Status</button>
+    <button class="button quiet small" type="button">Owner</button>
+    <button class="button ghost small" type="button">Density</button>
+    <button class="icon-button small" type="button" aria-label="Export current view"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-download"></use></svg></button>
+    <button class="icon-button small ghost" type="button" aria-label="More toolbar actions"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-more"></use></svg></button>
+  </div>
+  <div class="decision-table">
+    <div class="decision-row header"><span>Priority</span><span>Desktop</span><span>Mobile</span></div>
+    <div class="decision-row"><span><strong>Primary task</strong></span><span>Visible button in toolbar or footer</span><span>Sticky footer or first visible action</span></div>
+    <div class="decision-row"><span><strong>Filters</strong></span><span>Individual controls</span><span>Most-used filters visible, rest in drawer/popover</span></div>
+    <div class="decision-row"><span><strong>Export/settings</strong></span><span>Visible quiet or icon action</span><span>Overflow menu</span></div>
+  </div>
+</section>
+
+<section id="text" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Text stress</p>
+    <h2>긴 한국어/영어 혼합 텍스트가 레이아웃을 깨지 않게 합니다.</h2>
+  </div>
+  <div class="component-doc-grid">
+    <article class="component-doc-card text-stress">
+      <strong>Long campaign title</strong>
+      <p>Summer creator launch with disclosure approval and extended paid usage rights review</p>
+    </article>
+    <article class="component-doc-card text-stress">
+      <strong>Korean helper copy</strong>
+      <p>승인 요청 중에는 캠페인 단계와 담당자 변경이 잠기며, 권한 요청은 워크스페이스 관리자에게 전달됩니다.</p>
+    </article>
+    <article class="component-doc-card text-stress">
+      <strong>Command label</strong>
+      <p>Search campaigns, creators, briefs, invoices, usage rights, and pending reviews</p>
+    </article>
+  </div>
+</section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

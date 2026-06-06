@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Navigation - idenflu Design System</title>
+    <link rel="stylesheet" href="tokens.generated.css?v=20260606-token-pipeline">
+    <link rel="stylesheet" href="styles.css?v=20260606-system-complete">
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="index.html"><span class="brand-mark"></span><span>idenflu</span></a>
+      <nav class="topnav" aria-label="Primary">
+        <a href="index.html">Overview</a>
+        <a href="foundations.html">Foundations</a>
+        <a class="active" href="components.html">Components</a>
+        <a href="patterns.html">Patterns</a>
+        <a href="guidelines.html">Reference</a>
+      </nav>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode" aria-pressed="false">Dark</button>
+      <div class="topbar-meta">Navigation</div>
+    </header>
+
+    <div class="doc-layout">
+      <aside class="sidebar" aria-label="Component pages">
+        <p class="sidebar-label">Components</p>
+        <a href="components.html">Overview</a>
+        <a href="components-buttons.html">Buttons</a>
+        <a href="components-icons.html">Icons</a>
+        <a href="components-inputs.html">Inputs</a>
+        <a href="components-controls.html">Controls</a>
+        <a href="components-tabs.html">Tabs</a>
+        <a href="components-cards.html">Cards</a>
+        <a href="components-table.html">Data table</a>
+        <a href="components-examples.html">Examples</a>
+        <a href="components-feedback.html">Feedback</a>
+        <a href="components-overlays.html">Overlays</a>
+        <a class="active" href="components-navigation.html">Navigation</a>
+      </aside>
+
+      <main>
+<section class="page-header">
+  <p class="eyebrow">Components</p>
+  <h1>Navigation</h1>
+  <p class="lede">Toolbar and pagination patterns.</p>
+</section>
+
+<section id="component-standard" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Component standard</p>
+    <h2>Navigation 문서의 공통 구조.</h2>
+  </div>
+  <div class="component-doc-grid">
+    <article id="doc-anatomy" class="component-doc-card">
+      <strong>Anatomy</strong>
+      <p>기본 구성요소를 정리해 구현과 디자인 리뷰의 출발점을 맞춥니다.</p>
+      <ul><li>Landmark</li><li>active item</li><li>group label</li><li>shortcut</li><li>collapse state</li></ul>
+    </article>
+    <article id="doc-variants" class="component-doc-card">
+      <strong>Variants</strong>
+      <p>Top nav, side nav, breadcrumb, pagination, command jump</p>
+    </article>
+    <article id="doc-states" class="component-doc-card">
+      <strong>States</strong>
+      <p>Default, hover, focus, selected, loading, disabled, error 또는 locked 상태를 같은 density로 비교합니다.</p>
+    </article>
+    <article id="doc-accessibility" class="component-doc-card">
+      <strong>Accessibility</strong>
+      <p>Keyboard path, visible focus, semantic role, accessible name, helper/error 연결을 함께 검토합니다.</p>
+    </article>
+    <article id="doc-examples" class="component-doc-card">
+      <strong>Examples</strong>
+      <p>단독 컴포넌트보다 campaign, creator, review, admin workflow 안에서 쓰이는 예시를 우선합니다.</p>
+    </article>
+    <article id="doc-qa" class="component-doc-card">
+      <strong>QA</strong>
+      <p>Visual QA에서 light/dark, compact density, disabled hover, focus, long text overflow를 다시 확인합니다.</p>
+    </article>
+  </div>
+</section>
+
+<section id="navigation" class="section surface-band">
+          <div class="section-heading">
+            <p class="eyebrow">Navigation</p>
+            <h2>반복 작업을 위한 툴바와 페이지 이동.</h2>
+          </div>
+          <div class="navigation-grid">
+            <div class="toolbar-demo" role="toolbar" aria-label="Review tools">
+              <button type="button">Filter</button>
+              <button type="button">Sort</button>
+              <button type="button">Assign</button>
+              <button type="button">Export</button>
+            </div>
+            <nav class="pagination-demo" aria-label="Table pages">
+              <button type="button">Prev</button>
+              <span>Page 2 of 8</span>
+              <button type="button">Next</button>
+            </nav>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

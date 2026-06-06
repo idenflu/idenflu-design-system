@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Icons - idenflu Design System</title>
+    <link rel="stylesheet" href="tokens.generated.css?v=20260606-token-pipeline">
+    <link rel="stylesheet" href="styles.css?v=20260606-system-complete">
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="index.html"><span class="brand-mark"></span><span>idenflu</span></a>
+      <nav class="topnav" aria-label="Primary">
+        <a href="index.html">Overview</a>
+        <a href="foundations.html">Foundations</a>
+        <a class="active" href="components.html">Components</a>
+        <a href="patterns.html">Patterns</a>
+        <a href="guidelines.html">Reference</a>
+      </nav>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode" aria-pressed="false">Dark</button>
+      <div class="topbar-meta">Icons</div>
+    </header>
+
+    <div class="doc-layout">
+      <aside class="sidebar" aria-label="Component pages">
+        <p class="sidebar-label">Components</p>
+        <a href="components.html">Overview</a>
+        <a href="components-buttons.html">Buttons</a>
+        <a class="active" href="components-icons.html">Icons</a>
+        <a href="components-inputs.html">Inputs</a>
+        <a href="components-controls.html">Controls</a>
+        <a href="components-tabs.html">Tabs</a>
+        <a href="components-cards.html">Cards</a>
+        <a href="components-table.html">Data table</a>
+        <a href="components-examples.html">Examples</a>
+        <a href="components-feedback.html">Feedback</a>
+        <a href="components-overlays.html">Overlays</a>
+        <a href="components-navigation.html">Navigation</a>
+      </aside>
+
+      <main>
+<section class="page-header">
+  <p class="eyebrow">Components</p>
+  <h1>Icons</h1>
+  <p class="lede">Shared operational SVG symbols and usage rules.</p>
+</section>
+
+<section id="component-standard" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Component standard</p>
+    <h2>Icons 문서의 공통 구조.</h2>
+  </div>
+  <div class="component-doc-grid">
+    <article id="doc-anatomy" class="component-doc-card">
+      <strong>Anatomy</strong>
+      <p>기본 구성요소를 정리해 구현과 디자인 리뷰의 출발점을 맞춥니다.</p>
+      <ul><li>24px viewBox</li><li>symbol id</li><li>stroke rule</li><li>usage label</li><li>accessible wrapper</li></ul>
+    </article>
+    <article id="doc-variants" class="component-doc-card">
+      <strong>Variants</strong>
+      <p>Action, status, object, settings, permission symbols</p>
+    </article>
+    <article id="doc-states" class="component-doc-card">
+      <strong>States</strong>
+      <p>Default, hover, focus, selected, loading, disabled, error 또는 locked 상태를 같은 density로 비교합니다.</p>
+    </article>
+    <article id="doc-accessibility" class="component-doc-card">
+      <strong>Accessibility</strong>
+      <p>Keyboard path, visible focus, semantic role, accessible name, helper/error 연결을 함께 검토합니다.</p>
+    </article>
+    <article id="doc-examples" class="component-doc-card">
+      <strong>Examples</strong>
+      <p>단독 컴포넌트보다 campaign, creator, review, admin workflow 안에서 쓰이는 예시를 우선합니다.</p>
+    </article>
+    <article id="doc-qa" class="component-doc-card">
+      <strong>QA</strong>
+      <p>Visual QA에서 light/dark, compact density, disabled hover, focus, long text overflow를 다시 확인합니다.</p>
+    </article>
+  </div>
+</section>
+
+<section id="icons" class="section">
+          <div class="section-heading">
+            <p class="eyebrow">Icons</p>
+            <h2>현재 컴포넌트에서 사용하는 선형 아이콘.</h2>
+          </div>
+          <div class="icon-library-grid" aria-label="Current icon set">
+            <article class="icon-card">
+              <div class="icon-preview"><svg class="library-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-plus"></use></svg></div>
+              <strong>Plus</strong>
+              <span>icon-plus</span>
+              <p>Create, add, invite</p>
+            </article>
+            <article class="icon-card">
+              <div class="icon-preview"><svg class="library-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-filter"></use></svg></div>
+              <strong>Filter</strong>
+              <span>icon-filter</span>
+              <p>Filter, segment, stage</p>
+            </article>
+            <article class="icon-card">
+              <div class="icon-preview"><svg class="library-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-download"></use></svg></div>
+              <strong>Download</strong>
+              <span>icon-download</span>
+              <p>Export, report download</p>
+            </article>
+            <article class="icon-card">
+              <div class="icon-preview"><svg class="library-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-check"></use></svg></div>
+              <strong>Check</strong>
+              <span>icon-check</span>
+              <p>Approve, selected, complete</p>
+            </article>
+            <article class="icon-card">
+              <div class="icon-preview"><svg class="library-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-x"></use></svg></div>
+              <strong>X</strong>
+              <span>icon-x</span>
+              <p>Cancel, reject, remove</p>
+            </article>
+            <article class="icon-card">
+              <div class="icon-preview"><svg class="library-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-refresh"></use></svg></div>
+              <strong>Refresh</strong>
+              <span>icon-refresh</span>
+              <p>Refresh queue, sync</p>
+            </article>
+            <article class="icon-card">
+              <div class="icon-preview"><svg class="library-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-more"></use></svg></div>
+              <strong>More</strong>
+              <span>icon-more</span>
+              <p>Overflow, more actions</p>
+            </article>
+            <article class="icon-card">
+              <div class="icon-preview"><svg class="library-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-search"></use></svg></div>
+              <strong>Search</strong>
+              <span>icon-search</span>
+              <p>Search, command input</p>
+            </article>
+            <article class="icon-card">
+              <div class="icon-preview"><svg class="library-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-calendar"></use></svg></div>
+              <strong>Calendar</strong>
+              <span>icon-calendar</span>
+              <p>Date, deadline, schedule</p>
+            </article>
+            <article class="icon-card">
+              <div class="icon-preview"><svg class="library-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-user"></use></svg></div>
+              <strong>User</strong>
+              <span>icon-user</span>
+              <p>Creator, owner, reviewer</p>
+            </article>
+            <article class="icon-card">
+              <div class="icon-preview"><svg class="library-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-file"></use></svg></div>
+              <strong>File</strong>
+              <span>icon-file</span>
+              <p>Brief, asset, document</p>
+            </article>
+            <article class="icon-card">
+              <div class="icon-preview"><svg class="library-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-table"></use></svg></div>
+              <strong>Table</strong>
+              <span>icon-table</span>
+              <p>Data view, report, roster</p>
+            </article>
+            <article class="icon-card">
+              <div class="icon-preview"><svg class="library-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-alert"></use></svg></div>
+              <strong>Alert</strong>
+              <span>icon-alert</span>
+              <p>Risk, warning, failed sync</p>
+            </article>
+            <article class="icon-card">
+              <div class="icon-preview"><svg class="library-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-settings"></use></svg></div>
+              <strong>Settings</strong>
+              <span>icon-settings</span>
+              <p>Preferences, admin, controls</p>
+            </article>
+            <article class="icon-card">
+              <div class="icon-preview"><svg class="library-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-lock"></use></svg></div>
+              <strong>Lock</strong>
+              <span>icon-lock</span>
+              <p>Permission, locked workflow</p>
+            </article>
+          </div>
+          <div class="usage-note">
+            <strong>Rule</strong>
+            <p>아이콘은 24px viewBox, 1.8px stroke, square cap/join을 기준으로 맞춥니다. 단독 아이콘 버튼은 aria-label을 함께 둡니다.</p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

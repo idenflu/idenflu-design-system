@@ -1,0 +1,263 @@
+<section class="page-header">
+  <p class="eyebrow">Enterprise Components</p>
+  <h1>운영 콘솔에 필요한 고급 컴포넌트를 채웁니다.</h1>
+  <p class="lede">Dropdown, tooltip, popover, alert, upload, command palette, stepper처럼 실제 B2B SaaS 운영 흐름에서 반복되는 컴포넌트를 idenflu 톤으로 정의합니다.</p>
+</section>
+
+<section id="navigation" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Navigation</p>
+    <h2>위치, 범위, 반복 action을 빠르게 찾게 합니다.</h2>
+  </div>
+  <div class="enterprise-grid">
+    <article class="enterprise-card">
+      <strong>Breadcrumb</strong>
+      <div class="breadcrumb-sample">
+        <span>Campaigns</span><span>/</span><span>Summer drop</span><span>/</span><strong>Review queue</strong>
+      </div>
+      <p>깊은 운영 화면에서 현재 위치와 상위 객체를 보여줍니다.</p>
+      <div class="contract-list">
+        <span><strong>Anatomy</strong><small>Root, parent object, current page</small></span>
+        <span><strong>States</strong><small>Current item, truncated overflow</small></span>
+        <span><strong>Keyboard</strong><small>Each link follows normal Tab order</small></span>
+      </div>
+    </article>
+    <article class="enterprise-card">
+      <strong>Dropdown menu</strong>
+      <div class="menu-sample dropdown-menu" role="menu" aria-label="Campaign actions" data-menu>
+        <button type="button" role="menuitem" tabindex="0">Assign owner</button>
+        <button type="button" role="menuitem" tabindex="-1">Export selected</button>
+        <button type="button" role="menuitem" tabindex="-1">Archive campaign</button>
+      </div>
+      <p>행 action과 toolbar action을 밀도 있게 묶습니다.</p>
+      <div class="contract-list">
+        <span><strong>Anatomy</strong><small>Trigger, menu surface, grouped menu items</small></span>
+        <span><strong>States</strong><small>Open, active item, disabled item, destructive item</small></span>
+        <span><strong>Keyboard</strong><small>Arrow keys move, Enter selects, Esc exits</small></span>
+      </div>
+    </article>
+    <article class="enterprise-card">
+      <strong>Command palette</strong>
+      <div class="command-box" data-combobox>
+        <input id="command-palette-input" type="search" value="Search campaigns, creators, briefs" role="combobox" aria-label="Command palette" aria-expanded="true" aria-controls="command-palette-options" aria-activedescendant="command-palette-option-roster" autocomplete="off" data-combobox-input>
+        <div id="command-palette-options" class="command-options" role="listbox" aria-label="Command results">
+          <div id="command-palette-option-roster" role="option" aria-selected="true" tabindex="-1" data-value="Open creator roster" data-combobox-option>Open creator roster</div>
+          <div id="command-palette-option-brief" role="option" aria-selected="false" tabindex="-1" data-value="Create campaign brief" data-combobox-option>Create campaign brief</div>
+        </div>
+      </div>
+      <p>검색, quick jump, 고빈도 action을 하나의 진입점으로 제공합니다.</p>
+      <div class="contract-list">
+        <span><strong>Anatomy</strong><small>Search input, result list, command label</small></span>
+        <span><strong>States</strong><small>Typing, empty result, active result, loading</small></span>
+        <span><strong>Keyboard</strong><small>Arrow keys move, Enter commits, Esc collapses</small></span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="overlays" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Overlays</p>
+    <h2>현재 맥락을 유지하면서 짧은 결정을 처리합니다.</h2>
+  </div>
+  <div class="enterprise-grid">
+    <article class="enterprise-card">
+      <strong>Tooltip</strong>
+      <span class="tooltip-pill">Revision score combines risk and deadline.</span>
+      <p>핵심 데이터가 아닌 보조 설명에만 사용합니다.</p>
+      <div class="contract-list">
+        <span><strong>Anatomy</strong><small>Trigger, short description, placement</small></span>
+        <span><strong>States</strong><small>Hover, focus, delayed close</small></span>
+        <span><strong>Keyboard</strong><small>Appears on focus, closes on blur or Esc</small></span>
+      </div>
+    </article>
+    <article class="enterprise-card">
+      <strong>Popover</strong>
+      <div class="popover-sample">
+        <strong>Assign reviewer</strong>
+        <p>Mina will receive review deadline alerts.</p>
+        <button class="button primary" type="button">Assign</button>
+      </div>
+      <p>짧은 설정과 row-level action에 적합합니다.</p>
+      <div class="contract-list">
+        <span><strong>Anatomy</strong><small>Trigger, title, body, action row</small></span>
+        <span><strong>States</strong><small>Open, pending, validation, dismissed</small></span>
+        <span><strong>Keyboard</strong><small>Initial focus enters, Esc closes and restores</small></span>
+      </div>
+    </article>
+    <article class="enterprise-card">
+      <strong>Drawer</strong>
+      <div class="sheet-sample">
+        <div class="sheet-row"><span>Creator</span><strong>Hana</strong></div>
+        <div class="sheet-row"><span>Revision</span><strong>Rev 03</strong></div>
+        <div class="sheet-row"><span>Risk</span><strong>Disclosure missing</strong></div>
+      </div>
+      <p>상세 정보는 drawer로 열되 핵심 상태는 원래 화면에도 남깁니다.</p>
+      <div class="contract-list">
+        <span><strong>Anatomy</strong><small>Header, object summary, sections, close action</small></span>
+        <span><strong>States</strong><small>Loading, dirty changes, locked, empty section</small></span>
+        <span><strong>Keyboard</strong><small>Focus stays inside until close</small></span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="feedback" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Feedback</p>
+    <h2>시스템 알림은 상태와 범위를 명확히 합니다.</h2>
+  </div>
+  <div class="enterprise-grid">
+    <article class="enterprise-card">
+      <strong>Alert banner</strong>
+      <div class="alert-banner warning">
+        <strong>Budget pacing risk</strong>
+        <p>Paid social campaign is 18% above planned spend.</p>
+      </div>
+      <p>페이지나 섹션 전체에 영향을 주는 상태를 표시합니다.</p>
+      <div class="contract-list">
+        <span><strong>Anatomy</strong><small>Status tone, title, recovery copy, optional action</small></span>
+        <span><strong>States</strong><small>Info, warning, error, success</small></span>
+        <span><strong>Keyboard</strong><small>Inline links and actions stay tabbable</small></span>
+      </div>
+    </article>
+    <article class="enterprise-card">
+      <strong>Toast</strong>
+      <article class="toast-demo">
+        <span class="status mint">Saved</span>
+        <strong>Brief updated</strong>
+        <button class="button ghost" type="button">View</button>
+      </article>
+      <p>사용자가 이미 이해한 action 결과를 짧게 확인합니다.</p>
+      <div class="contract-list">
+        <span><strong>Anatomy</strong><small>Status, concise message, optional undo/view</small></span>
+        <span><strong>States</strong><small>Queued, visible, dismissed, action used</small></span>
+        <span><strong>Keyboard</strong><small>Action is reachable, timeout is not required</small></span>
+      </div>
+    </article>
+    <article class="enterprise-card">
+      <strong>Inline validation</strong>
+      <label class="field invalid">
+        <span>Disclosure copy</span>
+        <input type="text" value="" aria-invalid="true" aria-describedby="disclosure-error">
+        <small id="disclosure-error">첫 caption line에 disclosure가 필요합니다.</small>
+      </label>
+      <p>입력 오류는 해당 필드 바로 아래에서 해결하게 합니다.</p>
+      <div class="contract-list">
+        <span><strong>Anatomy</strong><small>Label, control, error message, recovery hint</small></span>
+        <span><strong>States</strong><small>Default, invalid, corrected, server error</small></span>
+        <span><strong>Keyboard</strong><small>Error is announced with describedby</small></span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="forms" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Advanced forms</p>
+    <h2>운영 도구형 입력 컴포넌트를 확장합니다.</h2>
+  </div>
+  <div class="enterprise-grid">
+    <article class="enterprise-card">
+      <strong>Date picker</strong>
+      <div class="date-picker">
+        <input type="text" value="2026-06-12" aria-label="Review deadline date" aria-describedby="date-picker-note">
+        <div class="date-grid" aria-label="June 2026 week">
+          <button class="date-day" type="button" aria-label="June 8, 2026">8</button>
+          <button class="date-day" type="button" aria-label="June 9, 2026">9</button>
+          <button class="date-day" type="button" aria-label="June 10, 2026">10</button>
+          <button class="date-day" type="button" aria-label="June 11, 2026">11</button>
+          <button class="date-day active" type="button" aria-label="June 12, 2026 selected" aria-pressed="true">12</button>
+          <button class="date-day" type="button" aria-label="June 13, 2026">13</button>
+          <button class="date-day" type="button" aria-label="June 14, 2026">14</button>
+        </div>
+      </div>
+      <p id="date-picker-note">Deadline과 schedule은 timezone 정보를 함께 보여줍니다.</p>
+      <div class="contract-list">
+        <span><strong>Anatomy</strong><small>Text field, calendar grid, selected day, timezone note</small></span>
+        <span><strong>States</strong><small>Today, selected, unavailable, invalid date</small></span>
+        <span><strong>Keyboard</strong><small>Tab enters field, day buttons remain reachable</small></span>
+      </div>
+    </article>
+    <article class="enterprise-card">
+      <strong>File upload</strong>
+      <div class="upload-zone">
+        <strong>Upload campaign asset</strong>
+        <p>MP4, JPG, PNG up to 200MB</p>
+        <button class="button quiet" type="button">Choose file</button>
+      </div>
+      <p>업로드 가능 형식과 제한을 업로드 전 노출합니다.</p>
+      <div class="contract-list">
+        <span><strong>Anatomy</strong><small>Drop zone, file rules, action, progress row</small></span>
+        <span><strong>States</strong><small>Idle, dragging, uploading, failed, complete</small></span>
+        <span><strong>Keyboard</strong><small>Choose file action is first tabbable control</small></span>
+      </div>
+    </article>
+    <article class="enterprise-card">
+      <strong>Combobox</strong>
+      <div class="command-box" data-combobox>
+        <input id="owner-combobox-input" type="search" value="mina" role="combobox" aria-label="Owner search" aria-expanded="true" aria-controls="owner-combobox-options" aria-activedescendant="owner-option-oh" autocomplete="off" data-combobox-input>
+        <div id="owner-combobox-options" class="command-options" role="listbox" aria-label="Owner results">
+          <div id="owner-option-oh" role="option" aria-selected="true" tabindex="-1" data-value="Mina Oh" data-combobox-option>Mina Oh · Brief owner</div>
+          <div id="owner-option-kim" role="option" aria-selected="false" tabindex="-1" data-value="Mina Kim" data-combobox-option>Mina Kim · Reviewer</div>
+        </div>
+      </div>
+      <p>owner, creator, campaign 검색처럼 선택과 검색이 결합된 곳에 사용합니다.</p>
+      <div class="contract-list">
+        <span><strong>Anatomy</strong><small>Input, filtered list, selected entity metadata</small></span>
+        <span><strong>States</strong><small>Typing, active option, no result, disabled option</small></span>
+        <span><strong>Keyboard</strong><small>Arrow keys move, Enter selects, Esc collapses</small></span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="workflow" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Workflow</p>
+    <h2>다단계 운영 흐름은 상태와 진행률을 함께 표시합니다.</h2>
+  </div>
+  <div class="enterprise-grid">
+    <article class="enterprise-card">
+      <strong>Stepper</strong>
+      <div class="stepper">
+        <span class="active">Brief</span>
+        <span>Creators</span>
+        <span>Review</span>
+      </div>
+      <p>Campaign setup처럼 순서가 있는 workflow에 사용합니다.</p>
+      <div class="contract-list">
+        <span><strong>Anatomy</strong><small>Step label, progress line, current step</small></span>
+        <span><strong>States</strong><small>Complete, current, blocked, upcoming</small></span>
+        <span><strong>Keyboard</strong><small>Clickable steps follow logical order when allowed</small></span>
+      </div>
+    </article>
+    <article class="enterprise-card">
+      <strong>Bulk action bar</strong>
+      <div class="bulk-bar">
+        <span>4 creators selected</span>
+        <button class="button quiet" type="button">Assign</button>
+        <button class="button ghost" type="button">Clear</button>
+      </div>
+      <p>선택 상태와 가능한 action을 table 근처에 고정합니다.</p>
+      <div class="contract-list">
+        <span><strong>Anatomy</strong><small>Selection count, primary bulk action, clear action</small></span>
+        <span><strong>States</strong><small>Visible on selection, partial selection, disabled action</small></span>
+        <span><strong>Keyboard</strong><small>Actions appear after table selection controls</small></span>
+      </div>
+    </article>
+    <article class="enterprise-card">
+      <strong>Activity feed</strong>
+      <div class="sheet-sample">
+        <div class="sheet-row"><span>09:42</span><strong>Mina approved Rev 03</strong></div>
+        <div class="sheet-row"><span>09:18</span><strong>Hana uploaded caption edit</strong></div>
+      </div>
+      <p>Audit trail은 actor, action, target, timestamp를 포함합니다.</p>
+      <div class="contract-list">
+        <span><strong>Anatomy</strong><small>Timestamp, actor, verb, target, optional diff</small></span>
+        <span><strong>States</strong><small>New, filtered, loading older items, empty feed</small></span>
+        <span><strong>Keyboard</strong><small>Links inside events are reachable without hover</small></span>
+      </div>
+    </article>
+  </div>
+</section>

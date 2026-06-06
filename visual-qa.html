@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Visual QA - idenflu Design System</title>
+    <link rel="stylesheet" href="tokens.generated.css?v=20260606-token-pipeline">
+    <link rel="stylesheet" href="styles.css?v=20260606-system-complete">
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="index.html"><span class="brand-mark"></span><span>idenflu</span></a>
+      <nav class="topnav" aria-label="Primary">
+        <a href="index.html">Overview</a>
+        <a href="foundations.html">Foundations</a>
+        <a href="components.html">Components</a>
+        <a href="patterns.html">Patterns</a>
+        <a class="active" href="guidelines.html">Reference</a>
+      </nav>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode" aria-pressed="false">Dark</button>
+      <div class="topbar-meta">Visual QA</div>
+    </header>
+
+    <div class="doc-layout">
+      <aside class="sidebar" aria-label="Page sections">
+        <p class="sidebar-label">Visual QA</p>
+        <a href="#actions">Actions</a>
+        <a href="#forms">Forms</a>
+        <a href="#data">Data</a>
+        <a href="#states">States</a>
+        <a href="#checklist">Checklist</a>
+        <a href="#automation">Automation</a>
+        <a href="#themes">Themes</a>
+        <p class="sidebar-label reference-label">Reference</p>
+        <a href="starter-kit.html">Starter kit</a>
+        <a href="guidelines.html">Guidelines</a>
+        <a href="states.html">States</a>
+        <a href="accessibility.html">Accessibility</a>
+        <a href="responsive.html">Responsive</a>
+        <a href="enterprise.html">Enterprise</a>
+        <a class="active" href="visual-qa.html">Visual QA</a>
+        <a href="changelog.html">Changelog</a>
+      </aside>
+
+      <main>
+<section class="page-header">
+  <p class="eyebrow">Visual QA</p>
+  <h1>컴포넌트 상태를 한 화면에서 비교합니다.</h1>
+  <p class="lede">버튼, 입력, 테이블, 상태 컴포넌트가 light/dark와 hover/focus/disabled 조건에서 같은 밀도와 대비를 유지하는지 확인합니다.</p>
+</section>
+
+<section id="actions" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Actions</p>
+    <h2>Button state regression.</h2>
+  </div>
+  <div class="qa-board">
+    <article class="qa-lane">
+      <strong>Default</strong>
+      <button class="button primary" type="button"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-plus"></use></svg>Create campaign</button>
+      <button class="button quiet" type="button">Filter creators</button>
+      <button class="button ghost" type="button">View detail</button>
+      <button class="icon-button" type="button" aria-label="Search"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-search"></use></svg></button>
+    </article>
+    <article class="qa-lane">
+      <strong>Hover sample</strong>
+      <button class="button primary qa-hover" type="button">Approve asset</button>
+      <button class="button quiet qa-hover" type="button">Assign owner</button>
+      <button class="button ghost qa-hover" type="button">Open brief</button>
+      <button class="icon-button ghost qa-hover" type="button" aria-label="More actions"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-more"></use></svg></button>
+    </article>
+    <article class="qa-lane">
+      <strong>Focus / selected</strong>
+      <button class="button quiet focus-demo" type="button">Keyboard focus</button>
+      <button class="button quiet selected" type="button"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-check"></use></svg>Selected</button>
+      <button class="icon-button selected focus-demo" type="button" aria-label="Selected filter"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-filter"></use></svg></button>
+    </article>
+    <article class="qa-lane">
+      <strong>Loading / disabled</strong>
+      <button class="button primary loading" type="button" aria-busy="true">Syncing</button>
+      <button class="button primary" type="button" disabled>Approve asset</button>
+      <button class="icon-button" type="button" aria-label="Disabled download" disabled><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-download"></use></svg></button>
+    </article>
+  </div>
+</section>
+
+<section id="forms" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Forms</p>
+    <h2>Field state regression.</h2>
+  </div>
+  <div class="qa-board">
+    <article class="qa-lane">
+      <strong>Default</strong>
+      <label class="field"><span>Campaign name</span><input type="text" value="Summer creator launch"></label>
+      <label class="field"><span>Campaign stage</span><select><option>Review queue</option><option>Recruiting</option></select></label>
+    </article>
+    <article class="qa-lane">
+      <strong>Decorated</strong>
+      <label class="field">
+        <span>Owner</span>
+        <div class="input-shell"><span class="input-prefix">@</span><input type="text" value="mina"><span class="input-suffix">idenflu.com</span></div>
+      </label>
+      <label class="field">
+        <span>Deadline</span>
+        <div class="input-shell"><svg class="input-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-calendar"></use></svg><input type="text" value="2026-06-12 18:00"><span class="input-suffix">KST</span></div>
+      </label>
+    </article>
+    <article class="qa-lane">
+      <strong>Focus / validation</strong>
+      <label class="field"><span>Focused field</span><input class="focus-demo" type="text" value="Review queue"></label>
+      <label class="field success"><span>Tracking URL</span><input type="url" value="https://idenflu.com/c/summer"><small>Tracking rule matched.</small></label>
+      <label class="field invalid"><span>Disclosure line</span><input type="text" value="" aria-invalid="true"><small>Disclosure is required.</small></label>
+    </article>
+    <article class="qa-lane">
+      <strong>Readonly / disabled</strong>
+      <label class="field"><span>Campaign ID</span><input type="text" value="CMP-2026-0612" readonly></label>
+      <label class="field"><span>Approval state</span><input type="text" value="Brief owner required" disabled></label>
+    </article>
+  </div>
+</section>
+
+<section id="data" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Data</p>
+    <h2>Table density and row state regression.</h2>
+  </div>
+  <div class="table-shell qa-table">
+    <div class="table-toolbar">
+      <div><strong>Campaign review queue</strong><p>Filtered by review · compact density</p></div>
+      <div class="table-filter-group"><button class="button quiet small" type="button">Status</button><button class="button ghost small" type="button">Density</button></div>
+    </div>
+    <div class="data-table enhanced" role="table" aria-label="Visual QA table">
+      <div class="data-row header" role="row">
+        <span role="columnheader"><input type="checkbox" aria-label="Select all"></span>
+        <span role="columnheader"><button type="button" aria-sort="ascending">Campaign</button></span>
+        <span role="columnheader"><button type="button">Status</button></span>
+        <span role="columnheader"><button type="button">Owner</button></span>
+        <span role="columnheader"><button type="button">Revision</button></span>
+        <span role="columnheader"><button type="button">Due</button></span>
+        <span role="columnheader"><button type="button">Risk</button></span>
+        <span role="columnheader">Actions</span>
+      </div>
+      <div class="data-row selected" role="row">
+        <span role="cell"><input type="checkbox" checked aria-label="Select Summer drop review"></span>
+        <span class="primary-cell" role="cell"><strong>Summer drop review</strong><small>8 creators · Instagram reels</small></span>
+        <span role="cell"><mark class="status amber">Review</mark></span>
+        <span role="cell">Mina</span>
+        <span role="cell">Rev 03</span>
+        <span role="cell">Today</span>
+        <span role="cell"><mark class="status coral">Disclosure</mark></span>
+        <span class="table-actions" role="cell"><button class="button ghost small" type="button">Open</button></span>
+      </div>
+      <div class="data-row" role="row">
+        <span role="cell"><input type="checkbox" aria-label="Select Paid social assets"></span>
+        <span class="primary-cell" role="cell"><strong>Paid social assets</strong><small>4 assets · paid usage rights</small></span>
+        <span role="cell"><mark class="status mint">Ready</mark></span>
+        <span role="cell">Jae</span>
+        <span role="cell">Rev 04</span>
+        <span role="cell">Jun 12</span>
+        <span role="cell"><mark class="status mint">Healthy</mark></span>
+        <span class="table-actions" role="cell"><button class="button ghost small" type="button">Open</button></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="states" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">States</p>
+    <h2>Operational state regression.</h2>
+  </div>
+  <div class="qa-board">
+    <article class="qa-lane">
+      <strong>Loading</strong>
+      <div class="skeleton-block"><span></span><span></span><span></span></div>
+    </article>
+    <article class="qa-lane">
+      <strong>Empty</strong>
+      <div class="empty-state compact"><strong>No matching creators</strong><p>Clear one filter or broaden audience fit.</p><button class="button quiet small" type="button">Clear filter</button></div>
+    </article>
+    <article class="qa-lane">
+      <strong>Error</strong>
+      <div class="inline-error"><strong>Sync failed</strong><p>Retry keeps selected rows and filters.</p><button class="button ghost small" type="button">Retry</button></div>
+    </article>
+    <article class="qa-lane">
+      <strong>Permission</strong>
+      <div class="locked-panel"><strong>Brief owner required</strong><p>Only Mina can approve this campaign.</p><button class="button primary small" type="button" disabled>Approve asset</button></div>
+    </article>
+  </div>
+</section>
+
+<section id="checklist" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Regression checklist</p>
+    <h2>토큰이나 상태 스타일을 바꾸기 전 확인할 항목.</h2>
+  </div>
+  <div class="qa-check-grid">
+    <article class="qa-check-card">
+      <strong>Theme contrast</strong>
+      <p>Light는 white canvas에서, dark는 black canvas에서 text, hairline, focus가 충분히 보이는지 확인합니다.</p>
+      <ul>
+        <li>Body text</li>
+        <li>Muted metadata</li>
+        <li>Selected surface</li>
+      </ul>
+    </article>
+    <article class="qa-check-card">
+      <strong>Interactive states</strong>
+      <p>Hover sample, focus ring, selected, loading, disabled가 서로 다른 의미로 읽히는지 비교합니다.</p>
+      <ul>
+        <li>Disabled hover leak 없음</li>
+        <li>Loading text 유지</li>
+        <li>Focus visible</li>
+      </ul>
+    </article>
+    <article class="qa-check-card">
+      <strong>Form states</strong>
+      <p>Default, decorated, success, invalid, readonly, disabled가 같은 field anatomy 안에서 정렬되는지 확인합니다.</p>
+      <ul>
+        <li>Label visible</li>
+        <li>Error helper connected</li>
+        <li>Prefix/suffix aligned</li>
+      </ul>
+    </article>
+    <article class="qa-check-card">
+      <strong>Data density</strong>
+      <p>Compact table에서도 owner, revision, due, risk, row action이 사라지지 않는지 확인합니다.</p>
+      <ul>
+        <li>Bulk bar visible</li>
+        <li>Row action reachable</li>
+        <li>Empty recovery present</li>
+      </ul>
+    </article>
+    <article class="qa-check-card">
+      <strong>Keyboard path</strong>
+      <p>버튼, icon button, tabs, combobox, table action이 시각 순서대로 Tab 접근되는지 확인합니다.</p>
+      <ul>
+        <li>Icon button aria-label</li>
+        <li>Combobox active option</li>
+        <li>Modal focus restore</li>
+      </ul>
+    </article>
+    <article class="qa-check-card">
+      <strong>Copy and recovery</strong>
+      <p>Error, empty, locked 상태가 원인과 다음 action을 같이 제공하는지 확인합니다.</p>
+      <ul>
+        <li>Filtered empty 분리</li>
+        <li>Permission reason 표시</li>
+        <li>Retry preserves context</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<section id="automation" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Automation</p>
+    <h2>정적 검증으로 상태 계약 누락을 먼저 잡습니다.</h2>
+  </div>
+  <div class="component-doc-grid">
+    <article class="component-doc-card">
+      <strong>Command</strong>
+      <p>Visual QA 전용 정적 검증은 아래 명령으로 실행합니다.</p>
+      <code>node scripts/visual-qa-check.js</code>
+    </article>
+    <article class="component-doc-card">
+      <strong>Checks</strong>
+      <p>핵심 QA 섹션, button/input/table 상세 스펙, accessibility contract, disabled hover override, icon-only aria-label을 확인합니다.</p>
+    </article>
+    <article class="component-doc-card">
+      <strong>When to run</strong>
+      <p>token, button state, field validation, table row state, dark mode, icon system을 바꿀 때마다 실행합니다.</p>
+    </article>
+  </div>
+</section>
+
+<section id="themes" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Themes</p>
+    <h2>Light and black-base dark comparison.</h2>
+  </div>
+  <div class="theme-qa-grid">
+    <article class="theme-qa-panel light">
+      <strong>Light canvas</strong>
+      <p>Campaign status · Rev 03 · Due today</p>
+      <span class="status blue">Selected</span>
+    </article>
+    <article class="theme-qa-panel dark">
+      <strong>Dark canvas</strong>
+      <p>Campaign status · Rev 03 · Due today</p>
+      <span class="status blue">Selected</span>
+    </article>
+  </div>
+</section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

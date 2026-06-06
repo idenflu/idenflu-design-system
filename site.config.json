@@ -1,0 +1,1819 @@
+{
+  "cssHref": "styles.css?v=20260606-system-complete",
+  "topnav": [
+    {
+      "label": "Overview",
+      "href": "index.html"
+    },
+    {
+      "label": "Foundations",
+      "href": "foundations.html"
+    },
+    {
+      "label": "Components",
+      "href": "components.html"
+    },
+    {
+      "label": "Patterns",
+      "href": "patterns.html"
+    },
+    {
+      "label": "Reference",
+      "href": "guidelines.html"
+    }
+  ],
+  "pages": [
+    {
+      "file": "index.html",
+      "title": "idenflu Design System",
+      "meta": "Creator operations system",
+      "activeTopnav": "index.html",
+      "source": "index.html",
+      "sidebarAria": "Page sections",
+      "sidebarGroups": [
+        {
+          "label": "System",
+          "reference": false,
+          "links": [
+            {
+              "label": "Identity",
+              "href": "#identity",
+              "active": false
+            },
+            {
+              "label": "Principles",
+              "href": "#principles",
+              "active": false
+            },
+            {
+              "label": "Snapshot",
+              "href": "#snapshot",
+              "active": false
+            },
+            {
+              "label": "Page map",
+              "href": "#map",
+              "active": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "foundations.html",
+      "title": "Foundations - idenflu Design System",
+      "meta": "Token foundation",
+      "activeTopnav": "foundations.html",
+      "source": "foundations.html",
+      "sidebarAria": "Page sections",
+      "sidebarGroups": [
+        {
+          "label": "Foundations",
+          "reference": false,
+          "links": [
+            {
+              "label": "Color",
+              "href": "#color",
+              "active": false
+            },
+            {
+              "label": "Theme modes",
+              "href": "#theme",
+              "active": false
+            },
+            {
+              "label": "Typography",
+              "href": "#type",
+              "active": false
+            },
+            {
+              "label": "Spacing",
+              "href": "#spacing",
+              "active": false
+            },
+            {
+              "label": "Shape",
+              "href": "#shape",
+              "active": false
+            },
+            {
+              "label": "Token pipeline",
+              "href": "#token-pipeline",
+              "active": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "components.html",
+      "title": "Components - idenflu Design System",
+      "meta": "Component index",
+      "activeTopnav": "components.html",
+      "source": "components.html",
+      "sidebarAria": "Component pages",
+      "sidebarGroups": [
+        {
+          "label": "Components",
+          "reference": false,
+          "links": [
+            {
+              "label": "Overview",
+              "href": "components.html",
+              "active": true
+            },
+            {
+              "label": "Buttons",
+              "href": "components-buttons.html",
+              "active": false
+            },
+            {
+              "label": "Icons",
+              "href": "components-icons.html",
+              "active": false
+            },
+            {
+              "label": "Inputs",
+              "href": "components-inputs.html",
+              "active": false
+            },
+            {
+              "label": "Controls",
+              "href": "components-controls.html",
+              "active": false
+            },
+            {
+              "label": "Tabs",
+              "href": "components-tabs.html",
+              "active": false
+            },
+            {
+              "label": "Cards",
+              "href": "components-cards.html",
+              "active": false
+            },
+            {
+              "label": "Data table",
+              "href": "components-table.html",
+              "active": false
+            },
+            {
+              "label": "Examples",
+              "href": "components-examples.html",
+              "active": false
+            },
+            {
+              "label": "Feedback",
+              "href": "components-feedback.html",
+              "active": false
+            },
+            {
+              "label": "Overlays",
+              "href": "components-overlays.html",
+              "active": false
+            },
+            {
+              "label": "Navigation",
+              "href": "components-navigation.html",
+              "active": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "components-buttons.html",
+      "title": "Buttons - idenflu Design System",
+      "meta": "Buttons",
+      "activeTopnav": "components.html",
+      "source": "components-buttons.html",
+      "sidebarAria": "Component pages",
+      "sidebarGroups": [
+        {
+          "label": "Components",
+          "reference": false,
+          "links": [
+            {
+              "label": "Overview",
+              "href": "components.html",
+              "active": false
+            },
+            {
+              "label": "Buttons",
+              "href": "components-buttons.html",
+              "active": true
+            },
+            {
+              "label": "Icons",
+              "href": "components-icons.html",
+              "active": false
+            },
+            {
+              "label": "Inputs",
+              "href": "components-inputs.html",
+              "active": false
+            },
+            {
+              "label": "Controls",
+              "href": "components-controls.html",
+              "active": false
+            },
+            {
+              "label": "Tabs",
+              "href": "components-tabs.html",
+              "active": false
+            },
+            {
+              "label": "Cards",
+              "href": "components-cards.html",
+              "active": false
+            },
+            {
+              "label": "Data table",
+              "href": "components-table.html",
+              "active": false
+            },
+            {
+              "label": "Examples",
+              "href": "components-examples.html",
+              "active": false
+            },
+            {
+              "label": "Feedback",
+              "href": "components-feedback.html",
+              "active": false
+            },
+            {
+              "label": "Overlays",
+              "href": "components-overlays.html",
+              "active": false
+            },
+            {
+              "label": "Navigation",
+              "href": "components-navigation.html",
+              "active": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "components-icons.html",
+      "title": "Icons - idenflu Design System",
+      "meta": "Icons",
+      "activeTopnav": "components.html",
+      "source": "components-icons.html",
+      "sidebarAria": "Component pages",
+      "sidebarGroups": [
+        {
+          "label": "Components",
+          "reference": false,
+          "links": [
+            {
+              "label": "Overview",
+              "href": "components.html",
+              "active": false
+            },
+            {
+              "label": "Buttons",
+              "href": "components-buttons.html",
+              "active": false
+            },
+            {
+              "label": "Icons",
+              "href": "components-icons.html",
+              "active": true
+            },
+            {
+              "label": "Inputs",
+              "href": "components-inputs.html",
+              "active": false
+            },
+            {
+              "label": "Controls",
+              "href": "components-controls.html",
+              "active": false
+            },
+            {
+              "label": "Tabs",
+              "href": "components-tabs.html",
+              "active": false
+            },
+            {
+              "label": "Cards",
+              "href": "components-cards.html",
+              "active": false
+            },
+            {
+              "label": "Data table",
+              "href": "components-table.html",
+              "active": false
+            },
+            {
+              "label": "Examples",
+              "href": "components-examples.html",
+              "active": false
+            },
+            {
+              "label": "Feedback",
+              "href": "components-feedback.html",
+              "active": false
+            },
+            {
+              "label": "Overlays",
+              "href": "components-overlays.html",
+              "active": false
+            },
+            {
+              "label": "Navigation",
+              "href": "components-navigation.html",
+              "active": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "components-inputs.html",
+      "title": "Inputs - idenflu Design System",
+      "meta": "Inputs",
+      "activeTopnav": "components.html",
+      "source": "components-inputs.html",
+      "sidebarAria": "Component pages",
+      "sidebarGroups": [
+        {
+          "label": "Components",
+          "reference": false,
+          "links": [
+            {
+              "label": "Overview",
+              "href": "components.html",
+              "active": false
+            },
+            {
+              "label": "Buttons",
+              "href": "components-buttons.html",
+              "active": false
+            },
+            {
+              "label": "Icons",
+              "href": "components-icons.html",
+              "active": false
+            },
+            {
+              "label": "Inputs",
+              "href": "components-inputs.html",
+              "active": true
+            },
+            {
+              "label": "Controls",
+              "href": "components-controls.html",
+              "active": false
+            },
+            {
+              "label": "Tabs",
+              "href": "components-tabs.html",
+              "active": false
+            },
+            {
+              "label": "Cards",
+              "href": "components-cards.html",
+              "active": false
+            },
+            {
+              "label": "Data table",
+              "href": "components-table.html",
+              "active": false
+            },
+            {
+              "label": "Examples",
+              "href": "components-examples.html",
+              "active": false
+            },
+            {
+              "label": "Feedback",
+              "href": "components-feedback.html",
+              "active": false
+            },
+            {
+              "label": "Overlays",
+              "href": "components-overlays.html",
+              "active": false
+            },
+            {
+              "label": "Navigation",
+              "href": "components-navigation.html",
+              "active": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "components-controls.html",
+      "title": "Controls - idenflu Design System",
+      "meta": "Controls",
+      "activeTopnav": "components.html",
+      "source": "components-controls.html",
+      "sidebarAria": "Component pages",
+      "sidebarGroups": [
+        {
+          "label": "Components",
+          "reference": false,
+          "links": [
+            {
+              "label": "Overview",
+              "href": "components.html",
+              "active": false
+            },
+            {
+              "label": "Buttons",
+              "href": "components-buttons.html",
+              "active": false
+            },
+            {
+              "label": "Icons",
+              "href": "components-icons.html",
+              "active": false
+            },
+            {
+              "label": "Inputs",
+              "href": "components-inputs.html",
+              "active": false
+            },
+            {
+              "label": "Controls",
+              "href": "components-controls.html",
+              "active": true
+            },
+            {
+              "label": "Tabs",
+              "href": "components-tabs.html",
+              "active": false
+            },
+            {
+              "label": "Cards",
+              "href": "components-cards.html",
+              "active": false
+            },
+            {
+              "label": "Data table",
+              "href": "components-table.html",
+              "active": false
+            },
+            {
+              "label": "Examples",
+              "href": "components-examples.html",
+              "active": false
+            },
+            {
+              "label": "Feedback",
+              "href": "components-feedback.html",
+              "active": false
+            },
+            {
+              "label": "Overlays",
+              "href": "components-overlays.html",
+              "active": false
+            },
+            {
+              "label": "Navigation",
+              "href": "components-navigation.html",
+              "active": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "components-tabs.html",
+      "title": "Tabs - idenflu Design System",
+      "meta": "Tabs",
+      "activeTopnav": "components.html",
+      "source": "components-tabs.html",
+      "sidebarAria": "Component pages",
+      "sidebarGroups": [
+        {
+          "label": "Components",
+          "reference": false,
+          "links": [
+            {
+              "label": "Overview",
+              "href": "components.html",
+              "active": false
+            },
+            {
+              "label": "Buttons",
+              "href": "components-buttons.html",
+              "active": false
+            },
+            {
+              "label": "Icons",
+              "href": "components-icons.html",
+              "active": false
+            },
+            {
+              "label": "Inputs",
+              "href": "components-inputs.html",
+              "active": false
+            },
+            {
+              "label": "Controls",
+              "href": "components-controls.html",
+              "active": false
+            },
+            {
+              "label": "Tabs",
+              "href": "components-tabs.html",
+              "active": true
+            },
+            {
+              "label": "Cards",
+              "href": "components-cards.html",
+              "active": false
+            },
+            {
+              "label": "Data table",
+              "href": "components-table.html",
+              "active": false
+            },
+            {
+              "label": "Examples",
+              "href": "components-examples.html",
+              "active": false
+            },
+            {
+              "label": "Feedback",
+              "href": "components-feedback.html",
+              "active": false
+            },
+            {
+              "label": "Overlays",
+              "href": "components-overlays.html",
+              "active": false
+            },
+            {
+              "label": "Navigation",
+              "href": "components-navigation.html",
+              "active": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "components-cards.html",
+      "title": "Cards - idenflu Design System",
+      "meta": "Cards",
+      "activeTopnav": "components.html",
+      "source": "components-cards.html",
+      "sidebarAria": "Component pages",
+      "sidebarGroups": [
+        {
+          "label": "Components",
+          "reference": false,
+          "links": [
+            {
+              "label": "Overview",
+              "href": "components.html",
+              "active": false
+            },
+            {
+              "label": "Buttons",
+              "href": "components-buttons.html",
+              "active": false
+            },
+            {
+              "label": "Icons",
+              "href": "components-icons.html",
+              "active": false
+            },
+            {
+              "label": "Inputs",
+              "href": "components-inputs.html",
+              "active": false
+            },
+            {
+              "label": "Controls",
+              "href": "components-controls.html",
+              "active": false
+            },
+            {
+              "label": "Tabs",
+              "href": "components-tabs.html",
+              "active": false
+            },
+            {
+              "label": "Cards",
+              "href": "components-cards.html",
+              "active": true
+            },
+            {
+              "label": "Data table",
+              "href": "components-table.html",
+              "active": false
+            },
+            {
+              "label": "Examples",
+              "href": "components-examples.html",
+              "active": false
+            },
+            {
+              "label": "Feedback",
+              "href": "components-feedback.html",
+              "active": false
+            },
+            {
+              "label": "Overlays",
+              "href": "components-overlays.html",
+              "active": false
+            },
+            {
+              "label": "Navigation",
+              "href": "components-navigation.html",
+              "active": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "components-table.html",
+      "title": "Data table - idenflu Design System",
+      "meta": "Data table",
+      "activeTopnav": "components.html",
+      "source": "components-table.html",
+      "sidebarAria": "Component pages",
+      "sidebarGroups": [
+        {
+          "label": "Components",
+          "reference": false,
+          "links": [
+            {
+              "label": "Overview",
+              "href": "components.html",
+              "active": false
+            },
+            {
+              "label": "Buttons",
+              "href": "components-buttons.html",
+              "active": false
+            },
+            {
+              "label": "Icons",
+              "href": "components-icons.html",
+              "active": false
+            },
+            {
+              "label": "Inputs",
+              "href": "components-inputs.html",
+              "active": false
+            },
+            {
+              "label": "Controls",
+              "href": "components-controls.html",
+              "active": false
+            },
+            {
+              "label": "Tabs",
+              "href": "components-tabs.html",
+              "active": false
+            },
+            {
+              "label": "Cards",
+              "href": "components-cards.html",
+              "active": false
+            },
+            {
+              "label": "Data table",
+              "href": "components-table.html",
+              "active": true
+            },
+            {
+              "label": "Examples",
+              "href": "components-examples.html",
+              "active": false
+            },
+            {
+              "label": "Feedback",
+              "href": "components-feedback.html",
+              "active": false
+            },
+            {
+              "label": "Overlays",
+              "href": "components-overlays.html",
+              "active": false
+            },
+            {
+              "label": "Navigation",
+              "href": "components-navigation.html",
+              "active": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "components-examples.html",
+      "title": "Examples - idenflu Design System",
+      "meta": "Examples",
+      "activeTopnav": "components.html",
+      "source": "components-examples.html",
+      "sidebarAria": "Component pages",
+      "sidebarGroups": [
+        {
+          "label": "Components",
+          "reference": false,
+          "links": [
+            {
+              "label": "Overview",
+              "href": "components.html",
+              "active": false
+            },
+            {
+              "label": "Buttons",
+              "href": "components-buttons.html",
+              "active": false
+            },
+            {
+              "label": "Icons",
+              "href": "components-icons.html",
+              "active": false
+            },
+            {
+              "label": "Inputs",
+              "href": "components-inputs.html",
+              "active": false
+            },
+            {
+              "label": "Controls",
+              "href": "components-controls.html",
+              "active": false
+            },
+            {
+              "label": "Tabs",
+              "href": "components-tabs.html",
+              "active": false
+            },
+            {
+              "label": "Cards",
+              "href": "components-cards.html",
+              "active": false
+            },
+            {
+              "label": "Data table",
+              "href": "components-table.html",
+              "active": false
+            },
+            {
+              "label": "Examples",
+              "href": "components-examples.html",
+              "active": true
+            },
+            {
+              "label": "Feedback",
+              "href": "components-feedback.html",
+              "active": false
+            },
+            {
+              "label": "Overlays",
+              "href": "components-overlays.html",
+              "active": false
+            },
+            {
+              "label": "Navigation",
+              "href": "components-navigation.html",
+              "active": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "components-feedback.html",
+      "title": "Feedback - idenflu Design System",
+      "meta": "Feedback",
+      "activeTopnav": "components.html",
+      "source": "components-feedback.html",
+      "sidebarAria": "Component pages",
+      "sidebarGroups": [
+        {
+          "label": "Components",
+          "reference": false,
+          "links": [
+            {
+              "label": "Overview",
+              "href": "components.html",
+              "active": false
+            },
+            {
+              "label": "Buttons",
+              "href": "components-buttons.html",
+              "active": false
+            },
+            {
+              "label": "Icons",
+              "href": "components-icons.html",
+              "active": false
+            },
+            {
+              "label": "Inputs",
+              "href": "components-inputs.html",
+              "active": false
+            },
+            {
+              "label": "Controls",
+              "href": "components-controls.html",
+              "active": false
+            },
+            {
+              "label": "Tabs",
+              "href": "components-tabs.html",
+              "active": false
+            },
+            {
+              "label": "Cards",
+              "href": "components-cards.html",
+              "active": false
+            },
+            {
+              "label": "Data table",
+              "href": "components-table.html",
+              "active": false
+            },
+            {
+              "label": "Examples",
+              "href": "components-examples.html",
+              "active": false
+            },
+            {
+              "label": "Feedback",
+              "href": "components-feedback.html",
+              "active": true
+            },
+            {
+              "label": "Overlays",
+              "href": "components-overlays.html",
+              "active": false
+            },
+            {
+              "label": "Navigation",
+              "href": "components-navigation.html",
+              "active": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "components-overlays.html",
+      "title": "Overlays - idenflu Design System",
+      "meta": "Overlays",
+      "activeTopnav": "components.html",
+      "source": "components-overlays.html",
+      "sidebarAria": "Component pages",
+      "sidebarGroups": [
+        {
+          "label": "Components",
+          "reference": false,
+          "links": [
+            {
+              "label": "Overview",
+              "href": "components.html",
+              "active": false
+            },
+            {
+              "label": "Buttons",
+              "href": "components-buttons.html",
+              "active": false
+            },
+            {
+              "label": "Icons",
+              "href": "components-icons.html",
+              "active": false
+            },
+            {
+              "label": "Inputs",
+              "href": "components-inputs.html",
+              "active": false
+            },
+            {
+              "label": "Controls",
+              "href": "components-controls.html",
+              "active": false
+            },
+            {
+              "label": "Tabs",
+              "href": "components-tabs.html",
+              "active": false
+            },
+            {
+              "label": "Cards",
+              "href": "components-cards.html",
+              "active": false
+            },
+            {
+              "label": "Data table",
+              "href": "components-table.html",
+              "active": false
+            },
+            {
+              "label": "Examples",
+              "href": "components-examples.html",
+              "active": false
+            },
+            {
+              "label": "Feedback",
+              "href": "components-feedback.html",
+              "active": false
+            },
+            {
+              "label": "Overlays",
+              "href": "components-overlays.html",
+              "active": true
+            },
+            {
+              "label": "Navigation",
+              "href": "components-navigation.html",
+              "active": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "components-navigation.html",
+      "title": "Navigation - idenflu Design System",
+      "meta": "Navigation",
+      "activeTopnav": "components.html",
+      "source": "components-navigation.html",
+      "sidebarAria": "Component pages",
+      "sidebarGroups": [
+        {
+          "label": "Components",
+          "reference": false,
+          "links": [
+            {
+              "label": "Overview",
+              "href": "components.html",
+              "active": false
+            },
+            {
+              "label": "Buttons",
+              "href": "components-buttons.html",
+              "active": false
+            },
+            {
+              "label": "Icons",
+              "href": "components-icons.html",
+              "active": false
+            },
+            {
+              "label": "Inputs",
+              "href": "components-inputs.html",
+              "active": false
+            },
+            {
+              "label": "Controls",
+              "href": "components-controls.html",
+              "active": false
+            },
+            {
+              "label": "Tabs",
+              "href": "components-tabs.html",
+              "active": false
+            },
+            {
+              "label": "Cards",
+              "href": "components-cards.html",
+              "active": false
+            },
+            {
+              "label": "Data table",
+              "href": "components-table.html",
+              "active": false
+            },
+            {
+              "label": "Examples",
+              "href": "components-examples.html",
+              "active": false
+            },
+            {
+              "label": "Feedback",
+              "href": "components-feedback.html",
+              "active": false
+            },
+            {
+              "label": "Overlays",
+              "href": "components-overlays.html",
+              "active": false
+            },
+            {
+              "label": "Navigation",
+              "href": "components-navigation.html",
+              "active": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "patterns.html",
+      "title": "Patterns - idenflu Design System",
+      "meta": "Workflow patterns",
+      "activeTopnav": "patterns.html",
+      "source": "patterns.html",
+      "sidebarAria": "Page sections",
+      "sidebarGroups": [
+        {
+          "label": "Patterns",
+          "reference": false,
+          "links": [
+            {
+              "label": "Workspace shell",
+              "href": "#shell",
+              "active": false
+            },
+            {
+              "label": "Dashboard",
+              "href": "#dashboard",
+              "active": false
+            },
+            {
+              "label": "Pipeline",
+              "href": "#pipeline",
+              "active": false
+            },
+            {
+              "label": "Review queue",
+              "href": "#review",
+              "active": false
+            },
+            {
+              "label": "Screen templates",
+              "href": "#screen-templates",
+              "active": false
+            },
+            {
+              "label": "Login shell",
+              "href": "#login",
+              "active": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "starter-kit.html",
+      "title": "Starter Kit - idenflu Design System",
+      "meta": "Start new screens",
+      "activeTopnav": "guidelines.html",
+      "source": "starter-kit.html",
+      "sidebarAria": "Page sections",
+      "sidebarGroups": [
+        {
+          "label": "Starter kit",
+          "reference": false,
+          "links": [
+            {
+              "label": "Start here",
+              "href": "#start",
+              "active": false
+            },
+            {
+              "label": "Principles",
+              "href": "#principles",
+              "active": false
+            },
+            {
+              "label": "Layouts",
+              "href": "#layouts",
+              "active": false
+            },
+            {
+              "label": "Composition",
+              "href": "#composition",
+              "active": false
+            },
+            {
+              "label": "Quick check",
+              "href": "#check",
+              "active": false
+            }
+          ]
+        },
+        {
+          "label": "Reference",
+          "reference": true,
+          "links": [
+            {
+              "label": "Starter kit",
+              "href": "starter-kit.html",
+              "active": true
+            },
+            {
+              "label": "Guidelines",
+              "href": "guidelines.html",
+              "active": false
+            },
+            {
+              "label": "States",
+              "href": "states.html",
+              "active": false
+            },
+            {
+              "label": "Accessibility",
+              "href": "accessibility.html",
+              "active": false
+            },
+            {
+              "label": "Responsive",
+              "href": "responsive.html",
+              "active": false
+            },
+            {
+              "label": "Enterprise",
+              "href": "enterprise.html",
+              "active": false
+            },
+            {
+              "label": "Visual QA",
+              "href": "visual-qa.html",
+              "active": false
+            },
+            {
+              "label": "Changelog",
+              "href": "changelog.html",
+              "active": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "guidelines.html",
+      "title": "Usage Guidelines - idenflu Design System",
+      "meta": "Usage rules",
+      "activeTopnav": "guidelines.html",
+      "source": "guidelines.html",
+      "sidebarAria": "Page sections",
+      "sidebarGroups": [
+        {
+          "label": "Guidelines",
+          "reference": false,
+          "links": [
+            {
+              "label": "Contracts",
+              "href": "#contracts",
+              "active": false
+            },
+            {
+              "label": "Do / Dont",
+              "href": "#dos-donts",
+              "active": false
+            },
+            {
+              "label": "State matrix",
+              "href": "#state-matrix",
+              "active": false
+            },
+            {
+              "label": "Accessibility matrix",
+              "href": "#a11y-matrix",
+              "active": false
+            },
+            {
+              "label": "Density",
+              "href": "#density",
+              "active": false
+            },
+            {
+              "label": "Actions",
+              "href": "#actions",
+              "active": false
+            },
+            {
+              "label": "Forms",
+              "href": "#forms",
+              "active": false
+            },
+            {
+              "label": "Data views",
+              "href": "#data",
+              "active": false
+            },
+            {
+              "label": "Overlays",
+              "href": "#overlays",
+              "active": false
+            },
+            {
+              "label": "Checklist",
+              "href": "#checklist",
+              "active": false
+            }
+          ]
+        },
+        {
+          "label": "Reference",
+          "reference": true,
+          "links": [
+            {
+              "label": "Starter kit",
+              "href": "starter-kit.html",
+              "active": false
+            },
+            {
+              "label": "Guidelines",
+              "href": "guidelines.html",
+              "active": true
+            },
+            {
+              "label": "States",
+              "href": "states.html",
+              "active": false
+            },
+            {
+              "label": "Accessibility",
+              "href": "accessibility.html",
+              "active": false
+            },
+            {
+              "label": "Responsive",
+              "href": "responsive.html",
+              "active": false
+            },
+            {
+              "label": "Enterprise",
+              "href": "enterprise.html",
+              "active": false
+            },
+            {
+              "label": "Visual QA",
+              "href": "visual-qa.html",
+              "active": false
+            },
+            {
+              "label": "Changelog",
+              "href": "changelog.html",
+              "active": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "states.html",
+      "title": "States - idenflu Design System",
+      "meta": "State system",
+      "activeTopnav": "guidelines.html",
+      "source": "states.html",
+      "sidebarAria": "Page sections",
+      "sidebarGroups": [
+        {
+          "label": "States",
+          "reference": false,
+          "links": [
+            {
+              "label": "Model",
+              "href": "#model",
+              "active": false
+            },
+            {
+              "label": "Loading",
+              "href": "#loading",
+              "active": false
+            },
+            {
+              "label": "Empty",
+              "href": "#empty",
+              "active": false
+            },
+            {
+              "label": "Error",
+              "href": "#error",
+              "active": false
+            },
+            {
+              "label": "Permission",
+              "href": "#permission",
+              "active": false
+            },
+            {
+              "label": "Table states",
+              "href": "#table",
+              "active": false
+            }
+          ]
+        },
+        {
+          "label": "Reference",
+          "reference": true,
+          "links": [
+            {
+              "label": "Starter kit",
+              "href": "starter-kit.html",
+              "active": false
+            },
+            {
+              "label": "Guidelines",
+              "href": "guidelines.html",
+              "active": false
+            },
+            {
+              "label": "States",
+              "href": "states.html",
+              "active": true
+            },
+            {
+              "label": "Accessibility",
+              "href": "accessibility.html",
+              "active": false
+            },
+            {
+              "label": "Responsive",
+              "href": "responsive.html",
+              "active": false
+            },
+            {
+              "label": "Enterprise",
+              "href": "enterprise.html",
+              "active": false
+            },
+            {
+              "label": "Visual QA",
+              "href": "visual-qa.html",
+              "active": false
+            },
+            {
+              "label": "Changelog",
+              "href": "changelog.html",
+              "active": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "accessibility.html",
+      "title": "Accessibility - idenflu Design System",
+      "meta": "Accessibility",
+      "activeTopnav": "guidelines.html",
+      "source": "accessibility.html",
+      "sidebarAria": "Page sections",
+      "sidebarGroups": [
+        {
+          "label": "Accessibility",
+          "reference": false,
+          "links": [
+            {
+              "label": "Focus",
+              "href": "#focus",
+              "active": false
+            },
+            {
+              "label": "Keyboard",
+              "href": "#keyboard",
+              "active": false
+            },
+            {
+              "label": "Component contracts",
+              "href": "#component-contracts",
+              "active": false
+            },
+            {
+              "label": "ARIA roles",
+              "href": "#aria-roles",
+              "active": false
+            },
+            {
+              "label": "Focus order",
+              "href": "#focus-order",
+              "active": false
+            },
+            {
+              "label": "Labels",
+              "href": "#labels",
+              "active": false
+            },
+            {
+              "label": "Contrast",
+              "href": "#contrast",
+              "active": false
+            },
+            {
+              "label": "Disabled",
+              "href": "#states",
+              "active": false
+            },
+            {
+              "label": "QA",
+              "href": "#qa",
+              "active": false
+            }
+          ]
+        },
+        {
+          "label": "Reference",
+          "reference": true,
+          "links": [
+            {
+              "label": "Starter kit",
+              "href": "starter-kit.html",
+              "active": false
+            },
+            {
+              "label": "Guidelines",
+              "href": "guidelines.html",
+              "active": false
+            },
+            {
+              "label": "States",
+              "href": "states.html",
+              "active": false
+            },
+            {
+              "label": "Accessibility",
+              "href": "accessibility.html",
+              "active": true
+            },
+            {
+              "label": "Responsive",
+              "href": "responsive.html",
+              "active": false
+            },
+            {
+              "label": "Enterprise",
+              "href": "enterprise.html",
+              "active": false
+            },
+            {
+              "label": "Visual QA",
+              "href": "visual-qa.html",
+              "active": false
+            },
+            {
+              "label": "Changelog",
+              "href": "changelog.html",
+              "active": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "responsive.html",
+      "title": "Responsive - idenflu Design System",
+      "meta": "Responsive rules",
+      "activeTopnav": "guidelines.html",
+      "source": "responsive.html",
+      "sidebarAria": "Page sections",
+      "sidebarGroups": [
+        {
+          "label": "Responsive",
+          "reference": false,
+          "links": [
+            {
+              "label": "Breakpoints",
+              "href": "#breakpoints",
+              "active": false
+            },
+            {
+              "label": "Shell",
+              "href": "#shell",
+              "active": false
+            },
+            {
+              "label": "Tables",
+              "href": "#tables",
+              "active": false
+            },
+            {
+              "label": "Toolbar",
+              "href": "#toolbar",
+              "active": false
+            },
+            {
+              "label": "Text stress",
+              "href": "#text",
+              "active": false
+            }
+          ]
+        },
+        {
+          "label": "Reference",
+          "reference": true,
+          "links": [
+            {
+              "label": "Starter kit",
+              "href": "starter-kit.html",
+              "active": false
+            },
+            {
+              "label": "Guidelines",
+              "href": "guidelines.html",
+              "active": false
+            },
+            {
+              "label": "States",
+              "href": "states.html",
+              "active": false
+            },
+            {
+              "label": "Accessibility",
+              "href": "accessibility.html",
+              "active": false
+            },
+            {
+              "label": "Responsive",
+              "href": "responsive.html",
+              "active": true
+            },
+            {
+              "label": "Enterprise",
+              "href": "enterprise.html",
+              "active": false
+            },
+            {
+              "label": "Visual QA",
+              "href": "visual-qa.html",
+              "active": false
+            },
+            {
+              "label": "Changelog",
+              "href": "changelog.html",
+              "active": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "enterprise.html",
+      "title": "Enterprise Components - idenflu Design System",
+      "meta": "Enterprise components",
+      "activeTopnav": "guidelines.html",
+      "source": "enterprise.html",
+      "sidebarAria": "Page sections",
+      "sidebarGroups": [
+        {
+          "label": "Enterprise",
+          "reference": false,
+          "links": [
+            {
+              "label": "Navigation",
+              "href": "#navigation",
+              "active": false
+            },
+            {
+              "label": "Overlays",
+              "href": "#overlays",
+              "active": false
+            },
+            {
+              "label": "Feedback",
+              "href": "#feedback",
+              "active": false
+            },
+            {
+              "label": "Advanced forms",
+              "href": "#forms",
+              "active": false
+            },
+            {
+              "label": "Workflow",
+              "href": "#workflow",
+              "active": false
+            }
+          ]
+        },
+        {
+          "label": "Reference",
+          "reference": true,
+          "links": [
+            {
+              "label": "Starter kit",
+              "href": "starter-kit.html",
+              "active": false
+            },
+            {
+              "label": "Guidelines",
+              "href": "guidelines.html",
+              "active": false
+            },
+            {
+              "label": "States",
+              "href": "states.html",
+              "active": false
+            },
+            {
+              "label": "Accessibility",
+              "href": "accessibility.html",
+              "active": false
+            },
+            {
+              "label": "Responsive",
+              "href": "responsive.html",
+              "active": false
+            },
+            {
+              "label": "Enterprise",
+              "href": "enterprise.html",
+              "active": true
+            },
+            {
+              "label": "Visual QA",
+              "href": "visual-qa.html",
+              "active": false
+            },
+            {
+              "label": "Changelog",
+              "href": "changelog.html",
+              "active": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "visual-qa.html",
+      "title": "Visual QA - idenflu Design System",
+      "meta": "Visual QA",
+      "activeTopnav": "guidelines.html",
+      "source": "visual-qa.html",
+      "sidebarAria": "Page sections",
+      "sidebarGroups": [
+        {
+          "label": "Visual QA",
+          "reference": false,
+          "links": [
+            {
+              "label": "Actions",
+              "href": "#actions",
+              "active": false
+            },
+            {
+              "label": "Forms",
+              "href": "#forms",
+              "active": false
+            },
+            {
+              "label": "Data",
+              "href": "#data",
+              "active": false
+            },
+            {
+              "label": "States",
+              "href": "#states",
+              "active": false
+            },
+            {
+              "label": "Checklist",
+              "href": "#checklist",
+              "active": false
+            },
+            {
+              "label": "Automation",
+              "href": "#automation",
+              "active": false
+            },
+            {
+              "label": "Themes",
+              "href": "#themes",
+              "active": false
+            }
+          ]
+        },
+        {
+          "label": "Reference",
+          "reference": true,
+          "links": [
+            {
+              "label": "Starter kit",
+              "href": "starter-kit.html",
+              "active": false
+            },
+            {
+              "label": "Guidelines",
+              "href": "guidelines.html",
+              "active": false
+            },
+            {
+              "label": "States",
+              "href": "states.html",
+              "active": false
+            },
+            {
+              "label": "Accessibility",
+              "href": "accessibility.html",
+              "active": false
+            },
+            {
+              "label": "Responsive",
+              "href": "responsive.html",
+              "active": false
+            },
+            {
+              "label": "Enterprise",
+              "href": "enterprise.html",
+              "active": false
+            },
+            {
+              "label": "Visual QA",
+              "href": "visual-qa.html",
+              "active": true
+            },
+            {
+              "label": "Changelog",
+              "href": "changelog.html",
+              "active": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "changelog.html",
+      "title": "Changelog - idenflu Design System",
+      "meta": "Versioning",
+      "activeTopnav": "guidelines.html",
+      "source": "changelog.html",
+      "sidebarAria": "Page sections",
+      "sidebarGroups": [
+        {
+          "label": "Changelog",
+          "reference": false,
+          "links": [
+            {
+              "label": "Current",
+              "href": "#current",
+              "active": false
+            },
+            {
+              "label": "History",
+              "href": "#history",
+              "active": false
+            },
+            {
+              "label": "Deprecations",
+              "href": "#deprecations",
+              "active": false
+            },
+            {
+              "label": "Release checklist",
+              "href": "#release-checklist",
+              "active": false
+            }
+          ]
+        },
+        {
+          "label": "Reference",
+          "reference": true,
+          "links": [
+            {
+              "label": "Starter kit",
+              "href": "starter-kit.html",
+              "active": false
+            },
+            {
+              "label": "Guidelines",
+              "href": "guidelines.html",
+              "active": false
+            },
+            {
+              "label": "States",
+              "href": "states.html",
+              "active": false
+            },
+            {
+              "label": "Accessibility",
+              "href": "accessibility.html",
+              "active": false
+            },
+            {
+              "label": "Responsive",
+              "href": "responsive.html",
+              "active": false
+            },
+            {
+              "label": "Enterprise",
+              "href": "enterprise.html",
+              "active": false
+            },
+            {
+              "label": "Visual QA",
+              "href": "visual-qa.html",
+              "active": false
+            },
+            {
+              "label": "Changelog",
+              "href": "changelog.html",
+              "active": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "tokenCssHref": "tokens.generated.css?v=20260606-token-pipeline"
+}

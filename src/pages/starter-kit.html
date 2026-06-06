@@ -1,0 +1,110 @@
+<section class="page-header">
+  <p class="eyebrow">Starter kit</p>
+  <h1>새 화면은 가볍게 시작하고, 필요한 만큼만 깊게 들어갑니다.</h1>
+  <p class="lede">이 페이지는 상세 규칙을 먼저 읽기보다 workflow, layout, component 조합, 상태 체크를 빠르게 선택하는 출발점입니다.</p>
+</section>
+
+<section id="start" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Start here</p>
+    <h2>처음에는 네 가지만 정합니다.</h2>
+  </div>
+  <div class="starter-grid">
+    <article class="starter-card">
+      <strong>1. Workflow</strong>
+      <p>Campaign, creator, review, billing, admin 중 어떤 업무인지 먼저 고릅니다.</p>
+    </article>
+    <article class="starter-card">
+      <strong>2. Layout</strong>
+      <p>비교가 많으면 list/table, 판단이 많으면 detail/form, 짧은 결정은 overlay로 시작합니다.</p>
+    </article>
+    <article class="starter-card">
+      <strong>3. Components</strong>
+      <p>Button, input, table, feedback처럼 이미 있는 기본 조합을 먼저 사용합니다.</p>
+    </article>
+    <article class="starter-card">
+      <strong>4. States</strong>
+      <p>Loading, empty, error, locked, success 중 화면에 필요한 상태만 골라 둡니다.</p>
+    </article>
+  </div>
+</section>
+
+<section id="principles" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Principles</p>
+    <h2>세부 규칙보다 먼저 보는 6가지 원칙.</h2>
+  </div>
+  <div class="starter-grid principles">
+    <article class="starter-card"><strong>Metadata first</strong><p>상태, owner, due, revision은 화면 판단을 돕는 기본 정보입니다.</p></article>
+    <article class="starter-card"><strong>One clear path</strong><p>사용자가 다음에 할 일을 한 가지 중심으로 읽을 수 있게 둡니다.</p></article>
+    <article class="starter-card"><strong>Visible state</strong><p>상태는 색보다 텍스트와 action으로 이해되게 합니다.</p></article>
+    <article class="starter-card"><strong>Compact, readable</strong><p>운영 화면은 촘촘해도 읽을 수 있어야 합니다.</p></article>
+    <article class="starter-card"><strong>Plain structure</strong><p>불필요한 장식보다 hairline, spacing, hierarchy로 구분합니다.</p></article>
+    <article class="starter-card"><strong>Flexible depth</strong><p>처음에는 간단히 만들고, 실제 workflow가 보일 때 상세 규칙을 더합니다.</p></article>
+  </div>
+</section>
+
+<section id="layouts" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Layout recipes</p>
+    <h2>완성 화면이 아니라 뼈대부터 고릅니다.</h2>
+  </div>
+  <div class="template-grid">
+    <article class="wire-template">
+      <strong>List + detail</strong>
+      <div class="wire-frame list-detail">
+        <span></span><span></span><span></span><span></span>
+      </div>
+      <p>Review queue, creator roster, campaign list처럼 비교 후 상세를 여는 화면.</p>
+    </article>
+    <article class="wire-template">
+      <strong>Form + preview</strong>
+      <div class="wire-frame form-preview">
+        <span></span><span></span><span></span><span></span>
+      </div>
+      <p>Campaign brief, invite flow, billing settings처럼 입력과 확인이 함께 필요한 화면.</p>
+    </article>
+    <article class="wire-template">
+      <strong>Dashboard band</strong>
+      <div class="wire-frame dashboard-wire">
+        <span></span><span></span><span></span><span></span>
+      </div>
+      <p>요약 지표, 파이프라인, 최근 activity를 빠르게 스캔하는 화면.</p>
+    </article>
+    <article class="wire-template">
+      <strong>Decision overlay</strong>
+      <div class="wire-frame overlay-wire">
+        <span></span><span></span><span></span><span></span>
+      </div>
+      <p>승인, 반려, 권한 요청처럼 현재 맥락 안에서 짧게 끝나는 결정.</p>
+    </article>
+  </div>
+</section>
+
+<section id="composition" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Composition</p>
+    <h2>자주 쓰는 조합만 먼저 가져옵니다.</h2>
+  </div>
+  <div class="decision-table">
+    <div class="decision-row header"><span>Need</span><span>Start with</span><span>Then add</span></div>
+    <div class="decision-row"><span><strong>Compare objects</strong></span><span>Table/list + visible row actions</span><span>Filter, density, empty state</span></div>
+    <div class="decision-row"><span><strong>Edit details</strong></span><span>Form grid + helper copy</span><span>Autosave, server validation, locked field</span></div>
+    <div class="decision-row"><span><strong>Make decision</strong></span><span>Primary + quiet secondary</span><span>Reason field, confirmation, error recovery</span></div>
+    <div class="decision-row"><span><strong>Explain state</strong></span><span>Status chip + plain copy</span><span>Recovery action, owner, timestamp</span></div>
+  </div>
+</section>
+
+<section id="check" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Quick check</p>
+    <h2>상세 검토 전 최소 체크.</h2>
+  </div>
+  <div class="a11y-checklist">
+    <label><input type="checkbox" checked> 화면의 주요 업무가 한 문장으로 설명됩니다.</label>
+    <label><input type="checkbox" checked> 상태, owner, due, revision 중 필요한 정보가 보입니다.</label>
+    <label><input type="checkbox" checked> primary action은 한 영역에서 하나만 먼저 보입니다.</label>
+    <label><input type="checkbox" checked> loading, empty, error, locked 중 필요한 상태가 준비되어 있습니다.</label>
+    <label><input type="checkbox" checked> mobile에서 핵심 action과 metadata가 사라지지 않습니다.</label>
+  </div>
+</section>

@@ -1,0 +1,336 @@
+<section class="page-header">
+  <p class="eyebrow">Components</p>
+  <h1>Data table</h1>
+  <p class="lede">Toolbar, sorting, selection, row action, pagination.</p>
+</section>
+
+
+<section id="component-standard" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Component standard</p>
+    <h2>Data table 문서의 공통 구조.</h2>
+  </div>
+  <div class="component-doc-grid">
+    <article id="doc-anatomy" class="component-doc-card">
+      <strong>Anatomy</strong>
+      <p>기본 구성요소를 정리해 구현과 디자인 리뷰의 출발점을 맞춥니다.</p>
+      <ul><li>Toolbar</li><li>headers</li><li>rows</li><li>selection bar</li><li>pagination</li></ul>
+    </article>
+    <article id="doc-variants" class="component-doc-card">
+      <strong>Variants</strong>
+      <p>Compact, sticky header, expanded row, filtered empty, locked row</p>
+    </article>
+    <article id="doc-states" class="component-doc-card">
+      <strong>States</strong>
+      <p>Default, hover, focus, selected, loading, disabled, error 또는 locked 상태를 같은 density로 비교합니다.</p>
+    </article>
+    <article id="doc-accessibility" class="component-doc-card">
+      <strong>Accessibility</strong>
+      <p>Keyboard path, visible focus, semantic role, accessible name, helper/error 연결을 함께 검토합니다.</p>
+    </article>
+    <article id="doc-examples" class="component-doc-card">
+      <strong>Examples</strong>
+      <p>단독 컴포넌트보다 campaign, creator, review, admin workflow 안에서 쓰이는 예시를 우선합니다.</p>
+    </article>
+    <article id="doc-qa" class="component-doc-card">
+      <strong>QA</strong>
+      <p>Visual QA에서 light/dark, compact density, disabled hover, focus, long text overflow를 다시 확인합니다.</p>
+    </article>
+  </div>
+</section>
+
+<section id="table-spec" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Table spec</p>
+    <h2>운영 테이블의 props, 상태, 접근성 계약.</h2>
+  </div>
+  <div class="spec-table">
+    <div class="spec-row header"><span>Property</span><span>Values</span><span>Rule</span><span>Edge case</span></div>
+    <div class="spec-row"><span><strong>density</strong></span><span>compact, comfortable, spacious</span><span>review queue와 roster는 compact를 기본으로 둡니다.</span><span>밀도를 바꿔도 row action과 핵심 metadata는 사라지지 않습니다.</span></div>
+    <div class="spec-row"><span><strong>selection</strong></span><span>none, single, multi</span><span>multi selection은 selected count, scope, action을 bar에 노출합니다.</span><span>필터 변경 시 selection scope를 명확히 다시 표시합니다.</span></div>
+    <div class="spec-row"><span><strong>sorting</strong></span><span>none, ascending, descending</span><span>정렬 가능한 header는 button이고 active sort는 aria-sort를 사용합니다.</span><span>복합 정렬은 table caption이나 toolbar summary에 표시합니다.</span></div>
+    <div class="spec-row"><span><strong>row state</strong></span><span>default, selected, expanded, locked, loading, error</span><span>row action은 hover 없이도 접근 가능해야 합니다.</span><span>locked row는 action을 숨기지 않고 disabled + reason을 제공합니다.</span></div>
+    <div class="spec-row"><span><strong>responsive</strong></span><span>table, card fallback</span><span>모바일에서는 비교가 필요한 컬럼만 유지하고 나머지는 row detail로 내립니다.</span><span>revision, owner, due, risk는 fallback에서도 보입니다.</span></div>
+  </div>
+  <div class="decision-table">
+    <div class="decision-row header"><span>Interaction</span><span>Contract</span><span>Failure mode to avoid</span></div>
+    <div class="decision-row"><span><strong>Column resize</strong></span><span>Header resize handle, min width, persisted workspace preference</span><span>값이 잘리는데 tooltip로만 전체 값을 제공하는 방식</span></div>
+    <div class="decision-row"><span><strong>Row expansion</strong></span><span>aria-expanded trigger와 full-span expanded content</span><span>행 밖 카드로 열려 table context를 잃는 방식</span></div>
+    <div class="decision-row"><span><strong>Empty states</strong></span><span>True empty, filtered empty, permission empty를 분리</span><span>모든 empty에 같은 Create CTA를 사용하는 방식</span></div>
+  </div>
+</section>
+
+<section id="table" class="section">
+          <div class="section-heading">
+            <p class="eyebrow">Data table</p>
+            <h2>운영 필드는 컬럼으로 노출합니다.</h2>
+          </div>
+          <div class="table-shell">
+            <div class="table-toolbar">
+              <div>
+                <strong>Campaign review queue</strong>
+                <p>24 campaigns · filtered by review stage · updated 2 min ago</p>
+              </div>
+              <div class="table-filter-group" role="group" aria-label="Table controls">
+                <button class="button quiet small" type="button"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-filter"></use></svg>Status</button>
+                <button class="button quiet small" type="button">Owner</button>
+                <button class="button ghost small" type="button">Density: Compact</button>
+                <button class="button secondary small" type="button"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-download"></use></svg>Export</button>
+              </div>
+            </div>
+            <div class="table-selection-bar">
+              <label><input type="checkbox" checked> 3 selected</label>
+              <span>Scope: visible rows only</span>
+              <div class="case-actions">
+                <button class="button quiet small" type="button">Assign owner</button>
+                <button class="button ghost small" type="button">Clear</button>
+              </div>
+            </div>
+            <div class="data-table enhanced" role="table" aria-label="Campaign review queue">
+              <div class="data-row header" role="row">
+                <span role="columnheader"><input type="checkbox" aria-label="Select all visible campaigns"></span>
+                <span role="columnheader"><button type="button" aria-sort="ascending">Campaign</button></span>
+                <span role="columnheader"><button type="button">Status</button></span>
+                <span role="columnheader"><button type="button">Owner</button></span>
+                <span role="columnheader"><button type="button">Revision</button></span>
+                <span role="columnheader"><button type="button">Due</button></span>
+                <span role="columnheader"><button type="button">Risk</button></span>
+                <span role="columnheader">Actions</span>
+              </div>
+              <div class="data-row selected" role="row">
+                <span role="cell"><input type="checkbox" checked aria-label="Select Summer drop review"></span>
+                <span class="primary-cell" role="cell"><strong>Summer drop review</strong><small>8 creators · Instagram reels</small></span>
+                <span role="cell"><mark class="status amber">Review</mark></span>
+                <span role="cell">Mina</span>
+                <span role="cell">Rev 03</span>
+                <span role="cell">Today 18:00</span>
+                <span role="cell"><mark class="status coral">Disclosure</mark></span>
+                <span class="table-actions" role="cell">
+                  <button class="button ghost small" type="button">Open</button>
+                  <button class="icon-button small ghost" type="button" aria-label="More actions for Summer drop review"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-more"></use></svg></button>
+                </span>
+              </div>
+              <div class="data-row selected" role="row">
+                <span role="cell"><input type="checkbox" checked aria-label="Select Creator shortlist"></span>
+                <span class="primary-cell" role="cell"><strong>Creator shortlist</strong><small>12 profiles · beauty segment</small></span>
+                <span role="cell"><mark class="status blue">Recruit</mark></span>
+                <span role="cell">Alex</span>
+                <span role="cell">Rev 01</span>
+                <span role="cell">Jun 10</span>
+                <span role="cell"><mark class="status amber">Replies</mark></span>
+                <span class="table-actions" role="cell">
+                  <button class="button ghost small" type="button">Open</button>
+                  <button class="icon-button small ghost" type="button" aria-label="More actions for Creator shortlist"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-more"></use></svg></button>
+                </span>
+              </div>
+              <div class="data-row selected" role="row">
+                <span role="cell"><input type="checkbox" checked aria-label="Select Paid social assets"></span>
+                <span class="primary-cell" role="cell"><strong>Paid social assets</strong><small>4 assets · paid usage rights</small></span>
+                <span role="cell"><mark class="status mint">Ready</mark></span>
+                <span role="cell">Jae</span>
+                <span role="cell">Rev 04</span>
+                <span role="cell">Jun 12</span>
+                <span role="cell"><mark class="status mint">Healthy</mark></span>
+                <span class="table-actions" role="cell">
+                  <button class="button ghost small" type="button">Open</button>
+                  <button class="icon-button small ghost" type="button" aria-label="More actions for Paid social assets"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-more"></use></svg></button>
+                </span>
+              </div>
+              <div class="data-row" role="row">
+                <span role="cell"><input type="checkbox" aria-label="Select June skincare launch"></span>
+                <span class="primary-cell" role="cell"><strong>June skincare launch</strong><small>6 creators · TikTok shorts</small></span>
+                <span role="cell"><mark class="status amber">Review</mark></span>
+                <span role="cell">Hana</span>
+                <span role="cell">Rev 02</span>
+                <span role="cell">Tomorrow</span>
+                <span role="cell"><mark class="status blue">On track</mark></span>
+                <span class="table-actions" role="cell">
+                  <button class="button ghost small" type="button">Open</button>
+                  <button class="icon-button small ghost" type="button" aria-label="More actions for June skincare launch"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-more"></use></svg></button>
+                </span>
+              </div>
+            </div>
+          <div class="table-footer">
+              <span>Showing 1-4 of 24 campaigns</span>
+              <nav class="pagination-demo compact" aria-label="Campaign table pages">
+                <button type="button">Prev</button>
+                <span>Page 1 of 6</span>
+                <button type="button">Next</button>
+              </nav>
+            </div>
+          </div>
+        </section>
+
+<section id="advanced-table" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Advanced table patterns</p>
+    <h2>운영 테이블에서 자주 필요한 고급 상태.</h2>
+  </div>
+  <div class="component-doc-grid">
+    <article class="component-doc-card">
+      <strong>Sticky header</strong>
+      <p>긴 roster나 invoice 테이블은 header와 bulk selection bar를 같은 스크롤 맥락에 고정합니다.</p>
+      <ul>
+        <li>Header cell은 columnheader를 유지합니다.</li>
+        <li>Active sort는 aria-sort로 노출합니다.</li>
+        <li>가로 스크롤에서도 row action 컬럼이 사라지지 않게 설계합니다.</li>
+      </ul>
+    </article>
+    <article class="component-doc-card">
+      <strong>Column resize</strong>
+      <p>Campaign name, creator, note처럼 길이가 크게 변하는 컬럼에만 resize affordance를 둡니다.</p>
+      <ul>
+        <li>Resize handle은 header 오른쪽 8px hit area를 둡니다.</li>
+        <li>최소 폭 이하로 줄어들면 text truncation을 사용합니다.</li>
+        <li>저장된 width는 workspace preference로 유지합니다.</li>
+      </ul>
+    </article>
+    <article class="component-doc-card">
+      <strong>Expanded row</strong>
+      <p>행을 열었을 때는 별도 카드가 아니라 같은 table context 안에서 audit, notes, blockers를 보여줍니다.</p>
+      <ul>
+        <li>Trigger는 aria-expanded를 사용합니다.</li>
+        <li>Expanded content는 row 아래 full-span 영역입니다.</li>
+        <li>닫아도 selection과 filters는 유지합니다.</li>
+      </ul>
+    </article>
+    <article class="component-doc-card">
+      <strong>Filtered empty</strong>
+      <p>필터 결과가 없는 상태와 데이터 자체가 없는 상태를 분리합니다.</p>
+      <ul>
+        <li>적용된 filter summary를 보여줍니다.</li>
+        <li>Clear filter를 quiet action으로 제공합니다.</li>
+        <li>새 항목 생성 CTA는 진짜 empty일 때만 primary로 둡니다.</li>
+      </ul>
+    </article>
+    <article class="component-doc-card">
+      <strong>Permission locked row</strong>
+      <p>권한 때문에 불가능한 action은 숨기지 말고 disabled 상태와 사유를 함께 보여줍니다.</p>
+      <ul>
+        <li>잠긴 row action은 disabled button을 사용합니다.</li>
+        <li>사유는 row detail 또는 helper copy로 노출합니다.</li>
+        <li>권한 요청 action은 별도 quiet action으로 둡니다.</li>
+      </ul>
+    </article>
+    <article class="component-doc-card">
+      <strong>Density switch</strong>
+      <p>Compact, comfortable, spacious는 사용자 취향이 아니라 작업 유형에 따라 기본값을 정합니다.</p>
+      <ul>
+        <li>Review queue는 compact를 기본으로 둡니다.</li>
+        <li>Campaign detail은 comfortable을 기본으로 둡니다.</li>
+        <li>Approval modal은 spacious를 선택합니다.</li>
+      </ul>
+    </article>
+  </div>
+  <div class="table-shell">
+    <div class="table-toolbar">
+      <div>
+        <strong>Locked and expanded example</strong>
+        <p>Permission state, expanded row, filtered empty recovery가 같은 table system 안에 있습니다.</p>
+      </div>
+      <div class="table-filter-group" role="group" aria-label="Advanced table controls">
+        <button class="button quiet small" type="button">Compact</button>
+        <button class="button ghost small" type="button">Columns</button>
+      </div>
+    </div>
+    <div class="data-table enhanced" role="table" aria-label="Advanced table state examples">
+      <div class="data-row header" role="row">
+        <span role="columnheader"><input type="checkbox" aria-label="Select all advanced rows"></span>
+        <span role="columnheader"><button type="button" aria-sort="ascending">Campaign</button></span>
+        <span role="columnheader"><button type="button">Status</button></span>
+        <span role="columnheader"><button type="button">Owner</button></span>
+        <span role="columnheader"><button type="button">Revision</button></span>
+        <span role="columnheader"><button type="button">Due</button></span>
+        <span role="columnheader"><button type="button">Risk</button></span>
+        <span role="columnheader">Actions</span>
+      </div>
+      <div class="data-row selected" role="row">
+        <span role="cell"><input type="checkbox" checked aria-label="Select expanded campaign"></span>
+        <span class="primary-cell" role="cell"><strong>Expanded campaign</strong><small>Disclosure review · 3 blockers visible</small></span>
+        <span role="cell"><mark class="status amber">Review</mark></span>
+        <span role="cell">Mina</span>
+        <span role="cell">Rev 05</span>
+        <span role="cell">Today</span>
+        <span role="cell"><mark class="status coral">Blocked</mark></span>
+        <span class="table-actions" role="cell"><button class="button ghost small" type="button" aria-expanded="true">Collapse</button></span>
+      </div>
+      <div class="data-row" role="row">
+        <span role="cell"><input type="checkbox" aria-label="Select locked campaign"></span>
+        <span class="primary-cell" role="cell"><strong>Locked campaign</strong><small>Approval is owned by Finance workspace</small></span>
+        <span role="cell"><mark class="status blue">Ready</mark></span>
+        <span role="cell">Finance</span>
+        <span role="cell">Rev 02</span>
+        <span role="cell">Jun 14</span>
+        <span role="cell"><mark class="status mint">Healthy</mark></span>
+        <span class="table-actions" role="cell"><button class="button quiet small" type="button" disabled>Approve</button></span>
+      </div>
+    </div>
+    <div class="empty-state compact">
+      <strong>No rows match Status: Risk + Owner: Alex</strong>
+      <p>필터 결과가 비었습니다. 선택과 density는 유지한 채 필터만 정리할 수 있습니다.</p>
+      <button class="button quiet small" type="button">Clear filters</button>
+    </div>
+  </div>
+</section>
+
+<section id="table-behavior" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Table behavior blueprint</p>
+    <h2>정렬, 필터, 선택, 확장, 모바일 fallback까지 같은 모델로 처리합니다.</h2>
+  </div>
+  <div class="component-doc-grid">
+    <article class="component-doc-card">
+      <strong>Toolbar model</strong>
+      <p>Toolbar는 title, updated time, filter controls, density, export를 포함합니다.</p>
+      <ul>
+        <li>Filter summary는 table 밖이 아니라 toolbar에 유지합니다.</li>
+        <li>Export는 현재 filter와 selected scope를 명시합니다.</li>
+        <li>Density는 저장 가능한 user preference입니다.</li>
+      </ul>
+    </article>
+    <article class="component-doc-card">
+      <strong>Bulk action model</strong>
+      <p>Selection bar는 selected count, affected scope, available actions를 함께 보여줍니다.</p>
+      <ul>
+        <li>Visible rows only와 all filtered rows를 구분합니다.</li>
+        <li>권한 때문에 일부 row가 제외되면 제외 사유를 표시합니다.</li>
+        <li>Clear selection은 항상 ghost action입니다.</li>
+      </ul>
+    </article>
+    <article class="component-doc-card">
+      <strong>Responsive fallback</strong>
+      <p>작은 화면에서는 table을 억지로 압축하지 않고 row card로 전환합니다.</p>
+      <ul>
+        <li>Title, status, owner, revision, due, risk는 유지합니다.</li>
+        <li>Row action은 card footer에서 계속 접근 가능합니다.</li>
+        <li>비교가 핵심이면 horizontal scroll을 허용합니다.</li>
+      </ul>
+    </article>
+  </div>
+  <div class="decision-table">
+    <div class="decision-row header"><span>State</span><span>Required UI</span><span>Recovery or action</span></div>
+    <div class="decision-row"><span><strong>Loading</strong></span><span>Header와 toolbar는 유지하고 row skeleton만 교체합니다.</span><span>선택된 filter와 density를 유지합니다.</span></div>
+    <div class="decision-row"><span><strong>Filtered empty</strong></span><span>적용된 filter summary와 결과 없음 copy를 보여줍니다.</span><span>Clear filters 또는 broaden search를 제공합니다.</span></div>
+    <div class="decision-row"><span><strong>Error</strong></span><span>Table 영역 안에서 실패 원인과 retry action을 보여줍니다.</span><span>Retry 시 selection과 filter를 보존합니다.</span></div>
+    <div class="decision-row"><span><strong>Permission locked</strong></span><span>잠긴 row action은 disabled로 남기고 owner/policy를 설명합니다.</span><span>Request access 또는 contact owner를 제공합니다.</span></div>
+  </div>
+  <div class="qa-board">
+    <article class="qa-lane">
+      <strong>Loading rows</strong>
+      <div class="skeleton-block"><span></span><span></span><span></span></div>
+      <p>Header footprint stays stable.</p>
+    </article>
+    <article class="qa-lane">
+      <strong>Filtered empty</strong>
+      <div class="empty-state compact"><strong>No campaigns match current filters</strong><p>Status: Risk · Owner: Alex</p><button class="button quiet small" type="button">Clear filters</button></div>
+    </article>
+    <article class="qa-lane">
+      <strong>Error in table</strong>
+      <div class="inline-error"><strong>Rows failed to sync</strong><p>Retry preserves selected rows and filters.</p><button class="button ghost small" type="button">Retry</button></div>
+    </article>
+    <article class="qa-lane">
+      <strong>Mobile row card</strong>
+      <div class="empty-state compact"><strong>Summer drop review</strong><p>Mina · Rev 03 · Today · Disclosure risk</p><button class="button ghost small" type="button">Open</button></div>
+    </article>
+  </div>
+</section>

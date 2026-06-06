@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Inputs - idenflu Design System</title>
+    <link rel="stylesheet" href="tokens.generated.css?v=20260606-token-pipeline">
+    <link rel="stylesheet" href="styles.css?v=20260606-system-complete">
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="index.html"><span class="brand-mark"></span><span>idenflu</span></a>
+      <nav class="topnav" aria-label="Primary">
+        <a href="index.html">Overview</a>
+        <a href="foundations.html">Foundations</a>
+        <a class="active" href="components.html">Components</a>
+        <a href="patterns.html">Patterns</a>
+        <a href="guidelines.html">Reference</a>
+      </nav>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode" aria-pressed="false">Dark</button>
+      <div class="topbar-meta">Inputs</div>
+    </header>
+
+    <div class="doc-layout">
+      <aside class="sidebar" aria-label="Component pages">
+        <p class="sidebar-label">Components</p>
+        <a href="components.html">Overview</a>
+        <a href="components-buttons.html">Buttons</a>
+        <a href="components-icons.html">Icons</a>
+        <a class="active" href="components-inputs.html">Inputs</a>
+        <a href="components-controls.html">Controls</a>
+        <a href="components-tabs.html">Tabs</a>
+        <a href="components-cards.html">Cards</a>
+        <a href="components-table.html">Data table</a>
+        <a href="components-examples.html">Examples</a>
+        <a href="components-feedback.html">Feedback</a>
+        <a href="components-overlays.html">Overlays</a>
+        <a href="components-navigation.html">Navigation</a>
+      </aside>
+
+      <main>
+<section class="page-header">
+  <p class="eyebrow">Components</p>
+  <h1>Inputs</h1>
+  <p class="lede">Fields, selects, validation, decoration, disabled states.</p>
+</section>
+
+<section id="component-standard" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Component standard</p>
+    <h2>Inputs 문서의 공통 구조.</h2>
+  </div>
+  <div class="component-doc-grid">
+    <article id="doc-anatomy" class="component-doc-card">
+      <strong>Anatomy</strong>
+      <p>기본 구성요소를 정리해 구현과 디자인 리뷰의 출발점을 맞춥니다.</p>
+      <ul><li>Visible label</li><li>control</li><li>helper text</li><li>prefix/suffix</li><li>validation state</li></ul>
+    </article>
+    <article id="doc-variants" class="component-doc-card">
+      <strong>Variants</strong>
+      <p>Text, search, select, textarea, decorated, readonly, disabled</p>
+    </article>
+    <article id="doc-states" class="component-doc-card">
+      <strong>States</strong>
+      <p>Default, hover, focus, selected, loading, disabled, error 또는 locked 상태를 같은 density로 비교합니다.</p>
+    </article>
+    <article id="doc-accessibility" class="component-doc-card">
+      <strong>Accessibility</strong>
+      <p>Keyboard path, visible focus, semantic role, accessible name, helper/error 연결을 함께 검토합니다.</p>
+    </article>
+    <article id="doc-examples" class="component-doc-card">
+      <strong>Examples</strong>
+      <p>단독 컴포넌트보다 campaign, creator, review, admin workflow 안에서 쓰이는 예시를 우선합니다.</p>
+    </article>
+    <article id="doc-qa" class="component-doc-card">
+      <strong>QA</strong>
+      <p>Visual QA에서 light/dark, compact density, disabled hover, focus, long text overflow를 다시 확인합니다.</p>
+    </article>
+  </div>
+</section>
+
+<section id="input-spec" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Input spec</p>
+    <h2>필드 단위로 구현해야 하는 props와 상태.</h2>
+  </div>
+  <div class="spec-table">
+    <div class="spec-row header"><span>Property</span><span>Values</span><span>Rule</span><span>Edge case</span></div>
+    <div class="spec-row"><span><strong>type</strong></span><span>text, search, email, url, select, textarea</span><span>Native input behavior를 우선하고 검색형만 combobox 패턴으로 확장합니다.</span><span>search input은 keyboard hint와 result list 연결을 분리하지 않습니다.</span></div>
+    <div class="spec-row"><span><strong>label</strong></span><span>required</span><span>모든 field는 visible label을 가집니다.</span><span>placeholder는 label 대체로 쓰지 않습니다.</span></div>
+    <div class="spec-row"><span><strong>decoration</strong></span><span>icon, prefix, suffix, shortcut</span><span>decoration은 값보다 낮은 대비로 두고 focus target이 되지 않습니다.</span><span>prefix/suffix가 길면 field width를 키우거나 helper로 내립니다.</span></div>
+    <div class="spec-row"><span><strong>validation</strong></span><span>default, success, invalid, server-error</span><span>invalid는 aria-invalid와 aria-describedby를 연결합니다.</span><span>server-error는 사용자가 입력한 값을 보존하고 recovery action을 제공합니다.</span></div>
+    <div class="spec-row"><span><strong>availability</strong></span><span>editable, readonly, disabled, locked</span><span>복사 가능한 고정값은 readonly, 조작 불가는 disabled로 구분합니다.</span><span>권한 잠금은 lock reason과 request action을 함께 둡니다.</span></div>
+  </div>
+  <div class="decision-table">
+    <div class="decision-row header"><span>Pattern</span><span>Use</span><span>Avoid</span></div>
+    <div class="decision-row"><span><strong>Required field</strong></span><span>Label 안에 required signal과 helper를 둡니다.</span><span>빨간 border만으로 필수 여부를 표현하지 않습니다.</span></div>
+    <div class="decision-row"><span><strong>Currency field</strong></span><span>통화와 단위는 prefix/suffix로 분리합니다.</span><span>값 안에 단위 문자열을 함께 저장하지 않습니다.</span></div>
+    <div class="decision-row"><span><strong>Combobox</strong></span><span>role, aria-expanded, aria-controls, aria-activedescendant를 연결합니다.</span><span>단순 select를 커스텀 dropdown으로 과도하게 대체하지 않습니다.</span></div>
+  </div>
+</section>
+
+<section id="inputs" class="section surface-band">
+          <div class="section-heading">
+            <p class="eyebrow">Inputs</p>
+            <h2>검색과 작업 맥락을 함께 보여주는 form.</h2>
+          </div>
+          <div class="form-grid">
+            <label class="field">
+              <span>Campaign name</span>
+              <input type="text" value="Summer creator launch">
+            </label>
+            <label class="field">
+              <span>Owner</span>
+              <div class="input-shell">
+                <span class="input-prefix">@</span>
+                <input type="text" value="mina">
+                <span class="input-suffix">idenflu.com</span>
+              </div>
+            </label>
+            <label class="field invalid">
+              <span>Review deadline</span>
+              <div class="input-shell">
+                <svg class="input-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-calendar"></use></svg>
+                <input type="text" value="Yesterday 18:00">
+                <span class="input-suffix">KST</span>
+              </div>
+              <small>기한이 지났습니다. 담당자에게 알림을 보내세요.</small>
+            </label>
+            <label class="field">
+              <span>Command input</span>
+              <div class="input-shell">
+                <svg class="input-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-search"></use></svg>
+                <input type="search" placeholder="Search campaigns, creators, briefs">
+                <span class="input-suffix">Ctrl K</span>
+              </div>
+            </label>
+            <label class="field">
+              <span>Campaign stage</span>
+              <div class="input-shell">
+                <svg class="input-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-filter"></use></svg>
+                <select>
+                  <option>Review queue</option>
+                  <option>Recruiting</option>
+                  <option>Approved</option>
+                </select>
+              </div>
+            </label>
+            <label class="field">
+              <span>Brief note</span>
+              <textarea rows="3">Creator must include disclosure in the first caption line.</textarea>
+            </label>
+          </div>
+          <div class="input-state-panel">
+            <div class="input-state-header">
+              <p class="eyebrow">Disabled state</p>
+              <h3>잠긴 값은 읽히지만 조작되지 않게 보여줍니다.</h3>
+            </div>
+            <div class="form-grid">
+              <label class="field">
+                <span>Locked campaign</span>
+                <input type="text" value="Summer creator launch" disabled>
+                <small>권한이 없는 사용자는 값을 변경할 수 없습니다.</small>
+              </label>
+              <label class="field">
+                <span>Assigned owner</span>
+                <div class="input-shell disabled">
+                  <span class="input-prefix">@</span>
+                  <input type="text" value="mina" disabled>
+                  <span class="input-suffix">idenflu.com</span>
+                </div>
+              </label>
+              <label class="field">
+                <span>Stage locked by approval</span>
+                <div class="input-shell disabled">
+                  <svg class="input-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-filter"></use></svg>
+                  <select disabled>
+                    <option>Approval pending</option>
+                    <option>Review queue</option>
+                    <option>Approved</option>
+                  </select>
+                </div>
+                <small>승인 요청 중에는 단계 변경이 잠깁니다.</small>
+              </label>
+              <label class="field">
+                <span>Archived brief note</span>
+                <textarea rows="3" disabled>Archived after campaign close.</textarea>
+              </label>
+            </div>
+          </div>
+          <div class="form-system-grid">
+            <article class="form-system-card">
+              <p class="eyebrow">Field anatomy</p>
+              <label class="field">
+                <span>Campaign objective <em>Required</em></span>
+                <input type="text" value="Drive creator reviews for summer drop" aria-describedby="objective-help">
+                <small id="objective-help">Label, control, helper text는 항상 같은 field 안에 둡니다.</small>
+              </label>
+              <p>Placeholder는 label을 대신하지 않습니다. 운영 화면에서는 항상 visible label을 우선합니다.</p>
+            </article>
+            <article class="form-system-card">
+              <p class="eyebrow">Validation states</p>
+              <label class="field success">
+                <span>Tracking URL</span>
+                <input type="url" value="https://idenflu.com/c/summer">
+                <small>URL이 campaign tracking rule과 일치합니다.</small>
+              </label>
+              <label class="field invalid">
+                <span>Disclosure line</span>
+                <input type="text" value="" aria-invalid="true" aria-describedby="caption-error">
+                <small id="caption-error">첫 caption line에 광고 disclosure가 필요합니다.</small>
+              </label>
+            </article>
+            <article class="form-system-card">
+              <p class="eyebrow">Readonly vs disabled</p>
+              <label class="field">
+                <span>Campaign ID</span>
+                <input type="text" value="CMP-2026-0612" readonly>
+                <small>읽고 복사할 수 있지만 편집은 막습니다.</small>
+              </label>
+              <label class="field">
+                <span>Approval action</span>
+                <input type="text" value="Brief owner required" disabled>
+                <small>권한이나 상태 때문에 조작할 수 없습니다.</small>
+              </label>
+            </article>
+            <article class="form-system-card">
+              <p class="eyebrow">Input group</p>
+              <label class="field">
+                <span>Creator rate</span>
+                <div class="input-shell">
+                  <span class="input-prefix">KRW</span>
+                  <input type="text" value="1,200,000">
+                  <span class="input-suffix">per reel</span>
+                </div>
+              </label>
+              <label class="field">
+                <span>Deadline</span>
+                <div class="input-shell">
+                  <svg class="input-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-calendar"></use></svg>
+                  <input type="text" value="2026-06-12 18:00">
+                  <span class="input-suffix">KST</span>
+                </div>
+              </label>
+            </article>
+            <article class="form-system-card wide">
+              <p class="eyebrow">Searchable selection</p>
+              <div class="command-box compact" data-combobox>
+                <input id="component-owner-combobox" type="search" value="mina" role="combobox" aria-label="Brief owner search" aria-expanded="true" aria-controls="component-owner-options" aria-activedescendant="component-owner-mina" autocomplete="off" data-combobox-input>
+                <div id="component-owner-options" class="command-options" role="listbox" aria-label="Brief owner results">
+                  <div id="component-owner-mina" role="option" aria-selected="true" tabindex="-1" data-value="Mina Oh" data-combobox-option>Mina Oh · Brief owner · Online</div>
+                  <div id="component-owner-alex" role="option" aria-selected="false" tabindex="-1" data-value="Alex Kim" data-combobox-option>Alex Kim · Campaign manager · Away</div>
+                  <div id="component-owner-jae" role="option" aria-selected="false" tabindex="-1" data-value="Jae Lee" data-combobox-option>Jae Lee · Reviewer · Busy</div>
+                </div>
+              </div>
+              <p>Combobox는 입력값, 결과 목록, 선택된 option의 관계를 ARIA로 연결합니다.</p>
+            </article>
+          </div>
+        </section>
+
+<section id="form-flows" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Form flows</p>
+    <h2>입력 컴포넌트가 실제 업무 흐름에서 보이는 방식.</h2>
+  </div>
+  <div class="component-doc-grid">
+    <article class="component-doc-card">
+      <strong>Multi-step setup</strong>
+      <p>Campaign setup은 brief, creators, review rule처럼 단계별 완료 상태를 명확히 보여줍니다.</p>
+      <ul>
+        <li>현재 step은 strong label과 primary action으로 강조합니다.</li>
+        <li>완료 step은 check icon과 수정 action을 제공합니다.</li>
+        <li>막힌 step은 blocked reason을 field helper로 둡니다.</li>
+      </ul>
+    </article>
+    <article class="component-doc-card">
+      <strong>Autosave dirty state</strong>
+      <p>운영자가 긴 brief를 수정할 때 저장 상태는 toolbar와 field 근처에 동시에 읽혀야 합니다.</p>
+      <ul>
+        <li>Dirty: Unsaved changes</li>
+        <li>Saving: aria-busy와 inline loading</li>
+        <li>Saved: timestamp와 owner context</li>
+      </ul>
+    </article>
+    <article class="component-doc-card">
+      <strong>Server validation</strong>
+      <p>클라이언트 검증 후에도 서버에서 거절될 수 있는 rule은 복구 action과 함께 보여줍니다.</p>
+      <ul>
+        <li>에러 field는 aria-invalid를 사용합니다.</li>
+        <li>상단 summary는 문제가 있는 field로 연결합니다.</li>
+        <li>재시도는 같은 값을 유지한 채 실행합니다.</li>
+      </ul>
+    </article>
+    <article class="component-doc-card">
+      <strong>Permission lock</strong>
+      <p>권한 때문에 편집이 불가능한 field는 disabled가 아니라 readonly + lock reason이 더 적합할 수 있습니다.</p>
+      <ul>
+        <li>복사가 필요한 ID와 URL은 readonly입니다.</li>
+        <li>action 자체가 불가능하면 disabled입니다.</li>
+        <li>권한 요청 action은 helper 아래에 배치합니다.</li>
+      </ul>
+    </article>
+    <article class="component-doc-card">
+      <strong>Decorated finance fields</strong>
+      <p>금액, 통화, 단위, timezone은 value 바깥의 prefix/suffix로 처리합니다.</p>
+      <ul>
+        <li>입력값은 항상 가장 높은 대비를 유지합니다.</li>
+        <li>prefix/suffix는 muted text로 둡니다.</li>
+        <li>장식 아이콘은 focus target이 아닙니다.</li>
+      </ul>
+    </article>
+    <article class="component-doc-card">
+      <strong>Command search</strong>
+      <p>검색형 input은 입력, 추천 결과, keyboard hint가 같은 control group처럼 보여야 합니다.</p>
+      <ul>
+        <li>Leading search icon</li>
+        <li>Trailing shortcut hint</li>
+        <li>Combobox active descendant</li>
+      </ul>
+    </article>
+  </div>
+  <div class="form-system-grid">
+    <article class="form-system-card wide">
+      <p class="eyebrow">Campaign setup flow</p>
+      <div class="flow-stepper" aria-label="Campaign setup steps">
+        <div class="flow-step complete"><strong>Brief</strong><span>Complete · Rev 02</span></div>
+        <div class="flow-step current"><strong>Creators</strong><span>Current · 12 shortlisted</span></div>
+        <div class="flow-step blocked"><strong>Review rule</strong><span>Blocked · disclosure missing</span></div>
+        <div class="flow-step"><strong>Launch</strong><span>Upcoming</span></div>
+      </div>
+      <p>Step 상태는 색만 쓰지 않고 complete/current/blocked/upcoming label을 함께 둡니다.</p>
+    </article>
+    <article class="form-system-card">
+      <p class="eyebrow">Autosave</p>
+      <label class="field">
+        <span>Brief objective</span>
+        <textarea rows="4">Drive creator reviews with disclosure in the first caption line.</textarea>
+        <small>Unsaved changes · last saved by Mina 2 min ago</small>
+      </label>
+      <button class="button primary loading" type="button" aria-busy="true">Saving</button>
+    </article>
+    <article class="form-system-card">
+      <p class="eyebrow">Server validation</p>
+      <div class="validation-summary" role="alert">
+        <strong>2 fields need attention</strong>
+        <a href="#server-url-error">Tracking URL is blocked</a>
+        <a href="#server-caption-error">Disclosure line is missing</a>
+      </div>
+      <label class="field invalid">
+        <span>Tracking URL</span>
+        <div class="input-shell">
+          <svg class="input-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-alert"></use></svg>
+          <input type="url" value="https://short.ly/summer" aria-invalid="true" aria-describedby="server-url-error">
+        </div>
+        <small id="server-url-error">Shortened URLs are blocked by workspace policy.</small>
+      </label>
+      <label class="field invalid">
+        <span>Disclosure line</span>
+        <input type="text" value="" aria-invalid="true" aria-describedby="server-caption-error">
+        <small id="server-caption-error">Disclosure must appear in the first caption line.</small>
+      </label>
+      <button class="button quiet" type="button">Use idenflu tracking URL</button>
+    </article>
+    <article class="form-system-card">
+      <p class="eyebrow">Permission lock</p>
+      <label class="field">
+        <span>Billing owner</span>
+        <div class="input-shell disabled">
+          <svg class="input-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-lock"></use></svg>
+          <input type="text" value="finance@idenflu.com" readonly>
+        </div>
+        <small>Only workspace admins can change billing owner.</small>
+      </label>
+      <button class="button ghost" type="button">Request admin access</button>
+    </article>
+  </div>
+</section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

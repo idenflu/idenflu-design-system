@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Usage Guidelines - idenflu Design System</title>
+    <link rel="stylesheet" href="tokens.generated.css?v=20260606-token-pipeline">
+    <link rel="stylesheet" href="styles.css?v=20260606-system-complete">
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="index.html"><span class="brand-mark"></span><span>idenflu</span></a>
+      <nav class="topnav" aria-label="Primary">
+        <a href="index.html">Overview</a>
+        <a href="foundations.html">Foundations</a>
+        <a href="components.html">Components</a>
+        <a href="patterns.html">Patterns</a>
+        <a class="active" href="guidelines.html">Reference</a>
+      </nav>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode" aria-pressed="false">Dark</button>
+      <div class="topbar-meta">Usage rules</div>
+    </header>
+
+    <div class="doc-layout">
+      <aside class="sidebar" aria-label="Page sections">
+        <p class="sidebar-label">Guidelines</p>
+        <a href="#contracts">Contracts</a>
+        <a href="#dos-donts">Do / Dont</a>
+        <a href="#state-matrix">State matrix</a>
+        <a href="#a11y-matrix">Accessibility matrix</a>
+        <a href="#density">Density</a>
+        <a href="#actions">Actions</a>
+        <a href="#forms">Forms</a>
+        <a href="#data">Data views</a>
+        <a href="#overlays">Overlays</a>
+        <a href="#checklist">Checklist</a>
+        <p class="sidebar-label reference-label">Reference</p>
+        <a href="starter-kit.html">Starter kit</a>
+        <a class="active" href="guidelines.html">Guidelines</a>
+        <a href="states.html">States</a>
+        <a href="accessibility.html">Accessibility</a>
+        <a href="responsive.html">Responsive</a>
+        <a href="enterprise.html">Enterprise</a>
+        <a href="visual-qa.html">Visual QA</a>
+        <a href="changelog.html">Changelog</a>
+      </aside>
+
+      <main>
+<section class="page-header">
+  <p class="eyebrow">Usage Guidelines</p>
+  <h1>컴포넌트 선택 기준을 운영 흐름에 맞게 정리합니다.</h1>
+  <p class="lede">같은 화면을 여러 사람이 만들어도 primary action, validation, table density, bulk action이 같은 원칙으로 판단되도록 문서화합니다.</p>
+</section>
+
+<section id="contracts" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Component contracts</p>
+    <h2>기본 컴포넌트의 구현 계약.</h2>
+  </div>
+  <div class="guideline-grid contract-grid">
+    <article class="guideline-card">
+      <strong>Button contract</strong>
+      <p>하나의 decision area에서 action priority와 state가 일관되게 읽히도록 정리합니다.</p>
+      <div class="contract-list">
+        <span><strong>Anatomy</strong><small>Label, optional icon, fixed size, accessible name</small></span>
+        <span><strong>States</strong><small>Default, hover, focus, selected, loading, disabled, danger</small></span>
+        <span><strong>Keyboard</strong><small>Enter/Space activates; disabled is not interactive</small></span>
+        <span><strong>ARIA</strong><small>Icon-only uses aria-label; loading uses aria-busy</small></span>
+      </div>
+    </article>
+    <article class="guideline-card">
+      <strong>Input contract</strong>
+      <p>입력은 label, value, helper/error copy가 같은 field 안에서 함께 읽혀야 합니다.</p>
+      <div class="contract-list">
+        <span><strong>Anatomy</strong><small>Visible label, control, helper text, optional prefix/suffix</small></span>
+        <span><strong>States</strong><small>Default, focus, success, invalid, readonly, disabled</small></span>
+        <span><strong>Keyboard</strong><small>Tab enters field; text editing stays native</small></span>
+        <span><strong>ARIA</strong><small>Errors use aria-invalid and aria-describedby</small></span>
+      </div>
+    </article>
+    <article class="guideline-card">
+      <strong>Select contract</strong>
+      <p>상태나 owner처럼 값이 제한된 항목은 native select 또는 combobox로 구분합니다.</p>
+      <div class="contract-list">
+        <span><strong>Anatomy</strong><small>Label, selected value, option set, optional leading icon</small></span>
+        <span><strong>States</strong><small>Default, focus, open, selected, disabled, invalid</small></span>
+        <span><strong>Keyboard</strong><small>Native select keeps platform keyboard behavior</small></span>
+        <span><strong>ARIA</strong><small>Searchable selection uses combobox/listbox/option</small></span>
+      </div>
+    </article>
+    <article class="guideline-card">
+      <strong>Table contract</strong>
+      <p>운영 메타데이터는 숨기지 않고 비교 가능한 컬럼으로 노출합니다.</p>
+      <div class="contract-list">
+        <span><strong>Anatomy</strong><small>Toolbar, header, rows, selection bar, row actions, pagination</small></span>
+        <span><strong>States</strong><small>Sorted, selected, loading, empty, filtered, permission locked</small></span>
+        <span><strong>Keyboard</strong><small>Checkboxes, headers, row actions stay reachable</small></span>
+        <span><strong>ARIA</strong><small>Use table roles, column headers, aria-sort where active</small></span>
+      </div>
+    </article>
+    <article class="guideline-card">
+      <strong>Tabs contract</strong>
+      <p>탭은 화면 모드 전환에만 사용하고 선택 상태와 panel 연결을 명확히 둡니다.</p>
+      <div class="contract-list">
+        <span><strong>Anatomy</strong><small>Tablist, tabs, active tab, labelled tabpanel</small></span>
+        <span><strong>States</strong><small>Default, hover, focus, selected, disabled when needed</small></span>
+        <span><strong>Keyboard</strong><small>Arrow keys move; Enter/Space activates</small></span>
+        <span><strong>ARIA</strong><small>role tablist/tab/tabpanel, aria-controls, aria-selected</small></span>
+      </div>
+    </article>
+    <article class="guideline-card">
+      <strong>Feedback contract</strong>
+      <p>상태는 색만으로 읽히지 않게 원인과 다음 action을 함께 제공합니다.</p>
+      <div class="contract-list">
+        <span><strong>Anatomy</strong><small>Status label, title, reason, recovery action</small></span>
+        <span><strong>States</strong><small>Info, success, warning, error, loading, empty</small></span>
+        <span><strong>Keyboard</strong><small>Recovery actions stay in logical Tab order</small></span>
+        <span><strong>ARIA</strong><small>Important async updates use polite live regions</small></span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="dos-donts" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Do / Don't</p>
+    <h2>제품 화면에서 바로 적용할 판단 기준.</h2>
+  </div>
+  <div class="decision-table">
+    <div class="decision-row header"><span>Area</span><span>Do</span><span>Don't</span></div>
+    <div class="decision-row"><span><strong>Actions</strong></span><span>decision area마다 primary 1개, 보조는 quiet/ghost로 낮춥니다.</span><span>같은 영역에 filled button을 반복해서 화면 소음을 만들지 않습니다.</span></div>
+    <div class="decision-row"><span><strong>Data</strong></span><span>owner, status, revision, deadline, risk를 본문 컬럼으로 보여줍니다.</span><span>핵심 운영 메타데이터를 tooltip, hover menu, sort menu 뒤에 숨기지 않습니다.</span></div>
+    <div class="decision-row"><span><strong>Forms</strong></span><span>label, input, helper/error, prefix/suffix를 하나의 field 단위로 묶습니다.</span><span>placeholder만으로 field 의미를 전달하지 않습니다.</span></div>
+    <div class="decision-row"><span><strong>State</strong></span><span>empty, loading, error, locked 상태에서도 다음 action을 제공합니다.</span><span>상태를 색 점 하나나 아이콘 하나만으로 표현하지 않습니다.</span></div>
+  </div>
+</section>
+
+<section id="state-matrix" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">State matrix</p>
+    <h2>컴포넌트별 기본 상태를 빠르게 확인합니다.</h2>
+  </div>
+  <div class="state-table">
+    <div class="state-row header"><span>Component</span><span>Required states</span><span>Implementation note</span></div>
+    <div class="state-row"><span><strong>Button</strong></span><span>Default, hover, focus, selected, loading, disabled, danger</span><span>Disabled에는 hover/active 스타일이 살아나면 안 됩니다.</span></div>
+    <div class="state-row"><span><strong>Input</strong></span><span>Default, focus, success, invalid, readonly, disabled, server error</span><span>Error는 aria-invalid와 helper copy를 같이 둡니다.</span></div>
+    <div class="state-row"><span><strong>Select</strong></span><span>Default, focus, open, selected, disabled, invalid</span><span>검색형은 combobox 역할과 active option을 연결합니다.</span></div>
+    <div class="state-row"><span><strong>Table</strong></span><span>Sorted, selected, loading, empty, filtered, expanded, locked</span><span>선택 scope와 bulk action은 toolbar 아래에 고정합니다.</span></div>
+    <div class="state-row"><span><strong>Overlay</strong></span><span>Open, pending, validation, destructive, dismissed</span><span>닫힌 뒤 focus를 trigger로 되돌립니다.</span></div>
+  </div>
+</section>
+
+<section id="a11y-matrix" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Accessibility matrix</p>
+    <h2>키보드와 ARIA 기준을 구현 전에 가볍게 확인합니다.</h2>
+  </div>
+  <div class="a11y-table">
+    <div class="a11y-row header"><span>Pattern</span><span>Keyboard</span><span>ARIA contract</span></div>
+    <div class="a11y-row"><span><strong>Icon button</strong></span><span>Tab으로 접근, Enter/Space로 실행</span><span>보이는 label이 없으면 aria-label 필수</span></div>
+    <div class="a11y-row"><span><strong>Tabs</strong></span><span>Arrow key 이동, Enter/Space 활성화</span><span>tablist, tab, tabpanel, aria-selected, aria-controls</span></div>
+    <div class="a11y-row"><span><strong>Combobox</strong></span><span>Arrow key로 option 이동, Esc로 collapse</span><span>combobox, listbox, option, aria-activedescendant</span></div>
+    <div class="a11y-row"><span><strong>Modal</strong></span><span>Focus trap, Esc close, trigger focus restore</span><span>dialog, aria-modal, aria-labelledby</span></div>
+    <div class="a11y-row"><span><strong>Table</strong></span><span>Header buttons, row checkboxes, row actions 모두 Tab 접근</span><span>columnheader, aria-sort, checkbox accessible name</span></div>
+  </div>
+</section>
+
+<section id="density" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Density system</p>
+    <h2>운영 화면의 정보 밀도를 의도적으로 선택합니다.</h2>
+  </div>
+  <div class="density-grid">
+    <article class="density-card compact">
+      <strong>Compact</strong>
+      <p>테이블, 툴바, 반복 row처럼 하루에도 여러 번 보는 화면에 사용합니다.</p>
+      <ul>
+        <li>Control 32px</li>
+        <li>Row 40-44px</li>
+        <li>Gap 8-12px</li>
+      </ul>
+    </article>
+    <article class="density-card comfortable">
+      <strong>Comfortable</strong>
+      <p>일반 dashboard, form, detail panel의 기본 density입니다.</p>
+      <ul>
+        <li>Control 38px</li>
+        <li>Field 40px</li>
+        <li>Gap 12-16px</li>
+      </ul>
+    </article>
+    <article class="density-card spacious">
+      <strong>Spacious</strong>
+      <p>중요한 승인, 설정 변경, 오류 복구처럼 판단 시간이 필요한 화면에만 사용합니다.</p>
+      <ul>
+        <li>Control 44px</li>
+        <li>Panel padding 24px</li>
+        <li>Gap 20-24px</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<section id="actions" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Actions</p>
+    <h2>하나의 decision area에는 하나의 primary만 둡니다.</h2>
+  </div>
+  <div class="guideline-grid">
+    <article class="guideline-card">
+      <strong>Primary</strong>
+      <p>승인, 생성, 저장처럼 화면의 다음 결정이 명확할 때만 사용합니다.</p>
+      <code>Approve asset</code>
+      <button class="button primary" type="button">Approve asset</button>
+    </article>
+    <article class="guideline-card">
+      <strong>Quiet</strong>
+      <p>보조 액션이지만 버튼 표면이 필요할 때 사용합니다. 필터, 취소, 열람에 적합합니다.</p>
+      <code>Filter creators</code>
+      <button class="button quiet" type="button">Filter creators</button>
+    </article>
+    <article class="guideline-card">
+      <strong>Ghost</strong>
+      <p>행 내부 반복 액션이나 링크성 액션에 사용합니다. 화면 소음을 최소화합니다.</p>
+      <code>View details</code>
+      <button class="button ghost" type="button">View details</button>
+    </article>
+  </div>
+  <div class="decision-table">
+    <div class="decision-row header"><span>Situation</span><span>Use</span><span>Avoid</span></div>
+    <div class="decision-row"><span><strong>Decision footer</strong></span><span>Primary 1개 + quiet cancel</span><span>Primary 여러 개 배치</span></div>
+    <div class="decision-row"><span><strong>Table row</strong></span><span>Ghost or icon button</span><span>모든 행에 filled button 반복</span></div>
+    <div class="decision-row"><span><strong>Danger action</strong></span><span>Danger button with explicit label</span><span>아이콘만으로 삭제 표현</span></div>
+  </div>
+</section>
+
+<section id="forms" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Forms</p>
+    <h2>입력은 값, 상태, 조치가 함께 보여야 합니다.</h2>
+  </div>
+  <div class="guideline-grid">
+    <article class="guideline-card">
+      <label class="field">
+        <span>Campaign name</span>
+        <input type="text" value="Summer creator launch">
+      </label>
+      <p>기본 입력은 label을 항상 노출하고 placeholder를 label 대체로 쓰지 않습니다.</p>
+    </article>
+    <article class="guideline-card">
+      <label class="field invalid">
+        <span>Review deadline</span>
+        <input type="text" value="Yesterday 18:00">
+        <small>기한이 지났습니다. 담당자에게 알림을 보내세요.</small>
+      </label>
+      <p>에러는 색만 쓰지 않고 해결 가능한 helper copy를 함께 제공합니다.</p>
+    </article>
+    <article class="guideline-card">
+      <label class="field">
+        <span>Archived owner</span>
+        <input type="text" value="mina@idenflu.com" disabled>
+        <small>Archived campaign에서는 담당자를 바꿀 수 없습니다.</small>
+      </label>
+      <p>disabled는 조작 불가, readonly는 복사 가능한 고정값으로 구분합니다.</p>
+    </article>
+  </div>
+</section>
+
+<section id="data" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Data views</p>
+    <h2>운영 메타데이터는 본문에 직접 노출합니다.</h2>
+  </div>
+  <div class="decision-table">
+    <div class="decision-row header"><span>Data type</span><span>Show directly</span><span>Do not hide in</span></div>
+    <div class="decision-row"><span><strong>Review</strong></span><span>Owner, revision, due date, risk state</span><span>Tooltip, hover-only menu</span></div>
+    <div class="decision-row"><span><strong>Creator</strong></span><span>Platform, audience fit, rate, availability</span><span>Secondary drawer only</span></div>
+    <div class="decision-row"><span><strong>Campaign</strong></span><span>Stage, spend health, next action, blocker</span><span>Decorative status dot only</span></div>
+  </div>
+  <div class="usage-note">
+    <strong>Rule</strong>
+    <p>테이블은 비교가 필요한 정보에 우선 사용합니다. 카드 레이아웃은 반복 객체를 훑는 용도일 때만 선택합니다.</p>
+  </div>
+</section>
+
+<section id="overlays" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Overlays</p>
+    <h2>모달과 팝오버는 결정 범위가 작을 때만 엽니다.</h2>
+  </div>
+  <div class="guideline-grid">
+    <article class="guideline-card">
+      <strong>Modal</strong>
+      <p>승인, 반려, 권한 변경처럼 사용자가 결정을 완료해야 할 때 사용합니다.</p>
+      <code>Reject asset?</code>
+    </article>
+    <article class="guideline-card">
+      <strong>Popover</strong>
+      <p>짧은 설정, quick filter, row action처럼 현재 맥락을 유지해야 할 때 사용합니다.</p>
+      <code>Assign owner</code>
+    </article>
+    <article class="guideline-card">
+      <strong>Tooltip</strong>
+      <p>용어 보조 설명에만 사용합니다. 핵심 상태와 deadline은 tooltip에 숨기지 않습니다.</p>
+      <code>Revision score</code>
+    </article>
+  </div>
+</section>
+
+<section id="checklist" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Review checklist</p>
+    <h2>새 화면을 만들기 전 확인할 기준.</h2>
+  </div>
+  <div class="a11y-checklist">
+    <label><input type="checkbox" checked> 화면의 primary action이 하나만 보입니다.</label>
+    <label><input type="checkbox" checked> owner, status, revision, deadline이 본문에 노출됩니다.</label>
+    <label><input type="checkbox" checked> empty, loading, error 상태가 같은 자리에서 정의됩니다.</label>
+    <label><input type="checkbox" checked> 모바일에서 table 대체 카드나 핵심 action이 유지됩니다.</label>
+  </div>
+</section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

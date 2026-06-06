@@ -38,6 +38,88 @@
   </div>
 </section>
 
+<section id="component-template-map" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Document template</p>
+    <h2>Buttons 문서는 같은 순서로 판단합니다.</h2>
+  </div>
+  <div class="component-template-map">
+    <article>
+      <span>01</span>
+      <strong>Overview</strong>
+      <p>버튼이 어떤 결정 영역에서 쓰이는지 먼저 정의합니다.</p>
+    </article>
+    <article>
+      <span>02</span>
+      <strong>Anatomy</strong>
+      <p>Label, icon, indicator, hit area, disabled reason을 분리합니다.</p>
+    </article>
+    <article>
+      <span>03</span>
+      <strong>Variants</strong>
+      <p>Primary, quiet, ghost, danger의 역할과 우선순위를 고정합니다.</p>
+    </article>
+    <article>
+      <span>04</span>
+      <strong>States</strong>
+      <p>Focus, loading, selected, disabled, danger를 같은 밀도로 비교합니다.</p>
+    </article>
+    <article>
+      <span>05</span>
+      <strong>Accessibility</strong>
+      <p>Accessible name, aria-busy, tab order, focus ring을 함께 확인합니다.</p>
+    </article>
+    <article>
+      <span>06</span>
+      <strong>QA</strong>
+      <p>크기별 예시, 긴 label, icon-only, disabled hover를 검증합니다.</p>
+    </article>
+  </div>
+</section>
+
+<section id="context-example" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Context example</p>
+    <h2>버튼은 단독 스타일보다 결정 흐름 안에서 검토합니다.</h2>
+  </div>
+  <div class="component-context-example">
+    <div class="context-preview">
+      <div class="context-preview-header">
+        <strong>Approval footer</strong>
+        <span class="chip amber">Rev 03</span>
+      </div>
+      <p>Disclosure copy가 빠진 자산을 검토하는 하단 결정 영역입니다.</p>
+      <div class="case-actions">
+        <button class="button ghost" type="button">Open brief</button>
+        <button class="button quiet" type="button">Request changes</button>
+        <button class="button primary" type="button"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-check"></use></svg>Approve</button>
+      </div>
+    </div>
+    <div class="context-rules">
+      <strong>Review checklist</strong>
+      <ul>
+        <li>Primary는 decision footer 안에서 하나만 사용합니다.</li>
+        <li>반복 row action은 ghost 또는 icon-only로 낮춥니다.</li>
+        <li>비활성 이유는 버튼 label이 아니라 주변 helper copy로 설명합니다.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="token-contract" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Token contract</p>
+    <h2>버튼 구현은 높이, 간격, 색, 타이포그래피 토큰에 묶습니다.</h2>
+  </div>
+  <div class="component-token-contract">
+    <div class="token-contract-row header"><span>Decision</span><span>Token</span><span>Rule</span></div>
+    <div class="token-contract-row"><span><strong>Height</strong></span><span>{sizing.control-height}</span><span>Medium은 38px, small은 32px, large는 44px로 고정합니다.</span></div>
+    <div class="token-contract-row"><span><strong>Typography</strong></span><span>{typography.button}</span><span>font-weight 450을 기본으로 두고, 상태 표현은 색과 border로 해결합니다.</span></div>
+    <div class="token-contract-row"><span><strong>Priority color</strong></span><span>{colors.primary}</span><span>주요 결정에만 primary를 쓰고 danger는 파괴적 액션에만 사용합니다.</span></div>
+    <div class="token-contract-row"><span><strong>Spacing</strong></span><span>{spacing.xs} / {spacing.md}</span><span>Icon과 label 간격은 좁게, 버튼 그룹 간격은 명확하게 둡니다.</span></div>
+  </div>
+</section>
+
 <section id="button-spec" class="section">
   <div class="section-heading">
     <p class="eyebrow">Button spec</p>

@@ -77,6 +77,29 @@ if (config) {
     });
   });
 
+  ["components-buttons.html", "components-cards.html", "components-overlays.html", "components-table.html"].forEach((file) => {
+    const source = read(path.join("src/pages", file));
+    [
+      'id="component-template-map"',
+      "component-template-map",
+      'id="context-example"',
+      "component-context-example",
+      'id="token-contract"',
+      "component-token-contract",
+      "Overview",
+      "Anatomy",
+      "Variants",
+      "States",
+      "Accessibility",
+      "QA",
+      "Token contract",
+    ].forEach((marker) => {
+      if (!source.includes(marker)) {
+        failures.push(`${file}: missing component depth marker ${marker}`);
+      }
+    });
+  });
+
   const componentIndex = read("components.html");
   if (!componentIndex.includes("component-index-grid")) {
     failures.push("components.html: missing component-index-grid");
@@ -132,7 +155,16 @@ if (config) {
     }
   });
 
-  ["system-positioning-grid", "doc-path-grid", "component-template-grid", "visual-do-dont-grid", "a11y-flow-diagram"].forEach((className) => {
+  [
+    "system-positioning-grid",
+    "doc-path-grid",
+    "component-template-grid",
+    "visual-do-dont-grid",
+    "a11y-flow-diagram",
+    "component-template-map",
+    "component-context-example",
+    "component-token-contract",
+  ].forEach((className) => {
     if (!styles.includes(`.${className}`)) {
       failures.push(`styles.css: missing ${className}`);
     }

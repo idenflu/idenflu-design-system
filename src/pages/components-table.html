@@ -39,6 +39,85 @@
   </div>
 </section>
 
+<section id="component-template-map" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Document template</p>
+    <h2>Data table 문서는 운영 흐름과 상태 회복을 같은 순서로 검토합니다.</h2>
+  </div>
+  <div class="component-template-map">
+    <article>
+      <span>01</span>
+      <strong>Overview</strong>
+      <p>테이블이 비교, 선택, bulk action을 실제로 필요로 하는지 확인합니다.</p>
+    </article>
+    <article>
+      <span>02</span>
+      <strong>Anatomy</strong>
+      <p>Toolbar, header, row, selection bar, footer, pagination을 분리합니다.</p>
+    </article>
+    <article>
+      <span>03</span>
+      <strong>Variants</strong>
+      <p>Compact, sticky header, expanded row, filtered empty, locked row를 나눕니다.</p>
+    </article>
+    <article>
+      <span>04</span>
+      <strong>States</strong>
+      <p>Loading, selected, expanded, error, permission locked를 함께 정의합니다.</p>
+    </article>
+    <article>
+      <span>05</span>
+      <strong>Accessibility</strong>
+      <p>Column header button, aria-sort, row action, selected scope를 확인합니다.</p>
+    </article>
+    <article>
+      <span>06</span>
+      <strong>QA</strong>
+      <p>긴 값, density, mobile fallback, horizontal scroll, empty recovery를 검증합니다.</p>
+    </article>
+  </div>
+</section>
+
+<section id="context-example" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Context example</p>
+    <h2>테이블은 비교와 선택 범위가 중요한 화면에서 사용합니다.</h2>
+  </div>
+  <div class="component-context-example">
+    <div class="context-preview table-context-preview">
+      <div class="context-preview-header">
+        <strong>Review queue</strong>
+        <span>3 selected</span>
+      </div>
+      <div class="example-data-row"><strong>Summer drop review</strong><span>Review</span><small>Mina · Rev 03 · Today</small></div>
+      <div class="example-data-row"><strong>Creator shortlist</strong><span>Recruit</span><small>Alex · Rev 01 · Jun 10</small></div>
+      <div class="example-data-row"><strong>Paid social assets</strong><span>Ready</span><small>Jae · Rev 04 · Jun 12</small></div>
+    </div>
+    <div class="context-rules">
+      <strong>Review checklist</strong>
+      <ul>
+        <li>Toolbar는 필터, density, export 기준을 한곳에 둡니다.</li>
+        <li>Selection bar는 count와 affected scope를 항상 같이 보여줍니다.</li>
+        <li>Mobile fallback에서도 owner, revision, due, risk는 유지합니다.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="token-contract" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Token contract</p>
+    <h2>테이블은 density, row height, typography 토큰으로 반복성을 관리합니다.</h2>
+  </div>
+  <div class="component-token-contract">
+    <div class="token-contract-row header"><span>Decision</span><span>Token</span><span>Rule</span></div>
+    <div class="token-contract-row"><span><strong>Density</strong></span><span>{density.compact}</span><span>Review queue와 roster는 compact를 기본으로 둡니다.</span></div>
+    <div class="token-contract-row"><span><strong>Row height</strong></span><span>{density.compact.rowHeight}</span><span>40px row 안에서도 row action과 metadata가 사라지면 안 됩니다.</span></div>
+    <div class="token-contract-row"><span><strong>Typography</strong></span><span>{typography.body-sm}</span><span>반복 값은 body-sm, 객체명은 강조 weight로 구분합니다.</span></div>
+    <div class="token-contract-row"><span><strong>Divider</strong></span><span>{colors.hairline}</span><span>행 구분은 hairline으로 유지하고 카드처럼 두꺼운 테두리를 반복하지 않습니다.</span></div>
+  </div>
+</section>
+
 <section id="table-spec" class="section">
   <div class="section-heading">
     <p class="eyebrow">Table spec</p>

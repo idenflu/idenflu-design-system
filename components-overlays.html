@@ -79,6 +79,96 @@
   </div>
 </section>
 
+<section id="component-template-map" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Document template</p>
+    <h2>Overlays 문서는 열림 전후의 흐름까지 같은 순서로 검토합니다.</h2>
+  </div>
+  <div class="component-template-map">
+    <article>
+      <span>01</span>
+      <strong>Overview</strong>
+      <p>Overlay가 필요한 결정인지, inline이나 popover로 충분한지 판단합니다.</p>
+    </article>
+    <article>
+      <span>02</span>
+      <strong>Anatomy</strong>
+      <p>Trigger, backdrop, surface, header, body, footer 역할을 분리합니다.</p>
+    </article>
+    <article>
+      <span>03</span>
+      <strong>Variants</strong>
+      <p>Popover, modal, drawer를 작업 위험도와 맥락 유지 기준으로 나눕니다.</p>
+    </article>
+    <article>
+      <span>04</span>
+      <strong>States</strong>
+      <p>Open, pending, validation, locked, destructive 상태를 함께 정의합니다.</p>
+    </article>
+    <article>
+      <span>05</span>
+      <strong>Accessibility</strong>
+      <p>Focus trap, restore target, aria-modal, labelledby 연결을 확인합니다.</p>
+    </article>
+    <article>
+      <span>06</span>
+      <strong>QA</strong>
+      <p>Backdrop, scroll, keyboard close, validation retry, mobile drawer를 검증합니다.</p>
+    </article>
+  </div>
+</section>
+
+<section id="context-example" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Context example</p>
+    <h2>Overlay는 페이지 맥락을 낮추고 결정 표면을 분리할 때 사용합니다.</h2>
+  </div>
+  <div class="component-context-example">
+    <div class="context-preview overlay-context-preview">
+      <div class="context-page-lines" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="context-modal">
+        <header class="modal-header">
+          <div>
+            <p class="eyebrow">Modal decision</p>
+            <strong>Request changes?</strong>
+          </div>
+        </header>
+        <div class="modal-body">
+          <p>Rev 03에 남길 사유와 알림 대상을 확인합니다.</p>
+        </div>
+        <footer class="modal-footer">
+          <button class="button quiet small" type="button">Cancel</button>
+          <button class="button primary small" type="button">Request</button>
+        </footer>
+      </div>
+    </div>
+    <div class="context-rules">
+      <strong>Review checklist</strong>
+      <ul>
+        <li>Modal은 backdrop과 focus trap을 함께 가져갑니다.</li>
+        <li>Header는 열린 이유, body는 판단 근거, footer는 최종 액션만 담당합니다.</li>
+        <li>닫힌 뒤 focus는 반드시 trigger로 돌아갑니다.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="token-contract" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Token contract</p>
+    <h2>Overlay는 표면 깊이, 여백, focus 토큰을 명확히 씁니다.</h2>
+  </div>
+  <div class="component-token-contract">
+    <div class="token-contract-row header"><span>Decision</span><span>Token</span><span>Rule</span></div>
+    <div class="token-contract-row"><span><strong>Surface</strong></span><span>{colors.surface-raised}</span><span>Surface는 페이지보다 한 단계 높은 표면으로 분리합니다.</span></div>
+    <div class="token-contract-row"><span><strong>Depth</strong></span><span>{shadow.panel}</span><span>Modal과 drawer에만 panel shadow를 쓰고 popover는 가볍게 유지합니다.</span></div>
+    <div class="token-contract-row"><span><strong>Spacing</strong></span><span>{spacing.xl}</span><span>Header, body, footer의 판단 단위를 충분히 분리합니다.</span></div>
+    <div class="token-contract-row"><span><strong>Focus</strong></span><span>{colors.primary}</span><span>Overlay 내부 focus와 trigger restore를 같은 primary ring으로 연결합니다.</span></div>
+  </div>
+</section>
+
 <section id="overlay-structure" class="section">
   <div class="section-heading">
     <p class="eyebrow">Overlay structure</p>

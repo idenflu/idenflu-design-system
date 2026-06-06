@@ -5,6 +5,7 @@ const { expandPagePartials } = require("./page-partials");
 const rootDir = path.resolve(__dirname, "..");
 const configPath = path.join(rootDir, "site.config.json");
 const sourceDir = path.join(rootDir, "src", "pages");
+const componentGroupsPath = path.join(rootDir, "component-groups.json");
 
 const readJson = (filePath) => JSON.parse(fs.readFileSync(filePath, "utf8"));
 
@@ -26,8 +27,23 @@ const renderTopnav = (config, activeHref) => {
   return `      <nav class="topnav" aria-label="Primary">\n${links}\n      </nav>`;
 };
 
+const getComponentSidebarGroups = (activeHref) => {
+  if (!fs.existsSync(componentGroupsPath)) return [];
+  const componentGroups = readJson(componentGroupsPath);
+
+  return componentGroups.groups.map((group) => ({
+    label: group.label,
+    reference: false,
+    links: group.links.map((link) => ({
+      label: link.label,
+      href: link.href,
+      active: link.href === activeHref,
+    })),
+  }));
+};
+
 const renderSidebar = (page) => {
-  const groups = page.sidebarGroups || [];
+  const groups = page.componentSidebar ? getComponentSidebarGroups(page.file) : page.sidebarGroups || [];
   const sourcePath = path.join(sourceDir, page.source);
   const source = fs.existsSync(sourcePath) ? fs.readFileSync(sourcePath, "utf8") : "";
   const pageAnchorLinks = [

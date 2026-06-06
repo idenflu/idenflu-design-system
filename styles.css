@@ -2611,6 +2611,24 @@ h3 {
   gap: var(--space-md);
 }
 
+.component-grouped-index {
+  display: grid;
+  gap: var(--space-xl);
+}
+
+.component-index-group {
+  display: grid;
+  gap: var(--space-md);
+  border-top: 1px solid var(--hairline);
+  padding-top: var(--space-lg);
+}
+
+.component-index-group > strong {
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 650;
+}
+
 .component-index-grid a {
   grid-template-columns: minmax(0, 1fr);
   gap: var(--space-xs);

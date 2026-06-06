@@ -53,9 +53,38 @@ ${cards}
   </div>`;
 };
 
+const renderComponentIndex = () => {
+  const componentGroups = readJson("component-groups.json");
+
+  const groups = componentGroups.groups
+    .map((group) => {
+      const links = group.links
+        .map(
+          (link) => `        <a href="${escapeHtml(link.href)}">
+          <span>${escapeHtml(link.label)}</span>
+          <small>${escapeHtml(link.description)}</small>
+        </a>`,
+        )
+        .join("\n");
+
+      return `    <article class="component-index-group">
+      <strong>${escapeHtml(group.label)}</strong>
+      <div class="link-list component-index-grid">
+${links}
+      </div>
+    </article>`;
+    })
+    .join("\n");
+
+  return `<div class="component-grouped-index" data-partial="component-index">
+${groups}
+  </div>`;
+};
+
 const partials = {
   "component-token-usage": renderTokenUsageGrid,
   "component-api-reference": renderComponentApiReference,
+  "component-index": renderComponentIndex,
 };
 
 const expandPagePartials = (content) =>

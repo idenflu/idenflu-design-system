@@ -20,9 +20,11 @@ if (!exists("tokens.generated.css")) failures.push("missing tokens.generated.css
 if (!exists("scripts/visual-qa-check.js")) failures.push("missing scripts/visual-qa-check.js");
 if (!exists("scripts/browser-qa-check.js")) failures.push("missing scripts/browser-qa-check.js");
 if (!exists("scripts/token-usage-report.js")) failures.push("missing scripts/token-usage-report.js");
+if (!exists("scripts/component-coverage-check.js")) failures.push("missing scripts/component-coverage-check.js");
 if (!exists("scripts/page-partials.js")) failures.push("missing scripts/page-partials.js");
 if (!exists("component-token-usage.json")) failures.push("missing component-token-usage.json");
 if (!exists("component-api.json")) failures.push("missing component-api.json");
+if (!exists("component-groups.json")) failures.push("missing component-groups.json");
 
 const normalizeColor = (value) => String(value).trim().toLowerCase();
 
@@ -197,6 +199,16 @@ if (config) {
   if (!componentIndex.includes("component-index-grid")) {
     failures.push("components.html: missing component-index-grid");
   }
+  [
+    'data-partial="component-index"',
+    "component-grouped-index",
+    "Core components",
+    "Input and choice",
+    "Data and workflow",
+    "System surfaces",
+  ].forEach((marker) => {
+    if (!componentIndex.includes(marker)) failures.push(`components.html: missing grouped index marker ${marker}`);
+  });
   [
     'id="component-api-reference"',
     "component-api-grid",
@@ -490,6 +502,11 @@ if (tokens) {
       if (!definition?.accessibility?.length) failures.push(`component-api.json: missing ${component} accessibility`);
     });
   }
+}
+
+if (exists("scripts/component-coverage-check.js")) {
+  const { collectCoverageFailures } = require("./component-coverage-check");
+  failures.push(...collectCoverageFailures());
 }
 
 const blockedMarkers = [

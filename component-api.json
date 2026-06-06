@@ -7,11 +7,35 @@
       "states": ["default", "hover", "focus", "selected", "loading", "disabled", "danger"],
       "accessibility": ["button element", "aria-busy for loading", "aria-label for icon-only"]
     },
+    "icons": {
+      "label": "Icon API",
+      "props": ["symbol", "size", "stroke", "decorative", "label"],
+      "states": ["decorative", "informative", "action", "disabled", "selected"],
+      "accessibility": ["aria-hidden for decoration", "aria-label for icon-only action", "stable symbol id"]
+    },
     "inputs": {
       "label": "Input API",
       "props": ["type", "label", "helper", "validation", "availability"],
       "states": ["default", "focus", "filled", "invalid", "success", "readonly", "disabled"],
       "accessibility": ["visible label", "aria-invalid", "aria-describedby", "combobox relation when searchable"]
+    },
+    "controls": {
+      "label": "Control API",
+      "props": ["label", "value", "checked", "group", "helper"],
+      "states": ["checked", "selected", "indeterminate", "disabled", "focus"],
+      "accessibility": ["native input", "group label", "aria-checked where needed", "keyboard path"]
+    },
+    "tabs": {
+      "label": "Tab API",
+      "props": ["tabs", "selected", "panel", "disabled", "overflow"],
+      "states": ["selected", "hover", "focus", "disabled", "loading panel"],
+      "accessibility": ["role tablist", "aria-selected", "aria-controls", "arrow key navigation"]
+    },
+    "cards": {
+      "label": "Card API",
+      "props": ["header", "body", "footer", "metadata", "action"],
+      "states": ["default", "hover", "selected", "loading", "locked", "error"],
+      "accessibility": ["card action separation", "visible metadata", "focus target", "semantic heading"]
     },
     "table": {
       "label": "Table API",
@@ -24,6 +48,18 @@
       "props": ["trigger", "surface", "backdrop", "placement", "close rule"],
       "states": ["closed", "open", "pending", "validation", "locked", "destructive"],
       "accessibility": ["role dialog", "aria-modal", "aria-labelledby", "focus trap", "focus restore"]
+    },
+    "feedback": {
+      "label": "Feedback API",
+      "props": ["tone", "message", "reason", "action", "live region"],
+      "states": ["info", "success", "warning", "error", "loading", "locked"],
+      "accessibility": ["role status or alert", "visible reason", "recovery action label"]
+    },
+    "navigation": {
+      "label": "Navigation API",
+      "props": ["landmark", "items", "current", "count", "pagination"],
+      "states": ["active", "hover", "focus", "disabled", "collapsed", "current page"],
+      "accessibility": ["nav landmark", "aria-current", "toolbar label", "pagination label"]
     },
     "menu": {
       "label": "Menu API",

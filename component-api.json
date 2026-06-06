@@ -25,6 +25,12 @@
       "states": ["default", "focus", "open", "selected", "invalid", "disabled"],
       "accessibility": ["native select", "visible label", "helper text", "disabled option reason"]
     },
+    "forms": {
+      "label": "Form API",
+      "props": ["sections", "field groups", "validation summary", "dirty state", "save action"],
+      "states": ["pristine", "dirty", "validating", "invalid", "saving", "saved", "locked"],
+      "accessibility": ["fieldset legend", "aria-describedby", "error summary links", "submit status"]
+    },
     "controls": {
       "label": "Control API",
       "props": ["label", "value", "checked", "group", "helper"],
@@ -36,6 +42,12 @@
       "props": ["tabs", "selected", "panel", "disabled", "overflow"],
       "states": ["selected", "hover", "focus", "disabled", "loading panel"],
       "accessibility": ["role tablist", "aria-selected", "aria-controls", "arrow key navigation"]
+    },
+    "disclosure": {
+      "label": "Disclosure API",
+      "props": ["trigger", "panel", "expanded", "summary", "disabled"],
+      "states": ["collapsed", "expanded", "focus", "loading content", "disabled"],
+      "accessibility": ["button trigger", "aria-expanded", "aria-controls", "panel label"]
     },
     "cards": {
       "label": "Card API",
@@ -91,6 +103,12 @@
       "states": ["neutral", "info", "success", "warning", "danger", "selected", "disabled"],
       "accessibility": ["text visible", "status not color-only", "remove button aria-label"]
     },
+    "chips": {
+      "label": "Chip API",
+      "props": ["label", "value", "tone", "selected", "removable"],
+      "states": ["default", "hover", "focus", "selected", "disabled", "removing"],
+      "accessibility": ["button when interactive", "remove button aria-label", "selected text visible", "group label"]
+    },
     "tooltips": {
       "label": "Tooltip API",
       "props": ["trigger", "content", "placement", "interactive", "delay"],
@@ -115,6 +133,12 @@
       "states": ["empty", "uploading", "complete", "failed", "scanning", "disabled"],
       "accessibility": ["file input label", "progress text", "error reason", "remove action aria-label"]
     },
+    "progress": {
+      "label": "Progress API",
+      "props": ["value", "label", "mode", "steps", "busy region"],
+      "states": ["idle", "indeterminate", "determinate", "skeleton", "complete", "error"],
+      "accessibility": ["role progressbar", "aria-valuenow", "aria-busy", "status text"]
+    },
     "date-time": {
       "label": "Date Time API",
       "props": ["value", "timezone", "range", "min date", "validation"],
@@ -132,6 +156,18 @@
       "props": ["tone", "title", "reason", "primary action", "secondary action"],
       "states": ["empty", "filtered empty", "error", "permission", "locked", "loading"],
       "accessibility": ["clear heading", "recovery action", "alert role for errors", "permission reason visible"]
+    },
+    "pagination": {
+      "label": "Pagination API",
+      "props": ["current page", "total pages", "page size", "boundary links", "item count"],
+      "states": ["first page", "middle page", "last page", "loading", "disabled", "compact"],
+      "accessibility": ["nav landmark", "aria-current page", "button labels", "disabled state"]
+    },
+    "toast": {
+      "label": "Toast API",
+      "props": ["tone", "message", "action", "duration", "dismiss"],
+      "states": ["queued", "visible", "success", "warning", "error", "undo", "dismissed"],
+      "accessibility": ["aria-live", "role status or alert", "dismiss button label", "no critical hidden content"]
     }
   }
 }

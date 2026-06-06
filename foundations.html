@@ -27,6 +27,7 @@
           <summary>Page navigation</summary>
           <div>
           <a href="#color"><span>Color</span><small>Foundations</small></a>
+          <a href="#semantic-token-aliases"><span>Semantic aliases</span><small>Foundations</small></a>
           <a href="#theme"><span>Theme modes</span><small>Foundations</small></a>
           <a href="#type"><span>Typography</span><small>Foundations</small></a>
           <a href="#spacing"><span>Spacing</span><small>Foundations</small></a>
@@ -36,6 +37,7 @@
         </details>
         <p class="sidebar-label">Foundations</p>
         <a href="#color">Color</a>
+        <a href="#semantic-token-aliases">Semantic aliases</a>
         <a href="#theme">Theme modes</a>
         <a href="#type">Typography</a>
         <a href="#spacing">Spacing</a>
@@ -74,12 +76,20 @@
       <p>{sizing.field-height}, {typography.body}, {colors.hairline}, {colors.primary}, {colors.accent-coral}</p>
     </article>
     <article>
+      <strong>Form tokens</strong>
+      <p>{spacing.lg}, {sizing.field-height}, {typography.body}, {colors.surface-raised}, {colors.hairline}</p>
+    </article>
+    <article>
       <strong>Control tokens</strong>
       <p>{sizing.control-height}, {density.compact}, {colors.primary-soft}, {colors.primary}</p>
     </article>
     <article>
       <strong>Tab tokens</strong>
       <p>{typography.body-emphasis}, {colors.primary}, {colors.surface-raised}, {colors.hairline}</p>
+    </article>
+    <article>
+      <strong>Disclosure tokens</strong>
+      <p>{sizing.control-height}, {typography.body-emphasis}, {colors.surface-raised}, {colors.hairline}, {colors.primary}</p>
     </article>
     <article>
       <strong>Table tokens</strong>
@@ -118,6 +128,10 @@
       <p>{typography.caption}, {colors.primary-soft}, {colors.accent-mint}, {colors.accent-amber}, {radius.none}</p>
     </article>
     <article>
+      <strong>Chip tokens</strong>
+      <p>{typography.caption}, {sizing.control-height}, {colors.primary-soft}, {colors.hairline}, {spacing.xs}</p>
+    </article>
+    <article>
       <strong>Tooltip tokens</strong>
       <p>{typography.caption}, {colors.inverse-canvas}, {colors.inverse-ink}, {shadow.low}, {spacing.xs}</p>
     </article>
@@ -134,6 +148,10 @@
       <p>{typography.body-sm}, {colors.surface-raised}, {colors.hairline}, {colors.accent-coral}, {spacing.md}</p>
     </article>
     <article>
+      <strong>Progress tokens</strong>
+      <p>{colors.primary}, {colors.primary-soft}, {colors.surface-2}, {typography.body-sm}, {spacing.sm}</p>
+    </article>
+    <article>
       <strong>Date time tokens</strong>
       <p>{sizing.field-height}, {typography.body}, {colors.primary-soft}, {colors.hairline}, {colors.accent-coral}</p>
     </article>
@@ -144,6 +162,14 @@
     <article>
       <strong>Empty state tokens</strong>
       <p>{typography.card-title}, {typography.body-sm}, {colors.surface-raised}, {colors.primary}, {colors.accent-coral}</p>
+    </article>
+    <article>
+      <strong>Pagination tokens</strong>
+      <p>{sizing.control-height}, {typography.body-sm}, {colors.surface-raised}, {colors.hairline}, {colors.primary}</p>
+    </article>
+    <article>
+      <strong>Toast tokens</strong>
+      <p>{shadow.panel}, {typography.body-sm}, {colors.surface-raised}, {colors.accent-mint}, {colors.accent-coral}</p>
     </article>
   </div>
 </section>
@@ -187,6 +213,36 @@
     <article class="color-token"><span class="color-block muted"></span><strong>Muted ink</strong><code>#566173</code></article>
     <article class="color-token"><span class="color-block canvas"></span><strong>Canvas</strong><code>#FFFFFF</code></article>
     <article class="color-token"><span class="color-block raised"></span><strong>Raised</strong><code>#FFFFFF</code></article>
+  </div>
+</section>
+
+<section id="semantic-token-aliases" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Semantic token aliases</p>
+    <h2>상태 의미는 색 이름이 아니라 역할 이름으로 먼저 정합니다.</h2>
+    <p class="lede">컴포넌트는 mint, amber, coral을 직접 설명하지 않고 status-success, status-warning, status-error, focus-ring 같은 의미 alias로 사용합니다.</p>
+  </div>
+  <div class="semantic-token-grid">
+    <article>
+      <span>status-success</span>
+      <strong>Approved, live, synced</strong>
+      <p>완료되었거나 정상 흐름으로 돌아온 상태입니다. Badge, toast, progress complete에서 사용합니다.</p>
+    </article>
+    <article>
+      <span>status-warning</span>
+      <strong>Pending, deadline risk</strong>
+      <p>아직 실패는 아니지만 사용자가 확인해야 하는 상태입니다.</p>
+    </article>
+    <article>
+      <span>status-error</span>
+      <strong>Blocked, failed, invalid</strong>
+      <p>저장 실패, 필드 오류, 승인 차단처럼 복구 action이 필요한 상태입니다.</p>
+    </article>
+    <article>
+      <span>focus-ring</span>
+      <strong>Keyboard-visible focus</strong>
+      <p>Button, select, disclosure, pagination, overlay trigger에서 같은 focus affordance를 씁니다.</p>
+    </article>
   </div>
 </section>
 

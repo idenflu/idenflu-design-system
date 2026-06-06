@@ -65,14 +65,14 @@ if (config) {
 
   const generatedFiles = config.pages.map((page) => page.file);
   const componentPages = generatedFiles.filter((file) => file.startsWith("components-"));
-  if (componentPages.length < 21) failures.push("expected at least 21 component detail pages");
+  if (componentPages.length < 27) failures.push("expected at least 27 component detail pages");
   if (!generatedFiles.includes("starter-kit.html")) failures.push("missing starter kit page");
   if (!generatedFiles.includes("changelog.html")) failures.push("missing changelog page");
 
-  ["components-select.html", "components-menu.html", "components-combobox.html", "components-badges.html", "components-tooltips.html", "components-avatar.html"].forEach((file) => {
+  ["components-select.html", "components-forms.html", "components-disclosure.html", "components-menu.html", "components-combobox.html", "components-badges.html", "components-chips.html", "components-tooltips.html", "components-avatar.html"].forEach((file) => {
     if (!generatedFiles.includes(file)) failures.push(`missing generated component page ${file}`);
   });
-  ["components-search-toolbar.html", "components-attachments.html", "components-date-time.html", "components-stepper.html", "components-empty-states.html"].forEach((file) => {
+  ["components-search-toolbar.html", "components-attachments.html", "components-progress.html", "components-date-time.html", "components-stepper.html", "components-empty-states.html", "components-pagination.html", "components-toast.html"].forEach((file) => {
     if (!generatedFiles.includes(file)) failures.push(`missing generated component page ${file}`);
   });
 
@@ -220,16 +220,22 @@ if (config) {
     "component-api-grid",
     "Button API",
     "Select API",
+    "Form API",
+    "Disclosure API",
     "Menu API",
     "Combobox API",
     "Badge API",
+    "Chip API",
     "Tooltip API",
     "Avatar API",
     "Search Toolbar API",
     "Attachment API",
+    "Progress API",
     "Date Time API",
     "Stepper API",
     "Empty State API",
+    "Pagination API",
+    "Toast API",
     "Overlay API",
     "Table API",
   ].forEach((marker) => {
@@ -296,6 +302,21 @@ if (config) {
     "component-context-example",
     "component-token-contract",
     "component-usage-guidance",
+    "form-demo-grid",
+    "progress-demo-grid",
+    "disclosure-demo-grid",
+    "chip-demo-grid",
+    "pagination-demo-grid",
+    "toast-demo-grid",
+    "field-group",
+    "validation-summary",
+    "form-save-bar",
+    "skeleton-row",
+    "tag-list",
+    "toast-stack",
+    "overlay-decision-tree",
+    "workflow-pattern-grid",
+    "semantic-token-grid",
     "scenario-matrix",
     "screen-composition-demo",
     "token-usage-grid",
@@ -439,6 +460,12 @@ if (config) {
     ".menu-demo-grid",
     ".combobox-demo-grid",
     ".select-demo-grid",
+    ".form-demo-grid",
+    ".progress-demo-grid",
+    ".disclosure-demo-grid",
+    ".chip-demo-grid",
+    ".pagination-demo-grid",
+    ".toast-demo-grid",
     ".badge-demo-grid",
     ".tooltip-demo-grid",
     ".identity-demo-grid",
@@ -450,6 +477,12 @@ if (config) {
     ".menu-demo-surface",
     ".combobox-demo-surface",
     ".select-demo-surface",
+    ".form-demo-surface",
+    ".progress-demo-surface",
+    ".disclosure-demo-surface",
+    ".chip-demo-surface",
+    ".pagination-demo-surface",
+    ".toast-demo-surface",
     ".menu-trigger-row",
     ".combobox-field-demo",
     ".component-anatomy-visual",
@@ -611,7 +644,7 @@ if (tokens) {
   });
 
   if (tokenUsage) {
-    ["buttons", "cards", "inputs", "select", "controls", "tabs", "table", "overlays", "feedback", "navigation", "icons", "menu", "combobox", "badges", "tooltips", "avatar", "search-toolbar", "attachments", "date-time", "stepper", "empty-states"].forEach((component) => {
+    ["buttons", "cards", "inputs", "select", "forms", "controls", "tabs", "disclosure", "table", "overlays", "feedback", "navigation", "icons", "menu", "combobox", "badges", "chips", "tooltips", "avatar", "search-toolbar", "attachments", "progress", "date-time", "stepper", "empty-states", "pagination", "toast"].forEach((component) => {
       if (!tokenUsage.components?.[component]?.tokens?.length) {
         failures.push(`component-token-usage.json: missing ${component} tokens`);
       }
@@ -619,7 +652,7 @@ if (tokens) {
   }
 
   if (componentApi) {
-    ["buttons", "inputs", "select", "table", "overlays", "menu", "combobox", "badges", "tooltips", "avatar", "search-toolbar", "attachments", "date-time", "stepper", "empty-states"].forEach((component) => {
+    ["buttons", "inputs", "select", "forms", "table", "overlays", "menu", "combobox", "disclosure", "badges", "chips", "tooltips", "avatar", "search-toolbar", "attachments", "progress", "date-time", "stepper", "empty-states", "pagination", "toast"].forEach((component) => {
       const definition = componentApi.components?.[component];
       if (!definition?.props?.length) failures.push(`component-api.json: missing ${component} props`);
       if (!definition?.states?.length) failures.push(`component-api.json: missing ${component} states`);

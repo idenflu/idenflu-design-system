@@ -448,3 +448,117 @@ document.querySelectorAll("[data-select-demo]").forEach((demo) => {
 
   updateSelectOutput();
 });
+
+document.querySelectorAll("[data-disclosure]").forEach((disclosure) => {
+  const trigger = disclosure.querySelector("[data-disclosure-trigger]");
+  const panel = disclosure.querySelector("[data-disclosure-panel]");
+
+  if (!trigger || !panel) {
+    return;
+  }
+
+  const setDisclosureState = (expanded) => {
+    trigger.setAttribute("aria-expanded", String(expanded));
+    panel.hidden = !expanded;
+    const actionLabel = trigger.querySelector("strong");
+    if (actionLabel) actionLabel.textContent = expanded ? "Hide details" : "Show details";
+  };
+
+  setDisclosureState(trigger.getAttribute("aria-expanded") === "true");
+
+  trigger.addEventListener("click", () => {
+    setDisclosureState(trigger.getAttribute("aria-expanded") !== "true");
+  });
+});
+
+document.querySelectorAll("[data-chip-remove]").forEach((button) => {
+  button.addEventListener("click", () => {
+    const chip = button.closest(".tag-chip");
+    if (!chip) return;
+    chip.setAttribute("data-removing", "true");
+    chip.hidden = true;
+  });
+});
+
+document.querySelectorAll("[data-pagination-demo]").forEach((demo) => {
+  const pageButtons = Array.from(demo.querySelectorAll(".pagination-control button")).filter(
+    (button) => /^\d+$/.test(button.textContent.trim()),
+  );
+  const prevButton = demo.querySelector("[data-pagination-prev]");
+  const nextButton = demo.querySelector("[data-pagination-next]");
+
+  if (!pageButtons.length) {
+    return;
+  }
+
+  const setCurrentPage = (nextIndex) => {
+    const boundedIndex = Math.max(0, Math.min(nextIndex, pageButtons.length - 1));
+
+    pageButtons.forEach((button, index) => {
+      if (index === boundedIndex) {
+        button.setAttribute("aria-current", "page");
+      } else {
+        button.removeAttribute("aria-current");
+      }
+    });
+
+    if (prevButton) prevButton.disabled = boundedIndex === 0;
+    if (nextButton) nextButton.disabled = boundedIndex === pageButtons.length - 1;
+  };
+
+  const currentIndex = Math.max(0, pageButtons.findIndex((button) => button.getAttribute("aria-current") === "page"));
+  setCurrentPage(currentIndex);
+
+  pageButtons.forEach((button, index) => {
+    button.addEventListener("click", () => setCurrentPage(index));
+  });
+
+  prevButton?.addEventListener("click", () => {
+    const activeIndex = pageButtons.findIndex((button) => button.getAttribute("aria-current") === "page");
+    setCurrentPage(activeIndex - 1);
+  });
+
+  nextButton?.addEventListener("click", () => {
+    const activeIndex = pageButtons.findIndex((button) => button.getAttribute("aria-current") === "page");
+    setCurrentPage(activeIndex + 1);
+  });
+});
+
+document.querySelectorAll("[data-progress-demo]").forEach((demo) => {
+  const progressbar = demo.querySelector("[role='progressbar']");
+  if (!progressbar) return;
+
+  const value = Number(progressbar.getAttribute("aria-valuenow") || 0);
+  const fill = progressbar.querySelector("span");
+  if (fill) fill.style.width = `${Math.max(0, Math.min(value, 100))}%`;
+});
+
+document.querySelectorAll("[data-toast-demo]").forEach((demo) => {
+  const stack = demo.querySelector(".toast-stack");
+  const trigger = demo.querySelector("[data-toast-trigger]");
+
+  const bindDismiss = (toast) => {
+    toast.querySelector("[data-toast-dismiss]")?.addEventListener("click", () => {
+      toast.hidden = true;
+    });
+  };
+
+  demo.querySelectorAll(".toast-item").forEach(bindDismiss);
+
+  if (!stack || !trigger) {
+    return;
+  }
+
+  trigger.addEventListener("click", () => {
+    const toast = document.createElement("article");
+    toast.className = "toast-item success";
+    toast.innerHTML = `
+      <strong>Update complete</strong>
+      <p>${trigger.getAttribute("data-toast-message") || "Changes saved."}</p>
+      <button class="button ghost small" type="button">Undo</button>
+      <button class="icon-button small ghost" type="button" aria-label="Dismiss toast" data-toast-dismiss>×</button>
+    `;
+    stack.prepend(toast);
+    bindDismiss(toast);
+  });
+});

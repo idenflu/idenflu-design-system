@@ -33,20 +33,26 @@
           <a href="components-avatar.html"><span>Avatar</span><small>Core components</small></a>
           <a href="components-inputs.html"><span>Inputs</span><small>Input and choice</small></a>
           <a href="components-select.html"><span>Select</span><small>Input and choice</small></a>
+          <a href="components-forms.html"><span>Forms</span><small>Input and choice</small></a>
           <a href="components-controls.html"><span>Controls</span><small>Input and choice</small></a>
           <a href="components-tabs.html"><span>Tabs</span><small>Input and choice</small></a>
+          <a href="components-disclosure.html"><span>Disclosure</span><small>Input and choice</small></a>
           <a href="components-menu.html"><span>Menu</span><small>Input and choice</small></a>
           <a href="components-combobox.html"><span>Combobox</span><small>Input and choice</small></a>
           <a href="components-badges.html"><span>Badges</span><small>Input and choice</small></a>
+          <a href="components-chips.html"><span>Chips</span><small>Input and choice</small></a>
           <a href="components-tooltips.html"><span>Tooltips</span><small>Input and choice</small></a>
           <a href="components-search-toolbar.html"><span>Search toolbar</span><small>Data and workflow</small></a>
           <a class="active" href="components-table.html"><span>Data table</span><small>Data and workflow</small></a>
+          <a href="components-pagination.html"><span>Pagination</span><small>Data and workflow</small></a>
           <a href="components-attachments.html"><span>Attachments</span><small>Data and workflow</small></a>
+          <a href="components-progress.html"><span>Progress</span><small>Data and workflow</small></a>
           <a href="components-date-time.html"><span>Date time</span><small>Data and workflow</small></a>
           <a href="components-stepper.html"><span>Stepper</span><small>Data and workflow</small></a>
           <a href="components-empty-states.html"><span>Empty states</span><small>Data and workflow</small></a>
           <a href="components-examples.html"><span>Examples</span><small>System surfaces</small></a>
           <a href="components-feedback.html"><span>Feedback</span><small>System surfaces</small></a>
+          <a href="components-toast.html"><span>Toast</span><small>System surfaces</small></a>
           <a href="components-overlays.html"><span>Overlays</span><small>System surfaces</small></a>
           <a href="components-navigation.html"><span>Navigation</span><small>System surfaces</small></a>
           <a href="#component-template-map"><span>Template</span><small>On this page</small></a>
@@ -64,22 +70,28 @@
         <p class="sidebar-label">Input and choice</p>
         <a href="components-inputs.html">Inputs</a>
         <a href="components-select.html">Select</a>
+        <a href="components-forms.html">Forms</a>
         <a href="components-controls.html">Controls</a>
         <a href="components-tabs.html">Tabs</a>
+        <a href="components-disclosure.html">Disclosure</a>
         <a href="components-menu.html">Menu</a>
         <a href="components-combobox.html">Combobox</a>
         <a href="components-badges.html">Badges</a>
+        <a href="components-chips.html">Chips</a>
         <a href="components-tooltips.html">Tooltips</a>
         <p class="sidebar-label">Data and workflow</p>
         <a href="components-search-toolbar.html">Search toolbar</a>
         <a class="active" href="components-table.html">Data table</a>
+        <a href="components-pagination.html">Pagination</a>
         <a href="components-attachments.html">Attachments</a>
+        <a href="components-progress.html">Progress</a>
         <a href="components-date-time.html">Date time</a>
         <a href="components-stepper.html">Stepper</a>
         <a href="components-empty-states.html">Empty states</a>
         <p class="sidebar-label">System surfaces</p>
         <a href="components-examples.html">Examples</a>
         <a href="components-feedback.html">Feedback</a>
+        <a href="components-toast.html">Toast</a>
         <a href="components-overlays.html">Overlays</a>
         <a href="components-navigation.html">Navigation</a>
         <p class="sidebar-label reference-label">On this page</p>
@@ -570,6 +582,64 @@
     <article class="qa-lane">
       <strong>Mobile row card</strong>
       <div class="empty-state compact"><strong>Summer drop review</strong><p>Mina · Rev 03 · Today · Disclosure risk</p><button class="button ghost small" type="button">Open</button></div>
+    </article>
+  </div>
+</section>
+
+<section id="table-bulk-action-model" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Table expansion</p>
+    <h2>Bulk action, sticky header, mobile fallback을 같은 table model로 정리합니다.</h2>
+  </div>
+  <div class="table-shell sticky-table-example">
+    <div class="table-toolbar">
+      <div>
+        <strong>Sticky table example</strong>
+        <p>Header, selected scope, row action이 긴 목록에서도 같은 위치 감각을 유지합니다.</p>
+      </div>
+      <button class="button ghost small" type="button">Columns</button>
+    </div>
+    <div class="table-selection-bar">
+      <label><input type="checkbox" checked> 12 selected</label>
+      <span>Scope: all filtered rows · 3 locked rows excluded</span>
+      <div class="case-actions">
+        <button class="button quiet small" type="button">Assign reviewer</button>
+        <button class="button ghost small" type="button">Clear</button>
+      </div>
+    </div>
+    <div class="data-table enhanced" role="table" aria-label="Sticky table expansion example">
+      <div class="data-row header sticky-row" role="row">
+        <span role="columnheader"><input type="checkbox" checked aria-label="Select all filtered rows"></span>
+        <span role="columnheader"><button type="button" aria-sort="ascending">Campaign</button></span>
+        <span role="columnheader"><button type="button">Owner</button></span>
+        <span role="columnheader"><button type="button">Revision</button></span>
+        <span role="columnheader"><button type="button">Due</button></span>
+        <span role="columnheader">Actions</span>
+      </div>
+      <div class="data-row selected" role="row">
+        <span role="cell"><input type="checkbox" checked aria-label="Select Rev 03 review"></span>
+        <span class="primary-cell" role="cell"><strong>Rev 03 review</strong><small>Expanded row has blocker details below</small></span>
+        <span role="cell">Mina</span>
+        <span role="cell">Rev 03</span>
+        <span role="cell">Today</span>
+        <span class="table-actions" role="cell"><button class="button ghost small" type="button" aria-expanded="true">Details</button></span>
+      </div>
+    </div>
+    <div class="disclosure-panel">
+      <strong>Expanded row detail</strong>
+      <p>Disclosure missing, usage rights pending, and reviewer note stay inside the table context.</p>
+    </div>
+  </div>
+  <div class="mobile-table-cards" aria-label="Mobile table fallback">
+    <article>
+      <strong>Summer drop review</strong>
+      <p>Mina · Rev 03 · Today · Disclosure risk</p>
+      <button class="button ghost small" type="button">Open</button>
+    </article>
+    <article>
+      <strong>Creator shortlist</strong>
+      <p>Alex · Rev 01 · Jun 10 · Replies pending</p>
+      <button class="button ghost small" type="button">Open</button>
     </article>
   </div>
 </section>

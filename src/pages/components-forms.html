@@ -1,0 +1,98 @@
+<section class="page-header component-page-header">
+  <p class="eyebrow">Components</p>
+  <h1>Forms</h1>
+  <p class="lede">여러 field를 하나의 저장 단위로 묶는 구조와 상태 기준입니다.</p>
+</section>
+
+<!-- partial:component-standard -->
+
+<!-- partial:component-template-map -->
+
+<section id="context-example" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Context example</p>
+    <h2>Form은 field group, validation, save bar를 한 단위로 다룹니다.</h2>
+  </div>
+  <div class="component-context-example">
+    <div class="context-preview form-demo-surface">
+      <fieldset class="field-group">
+        <legend>Campaign setup</legend>
+        <label class="field"><span>Campaign name</span><input type="text" value="Summer creator launch"></label>
+        <label class="field"><span>Stage</span><select><option>Review queue</option><option>Draft</option></select></label>
+      </fieldset>
+      <div class="validation-summary" role="alert">
+        <strong>2 fields need attention</strong>
+        <p>Budget owner and launch timezone are required before saving.</p>
+      </div>
+      <div class="form-save-bar">
+        <span>Unsaved changes</span>
+        <button class="button ghost small" type="button">Discard</button>
+        <button class="button primary small" type="button">Save campaign</button>
+      </div>
+    </div>
+    <div class="context-rules">
+      <strong>Review checklist</strong>
+      <ul>
+        <li>Field group은 legend로 의미를 고정합니다.</li>
+        <li>오류는 summary와 개별 helper에 모두 연결합니다.</li>
+        <li>Save bar는 dirty 상태에서만 action을 강조합니다.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section surface-band">
+  <div class="section-heading"><p class="eyebrow">Anatomy visual</p><h2>Form anatomy visual.</h2></div>
+  <div class="component-anatomy-visual">
+    <article><span class="anatomy-node primary">01</span><strong>Section</strong><p>저장 단위와 form 목적을 설명합니다.</p></article>
+    <article><span class="anatomy-node">02</span><strong>Field group</strong><p>관련 field를 legend 아래 묶습니다.</p></article>
+    <article><span class="anatomy-node">03</span><strong>Validation summary</strong><p>오류 개수와 수정 위치를 안내합니다.</p></article>
+    <article><span class="anatomy-node">04</span><strong>Save bar</strong><p>dirty 상태와 submit action을 고정합니다.</p></article>
+  </div>
+</section>
+
+<!-- partial:component-token-contract -->
+
+<!-- partial:component-api-contract -->
+
+<!-- partial:component-token-binding -->
+
+<!-- partial:component-usage-guidance -->
+
+<section id="forms" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Forms</p>
+    <h2>저장 단위가 분명한 화면만 form으로 묶습니다.</h2>
+  </div>
+  <div class="form-demo-grid">
+    <article class="form-demo-surface">
+      <fieldset class="field-group">
+        <legend>Campaign basics</legend>
+        <label class="field"><span>Campaign name</span><input type="text" value="Summer drop review"></label>
+        <label class="field"><span>Owner</span><input type="text" value="Mina Park"></label>
+        <label class="field"><span>Launch timezone <em>Required</em></span><select aria-describedby="timezone-help"><option>Select timezone</option><option>KST</option></select><small id="timezone-help">Required before schedule lock.</small></label>
+      </fieldset>
+      <div class="form-save-bar">
+        <span>3 unsaved changes</span>
+        <button class="button quiet small" type="button">Review changes</button>
+        <button class="button primary small" type="button">Save</button>
+      </div>
+    </article>
+    <article class="form-demo-surface">
+      <div class="validation-summary" role="alert">
+        <strong>Cannot save permission changes</strong>
+        <p>Finance reviewer is required and launch timezone is empty.</p>
+      </div>
+      <fieldset class="field-group">
+        <legend>Permission edit</legend>
+        <label class="field invalid"><span>Finance reviewer <em>Required</em></span><input type="text" aria-invalid="true" aria-describedby="finance-help"><small id="finance-help">Assign a reviewer before saving.</small></label>
+        <label class="field"><span>Notify owner</span><select><option>Immediately</option><option>After approval</option></select></label>
+      </fieldset>
+      <div class="form-save-bar">
+        <span>Validation required</span>
+        <button class="button ghost small" type="button">Discard</button>
+        <button class="button primary small" type="button" disabled>Save changes</button>
+      </div>
+    </article>
+  </div>
+</section>

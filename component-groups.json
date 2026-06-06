@@ -16,11 +16,14 @@
       "links": [
         { "label": "Inputs", "href": "components-inputs.html", "componentKey": "inputs", "sectionId": "inputs", "description": "값 입력, 검증, helper, disabled/readonly 기준입니다." },
         { "label": "Select", "href": "components-select.html", "componentKey": "select", "sectionId": "select", "description": "짧은 고정 선택지와 native select 상태 기준입니다." },
+        { "label": "Forms", "href": "components-forms.html", "componentKey": "forms", "sectionId": "forms", "description": "field group, validation summary, dirty/save bar 기준입니다." },
         { "label": "Controls", "href": "components-controls.html", "componentKey": "controls", "sectionId": "controls", "description": "필터, 설정, 선택 상태를 유지하는 control 기준입니다." },
         { "label": "Tabs", "href": "components-tabs.html", "componentKey": "tabs", "sectionId": "tabs", "description": "같은 업무 맥락 안에서 view mode를 전환하는 기준입니다." },
+        { "label": "Disclosure", "href": "components-disclosure.html", "componentKey": "disclosure", "sectionId": "disclosure", "description": "상세 정보 접기/펼치기와 row expansion 기준입니다." },
         { "label": "Menu", "href": "components-menu.html", "componentKey": "menu", "sectionId": "menu", "description": "보조 명령, 정렬, 필터, 위험 명령을 묶는 기준입니다." },
         { "label": "Combobox", "href": "components-combobox.html", "componentKey": "combobox", "sectionId": "combobox", "description": "검색 가능한 owner/creator/label 선택 기준입니다." },
         { "label": "Badges", "href": "components-badges.html", "componentKey": "badges", "sectionId": "badges", "description": "상태, count, filter chip, removable tag 기준입니다." },
+        { "label": "Chips", "href": "components-chips.html", "componentKey": "chips", "sectionId": "chips", "description": "필터 chip, tag, removable value 기준입니다." },
         { "label": "Tooltips", "href": "components-tooltips.html", "componentKey": "tooltips", "sectionId": "tooltips", "description": "짧은 보조 설명과 metadata popover 기준입니다." }
       ]
     },
@@ -29,7 +32,9 @@
       "links": [
         { "label": "Search toolbar", "href": "components-search-toolbar.html", "componentKey": "search-toolbar", "sectionId": "search-toolbar", "description": "검색, 필터, saved view, reset, density 조작 기준입니다." },
         { "label": "Data table", "href": "components-table.html", "componentKey": "table", "sectionId": "table", "description": "비교, 정렬, 선택, row action, pagination 기준입니다." },
+        { "label": "Pagination", "href": "components-pagination.html", "componentKey": "pagination", "sectionId": "pagination", "description": "page 이동, page size, current/disabled 상태 기준입니다." },
         { "label": "Attachments", "href": "components-attachments.html", "componentKey": "attachments", "sectionId": "attachments", "description": "파일 업로드, progress, 실패 복구, preview 기준입니다." },
+        { "label": "Progress", "href": "components-progress.html", "componentKey": "progress", "sectionId": "progress", "description": "skeleton, progress bar, async pending 기준입니다." },
         { "label": "Date time", "href": "components-date-time.html", "componentKey": "date-time", "sectionId": "date-time", "description": "due date, campaign period, timezone, validation 기준입니다." },
         { "label": "Stepper", "href": "components-stepper.html", "componentKey": "stepper", "sectionId": "stepper-component", "description": "brief, review, approval 단계와 blocked reason 기준입니다." },
         { "label": "Empty states", "href": "components-empty-states.html", "componentKey": "empty-states", "sectionId": "empty-states", "description": "빈 결과, 오류, 권한, 복구 action 기준입니다." }
@@ -40,6 +45,7 @@
       "links": [
         { "label": "Examples", "href": "components-examples.html", "componentKey": "examples", "sectionId": "examples", "description": "idenflu 운영 화면 조합과 실패/권한 상태 기준입니다." },
         { "label": "Feedback", "href": "components-feedback.html", "componentKey": "feedback", "sectionId": "feedback", "description": "notice, progress, toast, 오류 복구 커뮤니케이션 기준입니다." },
+        { "label": "Toast", "href": "components-toast.html", "componentKey": "toast", "sectionId": "toast", "description": "toast queue, undo, dismiss, aria-live 기준입니다." },
         { "label": "Overlays", "href": "components-overlays.html", "componentKey": "overlays", "sectionId": "overlays", "description": "modal, sheet, popover 결정 표면 기준입니다." },
         { "label": "Navigation", "href": "components-navigation.html", "componentKey": "navigation", "sectionId": "navigation", "description": "페이지, 섹션, pagination 이동 기준입니다." }
       ]

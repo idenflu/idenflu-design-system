@@ -113,6 +113,47 @@
   </div>
 </section>
 
+<section id="overlay-decision-guide" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Overlay decision guide</p>
+    <h2>Overlay를 열기 전에 더 낮은 표면으로 해결 가능한지 확인합니다.</h2>
+  </div>
+  <div class="overlay-decision-tree">
+    <article>
+      <span>01</span>
+      <strong>Use inline</strong>
+      <p>필드 helper, validation, 권한 사유처럼 사용자가 바로 고쳐야 하는 정보는 inline으로 둡니다.</p>
+    </article>
+    <article>
+      <span>02</span>
+      <strong>Use disclosure</strong>
+      <p>audit, blocker detail, advanced setting처럼 보조 상세는 같은 화면에서 접고 펼칩니다.</p>
+    </article>
+    <article>
+      <span>03</span>
+      <strong>Use menu</strong>
+      <p>행 주변의 보조 명령이나 정렬/필터는 menu로 낮춥니다.</p>
+    </article>
+    <article>
+      <span>04</span>
+      <strong>Use popover</strong>
+      <p>작은 선택이나 확인이 trigger 근처에서 끝나면 backdrop 없는 popover를 씁니다.</p>
+    </article>
+    <article>
+      <span>05</span>
+      <strong>Use modal</strong>
+      <p>삭제, 반려, 권한 변경처럼 현재 화면을 잠시 멈추고 결정해야 할 때만 modal을 씁니다.</p>
+    </article>
+  </div>
+  <div class="decision-table">
+    <div class="decision-row header"><span>Need</span><span>Surface</span><span>Reason</span></div>
+    <div class="decision-row"><span><strong>Explain field error</strong></span><span>Inline helper</span><span>오류는 사용자가 값을 고치는 자리 옆에 있어야 합니다.</span></div>
+    <div class="decision-row"><span><strong>Show audit detail</strong></span><span>Disclosure</span><span>맥락은 유지하고 상세만 열면 됩니다.</span></div>
+    <div class="decision-row"><span><strong>Choose row action</strong></span><span>Menu</span><span>반복 행 명령은 화면을 막을 필요가 없습니다.</span></div>
+    <div class="decision-row"><span><strong>Confirm destructive action</strong></span><span>Modal</span><span>결정 전 impact와 reason을 확인해야 합니다.</span></div>
+  </div>
+</section>
+
 <section id="overlay-interactions" class="section">
   <div class="section-heading">
     <p class="eyebrow">Interaction contract</p>

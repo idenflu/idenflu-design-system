@@ -87,6 +87,11 @@
               "active": false
             },
             {
+              "label": "Semantic aliases",
+              "href": "#semantic-token-aliases",
+              "active": false
+            },
+            {
               "label": "Theme modes",
               "href": "#theme",
               "active": false
@@ -166,6 +171,16 @@
       "componentSidebar": true
     },
     {
+      "file": "components-forms.html",
+      "title": "Forms - idenflu Design System",
+      "meta": "Forms",
+      "activeTopnav": "components.html",
+      "source": "components-forms.html",
+      "sidebarAria": "Component pages",
+      "sidebarGroups": [],
+      "componentSidebar": true
+    },
+    {
       "file": "components-controls.html",
       "title": "Controls - idenflu Design System",
       "meta": "Controls",
@@ -181,6 +196,16 @@
       "meta": "Tabs",
       "activeTopnav": "components.html",
       "source": "components-tabs.html",
+      "sidebarAria": "Component pages",
+      "sidebarGroups": [],
+      "componentSidebar": true
+    },
+    {
+      "file": "components-disclosure.html",
+      "title": "Disclosure - idenflu Design System",
+      "meta": "Disclosure",
+      "activeTopnav": "components.html",
+      "source": "components-disclosure.html",
       "sidebarAria": "Component pages",
       "sidebarGroups": [],
       "componentSidebar": true
@@ -226,6 +251,16 @@
       "componentSidebar": true
     },
     {
+      "file": "components-chips.html",
+      "title": "Chips - idenflu Design System",
+      "meta": "Chips",
+      "activeTopnav": "components.html",
+      "source": "components-chips.html",
+      "sidebarAria": "Component pages",
+      "sidebarGroups": [],
+      "componentSidebar": true
+    },
+    {
       "file": "components-tooltips.html",
       "title": "Tooltips - idenflu Design System",
       "meta": "Tooltips",
@@ -261,6 +296,16 @@
       "meta": "Attachments",
       "activeTopnav": "components.html",
       "source": "components-attachments.html",
+      "sidebarAria": "Component pages",
+      "sidebarGroups": [],
+      "componentSidebar": true
+    },
+    {
+      "file": "components-progress.html",
+      "title": "Progress - idenflu Design System",
+      "meta": "Progress",
+      "activeTopnav": "components.html",
+      "source": "components-progress.html",
       "sidebarAria": "Component pages",
       "sidebarGroups": [],
       "componentSidebar": true
@@ -306,6 +351,16 @@
       "componentSidebar": true
     },
     {
+      "file": "components-pagination.html",
+      "title": "Pagination - idenflu Design System",
+      "meta": "Pagination",
+      "activeTopnav": "components.html",
+      "source": "components-pagination.html",
+      "sidebarAria": "Component pages",
+      "sidebarGroups": [],
+      "componentSidebar": true
+    },
+    {
       "file": "components-examples.html",
       "title": "Examples - idenflu Design System",
       "meta": "Examples",
@@ -321,6 +376,16 @@
       "meta": "Feedback",
       "activeTopnav": "components.html",
       "source": "components-feedback.html",
+      "sidebarAria": "Component pages",
+      "sidebarGroups": [],
+      "componentSidebar": true
+    },
+    {
+      "file": "components-toast.html",
+      "title": "Toast - idenflu Design System",
+      "meta": "Toast",
+      "activeTopnav": "components.html",
+      "source": "components-toast.html",
       "sidebarAria": "Component pages",
       "sidebarGroups": [],
       "componentSidebar": true
@@ -375,6 +440,11 @@
             {
               "label": "Review queue",
               "href": "#review",
+              "active": false
+            },
+            {
+              "label": "Workflow patterns",
+              "href": "#workflow-patterns",
               "active": false
             },
             {

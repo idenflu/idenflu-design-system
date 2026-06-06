@@ -1,0 +1,76 @@
+<section class="page-header component-page-header">
+  <p class="eyebrow">Components</p>
+  <h1>Chips</h1>
+  <p class="lede">선택된 값, 필터, tag처럼 사용자가 조작하는 작은 값 단위 기준입니다.</p>
+</section>
+
+<!-- partial:component-standard -->
+
+<!-- partial:component-template-map -->
+
+<section id="context-example" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Context example</p>
+    <h2>Chip은 상태 표시가 아니라 선택 값 조작에 사용합니다.</h2>
+  </div>
+  <div class="component-context-example">
+    <div class="context-preview chip-demo-surface">
+      <div class="tag-list" aria-label="Active filters">
+        <button class="filter-chip selected" type="button">Review stage</button>
+        <span class="tag-chip">Owner: Mina <button type="button" aria-label="Remove Owner Mina" data-chip-remove>×</button></span>
+        <span class="tag-chip">Risk: Disclosure <button type="button" aria-label="Remove Disclosure risk" data-chip-remove>×</button></span>
+      </div>
+    </div>
+    <div class="context-rules">
+      <strong>Review checklist</strong>
+      <ul>
+        <li>상태는 badge, 조작 가능한 값은 chip으로 분리합니다.</li>
+        <li>Remove action은 명확한 aria-label을 갖습니다.</li>
+        <li>긴 label은 줄바꿈과 삭제 버튼 위치를 유지합니다.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section surface-band">
+  <div class="section-heading"><p class="eyebrow">Anatomy visual</p><h2>Chip anatomy visual.</h2></div>
+  <div class="component-anatomy-visual">
+    <article><span class="anatomy-node primary">01</span><strong>Label</strong><p>선택된 값이나 필터 조건을 보여줍니다.</p></article>
+    <article><span class="anatomy-node">02</span><strong>State</strong><p>Selected, disabled, removing을 구분합니다.</p></article>
+    <article><span class="anatomy-node">03</span><strong>Remove</strong><p>값 삭제 action을 분리합니다.</p></article>
+    <article><span class="anatomy-node">04</span><strong>Group</strong><p>여러 chip의 의미를 aria-label로 묶습니다.</p></article>
+  </div>
+</section>
+
+<!-- partial:component-token-contract -->
+
+<!-- partial:component-api-contract -->
+
+<!-- partial:component-token-binding -->
+
+<!-- partial:component-usage-guidance -->
+
+<section id="chips" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Chips</p>
+    <h2>필터와 tag는 조작 가능한 값으로 다룹니다.</h2>
+  </div>
+  <div class="chip-demo-grid">
+    <article class="chip-demo-surface">
+      <strong>Filter chips</strong>
+      <div class="tag-list" aria-label="Filter chips">
+        <button class="filter-chip selected" type="button">Review</button>
+        <button class="filter-chip" type="button">Recruiting</button>
+        <button class="filter-chip disabled" type="button" disabled>Locked</button>
+      </div>
+    </article>
+    <article class="chip-demo-surface">
+      <strong>Selected tags</strong>
+      <div class="tag-list" aria-label="Selected tags">
+        <span class="tag-chip">Creator: Hana <button type="button" aria-label="Remove creator Hana" data-chip-remove>×</button></span>
+        <span class="tag-chip">Audience: Beauty <button type="button" aria-label="Remove audience Beauty" data-chip-remove>×</button></span>
+        <span class="tag-chip">Usage rights pending <button type="button" aria-label="Remove usage rights pending" data-chip-remove>×</button></span>
+      </div>
+    </article>
+  </div>
+</section>

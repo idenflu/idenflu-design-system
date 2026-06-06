@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Avatar - idenflu Design System</title>
+    <title>Toast - idenflu Design System</title>
     <link rel="stylesheet" href="tokens.generated.css?v=20260606-token-pipeline">
     <link rel="stylesheet" href="styles.css?v=20260606-system-complete">
   </head>
@@ -18,7 +18,7 @@
         <a href="guidelines.html">Reference</a>
       </nav>
       <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode" aria-pressed="false">Dark</button>
-      <div class="topbar-meta">Avatar</div>
+      <div class="topbar-meta">Toast</div>
     </header>
 
     <div class="doc-layout">
@@ -30,7 +30,7 @@
           <a href="components-buttons.html"><span>Buttons</span><small>Core components</small></a>
           <a href="components-icons.html"><span>Icons</span><small>Core components</small></a>
           <a href="components-cards.html"><span>Cards</span><small>Core components</small></a>
-          <a class="active" href="components-avatar.html"><span>Avatar</span><small>Core components</small></a>
+          <a href="components-avatar.html"><span>Avatar</span><small>Core components</small></a>
           <a href="components-inputs.html"><span>Inputs</span><small>Input and choice</small></a>
           <a href="components-select.html"><span>Select</span><small>Input and choice</small></a>
           <a href="components-forms.html"><span>Forms</span><small>Input and choice</small></a>
@@ -52,7 +52,7 @@
           <a href="components-empty-states.html"><span>Empty states</span><small>Data and workflow</small></a>
           <a href="components-examples.html"><span>Examples</span><small>System surfaces</small></a>
           <a href="components-feedback.html"><span>Feedback</span><small>System surfaces</small></a>
-          <a href="components-toast.html"><span>Toast</span><small>System surfaces</small></a>
+          <a class="active" href="components-toast.html"><span>Toast</span><small>System surfaces</small></a>
           <a href="components-overlays.html"><span>Overlays</span><small>System surfaces</small></a>
           <a href="components-navigation.html"><span>Navigation</span><small>System surfaces</small></a>
           <a href="#component-template-map"><span>Template</span><small>On this page</small></a>
@@ -66,7 +66,7 @@
         <a href="components-buttons.html">Buttons</a>
         <a href="components-icons.html">Icons</a>
         <a href="components-cards.html">Cards</a>
-        <a class="active" href="components-avatar.html">Avatar</a>
+        <a href="components-avatar.html">Avatar</a>
         <p class="sidebar-label">Input and choice</p>
         <a href="components-inputs.html">Inputs</a>
         <a href="components-select.html">Select</a>
@@ -91,7 +91,7 @@
         <p class="sidebar-label">System surfaces</p>
         <a href="components-examples.html">Examples</a>
         <a href="components-feedback.html">Feedback</a>
-        <a href="components-toast.html">Toast</a>
+        <a class="active" href="components-toast.html">Toast</a>
         <a href="components-overlays.html">Overlays</a>
         <a href="components-navigation.html">Navigation</a>
         <p class="sidebar-label reference-label">On this page</p>
@@ -104,40 +104,40 @@
       <main>
 <section class="page-header component-page-header">
   <p class="eyebrow">Components</p>
-  <h1>Avatar</h1>
-  <p class="lede">owner, reviewer, creator를 텍스트와 함께 식별하는 기준입니다.</p>
+  <h1>Toast</h1>
+  <p class="lede">화면 흐름을 막지 않는 단기 알림, undo, dismiss 기준입니다.</p>
 </section>
 
 <section id="component-standard" class="section surface-band">
   <div class="section-heading">
     <p class="eyebrow">Component standard</p>
-    <h2>Avatar 문서의 공통 구조.</h2>
+    <h2>Toast 문서의 공통 구조.</h2>
   </div>
   <div class="component-doc-grid">
     <article id="doc-anatomy" class="component-doc-card">
       <strong>Anatomy</strong>
-      <p>Image, initials, name, subtitle, presence, fallback을 나눕니다.</p>
-      <ul><li>Image</li><li>initials</li><li>name</li><li>subtitle</li><li>presence</li></ul>
+      <p>Stack, tone, message, action, dismiss, live region을 나눕니다.</p>
+      <ul><li>stack</li><li>tone</li><li>message</li><li>action</li><li>dismiss</li><li>live region</li></ul>
     </article>
     <article id="doc-variants" class="component-doc-card">
       <strong>Variants</strong>
-      <p>Image avatar, initials, unassigned, stacked group, identity row</p>
+      <p>Success, warning, error, undo, sync failure, queued toast</p>
     </article>
     <article id="doc-states" class="component-doc-card">
       <strong>States</strong>
-      <p>Image, initials, unassigned, online, busy, disabled 상태를 비교합니다.</p>
+      <p>Queued, visible, success, warning, error, undo, dismissed 상태를 비교합니다.</p>
     </article>
     <article id="doc-accessibility" class="component-doc-card">
       <strong>Accessibility</strong>
-      <p>정보성 이미지는 alt, 장식 avatar는 hidden, identity row는 name을 visible로 둡니다.</p>
+      <p>aria-live, role status/alert, dismiss label, critical content rule을 확인합니다.</p>
     </article>
     <article id="doc-examples" class="component-doc-card">
       <strong>Examples</strong>
-      <p>Owner, requester, approver, collaborator group에 사용합니다.</p>
+      <p>Save complete, undo, sync failed처럼 화면을 막지 않는 알림에 사용합니다.</p>
     </article>
     <article id="doc-qa" class="component-doc-card">
       <strong>QA</strong>
-      <p>이미지 실패, 긴 이름, email subtitle, stacked overlap, dark contrast를 확인합니다.</p>
+      <p>Queue order, dismiss focus, undo action, mobile position을 확인합니다.</p>
     </article>
   </div>
 </section>
@@ -145,99 +145,118 @@
 <section id="component-template-map" class="section">
   <div class="section-heading">
     <p class="eyebrow">Document template</p>
-    <h2>Avatar 문서는 사람이 누구인지 읽히는 정보 단위로 봅니다.</h2>
+    <h2>Toast 문서는 단기 알림과 복구 action의 경계를 고정합니다.</h2>
   </div>
   <div class="component-template-map">
     <article>
       <span>01</span>
       <strong>Overview</strong>
-      <p>Avatar만으로 식별하지 말고 name이나 role과 함께 사용합니다.</p>
+      <p>Toast가 화면 흐름을 막지 않아도 되는지 확인합니다.</p>
     </article>
     <article>
       <span>02</span>
       <strong>Anatomy</strong>
-      <p>Image, initials, fallback, name, subtitle, presence를 분리합니다.</p>
+      <p>Tone, message, action, dismiss, live region을 분리합니다.</p>
     </article>
     <article>
       <span>03</span>
       <strong>Variants</strong>
-      <p>Single, group, identity row, unassigned, system user를 구분합니다.</p>
+      <p>Success, warning, error, undo toast를 비교합니다.</p>
     </article>
     <article>
       <span>04</span>
       <strong>States</strong>
-      <p>Online, busy, disabled, missing image, fallback initials를 비교합니다.</p>
+      <p>Queued, visible, dismissed 상태를 보여줍니다.</p>
     </article>
     <article>
       <span>05</span>
       <strong>Accessibility</strong>
-      <p>Avatar alt, decorative hidden, visible identity text를 확인합니다.</p>
+      <p>aria-live와 role alert/status 기준을 확인합니다.</p>
     </article>
     <article>
       <span>06</span>
       <strong>QA</strong>
-      <p>Long name, email wrap, stacked group, dark surface를 검증합니다.</p>
+      <p>모바일 위치, queue, undo, dismiss를 검증합니다.</p>
     </article>
   </div>
 </section>
 
 <section id="context-example" class="section surface-band">
-  <div class="section-heading"><p class="eyebrow">Context example</p><h2>Avatar는 owner와 승인 흐름의 사람 정보를 빠르게 보여줍니다.</h2></div>
+  <div class="section-heading">
+    <p class="eyebrow">Context example</p>
+    <h2>Toast는 결과를 알려주되 중요한 판단을 숨기지 않습니다.</h2>
+  </div>
   <div class="component-context-example">
-    <div class="context-preview">
-      <div class="identity-row"><span class="avatar" aria-hidden="true">MP</span><span><strong>Mina Park</strong><small>Owner · mina@idenflu.com</small></span><span class="status mint">Online</span></div>
-      <div class="identity-row"><span class="avatar muted" aria-hidden="true">JL</span><span><strong>Jiho Lee</strong><small>Requested changes · Rev 02</small></span><span class="status amber">Waiting</span></div>
-      <div class="avatar-cluster" aria-label="Assigned reviewers"><span class="avatar">MP</span><span class="avatar">JL</span><span class="avatar muted">+3</span></div>
+    <div class="context-preview toast-demo-surface" data-toast-demo>
+      <button class="button primary small" type="button" data-toast-trigger data-toast-message="Campaign saved. Undo is available for 10 seconds.">Show toast</button>
+      <div class="toast-stack" aria-live="polite" aria-atomic="false">
+        <article class="toast-item success">
+          <strong>Campaign saved</strong>
+          <p>Rev 03 changes were saved.</p>
+          <button class="button ghost small" type="button">Undo</button>
+          <button class="icon-button small ghost" type="button" aria-label="Dismiss save toast" data-toast-dismiss>×</button>
+        </article>
+      </div>
     </div>
     <div class="context-rules">
       <strong>Review checklist</strong>
       <ul>
-        <li>Avatar 옆에는 가능한 한 visible name을 함께 둡니다.</li>
-        <li>Fallback initials는 실제 이름에서 가져오고 임의 색상은 만들지 않습니다.</li>
-        <li>Group avatar는 인원 수와 상세 진입 경로를 함께 제공합니다.</li>
+        <li>필수 오류는 toast가 아니라 field helper나 feedback에 둡니다.</li>
+        <li>Undo가 있으면 toast 안에 명확한 action을 제공합니다.</li>
+        <li>Dismiss button은 accessible name을 갖습니다.</li>
       </ul>
     </div>
+  </div>
+</section>
+
+<section class="section surface-band">
+  <div class="section-heading"><p class="eyebrow">Anatomy visual</p><h2>Toast anatomy visual.</h2></div>
+  <div class="component-anatomy-visual">
+    <article><span class="anatomy-node primary">01</span><strong>Stack</strong><p>알림이 쌓이는 위치와 순서를 정의합니다.</p></article>
+    <article><span class="anatomy-node">02</span><strong>Message</strong><p>결과와 영향을 짧게 설명합니다.</p></article>
+    <article><span class="anatomy-node">03</span><strong>Action</strong><p>Undo, retry 같은 단기 복구를 제공합니다.</p></article>
+    <article><span class="anatomy-node">04</span><strong>Dismiss</strong><p>사용자가 알림을 제거할 수 있게 합니다.</p></article>
   </div>
 </section>
 
 <section id="token-contract" class="section">
   <div class="section-heading">
     <p class="eyebrow">Token contract</p>
-    <h2>Avatar는 크기와 identity typography를 일관되게 씁니다.</h2>
+    <h2>Toast는 raised surface, shadow, status tone을 함께 씁니다.</h2>
   </div>
   <div class="component-token-contract">
     <div class="token-contract-row header"><span>Decision</span><span>Token</span><span>Rule</span></div>
-    <div class="token-contract-row"><span><strong>Size</strong></span><span>{sizing.control-height}</span><span>기본 avatar는 control height와 같은 크기를 사용합니다.</span></div>
-    <div class="token-contract-row"><span><strong>Initials</strong></span><span>{typography.body-emphasis}</span><span>Fallback initials는 작지만 선명한 emphasis를 사용합니다.</span></div>
-    <div class="token-contract-row"><span><strong>Surface</strong></span><span>{colors.surface-2}</span><span>이미지가 없을 때 neutral surface를 사용합니다.</span></div>
-    <div class="token-contract-row"><span><strong>Presence</strong></span><span>{colors.primary}</span><span>Presence는 보조 정보이며 이름을 대체하지 않습니다.</span></div>
+    <div class="token-contract-row"><span><strong>Surface</strong></span><span>{colors.surface-raised}</span><span>Toast는 화면 위에 뜨지만 overlay처럼 맥락을 막지 않습니다.</span></div>
+    <div class="token-contract-row"><span><strong>Shadow</strong></span><span>{shadow.panel}</span><span>Stack surface는 panel shadow로 떠 있는 계층을 표현합니다.</span></div>
+    <div class="token-contract-row"><span><strong>Success</strong></span><span>{colors.accent-mint}</span><span>성공 tone은 짧은 결과 알림에만 씁니다.</span></div>
+    <div class="token-contract-row"><span><strong>Error</strong></span><span>{colors.accent-coral}</span><span>오류 toast는 복구 action이나 상세 링크를 함께 둡니다.</span></div>
   </div>
 </section>
 
 <section id="component-api-contract" class="section surface-band">
   <div class="section-heading">
     <p class="eyebrow">API contract</p>
-    <h2>Avatar API 구현 계약.</h2>
+    <h2>Toast API 구현 계약.</h2>
   </div>
   <div class="component-api-contract">
     <div class="component-api-row header"><span>Type</span><span>Contract</span></div>
-    <div class="component-api-row"><span><strong>Props</strong></span><span>name, image, initials, size, presence, subtitle</span></div>
-    <div class="component-api-row"><span><strong>States</strong></span><span>image, initials, unassigned, online, busy, disabled</span></div>
-    <div class="component-api-row"><span><strong>A11y</strong></span><span>img alt when informative, decorative avatar hidden, visible name near identity rows</span></div>
+    <div class="component-api-row"><span><strong>Props</strong></span><span>tone, message, action, duration, dismiss</span></div>
+    <div class="component-api-row"><span><strong>States</strong></span><span>queued, visible, success, warning, error, undo, dismissed</span></div>
+    <div class="component-api-row"><span><strong>A11y</strong></span><span>aria-live, role status or alert, dismiss button label, no critical hidden content</span></div>
   </div>
 </section>
 
 <section id="component-token-binding" class="section">
   <div class="section-heading">
     <p class="eyebrow">Token usage</p>
-    <h2>Avatar tokens를 실제 token path에 연결합니다.</h2>
+    <h2>Toast tokens를 실제 token path에 연결합니다.</h2>
   </div>
   <div class="component-token-binding">
-    <span>{sizing.control-height}</span>
-    <span>{typography.body-emphasis}</span>
-    <span>{colors.surface-2}</span>
-    <span>{colors.primary}</span>
-    <span>{colors.hairline}</span>
+    <span>{shadow.panel}</span>
+    <span>{typography.body-sm}</span>
+    <span>{colors.surface-raised}</span>
+    <span>{colors.accent-mint}</span>
+    <span>{colors.accent-coral}</span>
   </div>
 </section>
 
@@ -249,24 +268,44 @@
   <div class="component-usage-guidance">
     <article>
       <strong>Use</strong>
-      <p>owner, reviewer, creator처럼 사람이 누구인지 빠르게 식별해야 할 때 씁니다.</p>
+      <p>저장 완료, 동기화 실패, undo 가능한 단기 결과처럼 화면 흐름을 막지 않는 알림에 씁니다.</p>
     </article>
     <article>
       <strong>Avoid</strong>
-      <p>avatar만으로 사람을 식별하게 만들지 않습니다. 이름이나 역할 없이 이미지에 의존하지 않습니다.</p>
+      <p>필수 오류, 권한 이유, 장기 진행 상태를 toast에만 숨기지 않습니다.</p>
     </article>
     <article>
       <strong>Replace with</strong>
-      <p>책임자 정보는 identity row, 그룹 상태는 avatar group + visible count를 씁니다.</p>
+      <p>필드 오류는 helper, 화면 상태는 feedback, 결정이 필요한 내용은 overlay를 씁니다.</p>
     </article>
   </div>
 </section>
 
-<section id="avatar" class="section">
-  <div class="section-heading"><p class="eyebrow">Avatar</p><h2>사람 정보는 avatar, 이름, 역할을 함께 보여줍니다.</h2></div>
-  <div class="identity-demo-grid">
-    <article class="identity-demo-surface identity-row"><span class="avatar">MP</span><span><strong>Owner identity</strong><small>Mina Park · Campaign owner</small></span><span class="status mint">Online</span></article>
-    <article class="identity-demo-surface"><strong>Reviewer group</strong><div class="avatar-cluster" aria-label="Reviewer group"><span class="avatar">MP</span><span class="avatar">JL</span><span class="avatar muted">+3</span></div><button class="button ghost small" type="button">Manage reviewers</button></article>
+<section id="toast" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Toast</p>
+    <h2>Toast queue는 짧고 복구 가능한 결과만 담습니다.</h2>
+  </div>
+  <div class="toast-demo-grid">
+    <article class="toast-demo-surface" data-toast-demo>
+      <button class="button quiet small" type="button" data-toast-trigger data-toast-message="Reviewer assigned to Rev 03.">Assign reviewer</button>
+      <div class="toast-stack" aria-live="polite" aria-atomic="false"></div>
+    </article>
+    <article class="toast-demo-surface">
+      <div class="toast-stack" aria-live="assertive" aria-atomic="false">
+        <article class="toast-item error">
+          <strong>Sync failed</strong>
+          <p>Changes are still local. Retry when the workspace reconnects.</p>
+          <button class="button quiet small" type="button">Retry</button>
+          <button class="icon-button small ghost" type="button" aria-label="Dismiss sync toast" data-toast-dismiss>×</button>
+        </article>
+        <article class="toast-item warning">
+          <strong>Usage rights pending</strong>
+          <p>Approval is blocked until Finance signs off.</p>
+          <button class="button ghost small" type="button">View</button>
+        </article>
+      </div>
+    </article>
   </div>
 </section>
       </main>

@@ -25,6 +25,12 @@ const requireInFile = (file, label, value) => {
   ["components-inputs.html", "input spec", 'id="input-spec"'],
   ["components-inputs.html", "form flows", 'id="form-flows"'],
   ["components-select.html", "select component page", 'id="select"'],
+  ["components-forms.html", "forms component page", 'id="forms"'],
+  ["components-progress.html", "progress component page", 'id="progress"'],
+  ["components-disclosure.html", "disclosure component page", 'id="disclosure"'],
+  ["components-chips.html", "chips component page", 'id="chips"'],
+  ["components-pagination.html", "pagination component page", 'id="pagination"'],
+  ["components-toast.html", "toast component page", 'id="toast"'],
   ["components-table.html", "table spec", 'id="table-spec"'],
   ["components-table.html", "table behavior", 'id="table-behavior"'],
   ["components-overlays.html", "overlay interactions", 'id="overlay-interactions"'],
@@ -130,10 +136,10 @@ requireInFile("visual-qa.html", "token usage command", "node scripts/token-usage
 requireInFile("components.html", "component API reference", "component-api-reference");
 requireInFile("components.html", "component API grid", "component-api-grid");
 requireInFile("components.html", "grouped component index", "component-grouped-index");
-["Select API", "Menu API", "Combobox API", "Badge API", "Tooltip API", "Avatar API"].forEach((marker) => {
+["Select API", "Form API", "Disclosure API", "Menu API", "Combobox API", "Badge API", "Chip API", "Tooltip API", "Avatar API"].forEach((marker) => {
   requireInFile("components.html", marker, marker);
 });
-["Search Toolbar API", "Attachment API", "Date Time API", "Stepper API", "Empty State API"].forEach((marker) => {
+["Search Toolbar API", "Attachment API", "Progress API", "Date Time API", "Stepper API", "Empty State API", "Pagination API", "Toast API"].forEach((marker) => {
   requireInFile("components.html", marker, marker);
 });
 

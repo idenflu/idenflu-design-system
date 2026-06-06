@@ -1,0 +1,83 @@
+<section class="page-header component-page-header">
+  <p class="eyebrow">Components</p>
+  <h1>Disclosure</h1>
+  <p class="lede">보조 상세를 같은 맥락 안에서 접고 펼치는 기준입니다.</p>
+</section>
+
+<!-- partial:component-standard -->
+
+<!-- partial:component-template-map -->
+
+<section id="context-example" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Context example</p>
+    <h2>Disclosure는 overlay 없이 상세 이유를 노출합니다.</h2>
+  </div>
+  <div class="component-context-example">
+    <div class="context-preview disclosure-demo-surface" data-disclosure>
+      <button class="disclosure-trigger" type="button" aria-expanded="true" aria-controls="context-disclosure-panel" data-disclosure-trigger>
+        <span>Disclosure missing</span>
+        <strong>Hide details</strong>
+      </button>
+      <div id="context-disclosure-panel" class="disclosure-panel" data-disclosure-panel>
+        <p>Rev 03 caption does not include disclosure text. Request a caption edit before approving.</p>
+      </div>
+    </div>
+    <div class="context-rules">
+      <strong>Review checklist</strong>
+      <ul>
+        <li>필수 정보는 접힌 상태에서도 summary에 남깁니다.</li>
+        <li>Trigger는 button과 aria-expanded를 사용합니다.</li>
+        <li>결정이 필요하면 overlay가 아니라 inline action부터 검토합니다.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section surface-band">
+  <div class="section-heading"><p class="eyebrow">Anatomy visual</p><h2>Disclosure anatomy visual.</h2></div>
+  <div class="component-anatomy-visual">
+    <article><span class="anatomy-node primary">01</span><strong>Trigger</strong><p>열림 상태와 요약을 담당합니다.</p></article>
+    <article><span class="anatomy-node">02</span><strong>Summary</strong><p>접혀도 남아야 하는 핵심 문구입니다.</p></article>
+    <article><span class="anatomy-node">03</span><strong>Panel</strong><p>보조 상세와 다음 행동을 담습니다.</p></article>
+    <article><span class="anatomy-node">04</span><strong>State</strong><p>Expanded, collapsed, disabled를 구분합니다.</p></article>
+  </div>
+</section>
+
+<!-- partial:component-token-contract -->
+
+<!-- partial:component-api-contract -->
+
+<!-- partial:component-token-binding -->
+
+<!-- partial:component-usage-guidance -->
+
+<section id="disclosure" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Disclosure</p>
+    <h2>보조 상세는 같은 화면 맥락 안에서 열립니다.</h2>
+  </div>
+  <div class="disclosure-demo-grid">
+    <article class="disclosure-demo-surface" data-disclosure>
+      <button class="disclosure-trigger" type="button" aria-expanded="false" aria-controls="audit-panel" data-disclosure-trigger>
+        <span>Audit trail</span>
+        <strong>Show details</strong>
+      </button>
+      <div id="audit-panel" class="disclosure-panel" hidden data-disclosure-panel>
+        <p>Mina requested changes on Rev 03. Hana uploaded a corrected caption 14 minutes later.</p>
+      </div>
+    </article>
+    <article class="disclosure-demo-surface" data-disclosure>
+      <button class="disclosure-trigger" type="button" aria-expanded="true" aria-controls="blocker-panel" data-disclosure-trigger>
+        <span>Approval blockers</span>
+        <strong>Hide details</strong>
+      </button>
+      <div id="blocker-panel" class="disclosure-panel" data-disclosure-panel>
+        <ul>
+          <li>Disclosure copy missing</li>
+          <li>Usage rights pending</li>
+        </ul>
+      </div>
+    </article>
+  </div>
+</section>

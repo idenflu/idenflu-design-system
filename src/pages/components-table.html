@@ -359,3 +359,61 @@
     </article>
   </div>
 </section>
+
+<section id="table-bulk-action-model" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Table expansion</p>
+    <h2>Bulk action, sticky header, mobile fallback을 같은 table model로 정리합니다.</h2>
+  </div>
+  <div class="table-shell sticky-table-example">
+    <div class="table-toolbar">
+      <div>
+        <strong>Sticky table example</strong>
+        <p>Header, selected scope, row action이 긴 목록에서도 같은 위치 감각을 유지합니다.</p>
+      </div>
+      <button class="button ghost small" type="button">Columns</button>
+    </div>
+    <div class="table-selection-bar">
+      <label><input type="checkbox" checked> 12 selected</label>
+      <span>Scope: all filtered rows · 3 locked rows excluded</span>
+      <div class="case-actions">
+        <button class="button quiet small" type="button">Assign reviewer</button>
+        <button class="button ghost small" type="button">Clear</button>
+      </div>
+    </div>
+    <div class="data-table enhanced" role="table" aria-label="Sticky table expansion example">
+      <div class="data-row header sticky-row" role="row">
+        <span role="columnheader"><input type="checkbox" checked aria-label="Select all filtered rows"></span>
+        <span role="columnheader"><button type="button" aria-sort="ascending">Campaign</button></span>
+        <span role="columnheader"><button type="button">Owner</button></span>
+        <span role="columnheader"><button type="button">Revision</button></span>
+        <span role="columnheader"><button type="button">Due</button></span>
+        <span role="columnheader">Actions</span>
+      </div>
+      <div class="data-row selected" role="row">
+        <span role="cell"><input type="checkbox" checked aria-label="Select Rev 03 review"></span>
+        <span class="primary-cell" role="cell"><strong>Rev 03 review</strong><small>Expanded row has blocker details below</small></span>
+        <span role="cell">Mina</span>
+        <span role="cell">Rev 03</span>
+        <span role="cell">Today</span>
+        <span class="table-actions" role="cell"><button class="button ghost small" type="button" aria-expanded="true">Details</button></span>
+      </div>
+    </div>
+    <div class="disclosure-panel">
+      <strong>Expanded row detail</strong>
+      <p>Disclosure missing, usage rights pending, and reviewer note stay inside the table context.</p>
+    </div>
+  </div>
+  <div class="mobile-table-cards" aria-label="Mobile table fallback">
+    <article>
+      <strong>Summer drop review</strong>
+      <p>Mina · Rev 03 · Today · Disclosure risk</p>
+      <button class="button ghost small" type="button">Open</button>
+    </article>
+    <article>
+      <strong>Creator shortlist</strong>
+      <p>Alex · Rev 01 · Jun 10 · Replies pending</p>
+      <button class="button ghost small" type="button">Open</button>
+    </article>
+  </div>
+</section>

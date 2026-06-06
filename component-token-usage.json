@@ -17,6 +17,10 @@
       "label": "Select tokens",
       "tokens": ["sizing.field-height", "typography.body", "colors.hairline", "colors.primary", "colors.accent-coral"]
     },
+    "forms": {
+      "label": "Form tokens",
+      "tokens": ["spacing.lg", "sizing.field-height", "typography.body", "colors.surface-raised", "colors.hairline"]
+    },
     "controls": {
       "label": "Control tokens",
       "tokens": ["sizing.control-height", "density.compact", "colors.primary-soft", "colors.primary"]
@@ -24,6 +28,10 @@
     "tabs": {
       "label": "Tab tokens",
       "tokens": ["typography.body-emphasis", "colors.primary", "colors.surface-raised", "colors.hairline"]
+    },
+    "disclosure": {
+      "label": "Disclosure tokens",
+      "tokens": ["sizing.control-height", "typography.body-emphasis", "colors.surface-raised", "colors.hairline", "colors.primary"]
     },
     "table": {
       "label": "Table tokens",
@@ -61,6 +69,10 @@
       "label": "Badge tokens",
       "tokens": ["typography.caption", "colors.primary-soft", "colors.accent-mint", "colors.accent-amber", "radius.none"]
     },
+    "chips": {
+      "label": "Chip tokens",
+      "tokens": ["typography.caption", "sizing.control-height", "colors.primary-soft", "colors.hairline", "spacing.xs"]
+    },
     "tooltips": {
       "label": "Tooltip tokens",
       "tokens": ["typography.caption", "colors.inverse-canvas", "colors.inverse-ink", "shadow.low", "spacing.xs"]
@@ -77,6 +89,10 @@
       "label": "Attachment tokens",
       "tokens": ["typography.body-sm", "colors.surface-raised", "colors.hairline", "colors.accent-coral", "spacing.md"]
     },
+    "progress": {
+      "label": "Progress tokens",
+      "tokens": ["colors.primary", "colors.primary-soft", "colors.surface-2", "typography.body-sm", "spacing.sm"]
+    },
     "date-time": {
       "label": "Date time tokens",
       "tokens": ["sizing.field-height", "typography.body", "colors.primary-soft", "colors.hairline", "colors.accent-coral"]
@@ -88,6 +104,14 @@
     "empty-states": {
       "label": "Empty state tokens",
       "tokens": ["typography.card-title", "typography.body-sm", "colors.surface-raised", "colors.primary", "colors.accent-coral"]
+    },
+    "pagination": {
+      "label": "Pagination tokens",
+      "tokens": ["sizing.control-height", "typography.body-sm", "colors.surface-raised", "colors.hairline", "colors.primary"]
+    },
+    "toast": {
+      "label": "Toast tokens",
+      "tokens": ["shadow.panel", "typography.body-sm", "colors.surface-raised", "colors.accent-mint", "colors.accent-coral"]
     }
   }
 }

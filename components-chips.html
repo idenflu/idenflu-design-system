@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Avatar - idenflu Design System</title>
+    <title>Chips - idenflu Design System</title>
     <link rel="stylesheet" href="tokens.generated.css?v=20260606-token-pipeline">
     <link rel="stylesheet" href="styles.css?v=20260606-system-complete">
   </head>
@@ -18,7 +18,7 @@
         <a href="guidelines.html">Reference</a>
       </nav>
       <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode" aria-pressed="false">Dark</button>
-      <div class="topbar-meta">Avatar</div>
+      <div class="topbar-meta">Chips</div>
     </header>
 
     <div class="doc-layout">
@@ -30,7 +30,7 @@
           <a href="components-buttons.html"><span>Buttons</span><small>Core components</small></a>
           <a href="components-icons.html"><span>Icons</span><small>Core components</small></a>
           <a href="components-cards.html"><span>Cards</span><small>Core components</small></a>
-          <a class="active" href="components-avatar.html"><span>Avatar</span><small>Core components</small></a>
+          <a href="components-avatar.html"><span>Avatar</span><small>Core components</small></a>
           <a href="components-inputs.html"><span>Inputs</span><small>Input and choice</small></a>
           <a href="components-select.html"><span>Select</span><small>Input and choice</small></a>
           <a href="components-forms.html"><span>Forms</span><small>Input and choice</small></a>
@@ -40,7 +40,7 @@
           <a href="components-menu.html"><span>Menu</span><small>Input and choice</small></a>
           <a href="components-combobox.html"><span>Combobox</span><small>Input and choice</small></a>
           <a href="components-badges.html"><span>Badges</span><small>Input and choice</small></a>
-          <a href="components-chips.html"><span>Chips</span><small>Input and choice</small></a>
+          <a class="active" href="components-chips.html"><span>Chips</span><small>Input and choice</small></a>
           <a href="components-tooltips.html"><span>Tooltips</span><small>Input and choice</small></a>
           <a href="components-search-toolbar.html"><span>Search toolbar</span><small>Data and workflow</small></a>
           <a href="components-table.html"><span>Data table</span><small>Data and workflow</small></a>
@@ -66,7 +66,7 @@
         <a href="components-buttons.html">Buttons</a>
         <a href="components-icons.html">Icons</a>
         <a href="components-cards.html">Cards</a>
-        <a class="active" href="components-avatar.html">Avatar</a>
+        <a href="components-avatar.html">Avatar</a>
         <p class="sidebar-label">Input and choice</p>
         <a href="components-inputs.html">Inputs</a>
         <a href="components-select.html">Select</a>
@@ -77,7 +77,7 @@
         <a href="components-menu.html">Menu</a>
         <a href="components-combobox.html">Combobox</a>
         <a href="components-badges.html">Badges</a>
-        <a href="components-chips.html">Chips</a>
+        <a class="active" href="components-chips.html">Chips</a>
         <a href="components-tooltips.html">Tooltips</a>
         <p class="sidebar-label">Data and workflow</p>
         <a href="components-search-toolbar.html">Search toolbar</a>
@@ -104,40 +104,40 @@
       <main>
 <section class="page-header component-page-header">
   <p class="eyebrow">Components</p>
-  <h1>Avatar</h1>
-  <p class="lede">owner, reviewer, creator를 텍스트와 함께 식별하는 기준입니다.</p>
+  <h1>Chips</h1>
+  <p class="lede">선택된 값, 필터, tag처럼 사용자가 조작하는 작은 값 단위 기준입니다.</p>
 </section>
 
 <section id="component-standard" class="section surface-band">
   <div class="section-heading">
     <p class="eyebrow">Component standard</p>
-    <h2>Avatar 문서의 공통 구조.</h2>
+    <h2>Chips 문서의 공통 구조.</h2>
   </div>
   <div class="component-doc-grid">
     <article id="doc-anatomy" class="component-doc-card">
       <strong>Anatomy</strong>
-      <p>Image, initials, name, subtitle, presence, fallback을 나눕니다.</p>
-      <ul><li>Image</li><li>initials</li><li>name</li><li>subtitle</li><li>presence</li></ul>
+      <p>Label, value, selected state, remove action, group label을 나눕니다.</p>
+      <ul><li>label</li><li>value</li><li>selected state</li><li>remove action</li><li>group label</li></ul>
     </article>
     <article id="doc-variants" class="component-doc-card">
       <strong>Variants</strong>
-      <p>Image avatar, initials, unassigned, stacked group, identity row</p>
+      <p>Filter chip, tag, selected value, removable chip, disabled chip</p>
     </article>
     <article id="doc-states" class="component-doc-card">
       <strong>States</strong>
-      <p>Image, initials, unassigned, online, busy, disabled 상태를 비교합니다.</p>
+      <p>Default, hover, focus, selected, disabled, removing 상태를 비교합니다.</p>
     </article>
     <article id="doc-accessibility" class="component-doc-card">
       <strong>Accessibility</strong>
-      <p>정보성 이미지는 alt, 장식 avatar는 hidden, identity row는 name을 visible로 둡니다.</p>
+      <p>Interactive chip role, remove aria-label, selected text, group label을 확인합니다.</p>
     </article>
     <article id="doc-examples" class="component-doc-card">
       <strong>Examples</strong>
-      <p>Owner, requester, approver, collaborator group에 사용합니다.</p>
+      <p>Active filters, selected creators, label tags처럼 값 목록 조작에 사용합니다.</p>
     </article>
     <article id="doc-qa" class="component-doc-card">
       <strong>QA</strong>
-      <p>이미지 실패, 긴 이름, email subtitle, stacked overlap, dark contrast를 확인합니다.</p>
+      <p>Long label, remove focus, wrapping, disabled contrast를 확인합니다.</p>
     </article>
   </div>
 </section>
@@ -145,99 +145,114 @@
 <section id="component-template-map" class="section">
   <div class="section-heading">
     <p class="eyebrow">Document template</p>
-    <h2>Avatar 문서는 사람이 누구인지 읽히는 정보 단위로 봅니다.</h2>
+    <h2>Chips 문서는 Badge와 다른 조작 가능한 값 기준을 고정합니다.</h2>
   </div>
   <div class="component-template-map">
     <article>
       <span>01</span>
       <strong>Overview</strong>
-      <p>Avatar만으로 식별하지 말고 name이나 role과 함께 사용합니다.</p>
+      <p>상태 표시인지 값 조작인지 구분합니다.</p>
     </article>
     <article>
       <span>02</span>
       <strong>Anatomy</strong>
-      <p>Image, initials, fallback, name, subtitle, presence를 분리합니다.</p>
+      <p>Label, selected state, remove action을 분리합니다.</p>
     </article>
     <article>
       <span>03</span>
       <strong>Variants</strong>
-      <p>Single, group, identity row, unassigned, system user를 구분합니다.</p>
+      <p>Filter chip, tag, removable value를 비교합니다.</p>
     </article>
     <article>
       <span>04</span>
       <strong>States</strong>
-      <p>Online, busy, disabled, missing image, fallback initials를 비교합니다.</p>
+      <p>Selected, disabled, removing 상태를 보여줍니다.</p>
     </article>
     <article>
       <span>05</span>
       <strong>Accessibility</strong>
-      <p>Avatar alt, decorative hidden, visible identity text를 확인합니다.</p>
+      <p>Remove button 이름과 group label을 확인합니다.</p>
     </article>
     <article>
       <span>06</span>
       <strong>QA</strong>
-      <p>Long name, email wrap, stacked group, dark surface를 검증합니다.</p>
+      <p>줄바꿈, 긴 label, focus ring을 검증합니다.</p>
     </article>
   </div>
 </section>
 
 <section id="context-example" class="section surface-band">
-  <div class="section-heading"><p class="eyebrow">Context example</p><h2>Avatar는 owner와 승인 흐름의 사람 정보를 빠르게 보여줍니다.</h2></div>
+  <div class="section-heading">
+    <p class="eyebrow">Context example</p>
+    <h2>Chip은 상태 표시가 아니라 선택 값 조작에 사용합니다.</h2>
+  </div>
   <div class="component-context-example">
-    <div class="context-preview">
-      <div class="identity-row"><span class="avatar" aria-hidden="true">MP</span><span><strong>Mina Park</strong><small>Owner · mina@idenflu.com</small></span><span class="status mint">Online</span></div>
-      <div class="identity-row"><span class="avatar muted" aria-hidden="true">JL</span><span><strong>Jiho Lee</strong><small>Requested changes · Rev 02</small></span><span class="status amber">Waiting</span></div>
-      <div class="avatar-cluster" aria-label="Assigned reviewers"><span class="avatar">MP</span><span class="avatar">JL</span><span class="avatar muted">+3</span></div>
+    <div class="context-preview chip-demo-surface">
+      <div class="tag-list" aria-label="Active filters">
+        <button class="filter-chip selected" type="button">Review stage</button>
+        <span class="tag-chip">Owner: Mina <button type="button" aria-label="Remove Owner Mina" data-chip-remove>×</button></span>
+        <span class="tag-chip">Risk: Disclosure <button type="button" aria-label="Remove Disclosure risk" data-chip-remove>×</button></span>
+      </div>
     </div>
     <div class="context-rules">
       <strong>Review checklist</strong>
       <ul>
-        <li>Avatar 옆에는 가능한 한 visible name을 함께 둡니다.</li>
-        <li>Fallback initials는 실제 이름에서 가져오고 임의 색상은 만들지 않습니다.</li>
-        <li>Group avatar는 인원 수와 상세 진입 경로를 함께 제공합니다.</li>
+        <li>상태는 badge, 조작 가능한 값은 chip으로 분리합니다.</li>
+        <li>Remove action은 명확한 aria-label을 갖습니다.</li>
+        <li>긴 label은 줄바꿈과 삭제 버튼 위치를 유지합니다.</li>
       </ul>
     </div>
+  </div>
+</section>
+
+<section class="section surface-band">
+  <div class="section-heading"><p class="eyebrow">Anatomy visual</p><h2>Chip anatomy visual.</h2></div>
+  <div class="component-anatomy-visual">
+    <article><span class="anatomy-node primary">01</span><strong>Label</strong><p>선택된 값이나 필터 조건을 보여줍니다.</p></article>
+    <article><span class="anatomy-node">02</span><strong>State</strong><p>Selected, disabled, removing을 구분합니다.</p></article>
+    <article><span class="anatomy-node">03</span><strong>Remove</strong><p>값 삭제 action을 분리합니다.</p></article>
+    <article><span class="anatomy-node">04</span><strong>Group</strong><p>여러 chip의 의미를 aria-label로 묶습니다.</p></article>
   </div>
 </section>
 
 <section id="token-contract" class="section">
   <div class="section-heading">
     <p class="eyebrow">Token contract</p>
-    <h2>Avatar는 크기와 identity typography를 일관되게 씁니다.</h2>
+    <h2>Chips는 compact control token과 selected surface를 함께 씁니다.</h2>
   </div>
   <div class="component-token-contract">
     <div class="token-contract-row header"><span>Decision</span><span>Token</span><span>Rule</span></div>
-    <div class="token-contract-row"><span><strong>Size</strong></span><span>{sizing.control-height}</span><span>기본 avatar는 control height와 같은 크기를 사용합니다.</span></div>
-    <div class="token-contract-row"><span><strong>Initials</strong></span><span>{typography.body-emphasis}</span><span>Fallback initials는 작지만 선명한 emphasis를 사용합니다.</span></div>
-    <div class="token-contract-row"><span><strong>Surface</strong></span><span>{colors.surface-2}</span><span>이미지가 없을 때 neutral surface를 사용합니다.</span></div>
-    <div class="token-contract-row"><span><strong>Presence</strong></span><span>{colors.primary}</span><span>Presence는 보조 정보이며 이름을 대체하지 않습니다.</span></div>
+    <div class="token-contract-row"><span><strong>Height</strong></span><span>{sizing.control-height}</span><span>Interactive chip은 compact control 높이를 따릅니다.</span></div>
+    <div class="token-contract-row"><span><strong>Text</strong></span><span>{typography.caption}</span><span>긴 label은 wrap 또는 truncation 기준을 명시합니다.</span></div>
+    <div class="token-contract-row"><span><strong>Selected</strong></span><span>{colors.primary-soft}</span><span>Selected chip은 badge status와 다른 선택 surface를 사용합니다.</span></div>
+    <div class="token-contract-row"><span><strong>Remove</strong></span><span>{spacing.xs}</span><span>Remove icon과 label 사이 간격을 유지합니다.</span></div>
   </div>
 </section>
 
 <section id="component-api-contract" class="section surface-band">
   <div class="section-heading">
     <p class="eyebrow">API contract</p>
-    <h2>Avatar API 구현 계약.</h2>
+    <h2>Chip API 구현 계약.</h2>
   </div>
   <div class="component-api-contract">
     <div class="component-api-row header"><span>Type</span><span>Contract</span></div>
-    <div class="component-api-row"><span><strong>Props</strong></span><span>name, image, initials, size, presence, subtitle</span></div>
-    <div class="component-api-row"><span><strong>States</strong></span><span>image, initials, unassigned, online, busy, disabled</span></div>
-    <div class="component-api-row"><span><strong>A11y</strong></span><span>img alt when informative, decorative avatar hidden, visible name near identity rows</span></div>
+    <div class="component-api-row"><span><strong>Props</strong></span><span>label, value, tone, selected, removable</span></div>
+    <div class="component-api-row"><span><strong>States</strong></span><span>default, hover, focus, selected, disabled, removing</span></div>
+    <div class="component-api-row"><span><strong>A11y</strong></span><span>button when interactive, remove button aria-label, selected text visible, group label</span></div>
   </div>
 </section>
 
 <section id="component-token-binding" class="section">
   <div class="section-heading">
     <p class="eyebrow">Token usage</p>
-    <h2>Avatar tokens를 실제 token path에 연결합니다.</h2>
+    <h2>Chip tokens를 실제 token path에 연결합니다.</h2>
   </div>
   <div class="component-token-binding">
+    <span>{typography.caption}</span>
     <span>{sizing.control-height}</span>
-    <span>{typography.body-emphasis}</span>
-    <span>{colors.surface-2}</span>
-    <span>{colors.primary}</span>
+    <span>{colors.primary-soft}</span>
     <span>{colors.hairline}</span>
+    <span>{spacing.xs}</span>
   </div>
 </section>
 
@@ -249,24 +264,41 @@
   <div class="component-usage-guidance">
     <article>
       <strong>Use</strong>
-      <p>owner, reviewer, creator처럼 사람이 누구인지 빠르게 식별해야 할 때 씁니다.</p>
+      <p>필터 값, 선택된 tag, removable metadata처럼 사용자가 값 목록을 조작해야 할 때 씁니다.</p>
     </article>
     <article>
       <strong>Avoid</strong>
-      <p>avatar만으로 사람을 식별하게 만들지 않습니다. 이름이나 역할 없이 이미지에 의존하지 않습니다.</p>
+      <p>상태를 chip 색상만으로 표현하거나 primary action처럼 보이게 만들지 않습니다.</p>
     </article>
     <article>
       <strong>Replace with</strong>
-      <p>책임자 정보는 identity row, 그룹 상태는 avatar group + visible count를 씁니다.</p>
+      <p>상태 표시는 badge, 옵션 선택은 controls/select, 보조 명령 묶음은 menu를 씁니다.</p>
     </article>
   </div>
 </section>
 
-<section id="avatar" class="section">
-  <div class="section-heading"><p class="eyebrow">Avatar</p><h2>사람 정보는 avatar, 이름, 역할을 함께 보여줍니다.</h2></div>
-  <div class="identity-demo-grid">
-    <article class="identity-demo-surface identity-row"><span class="avatar">MP</span><span><strong>Owner identity</strong><small>Mina Park · Campaign owner</small></span><span class="status mint">Online</span></article>
-    <article class="identity-demo-surface"><strong>Reviewer group</strong><div class="avatar-cluster" aria-label="Reviewer group"><span class="avatar">MP</span><span class="avatar">JL</span><span class="avatar muted">+3</span></div><button class="button ghost small" type="button">Manage reviewers</button></article>
+<section id="chips" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Chips</p>
+    <h2>필터와 tag는 조작 가능한 값으로 다룹니다.</h2>
+  </div>
+  <div class="chip-demo-grid">
+    <article class="chip-demo-surface">
+      <strong>Filter chips</strong>
+      <div class="tag-list" aria-label="Filter chips">
+        <button class="filter-chip selected" type="button">Review</button>
+        <button class="filter-chip" type="button">Recruiting</button>
+        <button class="filter-chip disabled" type="button" disabled>Locked</button>
+      </div>
+    </article>
+    <article class="chip-demo-surface">
+      <strong>Selected tags</strong>
+      <div class="tag-list" aria-label="Selected tags">
+        <span class="tag-chip">Creator: Hana <button type="button" aria-label="Remove creator Hana" data-chip-remove>×</button></span>
+        <span class="tag-chip">Audience: Beauty <button type="button" aria-label="Remove audience Beauty" data-chip-remove>×</button></span>
+        <span class="tag-chip">Usage rights pending <button type="button" aria-label="Remove usage rights pending" data-chip-remove>×</button></span>
+      </div>
+    </article>
   </div>
 </section>
       </main>

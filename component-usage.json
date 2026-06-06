@@ -21,6 +21,11 @@
       "avoid": "긴 owner/creator 목록이나 검색이 필요한 선택을 select로 만들지 않습니다. 비활성 option의 이유를 숨기지 않습니다.",
       "replace": "목록이 길거나 검색이 필요하면 combobox, 다중 조건은 controls/search toolbar, 직접 입력은 input을 씁니다."
     },
+    "forms": {
+      "use": "캠페인 설정, 승인 사유, 권한 변경처럼 여러 field가 하나의 저장 action으로 묶일 때 씁니다.",
+      "avoid": "단일 inline 수정이나 읽기 전용 metadata를 form으로 과장하지 않습니다.",
+      "replace": "단일 값은 input/select, 빠른 on/off는 controls, 복잡한 결정은 overlay form을 씁니다."
+    },
     "controls": {
       "use": "필터, on/off 설정, 다중 선택처럼 현재 값이 화면에 계속 남아야 할 때 씁니다.",
       "avoid": "즉시 실행 명령을 switch나 checkbox로 표현하지 않습니다.",
@@ -30,6 +35,11 @@
       "use": "같은 객체나 워크스페이스 안에서 view mode를 바꿀 때 씁니다.",
       "avoid": "페이지 이동, 필터 선택, 순차 단계 진행을 tabs로 만들지 않습니다.",
       "replace": "다른 페이지로 이동하면 navigation, 필터면 controls, 단계 진행이면 stepper를 씁니다."
+    },
+    "disclosure": {
+      "use": "상세 사유, audit, helper, row expansion처럼 맥락 안에서 정보를 접고 펼칠 때 씁니다.",
+      "avoid": "주요 action이나 필수 오류를 접힌 영역 안에 숨기지 않습니다.",
+      "replace": "결정 표면은 overlay, 화면 전환은 navigation, 동일 화면 모드는 tabs를 씁니다."
     },
     "cards": {
       "use": "캠페인, creator, metric, activity처럼 독립 객체를 요약하고 다음 action을 붙일 때 씁니다.",
@@ -76,6 +86,11 @@
       "avoid": "상태의 이유나 다음 action을 badge 안에만 담지 않습니다.",
       "replace": "설명이 필요하면 feedback, 여러 조건 선택은 filter chip, 중요한 action은 button을 씁니다."
     },
+    "chips": {
+      "use": "필터 값, 선택된 tag, removable metadata처럼 사용자가 값 목록을 조작해야 할 때 씁니다.",
+      "avoid": "상태를 chip 색상만으로 표현하거나 primary action처럼 보이게 만들지 않습니다.",
+      "replace": "상태 표시는 badge, 옵션 선택은 controls/select, 보조 명령 묶음은 menu를 씁니다."
+    },
     "tooltips": {
       "use": "이미 보이는 UI의 짧은 보조 설명이나 약어 해석을 제공할 때 씁니다.",
       "avoid": "필수 오류, 권한 이유, 주요 metadata를 tooltip 안에만 숨기지 않습니다.",
@@ -96,6 +111,11 @@
       "avoid": "업로드 실패나 scanning 상태를 파일명만 바꿔 표현하지 않습니다.",
       "replace": "단순 링크는 button/link, 이미지 검토는 preview card, 실패 안내는 feedback을 함께 씁니다."
     },
+    "progress": {
+      "use": "업로드, 저장, 동기화, 데이터 로딩처럼 진행 중임을 사용자가 판단해야 할 때 씁니다.",
+      "avoid": "즉시 끝나는 action에 skeleton이나 progress bar를 과하게 사용하지 않습니다.",
+      "replace": "짧은 action은 button loading, 결과 없음은 empty state, 오류는 feedback을 씁니다."
+    },
     "date-time": {
       "use": "due date, campaign period, timezone처럼 일정 판단이 action에 직접 영향을 줄 때 씁니다.",
       "avoid": "timezone이나 제한 조건을 숨긴 채 날짜만 표시하지 않습니다.",
@@ -110,6 +130,16 @@
       "use": "true empty, filtered empty, permission empty, error empty처럼 다음 행동이 필요한 빈 화면에 씁니다.",
       "avoid": "모든 빈 화면에 같은 Create CTA를 반복하지 않습니다.",
       "replace": "일시 로딩은 skeleton/progress, inline 오류는 feedback, 권한 안내는 locked panel과 연결합니다."
+    },
+    "pagination": {
+      "use": "테이블이나 리스트가 여러 페이지로 나뉘고 현재 위치와 page size가 반복 조작될 때 씁니다.",
+      "avoid": "무한 스크롤 화면이나 짧은 리스트에 pagination을 붙이지 않습니다.",
+      "replace": "짧은 결과는 count summary, 연속 탐색은 load more, 큰 데이터 필터링은 search toolbar를 씁니다."
+    },
+    "toast": {
+      "use": "저장 완료, 동기화 실패, undo 가능한 단기 결과처럼 화면 흐름을 막지 않는 알림에 씁니다.",
+      "avoid": "필수 오류, 권한 이유, 장기 진행 상태를 toast에만 숨기지 않습니다.",
+      "replace": "필드 오류는 helper, 화면 상태는 feedback, 결정이 필요한 내용은 overlay를 씁니다."
     }
   }
 }

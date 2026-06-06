@@ -30,6 +30,7 @@
           <a href="#dashboard"><span>Dashboard</span><small>Patterns</small></a>
           <a href="#pipeline"><span>Pipeline</span><small>Patterns</small></a>
           <a href="#review"><span>Review queue</span><small>Patterns</small></a>
+          <a href="#workflow-patterns"><span>Workflow patterns</span><small>Patterns</small></a>
           <a href="#screen-templates"><span>Screen templates</span><small>Patterns</small></a>
           <a href="#login"><span>Login shell</span><small>Patterns</small></a>
           </div>
@@ -39,6 +40,7 @@
         <a href="#dashboard">Dashboard</a>
         <a href="#pipeline">Pipeline</a>
         <a href="#review">Review queue</a>
+        <a href="#workflow-patterns">Workflow patterns</a>
         <a href="#screen-templates">Screen templates</a>
         <a href="#login">Login shell</a>
       </aside>
@@ -120,6 +122,53 @@
       <span class="thumb blue"></span>
       <div><strong>Product close-up cut</strong><p>Paid social · Creator Leo · Rev 02 · Due tomorrow</p></div>
       <button class="button quiet" type="button">Request changes</button>
+    </article>
+  </div>
+</section>
+
+<section id="workflow-patterns" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Workflow patterns</p>
+    <h2>컴포넌트 조합은 실제 업무 흐름으로 검증합니다.</h2>
+    <p class="lede">Campaign setup, creator shortlist, approval review, permission recovery는 idenflu 화면에서 반복되는 기본 조합입니다.</p>
+  </div>
+  <div class="workflow-pattern-grid">
+    <article id="campaign-setup-pattern">
+      <p class="eyebrow">Campaign setup</p>
+      <strong>Form + select + save bar</strong>
+      <fieldset class="field-group">
+        <legend>Brief basics</legend>
+        <label class="field"><span>Campaign name</span><input type="text" value="Summer creator launch"></label>
+        <label class="field"><span>Stage</span><select><option>Review queue</option><option>Draft</option></select></label>
+      </fieldset>
+      <div class="form-save-bar"><span>Unsaved changes</span><button class="button primary small" type="button">Save</button></div>
+    </article>
+    <article id="creator-shortlist-pattern">
+      <p class="eyebrow">Creator shortlist</p>
+      <strong>Search toolbar + chips + table</strong>
+      <div class="tag-list" aria-label="Shortlist filters">
+        <span class="tag-chip">Audience: Beauty <button type="button" aria-label="Remove audience filter" data-chip-remove>×</button></span>
+        <span class="tag-chip">Fit: 90+ <button type="button" aria-label="Remove fit filter" data-chip-remove>×</button></span>
+      </div>
+      <div class="example-data-row"><strong>Hana Kim</strong><span>92% fit</span><small>Replies in 4d · mid rate</small></div>
+    </article>
+    <article id="approval-review-pattern">
+      <p class="eyebrow">Approval review</p>
+      <strong>Detail + disclosure + decision action</strong>
+      <div class="disclosure-demo-surface" data-disclosure>
+        <button class="disclosure-trigger" type="button" aria-expanded="true" aria-controls="approval-pattern-detail" data-disclosure-trigger><span>Rev 03 blockers</span><strong>Hide details</strong></button>
+        <div id="approval-pattern-detail" class="disclosure-panel" data-disclosure-panel><p>Disclosure copy missing. Usage rights are cleared.</p></div>
+      </div>
+      <div class="case-actions"><button class="button quiet small" type="button">Request changes</button><button class="button primary small" type="button">Approve</button></div>
+    </article>
+    <article id="permission-recovery-pattern">
+      <p class="eyebrow">Permission recovery</p>
+      <strong>Locked panel + request access</strong>
+      <div class="locked-panel">
+        <strong>Owner approval required</strong>
+        <p>Mina만 Rev 03을 승인할 수 있습니다. 변경 요청은 남길 수 있습니다.</p>
+        <button class="button quiet small" type="button">Request access</button>
+      </div>
     </article>
   </div>
 </section>

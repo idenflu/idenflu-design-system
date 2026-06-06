@@ -53,6 +53,36 @@ const screenshotScenarios = [
     note: "select responsive QA",
   },
   {
+    name: "component-forms-responsive",
+    file: "components-forms.html",
+    hash: "#forms",
+    requiredSelectors: ["#forms", ".form-demo-grid", ".field-group", ".form-save-bar"],
+  },
+  {
+    name: "component-progress-responsive",
+    file: "components-progress.html",
+    hash: "#progress",
+    requiredSelectors: ["#progress", ".progress-demo-grid", ".skeleton-row", "[data-progress-demo]"],
+  },
+  {
+    name: "component-disclosure-responsive",
+    file: "components-disclosure.html",
+    hash: "#disclosure",
+    requiredSelectors: ["#disclosure", ".disclosure-demo-grid", "[data-disclosure]", ".disclosure-panel"],
+  },
+  {
+    name: "component-chips-responsive",
+    file: "components-chips.html",
+    hash: "#chips",
+    requiredSelectors: ["#chips", ".chip-demo-grid", ".tag-list", "[data-chip-remove]"],
+  },
+  {
+    name: "component-pagination-responsive",
+    file: "components-pagination.html",
+    hash: "#pagination",
+    requiredSelectors: ["#pagination", ".pagination-demo-grid", "[data-pagination-demo]", "[data-pagination-next]"],
+  },
+  {
     name: "component-table-responsive",
     file: "components-table.html",
     hash: "#table",
@@ -63,6 +93,18 @@ const screenshotScenarios = [
     file: "components-overlays.html",
     hash: "#overlay-interactions",
     requiredSelectors: ["#overlay-interactions", ".overlay-case-grid", ".interaction-contract-grid"],
+  },
+  {
+    name: "component-toast-responsive",
+    file: "components-toast.html",
+    hash: "#toast",
+    requiredSelectors: ["#toast", ".toast-demo-grid", "[data-toast-demo]", ".toast-stack"],
+  },
+  {
+    name: "patterns-workflow-responsive",
+    file: "patterns.html",
+    hash: "#workflow-patterns",
+    requiredSelectors: ["#workflow-patterns", ".workflow-pattern-grid", "#campaign-setup-pattern", "#permission-recovery-pattern"],
   },
   {
     name: "component-depth-overlays",
@@ -150,6 +192,43 @@ const interactionScenarios = [
 
       if (value !== "approved") throw new Error(`expected approved value, got ${value}`);
       if (!output.includes("Approved")) throw new Error(`expected Approved output, got ${output}`);
+    },
+  },
+  {
+    name: "disclosure-toggle",
+    file: "components-disclosure.html",
+    hash: "#disclosure",
+    run: async (page) => {
+      await page.click('[aria-controls="audit-panel"]');
+      const expanded = await page.$eval('[aria-controls="audit-panel"]', (button) => button.getAttribute("aria-expanded"));
+      const hidden = await page.$eval("#audit-panel", (panel) => panel.hidden);
+
+      if (expanded !== "true") throw new Error(`expected disclosure expanded, got ${expanded}`);
+      if (hidden) throw new Error("expected disclosure panel to be visible");
+    },
+  },
+  {
+    name: "toast-queue",
+    file: "components-toast.html",
+    hash: "#toast",
+    run: async (page) => {
+      await page.click("#toast [data-toast-trigger]");
+      const count = await page.$$eval("#toast .toast-item", (toasts) => toasts.length);
+
+      if (count < 1) throw new Error(`expected toast item, got ${count}`);
+    },
+  },
+  {
+    name: "pagination-next",
+    file: "components-pagination.html",
+    hash: "#pagination",
+    run: async (page) => {
+      await page.click("#pagination .pagination-demo-surface:first-child [data-pagination-next]");
+      const current = await page.$eval("#pagination .pagination-demo-surface:first-child [aria-current='page']", (button) =>
+        button.textContent.trim(),
+      );
+
+      if (current !== "3") throw new Error(`expected page 3, got ${current}`);
     },
   },
 ];

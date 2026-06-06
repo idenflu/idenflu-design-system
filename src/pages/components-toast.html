@@ -1,0 +1,83 @@
+<section class="page-header component-page-header">
+  <p class="eyebrow">Components</p>
+  <h1>Toast</h1>
+  <p class="lede">화면 흐름을 막지 않는 단기 알림, undo, dismiss 기준입니다.</p>
+</section>
+
+<!-- partial:component-standard -->
+
+<!-- partial:component-template-map -->
+
+<section id="context-example" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Context example</p>
+    <h2>Toast는 결과를 알려주되 중요한 판단을 숨기지 않습니다.</h2>
+  </div>
+  <div class="component-context-example">
+    <div class="context-preview toast-demo-surface" data-toast-demo>
+      <button class="button primary small" type="button" data-toast-trigger data-toast-message="Campaign saved. Undo is available for 10 seconds.">Show toast</button>
+      <div class="toast-stack" aria-live="polite" aria-atomic="false">
+        <article class="toast-item success">
+          <strong>Campaign saved</strong>
+          <p>Rev 03 changes were saved.</p>
+          <button class="button ghost small" type="button">Undo</button>
+          <button class="icon-button small ghost" type="button" aria-label="Dismiss save toast" data-toast-dismiss>×</button>
+        </article>
+      </div>
+    </div>
+    <div class="context-rules">
+      <strong>Review checklist</strong>
+      <ul>
+        <li>필수 오류는 toast가 아니라 field helper나 feedback에 둡니다.</li>
+        <li>Undo가 있으면 toast 안에 명확한 action을 제공합니다.</li>
+        <li>Dismiss button은 accessible name을 갖습니다.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section surface-band">
+  <div class="section-heading"><p class="eyebrow">Anatomy visual</p><h2>Toast anatomy visual.</h2></div>
+  <div class="component-anatomy-visual">
+    <article><span class="anatomy-node primary">01</span><strong>Stack</strong><p>알림이 쌓이는 위치와 순서를 정의합니다.</p></article>
+    <article><span class="anatomy-node">02</span><strong>Message</strong><p>결과와 영향을 짧게 설명합니다.</p></article>
+    <article><span class="anatomy-node">03</span><strong>Action</strong><p>Undo, retry 같은 단기 복구를 제공합니다.</p></article>
+    <article><span class="anatomy-node">04</span><strong>Dismiss</strong><p>사용자가 알림을 제거할 수 있게 합니다.</p></article>
+  </div>
+</section>
+
+<!-- partial:component-token-contract -->
+
+<!-- partial:component-api-contract -->
+
+<!-- partial:component-token-binding -->
+
+<!-- partial:component-usage-guidance -->
+
+<section id="toast" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Toast</p>
+    <h2>Toast queue는 짧고 복구 가능한 결과만 담습니다.</h2>
+  </div>
+  <div class="toast-demo-grid">
+    <article class="toast-demo-surface" data-toast-demo>
+      <button class="button quiet small" type="button" data-toast-trigger data-toast-message="Reviewer assigned to Rev 03.">Assign reviewer</button>
+      <div class="toast-stack" aria-live="polite" aria-atomic="false"></div>
+    </article>
+    <article class="toast-demo-surface">
+      <div class="toast-stack" aria-live="assertive" aria-atomic="false">
+        <article class="toast-item error">
+          <strong>Sync failed</strong>
+          <p>Changes are still local. Retry when the workspace reconnects.</p>
+          <button class="button quiet small" type="button">Retry</button>
+          <button class="icon-button small ghost" type="button" aria-label="Dismiss sync toast" data-toast-dismiss>×</button>
+        </article>
+        <article class="toast-item warning">
+          <strong>Usage rights pending</strong>
+          <p>Approval is blocked until Finance signs off.</p>
+          <button class="button ghost small" type="button">View</button>
+        </article>
+      </div>
+    </article>
+  </div>
+</section>

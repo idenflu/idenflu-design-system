@@ -33,20 +33,26 @@
           <a href="components-avatar.html"><span>Avatar</span><small>Core components</small></a>
           <a href="components-inputs.html"><span>Inputs</span><small>Input and choice</small></a>
           <a href="components-select.html"><span>Select</span><small>Input and choice</small></a>
+          <a href="components-forms.html"><span>Forms</span><small>Input and choice</small></a>
           <a href="components-controls.html"><span>Controls</span><small>Input and choice</small></a>
           <a href="components-tabs.html"><span>Tabs</span><small>Input and choice</small></a>
+          <a href="components-disclosure.html"><span>Disclosure</span><small>Input and choice</small></a>
           <a href="components-menu.html"><span>Menu</span><small>Input and choice</small></a>
           <a href="components-combobox.html"><span>Combobox</span><small>Input and choice</small></a>
           <a href="components-badges.html"><span>Badges</span><small>Input and choice</small></a>
+          <a href="components-chips.html"><span>Chips</span><small>Input and choice</small></a>
           <a href="components-tooltips.html"><span>Tooltips</span><small>Input and choice</small></a>
           <a href="components-search-toolbar.html"><span>Search toolbar</span><small>Data and workflow</small></a>
           <a href="components-table.html"><span>Data table</span><small>Data and workflow</small></a>
+          <a href="components-pagination.html"><span>Pagination</span><small>Data and workflow</small></a>
           <a href="components-attachments.html"><span>Attachments</span><small>Data and workflow</small></a>
+          <a href="components-progress.html"><span>Progress</span><small>Data and workflow</small></a>
           <a href="components-date-time.html"><span>Date time</span><small>Data and workflow</small></a>
           <a href="components-stepper.html"><span>Stepper</span><small>Data and workflow</small></a>
           <a href="components-empty-states.html"><span>Empty states</span><small>Data and workflow</small></a>
           <a href="components-examples.html"><span>Examples</span><small>System surfaces</small></a>
           <a href="components-feedback.html"><span>Feedback</span><small>System surfaces</small></a>
+          <a href="components-toast.html"><span>Toast</span><small>System surfaces</small></a>
           <a class="active" href="components-overlays.html"><span>Overlays</span><small>System surfaces</small></a>
           <a href="components-navigation.html"><span>Navigation</span><small>System surfaces</small></a>
           <a href="#component-template-map"><span>Template</span><small>On this page</small></a>
@@ -64,22 +70,28 @@
         <p class="sidebar-label">Input and choice</p>
         <a href="components-inputs.html">Inputs</a>
         <a href="components-select.html">Select</a>
+        <a href="components-forms.html">Forms</a>
         <a href="components-controls.html">Controls</a>
         <a href="components-tabs.html">Tabs</a>
+        <a href="components-disclosure.html">Disclosure</a>
         <a href="components-menu.html">Menu</a>
         <a href="components-combobox.html">Combobox</a>
         <a href="components-badges.html">Badges</a>
+        <a href="components-chips.html">Chips</a>
         <a href="components-tooltips.html">Tooltips</a>
         <p class="sidebar-label">Data and workflow</p>
         <a href="components-search-toolbar.html">Search toolbar</a>
         <a href="components-table.html">Data table</a>
+        <a href="components-pagination.html">Pagination</a>
         <a href="components-attachments.html">Attachments</a>
+        <a href="components-progress.html">Progress</a>
         <a href="components-date-time.html">Date time</a>
         <a href="components-stepper.html">Stepper</a>
         <a href="components-empty-states.html">Empty states</a>
         <p class="sidebar-label">System surfaces</p>
         <a href="components-examples.html">Examples</a>
         <a href="components-feedback.html">Feedback</a>
+        <a href="components-toast.html">Toast</a>
         <a class="active" href="components-overlays.html">Overlays</a>
         <a href="components-navigation.html">Navigation</a>
         <p class="sidebar-label reference-label">On this page</p>
@@ -324,6 +336,47 @@
     <div class="spec-row"><span><strong>Header</strong></span><span>Title, description, close action으로 사용자가 열린 이유를 확인합니다.</span><span>제목은 명확한 결정명으로 쓰고, icon-only close는 accessible name을 둡니다.</span><span>Modal, drawer</span></div>
     <div class="spec-row"><span><strong>Body</strong></span><span>결정에 필요한 field, validation, impact summary를 담습니다.</span><span>오류 메시지와 helper text는 body 안에서 해결하고 값은 보존합니다.</span><span>Popover, modal, drawer</span></div>
     <div class="spec-row"><span><strong>Footer</strong></span><span>Cancel, primary, destructive action을 고정된 순서로 제공합니다.</span><span>보조 액션을 먼저 두고, destructive 또는 primary submit을 마지막에 둡니다.</span><span>Modal, drawer</span></div>
+  </div>
+</section>
+
+<section id="overlay-decision-guide" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Overlay decision guide</p>
+    <h2>Overlay를 열기 전에 더 낮은 표면으로 해결 가능한지 확인합니다.</h2>
+  </div>
+  <div class="overlay-decision-tree">
+    <article>
+      <span>01</span>
+      <strong>Use inline</strong>
+      <p>필드 helper, validation, 권한 사유처럼 사용자가 바로 고쳐야 하는 정보는 inline으로 둡니다.</p>
+    </article>
+    <article>
+      <span>02</span>
+      <strong>Use disclosure</strong>
+      <p>audit, blocker detail, advanced setting처럼 보조 상세는 같은 화면에서 접고 펼칩니다.</p>
+    </article>
+    <article>
+      <span>03</span>
+      <strong>Use menu</strong>
+      <p>행 주변의 보조 명령이나 정렬/필터는 menu로 낮춥니다.</p>
+    </article>
+    <article>
+      <span>04</span>
+      <strong>Use popover</strong>
+      <p>작은 선택이나 확인이 trigger 근처에서 끝나면 backdrop 없는 popover를 씁니다.</p>
+    </article>
+    <article>
+      <span>05</span>
+      <strong>Use modal</strong>
+      <p>삭제, 반려, 권한 변경처럼 현재 화면을 잠시 멈추고 결정해야 할 때만 modal을 씁니다.</p>
+    </article>
+  </div>
+  <div class="decision-table">
+    <div class="decision-row header"><span>Need</span><span>Surface</span><span>Reason</span></div>
+    <div class="decision-row"><span><strong>Explain field error</strong></span><span>Inline helper</span><span>오류는 사용자가 값을 고치는 자리 옆에 있어야 합니다.</span></div>
+    <div class="decision-row"><span><strong>Show audit detail</strong></span><span>Disclosure</span><span>맥락은 유지하고 상세만 열면 됩니다.</span></div>
+    <div class="decision-row"><span><strong>Choose row action</strong></span><span>Menu</span><span>반복 행 명령은 화면을 막을 필요가 없습니다.</span></div>
+    <div class="decision-row"><span><strong>Confirm destructive action</strong></span><span>Modal</span><span>결정 전 impact와 reason을 확인해야 합니다.</span></div>
   </div>
 </section>
 

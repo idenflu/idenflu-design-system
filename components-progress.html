@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Avatar - idenflu Design System</title>
+    <title>Progress - idenflu Design System</title>
     <link rel="stylesheet" href="tokens.generated.css?v=20260606-token-pipeline">
     <link rel="stylesheet" href="styles.css?v=20260606-system-complete">
   </head>
@@ -18,7 +18,7 @@
         <a href="guidelines.html">Reference</a>
       </nav>
       <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode" aria-pressed="false">Dark</button>
-      <div class="topbar-meta">Avatar</div>
+      <div class="topbar-meta">Progress</div>
     </header>
 
     <div class="doc-layout">
@@ -30,7 +30,7 @@
           <a href="components-buttons.html"><span>Buttons</span><small>Core components</small></a>
           <a href="components-icons.html"><span>Icons</span><small>Core components</small></a>
           <a href="components-cards.html"><span>Cards</span><small>Core components</small></a>
-          <a class="active" href="components-avatar.html"><span>Avatar</span><small>Core components</small></a>
+          <a href="components-avatar.html"><span>Avatar</span><small>Core components</small></a>
           <a href="components-inputs.html"><span>Inputs</span><small>Input and choice</small></a>
           <a href="components-select.html"><span>Select</span><small>Input and choice</small></a>
           <a href="components-forms.html"><span>Forms</span><small>Input and choice</small></a>
@@ -46,7 +46,7 @@
           <a href="components-table.html"><span>Data table</span><small>Data and workflow</small></a>
           <a href="components-pagination.html"><span>Pagination</span><small>Data and workflow</small></a>
           <a href="components-attachments.html"><span>Attachments</span><small>Data and workflow</small></a>
-          <a href="components-progress.html"><span>Progress</span><small>Data and workflow</small></a>
+          <a class="active" href="components-progress.html"><span>Progress</span><small>Data and workflow</small></a>
           <a href="components-date-time.html"><span>Date time</span><small>Data and workflow</small></a>
           <a href="components-stepper.html"><span>Stepper</span><small>Data and workflow</small></a>
           <a href="components-empty-states.html"><span>Empty states</span><small>Data and workflow</small></a>
@@ -66,7 +66,7 @@
         <a href="components-buttons.html">Buttons</a>
         <a href="components-icons.html">Icons</a>
         <a href="components-cards.html">Cards</a>
-        <a class="active" href="components-avatar.html">Avatar</a>
+        <a href="components-avatar.html">Avatar</a>
         <p class="sidebar-label">Input and choice</p>
         <a href="components-inputs.html">Inputs</a>
         <a href="components-select.html">Select</a>
@@ -84,7 +84,7 @@
         <a href="components-table.html">Data table</a>
         <a href="components-pagination.html">Pagination</a>
         <a href="components-attachments.html">Attachments</a>
-        <a href="components-progress.html">Progress</a>
+        <a class="active" href="components-progress.html">Progress</a>
         <a href="components-date-time.html">Date time</a>
         <a href="components-stepper.html">Stepper</a>
         <a href="components-empty-states.html">Empty states</a>
@@ -104,40 +104,40 @@
       <main>
 <section class="page-header component-page-header">
   <p class="eyebrow">Components</p>
-  <h1>Avatar</h1>
-  <p class="lede">owner, reviewer, creator를 텍스트와 함께 식별하는 기준입니다.</p>
+  <h1>Progress</h1>
+  <p class="lede">저장, 업로드, 동기화, 로딩 상태를 사용자가 판단할 수 있게 보여주는 기준입니다.</p>
 </section>
 
 <section id="component-standard" class="section surface-band">
   <div class="section-heading">
     <p class="eyebrow">Component standard</p>
-    <h2>Avatar 문서의 공통 구조.</h2>
+    <h2>Progress 문서의 공통 구조.</h2>
   </div>
   <div class="component-doc-grid">
     <article id="doc-anatomy" class="component-doc-card">
       <strong>Anatomy</strong>
-      <p>Image, initials, name, subtitle, presence, fallback을 나눕니다.</p>
-      <ul><li>Image</li><li>initials</li><li>name</li><li>subtitle</li><li>presence</li></ul>
+      <p>Label, status text, indicator, busy region, completion state를 나눕니다.</p>
+      <ul><li>label</li><li>status text</li><li>indicator</li><li>busy region</li><li>completion</li></ul>
     </article>
     <article id="doc-variants" class="component-doc-card">
       <strong>Variants</strong>
-      <p>Image avatar, initials, unassigned, stacked group, identity row</p>
+      <p>Progress bar, skeleton, inline spinner, upload progress, step progress</p>
     </article>
     <article id="doc-states" class="component-doc-card">
       <strong>States</strong>
-      <p>Image, initials, unassigned, online, busy, disabled 상태를 비교합니다.</p>
+      <p>Idle, indeterminate, determinate, skeleton, complete, error 상태를 비교합니다.</p>
     </article>
     <article id="doc-accessibility" class="component-doc-card">
       <strong>Accessibility</strong>
-      <p>정보성 이미지는 alt, 장식 avatar는 hidden, identity row는 name을 visible로 둡니다.</p>
+      <p>role progressbar, aria-valuenow, aria-busy, status text를 확인합니다.</p>
     </article>
     <article id="doc-examples" class="component-doc-card">
       <strong>Examples</strong>
-      <p>Owner, requester, approver, collaborator group에 사용합니다.</p>
+      <p>Upload, saving, syncing, list loading처럼 시간이 걸리는 상태에 사용합니다.</p>
     </article>
     <article id="doc-qa" class="component-doc-card">
       <strong>QA</strong>
-      <p>이미지 실패, 긴 이름, email subtitle, stacked overlap, dark contrast를 확인합니다.</p>
+      <p>Skeleton contrast, progress text, reduced motion, error recovery를 확인합니다.</p>
     </article>
   </div>
 </section>
@@ -145,99 +145,118 @@
 <section id="component-template-map" class="section">
   <div class="section-heading">
     <p class="eyebrow">Document template</p>
-    <h2>Avatar 문서는 사람이 누구인지 읽히는 정보 단위로 봅니다.</h2>
+    <h2>Progress 문서는 사용자가 기다릴 이유와 현재 상태를 같이 고정합니다.</h2>
   </div>
   <div class="component-template-map">
     <article>
       <span>01</span>
       <strong>Overview</strong>
-      <p>Avatar만으로 식별하지 말고 name이나 role과 함께 사용합니다.</p>
+      <p>로딩이 어떤 작업을 의미하는지 설명합니다.</p>
     </article>
     <article>
       <span>02</span>
       <strong>Anatomy</strong>
-      <p>Image, initials, fallback, name, subtitle, presence를 분리합니다.</p>
+      <p>Label, indicator, busy region, completion copy를 분리합니다.</p>
     </article>
     <article>
       <span>03</span>
       <strong>Variants</strong>
-      <p>Single, group, identity row, unassigned, system user를 구분합니다.</p>
+      <p>Skeleton, determinate bar, inline spinner를 구분합니다.</p>
     </article>
     <article>
       <span>04</span>
       <strong>States</strong>
-      <p>Online, busy, disabled, missing image, fallback initials를 비교합니다.</p>
+      <p>Loading, complete, error, retry 상태를 비교합니다.</p>
     </article>
     <article>
       <span>05</span>
       <strong>Accessibility</strong>
-      <p>Avatar alt, decorative hidden, visible identity text를 확인합니다.</p>
+      <p>aria-busy와 progressbar 값을 확인합니다.</p>
     </article>
     <article>
       <span>06</span>
       <strong>QA</strong>
-      <p>Long name, email wrap, stacked group, dark surface를 검증합니다.</p>
+      <p>긴 로딩 문구, dark contrast, 모바일 폭을 검증합니다.</p>
     </article>
   </div>
 </section>
 
 <section id="context-example" class="section surface-band">
-  <div class="section-heading"><p class="eyebrow">Context example</p><h2>Avatar는 owner와 승인 흐름의 사람 정보를 빠르게 보여줍니다.</h2></div>
+  <div class="section-heading">
+    <p class="eyebrow">Context example</p>
+    <h2>Progress는 기다릴 이유와 남은 상태를 같이 보여줍니다.</h2>
+  </div>
   <div class="component-context-example">
-    <div class="context-preview">
-      <div class="identity-row"><span class="avatar" aria-hidden="true">MP</span><span><strong>Mina Park</strong><small>Owner · mina@idenflu.com</small></span><span class="status mint">Online</span></div>
-      <div class="identity-row"><span class="avatar muted" aria-hidden="true">JL</span><span><strong>Jiho Lee</strong><small>Requested changes · Rev 02</small></span><span class="status amber">Waiting</span></div>
-      <div class="avatar-cluster" aria-label="Assigned reviewers"><span class="avatar">MP</span><span class="avatar">JL</span><span class="avatar muted">+3</span></div>
+    <div class="context-preview progress-demo-surface" data-progress-demo>
+      <div class="progress-row">
+        <strong>Uploading brief-v3.pdf</strong>
+        <span>68%</span>
+      </div>
+      <div class="progress-track" role="progressbar" aria-label="Upload progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="68"><span style="width: 68%"></span></div>
+      <div class="skeleton-list" aria-busy="true" aria-label="Loading creator rows">
+        <span class="skeleton-row"></span>
+        <span class="skeleton-row short"></span>
+      </div>
     </div>
     <div class="context-rules">
       <strong>Review checklist</strong>
       <ul>
-        <li>Avatar 옆에는 가능한 한 visible name을 함께 둡니다.</li>
-        <li>Fallback initials는 실제 이름에서 가져오고 임의 색상은 만들지 않습니다.</li>
-        <li>Group avatar는 인원 수와 상세 진입 경로를 함께 제공합니다.</li>
+        <li>수치가 있으면 determinate progressbar를 씁니다.</li>
+        <li>데이터 구조만 먼저 보일 때 skeleton을 씁니다.</li>
+        <li>오류가 나면 retry action을 feedback과 연결합니다.</li>
       </ul>
     </div>
+  </div>
+</section>
+
+<section class="section surface-band">
+  <div class="section-heading"><p class="eyebrow">Anatomy visual</p><h2>Progress anatomy visual.</h2></div>
+  <div class="component-anatomy-visual">
+    <article><span class="anatomy-node primary">01</span><strong>Label</strong><p>무엇이 진행 중인지 명시합니다.</p></article>
+    <article><span class="anatomy-node">02</span><strong>Indicator</strong><p>진행률 또는 skeleton을 보여줍니다.</p></article>
+    <article><span class="anatomy-node">03</span><strong>Status text</strong><p>완료, 실패, 대기 상태를 설명합니다.</p></article>
+    <article><span class="anatomy-node">04</span><strong>Recovery</strong><p>실패 시 retry 또는 cancel action을 제공합니다.</p></article>
   </div>
 </section>
 
 <section id="token-contract" class="section">
   <div class="section-heading">
     <p class="eyebrow">Token contract</p>
-    <h2>Avatar는 크기와 identity typography를 일관되게 씁니다.</h2>
+    <h2>Progress는 surface, primary, status token을 함께 씁니다.</h2>
   </div>
   <div class="component-token-contract">
     <div class="token-contract-row header"><span>Decision</span><span>Token</span><span>Rule</span></div>
-    <div class="token-contract-row"><span><strong>Size</strong></span><span>{sizing.control-height}</span><span>기본 avatar는 control height와 같은 크기를 사용합니다.</span></div>
-    <div class="token-contract-row"><span><strong>Initials</strong></span><span>{typography.body-emphasis}</span><span>Fallback initials는 작지만 선명한 emphasis를 사용합니다.</span></div>
-    <div class="token-contract-row"><span><strong>Surface</strong></span><span>{colors.surface-2}</span><span>이미지가 없을 때 neutral surface를 사용합니다.</span></div>
-    <div class="token-contract-row"><span><strong>Presence</strong></span><span>{colors.primary}</span><span>Presence는 보조 정보이며 이름을 대체하지 않습니다.</span></div>
+    <div class="token-contract-row"><span><strong>Track</strong></span><span>{colors.surface-2}</span><span>진행 track은 배경과 충분히 구분합니다.</span></div>
+    <div class="token-contract-row"><span><strong>Fill</strong></span><span>{colors.primary}</span><span>진행 중인 fill은 primary를 씁니다.</span></div>
+    <div class="token-contract-row"><span><strong>Skeleton</strong></span><span>{colors.primary-soft}</span><span>skeleton은 정보가 아닌 loading placeholder로 낮춥니다.</span></div>
+    <div class="token-contract-row"><span><strong>Text</strong></span><span>{typography.body-sm}</span><span>상태 문구는 지표 옆에 명시합니다.</span></div>
   </div>
 </section>
 
 <section id="component-api-contract" class="section surface-band">
   <div class="section-heading">
     <p class="eyebrow">API contract</p>
-    <h2>Avatar API 구현 계약.</h2>
+    <h2>Progress API 구현 계약.</h2>
   </div>
   <div class="component-api-contract">
     <div class="component-api-row header"><span>Type</span><span>Contract</span></div>
-    <div class="component-api-row"><span><strong>Props</strong></span><span>name, image, initials, size, presence, subtitle</span></div>
-    <div class="component-api-row"><span><strong>States</strong></span><span>image, initials, unassigned, online, busy, disabled</span></div>
-    <div class="component-api-row"><span><strong>A11y</strong></span><span>img alt when informative, decorative avatar hidden, visible name near identity rows</span></div>
+    <div class="component-api-row"><span><strong>Props</strong></span><span>value, label, mode, steps, busy region</span></div>
+    <div class="component-api-row"><span><strong>States</strong></span><span>idle, indeterminate, determinate, skeleton, complete, error</span></div>
+    <div class="component-api-row"><span><strong>A11y</strong></span><span>role progressbar, aria-valuenow, aria-busy, status text</span></div>
   </div>
 </section>
 
 <section id="component-token-binding" class="section">
   <div class="section-heading">
     <p class="eyebrow">Token usage</p>
-    <h2>Avatar tokens를 실제 token path에 연결합니다.</h2>
+    <h2>Progress tokens를 실제 token path에 연결합니다.</h2>
   </div>
   <div class="component-token-binding">
-    <span>{sizing.control-height}</span>
-    <span>{typography.body-emphasis}</span>
-    <span>{colors.surface-2}</span>
     <span>{colors.primary}</span>
-    <span>{colors.hairline}</span>
+    <span>{colors.primary-soft}</span>
+    <span>{colors.surface-2}</span>
+    <span>{typography.body-sm}</span>
+    <span>{spacing.sm}</span>
   </div>
 </section>
 
@@ -249,24 +268,43 @@
   <div class="component-usage-guidance">
     <article>
       <strong>Use</strong>
-      <p>owner, reviewer, creator처럼 사람이 누구인지 빠르게 식별해야 할 때 씁니다.</p>
+      <p>업로드, 저장, 동기화, 데이터 로딩처럼 진행 중임을 사용자가 판단해야 할 때 씁니다.</p>
     </article>
     <article>
       <strong>Avoid</strong>
-      <p>avatar만으로 사람을 식별하게 만들지 않습니다. 이름이나 역할 없이 이미지에 의존하지 않습니다.</p>
+      <p>즉시 끝나는 action에 skeleton이나 progress bar를 과하게 사용하지 않습니다.</p>
     </article>
     <article>
       <strong>Replace with</strong>
-      <p>책임자 정보는 identity row, 그룹 상태는 avatar group + visible count를 씁니다.</p>
+      <p>짧은 action은 button loading, 결과 없음은 empty state, 오류는 feedback을 씁니다.</p>
     </article>
   </div>
 </section>
 
-<section id="avatar" class="section">
-  <div class="section-heading"><p class="eyebrow">Avatar</p><h2>사람 정보는 avatar, 이름, 역할을 함께 보여줍니다.</h2></div>
-  <div class="identity-demo-grid">
-    <article class="identity-demo-surface identity-row"><span class="avatar">MP</span><span><strong>Owner identity</strong><small>Mina Park · Campaign owner</small></span><span class="status mint">Online</span></article>
-    <article class="identity-demo-surface"><strong>Reviewer group</strong><div class="avatar-cluster" aria-label="Reviewer group"><span class="avatar">MP</span><span class="avatar">JL</span><span class="avatar muted">+3</span></div><button class="button ghost small" type="button">Manage reviewers</button></article>
+<section id="progress" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Progress</p>
+    <h2>로딩 유형별로 다른 affordance를 사용합니다.</h2>
+  </div>
+  <div class="progress-demo-grid">
+    <article class="progress-demo-surface" data-progress-demo>
+      <div class="progress-row"><strong>Asset upload</strong><span>42%</span></div>
+      <div class="progress-track" role="progressbar" aria-label="Asset upload progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="42"><span style="width: 42%"></span></div>
+      <p class="select-output">Uploading 2 of 5 assets. You can keep reviewing the queue.</p>
+    </article>
+    <article class="progress-demo-surface" data-progress-demo>
+      <strong>Creator roster loading</strong>
+      <div class="skeleton-list" aria-busy="true">
+        <span class="skeleton-row"></span>
+        <span class="skeleton-row"></span>
+        <span class="skeleton-row short"></span>
+      </div>
+    </article>
+    <article class="progress-demo-surface" data-progress-demo>
+      <div class="progress-row"><strong>Sync failed</strong><span>Error</span></div>
+      <p class="select-output">Last save did not reach the workspace. Retry keeps the current field values.</p>
+      <button class="button quiet small" type="button">Retry sync</button>
+    </article>
   </div>
 </section>
       </main>

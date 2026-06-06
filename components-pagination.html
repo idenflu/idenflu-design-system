@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Avatar - idenflu Design System</title>
+    <title>Pagination - idenflu Design System</title>
     <link rel="stylesheet" href="tokens.generated.css?v=20260606-token-pipeline">
     <link rel="stylesheet" href="styles.css?v=20260606-system-complete">
   </head>
@@ -18,7 +18,7 @@
         <a href="guidelines.html">Reference</a>
       </nav>
       <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode" aria-pressed="false">Dark</button>
-      <div class="topbar-meta">Avatar</div>
+      <div class="topbar-meta">Pagination</div>
     </header>
 
     <div class="doc-layout">
@@ -30,7 +30,7 @@
           <a href="components-buttons.html"><span>Buttons</span><small>Core components</small></a>
           <a href="components-icons.html"><span>Icons</span><small>Core components</small></a>
           <a href="components-cards.html"><span>Cards</span><small>Core components</small></a>
-          <a class="active" href="components-avatar.html"><span>Avatar</span><small>Core components</small></a>
+          <a href="components-avatar.html"><span>Avatar</span><small>Core components</small></a>
           <a href="components-inputs.html"><span>Inputs</span><small>Input and choice</small></a>
           <a href="components-select.html"><span>Select</span><small>Input and choice</small></a>
           <a href="components-forms.html"><span>Forms</span><small>Input and choice</small></a>
@@ -44,7 +44,7 @@
           <a href="components-tooltips.html"><span>Tooltips</span><small>Input and choice</small></a>
           <a href="components-search-toolbar.html"><span>Search toolbar</span><small>Data and workflow</small></a>
           <a href="components-table.html"><span>Data table</span><small>Data and workflow</small></a>
-          <a href="components-pagination.html"><span>Pagination</span><small>Data and workflow</small></a>
+          <a class="active" href="components-pagination.html"><span>Pagination</span><small>Data and workflow</small></a>
           <a href="components-attachments.html"><span>Attachments</span><small>Data and workflow</small></a>
           <a href="components-progress.html"><span>Progress</span><small>Data and workflow</small></a>
           <a href="components-date-time.html"><span>Date time</span><small>Data and workflow</small></a>
@@ -66,7 +66,7 @@
         <a href="components-buttons.html">Buttons</a>
         <a href="components-icons.html">Icons</a>
         <a href="components-cards.html">Cards</a>
-        <a class="active" href="components-avatar.html">Avatar</a>
+        <a href="components-avatar.html">Avatar</a>
         <p class="sidebar-label">Input and choice</p>
         <a href="components-inputs.html">Inputs</a>
         <a href="components-select.html">Select</a>
@@ -82,7 +82,7 @@
         <p class="sidebar-label">Data and workflow</p>
         <a href="components-search-toolbar.html">Search toolbar</a>
         <a href="components-table.html">Data table</a>
-        <a href="components-pagination.html">Pagination</a>
+        <a class="active" href="components-pagination.html">Pagination</a>
         <a href="components-attachments.html">Attachments</a>
         <a href="components-progress.html">Progress</a>
         <a href="components-date-time.html">Date time</a>
@@ -104,40 +104,40 @@
       <main>
 <section class="page-header component-page-header">
   <p class="eyebrow">Components</p>
-  <h1>Avatar</h1>
-  <p class="lede">owner, reviewer, creator를 텍스트와 함께 식별하는 기준입니다.</p>
+  <h1>Pagination</h1>
+  <p class="lede">테이블과 리스트에서 현재 위치와 데이터 범위를 보여주는 page 이동 기준입니다.</p>
 </section>
 
 <section id="component-standard" class="section surface-band">
   <div class="section-heading">
     <p class="eyebrow">Component standard</p>
-    <h2>Avatar 문서의 공통 구조.</h2>
+    <h2>Pagination 문서의 공통 구조.</h2>
   </div>
   <div class="component-doc-grid">
     <article id="doc-anatomy" class="component-doc-card">
       <strong>Anatomy</strong>
-      <p>Image, initials, name, subtitle, presence, fallback을 나눕니다.</p>
-      <ul><li>Image</li><li>initials</li><li>name</li><li>subtitle</li><li>presence</li></ul>
+      <p>Nav landmark, page buttons, current page, page size, item count를 나눕니다.</p>
+      <ul><li>nav landmark</li><li>page buttons</li><li>current page</li><li>page size</li><li>item count</li></ul>
     </article>
     <article id="doc-variants" class="component-doc-card">
       <strong>Variants</strong>
-      <p>Image avatar, initials, unassigned, stacked group, identity row</p>
+      <p>Compact, full, table footer, mobile summary, page size selector</p>
     </article>
     <article id="doc-states" class="component-doc-card">
       <strong>States</strong>
-      <p>Image, initials, unassigned, online, busy, disabled 상태를 비교합니다.</p>
+      <p>First page, middle page, last page, loading, disabled, compact 상태를 비교합니다.</p>
     </article>
     <article id="doc-accessibility" class="component-doc-card">
       <strong>Accessibility</strong>
-      <p>정보성 이미지는 alt, 장식 avatar는 hidden, identity row는 name을 visible로 둡니다.</p>
+      <p>aria-current page, button label, disabled state, nav label을 확인합니다.</p>
     </article>
     <article id="doc-examples" class="component-doc-card">
       <strong>Examples</strong>
-      <p>Owner, requester, approver, collaborator group에 사용합니다.</p>
+      <p>Table footer, search result, audit log처럼 page 단위 이동에 사용합니다.</p>
     </article>
     <article id="doc-qa" class="component-doc-card">
       <strong>QA</strong>
-      <p>이미지 실패, 긴 이름, email subtitle, stacked overlap, dark contrast를 확인합니다.</p>
+      <p>Mobile wrapping, disabled prev/next, current page, count summary를 확인합니다.</p>
     </article>
   </div>
 </section>
@@ -145,99 +145,117 @@
 <section id="component-template-map" class="section">
   <div class="section-heading">
     <p class="eyebrow">Document template</p>
-    <h2>Avatar 문서는 사람이 누구인지 읽히는 정보 단위로 봅니다.</h2>
+    <h2>Pagination 문서는 현재 위치와 데이터 범위를 함께 고정합니다.</h2>
   </div>
   <div class="component-template-map">
     <article>
       <span>01</span>
       <strong>Overview</strong>
-      <p>Avatar만으로 식별하지 말고 name이나 role과 함께 사용합니다.</p>
+      <p>총 결과 수와 page 이동 이유를 설명합니다.</p>
     </article>
     <article>
       <span>02</span>
       <strong>Anatomy</strong>
-      <p>Image, initials, fallback, name, subtitle, presence를 분리합니다.</p>
+      <p>Prev, next, current, count, page size를 분리합니다.</p>
     </article>
     <article>
       <span>03</span>
       <strong>Variants</strong>
-      <p>Single, group, identity row, unassigned, system user를 구분합니다.</p>
+      <p>Compact, full, table footer 패턴을 비교합니다.</p>
     </article>
     <article>
       <span>04</span>
       <strong>States</strong>
-      <p>Online, busy, disabled, missing image, fallback initials를 비교합니다.</p>
+      <p>First, middle, last, loading, disabled 상태를 보여줍니다.</p>
     </article>
     <article>
       <span>05</span>
       <strong>Accessibility</strong>
-      <p>Avatar alt, decorative hidden, visible identity text를 확인합니다.</p>
+      <p>aria-current와 nav label을 확인합니다.</p>
     </article>
     <article>
       <span>06</span>
       <strong>QA</strong>
-      <p>Long name, email wrap, stacked group, dark surface를 검증합니다.</p>
+      <p>모바일 폭과 긴 count summary를 검증합니다.</p>
     </article>
   </div>
 </section>
 
 <section id="context-example" class="section surface-band">
-  <div class="section-heading"><p class="eyebrow">Context example</p><h2>Avatar는 owner와 승인 흐름의 사람 정보를 빠르게 보여줍니다.</h2></div>
+  <div class="section-heading">
+    <p class="eyebrow">Context example</p>
+    <h2>Pagination은 count, page size, current page를 같이 보여줍니다.</h2>
+  </div>
   <div class="component-context-example">
-    <div class="context-preview">
-      <div class="identity-row"><span class="avatar" aria-hidden="true">MP</span><span><strong>Mina Park</strong><small>Owner · mina@idenflu.com</small></span><span class="status mint">Online</span></div>
-      <div class="identity-row"><span class="avatar muted" aria-hidden="true">JL</span><span><strong>Jiho Lee</strong><small>Requested changes · Rev 02</small></span><span class="status amber">Waiting</span></div>
-      <div class="avatar-cluster" aria-label="Assigned reviewers"><span class="avatar">MP</span><span class="avatar">JL</span><span class="avatar muted">+3</span></div>
+    <div class="context-preview pagination-demo-surface" data-pagination-demo>
+      <p class="select-output">Showing 1-25 of 128 campaigns</p>
+      <nav class="pagination-control" aria-label="Campaign pages">
+        <button type="button" disabled data-pagination-prev>Prev</button>
+        <button type="button" aria-current="page">1</button>
+        <button type="button">2</button>
+        <button type="button">3</button>
+        <button type="button" data-pagination-next>Next</button>
+      </nav>
     </div>
     <div class="context-rules">
       <strong>Review checklist</strong>
       <ul>
-        <li>Avatar 옆에는 가능한 한 visible name을 함께 둡니다.</li>
-        <li>Fallback initials는 실제 이름에서 가져오고 임의 색상은 만들지 않습니다.</li>
-        <li>Group avatar는 인원 수와 상세 진입 경로를 함께 제공합니다.</li>
+        <li>현재 page는 aria-current로 표시합니다.</li>
+        <li>Prev/Next disabled는 첫/마지막 page에서 명확해야 합니다.</li>
+        <li>모바일에서는 count summary와 compact controls를 유지합니다.</li>
       </ul>
     </div>
+  </div>
+</section>
+
+<section class="section surface-band">
+  <div class="section-heading"><p class="eyebrow">Anatomy visual</p><h2>Pagination anatomy visual.</h2></div>
+  <div class="component-anatomy-visual">
+    <article><span class="anatomy-node primary">01</span><strong>Count</strong><p>현재 표시 범위와 전체 수를 설명합니다.</p></article>
+    <article><span class="anatomy-node">02</span><strong>Current page</strong><p>현재 위치를 aria-current로 고정합니다.</p></article>
+    <article><span class="anatomy-node">03</span><strong>Navigation</strong><p>Prev, next, boundary 이동을 제공합니다.</p></article>
+    <article><span class="anatomy-node">04</span><strong>Page size</strong><p>반복 업무에서 표시 밀도를 조정합니다.</p></article>
   </div>
 </section>
 
 <section id="token-contract" class="section">
   <div class="section-heading">
     <p class="eyebrow">Token contract</p>
-    <h2>Avatar는 크기와 identity typography를 일관되게 씁니다.</h2>
+    <h2>Pagination은 compact button과 current surface token을 씁니다.</h2>
   </div>
   <div class="component-token-contract">
     <div class="token-contract-row header"><span>Decision</span><span>Token</span><span>Rule</span></div>
-    <div class="token-contract-row"><span><strong>Size</strong></span><span>{sizing.control-height}</span><span>기본 avatar는 control height와 같은 크기를 사용합니다.</span></div>
-    <div class="token-contract-row"><span><strong>Initials</strong></span><span>{typography.body-emphasis}</span><span>Fallback initials는 작지만 선명한 emphasis를 사용합니다.</span></div>
-    <div class="token-contract-row"><span><strong>Surface</strong></span><span>{colors.surface-2}</span><span>이미지가 없을 때 neutral surface를 사용합니다.</span></div>
-    <div class="token-contract-row"><span><strong>Presence</strong></span><span>{colors.primary}</span><span>Presence는 보조 정보이며 이름을 대체하지 않습니다.</span></div>
+    <div class="token-contract-row"><span><strong>Button</strong></span><span>{sizing.control-height}</span><span>Page button은 compact control 높이를 유지합니다.</span></div>
+    <div class="token-contract-row"><span><strong>Current</strong></span><span>{colors.primary}</span><span>현재 page는 aria-current와 primary 색상으로 표시합니다.</span></div>
+    <div class="token-contract-row"><span><strong>Border</strong></span><span>{colors.hairline}</span><span>Footer 경계와 button border는 hairline을 씁니다.</span></div>
+    <div class="token-contract-row"><span><strong>Text</strong></span><span>{typography.body-sm}</span><span>Item count와 page size는 body-sm로 표시합니다.</span></div>
   </div>
 </section>
 
 <section id="component-api-contract" class="section surface-band">
   <div class="section-heading">
     <p class="eyebrow">API contract</p>
-    <h2>Avatar API 구현 계약.</h2>
+    <h2>Pagination API 구현 계약.</h2>
   </div>
   <div class="component-api-contract">
     <div class="component-api-row header"><span>Type</span><span>Contract</span></div>
-    <div class="component-api-row"><span><strong>Props</strong></span><span>name, image, initials, size, presence, subtitle</span></div>
-    <div class="component-api-row"><span><strong>States</strong></span><span>image, initials, unassigned, online, busy, disabled</span></div>
-    <div class="component-api-row"><span><strong>A11y</strong></span><span>img alt when informative, decorative avatar hidden, visible name near identity rows</span></div>
+    <div class="component-api-row"><span><strong>Props</strong></span><span>current page, total pages, page size, boundary links, item count</span></div>
+    <div class="component-api-row"><span><strong>States</strong></span><span>first page, middle page, last page, loading, disabled, compact</span></div>
+    <div class="component-api-row"><span><strong>A11y</strong></span><span>nav landmark, aria-current page, button labels, disabled state</span></div>
   </div>
 </section>
 
 <section id="component-token-binding" class="section">
   <div class="section-heading">
     <p class="eyebrow">Token usage</p>
-    <h2>Avatar tokens를 실제 token path에 연결합니다.</h2>
+    <h2>Pagination tokens를 실제 token path에 연결합니다.</h2>
   </div>
   <div class="component-token-binding">
     <span>{sizing.control-height}</span>
-    <span>{typography.body-emphasis}</span>
-    <span>{colors.surface-2}</span>
-    <span>{colors.primary}</span>
+    <span>{typography.body-sm}</span>
+    <span>{colors.surface-raised}</span>
     <span>{colors.hairline}</span>
+    <span>{colors.primary}</span>
   </div>
 </section>
 
@@ -249,24 +267,43 @@
   <div class="component-usage-guidance">
     <article>
       <strong>Use</strong>
-      <p>owner, reviewer, creator처럼 사람이 누구인지 빠르게 식별해야 할 때 씁니다.</p>
+      <p>테이블이나 리스트가 여러 페이지로 나뉘고 현재 위치와 page size가 반복 조작될 때 씁니다.</p>
     </article>
     <article>
       <strong>Avoid</strong>
-      <p>avatar만으로 사람을 식별하게 만들지 않습니다. 이름이나 역할 없이 이미지에 의존하지 않습니다.</p>
+      <p>무한 스크롤 화면이나 짧은 리스트에 pagination을 붙이지 않습니다.</p>
     </article>
     <article>
       <strong>Replace with</strong>
-      <p>책임자 정보는 identity row, 그룹 상태는 avatar group + visible count를 씁니다.</p>
+      <p>짧은 결과는 count summary, 연속 탐색은 load more, 큰 데이터 필터링은 search toolbar를 씁니다.</p>
     </article>
   </div>
 </section>
 
-<section id="avatar" class="section">
-  <div class="section-heading"><p class="eyebrow">Avatar</p><h2>사람 정보는 avatar, 이름, 역할을 함께 보여줍니다.</h2></div>
-  <div class="identity-demo-grid">
-    <article class="identity-demo-surface identity-row"><span class="avatar">MP</span><span><strong>Owner identity</strong><small>Mina Park · Campaign owner</small></span><span class="status mint">Online</span></article>
-    <article class="identity-demo-surface"><strong>Reviewer group</strong><div class="avatar-cluster" aria-label="Reviewer group"><span class="avatar">MP</span><span class="avatar">JL</span><span class="avatar muted">+3</span></div><button class="button ghost small" type="button">Manage reviewers</button></article>
+<section id="pagination" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Pagination</p>
+    <h2>테이블 footer와 search result에서 같은 기준을 씁니다.</h2>
+  </div>
+  <div class="pagination-demo-grid">
+    <article class="pagination-demo-surface" data-pagination-demo>
+      <p class="select-output">Showing 26-50 of 128 creators · Page 2 of 6</p>
+      <nav class="pagination-control" aria-label="Creator pages">
+        <button type="button" data-pagination-prev>Prev</button>
+        <button type="button">1</button>
+        <button type="button" aria-current="page">2</button>
+        <button type="button">3</button>
+        <button type="button" data-pagination-next>Next</button>
+      </nav>
+    </article>
+    <article class="pagination-demo-surface compact" data-pagination-demo>
+      <p class="select-output">Page 6 of 6</p>
+      <nav class="pagination-control compact" aria-label="Compact campaign pages">
+        <button type="button" data-pagination-prev>Previous</button>
+        <button type="button" aria-current="page">6</button>
+        <button type="button" disabled data-pagination-next>Next</button>
+      </nav>
+    </article>
   </div>
 </section>
       </main>

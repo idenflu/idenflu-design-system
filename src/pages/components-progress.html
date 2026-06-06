@@ -1,0 +1,82 @@
+<section class="page-header component-page-header">
+  <p class="eyebrow">Components</p>
+  <h1>Progress</h1>
+  <p class="lede">저장, 업로드, 동기화, 로딩 상태를 사용자가 판단할 수 있게 보여주는 기준입니다.</p>
+</section>
+
+<!-- partial:component-standard -->
+
+<!-- partial:component-template-map -->
+
+<section id="context-example" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Context example</p>
+    <h2>Progress는 기다릴 이유와 남은 상태를 같이 보여줍니다.</h2>
+  </div>
+  <div class="component-context-example">
+    <div class="context-preview progress-demo-surface" data-progress-demo>
+      <div class="progress-row">
+        <strong>Uploading brief-v3.pdf</strong>
+        <span>68%</span>
+      </div>
+      <div class="progress-track" role="progressbar" aria-label="Upload progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="68"><span style="width: 68%"></span></div>
+      <div class="skeleton-list" aria-busy="true" aria-label="Loading creator rows">
+        <span class="skeleton-row"></span>
+        <span class="skeleton-row short"></span>
+      </div>
+    </div>
+    <div class="context-rules">
+      <strong>Review checklist</strong>
+      <ul>
+        <li>수치가 있으면 determinate progressbar를 씁니다.</li>
+        <li>데이터 구조만 먼저 보일 때 skeleton을 씁니다.</li>
+        <li>오류가 나면 retry action을 feedback과 연결합니다.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section surface-band">
+  <div class="section-heading"><p class="eyebrow">Anatomy visual</p><h2>Progress anatomy visual.</h2></div>
+  <div class="component-anatomy-visual">
+    <article><span class="anatomy-node primary">01</span><strong>Label</strong><p>무엇이 진행 중인지 명시합니다.</p></article>
+    <article><span class="anatomy-node">02</span><strong>Indicator</strong><p>진행률 또는 skeleton을 보여줍니다.</p></article>
+    <article><span class="anatomy-node">03</span><strong>Status text</strong><p>완료, 실패, 대기 상태를 설명합니다.</p></article>
+    <article><span class="anatomy-node">04</span><strong>Recovery</strong><p>실패 시 retry 또는 cancel action을 제공합니다.</p></article>
+  </div>
+</section>
+
+<!-- partial:component-token-contract -->
+
+<!-- partial:component-api-contract -->
+
+<!-- partial:component-token-binding -->
+
+<!-- partial:component-usage-guidance -->
+
+<section id="progress" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Progress</p>
+    <h2>로딩 유형별로 다른 affordance를 사용합니다.</h2>
+  </div>
+  <div class="progress-demo-grid">
+    <article class="progress-demo-surface" data-progress-demo>
+      <div class="progress-row"><strong>Asset upload</strong><span>42%</span></div>
+      <div class="progress-track" role="progressbar" aria-label="Asset upload progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="42"><span style="width: 42%"></span></div>
+      <p class="select-output">Uploading 2 of 5 assets. You can keep reviewing the queue.</p>
+    </article>
+    <article class="progress-demo-surface" data-progress-demo>
+      <strong>Creator roster loading</strong>
+      <div class="skeleton-list" aria-busy="true">
+        <span class="skeleton-row"></span>
+        <span class="skeleton-row"></span>
+        <span class="skeleton-row short"></span>
+      </div>
+    </article>
+    <article class="progress-demo-surface" data-progress-demo>
+      <div class="progress-row"><strong>Sync failed</strong><span>Error</span></div>
+      <p class="select-output">Last save did not reach the workspace. Retry keeps the current field values.</p>
+      <button class="button quiet small" type="button">Retry sync</button>
+    </article>
+  </div>
+</section>

@@ -150,6 +150,7 @@ document.querySelectorAll("[data-overlay-open]").forEach((trigger) => {
   }
 
   const closeButtons = Array.from(overlay.querySelectorAll("[data-overlay-close]"));
+  const backdrop = document.querySelector(`[data-overlay-backdrop="${overlayId}"]`);
   let restoreTarget = trigger;
 
   const getFocusTarget = () =>
@@ -157,6 +158,9 @@ document.querySelectorAll("[data-overlay-open]").forEach((trigger) => {
 
   const closeOverlay = () => {
     overlay.hidden = true;
+    if (backdrop) {
+      backdrop.hidden = true;
+    }
     trigger.setAttribute("aria-expanded", "false");
     restoreTarget?.focus();
   };
@@ -164,6 +168,9 @@ document.querySelectorAll("[data-overlay-open]").forEach((trigger) => {
   trigger.addEventListener("click", () => {
     restoreTarget = trigger;
     overlay.hidden = false;
+    if (backdrop) {
+      backdrop.hidden = false;
+    }
     trigger.setAttribute("aria-expanded", "true");
     getFocusTarget()?.focus();
   });
@@ -178,6 +185,8 @@ document.querySelectorAll("[data-overlay-open]").forEach((trigger) => {
   closeButtons.forEach((button) => {
     button.addEventListener("click", closeOverlay);
   });
+
+  backdrop?.addEventListener("click", closeOverlay);
 });
 
 document.querySelectorAll("[data-combobox]").forEach((combobox) => {

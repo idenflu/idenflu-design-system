@@ -39,7 +39,7 @@
       </aside>
 
       <main>
-<section class="page-header">
+<section class="page-header component-page-header">
   <p class="eyebrow">Components</p>
   <h1>Overlays</h1>
   <p class="lede">Modal and sheet decision surfaces.</p>
@@ -79,6 +79,56 @@
   </div>
 </section>
 
+<section id="overlay-structure" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Overlay structure</p>
+    <h2>헤더, 바디, 푸터로 역할을 고정합니다.</h2>
+  </div>
+  <div class="overlay-structure-visual" aria-label="Overlay anatomy diagram">
+    <div class="overlay-anatomy-diagram">
+      <div class="overlay-anatomy-page">
+        <strong>Underlying page</strong>
+        <span>Trigger</span>
+        <span>Campaign table</span>
+        <span>Review context</span>
+      </div>
+      <div class="overlay-anatomy-backdrop">
+        <strong>Backdrop layer</strong>
+        <small>Dim + subtle blur</small>
+      </div>
+      <div class="overlay-anatomy-surface">
+        <span class="overlay-anatomy-surface-label">Surface</span>
+        <div class="overlay-anatomy-header">
+          <strong>Header</strong>
+          <small>Title, description, close</small>
+        </div>
+        <div class="overlay-anatomy-body">
+          <strong>Body</strong>
+          <small>Fields, validation, impact summary</small>
+        </div>
+        <div class="overlay-anatomy-footer">
+          <strong>Footer</strong>
+          <small>Cancel, primary, destructive action</small>
+        </div>
+      </div>
+    </div>
+    <div class="overlay-structure-notes">
+      <div><span>1. Open</span><p>Trigger가 overlay를 열고 focus restore target을 저장합니다.</p></div>
+      <div><span>2. Isolate</span><p>Modal은 backdrop으로 페이지 맥락을 낮추고 surface를 전면화합니다.</p></div>
+      <div><span>3. Decide</span><p>Header는 이유, body는 판단 근거, footer는 최종 액션을 담당합니다.</p></div>
+    </div>
+  </div>
+  <div class="spec-table">
+    <div class="spec-row header"><span>Part</span><span>Role</span><span>Rule</span><span>Used by</span></div>
+    <div class="spec-row"><span><strong>Trigger</strong></span><span>Overlay를 여는 원래 액션입니다.</span><span>aria-controls, aria-expanded를 연결하고 닫힐 때 focus를 복귀합니다.</span><span>Popover, modal, drawer</span></div>
+    <div class="spec-row"><span><strong>Backdrop</strong></span><span>페이지 맥락을 낮추고 modal 결정을 전면화합니다.</span><span>Modal에서만 사용하고, dim + blur + outside close를 함께 정의합니다.</span><span>Modal</span></div>
+    <div class="spec-row"><span><strong>Surface</strong></span><span>실제 floating panel 또는 dialog container입니다.</span><span>role, aria-modal, labelledby, describedby를 표면 단위로 둡니다.</span><span>Popover, modal, drawer</span></div>
+    <div class="spec-row"><span><strong>Header</strong></span><span>Title, description, close action으로 사용자가 열린 이유를 확인합니다.</span><span>제목은 명확한 결정명으로 쓰고, icon-only close는 accessible name을 둡니다.</span><span>Modal, drawer</span></div>
+    <div class="spec-row"><span><strong>Body</strong></span><span>결정에 필요한 field, validation, impact summary를 담습니다.</span><span>오류 메시지와 helper text는 body 안에서 해결하고 값은 보존합니다.</span><span>Popover, modal, drawer</span></div>
+    <div class="spec-row"><span><strong>Footer</strong></span><span>Cancel, primary, destructive action을 고정된 순서로 제공합니다.</span><span>보조 액션을 먼저 두고, destructive 또는 primary submit을 마지막에 둡니다.</span><span>Modal, drawer</span></div>
+  </div>
+</section>
+
 <section id="overlay-interactions" class="section">
   <div class="section-heading">
     <p class="eyebrow">Interaction contract</p>
@@ -92,39 +142,82 @@
     <div class="spec-row"><span><strong>Drawer</strong></span><span>Row detail action</span><span>Drawer title 또는 close button</span><span>Esc, close button, save 후 원래 row action으로 복귀</span></div>
   </div>
   <div class="overlay-demo-stage">
-    <div class="overlay-trigger-row">
-      <button class="button quiet" type="button" aria-expanded="false" aria-controls="assign-popover" data-overlay-open="assign-popover">Assign reviewer</button>
-      <button class="button primary" type="button" aria-expanded="false" aria-controls="reject-modal" data-overlay-open="reject-modal">Reject asset</button>
-      <button class="button ghost" type="button" aria-expanded="false" aria-controls="creator-drawer" data-overlay-open="creator-drawer">Open drawer</button>
-    </div>
-    <div id="assign-popover" class="interactive-overlay-panel popover" role="dialog" aria-labelledby="assign-popover-title" hidden data-overlay>
-      <strong id="assign-popover-title">Assign reviewer</strong>
-      <p>Mina will receive review deadline alerts.</p>
-      <div class="modal-actions">
-        <button class="button quiet small" type="button" data-overlay-close>Cancel</button>
-        <button class="button primary small" type="button" data-overlay-close>Assign</button>
-      </div>
-    </div>
-    <div id="reject-modal" class="interactive-overlay-panel" role="dialog" aria-modal="true" aria-labelledby="reject-modal-title" hidden data-overlay>
-      <strong id="reject-modal-title">Reject asset?</strong>
-      <label class="field">
-        <span>Reason</span>
-        <textarea rows="3">Disclosure copy is missing from the opening caption.</textarea>
-      </label>
-      <div class="modal-actions">
-        <button class="button quiet" type="button" data-overlay-close>Cancel</button>
-        <button class="button danger" type="button" data-overlay-close>Reject asset</button>
-      </div>
-    </div>
-    <div id="creator-drawer" class="interactive-overlay-panel drawer" role="dialog" aria-labelledby="creator-drawer-title" hidden data-overlay>
-      <strong id="creator-drawer-title">Creator Hana</strong>
-      <p>Rev 03 · Disclosure missing · Due today</p>
-      <div class="sheet-row"><span>Owner</span><strong>Mina</strong></div>
-      <div class="sheet-row"><span>Next action</span><strong>Request caption change</strong></div>
-      <div class="modal-actions">
-        <button class="button quiet" type="button" data-overlay-close>Close</button>
-        <button class="button primary" type="button" data-overlay-close>Request changes</button>
-      </div>
+    <div class="overlay-case-grid">
+      <article class="overlay-case">
+        <div class="overlay-case-header">
+          <p class="eyebrow">Popover case</p>
+          <strong>Assign reviewer</strong>
+          <p>Small contextual decisions stay close to the trigger and avoid backdrop.</p>
+        </div>
+        <div class="overlay-trigger-row">
+          <button class="button quiet" type="button" aria-expanded="false" aria-controls="assign-popover" data-overlay-open="assign-popover">Assign reviewer</button>
+        </div>
+        <div id="assign-popover" class="interactive-overlay-panel popover" role="dialog" aria-labelledby="assign-popover-title" hidden data-overlay>
+          <strong id="assign-popover-title">Assign reviewer</strong>
+          <p>Mina will receive review deadline alerts.</p>
+          <div class="modal-actions">
+            <button class="button quiet small" type="button" data-overlay-close>Cancel</button>
+            <button class="button primary small" type="button" data-overlay-close>Assign</button>
+          </div>
+        </div>
+      </article>
+      <article class="overlay-case modal-case">
+        <div class="overlay-case-header">
+          <p class="eyebrow">Modal + backdrop case</p>
+          <strong>Reject asset</strong>
+          <p>Destructive decisions dim and blur the surrounding workflow.</p>
+        </div>
+        <div class="overlay-trigger-row">
+          <button class="button primary" type="button" aria-expanded="false" aria-controls="reject-modal" data-overlay-open="reject-modal">Reject asset</button>
+        </div>
+        <div class="overlay-backdrop" hidden data-overlay-backdrop="reject-modal" data-overlay-close></div>
+        <div id="reject-modal" class="interactive-overlay-panel modal-panel" role="dialog" aria-modal="true" aria-labelledby="reject-modal-title" aria-describedby="reject-modal-description" hidden data-overlay>
+          <header class="modal-header">
+            <div>
+              <p class="eyebrow">Destructive decision</p>
+              <strong id="reject-modal-title">Reject asset?</strong>
+              <p id="reject-modal-description">This writes to the creator audit trail and notifies the campaign owner.</p>
+            </div>
+            <button class="icon-button small" type="button" aria-label="Close reject dialog" data-overlay-close><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-x"></use></svg></button>
+          </header>
+          <div class="modal-body">
+            <div class="modal-impact-list">
+              <span><strong>Audit</strong><small>Rev 03 status changes to rejected.</small></span>
+              <span><strong>Notify</strong><small>Mina and assigned creator receive the reason.</small></span>
+              <span><strong>Next</strong><small>Creator must upload a corrected caption.</small></span>
+            </div>
+            <label class="field invalid">
+              <span>Reason</span>
+              <textarea rows="3" aria-describedby="reject-modal-reason-help">Disclosure copy is missing from the opening caption.</textarea>
+              <small id="reject-modal-reason-help">Required. Keep the reason specific enough for the creator to act.</small>
+            </label>
+          </div>
+          <footer class="modal-footer">
+            <button class="button quiet" type="button" data-overlay-close>Cancel</button>
+            <button class="button danger" type="button" data-overlay-close>Reject asset</button>
+          </footer>
+        </div>
+      </article>
+      <article class="overlay-case">
+        <div class="overlay-case-header">
+          <p class="eyebrow">Drawer case</p>
+          <strong>Creator details</strong>
+          <p>Row detail panels keep page context visible while exposing next actions.</p>
+        </div>
+        <div class="overlay-trigger-row">
+          <button class="button ghost" type="button" aria-expanded="false" aria-controls="creator-drawer" data-overlay-open="creator-drawer">Open drawer</button>
+        </div>
+        <div id="creator-drawer" class="interactive-overlay-panel drawer" role="dialog" aria-labelledby="creator-drawer-title" hidden data-overlay>
+          <strong id="creator-drawer-title">Creator Hana</strong>
+          <p>Rev 03 · Disclosure missing · Due today</p>
+          <div class="sheet-row"><span>Owner</span><strong>Mina</strong></div>
+          <div class="sheet-row"><span>Next action</span><strong>Request caption change</strong></div>
+          <div class="modal-actions">
+            <button class="button quiet" type="button" data-overlay-close>Close</button>
+            <button class="button primary" type="button" data-overlay-close>Request changes</button>
+          </div>
+        </div>
+      </article>
     </div>
   </div>
 </section>
@@ -207,23 +300,54 @@
             <h2>모달과 시트는 결정 영역만 분리합니다.</h2>
           </div>
           <div class="overlay-grid">
-            <article class="modal-sample">
-              <div class="modal-topline"><strong>Reject asset?</strong><span class="chip coral">Needs reason</span></div>
-              <p>반려 사유는 creator와 audit trail에 함께 남습니다.</p>
-              <label class="field">
-                <span>Reason</span>
-                <textarea rows="3">Disclosure copy is missing from the opening caption.</textarea>
-              </label>
-              <div class="modal-actions">
-                <button class="button quiet" type="button">Cancel</button>
-                <button class="button danger" type="button">Reject asset</button>
+            <article class="modal-sample advanced-modal-sample">
+              <div class="modal-preview-backdrop" aria-hidden="true"></div>
+              <div class="modal-dialog-preview" role="dialog" aria-modal="true" aria-labelledby="sample-reject-title" aria-describedby="sample-reject-description">
+                <header class="modal-header">
+                  <div>
+                    <p class="eyebrow">Modal example</p>
+                    <strong id="sample-reject-title">Reject asset?</strong>
+                    <p id="sample-reject-description">반려 사유는 creator와 audit trail에 함께 남습니다.</p>
+                  </div>
+                  <button class="icon-button small" type="button" aria-label="Close sample modal"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-x"></use></svg></button>
+                </header>
+                <div class="modal-body">
+                  <div class="modal-impact-list">
+                    <span><strong>Status</strong><small>Rev 03 becomes rejected.</small></span>
+                    <span><strong>Owner</strong><small>Mina receives a change request.</small></span>
+                    <span><strong>Creator</strong><small>Reason is visible in the review queue.</small></span>
+                  </div>
+                  <label class="field invalid">
+                    <span>Reason</span>
+                    <textarea rows="3" aria-describedby="sample-reason-help">Disclosure copy is missing from the opening caption.</textarea>
+                    <small id="sample-reason-help">Required before destructive submit.</small>
+                  </label>
+                </div>
+                <footer class="modal-footer">
+                  <button class="button quiet" type="button">Cancel</button>
+                  <button class="button danger" type="button">Reject asset</button>
+                </footer>
               </div>
             </article>
             <article class="sheet-sample">
-              <div class="sheet-row"><span>Campaign</span><strong>Summer drop review</strong></div>
-              <div class="sheet-row"><span>Owner</span><strong>Mina</strong></div>
-              <div class="sheet-row"><span>Revision</span><strong>Rev 03</strong></div>
-              <div class="sheet-row"><span>Next action</span><strong>Approve or request changes</strong></div>
+              <header class="sheet-header">
+                <div>
+                  <p class="eyebrow">Sheet example</p>
+                  <strong>Creator review details</strong>
+                  <p>작업 맥락은 유지하고 상세 정보와 다음 액션만 분리합니다.</p>
+                </div>
+                <span class="chip blue">Rev 03</span>
+              </header>
+              <div class="sheet-body">
+                <div class="sheet-row"><span>Campaign</span><strong>Summer drop review</strong></div>
+                <div class="sheet-row"><span>Owner</span><strong>Mina</strong></div>
+                <div class="sheet-row"><span>Revision</span><strong>Rev 03</strong></div>
+                <div class="sheet-row"><span>Next action</span><strong>Approve or request changes</strong></div>
+              </div>
+              <footer class="sheet-footer">
+                <button class="button quiet" type="button">Close</button>
+                <button class="button primary" type="button">Request changes</button>
+              </footer>
             </article>
           </div>
         </section>

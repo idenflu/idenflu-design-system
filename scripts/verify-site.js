@@ -59,6 +59,17 @@ if (config) {
   if (!generatedFiles.includes("starter-kit.html")) failures.push("missing starter kit page");
   if (!generatedFiles.includes("changelog.html")) failures.push("missing changelog page");
 
+  ["components.html", ...componentPages].forEach((file) => {
+    const source = read(path.join("src/pages", file));
+    if (!source.startsWith('<section class="page-header component-page-header">')) {
+      failures.push(`${file}: missing compact component page header`);
+    }
+  });
+
+  if (!styles.includes(".component-page-header")) {
+    failures.push("styles.css: missing component page header override");
+  }
+
   componentPages.forEach((file) => {
     const source = read(path.join("src/pages", file));
     ["component-standard", "doc-anatomy", "doc-variants", "doc-states", "doc-accessibility", "doc-examples"].forEach((id) => {
@@ -69,6 +80,94 @@ if (config) {
   const componentIndex = read("components.html");
   if (!componentIndex.includes("component-index-grid")) {
     failures.push("components.html: missing component-index-grid");
+  }
+
+  const cardSource = read(path.join("src/pages", "components-cards.html"));
+  ["card-header", "card-body", "card-footer"].forEach((className) => {
+    if (!cardSource.includes(`class="${className}"`)) {
+      failures.push(`components-cards.html: missing ${className}`);
+    }
+  });
+
+  const buttonSource = read(path.join("src/pages", "components-buttons.html"));
+  [
+    ["Small", ['class="button quiet small"', 'class="button primary small"', 'class="icon-button small"']],
+    ["Medium", ['class="button quiet"', 'class="button primary"', 'class="icon-button"']],
+    ["Large", ['class="button quiet large"', 'class="button primary large"', 'class="icon-button large"']],
+  ].forEach(([label, requiredMarkers]) => {
+    const section = buttonSource.match(new RegExp(`<span>${label}[^<]*<\\/span>([\\s\\S]*?)<\\/article>`));
+    if (!section) {
+      failures.push(`components-buttons.html: missing ${label.toLowerCase()} button size example`);
+      return;
+    }
+
+    requiredMarkers.forEach((marker) => {
+      if (!section[1].includes(marker)) {
+        failures.push(`components-buttons.html: ${label.toLowerCase()} size missing ${marker}`);
+      }
+    });
+  });
+
+  const overlaySource = read(path.join("src/pages", "components-overlays.html"));
+  if (!overlaySource.includes('id="overlay-structure"')) {
+    failures.push('components-overlays.html: missing id="overlay-structure"');
+  }
+
+  [
+    "overlay-structure-visual",
+    "overlay-anatomy-diagram",
+    "overlay-anatomy-backdrop",
+    "overlay-anatomy-surface",
+    "overlay-anatomy-header",
+    "overlay-anatomy-body",
+    "overlay-anatomy-footer",
+  ].forEach((className) => {
+    if (!overlaySource.includes(`class="${className}"`)) {
+      failures.push(`components-overlays.html: missing ${className}`);
+    }
+  });
+
+  ["Underlying page", "Backdrop layer", "Surface", "Header", "Body", "Footer"].forEach((label) => {
+    if (!overlaySource.includes(label)) {
+      failures.push(`components-overlays.html: missing overlay visual label ${label}`);
+    }
+  });
+
+  [
+    "modal-header",
+    "modal-body",
+    "modal-footer",
+    "modal-impact-list",
+    "overlay-case-grid",
+    "overlay-case",
+    "sheet-header",
+    "sheet-body",
+    "sheet-footer",
+    "overlay-backdrop",
+  ].forEach((className) => {
+    if (!overlaySource.includes(`class="${className}"`)) {
+      failures.push(`components-overlays.html: missing ${className}`);
+    }
+  });
+
+  ["Trigger", "Backdrop", "Surface", "Header", "Body", "Footer"].forEach((label) => {
+    if (!overlaySource.includes(`<strong>${label}</strong>`)) {
+      failures.push(`components-overlays.html: missing overlay structure ${label}`);
+    }
+  });
+
+  ["Popover case", "Modal + backdrop case", "Drawer case"].forEach((label) => {
+    if (!overlaySource.includes(label)) {
+      failures.push(`components-overlays.html: missing ${label}`);
+    }
+  });
+
+  if (!styles.includes("backdrop-filter: blur(3px)")) {
+    failures.push("styles.css: missing backdrop blur");
+  }
+
+  if (!read("script.js").includes("data-overlay-backdrop")) {
+    failures.push("script.js: missing overlay backdrop behavior");
   }
 
   ["starter-kit.html", "guidelines.html", "states.html", "accessibility.html", "responsive.html", "enterprise.html", "visual-qa.html", "changelog.html"].forEach((file) => {

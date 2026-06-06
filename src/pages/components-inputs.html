@@ -38,6 +38,64 @@
   </div>
 </section>
 
+<section id="component-template-map" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Document template</p>
+    <h2>Inputs 문서는 label, value, validation, recovery를 같은 순서로 봅니다.</h2>
+  </div>
+  <div class="component-template-map">
+    <article><span>01</span><strong>Overview</strong><p>필드가 어떤 값을 받고 어떤 결정에 영향을 주는지 정의합니다.</p></article>
+    <article><span>02</span><strong>Anatomy</strong><p>Visible label, control, helper, prefix/suffix, error를 분리합니다.</p></article>
+    <article><span>03</span><strong>Variants</strong><p>Text, search, select, textarea, readonly, disabled, locked를 구분합니다.</p></article>
+    <article><span>04</span><strong>States</strong><p>Focus, filled, invalid, success, server error, disabled를 비교합니다.</p></article>
+    <article><span>05</span><strong>Accessibility</strong><p>Label, aria-invalid, aria-describedby, combobox 관계를 확인합니다.</p></article>
+    <article><span>06</span><strong>QA</strong><p>긴 값, empty value, validation summary, mobile keyboard를 검증합니다.</p></article>
+  </div>
+</section>
+
+<section id="context-example" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Context example</p>
+    <h2>Input은 사용자가 고칠 수 있는 값과 고칠 수 없는 값을 명확히 나눕니다.</h2>
+  </div>
+  <div class="component-context-example">
+    <div class="context-preview">
+      <label class="field invalid">
+        <span>Disclosure line</span>
+        <input type="text" value="" aria-invalid="true" aria-describedby="context-disclosure-error">
+        <small id="context-disclosure-error">첫 caption line에 disclosure가 필요합니다.</small>
+      </label>
+      <label class="field">
+        <span>Campaign ID</span>
+        <input type="text" value="CMP-2026-0612" readonly>
+        <small>읽고 복사할 수 있지만 편집하지 않습니다.</small>
+      </label>
+    </div>
+    <div class="context-rules">
+      <strong>Review checklist</strong>
+      <ul>
+        <li>Placeholder는 label을 대체하지 않습니다.</li>
+        <li>Error text는 field와 aria-describedby로 연결합니다.</li>
+        <li>readonly와 disabled는 사용자가 기대하는 조작 가능성이 다릅니다.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="token-contract" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Token contract</p>
+    <h2>Input은 field height, border, helper text 토큰으로 상태를 읽힙니다.</h2>
+  </div>
+  <div class="component-token-contract">
+    <div class="token-contract-row header"><span>Decision</span><span>Token</span><span>Rule</span></div>
+    <div class="token-contract-row"><span><strong>Height</strong></span><span>{sizing.field-height}</span><span>Text field와 select는 40px 높이를 기본으로 둡니다.</span></div>
+    <div class="token-contract-row"><span><strong>Typography</strong></span><span>{typography.body}</span><span>입력값은 body, helper는 body-sm 계층을 사용합니다.</span></div>
+    <div class="token-contract-row"><span><strong>Border</strong></span><span>{colors.hairline}</span><span>Default border는 얇게, focus와 invalid만 강하게 표시합니다.</span></div>
+    <div class="token-contract-row"><span><strong>Error</strong></span><span>{colors.accent-coral}</span><span>오류는 border, helper text, aria-invalid를 함께 사용합니다.</span></div>
+  </div>
+</section>
+
 <section id="input-spec" class="section">
   <div class="section-heading">
     <p class="eyebrow">Input spec</p>

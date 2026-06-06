@@ -38,6 +38,51 @@
   </div>
 </section>
 
+<section id="example-blueprint" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Example blueprint</p>
+    <h2>예시는 컴포넌트 나열이 아니라 화면 판단 단위로 구성합니다.</h2>
+  </div>
+  <div class="scenario-matrix">
+    <article>
+      <strong>Review workbench</strong>
+      <p>Data table, asset preview, feedback, overlay action이 한 흐름 안에서 동작합니다.</p>
+      <span>Table + overlay + feedback</span>
+    </article>
+    <article>
+      <strong>Creator shortlist</strong>
+      <p>Cards, filters, status chips, row actions로 비교와 초대를 지원합니다.</p>
+      <span>Cards + controls + buttons</span>
+    </article>
+    <article>
+      <strong>Settings and permissions</strong>
+      <p>Readonly field, switch, checkbox, locked reason으로 권한 경계를 보여줍니다.</p>
+      <span>Inputs + controls + notices</span>
+    </article>
+  </div>
+  <div class="screen-composition-demo">
+    <div class="composition-sidebar">
+      <strong>Composition rule</strong>
+      <span>1. Context</span>
+      <span>2. Visible metadata</span>
+      <span>3. Decision action</span>
+      <span>4. Recovery state</span>
+    </div>
+    <div class="composition-main">
+      <div class="context-preview-header">
+        <strong>Review workbench</strong>
+        <span class="status coral">3 blocked</span>
+      </div>
+      <div class="example-data-row"><strong>Summer drop review</strong><span>Rev 03</span><small>Mina · Due today</small></div>
+      <div class="inline-error"><strong>Disclosure missing</strong><p>Resolve before approval.</p><button class="button ghost small" type="button">Open issue</button></div>
+      <div class="case-actions">
+        <button class="button quiet" type="button">Request changes</button>
+        <button class="button primary" type="button">Resolve selected</button>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="examples" class="section">
           <div class="section-heading">
             <p class="eyebrow">Example cases</p>

@@ -449,10 +449,10 @@ IBM 원본이 `white + charcoal + blue + square`였다면, idenflu는 `clean whi
 | 명확한 정보 계층 | 더 제품적인 density와 campaign metadata |
 | 얇은 hairline과 차분한 표면 | 0px radius, controlled neutral, subtle panel depth |
 | 단일 primary CTA | precise blue action + vivid bounded semantic accents |
-| square enterprise chrome | white app chrome + creator operations workspace |
+| square enterprise chrome | white app chrome + visible product context |
 | light display type | 단단한 700 display weight와 한국어 가독성 |
 
-IBM의 장점은 구조다. idenflu의 차별점은 **신뢰감 있는 운영 콘솔 안에서 크리에이터 업무 맥락이 보이는 것**이다.
+IBM의 장점은 구조다. idenflu의 차별점은 **명확한 제품 화면 안에서 상태와 다음 행동이 바로 보이는 것**이다.
 
 ## Colors
 

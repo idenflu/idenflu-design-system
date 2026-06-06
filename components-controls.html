@@ -79,6 +79,62 @@
   </div>
 </section>
 
+<section id="component-template-map" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Document template</p>
+    <h2>Controls 문서는 선택 범위와 상태 전환을 먼저 고정합니다.</h2>
+  </div>
+  <div class="component-template-map">
+    <article><span>01</span><strong>Overview</strong><p>컨트롤이 필터, 설정, 상태 변경 중 어떤 역할인지 정의합니다.</p></article>
+    <article><span>02</span><strong>Anatomy</strong><p>Label, current value, control target, helper, disabled reason을 나눕니다.</p></article>
+    <article><span>03</span><strong>Variants</strong><p>Segmented control, switch, checkbox, range를 작업 맥락별로 구분합니다.</p></article>
+    <article><span>04</span><strong>States</strong><p>Checked, selected, indeterminate, disabled, focus 상태를 비교합니다.</p></article>
+    <article><span>05</span><strong>Accessibility</strong><p>Native input, group label, aria-checked, keyboard path를 확인합니다.</p></article>
+    <article><span>06</span><strong>QA</strong><p>Long label, compact density, disabled hover, range value 표시를 검증합니다.</p></article>
+  </div>
+</section>
+
+<section id="context-example" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Context example</p>
+    <h2>컨트롤은 테이블과 설정 화면에서 선택 범위를 명확하게 만듭니다.</h2>
+  </div>
+  <div class="component-context-example">
+    <div class="context-preview">
+      <div class="context-preview-header"><strong>Review filter controls</strong><span>Compact</span></div>
+      <div class="segmented-control" role="group" aria-label="Review status filter">
+        <button class="active" type="button">All</button>
+        <button type="button">Risk</button>
+        <button type="button">Ready</button>
+      </div>
+      <label class="switch-row"><span>Notify assigned reviewers</span><input type="checkbox" checked></label>
+      <label class="range-field"><span>Audience fit threshold</span><input type="range" min="0" max="100" value="72"><strong>72%</strong></label>
+    </div>
+    <div class="context-rules">
+      <strong>Review checklist</strong>
+      <ul>
+        <li>선택값이 하나면 segmented control, 여러 개면 checkbox group을 사용합니다.</li>
+        <li>Switch는 즉시 적용되는 설정에만 사용합니다.</li>
+        <li>Range는 현재 값을 숫자로 항상 함께 보여줍니다.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="token-contract" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Token contract</p>
+    <h2>컨트롤은 compact density와 focus token을 기준으로 맞춥니다.</h2>
+  </div>
+  <div class="component-token-contract">
+    <div class="token-contract-row header"><span>Decision</span><span>Token</span><span>Rule</span></div>
+    <div class="token-contract-row"><span><strong>Height</strong></span><span>{sizing.control-height}</span><span>기본 컨트롤은 버튼과 같은 높이 체계를 씁니다.</span></div>
+    <div class="token-contract-row"><span><strong>Compact</strong></span><span>{density.compact}</span><span>테이블 toolbar 안에서는 compact 높이와 8px gap을 사용합니다.</span></div>
+    <div class="token-contract-row"><span><strong>Selected</strong></span><span>{colors.primary-soft}</span><span>선택 상태는 soft background와 primary border로 표시합니다.</span></div>
+    <div class="token-contract-row"><span><strong>Focus</strong></span><span>{colors.primary}</span><span>키보드 focus는 hover와 별개로 항상 보입니다.</span></div>
+  </div>
+</section>
+
 <section id="controls" class="section">
           <div class="section-heading">
             <p class="eyebrow">Controls</p>

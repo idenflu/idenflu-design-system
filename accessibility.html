@@ -146,6 +146,42 @@
   </div>
 </section>
 
+<section id="interaction-qa" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Interaction QA</p>
+    <h2>문서 기준은 실제 키보드 동작으로 검증합니다.</h2>
+  </div>
+  <div class="interaction-qa-grid">
+    <article>
+      <strong>Overlay focus trap</strong>
+      <p>Modal이 열리면 Tab은 dialog 안에서 순환하고 Esc 또는 close 후 trigger로 돌아갑니다.</p>
+      <ul>
+        <li>Initial focus: safe action or first field</li>
+        <li>Trap: first/last focusable wrap</li>
+        <li>Restore: original trigger</li>
+      </ul>
+    </article>
+    <article>
+      <strong>Table keyboard navigation</strong>
+      <p>Review queue row는 hover 없이도 Arrow key와 Tab으로 행 action에 접근할 수 있어야 합니다.</p>
+      <ul>
+        <li>ArrowDown/ArrowUp move row focus</li>
+        <li>Home/End move first or last row</li>
+        <li>Row action remains tabbable</li>
+      </ul>
+    </article>
+    <article>
+      <strong>Form error linkage</strong>
+      <p>오류 summary, field, helper text가 id로 연결되어 사용자가 바로 복구할 수 있어야 합니다.</p>
+      <ul>
+        <li>aria-invalid on field</li>
+        <li>aria-describedby to helper</li>
+        <li>role alert for blocking summary</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
 <section id="aria-roles" class="section surface-band">
   <div class="section-heading">
     <p class="eyebrow">ARIA role matrix</p>

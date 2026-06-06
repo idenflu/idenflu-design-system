@@ -79,6 +79,61 @@
   </div>
 </section>
 
+<section id="component-template-map" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Document template</p>
+    <h2>Tabs 문서는 전환 대상과 keyboard model을 함께 정의합니다.</h2>
+  </div>
+  <div class="component-template-map">
+    <article><span>01</span><strong>Overview</strong><p>탭이 같은 화면 안의 view mode 전환인지 먼저 확인합니다.</p></article>
+    <article><span>02</span><strong>Anatomy</strong><p>Tablist, tab, selected tab, tabpanel, panel label을 분리합니다.</p></article>
+    <article><span>03</span><strong>Variants</strong><p>Product tabs, compact tabs, disabled tabs, overflow tabs를 구분합니다.</p></article>
+    <article><span>04</span><strong>States</strong><p>Selected, hover, focus, disabled, loading panel 상태를 비교합니다.</p></article>
+    <article><span>05</span><strong>Accessibility</strong><p>Arrow key, Home/End, aria-selected, aria-controls를 검증합니다.</p></article>
+    <article><span>06</span><strong>QA</strong><p>긴 tab label, mobile wrap, disabled tab, hidden panel을 확인합니다.</p></article>
+  </div>
+</section>
+
+<section id="context-example" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Context example</p>
+    <h2>탭은 같은 객체를 다른 관점으로 볼 때 사용합니다.</h2>
+  </div>
+  <div class="component-context-example">
+    <div class="context-preview">
+      <div class="context-preview-header"><strong>Campaign detail views</strong><span class="chip blue">3 views</span></div>
+      <div class="tab-list" role="tablist" aria-label="Campaign detail view example">
+        <button class="tab active" type="button" role="tab" aria-selected="true">Overview</button>
+        <button class="tab" type="button" role="tab" aria-selected="false">Creators</button>
+        <button class="tab" type="button" role="tab" aria-selected="false">Audit</button>
+      </div>
+      <div class="tab-panel active"><h3>Overview</h3><p>상태, owner, revision, due를 한 화면에서 확인합니다.</p></div>
+    </div>
+    <div class="context-rules">
+      <strong>Review checklist</strong>
+      <ul>
+        <li>탭은 페이지 이동이 아니라 같은 자리의 panel 전환에만 사용합니다.</li>
+        <li>선택된 tab과 panel은 aria-controls/labelledby로 연결합니다.</li>
+        <li>탭 수가 많아지면 navigation 또는 sidebar로 바꿉니다.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="token-contract" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Token contract</p>
+    <h2>탭은 버튼보다 낮은 표면 위에서 선택 상태를 명확히 보여줍니다.</h2>
+  </div>
+  <div class="component-token-contract">
+    <div class="token-contract-row header"><span>Decision</span><span>Token</span><span>Rule</span></div>
+    <div class="token-contract-row"><span><strong>Typography</strong></span><span>{typography.body-emphasis}</span><span>Tab label은 짧고 반복 스캔이 가능해야 합니다.</span></div>
+    <div class="token-contract-row"><span><strong>Selected</strong></span><span>{colors.primary}</span><span>선택 상태는 primary text와 underline/border로 표현합니다.</span></div>
+    <div class="token-contract-row"><span><strong>Panel</strong></span><span>{colors.surface-raised}</span><span>Panel은 tablist와 같은 표면 흐름 안에 둡니다.</span></div>
+    <div class="token-contract-row"><span><strong>Focus</strong></span><span>{colors.primary}</span><span>Arrow 이동 후 focus 위치가 시각적으로 보여야 합니다.</span></div>
+  </div>
+</section>
+
 <section id="tabs" class="section surface-band">
           <div class="section-heading">
             <p class="eyebrow">Tabs</p>

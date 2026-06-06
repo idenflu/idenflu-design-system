@@ -48,8 +48,12 @@ const styles = read("styles.css");
 });
 
 const script = read("script.js");
-["[data-overlay-open]", "[data-overlay-close]", "aria-expanded", "Escape"].forEach((marker) => {
+["[data-overlay-open]", "[data-overlay-close]", "aria-expanded", "Escape", "trapOverlayFocus", "getFocusableElements"].forEach((marker) => {
   if (!script.includes(marker)) failures.push(`script.js: missing overlay marker ${marker}`);
+});
+
+["[data-keyboard-table]", "moveTableFocus", "data-row-focus"].forEach((marker) => {
+  if (!script.includes(marker)) failures.push(`script.js: missing table keyboard marker ${marker}`);
 });
 
 const htmlFiles = fs
@@ -73,6 +77,13 @@ const table = read("components-table.html");
 if (!table.includes("aria-sort=\"ascending\"")) failures.push("components-table.html: missing active sort marker");
 if (!table.includes("aria-expanded=\"true\"")) failures.push("components-table.html: missing expanded row marker");
 if (!table.includes("disabled>Approve</button>")) failures.push("components-table.html: missing locked row disabled action");
+if (!table.includes("data-keyboard-table")) failures.push("components-table.html: missing keyboard table marker");
+if (!table.includes("data-row-focus")) failures.push("components-table.html: missing row focus marker");
+
+const accessibility = read("accessibility.html");
+["Overlay focus trap", "Table keyboard navigation", "Form error linkage"].forEach((marker) => {
+  if (!accessibility.includes(marker)) failures.push(`accessibility.html: missing ${marker}`);
+});
 
 if (failures.length) {
   console.error(failures.join("\n"));

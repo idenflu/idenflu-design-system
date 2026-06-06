@@ -38,6 +38,63 @@
   </div>
 </section>
 
+<section id="component-template-map" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Document template</p>
+    <h2>Feedback 문서는 상태, 원인, 복구 액션을 함께 정의합니다.</h2>
+  </div>
+  <div class="component-template-map">
+    <article><span>01</span><strong>Overview</strong><p>메시지가 정보, 성공, 주의, 오류, 진행 중 중 무엇인지 정합니다.</p></article>
+    <article><span>02</span><strong>Anatomy</strong><p>Tone, message, reason, recovery action, live region을 나눕니다.</p></article>
+    <article><span>03</span><strong>Variants</strong><p>Notice, toast, progress, empty, error, locked feedback을 구분합니다.</p></article>
+    <article><span>04</span><strong>States</strong><p>Queued, saving, synced, failed, blocked 상태를 비교합니다.</p></article>
+    <article><span>05</span><strong>Accessibility</strong><p>role status/alert, focus 이동, recovery button label을 확인합니다.</p></article>
+    <article><span>06</span><strong>QA</strong><p>색상 없이 읽기, 긴 메시지, retry 후 상태 보존을 검증합니다.</p></article>
+  </div>
+</section>
+
+<section id="context-example" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Context example</p>
+    <h2>Feedback은 사용자가 다음 행동을 판단할 수 있게 원인과 복구를 제공합니다.</h2>
+  </div>
+  <div class="component-context-example">
+    <div class="context-preview">
+      <article class="notice warning" role="status">
+        <strong>Deadline risk</strong>
+        <p>3 assets are waiting for creator revision. Request changes before 18:00 KST.</p>
+      </article>
+      <div class="inline-error" role="alert">
+        <strong>Rows failed to sync</strong>
+        <p>Retry keeps selected rows and filters.</p>
+        <button class="button ghost small" type="button">Retry</button>
+      </div>
+    </div>
+    <div class="context-rules">
+      <strong>Review checklist</strong>
+      <ul>
+        <li>Status color만 쓰지 않고 상태 text를 함께 둡니다.</li>
+        <li>오류는 원인과 복구 action을 같은 영역에 둡니다.</li>
+        <li>자동 알림은 role status, 사용자가 고쳐야 하는 오류는 role alert를 씁니다.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="token-contract" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Token contract</p>
+    <h2>Feedback은 semantic accent를 작은 면적으로 사용합니다.</h2>
+  </div>
+  <div class="component-token-contract">
+    <div class="token-contract-row header"><span>Decision</span><span>Token</span><span>Rule</span></div>
+    <div class="token-contract-row"><span><strong>Info</strong></span><span>{colors.primary-soft}</span><span>정보성 안내는 primary soft와 muted text를 사용합니다.</span></div>
+    <div class="token-contract-row"><span><strong>Success</strong></span><span>{colors.accent-mint}</span><span>완료 상태는 mint와 완료 label을 함께 씁니다.</span></div>
+    <div class="token-contract-row"><span><strong>Warning</strong></span><span>{colors.accent-amber}</span><span>대기/위험 상태는 amber와 구체적인 기한을 함께 씁니다.</span></div>
+    <div class="token-contract-row"><span><strong>Error</strong></span><span>{colors.accent-coral}</span><span>오류는 coral, role alert, recovery action을 함께 둡니다.</span></div>
+  </div>
+</section>
+
 <section id="feedback" class="section surface-band">
           <div class="section-heading">
             <p class="eyebrow">Feedback</p>

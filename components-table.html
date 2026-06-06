@@ -206,7 +206,7 @@
                 <button class="button ghost small" type="button">Clear</button>
               </div>
             </div>
-            <div class="data-table enhanced" role="table" aria-label="Campaign review queue">
+            <div class="data-table enhanced" role="table" aria-label="Campaign review queue" data-keyboard-table>
               <div class="data-row header" role="row">
                 <span role="columnheader"><input type="checkbox" aria-label="Select all visible campaigns"></span>
                 <span role="columnheader"><button type="button" aria-sort="ascending">Campaign</button></span>
@@ -217,7 +217,7 @@
                 <span role="columnheader"><button type="button">Risk</button></span>
                 <span role="columnheader">Actions</span>
               </div>
-              <div class="data-row selected" role="row">
+              <div class="data-row selected" role="row" tabindex="0" data-row-focus>
                 <span role="cell"><input type="checkbox" checked aria-label="Select Summer drop review"></span>
                 <span class="primary-cell" role="cell"><strong>Summer drop review</strong><small>8 creators · Instagram reels</small></span>
                 <span role="cell"><mark class="status amber">Review</mark></span>
@@ -230,7 +230,7 @@
                   <button class="icon-button small ghost" type="button" aria-label="More actions for Summer drop review"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-more"></use></svg></button>
                 </span>
               </div>
-              <div class="data-row selected" role="row">
+              <div class="data-row selected" role="row" tabindex="-1" data-row-focus>
                 <span role="cell"><input type="checkbox" checked aria-label="Select Creator shortlist"></span>
                 <span class="primary-cell" role="cell"><strong>Creator shortlist</strong><small>12 profiles · beauty segment</small></span>
                 <span role="cell"><mark class="status blue">Recruit</mark></span>
@@ -243,7 +243,7 @@
                   <button class="icon-button small ghost" type="button" aria-label="More actions for Creator shortlist"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-more"></use></svg></button>
                 </span>
               </div>
-              <div class="data-row selected" role="row">
+              <div class="data-row selected" role="row" tabindex="-1" data-row-focus>
                 <span role="cell"><input type="checkbox" checked aria-label="Select Paid social assets"></span>
                 <span class="primary-cell" role="cell"><strong>Paid social assets</strong><small>4 assets · paid usage rights</small></span>
                 <span role="cell"><mark class="status mint">Ready</mark></span>
@@ -256,7 +256,7 @@
                   <button class="icon-button small ghost" type="button" aria-label="More actions for Paid social assets"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-more"></use></svg></button>
                 </span>
               </div>
-              <div class="data-row" role="row">
+              <div class="data-row" role="row" tabindex="-1" data-row-focus>
                 <span role="cell"><input type="checkbox" aria-label="Select June skincare launch"></span>
                 <span class="primary-cell" role="cell"><strong>June skincare launch</strong><small>6 creators · TikTok shorts</small></span>
                 <span role="cell"><mark class="status amber">Review</mark></span>

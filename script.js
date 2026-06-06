@@ -153,8 +153,37 @@ document.querySelectorAll("[data-overlay-open]").forEach((trigger) => {
   const backdrop = document.querySelector(`[data-overlay-backdrop="${overlayId}"]`);
   let restoreTarget = trigger;
 
-  const getFocusTarget = () =>
-    overlay.querySelector("button:not([disabled]), input:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex='-1'])");
+  const getFocusableElements = () =>
+    Array.from(
+      overlay.querySelectorAll(
+        "a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex='-1'])",
+      ),
+    ).filter((element) => !element.hidden && element.getClientRects().length > 0);
+
+  const getFocusTarget = () => getFocusableElements()[0];
+
+  const trapOverlayFocus = (event) => {
+    if (event.key !== "Tab" || overlay.getAttribute("aria-modal") !== "true") {
+      return;
+    }
+
+    const focusableElements = getFocusableElements();
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+
+    if (!firstElement || !lastElement) {
+      event.preventDefault();
+      return;
+    }
+
+    if (event.shiftKey && document.activeElement === firstElement) {
+      event.preventDefault();
+      lastElement.focus();
+    } else if (!event.shiftKey && document.activeElement === lastElement) {
+      event.preventDefault();
+      firstElement.focus();
+    }
+  };
 
   const closeOverlay = () => {
     overlay.hidden = true;
@@ -179,7 +208,10 @@ document.querySelectorAll("[data-overlay-open]").forEach((trigger) => {
     if (event.key === "Escape") {
       event.preventDefault();
       closeOverlay();
+      return;
     }
+
+    trapOverlayFocus(event);
   });
 
   closeButtons.forEach((button) => {
@@ -187,6 +219,42 @@ document.querySelectorAll("[data-overlay-open]").forEach((trigger) => {
   });
 
   backdrop?.addEventListener("click", closeOverlay);
+});
+
+document.querySelectorAll("[data-keyboard-table]").forEach((table) => {
+  const rows = Array.from(table.querySelectorAll("[data-row-focus]"));
+
+  if (rows.length === 0) {
+    return;
+  }
+
+  const moveTableFocus = (currentIndex, nextIndex) => {
+    const targetIndex = Math.max(0, Math.min(nextIndex, rows.length - 1));
+
+    rows.forEach((row, rowIndex) => {
+      row.setAttribute("tabindex", rowIndex === targetIndex ? "0" : "-1");
+    });
+
+    rows[targetIndex]?.focus();
+  };
+
+  rows.forEach((row, index) => {
+    row.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowDown") {
+        event.preventDefault();
+        moveTableFocus(index, index + 1);
+      } else if (event.key === "ArrowUp") {
+        event.preventDefault();
+        moveTableFocus(index, index - 1);
+      } else if (event.key === "Home") {
+        event.preventDefault();
+        moveTableFocus(index, 0);
+      } else if (event.key === "End") {
+        event.preventDefault();
+        moveTableFocus(index, rows.length - 1);
+      }
+    });
+  });
 });
 
 document.querySelectorAll("[data-combobox]").forEach((combobox) => {

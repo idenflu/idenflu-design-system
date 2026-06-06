@@ -100,6 +100,69 @@ if (config) {
     });
   });
 
+  ["components-icons.html", "components-inputs.html", "components-controls.html", "components-tabs.html", "components-feedback.html", "components-navigation.html"].forEach((file) => {
+    const source = read(path.join("src/pages", file));
+    [
+      'id="component-template-map"',
+      "component-template-map",
+      'id="context-example"',
+      "component-context-example",
+      'id="token-contract"',
+      "component-token-contract",
+      "Overview",
+      "Anatomy",
+      "Variants",
+      "States",
+      "Accessibility",
+      "QA",
+      "Token contract",
+    ].forEach((marker) => {
+      if (!source.includes(marker)) {
+        failures.push(`${file}: missing remaining component marker ${marker}`);
+      }
+    });
+  });
+
+  const examplesSource = read(path.join("src/pages", "components-examples.html"));
+  [
+    'id="example-blueprint"',
+    "scenario-matrix",
+    "screen-composition-demo",
+    "Review workbench",
+    "Settings and permissions",
+  ].forEach((marker) => {
+    if (!examplesSource.includes(marker)) {
+      failures.push(`components-examples.html: missing examples depth marker ${marker}`);
+    }
+  });
+
+  const foundationsSource = read(path.join("src/pages", "foundations.html"));
+  [
+    'id="component-token-usage"',
+    "token-usage-grid",
+    "Button tokens",
+    "Field tokens",
+    "Table tokens",
+    "Overlay tokens",
+  ].forEach((marker) => {
+    if (!foundationsSource.includes(marker)) {
+      failures.push(`foundations.html: missing token usage marker ${marker}`);
+    }
+  });
+
+  const accessibilitySource = read(path.join("src/pages", "accessibility.html"));
+  [
+    'id="interaction-qa"',
+    "interaction-qa-grid",
+    "Overlay focus trap",
+    "Table keyboard navigation",
+    "Form error linkage",
+  ].forEach((marker) => {
+    if (!accessibilitySource.includes(marker)) {
+      failures.push(`accessibility.html: missing interaction qa marker ${marker}`);
+    }
+  });
+
   const componentIndex = read("components.html");
   if (!componentIndex.includes("component-index-grid")) {
     failures.push("components.html: missing component-index-grid");
@@ -143,7 +206,6 @@ if (config) {
     }
   });
 
-  const accessibilitySource = read(path.join("src/pages", "accessibility.html"));
   [
     "a11y-flow-diagram",
     "Modal keyboard flow",
@@ -164,6 +226,10 @@ if (config) {
     "component-template-map",
     "component-context-example",
     "component-token-contract",
+    "scenario-matrix",
+    "screen-composition-demo",
+    "token-usage-grid",
+    "interaction-qa-grid",
   ].forEach((className) => {
     if (!styles.includes(`.${className}`)) {
       failures.push(`styles.css: missing ${className}`);
@@ -335,6 +401,7 @@ const blockedMarkers = [
   'href="#' + "icon-",
   "icon-" + "sprite",
   "고" + "급",
+  "Pre" + "mium",
   String.fromCodePoint(0x2315),
   String.fromCodePoint(0x2193),
   "design-" + "ibm",
@@ -347,6 +414,8 @@ const blockedPositioningMarkers = [
   "엔터프라이즈 크리에이터 " + "운영 콘솔",
   "크리에이터 캠페인 " + "제품",
   "Creator operations " + "workspace",
+  "creator-" + "operations",
+  "creator operations " + "workspace",
   "creator workflow " + "context",
   "단독 컴포넌트보다 campaign, creator, review, admin " + "workflow",
   "generic admin " + "화면",

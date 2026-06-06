@@ -38,6 +38,64 @@
   </div>
 </section>
 
+<section id="component-template-map" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Document template</p>
+    <h2>Navigation 문서는 사용자의 위치와 다음 이동을 먼저 정의합니다.</h2>
+  </div>
+  <div class="component-template-map">
+    <article><span>01</span><strong>Overview</strong><p>Navigation이 전역 이동, 지역 이동, pagination 중 무엇인지 정합니다.</p></article>
+    <article><span>02</span><strong>Anatomy</strong><p>Landmark, group label, active item, shortcut, count를 분리합니다.</p></article>
+    <article><span>03</span><strong>Variants</strong><p>Top nav, side nav, toolbar, breadcrumb, pagination, command jump를 구분합니다.</p></article>
+    <article><span>04</span><strong>States</strong><p>Active, hover, focus, disabled, collapsed, current page를 비교합니다.</p></article>
+    <article><span>05</span><strong>Accessibility</strong><p>nav landmark, aria-current, toolbar label, pagination label을 확인합니다.</p></article>
+    <article><span>06</span><strong>QA</strong><p>긴 label, mobile overflow, keyboard order, current page announcement를 검증합니다.</p></article>
+  </div>
+</section>
+
+<section id="context-example" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Context example</p>
+    <h2>Navigation은 반복 업무에서 현재 위치와 가능한 이동을 분리합니다.</h2>
+  </div>
+  <div class="component-context-example">
+    <div class="context-preview">
+      <nav class="pagination-demo compact" aria-label="Campaign table pages">
+        <button type="button">Prev</button>
+        <span>Page 2 of 8</span>
+        <button type="button">Next</button>
+      </nav>
+      <div class="toolbar-demo" role="toolbar" aria-label="Review tools">
+        <button type="button">Filter</button>
+        <button type="button">Sort</button>
+        <button type="button">Assign</button>
+      </div>
+    </div>
+    <div class="context-rules">
+      <strong>Review checklist</strong>
+      <ul>
+        <li>현재 위치는 active 또는 aria-current로 명시합니다.</li>
+        <li>Toolbar는 이동이 아니라 현재 화면의 작업 도구입니다.</li>
+        <li>Pagination은 전체 범위와 현재 페이지를 함께 말해야 합니다.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="token-contract" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Token contract</p>
+    <h2>Navigation은 density와 active state 토큰으로 반복 이동을 안정화합니다.</h2>
+  </div>
+  <div class="component-token-contract">
+    <div class="token-contract-row header"><span>Decision</span><span>Token</span><span>Rule</span></div>
+    <div class="token-contract-row"><span><strong>Active</strong></span><span>{colors.primary-soft}</span><span>현재 위치는 배경과 primary text를 함께 사용합니다.</span></div>
+    <div class="token-contract-row"><span><strong>Toolbar</strong></span><span>{density.compact}</span><span>반복 작업 도구는 compact height와 명확한 label을 유지합니다.</span></div>
+    <div class="token-contract-row"><span><strong>Border</strong></span><span>{colors.hairline}</span><span>Navigation chrome은 hairline으로 영역을 구분합니다.</span></div>
+    <div class="token-contract-row"><span><strong>Focus</strong></span><span>{colors.primary}</span><span>키보드 이동 경로가 active state와 구분되어야 합니다.</span></div>
+  </div>
+</section>
+
 <section id="navigation" class="section surface-band">
           <div class="section-heading">
             <p class="eyebrow">Navigation</p>

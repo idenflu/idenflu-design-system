@@ -156,6 +156,16 @@
       "componentSidebar": true
     },
     {
+      "file": "components-select.html",
+      "title": "Select - idenflu Design System",
+      "meta": "Select",
+      "activeTopnav": "components.html",
+      "source": "components-select.html",
+      "sidebarAria": "Component pages",
+      "sidebarGroups": [],
+      "componentSidebar": true
+    },
+    {
       "file": "components-controls.html",
       "title": "Controls - idenflu Design System",
       "meta": "Controls",

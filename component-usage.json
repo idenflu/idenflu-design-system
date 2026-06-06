@@ -16,6 +16,11 @@
       "avoid": "고정 metadata를 입력 필드처럼 보이게 만들지 않습니다. readonly와 disabled를 섞어 쓰지 않습니다.",
       "replace": "선택지가 정해져 있으면 controls, 검색 선택은 combobox, 단순 표시 값은 card/table metadata를 씁니다."
     },
+    "select": {
+      "use": "캠페인 단계, reviewer 역할, timezone, density처럼 짧고 고정된 단일 선택지에 씁니다.",
+      "avoid": "긴 owner/creator 목록이나 검색이 필요한 선택을 select로 만들지 않습니다. 비활성 option의 이유를 숨기지 않습니다.",
+      "replace": "목록이 길거나 검색이 필요하면 combobox, 다중 조건은 controls/search toolbar, 직접 입력은 input을 씁니다."
+    },
     "controls": {
       "use": "필터, on/off 설정, 다중 선택처럼 현재 값이 화면에 계속 남아야 할 때 씁니다.",
       "avoid": "즉시 실행 명령을 switch나 checkbox로 표현하지 않습니다.",

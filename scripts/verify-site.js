@@ -69,7 +69,7 @@ if (config) {
   if (!generatedFiles.includes("starter-kit.html")) failures.push("missing starter kit page");
   if (!generatedFiles.includes("changelog.html")) failures.push("missing changelog page");
 
-  ["components-menu.html", "components-combobox.html", "components-badges.html", "components-tooltips.html", "components-avatar.html"].forEach((file) => {
+  ["components-select.html", "components-menu.html", "components-combobox.html", "components-badges.html", "components-tooltips.html", "components-avatar.html"].forEach((file) => {
     if (!generatedFiles.includes(file)) failures.push(`missing generated component page ${file}`);
   });
   ["components-search-toolbar.html", "components-attachments.html", "components-date-time.html", "components-stepper.html", "components-empty-states.html"].forEach((file) => {
@@ -219,6 +219,7 @@ if (config) {
     'id="component-api-reference"',
     "component-api-grid",
     "Button API",
+    "Select API",
     "Menu API",
     "Combobox API",
     "Badge API",
@@ -437,6 +438,7 @@ if (config) {
   [
     ".menu-demo-grid",
     ".combobox-demo-grid",
+    ".select-demo-grid",
     ".badge-demo-grid",
     ".tooltip-demo-grid",
     ".identity-demo-grid",
@@ -447,6 +449,7 @@ if (config) {
     ".recovery-demo-grid",
     ".menu-demo-surface",
     ".combobox-demo-surface",
+    ".select-demo-surface",
     ".menu-trigger-row",
     ".combobox-field-demo",
     ".component-anatomy-visual",
@@ -608,7 +611,7 @@ if (tokens) {
   });
 
   if (tokenUsage) {
-    ["buttons", "cards", "inputs", "controls", "tabs", "table", "overlays", "feedback", "navigation", "icons", "menu", "combobox", "badges", "tooltips", "avatar", "search-toolbar", "attachments", "date-time", "stepper", "empty-states"].forEach((component) => {
+    ["buttons", "cards", "inputs", "select", "controls", "tabs", "table", "overlays", "feedback", "navigation", "icons", "menu", "combobox", "badges", "tooltips", "avatar", "search-toolbar", "attachments", "date-time", "stepper", "empty-states"].forEach((component) => {
       if (!tokenUsage.components?.[component]?.tokens?.length) {
         failures.push(`component-token-usage.json: missing ${component} tokens`);
       }
@@ -616,7 +619,7 @@ if (tokens) {
   }
 
   if (componentApi) {
-    ["buttons", "inputs", "table", "overlays", "menu", "combobox", "badges", "tooltips", "avatar", "search-toolbar", "attachments", "date-time", "stepper", "empty-states"].forEach((component) => {
+    ["buttons", "inputs", "select", "table", "overlays", "menu", "combobox", "badges", "tooltips", "avatar", "search-toolbar", "attachments", "date-time", "stepper", "empty-states"].forEach((component) => {
       const definition = componentApi.components?.[component];
       if (!definition?.props?.length) failures.push(`component-api.json: missing ${component} props`);
       if (!definition?.states?.length) failures.push(`component-api.json: missing ${component} states`);

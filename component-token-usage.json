@@ -13,6 +13,10 @@
       "label": "Field tokens",
       "tokens": ["sizing.field-height", "typography.body", "colors.hairline", "colors.accent-coral"]
     },
+    "select": {
+      "label": "Select tokens",
+      "tokens": ["sizing.field-height", "typography.body", "colors.hairline", "colors.primary", "colors.accent-coral"]
+    },
     "controls": {
       "label": "Control tokens",
       "tokens": ["sizing.control-height", "density.compact", "colors.primary-soft", "colors.primary"]

@@ -1,0 +1,117 @@
+<section class="page-header component-page-header">
+  <p class="eyebrow">Components</p>
+  <h1>Select</h1>
+  <p class="lede">짧고 고정된 선택지를 native control로 고르는 기준입니다.</p>
+</section>
+
+<!-- partial:component-standard -->
+
+<!-- partial:component-template-map -->
+
+<section id="context-example" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Context example</p>
+    <h2>Select는 검색이 필요 없는 단일 선택을 빠르게 확정합니다.</h2>
+  </div>
+  <div class="component-context-example">
+    <div class="context-preview select-demo-surface" data-select-demo>
+      <label class="field" for="campaign-stage-select">
+        <span>Campaign stage</span>
+        <select id="campaign-stage-select" data-select-input aria-describedby="campaign-stage-output">
+          <option value="">Select stage</option>
+          <option value="draft" data-summary="Draft · brief and audience can still change">Draft</option>
+          <option value="review" data-summary="Review queue · reviewer and due date stay visible">Review queue</option>
+          <option value="approved" data-summary="Approved · campaign is ready for activation">Approved</option>
+        </select>
+      </label>
+      <p id="campaign-stage-output" class="select-output" data-select-output data-empty="Choose a stage to update the workflow summary.">Choose a stage to update the workflow summary.</p>
+      <button class="button ghost small" type="button" data-select-reset>Reset</button>
+    </div>
+    <div class="context-rules">
+      <strong>Review checklist</strong>
+      <ul>
+        <li>선택지가 7개 안팎이고 검색이 필요 없을 때만 사용합니다.</li>
+        <li>Placeholder option은 실제 값과 구분하고 helper와 연결합니다.</li>
+        <li>긴 목록, owner 검색, creator 검색은 combobox로 분리합니다.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section surface-band">
+  <div class="section-heading"><p class="eyebrow">Anatomy visual</p><h2>Select anatomy visual.</h2></div>
+  <div class="component-anatomy-visual">
+    <article><span class="anatomy-node primary">01</span><strong>Label</strong><p>선택의 의미를 visible label로 고정합니다.</p></article>
+    <article><span class="anatomy-node">02</span><strong>Native control</strong><p>브라우저 기본 picker와 keyboard behavior를 유지합니다.</p></article>
+    <article><span class="anatomy-node">03</span><strong>Options</strong><p>짧은 고정 값만 넣고 placeholder를 값과 분리합니다.</p></article>
+    <article><span class="anatomy-node">04</span><strong>Helper</strong><p>상태 설명, invalid reason, disabled reason을 control 아래에 둡니다.</p></article>
+  </div>
+</section>
+
+<!-- partial:component-token-contract -->
+
+<!-- partial:component-api-contract -->
+
+<!-- partial:component-token-binding -->
+
+<!-- partial:component-usage-guidance -->
+
+<section id="select" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Select</p>
+    <h2>선택지는 짧게 유지하고 결과 상태를 바로 노출합니다.</h2>
+  </div>
+  <div class="select-demo-grid">
+    <article class="select-demo-surface" data-select-demo>
+      <label class="field" for="select-stage-demo">
+        <span>Review stage</span>
+        <select id="select-stage-demo" data-select-input aria-describedby="select-stage-output">
+          <option value="">Select stage</option>
+          <option value="ready" data-summary="Ready · owner Mina can submit the review">Ready</option>
+          <option value="review" data-summary="In review · two reviewer replies remain">In review</option>
+          <option value="approved" data-summary="Approved · handoff can move to activation">Approved</option>
+        </select>
+      </label>
+      <p id="select-stage-output" class="select-output" data-select-output data-empty="No stage selected.">No stage selected.</p>
+      <button class="button ghost small" type="button" data-select-reset>Reset</button>
+    </article>
+
+    <article class="select-demo-surface" data-select-demo>
+      <label class="field" for="select-role-demo">
+        <span>Reviewer role</span>
+        <select id="select-role-demo" data-select-input aria-describedby="select-role-output">
+          <option value="">Choose role</option>
+          <option value="owner" data-summary="Owner · can edit brief and assign reviewers">Owner</option>
+          <option value="reviewer" data-summary="Reviewer · can request changes and approve">Reviewer</option>
+          <option value="observer" data-summary="Observer · read-only access for campaign status">Observer</option>
+          <option value="admin" disabled data-summary="Admin is disabled until workspace permission is granted">Admin unavailable</option>
+        </select>
+      </label>
+      <p id="select-role-output" class="select-output" data-select-output data-empty="Choose a role to reveal its access scope.">Choose a role to reveal its access scope.</p>
+      <button class="button ghost small" type="button" data-select-reset>Reset</button>
+    </article>
+
+    <article class="select-demo-surface invalid" data-select-demo>
+      <label class="field" for="select-timezone-demo">
+        <span>Launch timezone <em>Required</em></span>
+        <select id="select-timezone-demo" required aria-invalid="true" data-select-input aria-describedby="select-timezone-output">
+          <option value="">Select timezone</option>
+          <option value="kst" data-summary="KST · launch follows Seoul business hours">KST</option>
+          <option value="pst" data-summary="PST · launch follows US west coast review">PST</option>
+          <option value="utc" data-summary="UTC · launch is coordinated globally">UTC</option>
+        </select>
+      </label>
+      <p id="select-timezone-output" class="select-output" data-select-output data-empty="Required before scheduling the launch.">Required before scheduling the launch.</p>
+      <button class="button ghost small" type="button" data-select-reset>Reset</button>
+    </article>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-heading"><p class="eyebrow">Interaction contract</p><h2>Select interaction contract.</h2></div>
+  <div class="interaction-contract-grid">
+    <article><strong>Keyboard path</strong><p>label, select, selected value, helper</p><ul><li>Visible state</li><li>Keyboard reachable</li><li>Responsive layout retained</li></ul></article>
+    <article><strong>Focus state</strong><p>native focus ring stays on the field surface</p><ul><li>Visible state</li><li>Keyboard reachable</li><li>Responsive layout retained</li></ul></article>
+    <article><strong>State change</strong><p>selected value updates helper copy immediately</p><ul><li>Visible state</li><li>Keyboard reachable</li><li>Responsive layout retained</li></ul></article>
+  </div>
+</section>

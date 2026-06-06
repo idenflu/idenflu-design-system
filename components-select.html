@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Select - idenflu Design System</title>
+    <link rel="stylesheet" href="tokens.generated.css?v=20260606-token-pipeline">
+    <link rel="stylesheet" href="styles.css?v=20260606-system-complete">
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="index.html"><span class="brand-mark"></span><span>idenflu</span></a>
+      <nav class="topnav" aria-label="Primary">
+        <a href="index.html">Overview</a>
+        <a href="foundations.html">Foundations</a>
+        <a class="active" href="components.html">Components</a>
+        <a href="patterns.html">Patterns</a>
+        <a href="guidelines.html">Reference</a>
+      </nav>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode" aria-pressed="false">Dark</button>
+      <div class="topbar-meta">Select</div>
+    </header>
+
+    <div class="doc-layout">
+      <aside class="sidebar" aria-label="Component pages">
+        <details class="sidebar-jump">
+          <summary>Component navigation</summary>
+          <div>
+          <a href="components.html"><span>Overview</span><small>Core components</small></a>
+          <a href="components-buttons.html"><span>Buttons</span><small>Core components</small></a>
+          <a href="components-icons.html"><span>Icons</span><small>Core components</small></a>
+          <a href="components-cards.html"><span>Cards</span><small>Core components</small></a>
+          <a href="components-avatar.html"><span>Avatar</span><small>Core components</small></a>
+          <a href="components-inputs.html"><span>Inputs</span><small>Input and choice</small></a>
+          <a class="active" href="components-select.html"><span>Select</span><small>Input and choice</small></a>
+          <a href="components-controls.html"><span>Controls</span><small>Input and choice</small></a>
+          <a href="components-tabs.html"><span>Tabs</span><small>Input and choice</small></a>
+          <a href="components-menu.html"><span>Menu</span><small>Input and choice</small></a>
+          <a href="components-combobox.html"><span>Combobox</span><small>Input and choice</small></a>
+          <a href="components-badges.html"><span>Badges</span><small>Input and choice</small></a>
+          <a href="components-tooltips.html"><span>Tooltips</span><small>Input and choice</small></a>
+          <a href="components-search-toolbar.html"><span>Search toolbar</span><small>Data and workflow</small></a>
+          <a href="components-table.html"><span>Data table</span><small>Data and workflow</small></a>
+          <a href="components-attachments.html"><span>Attachments</span><small>Data and workflow</small></a>
+          <a href="components-date-time.html"><span>Date time</span><small>Data and workflow</small></a>
+          <a href="components-stepper.html"><span>Stepper</span><small>Data and workflow</small></a>
+          <a href="components-empty-states.html"><span>Empty states</span><small>Data and workflow</small></a>
+          <a href="components-examples.html"><span>Examples</span><small>System surfaces</small></a>
+          <a href="components-feedback.html"><span>Feedback</span><small>System surfaces</small></a>
+          <a href="components-overlays.html"><span>Overlays</span><small>System surfaces</small></a>
+          <a href="components-navigation.html"><span>Navigation</span><small>System surfaces</small></a>
+          <a href="#component-template-map"><span>Template</span><small>On this page</small></a>
+          <a href="#context-example"><span>Context</span><small>On this page</small></a>
+          <a href="#token-contract"><span>Tokens</span><small>On this page</small></a>
+          <a href="#component-usage-guidance"><span>Usage</span><small>On this page</small></a>
+          </div>
+        </details>
+        <p class="sidebar-label">Core components</p>
+        <a href="components.html">Overview</a>
+        <a href="components-buttons.html">Buttons</a>
+        <a href="components-icons.html">Icons</a>
+        <a href="components-cards.html">Cards</a>
+        <a href="components-avatar.html">Avatar</a>
+        <p class="sidebar-label">Input and choice</p>
+        <a href="components-inputs.html">Inputs</a>
+        <a class="active" href="components-select.html">Select</a>
+        <a href="components-controls.html">Controls</a>
+        <a href="components-tabs.html">Tabs</a>
+        <a href="components-menu.html">Menu</a>
+        <a href="components-combobox.html">Combobox</a>
+        <a href="components-badges.html">Badges</a>
+        <a href="components-tooltips.html">Tooltips</a>
+        <p class="sidebar-label">Data and workflow</p>
+        <a href="components-search-toolbar.html">Search toolbar</a>
+        <a href="components-table.html">Data table</a>
+        <a href="components-attachments.html">Attachments</a>
+        <a href="components-date-time.html">Date time</a>
+        <a href="components-stepper.html">Stepper</a>
+        <a href="components-empty-states.html">Empty states</a>
+        <p class="sidebar-label">System surfaces</p>
+        <a href="components-examples.html">Examples</a>
+        <a href="components-feedback.html">Feedback</a>
+        <a href="components-overlays.html">Overlays</a>
+        <a href="components-navigation.html">Navigation</a>
+        <p class="sidebar-label reference-label">On this page</p>
+        <a href="#component-template-map">Template</a>
+        <a href="#context-example">Context</a>
+        <a href="#token-contract">Tokens</a>
+        <a href="#component-usage-guidance">Usage</a>
+      </aside>
+
+      <main>
+<section class="page-header component-page-header">
+  <p class="eyebrow">Components</p>
+  <h1>Select</h1>
+  <p class="lede">짧고 고정된 선택지를 native control로 고르는 기준입니다.</p>
+</section>
+
+<section id="component-standard" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Component standard</p>
+    <h2>Select 문서의 공통 구조.</h2>
+  </div>
+  <div class="component-doc-grid">
+    <article id="doc-anatomy" class="component-doc-card">
+      <strong>Anatomy</strong>
+      <p>Label, native select, option, helper, validation을 나눕니다.</p>
+      <ul><li>Visible label</li><li>native select</li><li>placeholder option</li><li>helper text</li><li>validation text</li></ul>
+    </article>
+    <article id="doc-variants" class="component-doc-card">
+      <strong>Variants</strong>
+      <p>Single select, placeholder, grouped options, invalid select, disabled select</p>
+    </article>
+    <article id="doc-states" class="component-doc-card">
+      <strong>States</strong>
+      <p>Default, focus, open, selected, invalid, disabled 상태를 비교합니다.</p>
+    </article>
+    <article id="doc-accessibility" class="component-doc-card">
+      <strong>Accessibility</strong>
+      <p>Native select, visible label, helper 연결, disabled option 이유를 확인합니다.</p>
+    </article>
+    <article id="doc-examples" class="component-doc-card">
+      <strong>Examples</strong>
+      <p>Stage, role, timezone, density처럼 짧은 단일 선택에 사용합니다.</p>
+    </article>
+    <article id="doc-qa" class="component-doc-card">
+      <strong>QA</strong>
+      <p>Mobile native picker, placeholder, invalid, disabled option, long label wrap을 확인합니다.</p>
+    </article>
+  </div>
+</section>
+
+<section id="component-template-map" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Document template</p>
+    <h2>Select 문서는 고정 선택지와 상태 문구를 함께 고정합니다.</h2>
+  </div>
+  <div class="component-template-map">
+    <article>
+      <span>01</span>
+      <strong>Overview</strong>
+      <p>선택지가 짧고 검색이 필요 없을 때 select를 사용합니다.</p>
+    </article>
+    <article>
+      <span>02</span>
+      <strong>Anatomy</strong>
+      <p>Label, native control, options, helper, validation을 분리합니다.</p>
+    </article>
+    <article>
+      <span>03</span>
+      <strong>Variants</strong>
+      <p>Placeholder, grouped option, invalid, disabled 상태를 비교합니다.</p>
+    </article>
+    <article>
+      <span>04</span>
+      <strong>States</strong>
+      <p>Focus, selected, invalid, disabled option의 차이를 보여줍니다.</p>
+    </article>
+    <article>
+      <span>05</span>
+      <strong>Accessibility</strong>
+      <p>Label과 helper id 연결, required/invalid 연결을 확인합니다.</p>
+    </article>
+    <article>
+      <span>06</span>
+      <strong>QA</strong>
+      <p>Mobile picker, long option, keyboard path, reset behavior를 검증합니다.</p>
+    </article>
+  </div>
+</section>
+
+<section id="context-example" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Context example</p>
+    <h2>Select는 검색이 필요 없는 단일 선택을 빠르게 확정합니다.</h2>
+  </div>
+  <div class="component-context-example">
+    <div class="context-preview select-demo-surface" data-select-demo>
+      <label class="field" for="campaign-stage-select">
+        <span>Campaign stage</span>
+        <select id="campaign-stage-select" data-select-input aria-describedby="campaign-stage-output">
+          <option value="">Select stage</option>
+          <option value="draft" data-summary="Draft · brief and audience can still change">Draft</option>
+          <option value="review" data-summary="Review queue · reviewer and due date stay visible">Review queue</option>
+          <option value="approved" data-summary="Approved · campaign is ready for activation">Approved</option>
+        </select>
+      </label>
+      <p id="campaign-stage-output" class="select-output" data-select-output data-empty="Choose a stage to update the workflow summary.">Choose a stage to update the workflow summary.</p>
+      <button class="button ghost small" type="button" data-select-reset>Reset</button>
+    </div>
+    <div class="context-rules">
+      <strong>Review checklist</strong>
+      <ul>
+        <li>선택지가 7개 안팎이고 검색이 필요 없을 때만 사용합니다.</li>
+        <li>Placeholder option은 실제 값과 구분하고 helper와 연결합니다.</li>
+        <li>긴 목록, owner 검색, creator 검색은 combobox로 분리합니다.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section surface-band">
+  <div class="section-heading"><p class="eyebrow">Anatomy visual</p><h2>Select anatomy visual.</h2></div>
+  <div class="component-anatomy-visual">
+    <article><span class="anatomy-node primary">01</span><strong>Label</strong><p>선택의 의미를 visible label로 고정합니다.</p></article>
+    <article><span class="anatomy-node">02</span><strong>Native control</strong><p>브라우저 기본 picker와 keyboard behavior를 유지합니다.</p></article>
+    <article><span class="anatomy-node">03</span><strong>Options</strong><p>짧은 고정 값만 넣고 placeholder를 값과 분리합니다.</p></article>
+    <article><span class="anatomy-node">04</span><strong>Helper</strong><p>상태 설명, invalid reason, disabled reason을 control 아래에 둡니다.</p></article>
+  </div>
+</section>
+
+<section id="token-contract" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Token contract</p>
+    <h2>Select는 field 토큰을 따르고 상태 색상만 분리합니다.</h2>
+  </div>
+  <div class="component-token-contract">
+    <div class="token-contract-row header"><span>Decision</span><span>Token</span><span>Rule</span></div>
+    <div class="token-contract-row"><span><strong>Height</strong></span><span>{sizing.field-height}</span><span>Native select는 input과 같은 40px field 높이를 사용합니다.</span></div>
+    <div class="token-contract-row"><span><strong>Text</strong></span><span>{typography.body}</span><span>Option label은 본문 크기를 유지하고 helper는 body-sm로 낮춥니다.</span></div>
+    <div class="token-contract-row"><span><strong>Border</strong></span><span>{colors.hairline}</span><span>기본과 disabled는 hairline으로 유지하고 focus에서만 강조합니다.</span></div>
+    <div class="token-contract-row"><span><strong>Focus / Error</strong></span><span>{colors.primary} / {colors.accent-coral}</span><span>Focus는 primary, invalid는 error text와 border로 분리합니다.</span></div>
+  </div>
+</section>
+
+<section id="component-api-contract" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">API contract</p>
+    <h2>Select API 구현 계약.</h2>
+  </div>
+  <div class="component-api-contract">
+    <div class="component-api-row header"><span>Type</span><span>Contract</span></div>
+    <div class="component-api-row"><span><strong>Props</strong></span><span>label, value, options, placeholder, validation</span></div>
+    <div class="component-api-row"><span><strong>States</strong></span><span>default, focus, open, selected, invalid, disabled</span></div>
+    <div class="component-api-row"><span><strong>A11y</strong></span><span>native select, visible label, helper text, disabled option reason</span></div>
+  </div>
+</section>
+
+<section id="component-token-binding" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Token usage</p>
+    <h2>Select tokens를 실제 token path에 연결합니다.</h2>
+  </div>
+  <div class="component-token-binding">
+    <span>{sizing.field-height}</span>
+    <span>{typography.body}</span>
+    <span>{colors.hairline}</span>
+    <span>{colors.primary}</span>
+    <span>{colors.accent-coral}</span>
+  </div>
+</section>
+
+<section id="component-usage-guidance" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Usage guidance</p>
+    <h2>idenflu 화면에서 쓰는 기준을 먼저 정합니다.</h2>
+  </div>
+  <div class="component-usage-guidance">
+    <article>
+      <strong>Use</strong>
+      <p>캠페인 단계, reviewer 역할, timezone, density처럼 짧고 고정된 단일 선택지에 씁니다.</p>
+    </article>
+    <article>
+      <strong>Avoid</strong>
+      <p>긴 owner/creator 목록이나 검색이 필요한 선택을 select로 만들지 않습니다. 비활성 option의 이유를 숨기지 않습니다.</p>
+    </article>
+    <article>
+      <strong>Replace with</strong>
+      <p>목록이 길거나 검색이 필요하면 combobox, 다중 조건은 controls/search toolbar, 직접 입력은 input을 씁니다.</p>
+    </article>
+  </div>
+</section>
+
+<section id="select" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Select</p>
+    <h2>선택지는 짧게 유지하고 결과 상태를 바로 노출합니다.</h2>
+  </div>
+  <div class="select-demo-grid">
+    <article class="select-demo-surface" data-select-demo>
+      <label class="field" for="select-stage-demo">
+        <span>Review stage</span>
+        <select id="select-stage-demo" data-select-input aria-describedby="select-stage-output">
+          <option value="">Select stage</option>
+          <option value="ready" data-summary="Ready · owner Mina can submit the review">Ready</option>
+          <option value="review" data-summary="In review · two reviewer replies remain">In review</option>
+          <option value="approved" data-summary="Approved · handoff can move to activation">Approved</option>
+        </select>
+      </label>
+      <p id="select-stage-output" class="select-output" data-select-output data-empty="No stage selected.">No stage selected.</p>
+      <button class="button ghost small" type="button" data-select-reset>Reset</button>
+    </article>
+
+    <article class="select-demo-surface" data-select-demo>
+      <label class="field" for="select-role-demo">
+        <span>Reviewer role</span>
+        <select id="select-role-demo" data-select-input aria-describedby="select-role-output">
+          <option value="">Choose role</option>
+          <option value="owner" data-summary="Owner · can edit brief and assign reviewers">Owner</option>
+          <option value="reviewer" data-summary="Reviewer · can request changes and approve">Reviewer</option>
+          <option value="observer" data-summary="Observer · read-only access for campaign status">Observer</option>
+          <option value="admin" disabled data-summary="Admin is disabled until workspace permission is granted">Admin unavailable</option>
+        </select>
+      </label>
+      <p id="select-role-output" class="select-output" data-select-output data-empty="Choose a role to reveal its access scope.">Choose a role to reveal its access scope.</p>
+      <button class="button ghost small" type="button" data-select-reset>Reset</button>
+    </article>
+
+    <article class="select-demo-surface invalid" data-select-demo>
+      <label class="field" for="select-timezone-demo">
+        <span>Launch timezone <em>Required</em></span>
+        <select id="select-timezone-demo" required aria-invalid="true" data-select-input aria-describedby="select-timezone-output">
+          <option value="">Select timezone</option>
+          <option value="kst" data-summary="KST · launch follows Seoul business hours">KST</option>
+          <option value="pst" data-summary="PST · launch follows US west coast review">PST</option>
+          <option value="utc" data-summary="UTC · launch is coordinated globally">UTC</option>
+        </select>
+      </label>
+      <p id="select-timezone-output" class="select-output" data-select-output data-empty="Required before scheduling the launch.">Required before scheduling the launch.</p>
+      <button class="button ghost small" type="button" data-select-reset>Reset</button>
+    </article>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-heading"><p class="eyebrow">Interaction contract</p><h2>Select interaction contract.</h2></div>
+  <div class="interaction-contract-grid">
+    <article><strong>Keyboard path</strong><p>label, select, selected value, helper</p><ul><li>Visible state</li><li>Keyboard reachable</li><li>Responsive layout retained</li></ul></article>
+    <article><strong>Focus state</strong><p>native focus ring stays on the field surface</p><ul><li>Visible state</li><li>Keyboard reachable</li><li>Responsive layout retained</li></ul></article>
+    <article><strong>State change</strong><p>selected value updates helper copy immediately</p><ul><li>Visible state</li><li>Keyboard reachable</li><li>Responsive layout retained</li></ul></article>
+  </div>
+</section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

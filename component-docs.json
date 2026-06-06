@@ -690,6 +690,121 @@
         ]
       }
     },
+    "components-select.html": {
+      "standard": {
+        "sectionClass": "section surface-band",
+        "eyebrow": "Component standard",
+        "heading": "Select 문서의 공통 구조.",
+        "cards": [
+          {
+            "id": "doc-anatomy",
+            "title": "Anatomy",
+            "description": "Label, native select, option, helper, validation을 나눕니다.",
+            "items": [
+              "Visible label",
+              "native select",
+              "placeholder option",
+              "helper text",
+              "validation text"
+            ]
+          },
+          {
+            "id": "doc-variants",
+            "title": "Variants",
+            "description": "Single select, placeholder, grouped options, invalid select, disabled select",
+            "items": []
+          },
+          {
+            "id": "doc-states",
+            "title": "States",
+            "description": "Default, focus, open, selected, invalid, disabled 상태를 비교합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-accessibility",
+            "title": "Accessibility",
+            "description": "Native select, visible label, helper 연결, disabled option 이유를 확인합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-examples",
+            "title": "Examples",
+            "description": "Stage, role, timezone, density처럼 짧은 단일 선택에 사용합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-qa",
+            "title": "QA",
+            "description": "Mobile native picker, placeholder, invalid, disabled option, long label wrap을 확인합니다.",
+            "items": []
+          }
+        ]
+      },
+      "templateMap": {
+        "sectionClass": "section",
+        "eyebrow": "Document template",
+        "heading": "Select 문서는 고정 선택지와 상태 문구를 함께 고정합니다.",
+        "steps": [
+          {
+            "number": "01",
+            "title": "Overview",
+            "description": "선택지가 짧고 검색이 필요 없을 때 select를 사용합니다."
+          },
+          {
+            "number": "02",
+            "title": "Anatomy",
+            "description": "Label, native control, options, helper, validation을 분리합니다."
+          },
+          {
+            "number": "03",
+            "title": "Variants",
+            "description": "Placeholder, grouped option, invalid, disabled 상태를 비교합니다."
+          },
+          {
+            "number": "04",
+            "title": "States",
+            "description": "Focus, selected, invalid, disabled option의 차이를 보여줍니다."
+          },
+          {
+            "number": "05",
+            "title": "Accessibility",
+            "description": "Label과 helper id 연결, required/invalid 연결을 확인합니다."
+          },
+          {
+            "number": "06",
+            "title": "QA",
+            "description": "Mobile picker, long option, keyboard path, reset behavior를 검증합니다."
+          }
+        ]
+      },
+      "tokenContract": {
+        "sectionClass": "section",
+        "eyebrow": "Token contract",
+        "heading": "Select는 field 토큰을 따르고 상태 색상만 분리합니다.",
+        "rows": [
+          {
+            "decision": "Height",
+            "token": "{sizing.field-height}",
+            "rule": "Native select는 input과 같은 40px field 높이를 사용합니다."
+          },
+          {
+            "decision": "Text",
+            "token": "{typography.body}",
+            "rule": "Option label은 본문 크기를 유지하고 helper는 body-sm로 낮춥니다."
+          },
+          {
+            "decision": "Border",
+            "token": "{colors.hairline}",
+            "rule": "기본과 disabled는 hairline으로 유지하고 focus에서만 강조합니다."
+          },
+          {
+            "decision": "Focus / Error",
+            "token": "{colors.primary} / {colors.accent-coral}",
+            "rule": "Focus는 primary, invalid는 error text와 border로 분리합니다."
+          }
+        ]
+      }
+    },
     "components-controls.html": {
       "standard": {
         "sectionClass": "section surface-band",

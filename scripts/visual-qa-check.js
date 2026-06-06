@@ -24,6 +24,7 @@ const requireInFile = (file, label, value) => {
   ["components-buttons.html", "button spec", 'id="button-spec"'],
   ["components-inputs.html", "input spec", 'id="input-spec"'],
   ["components-inputs.html", "form flows", 'id="form-flows"'],
+  ["components-select.html", "select component page", 'id="select"'],
   ["components-table.html", "table spec", 'id="table-spec"'],
   ["components-table.html", "table behavior", 'id="table-behavior"'],
   ["components-overlays.html", "overlay interactions", 'id="overlay-interactions"'],
@@ -102,6 +103,7 @@ requireInFile("scripts/browser-qa-check.js", "viewport matrix", "viewports");
 requireInFile("scripts/browser-qa-check.js", "tablet viewport", "tablet");
 requireInFile("scripts/browser-qa-check.js", "menu responsive QA", "component-menu-responsive");
 requireInFile("scripts/browser-qa-check.js", "combobox responsive QA", "component-combobox-responsive");
+requireInFile("scripts/browser-qa-check.js", "select responsive QA", "select responsive QA");
 requireInFile("scripts/browser-qa-check.js", "table responsive QA", "component-table-responsive");
 requireInFile("scripts/browser-qa-check.js", "overlay responsive QA", "component-overlays-responsive");
 requireInFile("scripts/browser-qa-check.js", "layout audit selectors", "layoutAuditSelectors");
@@ -128,7 +130,7 @@ requireInFile("visual-qa.html", "token usage command", "node scripts/token-usage
 requireInFile("components.html", "component API reference", "component-api-reference");
 requireInFile("components.html", "component API grid", "component-api-grid");
 requireInFile("components.html", "grouped component index", "component-grouped-index");
-["Menu API", "Combobox API", "Badge API", "Tooltip API", "Avatar API"].forEach((marker) => {
+["Select API", "Menu API", "Combobox API", "Badge API", "Tooltip API", "Avatar API"].forEach((marker) => {
   requireInFile("components.html", marker, marker);
 });
 ["Search Toolbar API", "Attachment API", "Date Time API", "Stepper API", "Empty State API"].forEach((marker) => {

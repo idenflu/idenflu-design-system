@@ -19,6 +19,12 @@
       "states": ["default", "focus", "filled", "invalid", "success", "readonly", "disabled"],
       "accessibility": ["visible label", "aria-invalid", "aria-describedby", "combobox relation when searchable"]
     },
+    "select": {
+      "label": "Select API",
+      "props": ["label", "value", "options", "placeholder", "validation"],
+      "states": ["default", "focus", "open", "selected", "invalid", "disabled"],
+      "accessibility": ["native select", "visible label", "helper text", "disabled option reason"]
+    },
     "controls": {
       "label": "Control API",
       "props": ["label", "value", "checked", "group", "helper"],

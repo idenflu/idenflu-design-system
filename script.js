@@ -259,65 +259,131 @@ document.querySelectorAll("[data-keyboard-table]").forEach((table) => {
 
 document.querySelectorAll("[data-combobox]").forEach((combobox) => {
   const input = combobox.querySelector("[data-combobox-input]");
+  const listbox = combobox.querySelector("[role='listbox']");
   const options = Array.from(combobox.querySelectorAll("[data-combobox-option]"));
+  const emptyState = combobox.querySelector("[data-combobox-empty]");
+  const loadingState = combobox.querySelector("[data-combobox-loading]");
+  const clearButton = combobox.querySelector("[data-combobox-clear]");
 
   if (!input || options.length === 0) {
     return;
   }
 
-  const setActiveOption = (index, shouldCommit = false) => {
-    const activeOption = options[index];
+  const isDisabledOption = (option) =>
+    option.hasAttribute("data-combobox-disabled") || option.getAttribute("aria-disabled") === "true";
 
-    options.forEach((option, optionIndex) => {
-      const active = optionIndex === index;
+  const optionValue = (option) => option.getAttribute("data-value") || option.textContent.trim();
+
+  const setExpanded = (expanded) => {
+    input.setAttribute("aria-expanded", String(expanded));
+    if (listbox) listbox.hidden = !expanded;
+  };
+
+  const getVisibleComboboxOptions = () => options.filter((option) => !option.hidden && !isDisabledOption(option));
+
+  const clearActiveOption = () => {
+    options.forEach((option) => {
+      option.classList.remove("active");
+      option.setAttribute("aria-selected", "false");
+    });
+    input.removeAttribute("aria-activedescendant");
+  };
+
+  const setActiveOption = (activeOption, shouldCommit = false) => {
+    if (!activeOption || activeOption.hidden || isDisabledOption(activeOption)) {
+      clearActiveOption();
+      return;
+    }
+
+    options.forEach((option) => {
+      const active = option === activeOption;
       option.classList.toggle("active", active);
       option.setAttribute("aria-selected", String(active));
     });
 
-    if (!activeOption) {
-      input.removeAttribute("aria-activedescendant");
-      return;
-    }
-
     input.setAttribute("aria-activedescendant", activeOption.id);
 
     if (shouldCommit) {
-      input.value = activeOption.getAttribute("data-value") || activeOption.textContent.trim();
-      input.setAttribute("aria-expanded", "false");
+      input.value = optionValue(activeOption);
+      setExpanded(false);
     }
   };
 
-  setActiveOption(0);
+  const updateEmptyState = () => {
+    const hasVisibleOptions = getVisibleComboboxOptions().length > 0;
+    if (emptyState) emptyState.hidden = hasVisibleOptions;
+    if (listbox) listbox.classList.toggle("empty", !hasVisibleOptions);
+  };
+
+  const filterComboboxOptions = () => {
+    const query = input.value.trim().toLowerCase();
+
+    options.forEach((option) => {
+      const matches = !query || optionValue(option).toLowerCase().includes(query);
+      option.hidden = !matches;
+    });
+
+    const visibleOptions = getVisibleComboboxOptions();
+    updateEmptyState();
+
+    if (visibleOptions.length > 0) {
+      setActiveOption(visibleOptions[0]);
+    } else {
+      clearActiveOption();
+    }
+  };
+
+  const setLoading = (loading) => {
+    if (loadingState) loadingState.hidden = !loading;
+  };
+
+  const selectedOption = options.find((option) => option.getAttribute("aria-selected") === "true" && !isDisabledOption(option));
+  setLoading(false);
+
+  if (combobox.hasAttribute("data-combobox-filter-on-init")) {
+    filterComboboxOptions();
+  } else {
+    updateEmptyState();
+    setActiveOption(selectedOption || getVisibleComboboxOptions()[0]);
+  }
+
+  setExpanded(input.getAttribute("aria-expanded") === "true");
 
   input.addEventListener("focus", () => {
-    input.setAttribute("aria-expanded", "true");
+    setExpanded(true);
   });
 
   input.addEventListener("input", () => {
-    input.setAttribute("aria-expanded", "true");
+    setExpanded(true);
+    setLoading(true);
+    filterComboboxOptions();
+    setLoading(false);
   });
 
   input.addEventListener("keydown", (event) => {
-    const activeIndex = Math.max(
-      0,
-      options.findIndex((option) => option.getAttribute("aria-selected") === "true"),
-    );
+    const visibleOptions = getVisibleComboboxOptions();
+    const activeOption = visibleOptions.find((option) => option.getAttribute("aria-selected") === "true");
+    const activeIndex = Math.max(0, visibleOptions.indexOf(activeOption));
     let nextIndex = activeIndex;
 
     if (event.key === "ArrowDown") {
-      nextIndex = (activeIndex + 1) % options.length;
+      if (!visibleOptions.length) return;
+      nextIndex = (activeIndex + 1) % visibleOptions.length;
     } else if (event.key === "ArrowUp") {
-      nextIndex = (activeIndex - 1 + options.length) % options.length;
+      if (!visibleOptions.length) return;
+      nextIndex = (activeIndex - 1 + visibleOptions.length) % visibleOptions.length;
     } else if (event.key === "Home") {
+      if (!visibleOptions.length) return;
       nextIndex = 0;
     } else if (event.key === "End") {
-      nextIndex = options.length - 1;
+      if (!visibleOptions.length) return;
+      nextIndex = visibleOptions.length - 1;
     } else if (event.key === "Enter") {
       event.preventDefault();
-      setActiveOption(activeIndex, true);
+      setActiveOption(activeOption || visibleOptions[0], true);
       return;
     } else if (event.key === "Escape") {
-      input.setAttribute("aria-expanded", "false");
+      setExpanded(false);
       input.removeAttribute("aria-activedescendant");
       return;
     } else {
@@ -325,14 +391,60 @@ document.querySelectorAll("[data-combobox]").forEach((combobox) => {
     }
 
     event.preventDefault();
-    input.setAttribute("aria-expanded", "true");
-    setActiveOption(nextIndex);
+    setExpanded(true);
+    setActiveOption(visibleOptions[nextIndex]);
   });
 
-  options.forEach((option, index) => {
+  options.forEach((option) => {
     option.addEventListener("click", () => {
-      setActiveOption(index, true);
+      if (isDisabledOption(option)) return;
+      setActiveOption(option, true);
       input.focus();
     });
   });
+
+  if (clearButton) {
+    clearButton.addEventListener("click", () => {
+      input.value = "";
+      setExpanded(true);
+      filterComboboxOptions();
+      input.focus();
+    });
+  }
+});
+
+document.querySelectorAll("[data-select-demo]").forEach((demo) => {
+  const select = demo.querySelector("[data-select-input], select");
+  const output = demo.querySelector("[data-select-output]");
+  const resetButton = demo.querySelector("[data-select-reset]");
+
+  if (!select || !output) {
+    return;
+  }
+
+  const initialValue = select.value;
+  const emptyText = output.getAttribute("data-empty") || output.textContent.trim();
+
+  const updateSelectOutput = () => {
+    const selectedOption = select.selectedOptions[0];
+    const summary = selectedOption?.getAttribute("data-summary") || selectedOption?.textContent.trim() || emptyText;
+    const isEmpty = !select.value;
+
+    output.textContent = isEmpty ? emptyText : summary;
+    const invalid = select.required && isEmpty;
+    demo.classList.toggle("invalid", invalid);
+    select.setAttribute("aria-invalid", String(invalid));
+  };
+
+  select.addEventListener("change", updateSelectOutput);
+
+  if (resetButton) {
+    resetButton.addEventListener("click", () => {
+      select.value = initialValue;
+      updateSelectOutput();
+      select.focus();
+    });
+  }
+
+  updateSelectOutput();
 });

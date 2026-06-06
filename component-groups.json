@@ -15,6 +15,7 @@
       "label": "Input and choice",
       "links": [
         { "label": "Inputs", "href": "components-inputs.html", "componentKey": "inputs", "sectionId": "inputs", "description": "값 입력, 검증, helper, disabled/readonly 기준입니다." },
+        { "label": "Select", "href": "components-select.html", "componentKey": "select", "sectionId": "select", "description": "짧은 고정 선택지와 native select 상태 기준입니다." },
         { "label": "Controls", "href": "components-controls.html", "componentKey": "controls", "sectionId": "controls", "description": "필터, 설정, 선택 상태를 유지하는 control 기준입니다." },
         { "label": "Tabs", "href": "components-tabs.html", "componentKey": "tabs", "sectionId": "tabs", "description": "같은 업무 맥락 안에서 view mode를 전환하는 기준입니다." },
         { "label": "Menu", "href": "components-menu.html", "componentKey": "menu", "sectionId": "menu", "description": "보조 명령, 정렬, 필터, 위험 명령을 묶는 기준입니다." },

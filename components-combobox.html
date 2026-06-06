@@ -32,6 +32,7 @@
           <a href="components-cards.html"><span>Cards</span><small>Core components</small></a>
           <a href="components-avatar.html"><span>Avatar</span><small>Core components</small></a>
           <a href="components-inputs.html"><span>Inputs</span><small>Input and choice</small></a>
+          <a href="components-select.html"><span>Select</span><small>Input and choice</small></a>
           <a href="components-controls.html"><span>Controls</span><small>Input and choice</small></a>
           <a href="components-tabs.html"><span>Tabs</span><small>Input and choice</small></a>
           <a href="components-menu.html"><span>Menu</span><small>Input and choice</small></a>
@@ -62,6 +63,7 @@
         <a href="components-avatar.html">Avatar</a>
         <p class="sidebar-label">Input and choice</p>
         <a href="components-inputs.html">Inputs</a>
+        <a href="components-select.html">Select</a>
         <a href="components-controls.html">Controls</a>
         <a href="components-tabs.html">Tabs</a>
         <a href="components-menu.html">Menu</a>
@@ -173,18 +175,21 @@
     <h2>Combobox는 검색 가능한 소유자와 label 선택에 사용합니다.</h2>
   </div>
   <div class="component-context-example">
-    <div class="context-preview combobox-demo-surface">
+    <div class="context-preview combobox-demo-surface" data-combobox>
       <div class="combobox-field-demo">
-        <label class="field">
+        <label class="field" for="owner-search-combobox">
           <span>Owner search</span>
-          <div class="input-shell"><input type="text" role="combobox" aria-expanded="true" aria-controls="owner-options" aria-activedescendant="owner-mina" value="mi"></div>
+          <div class="input-shell"><input id="owner-search-combobox" type="search" role="combobox" aria-expanded="true" aria-controls="owner-options" aria-activedescendant="owner-mina" autocomplete="off" value="mi" data-combobox-input></div>
         </label>
       </div>
       <div id="owner-options" class="combobox-panel" role="listbox" aria-label="Owner results">
-        <div id="owner-mina" class="active" role="option" aria-selected="true"><strong>Mina Park</strong><small>Campaign owner</small></div>
-        <div role="option"><strong>Minho Lee</strong><small>Reviewer</small></div>
-        <div role="option"><strong>Mika Kim</strong><small>External collaborator</small></div>
+        <div class="combobox-loading" role="status" hidden data-combobox-loading>Searching owners...</div>
+        <div id="owner-mina" class="active" role="option" aria-selected="true" data-value="Mina Park" data-combobox-option><strong>Mina Park</strong><small>Campaign owner</small></div>
+        <div id="owner-minho" role="option" aria-selected="false" data-value="Minho Lee" data-combobox-option><strong>Minho Lee</strong><small>Reviewer</small></div>
+        <div id="owner-mika" role="option" aria-selected="false" data-value="Mika Kim" data-combobox-option><strong>Mika Kim</strong><small>External collaborator</small></div>
+        <div class="combobox-empty" role="status" hidden data-combobox-empty><strong>No matching owner</strong><small>Clear the query or invite a collaborator.</small></div>
       </div>
+      <button class="button ghost small" type="button" data-combobox-clear>Clear query</button>
     </div>
     <div class="context-rules">
       <strong>Review checklist</strong>
@@ -286,20 +291,30 @@
     <h2>검색 가능한 선택지는 입력과 결과 목록을 하나의 계약으로 봅니다.</h2>
   </div>
   <div class="combobox-demo-grid">
-    <article class="combobox-demo-surface">
+    <article class="combobox-demo-surface" data-combobox>
       <div class="combobox-field-demo">
-        <label class="field"><span>Label search</span><input type="text" role="combobox" aria-expanded="true" aria-controls="label-options" aria-activedescendant="label-risk" value="risk"></label>
+        <label class="field" for="label-search-combobox"><span>Label search</span><input id="label-search-combobox" type="search" role="combobox" aria-expanded="true" aria-controls="label-options" aria-activedescendant="label-risk" autocomplete="off" value="risk" data-combobox-input></label>
       </div>
       <div id="label-options" class="combobox-panel" role="listbox">
-        <div id="label-risk" class="active" role="option" aria-selected="true"><strong>Disclosure risk</strong><small>3 matching campaigns</small></div>
-        <div role="option"><strong>Deadline risk</strong><small>8 matching campaigns</small></div>
+        <div class="combobox-loading" role="status" hidden data-combobox-loading>Loading label results...</div>
+        <div id="label-risk" class="active" role="option" aria-selected="true" data-value="Disclosure risk" data-combobox-option><strong>Disclosure risk</strong><small>3 matching campaigns</small></div>
+        <div id="label-deadline" role="option" aria-selected="false" data-value="Deadline risk" data-combobox-option><strong>Deadline risk</strong><small>8 matching campaigns</small></div>
+        <div id="label-muted" role="option" aria-selected="false" aria-disabled="true" data-combobox-disabled data-value="Budget hold" data-combobox-option><strong>Budget hold</strong><small>Disabled until finance review is complete</small></div>
+        <div class="combobox-empty" role="status" hidden data-combobox-empty><strong>No matching label</strong><small>Clear the query or create a label from settings.</small></div>
       </div>
+      <button class="button ghost small" type="button" data-combobox-clear>Clear query</button>
     </article>
-    <article class="combobox-demo-surface">
+    <article class="combobox-demo-surface" data-combobox data-combobox-filter-on-init>
       <div class="combobox-field-demo">
-        <label class="field"><span>Owner search</span><input type="text" role="combobox" aria-expanded="true" aria-controls="empty-options" value="unknown owner"></label>
+        <label class="field" for="empty-owner-combobox"><span>Owner search</span><input id="empty-owner-combobox" type="search" role="combobox" aria-expanded="true" aria-controls="empty-options" autocomplete="off" value="unknown owner" data-combobox-input></label>
       </div>
-      <div id="empty-options" class="combobox-panel empty" role="listbox"><strong>No matching owner</strong><small>Clear the query or invite a collaborator.</small></div>
+      <div id="empty-options" class="combobox-panel" role="listbox">
+        <div class="combobox-loading" role="status" hidden data-combobox-loading>Searching owners...</div>
+        <div id="empty-owner-mina" role="option" aria-selected="false" data-value="Mina Park" data-combobox-option><strong>Mina Park</strong><small>Campaign owner</small></div>
+        <div id="empty-owner-alex" role="option" aria-selected="false" data-value="Alex Kim" data-combobox-option><strong>Alex Kim</strong><small>Approval reviewer</small></div>
+        <div class="combobox-empty" role="status" hidden data-combobox-empty><strong>No matching owner</strong><small>Clear the query or invite a collaborator.</small></div>
+      </div>
+      <button class="button ghost small" type="button" data-combobox-clear>Clear query</button>
     </article>
   </div>
 </section>

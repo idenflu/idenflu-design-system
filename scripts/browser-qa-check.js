@@ -46,6 +46,13 @@ const screenshotScenarios = [
     requiredSelectors: ["#combobox", ".combobox-demo-grid", ".combobox-demo-surface", ".interaction-contract-grid"],
   },
   {
+    name: "component-select-responsive",
+    file: "components-select.html",
+    hash: "#select",
+    requiredSelectors: ["#select", ".select-demo-grid", ".select-demo-surface", "[data-select-demo]"],
+    note: "select responsive QA",
+  },
+  {
     name: "component-table-responsive",
     file: "components-table.html",
     hash: "#table",
@@ -129,6 +136,20 @@ const interactionScenarios = [
       const value = await page.$eval("#component-owner-combobox", (input) => input.value);
 
       if (value !== "Alex Kim") throw new Error(`expected Alex Kim, got ${value}`);
+    },
+  },
+  {
+    name: "select-output-update",
+    file: "components-select.html",
+    hash: "#select",
+    requiredSelectors: ["#select-stage-demo", "[data-select-output]"],
+    run: async (page) => {
+      await page.selectOption("#select-stage-demo", "approved");
+      const value = await page.$eval("#select-stage-demo", (select) => select.value);
+      const output = await page.$eval("#select-stage-output", (element) => element.textContent.trim());
+
+      if (value !== "approved") throw new Error(`expected approved value, got ${value}`);
+      if (!output.includes("Approved")) throw new Error(`expected Approved output, got ${output}`);
     },
   },
 ];

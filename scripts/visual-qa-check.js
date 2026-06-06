@@ -90,10 +90,15 @@ requireInFile("scripts/browser-qa-check.js", "interaction scenarios", "interacti
 requireInFile("scripts/browser-qa-check.js", "theme modes", "themeModes");
 requireInFile("scripts/browser-qa-check.js", "viewport matrix", "viewports");
 requireInFile("scripts/token-usage-report.js", "token usage check mode", "--check");
+requireInFile("scripts/page-partials.js", "partial expansion", "expandPagePartials");
 requireInFile("component-token-usage.json", "token usage components", "\"components\"");
+requireInFile("component-api.json", "component API components", "\"components\"");
 requireInFile("visual-qa.html", "QA command board", "qa-command-board");
+requireInFile("visual-qa.html", "QA dashboard", "qa-dashboard-grid");
 requireInFile("visual-qa.html", "browser QA command", "node scripts/browser-qa-check.js --dry-run");
 requireInFile("visual-qa.html", "token usage command", "node scripts/token-usage-report.js --check");
+requireInFile("components.html", "component API reference", "component-api-reference");
+requireInFile("components.html", "component API grid", "component-api-grid");
 
 if (failures.length) {
   console.error(failures.join("\n"));

@@ -1663,6 +1663,11 @@
           "reference": false,
           "links": [
             {
+              "label": "Dashboard",
+              "href": "#qa-dashboard",
+              "active": false
+            },
+            {
               "label": "Actions",
               "href": "#actions",
               "active": false

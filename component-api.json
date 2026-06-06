@@ -1,0 +1,29 @@
+{
+  "version": "2026-06-06",
+  "components": {
+    "buttons": {
+      "label": "Button API",
+      "props": ["variant", "size", "icon", "loading", "disabled"],
+      "states": ["default", "hover", "focus", "selected", "loading", "disabled", "danger"],
+      "accessibility": ["button element", "aria-busy for loading", "aria-label for icon-only"]
+    },
+    "inputs": {
+      "label": "Input API",
+      "props": ["type", "label", "helper", "validation", "availability"],
+      "states": ["default", "focus", "filled", "invalid", "success", "readonly", "disabled"],
+      "accessibility": ["visible label", "aria-invalid", "aria-describedby", "combobox relation when searchable"]
+    },
+    "table": {
+      "label": "Table API",
+      "props": ["density", "selection", "sorting", "row state", "responsive"],
+      "states": ["default", "selected", "expanded", "loading", "error", "locked"],
+      "accessibility": ["role table", "columnheader", "aria-sort", "row action without hover"]
+    },
+    "overlays": {
+      "label": "Overlay API",
+      "props": ["trigger", "surface", "backdrop", "placement", "close rule"],
+      "states": ["closed", "open", "pending", "validation", "locked", "destructive"],
+      "accessibility": ["role dialog", "aria-modal", "aria-labelledby", "focus trap", "focus restore"]
+    }
+  }
+}

@@ -20,7 +20,9 @@ if (!exists("tokens.generated.css")) failures.push("missing tokens.generated.css
 if (!exists("scripts/visual-qa-check.js")) failures.push("missing scripts/visual-qa-check.js");
 if (!exists("scripts/browser-qa-check.js")) failures.push("missing scripts/browser-qa-check.js");
 if (!exists("scripts/token-usage-report.js")) failures.push("missing scripts/token-usage-report.js");
+if (!exists("scripts/page-partials.js")) failures.push("missing scripts/page-partials.js");
 if (!exists("component-token-usage.json")) failures.push("missing component-token-usage.json");
+if (!exists("component-api.json")) failures.push("missing component-api.json");
 
 const normalizeColor = (value) => String(value).trim().toLowerCase();
 
@@ -147,16 +149,26 @@ if (config) {
   });
 
   const foundationsSource = read(path.join("src/pages", "foundations.html"));
+  const foundationsHtml = read("foundations.html");
   [
     'id="component-token-usage"',
-    "token-usage-grid",
     "component-token-usage.json",
+    "<!-- partial:component-token-usage -->",
+  ].forEach((marker) => {
+    if (!foundationsSource.includes(marker)) {
+      failures.push(`foundations.html: missing token usage source marker ${marker}`);
+    }
+  });
+
+  [
+    "token-usage-grid",
+    'data-partial="component-token-usage"',
     "Button tokens",
     "Field tokens",
     "Table tokens",
     "Overlay tokens",
   ].forEach((marker) => {
-    if (!foundationsSource.includes(marker)) {
+    if (!foundationsHtml.includes(marker)) {
       failures.push(`foundations.html: missing token usage marker ${marker}`);
     }
   });
@@ -178,6 +190,15 @@ if (config) {
   if (!componentIndex.includes("component-index-grid")) {
     failures.push("components.html: missing component-index-grid");
   }
+  [
+    'id="component-api-reference"',
+    "component-api-grid",
+    "Button API",
+    "Overlay API",
+    "Table API",
+  ].forEach((marker) => {
+    if (!componentIndex.includes(marker)) failures.push(`components.html: missing ${marker}`);
+  });
 
   const indexSource = read(path.join("src/pages", "index.html"));
   [
@@ -240,7 +261,9 @@ if (config) {
     "scenario-matrix",
     "screen-composition-demo",
     "token-usage-grid",
+    "component-api-grid",
     "interaction-qa-grid",
+    "qa-dashboard-grid",
   ].forEach((className) => {
     if (!styles.includes(`.${className}`)) {
       failures.push(`styles.css: missing ${className}`);
@@ -349,12 +372,12 @@ if (config) {
     failures.push("visual-qa.html: missing automation section");
   }
   if (exists("visual-qa.html")) {
-    ["qa-command-board", "browser-qa-check.js", "token-usage-report.js"].forEach((marker) => {
+    ["qa-command-board", "browser-qa-check.js", "token-usage-report.js", "qa-dashboard-grid", "Dark mode deep QA"].forEach((marker) => {
       if (!read("visual-qa.html").includes(marker)) failures.push(`visual-qa.html: missing ${marker}`);
     });
   }
   if (exists("changelog.html")) {
-    ["Release impact", "release-impact-grid", "QA automation"].forEach((marker) => {
+    ["Release impact", "release-impact-grid", "QA automation", "Affected components", "Required QA"].forEach((marker) => {
       if (!read("changelog.html").includes(marker)) failures.push(`changelog.html: missing ${marker}`);
     });
   }
@@ -364,6 +387,7 @@ if (config) {
 
 if (tokens) {
   const tokenUsage = exists("component-token-usage.json") ? JSON.parse(read("component-token-usage.json")) : null;
+  const componentApi = exists("component-api.json") ? JSON.parse(read("component-api.json")) : null;
   const colorMappings = {
     primary: "--primary",
     "primary-hover": "--primary-hover",
@@ -427,6 +451,15 @@ if (tokens) {
       if (!tokenUsage.components?.[component]?.tokens?.length) {
         failures.push(`component-token-usage.json: missing ${component} tokens`);
       }
+    });
+  }
+
+  if (componentApi) {
+    ["buttons", "inputs", "table", "overlays"].forEach((component) => {
+      const definition = componentApi.components?.[component];
+      if (!definition?.props?.length) failures.push(`component-api.json: missing ${component} props`);
+      if (!definition?.states?.length) failures.push(`component-api.json: missing ${component} states`);
+      if (!definition?.accessibility?.length) failures.push(`component-api.json: missing ${component} accessibility`);
     });
   }
 }

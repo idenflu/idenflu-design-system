@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const { expandPagePartials } = require("./page-partials");
 
 const rootDir = path.resolve(__dirname, "..");
 const configPath = path.join(rootDir, "site.config.json");
@@ -68,7 +69,7 @@ const renderStyleLinks = (config) => {
 
 const renderPage = (config, page) => {
   const sourcePath = path.join(sourceDir, page.source);
-  const content = fs.readFileSync(sourcePath, "utf8").trimEnd();
+  const content = expandPagePartials(fs.readFileSync(sourcePath, "utf8").trimEnd());
 
   return `<!doctype html>
 <html lang="ko">

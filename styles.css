@@ -1020,7 +1020,9 @@ h3 {
 
 .scenario-matrix,
 .token-usage-grid,
+.component-api-grid,
 .interaction-qa-grid,
+.qa-dashboard-grid,
 .qa-command-board,
 .release-impact-grid {
   display: grid;
@@ -1031,7 +1033,9 @@ h3 {
 
 .scenario-matrix article,
 .token-usage-grid article,
+.component-api-grid article,
 .interaction-qa-grid article,
+.qa-dashboard-grid article,
 .qa-command-board article,
 .release-impact-grid article {
   display: grid;
@@ -1045,7 +1049,9 @@ h3 {
 
 .scenario-matrix strong,
 .token-usage-grid strong,
+.component-api-grid strong,
 .interaction-qa-grid strong,
+.qa-dashboard-grid strong,
 .qa-command-board strong,
 .release-impact-grid strong {
   color: var(--ink);
@@ -1053,7 +1059,9 @@ h3 {
 
 .scenario-matrix p,
 .token-usage-grid p,
+.component-api-grid p,
 .interaction-qa-grid p,
+.qa-dashboard-grid p,
 .qa-command-board p,
 .release-impact-grid p {
   margin: 0;
@@ -1065,6 +1073,39 @@ h3 {
   width: fit-content;
   border: 1px solid var(--hairline);
   padding: 4px 8px;
+  background: var(--surface-1);
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.component-api-grid dl {
+  display: grid;
+  gap: var(--space-xs);
+  margin: 0;
+}
+
+.component-api-grid dt {
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.component-api-grid dd {
+  margin: 0 0 var(--space-sm);
+  color: var(--ink-muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.component-api-grid dd:last-child {
+  margin-bottom: 0;
+}
+
+.qa-dashboard-grid span {
+  width: fit-content;
+  border: 1px solid var(--hairline);
+  padding: 3px 7px;
   background: var(--surface-1);
   color: var(--primary);
   font-size: 12px;
@@ -3854,7 +3895,9 @@ mark.status {
   .card-context-preview,
   .scenario-matrix,
   .token-usage-grid,
+  .component-api-grid,
   .interaction-qa-grid,
+  .qa-dashboard-grid,
   .qa-command-board,
   .release-impact-grid,
   .visual-do-dont-grid,
@@ -3971,7 +4014,9 @@ mark.status {
   .scenario-matrix,
   .screen-composition-demo,
   .token-usage-grid,
+  .component-api-grid,
   .interaction-qa-grid,
+  .qa-dashboard-grid,
   .qa-command-board,
   .release-impact-grid,
   .connected-workflow-demo,

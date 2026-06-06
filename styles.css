@@ -980,7 +980,10 @@ h3 {
   position: absolute;
   right: var(--space-lg);
   bottom: var(--space-lg);
+  display: grid;
+  gap: var(--space-md);
   width: min(360px, calc(100% - 48px));
+  padding: var(--space-lg);
   border: 1px solid var(--hairline-strong);
   background: var(--surface-raised);
   box-shadow: var(--shadow-panel);

@@ -1,0 +1,116 @@
+<section class="page-header component-page-header">
+  <p class="eyebrow">Components</p>
+  <h1>Menu</h1>
+  <p class="lede">Contextual actions, sorting, filtering, and danger commands.</p>
+</section>
+
+<section id="component-standard" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Component standard</p>
+    <h2>Menu 문서의 공통 구조.</h2>
+  </div>
+  <div class="component-doc-grid">
+    <article id="doc-anatomy" class="component-doc-card">
+      <strong>Anatomy</strong>
+      <p>Trigger, surface, group label, item, checked state, danger item을 나눕니다.</p>
+      <ul><li>Trigger</li><li>menu surface</li><li>item group</li><li>shortcut</li><li>danger action</li></ul>
+    </article>
+    <article id="doc-variants" class="component-doc-card">
+      <strong>Variants</strong>
+      <p>Action menu, sort menu, filter menu, row menu, destructive menu</p>
+    </article>
+    <article id="doc-states" class="component-doc-card">
+      <strong>States</strong>
+      <p>Closed, open, hover, focus, checked, disabled, danger 상태를 같은 밀도로 비교합니다.</p>
+    </article>
+    <article id="doc-accessibility" class="component-doc-card">
+      <strong>Accessibility</strong>
+      <p>aria-haspopup, aria-expanded, role menu, Escape close, focus restore를 확인합니다.</p>
+    </article>
+    <article id="doc-examples" class="component-doc-card">
+      <strong>Examples</strong>
+      <p>테이블 row action, 정렬, 필터, export 같은 반복 작업 안에서 검토합니다.</p>
+    </article>
+    <article id="doc-qa" class="component-doc-card">
+      <strong>QA</strong>
+      <p>긴 item label, disabled item, danger action, keyboard order, mobile overflow를 확인합니다.</p>
+    </article>
+  </div>
+</section>
+
+<section id="component-template-map" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Document template</p>
+    <h2>Menu 문서는 액션의 위험도와 선택 상태를 먼저 구분합니다.</h2>
+  </div>
+  <div class="component-template-map">
+    <article><span>01</span><strong>Overview</strong><p>메뉴가 row action인지, 보기 설정인지, 위험 액션인지 먼저 정합니다.</p></article>
+    <article><span>02</span><strong>Anatomy</strong><p>Trigger, menu surface, group, item, helper, shortcut을 분리합니다.</p></article>
+    <article><span>03</span><strong>Variants</strong><p>Action, sort, filter, checked, danger menu를 구분합니다.</p></article>
+    <article><span>04</span><strong>States</strong><p>Open, focused item, checked item, disabled item, danger item을 비교합니다.</p></article>
+    <article><span>05</span><strong>Accessibility</strong><p>Trigger state, roving focus, Escape close, focus restore를 확인합니다.</p></article>
+    <article><span>06</span><strong>QA</strong><p>긴 label, keyboard loop, disabled hover leak, danger color contrast를 검증합니다.</p></article>
+  </div>
+</section>
+
+<section id="context-example" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Context example</p>
+    <h2>메뉴는 반복 row의 보조 액션을 표면 위에 잠시 펼칩니다.</h2>
+  </div>
+  <div class="component-context-example">
+    <div class="context-preview">
+      <div class="context-preview-header"><strong>Campaign row menu</strong><button class="icon-button" type="button" aria-label="Open campaign actions" aria-haspopup="menu" aria-expanded="true"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-more"></use></svg></button></div>
+      <div class="menu-surface" role="menu" aria-label="Campaign actions">
+        <button type="button" role="menuitem">Open detail</button>
+        <button type="button" role="menuitemcheckbox" aria-checked="true">Show revision column</button>
+        <button type="button" role="menuitem" disabled>Duplicate campaign</button>
+        <button class="danger" type="button" role="menuitem">Archive campaign</button>
+      </div>
+    </div>
+    <div class="context-rules">
+      <strong>Review checklist</strong>
+      <ul>
+        <li>주요 CTA는 메뉴 안에 숨기지 않습니다.</li>
+        <li>위험 액션은 group 끝에 두고 색과 문구를 함께 사용합니다.</li>
+        <li>메뉴를 닫으면 trigger로 focus가 돌아갑니다.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="token-contract" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Token contract</p>
+    <h2>메뉴는 작은 표면, hairline, compact typography로 구성합니다.</h2>
+  </div>
+  <div class="component-token-contract">
+    <div class="token-contract-row header"><span>Decision</span><span>Token</span><span>Rule</span></div>
+    <div class="token-contract-row"><span><strong>Surface</strong></span><span>{colors.surface-raised}</span><span>메뉴는 떠 있는 표면이지만 과한 그림자보다 hairline으로 구분합니다.</span></div>
+    <div class="token-contract-row"><span><strong>Item height</strong></span><span>{sizing.control-height}</span><span>각 item은 버튼 높이와 같은 기준으로 tab target을 유지합니다.</span></div>
+    <div class="token-contract-row"><span><strong>Text</strong></span><span>{typography.body-sm}</span><span>보조 액션은 13px body-sm를 사용해 테이블 밀도와 맞춥니다.</span></div>
+    <div class="token-contract-row"><span><strong>Danger</strong></span><span>{colors.accent-coral}</span><span>위험 액션은 coral과 명시적인 action label을 함께 사용합니다.</span></div>
+  </div>
+</section>
+
+<section id="menu" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Menu</p>
+    <h2>정렬, 필터, row action을 작은 명령 목록으로 제공합니다.</h2>
+  </div>
+  <div class="utility-component-grid">
+    <article class="menu-surface" role="menu" aria-label="Sort menu">
+      <strong>Sort by</strong>
+      <button type="button" role="menuitemcheckbox" aria-checked="true">Newest revision</button>
+      <button type="button" role="menuitemcheckbox" aria-checked="false">Due date</button>
+      <button type="button" role="menuitemcheckbox" aria-checked="false">Risk level</button>
+    </article>
+    <article class="menu-surface" role="menu" aria-label="Action menu">
+      <strong>Actions</strong>
+      <button type="button" role="menuitem">Assign owner</button>
+      <button type="button" role="menuitem">Export selected</button>
+      <button type="button" role="menuitem" disabled>Approve locked item</button>
+      <button class="danger" type="button" role="menuitem">Remove from queue</button>
+    </article>
+  </div>
+</section>

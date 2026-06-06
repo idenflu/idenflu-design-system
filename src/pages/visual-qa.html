@@ -29,6 +29,47 @@
   </div>
 </section>
 
+<section id="utilities" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Menu and identity QA</p>
+    <h2>작은 보조 컴포넌트도 상태와 접근성을 함께 확인합니다.</h2>
+    <p class="lede">Menu, combobox, badge, tooltip/popover, avatar는 테이블과 카드 안에서 반복 사용되므로 같은 밀도와 focus 기준으로 봅니다.</p>
+  </div>
+  <div class="utility-component-grid">
+    <article class="menu-surface" role="menu" aria-label="Visual QA action menu">
+      <strong>Menu</strong>
+      <button type="button" role="menuitem">Open detail</button>
+      <button type="button" role="menuitemcheckbox" aria-checked="true">Show revision</button>
+      <button type="button" role="menuitem" disabled>Approve locked</button>
+      <button class="danger" type="button" role="menuitem">Archive item</button>
+    </article>
+    <article class="combobox-demo">
+      <label class="field"><span>Combobox active option</span><input type="text" role="combobox" aria-expanded="true" aria-controls="qa-owner-options" aria-activedescendant="qa-owner-mina" value="mi"></label>
+      <div id="qa-owner-options" class="combobox-panel" role="listbox">
+        <div id="qa-owner-mina" class="active" role="option" aria-selected="true"><strong>Mina Park</strong><small>Owner</small></div>
+        <div role="option"><strong>Minho Lee</strong><small>Reviewer</small></div>
+      </div>
+    </article>
+    <article class="badge-stack">
+      <strong>Badges and chips</strong>
+      <span class="status blue">Selected</span>
+      <span class="status amber">Review pending</span>
+      <button class="filter-chip selected" type="button">Due today <span>3</span></button>
+      <button class="filter-chip disabled" type="button" disabled>Locked filter</button>
+    </article>
+    <article class="tooltip-popover-board">
+      <strong>Tooltip and popover</strong>
+      <div class="tooltip-anchor"><button class="button quiet small focus-demo" type="button" aria-describedby="qa-tooltip">Risk</button><span id="qa-tooltip" class="tooltip-bubble" role="tooltip">Disclosure copy needs review.</span></div>
+      <div class="popover-card"><strong>Rev 03</strong><p>Owner changed campaign disclosure copy.</p></div>
+    </article>
+    <article class="identity-row">
+      <span class="avatar" aria-hidden="true">MP</span>
+      <span><strong>Mina Park</strong><small>Owner · Avatar fallback QA</small></span>
+      <span class="status mint">Online</span>
+    </article>
+  </div>
+</section>
+
 <section id="actions" class="section">
   <div class="section-heading">
     <p class="eyebrow">Actions</p>

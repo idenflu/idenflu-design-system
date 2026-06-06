@@ -24,6 +24,36 @@
       "props": ["trigger", "surface", "backdrop", "placement", "close rule"],
       "states": ["closed", "open", "pending", "validation", "locked", "destructive"],
       "accessibility": ["role dialog", "aria-modal", "aria-labelledby", "focus trap", "focus restore"]
+    },
+    "menu": {
+      "label": "Menu API",
+      "props": ["trigger", "items", "group", "checked item", "danger item"],
+      "states": ["closed", "open", "hover", "focus", "checked", "disabled", "danger"],
+      "accessibility": ["aria-haspopup", "aria-expanded", "role menu", "menuitem", "Escape closes"]
+    },
+    "combobox": {
+      "label": "Combobox API",
+      "props": ["label", "query", "options", "active option", "selection"],
+      "states": ["collapsed", "expanded", "typing", "active", "empty", "loading", "disabled"],
+      "accessibility": ["role combobox", "aria-controls", "aria-activedescendant", "keyboard option navigation"]
+    },
+    "badges": {
+      "label": "Badge API",
+      "props": ["tone", "label", "count", "removable", "status"],
+      "states": ["neutral", "info", "success", "warning", "danger", "selected", "disabled"],
+      "accessibility": ["text visible", "status not color-only", "remove button aria-label"]
+    },
+    "tooltips": {
+      "label": "Tooltip API",
+      "props": ["trigger", "content", "placement", "interactive", "delay"],
+      "states": ["hidden", "visible", "hover", "focus", "pinned", "disabled"],
+      "accessibility": ["aria-describedby", "focus trigger", "no critical action inside tooltip", "popover close path"]
+    },
+    "avatar": {
+      "label": "Avatar API",
+      "props": ["name", "image", "initials", "size", "presence", "subtitle"],
+      "states": ["image", "initials", "unassigned", "online", "busy", "disabled"],
+      "accessibility": ["img alt when informative", "decorative avatar hidden", "visible name near identity rows"]
     }
   }
 }

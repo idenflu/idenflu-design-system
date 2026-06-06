@@ -29,6 +29,11 @@ const requireInFile = (file, label, value) => {
   ["components-overlays.html", "overlay interactions", 'id="overlay-interactions"'],
   ["components-overlays.html", "overlay states", 'id="overlay-states"'],
   ["components-overlays.html", "overlay focus", 'id="overlay-focus"'],
+  ["components-menu.html", "menu component page", 'id="menu"'],
+  ["components-combobox.html", "combobox component page", 'id="combobox"'],
+  ["components-badges.html", "badges component page", 'id="badges"'],
+  ["components-tooltips.html", "tooltips component page", 'id="tooltips"'],
+  ["components-avatar.html", "avatar component page", 'id="avatar"'],
   ["accessibility.html", "component contracts", 'id="component-contracts"'],
   ["accessibility.html", "aria roles", 'id="aria-roles"'],
   ["accessibility.html", "focus order", 'id="focus-order"'],
@@ -95,10 +100,15 @@ requireInFile("component-token-usage.json", "token usage components", "\"compone
 requireInFile("component-api.json", "component API components", "\"components\"");
 requireInFile("visual-qa.html", "QA command board", "qa-command-board");
 requireInFile("visual-qa.html", "QA dashboard", "qa-dashboard-grid");
+requireInFile("visual-qa.html", "utility component QA", "utility-component-grid");
+requireInFile("visual-qa.html", "menu identity QA", "Menu and identity QA");
 requireInFile("visual-qa.html", "browser QA command", "node scripts/browser-qa-check.js --dry-run");
 requireInFile("visual-qa.html", "token usage command", "node scripts/token-usage-report.js --check");
 requireInFile("components.html", "component API reference", "component-api-reference");
 requireInFile("components.html", "component API grid", "component-api-grid");
+["Menu API", "Combobox API", "Badge API", "Tooltip API", "Avatar API"].forEach((marker) => {
+  requireInFile("components.html", marker, marker);
+});
 
 if (failures.length) {
   console.error(failures.join("\n"));

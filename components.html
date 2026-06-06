@@ -31,6 +31,11 @@
         <a href="components-controls.html">Controls</a>
         <a href="components-tabs.html">Tabs</a>
         <a href="components-cards.html">Cards</a>
+        <a href="components-menu.html">Menu</a>
+        <a href="components-combobox.html">Combobox</a>
+        <a href="components-badges.html">Badges</a>
+        <a href="components-tooltips.html">Tooltips</a>
+        <a href="components-avatar.html">Avatar</a>
         <a href="components-table.html">Data table</a>
         <a href="components-examples.html">Examples</a>
         <a href="components-feedback.html">Feedback</a>
@@ -75,6 +80,26 @@
     <a href="components-cards.html">
       <span>Cards</span>
       <small>Reusable object, metric, and activity containers.</small>
+    </a>
+    <a href="components-menu.html">
+      <span>Menu</span>
+      <small>Contextual actions, sorting, filtering, and danger commands.</small>
+    </a>
+    <a href="components-combobox.html">
+      <span>Combobox</span>
+      <small>Searchable selection, active option, empty, and loading states.</small>
+    </a>
+    <a href="components-badges.html">
+      <span>Badges</span>
+      <small>Status labels, count badges, filter chips, and removable tags.</small>
+    </a>
+    <a href="components-tooltips.html">
+      <span>Tooltips</span>
+      <small>Short hints, metadata popovers, and quick action surfaces.</small>
+    </a>
+    <a href="components-avatar.html">
+      <span>Avatar</span>
+      <small>Identity, fallback initials, owner rows, and presence states.</small>
     </a>
     <a href="components-table.html">
       <span>Data table</span>
@@ -148,6 +173,61 @@
         <dd>closed, open, pending, validation, locked, destructive</dd>
         <dt>Accessibility</dt>
         <dd>role dialog, aria-modal, aria-labelledby, focus trap, focus restore</dd>
+      </dl>
+    </article>
+    <article>
+      <strong>Menu API</strong>
+      <dl>
+        <dt>Props</dt>
+        <dd>trigger, items, group, checked item, danger item</dd>
+        <dt>States</dt>
+        <dd>closed, open, hover, focus, checked, disabled, danger</dd>
+        <dt>Accessibility</dt>
+        <dd>aria-haspopup, aria-expanded, role menu, menuitem, Escape closes</dd>
+      </dl>
+    </article>
+    <article>
+      <strong>Combobox API</strong>
+      <dl>
+        <dt>Props</dt>
+        <dd>label, query, options, active option, selection</dd>
+        <dt>States</dt>
+        <dd>collapsed, expanded, typing, active, empty, loading, disabled</dd>
+        <dt>Accessibility</dt>
+        <dd>role combobox, aria-controls, aria-activedescendant, keyboard option navigation</dd>
+      </dl>
+    </article>
+    <article>
+      <strong>Badge API</strong>
+      <dl>
+        <dt>Props</dt>
+        <dd>tone, label, count, removable, status</dd>
+        <dt>States</dt>
+        <dd>neutral, info, success, warning, danger, selected, disabled</dd>
+        <dt>Accessibility</dt>
+        <dd>text visible, status not color-only, remove button aria-label</dd>
+      </dl>
+    </article>
+    <article>
+      <strong>Tooltip API</strong>
+      <dl>
+        <dt>Props</dt>
+        <dd>trigger, content, placement, interactive, delay</dd>
+        <dt>States</dt>
+        <dd>hidden, visible, hover, focus, pinned, disabled</dd>
+        <dt>Accessibility</dt>
+        <dd>aria-describedby, focus trigger, no critical action inside tooltip, popover close path</dd>
+      </dl>
+    </article>
+    <article>
+      <strong>Avatar API</strong>
+      <dl>
+        <dt>Props</dt>
+        <dd>name, image, initials, size, presence, subtitle</dd>
+        <dt>States</dt>
+        <dd>image, initials, unassigned, online, busy, disabled</dd>
+        <dt>Accessibility</dt>
+        <dd>img alt when informative, decorative avatar hidden, visible name near identity rows</dd>
       </dl>
     </article>
   </div>

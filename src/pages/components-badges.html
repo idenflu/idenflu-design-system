@@ -1,0 +1,74 @@
+<section class="page-header component-page-header">
+  <p class="eyebrow">Components</p>
+  <h1>Badges</h1>
+  <p class="lede">Status labels, count badges, filter chips, and removable tags.</p>
+</section>
+
+<section id="component-standard" class="section surface-band">
+  <div class="section-heading"><p class="eyebrow">Component standard</p><h2>Badges 문서의 공통 구조.</h2></div>
+  <div class="component-doc-grid">
+    <article id="doc-anatomy" class="component-doc-card"><strong>Anatomy</strong><p>Tone, label, count, optional icon, remove action을 나눕니다.</p><ul><li>Text label</li><li>tone</li><li>count</li><li>remove button</li><li>status meaning</li></ul></article>
+    <article id="doc-variants" class="component-doc-card"><strong>Variants</strong><p>Status badge, count badge, filter chip, removable tag, risk label</p></article>
+    <article id="doc-states" class="component-doc-card"><strong>States</strong><p>Neutral, info, success, warning, danger, selected, disabled 상태를 비교합니다.</p></article>
+    <article id="doc-accessibility" class="component-doc-card"><strong>Accessibility</strong><p>상태는 색상만으로 전달하지 않고 remove action은 aria-label을 사용합니다.</p></article>
+    <article id="doc-examples" class="component-doc-card"><strong>Examples</strong><p>테이블 상태, 필터 적용값, owner label, asset risk에 사용합니다.</p></article>
+    <article id="doc-qa" class="component-doc-card"><strong>QA</strong><p>긴 label, count overflow, disabled chip, dark contrast를 확인합니다.</p></article>
+  </div>
+</section>
+
+<section id="component-template-map" class="section">
+  <div class="section-heading"><p class="eyebrow">Document template</p><h2>Badges 문서는 의미와 제거 가능 여부를 먼저 구분합니다.</h2></div>
+  <div class="component-template-map">
+    <article><span>01</span><strong>Overview</strong><p>상태 label인지, 적용된 필터인지, count인지 먼저 정합니다.</p></article>
+    <article><span>02</span><strong>Anatomy</strong><p>Tone, label, count, icon, remove button을 분리합니다.</p></article>
+    <article><span>03</span><strong>Variants</strong><p>Status, chip, tag, count, risk label을 구분합니다.</p></article>
+    <article><span>04</span><strong>States</strong><p>Selected, disabled, removable, warning, danger 상태를 비교합니다.</p></article>
+    <article><span>05</span><strong>Accessibility</strong><p>상태 텍스트, remove label, 색상 의존 여부를 확인합니다.</p></article>
+    <article><span>06</span><strong>QA</strong><p>긴 label wrap, compact toolbar, dark mode, count overflow를 검증합니다.</p></article>
+  </div>
+</section>
+
+<section id="context-example" class="section surface-band">
+  <div class="section-heading"><p class="eyebrow">Context example</p><h2>Badges는 상태와 적용된 조건을 작은 단위로 보여줍니다.</h2></div>
+  <div class="component-context-example">
+    <div class="context-preview">
+      <div class="badge-stack">
+        <span class="chip blue">Selected</span>
+        <span class="chip amber">Review pending</span>
+        <span class="chip mint">Approved</span>
+        <span class="chip coral">Disclosure risk</span>
+      </div>
+      <div class="filter-chip-row">
+        <button class="filter-chip selected" type="button">Owner Mina <span>8</span></button>
+        <button class="filter-chip" type="button" aria-label="Remove status review filter">Status Review <span>12</span></button>
+      </div>
+    </div>
+    <div class="context-rules">
+      <strong>Review checklist</strong>
+      <ul>
+        <li>Status badge는 상태 text를 반드시 포함합니다.</li>
+        <li>Filter chip은 선택 조건과 reset 가능 여부를 드러냅니다.</li>
+        <li>Count badge는 단독 의미가 없으면 label 옆에 붙입니다.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="token-contract" class="section">
+  <div class="section-heading"><p class="eyebrow">Token contract</p><h2>Badges는 caption과 semantic accent를 작은 면적으로 사용합니다.</h2></div>
+  <div class="component-token-contract">
+    <div class="token-contract-row header"><span>Decision</span><span>Token</span><span>Rule</span></div>
+    <div class="token-contract-row"><span><strong>Text</strong></span><span>{typography.caption}</span><span>Badge label은 12px caption으로 유지합니다.</span></div>
+    <div class="token-contract-row"><span><strong>Info</strong></span><span>{colors.primary-soft}</span><span>선택과 정보는 primary soft를 사용합니다.</span></div>
+    <div class="token-contract-row"><span><strong>Success</strong></span><span>{colors.accent-mint}</span><span>완료 상태는 mint와 완료 label을 함께 씁니다.</span></div>
+    <div class="token-contract-row"><span><strong>Warning</strong></span><span>{colors.accent-amber}</span><span>대기와 위험 예고는 amber와 원인 text를 함께 둡니다.</span></div>
+  </div>
+</section>
+
+<section id="badges" class="section">
+  <div class="section-heading"><p class="eyebrow">Badges</p><h2>상태, 필터, count를 같은 작은 단위로 정렬합니다.</h2></div>
+  <div class="utility-component-grid">
+    <article class="badge-stack"><strong>Status</strong><span class="status blue">Selected</span><span class="status mint">Ready</span><span class="status amber">Pending</span><span class="status coral">Blocked</span></article>
+    <article class="badge-stack"><strong>Filter chips</strong><button class="filter-chip selected" type="button">Channel Reels <span>14</span></button><button class="filter-chip" type="button">Due today <span>3</span></button><button class="filter-chip disabled" type="button" disabled>Locked filter</button></article>
+  </div>
+</section>

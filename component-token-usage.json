@@ -40,6 +40,26 @@
     "icons": {
       "label": "Icon tokens",
       "tokens": ["icons.viewBox", "icons.strokeWidth", "icons.strokeLinecap", "icons.strokeLinejoin"]
+    },
+    "menu": {
+      "label": "Menu tokens",
+      "tokens": ["sizing.control-height", "typography.body-sm", "colors.surface-raised", "colors.hairline", "shadow.low"]
+    },
+    "combobox": {
+      "label": "Combobox tokens",
+      "tokens": ["sizing.field-height", "typography.body", "colors.primary", "colors.surface-raised", "colors.hairline"]
+    },
+    "badges": {
+      "label": "Badge tokens",
+      "tokens": ["typography.caption", "colors.primary-soft", "colors.accent-mint", "colors.accent-amber", "radius.none"]
+    },
+    "tooltips": {
+      "label": "Tooltip tokens",
+      "tokens": ["typography.caption", "colors.inverse-canvas", "colors.inverse-ink", "shadow.low", "spacing.xs"]
+    },
+    "avatar": {
+      "label": "Avatar tokens",
+      "tokens": ["sizing.control-height", "typography.body-emphasis", "colors.surface-2", "colors.primary", "colors.hairline"]
     }
   }
 }

@@ -60,9 +60,13 @@ if (config) {
 
   const generatedFiles = config.pages.map((page) => page.file);
   const componentPages = generatedFiles.filter((file) => file.startsWith("components-"));
-  if (componentPages.length < 11) failures.push("expected at least 11 component detail pages");
+  if (componentPages.length < 16) failures.push("expected at least 16 component detail pages");
   if (!generatedFiles.includes("starter-kit.html")) failures.push("missing starter kit page");
   if (!generatedFiles.includes("changelog.html")) failures.push("missing changelog page");
+
+  ["components-menu.html", "components-combobox.html", "components-badges.html", "components-tooltips.html", "components-avatar.html"].forEach((file) => {
+    if (!generatedFiles.includes(file)) failures.push(`missing generated component page ${file}`);
+  });
 
   ["components.html", ...componentPages].forEach((file) => {
     const source = read(path.join("src/pages", file));
@@ -194,6 +198,11 @@ if (config) {
     'id="component-api-reference"',
     "component-api-grid",
     "Button API",
+    "Menu API",
+    "Combobox API",
+    "Badge API",
+    "Tooltip API",
+    "Avatar API",
     "Overlay API",
     "Table API",
   ].forEach((marker) => {
@@ -264,6 +273,12 @@ if (config) {
     "component-api-grid",
     "interaction-qa-grid",
     "qa-dashboard-grid",
+    "utility-component-grid",
+    "menu-surface",
+    "combobox-panel",
+    "badge-stack",
+    "tooltip-popover-board",
+    "avatar-cluster",
   ].forEach((className) => {
     if (!styles.includes(`.${className}`)) {
       failures.push(`styles.css: missing ${className}`);
@@ -372,7 +387,7 @@ if (config) {
     failures.push("visual-qa.html: missing automation section");
   }
   if (exists("visual-qa.html")) {
-    ["qa-command-board", "browser-qa-check.js", "token-usage-report.js", "qa-dashboard-grid", "Dark mode deep QA"].forEach((marker) => {
+    ["qa-command-board", "browser-qa-check.js", "token-usage-report.js", "qa-dashboard-grid", "Dark mode deep QA", "utility-component-grid", "Menu and identity QA", "Combobox active option", "Avatar fallback"].forEach((marker) => {
       if (!read("visual-qa.html").includes(marker)) failures.push(`visual-qa.html: missing ${marker}`);
     });
   }
@@ -447,7 +462,7 @@ if (tokens) {
   });
 
   if (tokenUsage) {
-    ["buttons", "cards", "inputs", "controls", "tabs", "table", "overlays", "feedback", "navigation", "icons"].forEach((component) => {
+    ["buttons", "cards", "inputs", "controls", "tabs", "table", "overlays", "feedback", "navigation", "icons", "menu", "combobox", "badges", "tooltips", "avatar"].forEach((component) => {
       if (!tokenUsage.components?.[component]?.tokens?.length) {
         failures.push(`component-token-usage.json: missing ${component} tokens`);
       }
@@ -455,7 +470,7 @@ if (tokens) {
   }
 
   if (componentApi) {
-    ["buttons", "inputs", "table", "overlays"].forEach((component) => {
+    ["buttons", "inputs", "table", "overlays", "menu", "combobox", "badges", "tooltips", "avatar"].forEach((component) => {
       const definition = componentApi.components?.[component];
       if (!definition?.props?.length) failures.push(`component-api.json: missing ${component} props`);
       if (!definition?.states?.length) failures.push(`component-api.json: missing ${component} states`);

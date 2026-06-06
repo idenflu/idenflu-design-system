@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Avatar - idenflu Design System</title>
+    <link rel="stylesheet" href="tokens.generated.css?v=20260606-token-pipeline">
+    <link rel="stylesheet" href="styles.css?v=20260606-system-complete">
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="index.html"><span class="brand-mark"></span><span>idenflu</span></a>
+      <nav class="topnav" aria-label="Primary">
+        <a href="index.html">Overview</a>
+        <a href="foundations.html">Foundations</a>
+        <a class="active" href="components.html">Components</a>
+        <a href="patterns.html">Patterns</a>
+        <a href="guidelines.html">Reference</a>
+      </nav>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode" aria-pressed="false">Dark</button>
+      <div class="topbar-meta">Avatar</div>
+    </header>
+
+    <div class="doc-layout">
+      <aside class="sidebar" aria-label="Component pages">
+        <p class="sidebar-label">Components</p>
+        <a href="components.html">Overview</a>
+        <a href="components-buttons.html">Buttons</a>
+        <a href="components-icons.html">Icons</a>
+        <a href="components-inputs.html">Inputs</a>
+        <a href="components-controls.html">Controls</a>
+        <a href="components-tabs.html">Tabs</a>
+        <a href="components-cards.html">Cards</a>
+        <a href="components-menu.html">Menu</a>
+        <a href="components-combobox.html">Combobox</a>
+        <a href="components-badges.html">Badges</a>
+        <a href="components-tooltips.html">Tooltips</a>
+        <a class="active" href="components-avatar.html">Avatar</a>
+        <a href="components-table.html">Data table</a>
+        <a href="components-examples.html">Examples</a>
+        <a href="components-feedback.html">Feedback</a>
+        <a href="components-overlays.html">Overlays</a>
+        <a href="components-navigation.html">Navigation</a>
+        <p class="sidebar-label reference-label">On this page</p>
+        <a href="#component-template-map">Template</a>
+        <a href="#context-example">Context</a>
+        <a href="#token-contract">Tokens</a>
+      </aside>
+
+      <main>
+<section class="page-header component-page-header">
+  <p class="eyebrow">Components</p>
+  <h1>Avatar</h1>
+  <p class="lede">Identity, fallback initials, owner rows, and presence states.</p>
+</section>
+
+<section id="component-standard" class="section surface-band">
+  <div class="section-heading"><p class="eyebrow">Component standard</p><h2>Avatar 문서의 공통 구조.</h2></div>
+  <div class="component-doc-grid">
+    <article id="doc-anatomy" class="component-doc-card"><strong>Anatomy</strong><p>Image, initials, name, subtitle, presence, fallback을 나눕니다.</p><ul><li>Image</li><li>initials</li><li>name</li><li>subtitle</li><li>presence</li></ul></article>
+    <article id="doc-variants" class="component-doc-card"><strong>Variants</strong><p>Image avatar, initials, unassigned, stacked group, identity row</p></article>
+    <article id="doc-states" class="component-doc-card"><strong>States</strong><p>Image, initials, unassigned, online, busy, disabled 상태를 비교합니다.</p></article>
+    <article id="doc-accessibility" class="component-doc-card"><strong>Accessibility</strong><p>정보성 이미지는 alt, 장식 avatar는 hidden, identity row는 name을 visible로 둡니다.</p></article>
+    <article id="doc-examples" class="component-doc-card"><strong>Examples</strong><p>Owner, requester, approver, collaborator group에 사용합니다.</p></article>
+    <article id="doc-qa" class="component-doc-card"><strong>QA</strong><p>이미지 실패, 긴 이름, email subtitle, stacked overlap, dark contrast를 확인합니다.</p></article>
+  </div>
+</section>
+
+<section id="component-template-map" class="section">
+  <div class="section-heading"><p class="eyebrow">Document template</p><h2>Avatar 문서는 사람이 누구인지 읽히는 정보 단위로 봅니다.</h2></div>
+  <div class="component-template-map">
+    <article><span>01</span><strong>Overview</strong><p>Avatar만으로 식별하지 말고 name이나 role과 함께 사용합니다.</p></article>
+    <article><span>02</span><strong>Anatomy</strong><p>Image, initials, fallback, name, subtitle, presence를 분리합니다.</p></article>
+    <article><span>03</span><strong>Variants</strong><p>Single, group, identity row, unassigned, system user를 구분합니다.</p></article>
+    <article><span>04</span><strong>States</strong><p>Online, busy, disabled, missing image, fallback initials를 비교합니다.</p></article>
+    <article><span>05</span><strong>Accessibility</strong><p>Avatar alt, decorative hidden, visible identity text를 확인합니다.</p></article>
+    <article><span>06</span><strong>QA</strong><p>Long name, email wrap, stacked group, dark surface를 검증합니다.</p></article>
+  </div>
+</section>
+
+<section id="context-example" class="section surface-band">
+  <div class="section-heading"><p class="eyebrow">Context example</p><h2>Avatar는 owner와 승인 흐름의 사람 정보를 빠르게 보여줍니다.</h2></div>
+  <div class="component-context-example">
+    <div class="context-preview">
+      <div class="identity-row"><span class="avatar" aria-hidden="true">MP</span><span><strong>Mina Park</strong><small>Owner · mina@idenflu.com</small></span><span class="status mint">Online</span></div>
+      <div class="identity-row"><span class="avatar muted" aria-hidden="true">JL</span><span><strong>Jiho Lee</strong><small>Requested changes · Rev 02</small></span><span class="status amber">Waiting</span></div>
+      <div class="avatar-cluster" aria-label="Assigned reviewers"><span class="avatar">MP</span><span class="avatar">JL</span><span class="avatar muted">+3</span></div>
+    </div>
+    <div class="context-rules">
+      <strong>Review checklist</strong>
+      <ul>
+        <li>Avatar 옆에는 가능한 한 visible name을 함께 둡니다.</li>
+        <li>Fallback initials는 실제 이름에서 가져오고 임의 색상은 만들지 않습니다.</li>
+        <li>Group avatar는 인원 수와 상세 진입 경로를 함께 제공합니다.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="token-contract" class="section">
+  <div class="section-heading"><p class="eyebrow">Token contract</p><h2>Avatar는 크기와 identity typography를 일관되게 씁니다.</h2></div>
+  <div class="component-token-contract">
+    <div class="token-contract-row header"><span>Decision</span><span>Token</span><span>Rule</span></div>
+    <div class="token-contract-row"><span><strong>Size</strong></span><span>{sizing.control-height}</span><span>기본 avatar는 control height와 같은 크기를 사용합니다.</span></div>
+    <div class="token-contract-row"><span><strong>Initials</strong></span><span>{typography.body-emphasis}</span><span>Fallback initials는 작지만 선명한 emphasis를 사용합니다.</span></div>
+    <div class="token-contract-row"><span><strong>Surface</strong></span><span>{colors.surface-2}</span><span>이미지가 없을 때 neutral surface를 사용합니다.</span></div>
+    <div class="token-contract-row"><span><strong>Presence</strong></span><span>{colors.primary}</span><span>Presence는 보조 정보이며 이름을 대체하지 않습니다.</span></div>
+  </div>
+</section>
+
+<section id="avatar" class="section">
+  <div class="section-heading"><p class="eyebrow">Avatar</p><h2>사람 정보는 avatar, 이름, 역할을 함께 보여줍니다.</h2></div>
+  <div class="utility-component-grid">
+    <article class="identity-row"><span class="avatar">MP</span><span><strong>Mina Park</strong><small>Campaign owner</small></span><span class="status mint">Online</span></article>
+    <article class="identity-row"><span class="avatar muted">?</span><span><strong>Unassigned</strong><small>Avatar fallback</small></span><button class="button ghost small" type="button">Assign</button></article>
+  </div>
+</section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

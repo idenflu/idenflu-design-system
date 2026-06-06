@@ -163,6 +163,31 @@
               "active": false
             },
             {
+              "label": "Menu",
+              "href": "components-menu.html",
+              "active": false
+            },
+            {
+              "label": "Combobox",
+              "href": "components-combobox.html",
+              "active": false
+            },
+            {
+              "label": "Badges",
+              "href": "components-badges.html",
+              "active": false
+            },
+            {
+              "label": "Tooltips",
+              "href": "components-tooltips.html",
+              "active": false
+            },
+            {
+              "label": "Avatar",
+              "href": "components-avatar.html",
+              "active": false
+            },
+            {
               "label": "Data table",
               "href": "components-table.html",
               "active": false
@@ -236,6 +261,31 @@
             {
               "label": "Cards",
               "href": "components-cards.html",
+              "active": false
+            },
+            {
+              "label": "Menu",
+              "href": "components-menu.html",
+              "active": false
+            },
+            {
+              "label": "Combobox",
+              "href": "components-combobox.html",
+              "active": false
+            },
+            {
+              "label": "Badges",
+              "href": "components-badges.html",
+              "active": false
+            },
+            {
+              "label": "Tooltips",
+              "href": "components-tooltips.html",
+              "active": false
+            },
+            {
+              "label": "Avatar",
+              "href": "components-avatar.html",
               "active": false
             },
             {
@@ -315,6 +365,31 @@
               "active": false
             },
             {
+              "label": "Menu",
+              "href": "components-menu.html",
+              "active": false
+            },
+            {
+              "label": "Combobox",
+              "href": "components-combobox.html",
+              "active": false
+            },
+            {
+              "label": "Badges",
+              "href": "components-badges.html",
+              "active": false
+            },
+            {
+              "label": "Tooltips",
+              "href": "components-tooltips.html",
+              "active": false
+            },
+            {
+              "label": "Avatar",
+              "href": "components-avatar.html",
+              "active": false
+            },
+            {
               "label": "Data table",
               "href": "components-table.html",
               "active": false
@@ -388,6 +463,31 @@
             {
               "label": "Cards",
               "href": "components-cards.html",
+              "active": false
+            },
+            {
+              "label": "Menu",
+              "href": "components-menu.html",
+              "active": false
+            },
+            {
+              "label": "Combobox",
+              "href": "components-combobox.html",
+              "active": false
+            },
+            {
+              "label": "Badges",
+              "href": "components-badges.html",
+              "active": false
+            },
+            {
+              "label": "Tooltips",
+              "href": "components-tooltips.html",
+              "active": false
+            },
+            {
+              "label": "Avatar",
+              "href": "components-avatar.html",
               "active": false
             },
             {
@@ -467,6 +567,31 @@
               "active": false
             },
             {
+              "label": "Menu",
+              "href": "components-menu.html",
+              "active": false
+            },
+            {
+              "label": "Combobox",
+              "href": "components-combobox.html",
+              "active": false
+            },
+            {
+              "label": "Badges",
+              "href": "components-badges.html",
+              "active": false
+            },
+            {
+              "label": "Tooltips",
+              "href": "components-tooltips.html",
+              "active": false
+            },
+            {
+              "label": "Avatar",
+              "href": "components-avatar.html",
+              "active": false
+            },
+            {
               "label": "Data table",
               "href": "components-table.html",
               "active": false
@@ -540,6 +665,31 @@
             {
               "label": "Cards",
               "href": "components-cards.html",
+              "active": false
+            },
+            {
+              "label": "Menu",
+              "href": "components-menu.html",
+              "active": false
+            },
+            {
+              "label": "Combobox",
+              "href": "components-combobox.html",
+              "active": false
+            },
+            {
+              "label": "Badges",
+              "href": "components-badges.html",
+              "active": false
+            },
+            {
+              "label": "Tooltips",
+              "href": "components-tooltips.html",
+              "active": false
+            },
+            {
+              "label": "Avatar",
+              "href": "components-avatar.html",
               "active": false
             },
             {
@@ -619,6 +769,536 @@
               "active": true
             },
             {
+              "label": "Menu",
+              "href": "components-menu.html",
+              "active": false
+            },
+            {
+              "label": "Combobox",
+              "href": "components-combobox.html",
+              "active": false
+            },
+            {
+              "label": "Badges",
+              "href": "components-badges.html",
+              "active": false
+            },
+            {
+              "label": "Tooltips",
+              "href": "components-tooltips.html",
+              "active": false
+            },
+            {
+              "label": "Avatar",
+              "href": "components-avatar.html",
+              "active": false
+            },
+            {
+              "label": "Data table",
+              "href": "components-table.html",
+              "active": false
+            },
+            {
+              "label": "Examples",
+              "href": "components-examples.html",
+              "active": false
+            },
+            {
+              "label": "Feedback",
+              "href": "components-feedback.html",
+              "active": false
+            },
+            {
+              "label": "Overlays",
+              "href": "components-overlays.html",
+              "active": false
+            },
+            {
+              "label": "Navigation",
+              "href": "components-navigation.html",
+              "active": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "components-menu.html",
+      "title": "Menu - idenflu Design System",
+      "meta": "Menu",
+      "activeTopnav": "components.html",
+      "source": "components-menu.html",
+      "sidebarAria": "Component pages",
+      "sidebarGroups": [
+        {
+          "label": "Components",
+          "reference": false,
+          "links": [
+            {
+              "label": "Overview",
+              "href": "components.html",
+              "active": false
+            },
+            {
+              "label": "Buttons",
+              "href": "components-buttons.html",
+              "active": false
+            },
+            {
+              "label": "Icons",
+              "href": "components-icons.html",
+              "active": false
+            },
+            {
+              "label": "Inputs",
+              "href": "components-inputs.html",
+              "active": false
+            },
+            {
+              "label": "Controls",
+              "href": "components-controls.html",
+              "active": false
+            },
+            {
+              "label": "Tabs",
+              "href": "components-tabs.html",
+              "active": false
+            },
+            {
+              "label": "Cards",
+              "href": "components-cards.html",
+              "active": false
+            },
+            {
+              "label": "Menu",
+              "href": "components-menu.html",
+              "active": true
+            },
+            {
+              "label": "Combobox",
+              "href": "components-combobox.html",
+              "active": false
+            },
+            {
+              "label": "Badges",
+              "href": "components-badges.html",
+              "active": false
+            },
+            {
+              "label": "Tooltips",
+              "href": "components-tooltips.html",
+              "active": false
+            },
+            {
+              "label": "Avatar",
+              "href": "components-avatar.html",
+              "active": false
+            },
+            {
+              "label": "Data table",
+              "href": "components-table.html",
+              "active": false
+            },
+            {
+              "label": "Examples",
+              "href": "components-examples.html",
+              "active": false
+            },
+            {
+              "label": "Feedback",
+              "href": "components-feedback.html",
+              "active": false
+            },
+            {
+              "label": "Overlays",
+              "href": "components-overlays.html",
+              "active": false
+            },
+            {
+              "label": "Navigation",
+              "href": "components-navigation.html",
+              "active": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "components-combobox.html",
+      "title": "Combobox - idenflu Design System",
+      "meta": "Combobox",
+      "activeTopnav": "components.html",
+      "source": "components-combobox.html",
+      "sidebarAria": "Component pages",
+      "sidebarGroups": [
+        {
+          "label": "Components",
+          "reference": false,
+          "links": [
+            {
+              "label": "Overview",
+              "href": "components.html",
+              "active": false
+            },
+            {
+              "label": "Buttons",
+              "href": "components-buttons.html",
+              "active": false
+            },
+            {
+              "label": "Icons",
+              "href": "components-icons.html",
+              "active": false
+            },
+            {
+              "label": "Inputs",
+              "href": "components-inputs.html",
+              "active": false
+            },
+            {
+              "label": "Controls",
+              "href": "components-controls.html",
+              "active": false
+            },
+            {
+              "label": "Tabs",
+              "href": "components-tabs.html",
+              "active": false
+            },
+            {
+              "label": "Cards",
+              "href": "components-cards.html",
+              "active": false
+            },
+            {
+              "label": "Menu",
+              "href": "components-menu.html",
+              "active": false
+            },
+            {
+              "label": "Combobox",
+              "href": "components-combobox.html",
+              "active": true
+            },
+            {
+              "label": "Badges",
+              "href": "components-badges.html",
+              "active": false
+            },
+            {
+              "label": "Tooltips",
+              "href": "components-tooltips.html",
+              "active": false
+            },
+            {
+              "label": "Avatar",
+              "href": "components-avatar.html",
+              "active": false
+            },
+            {
+              "label": "Data table",
+              "href": "components-table.html",
+              "active": false
+            },
+            {
+              "label": "Examples",
+              "href": "components-examples.html",
+              "active": false
+            },
+            {
+              "label": "Feedback",
+              "href": "components-feedback.html",
+              "active": false
+            },
+            {
+              "label": "Overlays",
+              "href": "components-overlays.html",
+              "active": false
+            },
+            {
+              "label": "Navigation",
+              "href": "components-navigation.html",
+              "active": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "components-badges.html",
+      "title": "Badges - idenflu Design System",
+      "meta": "Badges",
+      "activeTopnav": "components.html",
+      "source": "components-badges.html",
+      "sidebarAria": "Component pages",
+      "sidebarGroups": [
+        {
+          "label": "Components",
+          "reference": false,
+          "links": [
+            {
+              "label": "Overview",
+              "href": "components.html",
+              "active": false
+            },
+            {
+              "label": "Buttons",
+              "href": "components-buttons.html",
+              "active": false
+            },
+            {
+              "label": "Icons",
+              "href": "components-icons.html",
+              "active": false
+            },
+            {
+              "label": "Inputs",
+              "href": "components-inputs.html",
+              "active": false
+            },
+            {
+              "label": "Controls",
+              "href": "components-controls.html",
+              "active": false
+            },
+            {
+              "label": "Tabs",
+              "href": "components-tabs.html",
+              "active": false
+            },
+            {
+              "label": "Cards",
+              "href": "components-cards.html",
+              "active": false
+            },
+            {
+              "label": "Menu",
+              "href": "components-menu.html",
+              "active": false
+            },
+            {
+              "label": "Combobox",
+              "href": "components-combobox.html",
+              "active": false
+            },
+            {
+              "label": "Badges",
+              "href": "components-badges.html",
+              "active": true
+            },
+            {
+              "label": "Tooltips",
+              "href": "components-tooltips.html",
+              "active": false
+            },
+            {
+              "label": "Avatar",
+              "href": "components-avatar.html",
+              "active": false
+            },
+            {
+              "label": "Data table",
+              "href": "components-table.html",
+              "active": false
+            },
+            {
+              "label": "Examples",
+              "href": "components-examples.html",
+              "active": false
+            },
+            {
+              "label": "Feedback",
+              "href": "components-feedback.html",
+              "active": false
+            },
+            {
+              "label": "Overlays",
+              "href": "components-overlays.html",
+              "active": false
+            },
+            {
+              "label": "Navigation",
+              "href": "components-navigation.html",
+              "active": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "components-tooltips.html",
+      "title": "Tooltips - idenflu Design System",
+      "meta": "Tooltips",
+      "activeTopnav": "components.html",
+      "source": "components-tooltips.html",
+      "sidebarAria": "Component pages",
+      "sidebarGroups": [
+        {
+          "label": "Components",
+          "reference": false,
+          "links": [
+            {
+              "label": "Overview",
+              "href": "components.html",
+              "active": false
+            },
+            {
+              "label": "Buttons",
+              "href": "components-buttons.html",
+              "active": false
+            },
+            {
+              "label": "Icons",
+              "href": "components-icons.html",
+              "active": false
+            },
+            {
+              "label": "Inputs",
+              "href": "components-inputs.html",
+              "active": false
+            },
+            {
+              "label": "Controls",
+              "href": "components-controls.html",
+              "active": false
+            },
+            {
+              "label": "Tabs",
+              "href": "components-tabs.html",
+              "active": false
+            },
+            {
+              "label": "Cards",
+              "href": "components-cards.html",
+              "active": false
+            },
+            {
+              "label": "Menu",
+              "href": "components-menu.html",
+              "active": false
+            },
+            {
+              "label": "Combobox",
+              "href": "components-combobox.html",
+              "active": false
+            },
+            {
+              "label": "Badges",
+              "href": "components-badges.html",
+              "active": false
+            },
+            {
+              "label": "Tooltips",
+              "href": "components-tooltips.html",
+              "active": true
+            },
+            {
+              "label": "Avatar",
+              "href": "components-avatar.html",
+              "active": false
+            },
+            {
+              "label": "Data table",
+              "href": "components-table.html",
+              "active": false
+            },
+            {
+              "label": "Examples",
+              "href": "components-examples.html",
+              "active": false
+            },
+            {
+              "label": "Feedback",
+              "href": "components-feedback.html",
+              "active": false
+            },
+            {
+              "label": "Overlays",
+              "href": "components-overlays.html",
+              "active": false
+            },
+            {
+              "label": "Navigation",
+              "href": "components-navigation.html",
+              "active": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "components-avatar.html",
+      "title": "Avatar - idenflu Design System",
+      "meta": "Avatar",
+      "activeTopnav": "components.html",
+      "source": "components-avatar.html",
+      "sidebarAria": "Component pages",
+      "sidebarGroups": [
+        {
+          "label": "Components",
+          "reference": false,
+          "links": [
+            {
+              "label": "Overview",
+              "href": "components.html",
+              "active": false
+            },
+            {
+              "label": "Buttons",
+              "href": "components-buttons.html",
+              "active": false
+            },
+            {
+              "label": "Icons",
+              "href": "components-icons.html",
+              "active": false
+            },
+            {
+              "label": "Inputs",
+              "href": "components-inputs.html",
+              "active": false
+            },
+            {
+              "label": "Controls",
+              "href": "components-controls.html",
+              "active": false
+            },
+            {
+              "label": "Tabs",
+              "href": "components-tabs.html",
+              "active": false
+            },
+            {
+              "label": "Cards",
+              "href": "components-cards.html",
+              "active": false
+            },
+            {
+              "label": "Menu",
+              "href": "components-menu.html",
+              "active": false
+            },
+            {
+              "label": "Combobox",
+              "href": "components-combobox.html",
+              "active": false
+            },
+            {
+              "label": "Badges",
+              "href": "components-badges.html",
+              "active": false
+            },
+            {
+              "label": "Tooltips",
+              "href": "components-tooltips.html",
+              "active": false
+            },
+            {
+              "label": "Avatar",
+              "href": "components-avatar.html",
+              "active": true
+            },
+            {
               "label": "Data table",
               "href": "components-table.html",
               "active": false
@@ -692,6 +1372,31 @@
             {
               "label": "Cards",
               "href": "components-cards.html",
+              "active": false
+            },
+            {
+              "label": "Menu",
+              "href": "components-menu.html",
+              "active": false
+            },
+            {
+              "label": "Combobox",
+              "href": "components-combobox.html",
+              "active": false
+            },
+            {
+              "label": "Badges",
+              "href": "components-badges.html",
+              "active": false
+            },
+            {
+              "label": "Tooltips",
+              "href": "components-tooltips.html",
+              "active": false
+            },
+            {
+              "label": "Avatar",
+              "href": "components-avatar.html",
               "active": false
             },
             {
@@ -771,6 +1476,31 @@
               "active": false
             },
             {
+              "label": "Menu",
+              "href": "components-menu.html",
+              "active": false
+            },
+            {
+              "label": "Combobox",
+              "href": "components-combobox.html",
+              "active": false
+            },
+            {
+              "label": "Badges",
+              "href": "components-badges.html",
+              "active": false
+            },
+            {
+              "label": "Tooltips",
+              "href": "components-tooltips.html",
+              "active": false
+            },
+            {
+              "label": "Avatar",
+              "href": "components-avatar.html",
+              "active": false
+            },
+            {
               "label": "Data table",
               "href": "components-table.html",
               "active": false
@@ -844,6 +1574,31 @@
             {
               "label": "Cards",
               "href": "components-cards.html",
+              "active": false
+            },
+            {
+              "label": "Menu",
+              "href": "components-menu.html",
+              "active": false
+            },
+            {
+              "label": "Combobox",
+              "href": "components-combobox.html",
+              "active": false
+            },
+            {
+              "label": "Badges",
+              "href": "components-badges.html",
+              "active": false
+            },
+            {
+              "label": "Tooltips",
+              "href": "components-tooltips.html",
+              "active": false
+            },
+            {
+              "label": "Avatar",
+              "href": "components-avatar.html",
               "active": false
             },
             {
@@ -923,6 +1678,31 @@
               "active": false
             },
             {
+              "label": "Menu",
+              "href": "components-menu.html",
+              "active": false
+            },
+            {
+              "label": "Combobox",
+              "href": "components-combobox.html",
+              "active": false
+            },
+            {
+              "label": "Badges",
+              "href": "components-badges.html",
+              "active": false
+            },
+            {
+              "label": "Tooltips",
+              "href": "components-tooltips.html",
+              "active": false
+            },
+            {
+              "label": "Avatar",
+              "href": "components-avatar.html",
+              "active": false
+            },
+            {
               "label": "Data table",
               "href": "components-table.html",
               "active": false
@@ -996,6 +1776,31 @@
             {
               "label": "Cards",
               "href": "components-cards.html",
+              "active": false
+            },
+            {
+              "label": "Menu",
+              "href": "components-menu.html",
+              "active": false
+            },
+            {
+              "label": "Combobox",
+              "href": "components-combobox.html",
+              "active": false
+            },
+            {
+              "label": "Badges",
+              "href": "components-badges.html",
+              "active": false
+            },
+            {
+              "label": "Tooltips",
+              "href": "components-tooltips.html",
+              "active": false
+            },
+            {
+              "label": "Avatar",
+              "href": "components-avatar.html",
               "active": false
             },
             {
@@ -1665,6 +2470,11 @@
             {
               "label": "Dashboard",
               "href": "#qa-dashboard",
+              "active": false
+            },
+            {
+              "label": "Utilities",
+              "href": "#utilities",
               "active": false
             },
             {

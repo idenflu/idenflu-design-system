@@ -1,6 +1,6 @@
 ---
 version: alpha
-name: idenflu-design-system
+name: idenflu-design-system-system
 source: "IBM Carbon analysis reinterpreted for idenflu"
 description: >-
   idenflu is a premium enterprise creator-operations design system: restrained,

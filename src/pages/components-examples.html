@@ -38,6 +38,60 @@
   </div>
 </section>
 
+<section id="component-template-map" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Document template</p>
+    <h2>Examples 문서는 화면 조합의 판단 근거를 먼저 보여줍니다.</h2>
+  </div>
+  <div class="component-template-map">
+    <article><span>01</span><strong>Overview</strong><p>예시가 어떤 제품 화면과 작업 흐름을 대표하는지 정의합니다.</p></article>
+    <article><span>02</span><strong>Anatomy</strong><p>Toolbar, content, detail, feedback, action 영역을 분리합니다.</p></article>
+    <article><span>03</span><strong>Variants</strong><p>Review workbench, creator shortlist, settings, recovery 화면을 나눕니다.</p></article>
+    <article><span>04</span><strong>States</strong><p>Default, selected, blocked, loading, error 상태를 한 화면에서 비교합니다.</p></article>
+    <article><span>05</span><strong>Accessibility</strong><p>Tab order, focus restore, error linkage, row action 접근성을 확인합니다.</p></article>
+    <article><span>06</span><strong>QA</strong><p>Light/dark, mobile, density, long text, overlay interaction을 검증합니다.</p></article>
+  </div>
+</section>
+
+<section id="context-example" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Context example</p>
+    <h2>좋은 예시는 단일 컴포넌트가 아니라 업무 흐름을 보여줍니다.</h2>
+  </div>
+  <div class="component-context-example">
+    <div class="context-preview">
+      <div class="context-preview-header"><strong>Review handoff</strong><span class="status coral">Blocked</span></div>
+      <div class="example-data-row"><strong>Summer drop review</strong><span>Rev 03</span><small>Mina · Due today</small></div>
+      <div class="case-actions">
+        <button class="button ghost small" type="button">Open brief</button>
+        <button class="button primary small" type="button">Resolve selected</button>
+      </div>
+    </div>
+    <div class="context-rules">
+      <strong>Review checklist</strong>
+      <ul>
+        <li>화면 예시는 context, metadata, decision action을 함께 보여줍니다.</li>
+        <li>실패/빈 상태/권한 잠금 같은 운영 상태를 숨기지 않습니다.</li>
+        <li>컴포넌트 조합이 실제 키보드 순서와 맞아야 합니다.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="token-contract" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Token contract</p>
+    <h2>Examples는 여러 컴포넌트 토큰이 함께 쓰이는 회귀 기준입니다.</h2>
+  </div>
+  <div class="component-token-contract">
+    <div class="token-contract-row header"><span>Area</span><span>Token set</span><span>Rule</span></div>
+    <div class="token-contract-row"><span><strong>Actions</strong></span><span>Button tokens</span><span>Primary action은 하나만 두고 quiet/ghost action으로 보조합니다.</span></div>
+    <div class="token-contract-row"><span><strong>Data</strong></span><span>Table tokens</span><span>반복 정보는 compact density와 visible metadata를 유지합니다.</span></div>
+    <div class="token-contract-row"><span><strong>Feedback</strong></span><span>Semantic tokens</span><span>Blocked, warning, success는 색과 텍스트를 함께 사용합니다.</span></div>
+    <div class="token-contract-row"><span><strong>Surface</strong></span><span>Overlay/Card tokens</span><span>결정 영역과 반복 객체 표면을 섞지 않습니다.</span></div>
+  </div>
+</section>
+
 <section id="example-blueprint" class="section">
   <div class="section-heading">
     <p class="eyebrow">Example blueprint</p>
@@ -80,6 +134,34 @@
         <button class="button primary" type="button">Resolve selected</button>
       </div>
     </div>
+  </div>
+</section>
+
+<section id="connected-workflow" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Connected workflow</p>
+    <h2>Toolbar, table, detail, overlay가 한 흐름으로 이어지는 기준.</h2>
+  </div>
+  <div class="connected-workflow-demo">
+    <div class="workflow-toolbar" role="toolbar" aria-label="Connected review tools">
+      <button class="button quiet small" type="button"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-filter"></use></svg>Status</button>
+      <button class="button quiet small" type="button">Owner</button>
+      <button class="button secondary small" type="button"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-download"></use></svg>Export</button>
+    </div>
+    <div class="workflow-table">
+      <div class="example-data-row"><strong>Summer drop review</strong><span>Review</span><small>Mina · Rev 03 · Due today</small></div>
+      <div class="example-data-row"><strong>Creator shortlist</strong><span>Recruit</span><small>Alex · Rev 01 · Jun 10</small></div>
+      <div class="example-data-row"><strong>Paid social assets</strong><span>Ready</span><small>Jae · Rev 04 · Jun 12</small></div>
+    </div>
+    <aside class="workflow-detail">
+      <span class="status coral">Needs disclosure</span>
+      <strong>Caption version · Rev 03</strong>
+      <p>Disclosure copy is missing from the first caption line.</p>
+      <div class="case-actions">
+        <button class="button ghost small" type="button">Open brief</button>
+        <button class="button primary small" type="button">Request changes</button>
+      </div>
+    </aside>
   </div>
 </section>
 

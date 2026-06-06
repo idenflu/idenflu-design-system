@@ -258,6 +258,23 @@
     <p class="eyebrow">Automation</p>
     <h2>정적 검증으로 상태 계약 누락을 먼저 잡습니다.</h2>
   </div>
+  <div class="qa-command-board">
+    <article>
+      <strong>Browser QA dry run</strong>
+      <code>node scripts/browser-qa-check.js --dry-run</code>
+      <p>Screenshot/interaction scenario가 현재 HTML과 연결되는지 확인합니다.</p>
+    </article>
+    <article>
+      <strong>Token usage check</strong>
+      <code>node scripts/token-usage-report.js --check</code>
+      <p>컴포넌트별 token path가 <code>tokens.json</code>에 실제로 존재하는지 확인합니다.</p>
+    </article>
+    <article>
+      <strong>Full static QA</strong>
+      <code>node scripts/verify-site.js</code>
+      <p>생성 페이지, token sync, 문서 구조, 금지 문구를 함께 확인합니다.</p>
+    </article>
+  </div>
   <div class="component-doc-grid">
     <article class="component-doc-card">
       <strong>Command</strong>

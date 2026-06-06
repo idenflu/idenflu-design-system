@@ -27,7 +27,25 @@ const renderTopnav = (config, activeHref) => {
 
 const renderSidebar = (page) => {
   const groups = page.sidebarGroups || [];
-  const body = groups
+  const sourcePath = path.join(sourceDir, page.source);
+  const source = fs.existsSync(sourcePath) ? fs.readFileSync(sourcePath, "utf8") : "";
+  const pageAnchorLinks = [
+    { label: "Template", href: "#component-template-map" },
+    { label: "Context", href: "#context-example" },
+    { label: "Tokens", href: "#token-contract" },
+  ].filter((link) => source.includes(`id="${link.href.slice(1)}"`));
+  const sidebarGroups = pageAnchorLinks.length
+    ? [
+        ...groups,
+        {
+          label: "On this page",
+          reference: true,
+          links: pageAnchorLinks,
+        },
+      ]
+    : groups;
+
+  const body = sidebarGroups
     .map((group) => {
       const links = group.links
         .map((link) => {

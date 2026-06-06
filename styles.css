@@ -1020,7 +1020,9 @@ h3 {
 
 .scenario-matrix,
 .token-usage-grid,
-.interaction-qa-grid {
+.interaction-qa-grid,
+.qa-command-board,
+.release-impact-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--space-md);
@@ -1029,7 +1031,9 @@ h3 {
 
 .scenario-matrix article,
 .token-usage-grid article,
-.interaction-qa-grid article {
+.interaction-qa-grid article,
+.qa-command-board article,
+.release-impact-grid article {
   display: grid;
   align-content: start;
   gap: var(--space-sm);
@@ -1041,13 +1045,17 @@ h3 {
 
 .scenario-matrix strong,
 .token-usage-grid strong,
-.interaction-qa-grid strong {
+.interaction-qa-grid strong,
+.qa-command-board strong,
+.release-impact-grid strong {
   color: var(--ink);
 }
 
 .scenario-matrix p,
 .token-usage-grid p,
-.interaction-qa-grid p {
+.interaction-qa-grid p,
+.qa-command-board p,
+.release-impact-grid p {
   margin: 0;
   color: var(--ink-muted);
   font-size: 13px;
@@ -1102,6 +1110,54 @@ h3 {
   display: grid;
   gap: var(--space-md);
   padding: var(--space-lg);
+}
+
+.connected-workflow-demo {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(260px, 0.7fr);
+  grid-template-areas:
+    "toolbar detail"
+    "table detail";
+  gap: var(--space-md);
+}
+
+.workflow-toolbar {
+  grid-area: toolbar;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  border: 1px solid var(--hairline);
+  padding: var(--space-md);
+  background: var(--surface-raised);
+}
+
+.workflow-table {
+  grid-area: table;
+  display: grid;
+  gap: var(--space-xs);
+  border: 1px solid var(--hairline);
+  padding: var(--space-md);
+  background: var(--surface-raised);
+}
+
+.workflow-detail {
+  grid-area: detail;
+  display: grid;
+  align-content: start;
+  gap: var(--space-sm);
+  border: 1px solid var(--hairline-strong);
+  padding: var(--space-lg);
+  background: var(--surface-raised);
+}
+
+.workflow-detail strong {
+  color: var(--ink);
+}
+
+.workflow-detail p {
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: 13px;
 }
 
 .a11y-flow-diagram ol {
@@ -3799,6 +3855,8 @@ mark.status {
   .scenario-matrix,
   .token-usage-grid,
   .interaction-qa-grid,
+  .qa-command-board,
+  .release-impact-grid,
   .visual-do-dont-grid,
   .a11y-flow-diagram,
   .enterprise-grid,
@@ -3914,6 +3972,9 @@ mark.status {
   .screen-composition-demo,
   .token-usage-grid,
   .interaction-qa-grid,
+  .qa-command-board,
+  .release-impact-grid,
+  .connected-workflow-demo,
   .visual-do-dont-grid,
   .a11y-flow-diagram,
   .enterprise-grid,
@@ -3946,6 +4007,7 @@ mark.status {
   .spacing-list div,
   .usage-note,
   .screen-composition-demo,
+  .connected-workflow-demo,
   .login-pattern,
   .table-context-preview .example-data-row,
   .modal-impact-list {
@@ -3964,6 +4026,13 @@ mark.status {
 
   .login-pattern {
     flex-direction: column;
+  }
+
+  .connected-workflow-demo {
+    grid-template-areas:
+      "toolbar"
+      "table"
+      "detail";
   }
 
   .composition-sidebar {

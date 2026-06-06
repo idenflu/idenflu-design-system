@@ -85,6 +85,16 @@ const accessibility = read("accessibility.html");
   if (!accessibility.includes(marker)) failures.push(`accessibility.html: missing ${marker}`);
 });
 
+requireInFile("scripts/browser-qa-check.js", "browser QA scenarios", "screenshotScenarios");
+requireInFile("scripts/browser-qa-check.js", "interaction scenarios", "interactionScenarios");
+requireInFile("scripts/browser-qa-check.js", "theme modes", "themeModes");
+requireInFile("scripts/browser-qa-check.js", "viewport matrix", "viewports");
+requireInFile("scripts/token-usage-report.js", "token usage check mode", "--check");
+requireInFile("component-token-usage.json", "token usage components", "\"components\"");
+requireInFile("visual-qa.html", "QA command board", "qa-command-board");
+requireInFile("visual-qa.html", "browser QA command", "node scripts/browser-qa-check.js --dry-run");
+requireInFile("visual-qa.html", "token usage command", "node scripts/token-usage-report.js --check");
+
 if (failures.length) {
   console.error(failures.join("\n"));
   process.exit(1);

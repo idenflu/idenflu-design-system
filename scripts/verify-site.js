@@ -18,6 +18,9 @@ if (!exists("scripts/build-site.js")) failures.push("missing scripts/build-site.
 if (!exists("scripts/build-tokens.js")) failures.push("missing scripts/build-tokens.js");
 if (!exists("tokens.generated.css")) failures.push("missing tokens.generated.css");
 if (!exists("scripts/visual-qa-check.js")) failures.push("missing scripts/visual-qa-check.js");
+if (!exists("scripts/browser-qa-check.js")) failures.push("missing scripts/browser-qa-check.js");
+if (!exists("scripts/token-usage-report.js")) failures.push("missing scripts/token-usage-report.js");
+if (!exists("component-token-usage.json")) failures.push("missing component-token-usage.json");
 
 const normalizeColor = (value) => String(value).trim().toLowerCase();
 
@@ -75,6 +78,11 @@ if (config) {
     ["component-standard", "doc-anatomy", "doc-variants", "doc-states", "doc-accessibility", "doc-examples"].forEach((id) => {
       if (!source.includes(`id="${id}"`)) failures.push(`${file}: missing ${id}`);
     });
+
+    const html = read(file);
+    ["#component-template-map", "#context-example", "#token-contract"].forEach((href) => {
+      if (!html.includes(`href="${href}"`)) failures.push(`${file}: missing sidebar anchor ${href}`);
+    });
   });
 
   ["components-buttons.html", "components-cards.html", "components-overlays.html", "components-table.html"].forEach((file) => {
@@ -126,8 +134,10 @@ if (config) {
   const examplesSource = read(path.join("src/pages", "components-examples.html"));
   [
     'id="example-blueprint"',
+    'id="connected-workflow"',
     "scenario-matrix",
     "screen-composition-demo",
+    "connected-workflow-demo",
     "Review workbench",
     "Settings and permissions",
   ].forEach((marker) => {
@@ -140,6 +150,7 @@ if (config) {
   [
     'id="component-token-usage"',
     "token-usage-grid",
+    "component-token-usage.json",
     "Button tokens",
     "Field tokens",
     "Table tokens",
@@ -234,6 +245,10 @@ if (config) {
     if (!styles.includes(`.${className}`)) {
       failures.push(`styles.css: missing ${className}`);
     }
+  });
+
+  ["connected-workflow-demo", "qa-command-board", "release-impact-grid"].forEach((className) => {
+    if (!styles.includes(`.${className}`)) failures.push(`styles.css: missing ${className}`);
   });
 
   const cardSource = read(path.join("src/pages", "components-cards.html"));
@@ -333,11 +348,22 @@ if (config) {
   if (exists("visual-qa.html") && !read("visual-qa.html").includes('id="automation"')) {
     failures.push("visual-qa.html: missing automation section");
   }
+  if (exists("visual-qa.html")) {
+    ["qa-command-board", "browser-qa-check.js", "token-usage-report.js"].forEach((marker) => {
+      if (!read("visual-qa.html").includes(marker)) failures.push(`visual-qa.html: missing ${marker}`);
+    });
+  }
+  if (exists("changelog.html")) {
+    ["Release impact", "release-impact-grid", "QA automation"].forEach((marker) => {
+      if (!read("changelog.html").includes(marker)) failures.push(`changelog.html: missing ${marker}`);
+    });
+  }
 
   if (!generatedFiles.includes("responsive.html")) failures.push("missing responsive page");
 }
 
 if (tokens) {
+  const tokenUsage = exists("component-token-usage.json") ? JSON.parse(read("component-token-usage.json")) : null;
   const colorMappings = {
     primary: "--primary",
     "primary-hover": "--primary-hover",
@@ -395,6 +421,14 @@ if (tokens) {
     if (!tokens.icons?.symbols?.includes(icon)) failures.push(`tokens.json: missing ${icon}`);
     if (!read("icons.svg").includes(`id="${icon}"`)) failures.push(`icons.svg: missing ${icon}`);
   });
+
+  if (tokenUsage) {
+    ["buttons", "cards", "inputs", "controls", "tabs", "table", "overlays", "feedback", "navigation", "icons"].forEach((component) => {
+      if (!tokenUsage.components?.[component]?.tokens?.length) {
+        failures.push(`component-token-usage.json: missing ${component} tokens`);
+      }
+    });
+  }
 }
 
 const blockedMarkers = [

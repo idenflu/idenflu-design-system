@@ -1,0 +1,45 @@
+{
+  "version": "2026-06-06",
+  "components": {
+    "buttons": {
+      "label": "Button tokens",
+      "tokens": ["sizing.control-height", "typography.button", "colors.primary", "colors.inverse-ink", "spacing.xs"]
+    },
+    "cards": {
+      "label": "Card tokens",
+      "tokens": ["colors.surface-raised", "typography.card-title", "spacing.lg", "colors.hairline"]
+    },
+    "inputs": {
+      "label": "Field tokens",
+      "tokens": ["sizing.field-height", "typography.body", "colors.hairline", "colors.accent-coral"]
+    },
+    "controls": {
+      "label": "Control tokens",
+      "tokens": ["sizing.control-height", "density.compact", "colors.primary-soft", "colors.primary"]
+    },
+    "tabs": {
+      "label": "Tab tokens",
+      "tokens": ["typography.body-emphasis", "colors.primary", "colors.surface-raised", "colors.hairline"]
+    },
+    "table": {
+      "label": "Table tokens",
+      "tokens": ["density.compact", "typography.body-sm", "colors.surface-raised", "colors.hairline"]
+    },
+    "overlays": {
+      "label": "Overlay tokens",
+      "tokens": ["shadow.panel", "spacing.xl", "colors.surface-raised", "colors.primary"]
+    },
+    "feedback": {
+      "label": "Feedback tokens",
+      "tokens": ["colors.accent-mint", "colors.accent-amber", "colors.accent-coral", "typography.body-sm"]
+    },
+    "navigation": {
+      "label": "Navigation tokens",
+      "tokens": ["density.compact", "colors.primary-soft", "colors.hairline", "typography.body-emphasis"]
+    },
+    "icons": {
+      "label": "Icon tokens",
+      "tokens": ["icons.viewBox", "icons.strokeWidth", "icons.strokeLinecap", "icons.strokeLinejoin"]
+    }
+  }
+}

@@ -3,14 +3,14 @@ version: alpha
 name: idenflu-design-system-system
 source: "IBM Carbon analysis reinterpreted for idenflu"
 description: >-
-  idenflu is a premium enterprise creator-operations design system: restrained,
-  high-trust, and built for serious campaign work. The IBM source gives us
+  idenflu is an interpreted product design system: restrained,
+  high-trust, and built for serious product work. The IBM source gives us
   discipline: clear hierarchy, hairline structure, restrained surfaces, and
-  visible system state. idenflu keeps the creator workflow context, controls
+  visible system state. idenflu keeps product context visible, controls
   saturation through bounded accent surfaces, sharpens data density, and uses a clean white application chrome
-  so the product reads as a polished B2B SaaS workspace. It should feel like a
-  decision console for campaigns, creator reviews, revisions, approvals, and
-  commercial operations.
+  so the product reads as a polished idenflu workspace. It should feel like a
+  decision surface for structured data, visible state, permissions, and
+  commercial workflows.
 
 colors:
   primary: "#3F6DF6"
@@ -406,18 +406,18 @@ components:
 
 ## Overview
 
-idenflu의 디자인 시스템은 IBM Carbon의 엄격함을 그대로 복제하지 않는다. 대신 **구조적 명료함**만 가져오고, 크리에이터 캠페인 제품에 맞는 고급 엔터프라이즈 애플리케이션 언어로 재해석한다.
+idenflu의 디자인 시스템은 IBM Carbon의 엄격함을 그대로 복제하지 않는다. 대신 **구조적 명료함**만 가져오고, idenflu 제품 경험에 맞는 애플리케이션 언어로 재해석한다.
 
-핵심 방향은 **Creator operations workspace**다. 첫 화면은 예쁜 랜딩보다 바로 일할 수 있는 작업대처럼 보여야 한다. 캠페인 상태, 크리에이터 수, 리비전, 승인 대기, 최근 활동, 채널, 기한 같은 운영 메타데이터가 눈에 보여야 한다. 중요한 정보는 툴팁이나 정렬 메뉴 뒤에 숨기지 않는다.
+핵심 방향은 **idenflu product workspace**다. 첫 화면은 예쁜 랜딩보다 바로 판단할 수 있는 작업대처럼 보여야 한다. 상태, 변경 이력, 권한, 최근 활동, 기한 같은 판단 메타데이터가 눈에 보여야 한다. 중요한 정보는 툴팁이나 정렬 메뉴 뒤에 숨기지 않는다.
 
 IBM 원본이 `white + charcoal + blue + square`였다면, idenflu는 `clean white chrome + precise blue action + vivid bounded semantic accents`다. 딱딱한 엔터프라이즈 느낌은 줄이되, B2B SaaS의 신뢰감과 의사결정 콘솔의 밀도를 유지한다.
 
 **Key Characteristics**
 
-- **운영툴형 제품감**: dashboard, campaign, creator roster, review queue, audit trail이 자연스러운 기본 화면이다.
-- **고급 엔터프라이즈 톤**: white chrome, restrained neutral, vivid but bounded accent, clear data density를 기본으로 한다.
+- **제품형 작업감**: dashboard, list, detail, overlay, audit trail이 자연스러운 기본 화면이다.
+- **엔터프라이즈 톤**: white chrome, restrained neutral, vivid but bounded accent, clear data density를 기본으로 한다.
 - **카드 안의 카드 금지**: 큰 섹션은 평평한 영역으로 두고, 반복 항목만 카드로 만든다.
-- **콘텐츠 우선**: 썸네일, creator avatar, campaign cover, status chip, deadline, revision을 함께 보여준다.
+- **콘텐츠 우선**: 썸네일, 객체 정보, status chip, deadline, revision을 함께 보여준다.
 - **0px radius**: 부드러움보다 SaaS 운영툴의 정밀함을 우선한다.
 - **그림자는 도구적으로만**: 기본 카드는 border와 surface로 구분하고, popover/modal에만 shadow를 쓴다.
 
@@ -562,7 +562,7 @@ Density is selected by workflow, not decoration. Review queues and admin tables 
 
 ### Whitespace Philosophy
 
-여백은 고급스러움보다 **스캔 가능성**을 위해 쓴다. idenflu 화면은 campaign operator가 반복적으로 보는 화면이므로, 큰 빈 공간보다 잘 정돈된 밀도가 더 중요하다.
+여백은 장식성보다 **스캔 가능성**을 위해 쓴다. idenflu 화면은 사용자가 반복적으로 보는 화면이므로, 큰 빈 공간보다 잘 정돈된 밀도가 더 중요하다.
 
 ## Elevation & Depth
 

@@ -246,12 +246,22 @@ if (tokens) {
 const blockedMarkers = [
   'href="#' + "icon-",
   "icon-" + "sprite",
+  "고" + "급",
   String.fromCodePoint(0x2315),
   String.fromCodePoint(0x2193),
   "design-" + "ibm",
   "TO" + "DO",
   "T" + "BD",
   "FIX" + "ME",
+];
+const blockedPositioningMarkers = [
+  "Creator operations " + "system",
+  "엔터프라이즈 크리에이터 " + "운영 콘솔",
+  "크리에이터 캠페인 " + "제품",
+  "Creator operations " + "workspace",
+  "creator workflow " + "context",
+  "단독 컴포넌트보다 campaign, creator, review, admin " + "workflow",
+  "generic admin " + "화면",
 ];
 ["html", "css", "js", "md", "svg", "json"].forEach((extension) => {
   fs.readdirSync(rootDir)
@@ -261,8 +271,24 @@ const blockedMarkers = [
       if (blockedMarkers.some((marker) => content.includes(marker))) {
         failures.push(`${file}: contains blocked legacy marker`);
       }
+      if (blockedPositioningMarkers.some((marker) => content.includes(marker))) {
+        failures.push(`${file}: contains over-specific positioning copy`);
+      }
     });
 });
+
+if (config) {
+  [...new Set(config.pages.map((page) => path.join("src/pages", page.source)))].forEach((file) => {
+    if (!exists(file)) return;
+    const content = read(file);
+    if (blockedMarkers.some((marker) => content.includes(marker))) {
+      failures.push(`${file}: contains blocked legacy marker`);
+    }
+    if (blockedPositioningMarkers.some((marker) => content.includes(marker))) {
+      failures.push(`${file}: contains over-specific positioning copy`);
+    }
+  });
+}
 
 if (failures.length) {
   console.error(failures.join("\n"));

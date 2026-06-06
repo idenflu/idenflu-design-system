@@ -1,0 +1,67 @@
+<section class="page-header component-page-header">
+  <p class="eyebrow">Components</p>
+  <h1>Empty states</h1>
+  <p class="lede">Empty, error, permission, and recovery surfaces.</p>
+</section>
+
+<section id="component-standard" class="section surface-band">
+  <div class="section-heading"><p class="eyebrow">Component standard</p><h2>Empty states 문서의 공통 구조.</h2></div>
+  <div class="component-doc-grid">
+    <article id="doc-anatomy" class="component-doc-card"><strong>Anatomy</strong><p>Title, reason, recovery action, secondary action, permission reason을 나눕니다.</p><ul><li>Title</li><li>reason</li><li>primary action</li><li>secondary action</li><li>permission reason</li></ul></article>
+    <article id="doc-variants" class="component-doc-card"><strong>Variants</strong><p>Empty, filtered empty, error, permission, locked, loading recovery</p></article>
+    <article id="doc-states" class="component-doc-card"><strong>States</strong><p>Empty, filtered empty, error, permission, locked, loading 상태를 비교합니다.</p></article>
+    <article id="doc-accessibility" class="component-doc-card"><strong>Accessibility</strong><p>Clear heading, recovery action, alert role, permission reason visible을 확인합니다.</p></article>
+    <article id="doc-examples" class="component-doc-card"><strong>Examples</strong><p>No campaigns, filtered creator list, sync error, owner-only approval에 사용합니다.</p></article>
+    <article id="doc-qa" class="component-doc-card"><strong>QA</strong><p>원인 없는 empty, action 없는 error, 권한 사유 누락을 확인합니다.</p></article>
+  </div>
+</section>
+
+<section id="component-template-map" class="section">
+  <div class="section-heading"><p class="eyebrow">Document template</p><h2>Empty states 문서는 원인과 복구 action을 함께 제공합니다.</h2></div>
+  <div class="component-template-map">
+    <article><span>01</span><strong>Overview</strong><p>빈 상태인지, 오류인지, 권한 문제인지 먼저 구분합니다.</p></article>
+    <article><span>02</span><strong>Anatomy</strong><p>Title, reason, primary action, secondary action, helper를 분리합니다.</p></article>
+    <article><span>03</span><strong>Variants</strong><p>Empty, filtered empty, error, permission, locked를 구분합니다.</p></article>
+    <article><span>04</span><strong>States</strong><p>Loading, retry, permission, locked, filtered 상태를 비교합니다.</p></article>
+    <article><span>05</span><strong>Accessibility</strong><p>Heading, role alert, action label, permission reason을 확인합니다.</p></article>
+    <article><span>06</span><strong>QA</strong><p>긴 reason, mobile stack, action 없는 상태, dark contrast를 검증합니다.</p></article>
+  </div>
+</section>
+
+<section id="context-example" class="section surface-band">
+  <div class="section-heading"><p class="eyebrow">Context example</p><h2>상태 surface는 왜 막혔는지와 다음 행동을 명확히 제공합니다.</h2></div>
+  <div class="component-context-example">
+    <div class="context-preview state-surface-grid">
+      <article class="empty-state compact"><strong>No matching creators</strong><p>Clear one filter or broaden audience fit.</p><button class="button quiet small" type="button">Clear filter</button></article>
+      <article class="inline-error" role="alert"><strong>Sync failed</strong><p>Retry keeps selected rows and filters.</p><button class="button ghost small" type="button">Retry</button></article>
+      <article class="locked-panel"><strong>Owner approval required</strong><p>Permission recovery is available after Mina approves Rev 03.</p><button class="button primary small" type="button" disabled>Approve</button></article>
+    </div>
+    <div class="context-rules">
+      <strong>Review checklist</strong>
+      <ul>
+        <li>Filtered empty는 일반 empty와 다른 복구 action을 제공합니다.</li>
+        <li>Error는 role alert와 retry 보존 범위를 함께 설명합니다.</li>
+        <li>Permission 상태는 누가, 왜, 어떻게 풀 수 있는지 표시합니다.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="token-contract" class="section">
+  <div class="section-heading"><p class="eyebrow">Token contract</p><h2>Empty states는 제목, 이유, 복구 action의 계층을 유지합니다.</h2></div>
+  <div class="component-token-contract">
+    <div class="token-contract-row header"><span>Decision</span><span>Token</span><span>Rule</span></div>
+    <div class="token-contract-row"><span><strong>Title</strong></span><span>{typography.card-title}</span><span>상태 제목은 문제를 한 문장으로 설명합니다.</span></div>
+    <div class="token-contract-row"><span><strong>Reason</strong></span><span>{typography.body-sm}</span><span>원인과 결과는 body-sm로 짧게 제공합니다.</span></div>
+    <div class="token-contract-row"><span><strong>Action</strong></span><span>{colors.primary}</span><span>복구 action은 primary 또는 ghost action으로 제공합니다.</span></div>
+    <div class="token-contract-row"><span><strong>Error</strong></span><span>{colors.accent-coral}</span><span>오류는 coral과 role alert를 함께 씁니다.</span></div>
+  </div>
+</section>
+
+<section id="empty-states" class="section">
+  <div class="section-heading"><p class="eyebrow">Empty states</p><h2>빈 상태, 오류, 권한 문제를 복구 가능한 표면으로 만듭니다.</h2></div>
+  <div class="utility-component-grid state-surface-grid">
+    <article class="empty-state compact"><strong>No campaigns yet</strong><p>Create the first campaign or import a saved template.</p><button class="button primary small" type="button">Create campaign</button></article>
+    <article class="locked-panel"><strong>Permission recovery</strong><p>Only the owner can approve this revision.</p><button class="button quiet small" type="button">Request access</button></article>
+  </div>
+</section>

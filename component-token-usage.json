@@ -60,6 +60,26 @@
     "avatar": {
       "label": "Avatar tokens",
       "tokens": ["sizing.control-height", "typography.body-emphasis", "colors.surface-2", "colors.primary", "colors.hairline"]
+    },
+    "search-toolbar": {
+      "label": "Search toolbar tokens",
+      "tokens": ["sizing.field-height", "density.compact", "colors.surface-raised", "colors.hairline", "typography.body-sm"]
+    },
+    "attachments": {
+      "label": "Attachment tokens",
+      "tokens": ["typography.body-sm", "colors.surface-raised", "colors.hairline", "colors.accent-coral", "spacing.md"]
+    },
+    "date-time": {
+      "label": "Date time tokens",
+      "tokens": ["sizing.field-height", "typography.body", "colors.primary-soft", "colors.hairline", "colors.accent-coral"]
+    },
+    "stepper": {
+      "label": "Stepper tokens",
+      "tokens": ["typography.body-emphasis", "colors.primary", "colors.accent-mint", "colors.hairline", "spacing.md"]
+    },
+    "empty-states": {
+      "label": "Empty state tokens",
+      "tokens": ["typography.card-title", "typography.body-sm", "colors.surface-raised", "colors.primary", "colors.accent-coral"]
     }
   }
 }

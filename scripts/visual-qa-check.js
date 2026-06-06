@@ -34,6 +34,11 @@ const requireInFile = (file, label, value) => {
   ["components-badges.html", "badges component page", 'id="badges"'],
   ["components-tooltips.html", "tooltips component page", 'id="tooltips"'],
   ["components-avatar.html", "avatar component page", 'id="avatar"'],
+  ["components-search-toolbar.html", "search toolbar component page", 'id="search-toolbar"'],
+  ["components-attachments.html", "attachments component page", 'id="attachments"'],
+  ["components-date-time.html", "date time component page", 'id="date-time"'],
+  ["components-stepper.html", "stepper component page", 'id="stepper-component"'],
+  ["components-empty-states.html", "empty states component page", 'id="empty-states"'],
   ["accessibility.html", "component contracts", 'id="component-contracts"'],
   ["accessibility.html", "aria roles", 'id="aria-roles"'],
   ["accessibility.html", "focus order", 'id="focus-order"'],
@@ -102,11 +107,16 @@ requireInFile("visual-qa.html", "QA command board", "qa-command-board");
 requireInFile("visual-qa.html", "QA dashboard", "qa-dashboard-grid");
 requireInFile("visual-qa.html", "utility component QA", "utility-component-grid");
 requireInFile("visual-qa.html", "menu identity QA", "Menu and identity QA");
+requireInFile("visual-qa.html", "workflow recovery QA", "Workflow and recovery QA");
+requireInFile("visual-qa.html", "filter toolbar QA", "Filter toolbar QA");
 requireInFile("visual-qa.html", "browser QA command", "node scripts/browser-qa-check.js --dry-run");
 requireInFile("visual-qa.html", "token usage command", "node scripts/token-usage-report.js --check");
 requireInFile("components.html", "component API reference", "component-api-reference");
 requireInFile("components.html", "component API grid", "component-api-grid");
 ["Menu API", "Combobox API", "Badge API", "Tooltip API", "Avatar API"].forEach((marker) => {
+  requireInFile("components.html", marker, marker);
+});
+["Search Toolbar API", "Attachment API", "Date Time API", "Stepper API", "Empty State API"].forEach((marker) => {
   requireInFile("components.html", marker, marker);
 });
 

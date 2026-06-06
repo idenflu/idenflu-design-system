@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Date time - idenflu Design System</title>
+    <link rel="stylesheet" href="tokens.generated.css?v=20260606-token-pipeline">
+    <link rel="stylesheet" href="styles.css?v=20260606-system-complete">
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="index.html"><span class="brand-mark"></span><span>idenflu</span></a>
+      <nav class="topnav" aria-label="Primary">
+        <a href="index.html">Overview</a>
+        <a href="foundations.html">Foundations</a>
+        <a class="active" href="components.html">Components</a>
+        <a href="patterns.html">Patterns</a>
+        <a href="guidelines.html">Reference</a>
+      </nav>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode" aria-pressed="false">Dark</button>
+      <div class="topbar-meta">Date time</div>
+    </header>
+
+    <div class="doc-layout">
+      <aside class="sidebar" aria-label="Component pages">
+        <p class="sidebar-label">Components</p>
+        <a href="components.html">Overview</a>
+        <a href="components-buttons.html">Buttons</a>
+        <a href="components-icons.html">Icons</a>
+        <a href="components-inputs.html">Inputs</a>
+        <a href="components-controls.html">Controls</a>
+        <a href="components-tabs.html">Tabs</a>
+        <a href="components-cards.html">Cards</a>
+        <a href="components-menu.html">Menu</a>
+        <a href="components-combobox.html">Combobox</a>
+        <a href="components-badges.html">Badges</a>
+        <a href="components-tooltips.html">Tooltips</a>
+        <a href="components-avatar.html">Avatar</a>
+        <a href="components-search-toolbar.html">Search toolbar</a>
+        <a href="components-attachments.html">Attachments</a>
+        <a class="active" href="components-date-time.html">Date time</a>
+        <a href="components-stepper.html">Stepper</a>
+        <a href="components-empty-states.html">Empty states</a>
+        <a href="components-table.html">Data table</a>
+        <a href="components-examples.html">Examples</a>
+        <a href="components-feedback.html">Feedback</a>
+        <a href="components-overlays.html">Overlays</a>
+        <a href="components-navigation.html">Navigation</a>
+        <p class="sidebar-label reference-label">On this page</p>
+        <a href="#component-template-map">Template</a>
+        <a href="#context-example">Context</a>
+        <a href="#token-contract">Tokens</a>
+      </aside>
+
+      <main>
+<section class="page-header component-page-header">
+  <p class="eyebrow">Components</p>
+  <h1>Date time</h1>
+  <p class="lede">Due dates, campaign periods, timezone, and validation.</p>
+</section>
+
+<section id="component-standard" class="section surface-band">
+  <div class="section-heading"><p class="eyebrow">Component standard</p><h2>Date time 문서의 공통 구조.</h2></div>
+  <div class="component-doc-grid">
+    <article id="doc-anatomy" class="component-doc-card"><strong>Anatomy</strong><p>Label, value, calendar grid, time, timezone, helper를 나눕니다.</p><ul><li>Visible label</li><li>date value</li><li>time value</li><li>timezone</li><li>validation</li></ul></article>
+    <article id="doc-variants" class="component-doc-card"><strong>Variants</strong><p>Single date, date range, due date, scheduled time, readonly timestamp</p></article>
+    <article id="doc-states" class="component-doc-card"><strong>States</strong><p>Empty, selected, range, disabled date, invalid, readonly 상태를 비교합니다.</p></article>
+    <article id="doc-accessibility" class="component-doc-card"><strong>Accessibility</strong><p>Visible label, timezone text, aria-invalid, keyboard date navigation을 확인합니다.</p></article>
+    <article id="doc-examples" class="component-doc-card"><strong>Examples</strong><p>Campaign period, due date, scheduled publish, audit timestamp에 사용합니다.</p></article>
+    <article id="doc-qa" class="component-doc-card"><strong>QA</strong><p>Timezone, disabled date, range wrap, invalid helper를 확인합니다.</p></article>
+  </div>
+</section>
+
+<section id="component-template-map" class="section">
+  <div class="section-heading"><p class="eyebrow">Document template</p><h2>Date time 문서는 시간대와 validation을 함께 고정합니다.</h2></div>
+  <div class="component-template-map">
+    <article><span>01</span><strong>Overview</strong><p>날짜만 필요한지, 시간과 timezone이 필요한지 먼저 결정합니다.</p></article>
+    <article><span>02</span><strong>Anatomy</strong><p>Label, input, calendar, time, timezone, helper를 분리합니다.</p></article>
+    <article><span>03</span><strong>Variants</strong><p>Single, range, due date, scheduled time, readonly timestamp를 구분합니다.</p></article>
+    <article><span>04</span><strong>States</strong><p>Selected, range, disabled date, invalid, readonly 상태를 비교합니다.</p></article>
+    <article><span>05</span><strong>Accessibility</strong><p>Label, timezone, keyboard date 이동, error linkage를 확인합니다.</p></article>
+    <article><span>06</span><strong>QA</strong><p>Timezone 표기, 모바일 입력, 과거 날짜 제한, 긴 helper를 검증합니다.</p></article>
+  </div>
+</section>
+
+<section id="context-example" class="section surface-band">
+  <div class="section-heading"><p class="eyebrow">Context example</p><h2>Date time은 마감과 예약 시점을 시간대와 함께 보여줍니다.</h2></div>
+  <div class="component-context-example">
+    <div class="context-preview date-time-board">
+      <label class="field"><span>Due date</span><div class="input-shell"><svg class="input-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-calendar"></use></svg><input type="text" value="2026-06-12 18:00"><span class="input-suffix">KST</span></div></label>
+      <div class="date-panel" aria-label="Campaign date picker">
+        <div class="date-grid"><span class="date-day">10</span><span class="date-day active">11</span><span class="date-day active">12</span><span class="date-day">13</span><span class="date-day disabled">14</span><span class="date-day">15</span><span class="date-day">16</span></div>
+      </div>
+    </div>
+    <div class="context-rules">
+      <strong>Review checklist</strong>
+      <ul>
+        <li>시간이 포함되면 timezone을 항상 표시합니다.</li>
+        <li>선택 불가 날짜는 disabled 이유를 helper로 제공합니다.</li>
+        <li>날짜 range는 시작과 끝을 같은 surface에서 확인합니다.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="token-contract" class="section">
+  <div class="section-heading"><p class="eyebrow">Token contract</p><h2>Date time은 field, selected surface, validation token을 함께 씁니다.</h2></div>
+  <div class="component-token-contract">
+    <div class="token-contract-row header"><span>Decision</span><span>Token</span><span>Rule</span></div>
+    <div class="token-contract-row"><span><strong>Field</strong></span><span>{sizing.field-height}</span><span>날짜 입력은 field height를 사용합니다.</span></div>
+    <div class="token-contract-row"><span><strong>Text</strong></span><span>{typography.body}</span><span>날짜와 시간은 body text로 읽기 쉽게 유지합니다.</span></div>
+    <div class="token-contract-row"><span><strong>Selected</strong></span><span>{colors.primary-soft}</span><span>선택된 날짜와 range는 primary soft로 표시합니다.</span></div>
+    <div class="token-contract-row"><span><strong>Invalid</strong></span><span>{colors.accent-coral}</span><span>잘못된 날짜는 error border와 helper를 함께 사용합니다.</span></div>
+  </div>
+</section>
+
+<section id="date-time" class="section">
+  <div class="section-heading"><p class="eyebrow">Date time</p><h2>마감, 기간, 예약 시간을 같은 규칙으로 입력합니다.</h2></div>
+  <div class="utility-component-grid">
+    <article class="date-time-board"><label class="field"><span>Campaign period</span><input type="text" value="2026-06-10 to 2026-06-12"></label><span class="status blue">KST</span></article>
+    <article class="date-time-board"><label class="field invalid"><span>Publish time</span><input type="text" value="2026-06-01 09:00" aria-invalid="true"><small>Past dates cannot be scheduled.</small></label></article>
+  </div>
+</section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

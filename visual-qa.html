@@ -117,6 +117,41 @@
   </div>
 </section>
 
+<section id="workflow-recovery" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Workflow and recovery QA</p>
+    <h2>검색, 파일, 날짜, 단계, 복구 상태를 실제 흐름 기준으로 확인합니다.</h2>
+    <p class="lede">Filter toolbar QA, Attachment upload QA, Permission recovery는 테이블과 승인 흐름에서 반복되는 상태를 한 화면에서 비교합니다.</p>
+  </div>
+  <div class="utility-component-grid">
+    <article class="filter-toolbar" role="search" aria-label="Visual QA filters">
+      <label class="field"><span>Search</span><input type="search" value="summer disclosure"></label>
+      <button class="button quiet small" type="button">Status</button>
+      <button class="filter-chip selected" type="button">Review <span>12</span></button>
+      <button class="button ghost small" type="button">Reset</button>
+    </article>
+    <article class="attachment-list">
+      <div class="attachment-row"><span class="file-thumb">PDF</span><span><strong>brief-v3.pdf</strong><small>Attachment upload QA · Ready</small></span><button class="button ghost small" type="button">View</button></div>
+      <div class="attachment-row failed"><span class="file-thumb">PNG</span><span><strong>proof.png</strong><small>Failed · Retry keeps metadata.</small></span><button class="button ghost small" type="button">Retry</button></div>
+    </article>
+    <article class="date-time-board">
+      <label class="field"><span>Due date</span><div class="input-shell"><svg class="input-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-calendar"></use></svg><input type="text" value="2026-06-12 18:00"><span class="input-suffix">KST</span></div></label>
+      <span class="status blue">Scheduled</span>
+    </article>
+    <article>
+      <ol class="workflow-stepper" aria-label="Review workflow">
+        <li class="complete"><span>01</span><strong>Brief</strong><small>Complete</small></li>
+        <li class="current" aria-current="step"><span>02</span><strong>Review</strong><small>Current</small></li>
+        <li class="blocked"><span>03</span><strong>Approval</strong><small>Blocked by permission</small></li>
+      </ol>
+    </article>
+    <article class="state-surface-grid">
+      <div class="empty-state compact"><strong>No matching creators</strong><p>Clear one filter or broaden audience fit.</p><button class="button quiet small" type="button">Clear filter</button></div>
+      <div class="locked-panel"><strong>Permission recovery</strong><p>Only the owner can approve this revision.</p><button class="button primary small" type="button" disabled>Approve</button></div>
+    </article>
+  </div>
+</section>
+
 <section id="actions" class="section">
   <div class="section-heading">
     <p class="eyebrow">Actions</p>

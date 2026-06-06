@@ -36,6 +36,11 @@
         <a href="components-badges.html">Badges</a>
         <a href="components-tooltips.html">Tooltips</a>
         <a href="components-avatar.html">Avatar</a>
+        <a href="components-search-toolbar.html">Search toolbar</a>
+        <a href="components-attachments.html">Attachments</a>
+        <a href="components-date-time.html">Date time</a>
+        <a href="components-stepper.html">Stepper</a>
+        <a href="components-empty-states.html">Empty states</a>
         <a href="components-table.html">Data table</a>
         <a href="components-examples.html">Examples</a>
         <a href="components-feedback.html">Feedback</a>
@@ -100,6 +105,26 @@
     <a href="components-avatar.html">
       <span>Avatar</span>
       <small>Identity, fallback initials, owner rows, and presence states.</small>
+    </a>
+    <a href="components-search-toolbar.html">
+      <span>Search toolbar</span>
+      <small>Search, filters, saved views, reset, and density actions.</small>
+    </a>
+    <a href="components-attachments.html">
+      <span>Attachments</span>
+      <small>Upload, file rows, previews, progress, and failed states.</small>
+    </a>
+    <a href="components-date-time.html">
+      <span>Date time</span>
+      <small>Due dates, campaign periods, timezone, and validation.</small>
+    </a>
+    <a href="components-stepper.html">
+      <span>Stepper</span>
+      <small>Setup, review, approval progress, and blocked steps.</small>
+    </a>
+    <a href="components-empty-states.html">
+      <span>Empty states</span>
+      <small>Empty, error, permission, and recovery surfaces.</small>
     </a>
     <a href="components-table.html">
       <span>Data table</span>
@@ -228,6 +253,61 @@
         <dd>image, initials, unassigned, online, busy, disabled</dd>
         <dt>Accessibility</dt>
         <dd>img alt when informative, decorative avatar hidden, visible name near identity rows</dd>
+      </dl>
+    </article>
+    <article>
+      <strong>Search Toolbar API</strong>
+      <dl>
+        <dt>Props</dt>
+        <dd>query, filters, saved view, density, reset</dd>
+        <dt>States</dt>
+        <dd>empty query, typing, filtered, saved, loading, disabled</dd>
+        <dt>Accessibility</dt>
+        <dd>search landmark or label, filter button names, active filter text, reset action</dd>
+      </dl>
+    </article>
+    <article>
+      <strong>Attachment API</strong>
+      <dl>
+        <dt>Props</dt>
+        <dd>file name, file type, size, progress, preview, action</dd>
+        <dt>States</dt>
+        <dd>empty, uploading, complete, failed, scanning, disabled</dd>
+        <dt>Accessibility</dt>
+        <dd>file input label, progress text, error reason, remove action aria-label</dd>
+      </dl>
+    </article>
+    <article>
+      <strong>Date Time API</strong>
+      <dl>
+        <dt>Props</dt>
+        <dd>value, timezone, range, min date, validation</dd>
+        <dt>States</dt>
+        <dd>empty, selected, range, disabled date, invalid, readonly</dd>
+        <dt>Accessibility</dt>
+        <dd>visible label, timezone text, aria-invalid, keyboard date navigation</dd>
+      </dl>
+    </article>
+    <article>
+      <strong>Stepper API</strong>
+      <dl>
+        <dt>Props</dt>
+        <dd>steps, current step, status, optional, action</dd>
+        <dt>States</dt>
+        <dd>not started, current, complete, blocked, optional, error</dd>
+        <dt>Accessibility</dt>
+        <dd>ordered list, aria-current step, visible status, blocked reason</dd>
+      </dl>
+    </article>
+    <article>
+      <strong>Empty State API</strong>
+      <dl>
+        <dt>Props</dt>
+        <dd>tone, title, reason, primary action, secondary action</dd>
+        <dt>States</dt>
+        <dd>empty, filtered empty, error, permission, locked, loading</dd>
+        <dt>Accessibility</dt>
+        <dd>clear heading, recovery action, alert role for errors, permission reason visible</dd>
       </dl>
     </article>
   </div>

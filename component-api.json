@@ -54,6 +54,36 @@
       "props": ["name", "image", "initials", "size", "presence", "subtitle"],
       "states": ["image", "initials", "unassigned", "online", "busy", "disabled"],
       "accessibility": ["img alt when informative", "decorative avatar hidden", "visible name near identity rows"]
+    },
+    "search-toolbar": {
+      "label": "Search Toolbar API",
+      "props": ["query", "filters", "saved view", "density", "reset"],
+      "states": ["empty query", "typing", "filtered", "saved", "loading", "disabled"],
+      "accessibility": ["search landmark or label", "filter button names", "active filter text", "reset action"]
+    },
+    "attachments": {
+      "label": "Attachment API",
+      "props": ["file name", "file type", "size", "progress", "preview", "action"],
+      "states": ["empty", "uploading", "complete", "failed", "scanning", "disabled"],
+      "accessibility": ["file input label", "progress text", "error reason", "remove action aria-label"]
+    },
+    "date-time": {
+      "label": "Date Time API",
+      "props": ["value", "timezone", "range", "min date", "validation"],
+      "states": ["empty", "selected", "range", "disabled date", "invalid", "readonly"],
+      "accessibility": ["visible label", "timezone text", "aria-invalid", "keyboard date navigation"]
+    },
+    "stepper": {
+      "label": "Stepper API",
+      "props": ["steps", "current step", "status", "optional", "action"],
+      "states": ["not started", "current", "complete", "blocked", "optional", "error"],
+      "accessibility": ["ordered list", "aria-current step", "visible status", "blocked reason"]
+    },
+    "empty-states": {
+      "label": "Empty State API",
+      "props": ["tone", "title", "reason", "primary action", "secondary action"],
+      "states": ["empty", "filtered empty", "error", "permission", "locked", "loading"],
+      "accessibility": ["clear heading", "recovery action", "alert role for errors", "permission reason visible"]
     }
   }
 }

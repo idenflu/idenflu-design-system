@@ -63,26 +63,75 @@
 </section>
 
 <section id="component-standard" class="section surface-band">
-  <div class="section-heading"><p class="eyebrow">Component standard</p><h2>Empty states 문서의 공통 구조.</h2></div>
+  <div class="section-heading">
+    <p class="eyebrow">Component standard</p>
+    <h2>Empty states 문서의 공통 구조.</h2>
+  </div>
   <div class="component-doc-grid">
-    <article id="doc-anatomy" class="component-doc-card"><strong>Anatomy</strong><p>Title, reason, recovery action, secondary action, permission reason을 나눕니다.</p><ul><li>Title</li><li>reason</li><li>primary action</li><li>secondary action</li><li>permission reason</li></ul></article>
-    <article id="doc-variants" class="component-doc-card"><strong>Variants</strong><p>Empty, filtered empty, error, permission, locked, loading recovery</p></article>
-    <article id="doc-states" class="component-doc-card"><strong>States</strong><p>Empty, filtered empty, error, permission, locked, loading 상태를 비교합니다.</p></article>
-    <article id="doc-accessibility" class="component-doc-card"><strong>Accessibility</strong><p>Clear heading, recovery action, alert role, permission reason visible을 확인합니다.</p></article>
-    <article id="doc-examples" class="component-doc-card"><strong>Examples</strong><p>No campaigns, filtered creator list, sync error, owner-only approval에 사용합니다.</p></article>
-    <article id="doc-qa" class="component-doc-card"><strong>QA</strong><p>원인 없는 empty, action 없는 error, 권한 사유 누락을 확인합니다.</p></article>
+    <article id="doc-anatomy" class="component-doc-card">
+      <strong>Anatomy</strong>
+      <p>Title, reason, recovery action, secondary action, permission reason을 나눕니다.</p>
+      <ul><li>Title</li><li>reason</li><li>primary action</li><li>secondary action</li><li>permission reason</li></ul>
+    </article>
+    <article id="doc-variants" class="component-doc-card">
+      <strong>Variants</strong>
+      <p>Empty, filtered empty, error, permission, locked, loading recovery</p>
+    </article>
+    <article id="doc-states" class="component-doc-card">
+      <strong>States</strong>
+      <p>Empty, filtered empty, error, permission, locked, loading 상태를 비교합니다.</p>
+    </article>
+    <article id="doc-accessibility" class="component-doc-card">
+      <strong>Accessibility</strong>
+      <p>Clear heading, recovery action, alert role, permission reason visible을 확인합니다.</p>
+    </article>
+    <article id="doc-examples" class="component-doc-card">
+      <strong>Examples</strong>
+      <p>No campaigns, filtered creator list, sync error, owner-only approval에 사용합니다.</p>
+    </article>
+    <article id="doc-qa" class="component-doc-card">
+      <strong>QA</strong>
+      <p>원인 없는 empty, action 없는 error, 권한 사유 누락을 확인합니다.</p>
+    </article>
   </div>
 </section>
 
 <section id="component-template-map" class="section">
-  <div class="section-heading"><p class="eyebrow">Document template</p><h2>Empty states 문서는 원인과 복구 action을 함께 제공합니다.</h2></div>
+  <div class="section-heading">
+    <p class="eyebrow">Document template</p>
+    <h2>Empty states 문서는 원인과 복구 action을 함께 제공합니다.</h2>
+  </div>
   <div class="component-template-map">
-    <article><span>01</span><strong>Overview</strong><p>빈 상태인지, 오류인지, 권한 문제인지 먼저 구분합니다.</p></article>
-    <article><span>02</span><strong>Anatomy</strong><p>Title, reason, primary action, secondary action, helper를 분리합니다.</p></article>
-    <article><span>03</span><strong>Variants</strong><p>Empty, filtered empty, error, permission, locked를 구분합니다.</p></article>
-    <article><span>04</span><strong>States</strong><p>Loading, retry, permission, locked, filtered 상태를 비교합니다.</p></article>
-    <article><span>05</span><strong>Accessibility</strong><p>Heading, role alert, action label, permission reason을 확인합니다.</p></article>
-    <article><span>06</span><strong>QA</strong><p>긴 reason, mobile stack, action 없는 상태, dark contrast를 검증합니다.</p></article>
+    <article>
+      <span>01</span>
+      <strong>Overview</strong>
+      <p>빈 상태인지, 오류인지, 권한 문제인지 먼저 구분합니다.</p>
+    </article>
+    <article>
+      <span>02</span>
+      <strong>Anatomy</strong>
+      <p>Title, reason, primary action, secondary action, helper를 분리합니다.</p>
+    </article>
+    <article>
+      <span>03</span>
+      <strong>Variants</strong>
+      <p>Empty, filtered empty, error, permission, locked를 구분합니다.</p>
+    </article>
+    <article>
+      <span>04</span>
+      <strong>States</strong>
+      <p>Loading, retry, permission, locked, filtered 상태를 비교합니다.</p>
+    </article>
+    <article>
+      <span>05</span>
+      <strong>Accessibility</strong>
+      <p>Heading, role alert, action label, permission reason을 확인합니다.</p>
+    </article>
+    <article>
+      <span>06</span>
+      <strong>QA</strong>
+      <p>긴 reason, mobile stack, action 없는 상태, dark contrast를 검증합니다.</p>
+    </article>
   </div>
 </section>
 
@@ -106,7 +155,10 @@
 </section>
 
 <section id="token-contract" class="section">
-  <div class="section-heading"><p class="eyebrow">Token contract</p><h2>Empty states는 제목, 이유, 복구 action의 계층을 유지합니다.</h2></div>
+  <div class="section-heading">
+    <p class="eyebrow">Token contract</p>
+    <h2>Empty states는 제목, 이유, 복구 action의 계층을 유지합니다.</h2>
+  </div>
   <div class="component-token-contract">
     <div class="token-contract-row header"><span>Decision</span><span>Token</span><span>Rule</span></div>
     <div class="token-contract-row"><span><strong>Title</strong></span><span>{typography.card-title}</span><span>상태 제목은 문제를 한 문장으로 설명합니다.</span></div>

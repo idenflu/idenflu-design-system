@@ -63,26 +63,75 @@
 </section>
 
 <section id="component-standard" class="section surface-band">
-  <div class="section-heading"><p class="eyebrow">Component standard</p><h2>Stepper 문서의 공통 구조.</h2></div>
+  <div class="section-heading">
+    <p class="eyebrow">Component standard</p>
+    <h2>Stepper 문서의 공통 구조.</h2>
+  </div>
   <div class="component-doc-grid">
-    <article id="doc-anatomy" class="component-doc-card"><strong>Anatomy</strong><p>Step label, order, status, helper, action, blocked reason을 나눕니다.</p><ul><li>Step number</li><li>label</li><li>status</li><li>helper</li><li>blocked reason</li></ul></article>
-    <article id="doc-variants" class="component-doc-card"><strong>Variants</strong><p>Setup stepper, approval flow, horizontal progress, compact checklist</p></article>
-    <article id="doc-states" class="component-doc-card"><strong>States</strong><p>Not started, current, complete, blocked, optional, error 상태를 비교합니다.</p></article>
-    <article id="doc-accessibility" class="component-doc-card"><strong>Accessibility</strong><p>Ordered list, aria-current step, visible status, blocked reason을 확인합니다.</p></article>
-    <article id="doc-examples" class="component-doc-card"><strong>Examples</strong><p>Campaign setup, review approval, export workflow, permission setup에 사용합니다.</p></article>
-    <article id="doc-qa" class="component-doc-card"><strong>QA</strong><p>긴 label, blocked reason, optional step, mobile stack을 확인합니다.</p></article>
+    <article id="doc-anatomy" class="component-doc-card">
+      <strong>Anatomy</strong>
+      <p>Step label, order, status, helper, action, blocked reason을 나눕니다.</p>
+      <ul><li>Step number</li><li>label</li><li>status</li><li>helper</li><li>blocked reason</li></ul>
+    </article>
+    <article id="doc-variants" class="component-doc-card">
+      <strong>Variants</strong>
+      <p>Setup stepper, approval flow, horizontal progress, compact checklist</p>
+    </article>
+    <article id="doc-states" class="component-doc-card">
+      <strong>States</strong>
+      <p>Not started, current, complete, blocked, optional, error 상태를 비교합니다.</p>
+    </article>
+    <article id="doc-accessibility" class="component-doc-card">
+      <strong>Accessibility</strong>
+      <p>Ordered list, aria-current step, visible status, blocked reason을 확인합니다.</p>
+    </article>
+    <article id="doc-examples" class="component-doc-card">
+      <strong>Examples</strong>
+      <p>Campaign setup, review approval, export workflow, permission setup에 사용합니다.</p>
+    </article>
+    <article id="doc-qa" class="component-doc-card">
+      <strong>QA</strong>
+      <p>긴 label, blocked reason, optional step, mobile stack을 확인합니다.</p>
+    </article>
   </div>
 </section>
 
 <section id="component-template-map" class="section">
-  <div class="section-heading"><p class="eyebrow">Document template</p><h2>Stepper 문서는 현재 단계와 막힌 이유를 함께 보여줍니다.</h2></div>
+  <div class="section-heading">
+    <p class="eyebrow">Document template</p>
+    <h2>Stepper 문서는 현재 단계와 막힌 이유를 함께 보여줍니다.</h2>
+  </div>
   <div class="component-template-map">
-    <article><span>01</span><strong>Overview</strong><p>단계가 순차적인지, 단순 checklist인지 먼저 구분합니다.</p></article>
-    <article><span>02</span><strong>Anatomy</strong><p>Order, label, state, helper, action, blocked reason을 분리합니다.</p></article>
-    <article><span>03</span><strong>Variants</strong><p>Setup, approval, checklist, compact progress를 구분합니다.</p></article>
-    <article><span>04</span><strong>States</strong><p>Current, complete, blocked, optional, error 상태를 비교합니다.</p></article>
-    <article><span>05</span><strong>Accessibility</strong><p>aria-current, ordered list, status text, action label을 확인합니다.</p></article>
-    <article><span>06</span><strong>QA</strong><p>Mobile stack, long text, blocked reason, completed contrast를 검증합니다.</p></article>
+    <article>
+      <span>01</span>
+      <strong>Overview</strong>
+      <p>단계가 순차적인지, 단순 checklist인지 먼저 구분합니다.</p>
+    </article>
+    <article>
+      <span>02</span>
+      <strong>Anatomy</strong>
+      <p>Order, label, state, helper, action, blocked reason을 분리합니다.</p>
+    </article>
+    <article>
+      <span>03</span>
+      <strong>Variants</strong>
+      <p>Setup, approval, checklist, compact progress를 구분합니다.</p>
+    </article>
+    <article>
+      <span>04</span>
+      <strong>States</strong>
+      <p>Current, complete, blocked, optional, error 상태를 비교합니다.</p>
+    </article>
+    <article>
+      <span>05</span>
+      <strong>Accessibility</strong>
+      <p>aria-current, ordered list, status text, action label을 확인합니다.</p>
+    </article>
+    <article>
+      <span>06</span>
+      <strong>QA</strong>
+      <p>Mobile stack, long text, blocked reason, completed contrast를 검증합니다.</p>
+    </article>
   </div>
 </section>
 
@@ -108,7 +157,10 @@
 </section>
 
 <section id="token-contract" class="section">
-  <div class="section-heading"><p class="eyebrow">Token contract</p><h2>Stepper는 진행 상태를 색상과 텍스트로 함께 표현합니다.</h2></div>
+  <div class="section-heading">
+    <p class="eyebrow">Token contract</p>
+    <h2>Stepper는 진행 상태를 색상과 텍스트로 함께 표현합니다.</h2>
+  </div>
   <div class="component-token-contract">
     <div class="token-contract-row header"><span>Decision</span><span>Token</span><span>Rule</span></div>
     <div class="token-contract-row"><span><strong>Label</strong></span><span>{typography.body-emphasis}</span><span>Step label은 강조 텍스트로 스캔되게 합니다.</span></div>

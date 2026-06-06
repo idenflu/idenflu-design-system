@@ -4,54 +4,9 @@
   <p class="lede">Accessible mode switching for product views.</p>
 </section>
 
-<section id="component-standard" class="section surface-band">
-  <div class="section-heading">
-    <p class="eyebrow">Component standard</p>
-    <h2>Tabs 문서의 공통 구조.</h2>
-  </div>
-  <div class="component-doc-grid">
-    <article id="doc-anatomy" class="component-doc-card">
-      <strong>Anatomy</strong>
-      <p>기본 구성요소를 정리해 구현과 디자인 리뷰의 출발점을 맞춥니다.</p>
-      <ul><li>Tablist</li><li>tab</li><li>selected tab</li><li>tabpanel</li><li>keyboard state</li></ul>
-    </article>
-    <article id="doc-variants" class="component-doc-card">
-      <strong>Variants</strong>
-      <p>Product tabs, compact tabs, disabled tabs, overflow tabs</p>
-    </article>
-    <article id="doc-states" class="component-doc-card">
-      <strong>States</strong>
-      <p>Default, hover, focus, selected, loading, disabled, error 또는 locked 상태를 같은 density로 비교합니다.</p>
-    </article>
-    <article id="doc-accessibility" class="component-doc-card">
-      <strong>Accessibility</strong>
-      <p>Keyboard path, visible focus, semantic role, accessible name, helper/error 연결을 함께 검토합니다.</p>
-    </article>
-    <article id="doc-examples" class="component-doc-card">
-      <strong>Examples</strong>
-      <p>단독 컴포넌트보다 idenflu 제품 화면 안에서 쓰이는 예시를 우선합니다.</p>
-    </article>
-    <article id="doc-qa" class="component-doc-card">
-      <strong>QA</strong>
-      <p>Visual QA에서 light/dark, compact density, disabled hover, focus, long text overflow를 다시 확인합니다.</p>
-    </article>
-  </div>
-</section>
+<!-- partial:component-standard -->
 
-<section id="component-template-map" class="section">
-  <div class="section-heading">
-    <p class="eyebrow">Document template</p>
-    <h2>Tabs 문서는 전환 대상과 keyboard model을 함께 정의합니다.</h2>
-  </div>
-  <div class="component-template-map">
-    <article><span>01</span><strong>Overview</strong><p>탭이 같은 화면 안의 view mode 전환인지 먼저 확인합니다.</p></article>
-    <article><span>02</span><strong>Anatomy</strong><p>Tablist, tab, selected tab, tabpanel, panel label을 분리합니다.</p></article>
-    <article><span>03</span><strong>Variants</strong><p>Product tabs, compact tabs, disabled tabs, overflow tabs를 구분합니다.</p></article>
-    <article><span>04</span><strong>States</strong><p>Selected, hover, focus, disabled, loading panel 상태를 비교합니다.</p></article>
-    <article><span>05</span><strong>Accessibility</strong><p>Arrow key, Home/End, aria-selected, aria-controls를 검증합니다.</p></article>
-    <article><span>06</span><strong>QA</strong><p>긴 tab label, mobile wrap, disabled tab, hidden panel을 확인합니다.</p></article>
-  </div>
-</section>
+<!-- partial:component-template-map -->
 
 <section id="context-example" class="section surface-band">
   <div class="section-heading">
@@ -79,19 +34,7 @@
   </div>
 </section>
 
-<section id="token-contract" class="section">
-  <div class="section-heading">
-    <p class="eyebrow">Token contract</p>
-    <h2>탭은 버튼보다 낮은 표면 위에서 선택 상태를 명확히 보여줍니다.</h2>
-  </div>
-  <div class="component-token-contract">
-    <div class="token-contract-row header"><span>Decision</span><span>Token</span><span>Rule</span></div>
-    <div class="token-contract-row"><span><strong>Typography</strong></span><span>{typography.body-emphasis}</span><span>Tab label은 짧고 반복 스캔이 가능해야 합니다.</span></div>
-    <div class="token-contract-row"><span><strong>Selected</strong></span><span>{colors.primary}</span><span>선택 상태는 primary text와 underline/border로 표현합니다.</span></div>
-    <div class="token-contract-row"><span><strong>Panel</strong></span><span>{colors.surface-raised}</span><span>Panel은 tablist와 같은 표면 흐름 안에 둡니다.</span></div>
-    <div class="token-contract-row"><span><strong>Focus</strong></span><span>{colors.primary}</span><span>Arrow 이동 후 focus 위치가 시각적으로 보여야 합니다.</span></div>
-  </div>
-</section>
+<!-- partial:component-token-contract -->
 
 <section id="tabs" class="section surface-band">
           <div class="section-heading">

@@ -25,6 +25,8 @@ if (!exists("scripts/page-partials.js")) failures.push("missing scripts/page-par
 if (!exists("component-token-usage.json")) failures.push("missing component-token-usage.json");
 if (!exists("component-api.json")) failures.push("missing component-api.json");
 if (!exists("component-groups.json")) failures.push("missing component-groups.json");
+if (!exists("component-docs.json")) failures.push("missing component-docs.json");
+if (!exists("visual-qa-matrix.json")) failures.push("missing visual-qa-matrix.json");
 
 const normalizeColor = (value) => String(value).trim().toLowerCase();
 
@@ -86,18 +88,21 @@ if (config) {
 
   componentPages.forEach((file) => {
     const source = read(path.join("src/pages", file));
+    ["component-standard", "component-template-map", "component-token-contract"].forEach((partial) => {
+      if (!source.includes(`<!-- partial:${partial} -->`)) failures.push(`${file}: missing ${partial} partial`);
+    });
+    const html = read(file);
     ["component-standard", "doc-anatomy", "doc-variants", "doc-states", "doc-accessibility", "doc-examples"].forEach((id) => {
-      if (!source.includes(`id="${id}"`)) failures.push(`${file}: missing ${id}`);
+      if (!html.includes(`id="${id}"`)) failures.push(`${file}: missing ${id}`);
     });
 
-    const html = read(file);
     ["#component-template-map", "#context-example", "#token-contract"].forEach((href) => {
       if (!html.includes(`href="${href}"`)) failures.push(`${file}: missing sidebar anchor ${href}`);
     });
   });
 
   ["components-buttons.html", "components-cards.html", "components-overlays.html", "components-table.html"].forEach((file) => {
-    const source = read(path.join("src/pages", file));
+    const source = read(file);
     [
       'id="component-template-map"',
       "component-template-map",
@@ -120,7 +125,7 @@ if (config) {
   });
 
   ["components-icons.html", "components-inputs.html", "components-controls.html", "components-tabs.html", "components-feedback.html", "components-navigation.html"].forEach((file) => {
-    const source = read(path.join("src/pages", file));
+    const source = read(file);
     [
       'id="component-template-map"',
       "component-template-map",
@@ -282,6 +287,7 @@ if (config) {
     "system-positioning-grid",
     "doc-path-grid",
     "component-template-grid",
+    "visual-qa-coverage-grid",
     "visual-do-dont-grid",
     "a11y-flow-diagram",
     "component-template-map",
@@ -412,7 +418,7 @@ if (config) {
     failures.push("visual-qa.html: missing automation section");
   }
   if (exists("visual-qa.html")) {
-    ["qa-command-board", "browser-qa-check.js", "token-usage-report.js", "qa-dashboard-grid", "Dark mode deep QA", "utility-component-grid", "Menu and identity QA", "Combobox active option", "Avatar fallback", "Workflow and recovery QA", "Filter toolbar QA", "Attachment upload QA", "Permission recovery"].forEach((marker) => {
+    ["qa-command-board", "browser-qa-check.js", "token-usage-report.js", "qa-dashboard-grid", "visual-qa-coverage-grid", 'data-partial="visual-qa-coverage"', "Dark mode deep QA", "utility-component-grid", "Menu and identity QA", "Combobox active option", "Avatar fallback", "Workflow and recovery QA", "Filter toolbar QA", "Attachment upload QA", "Permission recovery"].forEach((marker) => {
       if (!read("visual-qa.html").includes(marker)) failures.push(`visual-qa.html: missing ${marker}`);
     });
   }
@@ -428,6 +434,7 @@ if (config) {
 if (tokens) {
   const tokenUsage = exists("component-token-usage.json") ? JSON.parse(read("component-token-usage.json")) : null;
   const componentApi = exists("component-api.json") ? JSON.parse(read("component-api.json")) : null;
+  const componentDocs = exists("component-docs.json") ? JSON.parse(read("component-docs.json")) : null;
   const colorMappings = {
     primary: "--primary",
     "primary-hover": "--primary-hover",
@@ -502,6 +509,28 @@ if (tokens) {
       if (!definition?.accessibility?.length) failures.push(`component-api.json: missing ${component} accessibility`);
     });
   }
+
+  if (componentDocs && config) {
+    const componentPages = config.pages.map((page) => page.file).filter((file) => file.startsWith("components-"));
+    componentPages.forEach((file) => {
+      const doc = componentDocs.pages?.[file];
+      if (!doc?.standard) failures.push(`component-docs.json: missing ${file} standard`);
+      if (!doc?.templateMap) failures.push(`component-docs.json: missing ${file} templateMap`);
+      if (!doc?.tokenContract) failures.push(`component-docs.json: missing ${file} tokenContract`);
+    });
+  }
+}
+
+if (exists("scripts/page-partials.js")) {
+  const partialScript = read("scripts/page-partials.js");
+  [
+    "renderComponentStandard",
+    "renderComponentTemplateMap",
+    "renderComponentTokenContract",
+    "renderVisualQaCoverage",
+  ].forEach((marker) => {
+    if (!partialScript.includes(marker)) failures.push(`scripts/page-partials.js: missing ${marker}`);
+  });
 }
 
 if (exists("scripts/component-coverage-check.js")) {

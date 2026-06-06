@@ -4,29 +4,9 @@
   <p class="lede">Short hints, metadata popovers, and quick action surfaces.</p>
 </section>
 
-<section id="component-standard" class="section surface-band">
-  <div class="section-heading"><p class="eyebrow">Component standard</p><h2>Tooltips 문서의 공통 구조.</h2></div>
-  <div class="component-doc-grid">
-    <article id="doc-anatomy" class="component-doc-card"><strong>Anatomy</strong><p>Trigger, hint, placement, optional title, close path를 나눕니다.</p><ul><li>Trigger</li><li>tooltip</li><li>popover surface</li><li>placement</li><li>close path</li></ul></article>
-    <article id="doc-variants" class="component-doc-card"><strong>Variants</strong><p>Tooltip, metadata popover, quick action popover, disabled hint</p></article>
-    <article id="doc-states" class="component-doc-card"><strong>States</strong><p>Hidden, visible, hover, focus, pinned, disabled 상태를 비교합니다.</p></article>
-    <article id="doc-accessibility" class="component-doc-card"><strong>Accessibility</strong><p>aria-describedby, keyboard trigger, focusable popover close path를 확인합니다.</p></article>
-    <article id="doc-examples" class="component-doc-card"><strong>Examples</strong><p>Icon button hint, metadata detail, disabled action reason에 사용합니다.</p></article>
-    <article id="doc-qa" class="component-doc-card"><strong>QA</strong><p>긴 hint, viewport edge, focus reveal, dark mode contrast를 확인합니다.</p></article>
-  </div>
-</section>
+<!-- partial:component-standard -->
 
-<section id="component-template-map" class="section">
-  <div class="section-heading"><p class="eyebrow">Document template</p><h2>Tooltips 문서는 설명과 상호작용 popover를 분리합니다.</h2></div>
-  <div class="component-template-map">
-    <article><span>01</span><strong>Overview</strong><p>짧은 설명이면 tooltip, 정보 묶음이나 액션이면 popover를 사용합니다.</p></article>
-    <article><span>02</span><strong>Anatomy</strong><p>Trigger, content, placement, arrow-less surface, close path를 분리합니다.</p></article>
-    <article><span>03</span><strong>Variants</strong><p>Hint, metadata, disabled reason, quick action popover를 구분합니다.</p></article>
-    <article><span>04</span><strong>States</strong><p>Hover, focus, pinned, dismissed, disabled 상태를 비교합니다.</p></article>
-    <article><span>05</span><strong>Accessibility</strong><p>aria-describedby, trigger focus, popover close, critical action 금지를 확인합니다.</p></article>
-    <article><span>06</span><strong>QA</strong><p>Viewport edge, long content, dark contrast, keyboard reveal을 검증합니다.</p></article>
-  </div>
-</section>
+<!-- partial:component-template-map -->
 
 <section id="context-example" class="section surface-band">
   <div class="section-heading"><p class="eyebrow">Context example</p><h2>Tooltip은 짧은 힌트, popover는 작은 정보 표면으로 씁니다.</h2></div>
@@ -46,16 +26,7 @@
   </div>
 </section>
 
-<section id="token-contract" class="section">
-  <div class="section-heading"><p class="eyebrow">Token contract</p><h2>Tooltips는 inverse surface와 caption으로 짧게 유지합니다.</h2></div>
-  <div class="component-token-contract">
-    <div class="token-contract-row header"><span>Decision</span><span>Token</span><span>Rule</span></div>
-    <div class="token-contract-row"><span><strong>Tooltip surface</strong></span><span>{colors.inverse-canvas}</span><span>짧은 tooltip은 inverse surface를 사용해 주변 UI와 구분합니다.</span></div>
-    <div class="token-contract-row"><span><strong>Tooltip text</strong></span><span>{typography.caption}</span><span>힌트는 caption 크기로 1-2줄 안에 유지합니다.</span></div>
-    <div class="token-contract-row"><span><strong>Popover surface</strong></span><span>{colors.surface-raised}</span><span>상호작용 popover는 일반 surface와 hairline을 씁니다.</span></div>
-    <div class="token-contract-row"><span><strong>Spacing</strong></span><span>{spacing.xs}</span><span>Trigger와 tooltip 간격은 작게 유지해 소속을 드러냅니다.</span></div>
-  </div>
-</section>
+<!-- partial:component-token-contract -->
 
 <section id="tooltips" class="section">
   <div class="section-heading"><p class="eyebrow">Tooltips</p><h2>짧은 힌트와 작은 정보 표면을 분리합니다.</h2></div>

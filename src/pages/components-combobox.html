@@ -4,35 +4,9 @@
   <p class="lede">Searchable selection, active option, empty, and loading states.</p>
 </section>
 
-<section id="component-standard" class="section surface-band">
-  <div class="section-heading">
-    <p class="eyebrow">Component standard</p>
-    <h2>Combobox 문서의 공통 구조.</h2>
-  </div>
-  <div class="component-doc-grid">
-    <article id="doc-anatomy" class="component-doc-card"><strong>Anatomy</strong><p>Label, input, popup, option, active option, selection을 나눕니다.</p><ul><li>Visible label</li><li>query input</li><li>option list</li><li>active option</li><li>helper copy</li></ul></article>
-    <article id="doc-variants" class="component-doc-card"><strong>Variants</strong><p>Single select, multi select, async search, owner picker, tag picker</p></article>
-    <article id="doc-states" class="component-doc-card"><strong>States</strong><p>Collapsed, expanded, typing, active, empty, loading, disabled 상태를 비교합니다.</p></article>
-    <article id="doc-accessibility" class="component-doc-card"><strong>Accessibility</strong><p>role combobox, aria-controls, aria-activedescendant, option keyboard path를 확인합니다.</p></article>
-    <article id="doc-examples" class="component-doc-card"><strong>Examples</strong><p>Owner, campaign, label, saved view처럼 검색 가능한 선택에 사용합니다.</p></article>
-    <article id="doc-qa" class="component-doc-card"><strong>QA</strong><p>긴 option, empty result, loading, active option, mobile keyboard를 확인합니다.</p></article>
-  </div>
-</section>
+<!-- partial:component-standard -->
 
-<section id="component-template-map" class="section">
-  <div class="section-heading">
-    <p class="eyebrow">Document template</p>
-    <h2>Combobox 문서는 입력과 선택의 관계를 명확히 고정합니다.</h2>
-  </div>
-  <div class="component-template-map">
-    <article><span>01</span><strong>Overview</strong><p>선택지가 짧으면 select, 검색이 필요하면 combobox를 사용합니다.</p></article>
-    <article><span>02</span><strong>Anatomy</strong><p>Label, query, popup, option, active state, helper를 분리합니다.</p></article>
-    <article><span>03</span><strong>Variants</strong><p>Single, multi, async, creatable, owner picker를 구분합니다.</p></article>
-    <article><span>04</span><strong>States</strong><p>Typing, active option, empty, loading, disabled 상태를 비교합니다.</p></article>
-    <article><span>05</span><strong>Accessibility</strong><p>aria-expanded, aria-controls, aria-activedescendant 연결을 확인합니다.</p></article>
-    <article><span>06</span><strong>QA</strong><p>Keyboard selection, long option wrap, empty recovery, server latency를 검증합니다.</p></article>
-  </div>
-</section>
+<!-- partial:component-template-map -->
 
 <section id="context-example" class="section surface-band">
   <div class="section-heading">
@@ -62,19 +36,7 @@
   </div>
 </section>
 
-<section id="token-contract" class="section">
-  <div class="section-heading">
-    <p class="eyebrow">Token contract</p>
-    <h2>Combobox는 field와 menu surface 토큰을 함께 씁니다.</h2>
-  </div>
-  <div class="component-token-contract">
-    <div class="token-contract-row header"><span>Decision</span><span>Token</span><span>Rule</span></div>
-    <div class="token-contract-row"><span><strong>Input</strong></span><span>{sizing.field-height}</span><span>입력 영역은 field와 같은 높이를 사용합니다.</span></div>
-    <div class="token-contract-row"><span><strong>Popup</strong></span><span>{colors.surface-raised}</span><span>옵션 영역은 surface-raised와 hairline으로 구분합니다.</span></div>
-    <div class="token-contract-row"><span><strong>Active</strong></span><span>{colors.primary-soft}</span><span>키보드 active option은 selected와 구분되는 soft surface를 씁니다.</span></div>
-    <div class="token-contract-row"><span><strong>Focus</strong></span><span>{colors.primary}</span><span>입력 focus와 option active가 동시에 읽히도록 유지합니다.</span></div>
-  </div>
-</section>
+<!-- partial:component-token-contract -->
 
 <section id="combobox" class="section">
   <div class="section-heading">

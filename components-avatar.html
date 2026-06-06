@@ -63,26 +63,75 @@
 </section>
 
 <section id="component-standard" class="section surface-band">
-  <div class="section-heading"><p class="eyebrow">Component standard</p><h2>Avatar 문서의 공통 구조.</h2></div>
+  <div class="section-heading">
+    <p class="eyebrow">Component standard</p>
+    <h2>Avatar 문서의 공통 구조.</h2>
+  </div>
   <div class="component-doc-grid">
-    <article id="doc-anatomy" class="component-doc-card"><strong>Anatomy</strong><p>Image, initials, name, subtitle, presence, fallback을 나눕니다.</p><ul><li>Image</li><li>initials</li><li>name</li><li>subtitle</li><li>presence</li></ul></article>
-    <article id="doc-variants" class="component-doc-card"><strong>Variants</strong><p>Image avatar, initials, unassigned, stacked group, identity row</p></article>
-    <article id="doc-states" class="component-doc-card"><strong>States</strong><p>Image, initials, unassigned, online, busy, disabled 상태를 비교합니다.</p></article>
-    <article id="doc-accessibility" class="component-doc-card"><strong>Accessibility</strong><p>정보성 이미지는 alt, 장식 avatar는 hidden, identity row는 name을 visible로 둡니다.</p></article>
-    <article id="doc-examples" class="component-doc-card"><strong>Examples</strong><p>Owner, requester, approver, collaborator group에 사용합니다.</p></article>
-    <article id="doc-qa" class="component-doc-card"><strong>QA</strong><p>이미지 실패, 긴 이름, email subtitle, stacked overlap, dark contrast를 확인합니다.</p></article>
+    <article id="doc-anatomy" class="component-doc-card">
+      <strong>Anatomy</strong>
+      <p>Image, initials, name, subtitle, presence, fallback을 나눕니다.</p>
+      <ul><li>Image</li><li>initials</li><li>name</li><li>subtitle</li><li>presence</li></ul>
+    </article>
+    <article id="doc-variants" class="component-doc-card">
+      <strong>Variants</strong>
+      <p>Image avatar, initials, unassigned, stacked group, identity row</p>
+    </article>
+    <article id="doc-states" class="component-doc-card">
+      <strong>States</strong>
+      <p>Image, initials, unassigned, online, busy, disabled 상태를 비교합니다.</p>
+    </article>
+    <article id="doc-accessibility" class="component-doc-card">
+      <strong>Accessibility</strong>
+      <p>정보성 이미지는 alt, 장식 avatar는 hidden, identity row는 name을 visible로 둡니다.</p>
+    </article>
+    <article id="doc-examples" class="component-doc-card">
+      <strong>Examples</strong>
+      <p>Owner, requester, approver, collaborator group에 사용합니다.</p>
+    </article>
+    <article id="doc-qa" class="component-doc-card">
+      <strong>QA</strong>
+      <p>이미지 실패, 긴 이름, email subtitle, stacked overlap, dark contrast를 확인합니다.</p>
+    </article>
   </div>
 </section>
 
 <section id="component-template-map" class="section">
-  <div class="section-heading"><p class="eyebrow">Document template</p><h2>Avatar 문서는 사람이 누구인지 읽히는 정보 단위로 봅니다.</h2></div>
+  <div class="section-heading">
+    <p class="eyebrow">Document template</p>
+    <h2>Avatar 문서는 사람이 누구인지 읽히는 정보 단위로 봅니다.</h2>
+  </div>
   <div class="component-template-map">
-    <article><span>01</span><strong>Overview</strong><p>Avatar만으로 식별하지 말고 name이나 role과 함께 사용합니다.</p></article>
-    <article><span>02</span><strong>Anatomy</strong><p>Image, initials, fallback, name, subtitle, presence를 분리합니다.</p></article>
-    <article><span>03</span><strong>Variants</strong><p>Single, group, identity row, unassigned, system user를 구분합니다.</p></article>
-    <article><span>04</span><strong>States</strong><p>Online, busy, disabled, missing image, fallback initials를 비교합니다.</p></article>
-    <article><span>05</span><strong>Accessibility</strong><p>Avatar alt, decorative hidden, visible identity text를 확인합니다.</p></article>
-    <article><span>06</span><strong>QA</strong><p>Long name, email wrap, stacked group, dark surface를 검증합니다.</p></article>
+    <article>
+      <span>01</span>
+      <strong>Overview</strong>
+      <p>Avatar만으로 식별하지 말고 name이나 role과 함께 사용합니다.</p>
+    </article>
+    <article>
+      <span>02</span>
+      <strong>Anatomy</strong>
+      <p>Image, initials, fallback, name, subtitle, presence를 분리합니다.</p>
+    </article>
+    <article>
+      <span>03</span>
+      <strong>Variants</strong>
+      <p>Single, group, identity row, unassigned, system user를 구분합니다.</p>
+    </article>
+    <article>
+      <span>04</span>
+      <strong>States</strong>
+      <p>Online, busy, disabled, missing image, fallback initials를 비교합니다.</p>
+    </article>
+    <article>
+      <span>05</span>
+      <strong>Accessibility</strong>
+      <p>Avatar alt, decorative hidden, visible identity text를 확인합니다.</p>
+    </article>
+    <article>
+      <span>06</span>
+      <strong>QA</strong>
+      <p>Long name, email wrap, stacked group, dark surface를 검증합니다.</p>
+    </article>
   </div>
 </section>
 
@@ -106,7 +155,10 @@
 </section>
 
 <section id="token-contract" class="section">
-  <div class="section-heading"><p class="eyebrow">Token contract</p><h2>Avatar는 크기와 identity typography를 일관되게 씁니다.</h2></div>
+  <div class="section-heading">
+    <p class="eyebrow">Token contract</p>
+    <h2>Avatar는 크기와 identity typography를 일관되게 씁니다.</h2>
+  </div>
   <div class="component-token-contract">
     <div class="token-contract-row header"><span>Decision</span><span>Token</span><span>Rule</span></div>
     <div class="token-contract-row"><span><strong>Size</strong></span><span>{sizing.control-height}</span><span>기본 avatar는 control height와 같은 크기를 사용합니다.</span></div>

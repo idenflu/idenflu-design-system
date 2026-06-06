@@ -1,0 +1,2419 @@
+{
+  "pages": {
+    "components-attachments.html": {
+      "standard": {
+        "sectionClass": "section surface-band",
+        "eyebrow": "Component standard",
+        "heading": "Attachments 문서의 공통 구조.",
+        "cards": [
+          {
+            "id": "doc-anatomy",
+            "title": "Anatomy",
+            "description": "File input, file row, thumbnail, progress, error, action을 나눕니다.",
+            "items": [
+              "Upload trigger",
+              "file name",
+              "size",
+              "progress",
+              "remove action"
+            ]
+          },
+          {
+            "id": "doc-variants",
+            "title": "Variants",
+            "description": "Upload zone, file row, preview item, failed upload, scanning item",
+            "items": []
+          },
+          {
+            "id": "doc-states",
+            "title": "States",
+            "description": "Empty, uploading, complete, failed, scanning, disabled 상태를 비교합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-accessibility",
+            "title": "Accessibility",
+            "description": "File input label, progress text, error reason, remove aria-label을 확인합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-examples",
+            "title": "Examples",
+            "description": "Asset upload, brief file, report export, approval attachment에 사용합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-qa",
+            "title": "QA",
+            "description": "긴 파일명, 실패 복구, progress text, mobile row stack을 확인합니다.",
+            "items": []
+          }
+        ]
+      },
+      "templateMap": {
+        "sectionClass": "section",
+        "eyebrow": "Document template",
+        "heading": "Attachments 문서는 파일 상태와 다음 action을 함께 보여줍니다.",
+        "steps": [
+          {
+            "number": "01",
+            "title": "Overview",
+            "description": "업로드인지, 이미 첨부된 파일 목록인지 먼저 구분합니다."
+          },
+          {
+            "number": "02",
+            "title": "Anatomy",
+            "description": "Trigger, file row, thumbnail, metadata, progress, action을 분리합니다."
+          },
+          {
+            "number": "03",
+            "title": "Variants",
+            "description": "Upload zone, file list, preview, failed row, scanning row를 구분합니다."
+          },
+          {
+            "number": "04",
+            "title": "States",
+            "description": "Empty, uploading, complete, failed, disabled 상태를 비교합니다."
+          },
+          {
+            "number": "05",
+            "title": "Accessibility",
+            "description": "파일 input label, progress announcement, remove label을 확인합니다."
+          },
+          {
+            "number": "06",
+            "title": "QA",
+            "description": "긴 파일명, 큰 파일, 실패 복구, mobile overflow를 검증합니다."
+          }
+        ]
+      },
+      "tokenContract": {
+        "sectionClass": "section",
+        "eyebrow": "Token contract",
+        "heading": "Attachments는 row, progress, error token을 함께 씁니다.",
+        "rows": [
+          {
+            "decision": "Row text",
+            "token": "{typography.body-sm}",
+            "rule": "파일 metadata는 compact row와 같은 텍스트 기준을 씁니다."
+          },
+          {
+            "decision": "Surface",
+            "token": "{colors.surface-raised}",
+            "rule": "파일 row는 hairline으로만 구분합니다."
+          },
+          {
+            "decision": "Error",
+            "token": "{colors.accent-coral}",
+            "rule": "실패 row는 coral과 retry action을 함께 둡니다."
+          },
+          {
+            "decision": "Spacing",
+            "token": "{spacing.md}",
+            "rule": "파일 아이콘, metadata, action 간격은 16px 기준입니다."
+          }
+        ]
+      }
+    },
+    "components-avatar.html": {
+      "standard": {
+        "sectionClass": "section surface-band",
+        "eyebrow": "Component standard",
+        "heading": "Avatar 문서의 공통 구조.",
+        "cards": [
+          {
+            "id": "doc-anatomy",
+            "title": "Anatomy",
+            "description": "Image, initials, name, subtitle, presence, fallback을 나눕니다.",
+            "items": [
+              "Image",
+              "initials",
+              "name",
+              "subtitle",
+              "presence"
+            ]
+          },
+          {
+            "id": "doc-variants",
+            "title": "Variants",
+            "description": "Image avatar, initials, unassigned, stacked group, identity row",
+            "items": []
+          },
+          {
+            "id": "doc-states",
+            "title": "States",
+            "description": "Image, initials, unassigned, online, busy, disabled 상태를 비교합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-accessibility",
+            "title": "Accessibility",
+            "description": "정보성 이미지는 alt, 장식 avatar는 hidden, identity row는 name을 visible로 둡니다.",
+            "items": []
+          },
+          {
+            "id": "doc-examples",
+            "title": "Examples",
+            "description": "Owner, requester, approver, collaborator group에 사용합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-qa",
+            "title": "QA",
+            "description": "이미지 실패, 긴 이름, email subtitle, stacked overlap, dark contrast를 확인합니다.",
+            "items": []
+          }
+        ]
+      },
+      "templateMap": {
+        "sectionClass": "section",
+        "eyebrow": "Document template",
+        "heading": "Avatar 문서는 사람이 누구인지 읽히는 정보 단위로 봅니다.",
+        "steps": [
+          {
+            "number": "01",
+            "title": "Overview",
+            "description": "Avatar만으로 식별하지 말고 name이나 role과 함께 사용합니다."
+          },
+          {
+            "number": "02",
+            "title": "Anatomy",
+            "description": "Image, initials, fallback, name, subtitle, presence를 분리합니다."
+          },
+          {
+            "number": "03",
+            "title": "Variants",
+            "description": "Single, group, identity row, unassigned, system user를 구분합니다."
+          },
+          {
+            "number": "04",
+            "title": "States",
+            "description": "Online, busy, disabled, missing image, fallback initials를 비교합니다."
+          },
+          {
+            "number": "05",
+            "title": "Accessibility",
+            "description": "Avatar alt, decorative hidden, visible identity text를 확인합니다."
+          },
+          {
+            "number": "06",
+            "title": "QA",
+            "description": "Long name, email wrap, stacked group, dark surface를 검증합니다."
+          }
+        ]
+      },
+      "tokenContract": {
+        "sectionClass": "section",
+        "eyebrow": "Token contract",
+        "heading": "Avatar는 크기와 identity typography를 일관되게 씁니다.",
+        "rows": [
+          {
+            "decision": "Size",
+            "token": "{sizing.control-height}",
+            "rule": "기본 avatar는 control height와 같은 크기를 사용합니다."
+          },
+          {
+            "decision": "Initials",
+            "token": "{typography.body-emphasis}",
+            "rule": "Fallback initials는 작지만 선명한 emphasis를 사용합니다."
+          },
+          {
+            "decision": "Surface",
+            "token": "{colors.surface-2}",
+            "rule": "이미지가 없을 때 neutral surface를 사용합니다."
+          },
+          {
+            "decision": "Presence",
+            "token": "{colors.primary}",
+            "rule": "Presence는 보조 정보이며 이름을 대체하지 않습니다."
+          }
+        ]
+      }
+    },
+    "components-badges.html": {
+      "standard": {
+        "sectionClass": "section surface-band",
+        "eyebrow": "Component standard",
+        "heading": "Badges 문서의 공통 구조.",
+        "cards": [
+          {
+            "id": "doc-anatomy",
+            "title": "Anatomy",
+            "description": "Tone, label, count, optional icon, remove action을 나눕니다.",
+            "items": [
+              "Text label",
+              "tone",
+              "count",
+              "remove button",
+              "status meaning"
+            ]
+          },
+          {
+            "id": "doc-variants",
+            "title": "Variants",
+            "description": "Status badge, count badge, filter chip, removable tag, risk label",
+            "items": []
+          },
+          {
+            "id": "doc-states",
+            "title": "States",
+            "description": "Neutral, info, success, warning, danger, selected, disabled 상태를 비교합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-accessibility",
+            "title": "Accessibility",
+            "description": "상태는 색상만으로 전달하지 않고 remove action은 aria-label을 사용합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-examples",
+            "title": "Examples",
+            "description": "테이블 상태, 필터 적용값, owner label, asset risk에 사용합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-qa",
+            "title": "QA",
+            "description": "긴 label, count overflow, disabled chip, dark contrast를 확인합니다.",
+            "items": []
+          }
+        ]
+      },
+      "templateMap": {
+        "sectionClass": "section",
+        "eyebrow": "Document template",
+        "heading": "Badges 문서는 의미와 제거 가능 여부를 먼저 구분합니다.",
+        "steps": [
+          {
+            "number": "01",
+            "title": "Overview",
+            "description": "상태 label인지, 적용된 필터인지, count인지 먼저 정합니다."
+          },
+          {
+            "number": "02",
+            "title": "Anatomy",
+            "description": "Tone, label, count, icon, remove button을 분리합니다."
+          },
+          {
+            "number": "03",
+            "title": "Variants",
+            "description": "Status, chip, tag, count, risk label을 구분합니다."
+          },
+          {
+            "number": "04",
+            "title": "States",
+            "description": "Selected, disabled, removable, warning, danger 상태를 비교합니다."
+          },
+          {
+            "number": "05",
+            "title": "Accessibility",
+            "description": "상태 텍스트, remove label, 색상 의존 여부를 확인합니다."
+          },
+          {
+            "number": "06",
+            "title": "QA",
+            "description": "긴 label wrap, compact toolbar, dark mode, count overflow를 검증합니다."
+          }
+        ]
+      },
+      "tokenContract": {
+        "sectionClass": "section",
+        "eyebrow": "Token contract",
+        "heading": "Badges는 caption과 semantic accent를 작은 면적으로 사용합니다.",
+        "rows": [
+          {
+            "decision": "Text",
+            "token": "{typography.caption}",
+            "rule": "Badge label은 12px caption으로 유지합니다."
+          },
+          {
+            "decision": "Info",
+            "token": "{colors.primary-soft}",
+            "rule": "선택과 정보는 primary soft를 사용합니다."
+          },
+          {
+            "decision": "Success",
+            "token": "{colors.accent-mint}",
+            "rule": "완료 상태는 mint와 완료 label을 함께 씁니다."
+          },
+          {
+            "decision": "Warning",
+            "token": "{colors.accent-amber}",
+            "rule": "대기와 위험 예고는 amber와 원인 text를 함께 둡니다."
+          }
+        ]
+      }
+    },
+    "components-buttons.html": {
+      "standard": {
+        "sectionClass": "section surface-band",
+        "eyebrow": "Component standard",
+        "heading": "Buttons 문서의 공통 구조.",
+        "cards": [
+          {
+            "id": "doc-anatomy",
+            "title": "Anatomy",
+            "description": "기본 구성요소를 정리해 구현과 디자인 리뷰의 출발점을 맞춥니다.",
+            "items": [
+              "Label",
+              "optional icon",
+              "fixed size",
+              "loading indicator",
+              "disabled reason"
+            ]
+          },
+          {
+            "id": "doc-variants",
+            "title": "Variants",
+            "description": "Primary, secondary, quiet, ghost, danger, icon-only, sizes",
+            "items": []
+          },
+          {
+            "id": "doc-states",
+            "title": "States",
+            "description": "Default, hover, focus, selected, loading, disabled, error 또는 locked 상태를 같은 density로 비교합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-accessibility",
+            "title": "Accessibility",
+            "description": "Keyboard path, visible focus, semantic role, accessible name, helper/error 연결을 함께 검토합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-examples",
+            "title": "Examples",
+            "description": "단독 컴포넌트보다 idenflu 제품 화면 안에서 쓰이는 예시를 우선합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-qa",
+            "title": "QA",
+            "description": "Visual QA에서 light/dark, compact density, disabled hover, focus, long text overflow를 다시 확인합니다.",
+            "items": []
+          }
+        ]
+      },
+      "templateMap": {
+        "sectionClass": "section",
+        "eyebrow": "Document template",
+        "heading": "Buttons 문서는 같은 순서로 판단합니다.",
+        "steps": [
+          {
+            "number": "01",
+            "title": "Overview",
+            "description": "버튼이 어떤 결정 영역에서 쓰이는지 먼저 정의합니다."
+          },
+          {
+            "number": "02",
+            "title": "Anatomy",
+            "description": "Label, icon, indicator, hit area, disabled reason을 분리합니다."
+          },
+          {
+            "number": "03",
+            "title": "Variants",
+            "description": "Primary, quiet, ghost, danger의 역할과 우선순위를 고정합니다."
+          },
+          {
+            "number": "04",
+            "title": "States",
+            "description": "Focus, loading, selected, disabled, danger를 같은 밀도로 비교합니다."
+          },
+          {
+            "number": "05",
+            "title": "Accessibility",
+            "description": "Accessible name, aria-busy, tab order, focus ring을 함께 확인합니다."
+          },
+          {
+            "number": "06",
+            "title": "QA",
+            "description": "크기별 예시, 긴 label, icon-only, disabled hover를 검증합니다."
+          }
+        ]
+      },
+      "tokenContract": {
+        "sectionClass": "section",
+        "eyebrow": "Token contract",
+        "heading": "버튼 구현은 높이, 간격, 색, 타이포그래피 토큰에 묶습니다.",
+        "rows": [
+          {
+            "decision": "Height",
+            "token": "{sizing.control-height}",
+            "rule": "Medium은 38px, small은 32px, large는 44px로 고정합니다."
+          },
+          {
+            "decision": "Typography",
+            "token": "{typography.button}",
+            "rule": "font-weight 450을 기본으로 두고, 상태 표현은 색과 border로 해결합니다."
+          },
+          {
+            "decision": "Priority color",
+            "token": "{colors.primary}",
+            "rule": "주요 결정에만 primary를 쓰고 danger는 파괴적 액션에만 사용합니다."
+          },
+          {
+            "decision": "Spacing",
+            "token": "{spacing.xs} / {spacing.md}",
+            "rule": "Icon과 label 간격은 좁게, 버튼 그룹 간격은 명확하게 둡니다."
+          }
+        ]
+      }
+    },
+    "components-cards.html": {
+      "standard": {
+        "sectionClass": "section surface-band",
+        "eyebrow": "Component standard",
+        "heading": "Cards 문서의 공통 구조.",
+        "cards": [
+          {
+            "id": "doc-anatomy",
+            "title": "Anatomy",
+            "description": "기본 구성요소를 정리해 구현과 디자인 리뷰의 출발점을 맞춥니다.",
+            "items": [
+              "Object title",
+              "metadata",
+              "status chip",
+              "thumbnail",
+              "next action"
+            ]
+          },
+          {
+            "id": "doc-variants",
+            "title": "Variants",
+            "description": "Campaign, creator, metric, activity, locked card",
+            "items": []
+          },
+          {
+            "id": "doc-states",
+            "title": "States",
+            "description": "Default, hover, focus, selected, loading, disabled, error 또는 locked 상태를 같은 density로 비교합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-accessibility",
+            "title": "Accessibility",
+            "description": "Keyboard path, visible focus, semantic role, accessible name, helper/error 연결을 함께 검토합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-examples",
+            "title": "Examples",
+            "description": "단독 컴포넌트보다 idenflu 제품 화면 안에서 쓰이는 예시를 우선합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-qa",
+            "title": "QA",
+            "description": "Visual QA에서 light/dark, compact density, disabled hover, focus, long text overflow를 다시 확인합니다.",
+            "items": []
+          }
+        ]
+      },
+      "templateMap": {
+        "sectionClass": "section",
+        "eyebrow": "Document template",
+        "heading": "Cards 문서는 객체, 상태, 다음 액션을 같은 순서로 검토합니다.",
+        "steps": [
+          {
+            "number": "01",
+            "title": "Overview",
+            "description": "카드가 반복 객체인지, 단일 정보 묶음인지 먼저 판단합니다."
+          },
+          {
+            "number": "02",
+            "title": "Anatomy",
+            "description": "Header, body, footer, thumbnail, metadata, action 위치를 고정합니다."
+          },
+          {
+            "number": "03",
+            "title": "Variants",
+            "description": "Campaign, creator, metric, activity, locked card를 분리합니다."
+          },
+          {
+            "number": "04",
+            "title": "States",
+            "description": "Hover, selected, loading, locked, error 상태를 같은 높이에서 비교합니다."
+          },
+          {
+            "number": "05",
+            "title": "Accessibility",
+            "description": "카드 전체 클릭과 내부 링크가 충돌하지 않도록 역할을 나눕니다."
+          },
+          {
+            "number": "06",
+            "title": "QA",
+            "description": "긴 title, metadata wrap, footer 고정, mobile stack을 확인합니다."
+          }
+        ]
+      },
+      "tokenContract": {
+        "sectionClass": "section",
+        "eyebrow": "Token contract",
+        "heading": "카드는 표면, 간격, 제목 계층 토큰으로 일관성을 유지합니다.",
+        "rows": [
+          {
+            "decision": "Surface",
+            "token": "{colors.surface-raised}",
+            "rule": "반복 객체는 흰 표면과 hairline border로 목록 안에서 구분합니다."
+          },
+          {
+            "decision": "Title",
+            "token": "{typography.card-title}",
+            "rule": "제목은 객체명만 쓰고 상태나 설명은 metadata로 내립니다."
+          },
+          {
+            "decision": "Spacing",
+            "token": "{spacing.lg} / {spacing.md}",
+            "rule": "Header, body, footer는 같은 padding 안에서 역할별 간격만 조정합니다."
+          },
+          {
+            "decision": "Border",
+            "token": "{colors.hairline}",
+            "rule": "Hover와 selected는 border/color 변화로 표현하고 nested card는 피합니다."
+          }
+        ]
+      }
+    },
+    "components-combobox.html": {
+      "standard": {
+        "sectionClass": "section surface-band",
+        "eyebrow": "Component standard",
+        "heading": "Combobox 문서의 공통 구조.",
+        "cards": [
+          {
+            "id": "doc-anatomy",
+            "title": "Anatomy",
+            "description": "Label, input, popup, option, active option, selection을 나눕니다.",
+            "items": [
+              "Visible label",
+              "query input",
+              "option list",
+              "active option",
+              "helper copy"
+            ]
+          },
+          {
+            "id": "doc-variants",
+            "title": "Variants",
+            "description": "Single select, multi select, async search, owner picker, tag picker",
+            "items": []
+          },
+          {
+            "id": "doc-states",
+            "title": "States",
+            "description": "Collapsed, expanded, typing, active, empty, loading, disabled 상태를 비교합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-accessibility",
+            "title": "Accessibility",
+            "description": "role combobox, aria-controls, aria-activedescendant, option keyboard path를 확인합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-examples",
+            "title": "Examples",
+            "description": "Owner, campaign, label, saved view처럼 검색 가능한 선택에 사용합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-qa",
+            "title": "QA",
+            "description": "긴 option, empty result, loading, active option, mobile keyboard를 확인합니다.",
+            "items": []
+          }
+        ]
+      },
+      "templateMap": {
+        "sectionClass": "section",
+        "eyebrow": "Document template",
+        "heading": "Combobox 문서는 입력과 선택의 관계를 명확히 고정합니다.",
+        "steps": [
+          {
+            "number": "01",
+            "title": "Overview",
+            "description": "선택지가 짧으면 select, 검색이 필요하면 combobox를 사용합니다."
+          },
+          {
+            "number": "02",
+            "title": "Anatomy",
+            "description": "Label, query, popup, option, active state, helper를 분리합니다."
+          },
+          {
+            "number": "03",
+            "title": "Variants",
+            "description": "Single, multi, async, creatable, owner picker를 구분합니다."
+          },
+          {
+            "number": "04",
+            "title": "States",
+            "description": "Typing, active option, empty, loading, disabled 상태를 비교합니다."
+          },
+          {
+            "number": "05",
+            "title": "Accessibility",
+            "description": "aria-expanded, aria-controls, aria-activedescendant 연결을 확인합니다."
+          },
+          {
+            "number": "06",
+            "title": "QA",
+            "description": "Keyboard selection, long option wrap, empty recovery, server latency를 검증합니다."
+          }
+        ]
+      },
+      "tokenContract": {
+        "sectionClass": "section",
+        "eyebrow": "Token contract",
+        "heading": "Combobox는 field와 menu surface 토큰을 함께 씁니다.",
+        "rows": [
+          {
+            "decision": "Input",
+            "token": "{sizing.field-height}",
+            "rule": "입력 영역은 field와 같은 높이를 사용합니다."
+          },
+          {
+            "decision": "Popup",
+            "token": "{colors.surface-raised}",
+            "rule": "옵션 영역은 surface-raised와 hairline으로 구분합니다."
+          },
+          {
+            "decision": "Active",
+            "token": "{colors.primary-soft}",
+            "rule": "키보드 active option은 selected와 구분되는 soft surface를 씁니다."
+          },
+          {
+            "decision": "Focus",
+            "token": "{colors.primary}",
+            "rule": "입력 focus와 option active가 동시에 읽히도록 유지합니다."
+          }
+        ]
+      }
+    },
+    "components-controls.html": {
+      "standard": {
+        "sectionClass": "section surface-band",
+        "eyebrow": "Component standard",
+        "heading": "Controls 문서의 공통 구조.",
+        "cards": [
+          {
+            "id": "doc-anatomy",
+            "title": "Anatomy",
+            "description": "기본 구성요소를 정리해 구현과 디자인 리뷰의 출발점을 맞춥니다.",
+            "items": [
+              "Label",
+              "selected state",
+              "control group",
+              "helper copy",
+              "disabled state"
+            ]
+          },
+          {
+            "id": "doc-variants",
+            "title": "Variants",
+            "description": "Segmented control, switch, checkbox, range, density toggle",
+            "items": []
+          },
+          {
+            "id": "doc-states",
+            "title": "States",
+            "description": "Default, hover, focus, selected, loading, disabled, error 또는 locked 상태를 같은 density로 비교합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-accessibility",
+            "title": "Accessibility",
+            "description": "Keyboard path, visible focus, semantic role, accessible name, helper/error 연결을 함께 검토합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-examples",
+            "title": "Examples",
+            "description": "단독 컴포넌트보다 idenflu 제품 화면 안에서 쓰이는 예시를 우선합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-qa",
+            "title": "QA",
+            "description": "Visual QA에서 light/dark, compact density, disabled hover, focus, long text overflow를 다시 확인합니다.",
+            "items": []
+          }
+        ]
+      },
+      "templateMap": {
+        "sectionClass": "section",
+        "eyebrow": "Document template",
+        "heading": "Controls 문서는 선택 범위와 상태 전환을 먼저 고정합니다.",
+        "steps": [
+          {
+            "number": "01",
+            "title": "Overview",
+            "description": "컨트롤이 필터, 설정, 상태 변경 중 어떤 역할인지 정의합니다."
+          },
+          {
+            "number": "02",
+            "title": "Anatomy",
+            "description": "Label, current value, control target, helper, disabled reason을 나눕니다."
+          },
+          {
+            "number": "03",
+            "title": "Variants",
+            "description": "Segmented control, switch, checkbox, range를 작업 맥락별로 구분합니다."
+          },
+          {
+            "number": "04",
+            "title": "States",
+            "description": "Checked, selected, indeterminate, disabled, focus 상태를 비교합니다."
+          },
+          {
+            "number": "05",
+            "title": "Accessibility",
+            "description": "Native input, group label, aria-checked, keyboard path를 확인합니다."
+          },
+          {
+            "number": "06",
+            "title": "QA",
+            "description": "Long label, compact density, disabled hover, range value 표시를 검증합니다."
+          }
+        ]
+      },
+      "tokenContract": {
+        "sectionClass": "section",
+        "eyebrow": "Token contract",
+        "heading": "컨트롤은 compact density와 focus token을 기준으로 맞춥니다.",
+        "rows": [
+          {
+            "decision": "Height",
+            "token": "{sizing.control-height}",
+            "rule": "기본 컨트롤은 버튼과 같은 높이 체계를 씁니다."
+          },
+          {
+            "decision": "Compact",
+            "token": "{density.compact}",
+            "rule": "테이블 toolbar 안에서는 compact 높이와 8px gap을 사용합니다."
+          },
+          {
+            "decision": "Selected",
+            "token": "{colors.primary-soft}",
+            "rule": "선택 상태는 soft background와 primary border로 표시합니다."
+          },
+          {
+            "decision": "Focus",
+            "token": "{colors.primary}",
+            "rule": "키보드 focus는 hover와 별개로 항상 보입니다."
+          }
+        ]
+      }
+    },
+    "components-date-time.html": {
+      "standard": {
+        "sectionClass": "section surface-band",
+        "eyebrow": "Component standard",
+        "heading": "Date time 문서의 공통 구조.",
+        "cards": [
+          {
+            "id": "doc-anatomy",
+            "title": "Anatomy",
+            "description": "Label, value, calendar grid, time, timezone, helper를 나눕니다.",
+            "items": [
+              "Visible label",
+              "date value",
+              "time value",
+              "timezone",
+              "validation"
+            ]
+          },
+          {
+            "id": "doc-variants",
+            "title": "Variants",
+            "description": "Single date, date range, due date, scheduled time, readonly timestamp",
+            "items": []
+          },
+          {
+            "id": "doc-states",
+            "title": "States",
+            "description": "Empty, selected, range, disabled date, invalid, readonly 상태를 비교합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-accessibility",
+            "title": "Accessibility",
+            "description": "Visible label, timezone text, aria-invalid, keyboard date navigation을 확인합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-examples",
+            "title": "Examples",
+            "description": "Campaign period, due date, scheduled publish, audit timestamp에 사용합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-qa",
+            "title": "QA",
+            "description": "Timezone, disabled date, range wrap, invalid helper를 확인합니다.",
+            "items": []
+          }
+        ]
+      },
+      "templateMap": {
+        "sectionClass": "section",
+        "eyebrow": "Document template",
+        "heading": "Date time 문서는 시간대와 validation을 함께 고정합니다.",
+        "steps": [
+          {
+            "number": "01",
+            "title": "Overview",
+            "description": "날짜만 필요한지, 시간과 timezone이 필요한지 먼저 결정합니다."
+          },
+          {
+            "number": "02",
+            "title": "Anatomy",
+            "description": "Label, input, calendar, time, timezone, helper를 분리합니다."
+          },
+          {
+            "number": "03",
+            "title": "Variants",
+            "description": "Single, range, due date, scheduled time, readonly timestamp를 구분합니다."
+          },
+          {
+            "number": "04",
+            "title": "States",
+            "description": "Selected, range, disabled date, invalid, readonly 상태를 비교합니다."
+          },
+          {
+            "number": "05",
+            "title": "Accessibility",
+            "description": "Label, timezone, keyboard date 이동, error linkage를 확인합니다."
+          },
+          {
+            "number": "06",
+            "title": "QA",
+            "description": "Timezone 표기, 모바일 입력, 과거 날짜 제한, 긴 helper를 검증합니다."
+          }
+        ]
+      },
+      "tokenContract": {
+        "sectionClass": "section",
+        "eyebrow": "Token contract",
+        "heading": "Date time은 field, selected surface, validation token을 함께 씁니다.",
+        "rows": [
+          {
+            "decision": "Field",
+            "token": "{sizing.field-height}",
+            "rule": "날짜 입력은 field height를 사용합니다."
+          },
+          {
+            "decision": "Text",
+            "token": "{typography.body}",
+            "rule": "날짜와 시간은 body text로 읽기 쉽게 유지합니다."
+          },
+          {
+            "decision": "Selected",
+            "token": "{colors.primary-soft}",
+            "rule": "선택된 날짜와 range는 primary soft로 표시합니다."
+          },
+          {
+            "decision": "Invalid",
+            "token": "{colors.accent-coral}",
+            "rule": "잘못된 날짜는 error border와 helper를 함께 사용합니다."
+          }
+        ]
+      }
+    },
+    "components-empty-states.html": {
+      "standard": {
+        "sectionClass": "section surface-band",
+        "eyebrow": "Component standard",
+        "heading": "Empty states 문서의 공통 구조.",
+        "cards": [
+          {
+            "id": "doc-anatomy",
+            "title": "Anatomy",
+            "description": "Title, reason, recovery action, secondary action, permission reason을 나눕니다.",
+            "items": [
+              "Title",
+              "reason",
+              "primary action",
+              "secondary action",
+              "permission reason"
+            ]
+          },
+          {
+            "id": "doc-variants",
+            "title": "Variants",
+            "description": "Empty, filtered empty, error, permission, locked, loading recovery",
+            "items": []
+          },
+          {
+            "id": "doc-states",
+            "title": "States",
+            "description": "Empty, filtered empty, error, permission, locked, loading 상태를 비교합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-accessibility",
+            "title": "Accessibility",
+            "description": "Clear heading, recovery action, alert role, permission reason visible을 확인합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-examples",
+            "title": "Examples",
+            "description": "No campaigns, filtered creator list, sync error, owner-only approval에 사용합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-qa",
+            "title": "QA",
+            "description": "원인 없는 empty, action 없는 error, 권한 사유 누락을 확인합니다.",
+            "items": []
+          }
+        ]
+      },
+      "templateMap": {
+        "sectionClass": "section",
+        "eyebrow": "Document template",
+        "heading": "Empty states 문서는 원인과 복구 action을 함께 제공합니다.",
+        "steps": [
+          {
+            "number": "01",
+            "title": "Overview",
+            "description": "빈 상태인지, 오류인지, 권한 문제인지 먼저 구분합니다."
+          },
+          {
+            "number": "02",
+            "title": "Anatomy",
+            "description": "Title, reason, primary action, secondary action, helper를 분리합니다."
+          },
+          {
+            "number": "03",
+            "title": "Variants",
+            "description": "Empty, filtered empty, error, permission, locked를 구분합니다."
+          },
+          {
+            "number": "04",
+            "title": "States",
+            "description": "Loading, retry, permission, locked, filtered 상태를 비교합니다."
+          },
+          {
+            "number": "05",
+            "title": "Accessibility",
+            "description": "Heading, role alert, action label, permission reason을 확인합니다."
+          },
+          {
+            "number": "06",
+            "title": "QA",
+            "description": "긴 reason, mobile stack, action 없는 상태, dark contrast를 검증합니다."
+          }
+        ]
+      },
+      "tokenContract": {
+        "sectionClass": "section",
+        "eyebrow": "Token contract",
+        "heading": "Empty states는 제목, 이유, 복구 action의 계층을 유지합니다.",
+        "rows": [
+          {
+            "decision": "Title",
+            "token": "{typography.card-title}",
+            "rule": "상태 제목은 문제를 한 문장으로 설명합니다."
+          },
+          {
+            "decision": "Reason",
+            "token": "{typography.body-sm}",
+            "rule": "원인과 결과는 body-sm로 짧게 제공합니다."
+          },
+          {
+            "decision": "Action",
+            "token": "{colors.primary}",
+            "rule": "복구 action은 primary 또는 ghost action으로 제공합니다."
+          },
+          {
+            "decision": "Error",
+            "token": "{colors.accent-coral}",
+            "rule": "오류는 coral과 role alert를 함께 씁니다."
+          }
+        ]
+      }
+    },
+    "components-examples.html": {
+      "standard": {
+        "sectionClass": "section surface-band",
+        "eyebrow": "Component standard",
+        "heading": "Examples 문서의 공통 구조.",
+        "cards": [
+          {
+            "id": "doc-anatomy",
+            "title": "Anatomy",
+            "description": "기본 구성요소를 정리해 구현과 디자인 리뷰의 출발점을 맞춥니다.",
+            "items": [
+              "Screen context",
+              "component mix",
+              "state sample",
+              "metadata",
+              "decision action"
+            ]
+          },
+          {
+            "id": "doc-variants",
+            "title": "Variants",
+            "description": "Campaign detail, creator profile, review queue, admin, billing",
+            "items": []
+          },
+          {
+            "id": "doc-states",
+            "title": "States",
+            "description": "Default, hover, focus, selected, loading, disabled, error 또는 locked 상태를 같은 density로 비교합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-accessibility",
+            "title": "Accessibility",
+            "description": "Keyboard path, visible focus, semantic role, accessible name, helper/error 연결을 함께 검토합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-examples",
+            "title": "Examples",
+            "description": "단독 컴포넌트보다 idenflu 제품 화면 안에서 쓰이는 예시를 우선합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-qa",
+            "title": "QA",
+            "description": "Visual QA에서 light/dark, compact density, disabled hover, focus, long text overflow를 다시 확인합니다.",
+            "items": []
+          }
+        ]
+      },
+      "templateMap": {
+        "sectionClass": "section surface-band",
+        "eyebrow": "Document template",
+        "heading": "Examples 문서는 화면 조합의 판단 근거를 먼저 보여줍니다.",
+        "steps": [
+          {
+            "number": "01",
+            "title": "Overview",
+            "description": "예시가 어떤 제품 화면과 작업 흐름을 대표하는지 정의합니다."
+          },
+          {
+            "number": "02",
+            "title": "Anatomy",
+            "description": "Toolbar, content, detail, feedback, action 영역을 분리합니다."
+          },
+          {
+            "number": "03",
+            "title": "Variants",
+            "description": "Review workbench, creator shortlist, settings, recovery 화면을 나눕니다."
+          },
+          {
+            "number": "04",
+            "title": "States",
+            "description": "Default, selected, blocked, loading, error 상태를 한 화면에서 비교합니다."
+          },
+          {
+            "number": "05",
+            "title": "Accessibility",
+            "description": "Tab order, focus restore, error linkage, row action 접근성을 확인합니다."
+          },
+          {
+            "number": "06",
+            "title": "QA",
+            "description": "Light/dark, mobile, density, long text, overlay interaction을 검증합니다."
+          }
+        ]
+      },
+      "tokenContract": {
+        "sectionClass": "section",
+        "eyebrow": "Token contract",
+        "heading": "Examples는 여러 컴포넌트 토큰이 함께 쓰이는 회귀 기준입니다.",
+        "rows": [
+          {
+            "decision": "Actions",
+            "token": "Button tokens",
+            "rule": "Primary action은 하나만 두고 quiet/ghost action으로 보조합니다."
+          },
+          {
+            "decision": "Data",
+            "token": "Table tokens",
+            "rule": "반복 정보는 compact density와 visible metadata를 유지합니다."
+          },
+          {
+            "decision": "Feedback",
+            "token": "Semantic tokens",
+            "rule": "Blocked, warning, success는 색과 텍스트를 함께 사용합니다."
+          },
+          {
+            "decision": "Surface",
+            "token": "Overlay/Card tokens",
+            "rule": "결정 영역과 반복 객체 표면을 섞지 않습니다."
+          }
+        ]
+      }
+    },
+    "components-feedback.html": {
+      "standard": {
+        "sectionClass": "section surface-band",
+        "eyebrow": "Component standard",
+        "heading": "Feedback 문서의 공통 구조.",
+        "cards": [
+          {
+            "id": "doc-anatomy",
+            "title": "Anatomy",
+            "description": "기본 구성요소를 정리해 구현과 디자인 리뷰의 출발점을 맞춥니다.",
+            "items": [
+              "Tone",
+              "message",
+              "reason",
+              "recovery action",
+              "live region"
+            ]
+          },
+          {
+            "id": "doc-variants",
+            "title": "Variants",
+            "description": "Info, success, warning, error, loading, empty, locked",
+            "items": []
+          },
+          {
+            "id": "doc-states",
+            "title": "States",
+            "description": "Default, hover, focus, selected, loading, disabled, error 또는 locked 상태를 같은 density로 비교합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-accessibility",
+            "title": "Accessibility",
+            "description": "Keyboard path, visible focus, semantic role, accessible name, helper/error 연결을 함께 검토합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-examples",
+            "title": "Examples",
+            "description": "단독 컴포넌트보다 idenflu 제품 화면 안에서 쓰이는 예시를 우선합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-qa",
+            "title": "QA",
+            "description": "Visual QA에서 light/dark, compact density, disabled hover, focus, long text overflow를 다시 확인합니다.",
+            "items": []
+          }
+        ]
+      },
+      "templateMap": {
+        "sectionClass": "section",
+        "eyebrow": "Document template",
+        "heading": "Feedback 문서는 상태, 원인, 복구 액션을 함께 정의합니다.",
+        "steps": [
+          {
+            "number": "01",
+            "title": "Overview",
+            "description": "메시지가 정보, 성공, 주의, 오류, 진행 중 중 무엇인지 정합니다."
+          },
+          {
+            "number": "02",
+            "title": "Anatomy",
+            "description": "Tone, message, reason, recovery action, live region을 나눕니다."
+          },
+          {
+            "number": "03",
+            "title": "Variants",
+            "description": "Notice, toast, progress, empty, error, locked feedback을 구분합니다."
+          },
+          {
+            "number": "04",
+            "title": "States",
+            "description": "Queued, saving, synced, failed, blocked 상태를 비교합니다."
+          },
+          {
+            "number": "05",
+            "title": "Accessibility",
+            "description": "role status/alert, focus 이동, recovery button label을 확인합니다."
+          },
+          {
+            "number": "06",
+            "title": "QA",
+            "description": "색상 없이 읽기, 긴 메시지, retry 후 상태 보존을 검증합니다."
+          }
+        ]
+      },
+      "tokenContract": {
+        "sectionClass": "section",
+        "eyebrow": "Token contract",
+        "heading": "Feedback은 semantic accent를 작은 면적으로 사용합니다.",
+        "rows": [
+          {
+            "decision": "Info",
+            "token": "{colors.primary-soft}",
+            "rule": "정보성 안내는 primary soft와 muted text를 사용합니다."
+          },
+          {
+            "decision": "Success",
+            "token": "{colors.accent-mint}",
+            "rule": "완료 상태는 mint와 완료 label을 함께 씁니다."
+          },
+          {
+            "decision": "Warning",
+            "token": "{colors.accent-amber}",
+            "rule": "대기/위험 상태는 amber와 구체적인 기한을 함께 씁니다."
+          },
+          {
+            "decision": "Error",
+            "token": "{colors.accent-coral}",
+            "rule": "오류는 coral, role alert, recovery action을 함께 둡니다."
+          }
+        ]
+      }
+    },
+    "components-icons.html": {
+      "standard": {
+        "sectionClass": "section surface-band",
+        "eyebrow": "Component standard",
+        "heading": "Icons 문서의 공통 구조.",
+        "cards": [
+          {
+            "id": "doc-anatomy",
+            "title": "Anatomy",
+            "description": "기본 구성요소를 정리해 구현과 디자인 리뷰의 출발점을 맞춥니다.",
+            "items": [
+              "24px viewBox",
+              "symbol id",
+              "stroke rule",
+              "usage label",
+              "accessible wrapper"
+            ]
+          },
+          {
+            "id": "doc-variants",
+            "title": "Variants",
+            "description": "Action, status, object, settings, permission symbols",
+            "items": []
+          },
+          {
+            "id": "doc-states",
+            "title": "States",
+            "description": "Default, hover, focus, selected, loading, disabled, error 또는 locked 상태를 같은 density로 비교합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-accessibility",
+            "title": "Accessibility",
+            "description": "Keyboard path, visible focus, semantic role, accessible name, helper/error 연결을 함께 검토합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-examples",
+            "title": "Examples",
+            "description": "단독 컴포넌트보다 idenflu 제품 화면 안에서 쓰이는 예시를 우선합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-qa",
+            "title": "QA",
+            "description": "Visual QA에서 light/dark, compact density, disabled hover, focus, long text overflow를 다시 확인합니다.",
+            "items": []
+          }
+        ]
+      },
+      "templateMap": {
+        "sectionClass": "section",
+        "eyebrow": "Document template",
+        "heading": "Icons 문서는 의미, 사용 위치, accessible wrapper를 같은 순서로 봅니다.",
+        "steps": [
+          {
+            "number": "01",
+            "title": "Overview",
+            "description": "아이콘이 action, object, status 중 어떤 의미인지 먼저 정합니다."
+          },
+          {
+            "number": "02",
+            "title": "Anatomy",
+            "description": "24px viewBox, symbol id, stroke, wrapper, accessible name을 분리합니다."
+          },
+          {
+            "number": "03",
+            "title": "Variants",
+            "description": "Action, status, object, permission icon을 용도별로 묶습니다."
+          },
+          {
+            "number": "04",
+            "title": "States",
+            "description": "Icon-only button 안에서는 hover, focus, disabled 상태를 버튼과 함께 봅니다."
+          },
+          {
+            "number": "05",
+            "title": "Accessibility",
+            "description": "장식 아이콘은 aria-hidden, 단독 액션은 aria-label을 사용합니다."
+          },
+          {
+            "number": "06",
+            "title": "QA",
+            "description": "깨진 symbol, 잘못된 stroke, 없는 accessible name을 확인합니다."
+          }
+        ]
+      },
+      "tokenContract": {
+        "sectionClass": "section",
+        "eyebrow": "Token contract",
+        "heading": "아이콘은 symbol registry와 stroke rule을 토큰으로 관리합니다.",
+        "rows": [
+          {
+            "decision": "ViewBox",
+            "token": "{icons.viewBox}",
+            "rule": "모든 symbol은 0 0 24 24 기준으로 정렬합니다."
+          },
+          {
+            "decision": "Stroke",
+            "token": "{icons.strokeWidth}",
+            "rule": "1.8px stroke, square cap, miter join을 유지합니다."
+          },
+          {
+            "decision": "Color",
+            "token": "currentColor",
+            "rule": "아이콘 색은 부모 버튼이나 상태 text color를 따릅니다."
+          },
+          {
+            "decision": "Registry",
+            "token": "{icons.symbols}",
+            "rule": "문서에 쓰는 symbol id는 token registry와 일치해야 합니다."
+          }
+        ]
+      }
+    },
+    "components-inputs.html": {
+      "standard": {
+        "sectionClass": "section surface-band",
+        "eyebrow": "Component standard",
+        "heading": "Inputs 문서의 공통 구조.",
+        "cards": [
+          {
+            "id": "doc-anatomy",
+            "title": "Anatomy",
+            "description": "기본 구성요소를 정리해 구현과 디자인 리뷰의 출발점을 맞춥니다.",
+            "items": [
+              "Visible label",
+              "control",
+              "helper text",
+              "prefix/suffix",
+              "validation state"
+            ]
+          },
+          {
+            "id": "doc-variants",
+            "title": "Variants",
+            "description": "Text, search, select, textarea, decorated, readonly, disabled",
+            "items": []
+          },
+          {
+            "id": "doc-states",
+            "title": "States",
+            "description": "Default, hover, focus, selected, loading, disabled, error 또는 locked 상태를 같은 density로 비교합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-accessibility",
+            "title": "Accessibility",
+            "description": "Keyboard path, visible focus, semantic role, accessible name, helper/error 연결을 함께 검토합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-examples",
+            "title": "Examples",
+            "description": "단독 컴포넌트보다 idenflu 제품 화면 안에서 쓰이는 예시를 우선합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-qa",
+            "title": "QA",
+            "description": "Visual QA에서 light/dark, compact density, disabled hover, focus, long text overflow를 다시 확인합니다.",
+            "items": []
+          }
+        ]
+      },
+      "templateMap": {
+        "sectionClass": "section",
+        "eyebrow": "Document template",
+        "heading": "Inputs 문서는 label, value, validation, recovery를 같은 순서로 봅니다.",
+        "steps": [
+          {
+            "number": "01",
+            "title": "Overview",
+            "description": "필드가 어떤 값을 받고 어떤 결정에 영향을 주는지 정의합니다."
+          },
+          {
+            "number": "02",
+            "title": "Anatomy",
+            "description": "Visible label, control, helper, prefix/suffix, error를 분리합니다."
+          },
+          {
+            "number": "03",
+            "title": "Variants",
+            "description": "Text, search, select, textarea, readonly, disabled, locked를 구분합니다."
+          },
+          {
+            "number": "04",
+            "title": "States",
+            "description": "Focus, filled, invalid, success, server error, disabled를 비교합니다."
+          },
+          {
+            "number": "05",
+            "title": "Accessibility",
+            "description": "Label, aria-invalid, aria-describedby, combobox 관계를 확인합니다."
+          },
+          {
+            "number": "06",
+            "title": "QA",
+            "description": "긴 값, empty value, validation summary, mobile keyboard를 검증합니다."
+          }
+        ]
+      },
+      "tokenContract": {
+        "sectionClass": "section",
+        "eyebrow": "Token contract",
+        "heading": "Input은 field height, border, helper text 토큰으로 상태를 읽힙니다.",
+        "rows": [
+          {
+            "decision": "Height",
+            "token": "{sizing.field-height}",
+            "rule": "Text field와 select는 40px 높이를 기본으로 둡니다."
+          },
+          {
+            "decision": "Typography",
+            "token": "{typography.body}",
+            "rule": "입력값은 body, helper는 body-sm 계층을 사용합니다."
+          },
+          {
+            "decision": "Border",
+            "token": "{colors.hairline}",
+            "rule": "Default border는 얇게, focus와 invalid만 강하게 표시합니다."
+          },
+          {
+            "decision": "Error",
+            "token": "{colors.accent-coral}",
+            "rule": "오류는 border, helper text, aria-invalid를 함께 사용합니다."
+          }
+        ]
+      }
+    },
+    "components-menu.html": {
+      "standard": {
+        "sectionClass": "section surface-band",
+        "eyebrow": "Component standard",
+        "heading": "Menu 문서의 공통 구조.",
+        "cards": [
+          {
+            "id": "doc-anatomy",
+            "title": "Anatomy",
+            "description": "Trigger, surface, group label, item, checked state, danger item을 나눕니다.",
+            "items": [
+              "Trigger",
+              "menu surface",
+              "item group",
+              "shortcut",
+              "danger action"
+            ]
+          },
+          {
+            "id": "doc-variants",
+            "title": "Variants",
+            "description": "Action menu, sort menu, filter menu, row menu, destructive menu",
+            "items": []
+          },
+          {
+            "id": "doc-states",
+            "title": "States",
+            "description": "Closed, open, hover, focus, checked, disabled, danger 상태를 같은 밀도로 비교합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-accessibility",
+            "title": "Accessibility",
+            "description": "aria-haspopup, aria-expanded, role menu, Escape close, focus restore를 확인합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-examples",
+            "title": "Examples",
+            "description": "테이블 row action, 정렬, 필터, export 같은 반복 작업 안에서 검토합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-qa",
+            "title": "QA",
+            "description": "긴 item label, disabled item, danger action, keyboard order, mobile overflow를 확인합니다.",
+            "items": []
+          }
+        ]
+      },
+      "templateMap": {
+        "sectionClass": "section",
+        "eyebrow": "Document template",
+        "heading": "Menu 문서는 액션의 위험도와 선택 상태를 먼저 구분합니다.",
+        "steps": [
+          {
+            "number": "01",
+            "title": "Overview",
+            "description": "메뉴가 row action인지, 보기 설정인지, 위험 액션인지 먼저 정합니다."
+          },
+          {
+            "number": "02",
+            "title": "Anatomy",
+            "description": "Trigger, menu surface, group, item, helper, shortcut을 분리합니다."
+          },
+          {
+            "number": "03",
+            "title": "Variants",
+            "description": "Action, sort, filter, checked, danger menu를 구분합니다."
+          },
+          {
+            "number": "04",
+            "title": "States",
+            "description": "Open, focused item, checked item, disabled item, danger item을 비교합니다."
+          },
+          {
+            "number": "05",
+            "title": "Accessibility",
+            "description": "Trigger state, roving focus, Escape close, focus restore를 확인합니다."
+          },
+          {
+            "number": "06",
+            "title": "QA",
+            "description": "긴 label, keyboard loop, disabled hover leak, danger color contrast를 검증합니다."
+          }
+        ]
+      },
+      "tokenContract": {
+        "sectionClass": "section",
+        "eyebrow": "Token contract",
+        "heading": "메뉴는 작은 표면, hairline, compact typography로 구성합니다.",
+        "rows": [
+          {
+            "decision": "Surface",
+            "token": "{colors.surface-raised}",
+            "rule": "메뉴는 떠 있는 표면이지만 과한 그림자보다 hairline으로 구분합니다."
+          },
+          {
+            "decision": "Item height",
+            "token": "{sizing.control-height}",
+            "rule": "각 item은 버튼 높이와 같은 기준으로 tab target을 유지합니다."
+          },
+          {
+            "decision": "Text",
+            "token": "{typography.body-sm}",
+            "rule": "보조 액션은 13px body-sm를 사용해 테이블 밀도와 맞춥니다."
+          },
+          {
+            "decision": "Danger",
+            "token": "{colors.accent-coral}",
+            "rule": "위험 액션은 coral과 명시적인 action label을 함께 사용합니다."
+          }
+        ]
+      }
+    },
+    "components-navigation.html": {
+      "standard": {
+        "sectionClass": "section surface-band",
+        "eyebrow": "Component standard",
+        "heading": "Navigation 문서의 공통 구조.",
+        "cards": [
+          {
+            "id": "doc-anatomy",
+            "title": "Anatomy",
+            "description": "기본 구성요소를 정리해 구현과 디자인 리뷰의 출발점을 맞춥니다.",
+            "items": [
+              "Landmark",
+              "active item",
+              "group label",
+              "shortcut",
+              "collapse state"
+            ]
+          },
+          {
+            "id": "doc-variants",
+            "title": "Variants",
+            "description": "Top nav, side nav, breadcrumb, pagination, command jump",
+            "items": []
+          },
+          {
+            "id": "doc-states",
+            "title": "States",
+            "description": "Default, hover, focus, selected, loading, disabled, error 또는 locked 상태를 같은 density로 비교합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-accessibility",
+            "title": "Accessibility",
+            "description": "Keyboard path, visible focus, semantic role, accessible name, helper/error 연결을 함께 검토합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-examples",
+            "title": "Examples",
+            "description": "단독 컴포넌트보다 idenflu 제품 화면 안에서 쓰이는 예시를 우선합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-qa",
+            "title": "QA",
+            "description": "Visual QA에서 light/dark, compact density, disabled hover, focus, long text overflow를 다시 확인합니다.",
+            "items": []
+          }
+        ]
+      },
+      "templateMap": {
+        "sectionClass": "section",
+        "eyebrow": "Document template",
+        "heading": "Navigation 문서는 사용자의 위치와 다음 이동을 먼저 정의합니다.",
+        "steps": [
+          {
+            "number": "01",
+            "title": "Overview",
+            "description": "Navigation이 전역 이동, 지역 이동, pagination 중 무엇인지 정합니다."
+          },
+          {
+            "number": "02",
+            "title": "Anatomy",
+            "description": "Landmark, group label, active item, shortcut, count를 분리합니다."
+          },
+          {
+            "number": "03",
+            "title": "Variants",
+            "description": "Top nav, side nav, toolbar, breadcrumb, pagination, command jump를 구분합니다."
+          },
+          {
+            "number": "04",
+            "title": "States",
+            "description": "Active, hover, focus, disabled, collapsed, current page를 비교합니다."
+          },
+          {
+            "number": "05",
+            "title": "Accessibility",
+            "description": "nav landmark, aria-current, toolbar label, pagination label을 확인합니다."
+          },
+          {
+            "number": "06",
+            "title": "QA",
+            "description": "긴 label, mobile overflow, keyboard order, current page announcement를 검증합니다."
+          }
+        ]
+      },
+      "tokenContract": {
+        "sectionClass": "section",
+        "eyebrow": "Token contract",
+        "heading": "Navigation은 density와 active state 토큰으로 반복 이동을 안정화합니다.",
+        "rows": [
+          {
+            "decision": "Active",
+            "token": "{colors.primary-soft}",
+            "rule": "현재 위치는 배경과 primary text를 함께 사용합니다."
+          },
+          {
+            "decision": "Toolbar",
+            "token": "{density.compact}",
+            "rule": "반복 작업 도구는 compact height와 명확한 label을 유지합니다."
+          },
+          {
+            "decision": "Border",
+            "token": "{colors.hairline}",
+            "rule": "Navigation chrome은 hairline으로 영역을 구분합니다."
+          },
+          {
+            "decision": "Focus",
+            "token": "{colors.primary}",
+            "rule": "키보드 이동 경로가 active state와 구분되어야 합니다."
+          }
+        ]
+      }
+    },
+    "components-overlays.html": {
+      "standard": {
+        "sectionClass": "section surface-band",
+        "eyebrow": "Component standard",
+        "heading": "Overlays 문서의 공통 구조.",
+        "cards": [
+          {
+            "id": "doc-anatomy",
+            "title": "Anatomy",
+            "description": "기본 구성요소를 정리해 구현과 디자인 리뷰의 출발점을 맞춥니다.",
+            "items": [
+              "Trigger",
+              "surface",
+              "title",
+              "body",
+              "action row"
+            ]
+          },
+          {
+            "id": "doc-variants",
+            "title": "Variants",
+            "description": "Tooltip, popover, modal, drawer, command palette",
+            "items": []
+          },
+          {
+            "id": "doc-states",
+            "title": "States",
+            "description": "Default, hover, focus, selected, loading, disabled, error 또는 locked 상태를 같은 density로 비교합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-accessibility",
+            "title": "Accessibility",
+            "description": "Keyboard path, visible focus, semantic role, accessible name, helper/error 연결을 함께 검토합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-examples",
+            "title": "Examples",
+            "description": "단독 컴포넌트보다 idenflu 제품 화면 안에서 쓰이는 예시를 우선합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-qa",
+            "title": "QA",
+            "description": "Visual QA에서 light/dark, compact density, disabled hover, focus, long text overflow를 다시 확인합니다.",
+            "items": []
+          }
+        ]
+      },
+      "templateMap": {
+        "sectionClass": "section",
+        "eyebrow": "Document template",
+        "heading": "Overlays 문서는 열림 전후의 흐름까지 같은 순서로 검토합니다.",
+        "steps": [
+          {
+            "number": "01",
+            "title": "Overview",
+            "description": "Overlay가 필요한 결정인지, inline이나 popover로 충분한지 판단합니다."
+          },
+          {
+            "number": "02",
+            "title": "Anatomy",
+            "description": "Trigger, backdrop, surface, header, body, footer 역할을 분리합니다."
+          },
+          {
+            "number": "03",
+            "title": "Variants",
+            "description": "Popover, modal, drawer를 작업 위험도와 맥락 유지 기준으로 나눕니다."
+          },
+          {
+            "number": "04",
+            "title": "States",
+            "description": "Open, pending, validation, locked, destructive 상태를 함께 정의합니다."
+          },
+          {
+            "number": "05",
+            "title": "Accessibility",
+            "description": "Focus trap, restore target, aria-modal, labelledby 연결을 확인합니다."
+          },
+          {
+            "number": "06",
+            "title": "QA",
+            "description": "Backdrop, scroll, keyboard close, validation retry, mobile drawer를 검증합니다."
+          }
+        ]
+      },
+      "tokenContract": {
+        "sectionClass": "section",
+        "eyebrow": "Token contract",
+        "heading": "Overlay는 표면 깊이, 여백, focus 토큰을 명확히 씁니다.",
+        "rows": [
+          {
+            "decision": "Surface",
+            "token": "{colors.surface-raised}",
+            "rule": "Surface는 페이지보다 한 단계 높은 표면으로 분리합니다."
+          },
+          {
+            "decision": "Depth",
+            "token": "{shadow.panel}",
+            "rule": "Modal과 drawer에만 panel shadow를 쓰고 popover는 가볍게 유지합니다."
+          },
+          {
+            "decision": "Spacing",
+            "token": "{spacing.xl}",
+            "rule": "Header, body, footer의 판단 단위를 충분히 분리합니다."
+          },
+          {
+            "decision": "Focus",
+            "token": "{colors.primary}",
+            "rule": "Overlay 내부 focus와 trigger restore를 같은 primary ring으로 연결합니다."
+          }
+        ]
+      }
+    },
+    "components-search-toolbar.html": {
+      "standard": {
+        "sectionClass": "section surface-band",
+        "eyebrow": "Component standard",
+        "heading": "Search toolbar 문서의 공통 구조.",
+        "cards": [
+          {
+            "id": "doc-anatomy",
+            "title": "Anatomy",
+            "description": "Search field, filter trigger, active chips, saved view, reset, density action을 나눕니다.",
+            "items": [
+              "Search field",
+              "filter triggers",
+              "active chips",
+              "saved view",
+              "reset action"
+            ]
+          },
+          {
+            "id": "doc-variants",
+            "title": "Variants",
+            "description": "Table toolbar, list toolbar, saved view toolbar, compact mobile toolbar",
+            "items": []
+          },
+          {
+            "id": "doc-states",
+            "title": "States",
+            "description": "Empty query, typing, filtered, saved, loading, disabled 상태를 비교합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-accessibility",
+            "title": "Accessibility",
+            "description": "Search label, filter button name, active filter text, reset action을 확인합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-examples",
+            "title": "Examples",
+            "description": "Campaign table, review queue, creator shortlist 상단에서 사용합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-qa",
+            "title": "QA",
+            "description": "긴 query, 많은 filter chip, mobile wrap, disabled reset을 확인합니다.",
+            "items": []
+          }
+        ]
+      },
+      "templateMap": {
+        "sectionClass": "section",
+        "eyebrow": "Document template",
+        "heading": "Search toolbar 문서는 검색과 필터 적용값을 한 줄에서 판단하게 합니다.",
+        "steps": [
+          {
+            "number": "01",
+            "title": "Overview",
+            "description": "대상 목록, 검색 범위, 필터 기준을 먼저 정의합니다."
+          },
+          {
+            "number": "02",
+            "title": "Anatomy",
+            "description": "Search, filter, active chip, saved view, reset, density를 분리합니다."
+          },
+          {
+            "number": "03",
+            "title": "Variants",
+            "description": "Table, list, saved view, compact toolbar를 구분합니다."
+          },
+          {
+            "number": "04",
+            "title": "States",
+            "description": "Typing, filtered, loading, disabled, no result 상태를 비교합니다."
+          },
+          {
+            "number": "05",
+            "title": "Accessibility",
+            "description": "검색 label, 필터 button name, reset action 이름을 확인합니다."
+          },
+          {
+            "number": "06",
+            "title": "QA",
+            "description": "긴 검색어, filter overflow, mobile wrap, keyboard order를 검증합니다."
+          }
+        ]
+      },
+      "tokenContract": {
+        "sectionClass": "section",
+        "eyebrow": "Token contract",
+        "heading": "Search toolbar는 field, chip, compact button 토큰을 함께 씁니다.",
+        "rows": [
+          {
+            "decision": "Search field",
+            "token": "{sizing.field-height}",
+            "rule": "검색 입력은 field height를 유지합니다."
+          },
+          {
+            "decision": "Density",
+            "token": "{density.compact}",
+            "rule": "테이블 상단에서는 compact gap과 button size를 사용합니다."
+          },
+          {
+            "decision": "Surface",
+            "token": "{colors.surface-raised}",
+            "rule": "Toolbar는 표면을 만들되 nested card처럼 보이지 않게 합니다."
+          },
+          {
+            "decision": "Filter chip",
+            "token": "{colors.primary-soft}",
+            "rule": "적용된 조건은 primary soft와 count로 표시합니다."
+          }
+        ]
+      }
+    },
+    "components-stepper.html": {
+      "standard": {
+        "sectionClass": "section surface-band",
+        "eyebrow": "Component standard",
+        "heading": "Stepper 문서의 공통 구조.",
+        "cards": [
+          {
+            "id": "doc-anatomy",
+            "title": "Anatomy",
+            "description": "Step label, order, status, helper, action, blocked reason을 나눕니다.",
+            "items": [
+              "Step number",
+              "label",
+              "status",
+              "helper",
+              "blocked reason"
+            ]
+          },
+          {
+            "id": "doc-variants",
+            "title": "Variants",
+            "description": "Setup stepper, approval flow, horizontal progress, compact checklist",
+            "items": []
+          },
+          {
+            "id": "doc-states",
+            "title": "States",
+            "description": "Not started, current, complete, blocked, optional, error 상태를 비교합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-accessibility",
+            "title": "Accessibility",
+            "description": "Ordered list, aria-current step, visible status, blocked reason을 확인합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-examples",
+            "title": "Examples",
+            "description": "Campaign setup, review approval, export workflow, permission setup에 사용합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-qa",
+            "title": "QA",
+            "description": "긴 label, blocked reason, optional step, mobile stack을 확인합니다.",
+            "items": []
+          }
+        ]
+      },
+      "templateMap": {
+        "sectionClass": "section",
+        "eyebrow": "Document template",
+        "heading": "Stepper 문서는 현재 단계와 막힌 이유를 함께 보여줍니다.",
+        "steps": [
+          {
+            "number": "01",
+            "title": "Overview",
+            "description": "단계가 순차적인지, 단순 checklist인지 먼저 구분합니다."
+          },
+          {
+            "number": "02",
+            "title": "Anatomy",
+            "description": "Order, label, state, helper, action, blocked reason을 분리합니다."
+          },
+          {
+            "number": "03",
+            "title": "Variants",
+            "description": "Setup, approval, checklist, compact progress를 구분합니다."
+          },
+          {
+            "number": "04",
+            "title": "States",
+            "description": "Current, complete, blocked, optional, error 상태를 비교합니다."
+          },
+          {
+            "number": "05",
+            "title": "Accessibility",
+            "description": "aria-current, ordered list, status text, action label을 확인합니다."
+          },
+          {
+            "number": "06",
+            "title": "QA",
+            "description": "Mobile stack, long text, blocked reason, completed contrast를 검증합니다."
+          }
+        ]
+      },
+      "tokenContract": {
+        "sectionClass": "section",
+        "eyebrow": "Token contract",
+        "heading": "Stepper는 진행 상태를 색상과 텍스트로 함께 표현합니다.",
+        "rows": [
+          {
+            "decision": "Label",
+            "token": "{typography.body-emphasis}",
+            "rule": "Step label은 강조 텍스트로 스캔되게 합니다."
+          },
+          {
+            "decision": "Current",
+            "token": "{colors.primary}",
+            "rule": "현재 단계는 primary와 aria-current를 함께 씁니다."
+          },
+          {
+            "decision": "Complete",
+            "token": "{colors.accent-mint}",
+            "rule": "완료 단계는 mint와 완료 text를 함께 둡니다."
+          },
+          {
+            "decision": "Divider",
+            "token": "{colors.hairline}",
+            "rule": "단계 연결선은 hairline 수준으로만 표시합니다."
+          }
+        ]
+      }
+    },
+    "components-table.html": {
+      "standard": {
+        "sectionClass": "section surface-band",
+        "eyebrow": "Component standard",
+        "heading": "Data table 문서의 공통 구조.",
+        "cards": [
+          {
+            "id": "doc-anatomy",
+            "title": "Anatomy",
+            "description": "기본 구성요소를 정리해 구현과 디자인 리뷰의 출발점을 맞춥니다.",
+            "items": [
+              "Toolbar",
+              "headers",
+              "rows",
+              "selection bar",
+              "pagination"
+            ]
+          },
+          {
+            "id": "doc-variants",
+            "title": "Variants",
+            "description": "Compact, sticky header, expanded row, filtered empty, locked row",
+            "items": []
+          },
+          {
+            "id": "doc-states",
+            "title": "States",
+            "description": "Default, hover, focus, selected, loading, disabled, error 또는 locked 상태를 같은 density로 비교합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-accessibility",
+            "title": "Accessibility",
+            "description": "Keyboard path, visible focus, semantic role, accessible name, helper/error 연결을 함께 검토합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-examples",
+            "title": "Examples",
+            "description": "단독 컴포넌트보다 idenflu 제품 화면 안에서 쓰이는 예시를 우선합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-qa",
+            "title": "QA",
+            "description": "Visual QA에서 light/dark, compact density, disabled hover, focus, long text overflow를 다시 확인합니다.",
+            "items": []
+          }
+        ]
+      },
+      "templateMap": {
+        "sectionClass": "section",
+        "eyebrow": "Document template",
+        "heading": "Data table 문서는 운영 흐름과 상태 회복을 같은 순서로 검토합니다.",
+        "steps": [
+          {
+            "number": "01",
+            "title": "Overview",
+            "description": "테이블이 비교, 선택, bulk action을 실제로 필요로 하는지 확인합니다."
+          },
+          {
+            "number": "02",
+            "title": "Anatomy",
+            "description": "Toolbar, header, row, selection bar, footer, pagination을 분리합니다."
+          },
+          {
+            "number": "03",
+            "title": "Variants",
+            "description": "Compact, sticky header, expanded row, filtered empty, locked row를 나눕니다."
+          },
+          {
+            "number": "04",
+            "title": "States",
+            "description": "Loading, selected, expanded, error, permission locked를 함께 정의합니다."
+          },
+          {
+            "number": "05",
+            "title": "Accessibility",
+            "description": "Column header button, aria-sort, row action, selected scope를 확인합니다."
+          },
+          {
+            "number": "06",
+            "title": "QA",
+            "description": "긴 값, density, mobile fallback, horizontal scroll, empty recovery를 검증합니다."
+          }
+        ]
+      },
+      "tokenContract": {
+        "sectionClass": "section",
+        "eyebrow": "Token contract",
+        "heading": "테이블은 density, row height, typography 토큰으로 반복성을 관리합니다.",
+        "rows": [
+          {
+            "decision": "Density",
+            "token": "{density.compact}",
+            "rule": "Review queue와 roster는 compact를 기본으로 둡니다."
+          },
+          {
+            "decision": "Row height",
+            "token": "{density.compact.rowHeight}",
+            "rule": "40px row 안에서도 row action과 metadata가 사라지면 안 됩니다."
+          },
+          {
+            "decision": "Typography",
+            "token": "{typography.body-sm}",
+            "rule": "반복 값은 body-sm, 객체명은 강조 weight로 구분합니다."
+          },
+          {
+            "decision": "Divider",
+            "token": "{colors.hairline}",
+            "rule": "행 구분은 hairline으로 유지하고 카드처럼 두꺼운 테두리를 반복하지 않습니다."
+          }
+        ]
+      }
+    },
+    "components-tabs.html": {
+      "standard": {
+        "sectionClass": "section surface-band",
+        "eyebrow": "Component standard",
+        "heading": "Tabs 문서의 공통 구조.",
+        "cards": [
+          {
+            "id": "doc-anatomy",
+            "title": "Anatomy",
+            "description": "기본 구성요소를 정리해 구현과 디자인 리뷰의 출발점을 맞춥니다.",
+            "items": [
+              "Tablist",
+              "tab",
+              "selected tab",
+              "tabpanel",
+              "keyboard state"
+            ]
+          },
+          {
+            "id": "doc-variants",
+            "title": "Variants",
+            "description": "Product tabs, compact tabs, disabled tabs, overflow tabs",
+            "items": []
+          },
+          {
+            "id": "doc-states",
+            "title": "States",
+            "description": "Default, hover, focus, selected, loading, disabled, error 또는 locked 상태를 같은 density로 비교합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-accessibility",
+            "title": "Accessibility",
+            "description": "Keyboard path, visible focus, semantic role, accessible name, helper/error 연결을 함께 검토합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-examples",
+            "title": "Examples",
+            "description": "단독 컴포넌트보다 idenflu 제품 화면 안에서 쓰이는 예시를 우선합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-qa",
+            "title": "QA",
+            "description": "Visual QA에서 light/dark, compact density, disabled hover, focus, long text overflow를 다시 확인합니다.",
+            "items": []
+          }
+        ]
+      },
+      "templateMap": {
+        "sectionClass": "section",
+        "eyebrow": "Document template",
+        "heading": "Tabs 문서는 전환 대상과 keyboard model을 함께 정의합니다.",
+        "steps": [
+          {
+            "number": "01",
+            "title": "Overview",
+            "description": "탭이 같은 화면 안의 view mode 전환인지 먼저 확인합니다."
+          },
+          {
+            "number": "02",
+            "title": "Anatomy",
+            "description": "Tablist, tab, selected tab, tabpanel, panel label을 분리합니다."
+          },
+          {
+            "number": "03",
+            "title": "Variants",
+            "description": "Product tabs, compact tabs, disabled tabs, overflow tabs를 구분합니다."
+          },
+          {
+            "number": "04",
+            "title": "States",
+            "description": "Selected, hover, focus, disabled, loading panel 상태를 비교합니다."
+          },
+          {
+            "number": "05",
+            "title": "Accessibility",
+            "description": "Arrow key, Home/End, aria-selected, aria-controls를 검증합니다."
+          },
+          {
+            "number": "06",
+            "title": "QA",
+            "description": "긴 tab label, mobile wrap, disabled tab, hidden panel을 확인합니다."
+          }
+        ]
+      },
+      "tokenContract": {
+        "sectionClass": "section",
+        "eyebrow": "Token contract",
+        "heading": "탭은 버튼보다 낮은 표면 위에서 선택 상태를 명확히 보여줍니다.",
+        "rows": [
+          {
+            "decision": "Typography",
+            "token": "{typography.body-emphasis}",
+            "rule": "Tab label은 짧고 반복 스캔이 가능해야 합니다."
+          },
+          {
+            "decision": "Selected",
+            "token": "{colors.primary}",
+            "rule": "선택 상태는 primary text와 underline/border로 표현합니다."
+          },
+          {
+            "decision": "Panel",
+            "token": "{colors.surface-raised}",
+            "rule": "Panel은 tablist와 같은 표면 흐름 안에 둡니다."
+          },
+          {
+            "decision": "Focus",
+            "token": "{colors.primary}",
+            "rule": "Arrow 이동 후 focus 위치가 시각적으로 보여야 합니다."
+          }
+        ]
+      }
+    },
+    "components-tooltips.html": {
+      "standard": {
+        "sectionClass": "section surface-band",
+        "eyebrow": "Component standard",
+        "heading": "Tooltips 문서의 공통 구조.",
+        "cards": [
+          {
+            "id": "doc-anatomy",
+            "title": "Anatomy",
+            "description": "Trigger, hint, placement, optional title, close path를 나눕니다.",
+            "items": [
+              "Trigger",
+              "tooltip",
+              "popover surface",
+              "placement",
+              "close path"
+            ]
+          },
+          {
+            "id": "doc-variants",
+            "title": "Variants",
+            "description": "Tooltip, metadata popover, quick action popover, disabled hint",
+            "items": []
+          },
+          {
+            "id": "doc-states",
+            "title": "States",
+            "description": "Hidden, visible, hover, focus, pinned, disabled 상태를 비교합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-accessibility",
+            "title": "Accessibility",
+            "description": "aria-describedby, keyboard trigger, focusable popover close path를 확인합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-examples",
+            "title": "Examples",
+            "description": "Icon button hint, metadata detail, disabled action reason에 사용합니다.",
+            "items": []
+          },
+          {
+            "id": "doc-qa",
+            "title": "QA",
+            "description": "긴 hint, viewport edge, focus reveal, dark mode contrast를 확인합니다.",
+            "items": []
+          }
+        ]
+      },
+      "templateMap": {
+        "sectionClass": "section",
+        "eyebrow": "Document template",
+        "heading": "Tooltips 문서는 설명과 상호작용 popover를 분리합니다.",
+        "steps": [
+          {
+            "number": "01",
+            "title": "Overview",
+            "description": "짧은 설명이면 tooltip, 정보 묶음이나 액션이면 popover를 사용합니다."
+          },
+          {
+            "number": "02",
+            "title": "Anatomy",
+            "description": "Trigger, content, placement, arrow-less surface, close path를 분리합니다."
+          },
+          {
+            "number": "03",
+            "title": "Variants",
+            "description": "Hint, metadata, disabled reason, quick action popover를 구분합니다."
+          },
+          {
+            "number": "04",
+            "title": "States",
+            "description": "Hover, focus, pinned, dismissed, disabled 상태를 비교합니다."
+          },
+          {
+            "number": "05",
+            "title": "Accessibility",
+            "description": "aria-describedby, trigger focus, popover close, critical action 금지를 확인합니다."
+          },
+          {
+            "number": "06",
+            "title": "QA",
+            "description": "Viewport edge, long content, dark contrast, keyboard reveal을 검증합니다."
+          }
+        ]
+      },
+      "tokenContract": {
+        "sectionClass": "section",
+        "eyebrow": "Token contract",
+        "heading": "Tooltips는 inverse surface와 caption으로 짧게 유지합니다.",
+        "rows": [
+          {
+            "decision": "Tooltip surface",
+            "token": "{colors.inverse-canvas}",
+            "rule": "짧은 tooltip은 inverse surface를 사용해 주변 UI와 구분합니다."
+          },
+          {
+            "decision": "Tooltip text",
+            "token": "{typography.caption}",
+            "rule": "힌트는 caption 크기로 1-2줄 안에 유지합니다."
+          },
+          {
+            "decision": "Popover surface",
+            "token": "{colors.surface-raised}",
+            "rule": "상호작용 popover는 일반 surface와 hairline을 씁니다."
+          },
+          {
+            "decision": "Spacing",
+            "token": "{spacing.xs}",
+            "rule": "Trigger와 tooltip 간격은 작게 유지해 소속을 드러냅니다."
+          }
+        ]
+      }
+    }
+  }
+}

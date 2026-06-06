@@ -4,29 +4,9 @@
   <p class="lede">Upload, file rows, previews, progress, and failed states.</p>
 </section>
 
-<section id="component-standard" class="section surface-band">
-  <div class="section-heading"><p class="eyebrow">Component standard</p><h2>Attachments 문서의 공통 구조.</h2></div>
-  <div class="component-doc-grid">
-    <article id="doc-anatomy" class="component-doc-card"><strong>Anatomy</strong><p>File input, file row, thumbnail, progress, error, action을 나눕니다.</p><ul><li>Upload trigger</li><li>file name</li><li>size</li><li>progress</li><li>remove action</li></ul></article>
-    <article id="doc-variants" class="component-doc-card"><strong>Variants</strong><p>Upload zone, file row, preview item, failed upload, scanning item</p></article>
-    <article id="doc-states" class="component-doc-card"><strong>States</strong><p>Empty, uploading, complete, failed, scanning, disabled 상태를 비교합니다.</p></article>
-    <article id="doc-accessibility" class="component-doc-card"><strong>Accessibility</strong><p>File input label, progress text, error reason, remove aria-label을 확인합니다.</p></article>
-    <article id="doc-examples" class="component-doc-card"><strong>Examples</strong><p>Asset upload, brief file, report export, approval attachment에 사용합니다.</p></article>
-    <article id="doc-qa" class="component-doc-card"><strong>QA</strong><p>긴 파일명, 실패 복구, progress text, mobile row stack을 확인합니다.</p></article>
-  </div>
-</section>
+<!-- partial:component-standard -->
 
-<section id="component-template-map" class="section">
-  <div class="section-heading"><p class="eyebrow">Document template</p><h2>Attachments 문서는 파일 상태와 다음 action을 함께 보여줍니다.</h2></div>
-  <div class="component-template-map">
-    <article><span>01</span><strong>Overview</strong><p>업로드인지, 이미 첨부된 파일 목록인지 먼저 구분합니다.</p></article>
-    <article><span>02</span><strong>Anatomy</strong><p>Trigger, file row, thumbnail, metadata, progress, action을 분리합니다.</p></article>
-    <article><span>03</span><strong>Variants</strong><p>Upload zone, file list, preview, failed row, scanning row를 구분합니다.</p></article>
-    <article><span>04</span><strong>States</strong><p>Empty, uploading, complete, failed, disabled 상태를 비교합니다.</p></article>
-    <article><span>05</span><strong>Accessibility</strong><p>파일 input label, progress announcement, remove label을 확인합니다.</p></article>
-    <article><span>06</span><strong>QA</strong><p>긴 파일명, 큰 파일, 실패 복구, mobile overflow를 검증합니다.</p></article>
-  </div>
-</section>
+<!-- partial:component-template-map -->
 
 <section id="context-example" class="section surface-band">
   <div class="section-heading"><p class="eyebrow">Context example</p><h2>Attachment는 파일 상태를 row 단위로 추적합니다.</h2></div>
@@ -49,16 +29,7 @@
   </div>
 </section>
 
-<section id="token-contract" class="section">
-  <div class="section-heading"><p class="eyebrow">Token contract</p><h2>Attachments는 row, progress, error token을 함께 씁니다.</h2></div>
-  <div class="component-token-contract">
-    <div class="token-contract-row header"><span>Decision</span><span>Token</span><span>Rule</span></div>
-    <div class="token-contract-row"><span><strong>Row text</strong></span><span>{typography.body-sm}</span><span>파일 metadata는 compact row와 같은 텍스트 기준을 씁니다.</span></div>
-    <div class="token-contract-row"><span><strong>Surface</strong></span><span>{colors.surface-raised}</span><span>파일 row는 hairline으로만 구분합니다.</span></div>
-    <div class="token-contract-row"><span><strong>Error</strong></span><span>{colors.accent-coral}</span><span>실패 row는 coral과 retry action을 함께 둡니다.</span></div>
-    <div class="token-contract-row"><span><strong>Spacing</strong></span><span>{spacing.md}</span><span>파일 아이콘, metadata, action 간격은 16px 기준입니다.</span></div>
-  </div>
-</section>
+<!-- partial:component-token-contract -->
 
 <section id="attachments" class="section">
   <div class="section-heading"><p class="eyebrow">Attachments</p><h2>업로드와 첨부 파일 상태를 같은 row 구조로 관리합니다.</h2></div>

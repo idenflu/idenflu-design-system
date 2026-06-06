@@ -103,10 +103,14 @@ requireInFile("scripts/token-usage-report.js", "token usage check mode", "--chec
 requireInFile("scripts/component-coverage-check.js", "component coverage check", "collectCoverageFailures");
 requireInFile("scripts/page-partials.js", "partial expansion", "expandPagePartials");
 requireInFile("component-groups.json", "component groups", "\"groups\"");
+requireInFile("component-docs.json", "component docs", "\"pages\"");
+requireInFile("visual-qa-matrix.json", "visual QA matrix", "\"groups\"");
 requireInFile("component-token-usage.json", "token usage components", "\"components\"");
 requireInFile("component-api.json", "component API components", "\"components\"");
 requireInFile("visual-qa.html", "QA command board", "qa-command-board");
 requireInFile("visual-qa.html", "QA dashboard", "qa-dashboard-grid");
+requireInFile("visual-qa.html", "QA coverage grid", "visual-qa-coverage-grid");
+requireInFile("visual-qa.html", "QA coverage partial", 'data-partial="visual-qa-coverage"');
 requireInFile("visual-qa.html", "utility component QA", "utility-component-grid");
 requireInFile("visual-qa.html", "menu identity QA", "Menu and identity QA");
 requireInFile("visual-qa.html", "workflow recovery QA", "Workflow and recovery QA");

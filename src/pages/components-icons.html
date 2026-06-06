@@ -4,54 +4,9 @@
   <p class="lede">Shared operational SVG symbols and usage rules.</p>
 </section>
 
-<section id="component-standard" class="section surface-band">
-  <div class="section-heading">
-    <p class="eyebrow">Component standard</p>
-    <h2>Icons 문서의 공통 구조.</h2>
-  </div>
-  <div class="component-doc-grid">
-    <article id="doc-anatomy" class="component-doc-card">
-      <strong>Anatomy</strong>
-      <p>기본 구성요소를 정리해 구현과 디자인 리뷰의 출발점을 맞춥니다.</p>
-      <ul><li>24px viewBox</li><li>symbol id</li><li>stroke rule</li><li>usage label</li><li>accessible wrapper</li></ul>
-    </article>
-    <article id="doc-variants" class="component-doc-card">
-      <strong>Variants</strong>
-      <p>Action, status, object, settings, permission symbols</p>
-    </article>
-    <article id="doc-states" class="component-doc-card">
-      <strong>States</strong>
-      <p>Default, hover, focus, selected, loading, disabled, error 또는 locked 상태를 같은 density로 비교합니다.</p>
-    </article>
-    <article id="doc-accessibility" class="component-doc-card">
-      <strong>Accessibility</strong>
-      <p>Keyboard path, visible focus, semantic role, accessible name, helper/error 연결을 함께 검토합니다.</p>
-    </article>
-    <article id="doc-examples" class="component-doc-card">
-      <strong>Examples</strong>
-      <p>단독 컴포넌트보다 idenflu 제품 화면 안에서 쓰이는 예시를 우선합니다.</p>
-    </article>
-    <article id="doc-qa" class="component-doc-card">
-      <strong>QA</strong>
-      <p>Visual QA에서 light/dark, compact density, disabled hover, focus, long text overflow를 다시 확인합니다.</p>
-    </article>
-  </div>
-</section>
+<!-- partial:component-standard -->
 
-<section id="component-template-map" class="section">
-  <div class="section-heading">
-    <p class="eyebrow">Document template</p>
-    <h2>Icons 문서는 의미, 사용 위치, accessible wrapper를 같은 순서로 봅니다.</h2>
-  </div>
-  <div class="component-template-map">
-    <article><span>01</span><strong>Overview</strong><p>아이콘이 action, object, status 중 어떤 의미인지 먼저 정합니다.</p></article>
-    <article><span>02</span><strong>Anatomy</strong><p>24px viewBox, symbol id, stroke, wrapper, accessible name을 분리합니다.</p></article>
-    <article><span>03</span><strong>Variants</strong><p>Action, status, object, permission icon을 용도별로 묶습니다.</p></article>
-    <article><span>04</span><strong>States</strong><p>Icon-only button 안에서는 hover, focus, disabled 상태를 버튼과 함께 봅니다.</p></article>
-    <article><span>05</span><strong>Accessibility</strong><p>장식 아이콘은 aria-hidden, 단독 액션은 aria-label을 사용합니다.</p></article>
-    <article><span>06</span><strong>QA</strong><p>깨진 symbol, 잘못된 stroke, 없는 accessible name을 확인합니다.</p></article>
-  </div>
-</section>
+<!-- partial:component-template-map -->
 
 <section id="context-example" class="section surface-band">
   <div class="section-heading">
@@ -83,19 +38,7 @@
   </div>
 </section>
 
-<section id="token-contract" class="section">
-  <div class="section-heading">
-    <p class="eyebrow">Token contract</p>
-    <h2>아이콘은 symbol registry와 stroke rule을 토큰으로 관리합니다.</h2>
-  </div>
-  <div class="component-token-contract">
-    <div class="token-contract-row header"><span>Decision</span><span>Token</span><span>Rule</span></div>
-    <div class="token-contract-row"><span><strong>ViewBox</strong></span><span>{icons.viewBox}</span><span>모든 symbol은 0 0 24 24 기준으로 정렬합니다.</span></div>
-    <div class="token-contract-row"><span><strong>Stroke</strong></span><span>{icons.strokeWidth}</span><span>1.8px stroke, square cap, miter join을 유지합니다.</span></div>
-    <div class="token-contract-row"><span><strong>Color</strong></span><span>currentColor</span><span>아이콘 색은 부모 버튼이나 상태 text color를 따릅니다.</span></div>
-    <div class="token-contract-row"><span><strong>Registry</strong></span><span>{icons.symbols}</span><span>문서에 쓰는 symbol id는 token registry와 일치해야 합니다.</span></div>
-  </div>
-</section>
+<!-- partial:component-token-contract -->
 
 <section id="icons" class="section">
           <div class="section-heading">

@@ -46,11 +46,17 @@ const renderSidebar = (page) => {
   const groups = page.componentSidebar ? getComponentSidebarGroups(page.file) : page.sidebarGroups || [];
   const sourcePath = path.join(sourceDir, page.source);
   const source = fs.existsSync(sourcePath) ? fs.readFileSync(sourcePath, "utf8") : "";
+  const expandedSource = source
+    ? expandPagePartials(source.trimEnd(), {
+        file: page.file,
+        source: page.source,
+      })
+    : "";
   const pageAnchorLinks = [
     { label: "Template", href: "#component-template-map" },
     { label: "Context", href: "#context-example" },
     { label: "Tokens", href: "#token-contract" },
-  ].filter((link) => source.includes(`id="${link.href.slice(1)}"`));
+  ].filter((link) => expandedSource.includes(`id="${link.href.slice(1)}"`));
   const sidebarGroups = pageAnchorLinks.length
     ? [
         ...groups,
@@ -85,7 +91,10 @@ const renderStyleLinks = (config) => {
 
 const renderPage = (config, page) => {
   const sourcePath = path.join(sourceDir, page.source);
-  const content = expandPagePartials(fs.readFileSync(sourcePath, "utf8").trimEnd());
+  const content = expandPagePartials(fs.readFileSync(sourcePath, "utf8").trimEnd(), {
+    file: page.file,
+    source: page.source,
+  });
 
   return `<!doctype html>
 <html lang="ko">

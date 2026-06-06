@@ -4,54 +4,9 @@
   <p class="lede">Toolbar and pagination patterns.</p>
 </section>
 
-<section id="component-standard" class="section surface-band">
-  <div class="section-heading">
-    <p class="eyebrow">Component standard</p>
-    <h2>Navigation 문서의 공통 구조.</h2>
-  </div>
-  <div class="component-doc-grid">
-    <article id="doc-anatomy" class="component-doc-card">
-      <strong>Anatomy</strong>
-      <p>기본 구성요소를 정리해 구현과 디자인 리뷰의 출발점을 맞춥니다.</p>
-      <ul><li>Landmark</li><li>active item</li><li>group label</li><li>shortcut</li><li>collapse state</li></ul>
-    </article>
-    <article id="doc-variants" class="component-doc-card">
-      <strong>Variants</strong>
-      <p>Top nav, side nav, breadcrumb, pagination, command jump</p>
-    </article>
-    <article id="doc-states" class="component-doc-card">
-      <strong>States</strong>
-      <p>Default, hover, focus, selected, loading, disabled, error 또는 locked 상태를 같은 density로 비교합니다.</p>
-    </article>
-    <article id="doc-accessibility" class="component-doc-card">
-      <strong>Accessibility</strong>
-      <p>Keyboard path, visible focus, semantic role, accessible name, helper/error 연결을 함께 검토합니다.</p>
-    </article>
-    <article id="doc-examples" class="component-doc-card">
-      <strong>Examples</strong>
-      <p>단독 컴포넌트보다 idenflu 제품 화면 안에서 쓰이는 예시를 우선합니다.</p>
-    </article>
-    <article id="doc-qa" class="component-doc-card">
-      <strong>QA</strong>
-      <p>Visual QA에서 light/dark, compact density, disabled hover, focus, long text overflow를 다시 확인합니다.</p>
-    </article>
-  </div>
-</section>
+<!-- partial:component-standard -->
 
-<section id="component-template-map" class="section">
-  <div class="section-heading">
-    <p class="eyebrow">Document template</p>
-    <h2>Navigation 문서는 사용자의 위치와 다음 이동을 먼저 정의합니다.</h2>
-  </div>
-  <div class="component-template-map">
-    <article><span>01</span><strong>Overview</strong><p>Navigation이 전역 이동, 지역 이동, pagination 중 무엇인지 정합니다.</p></article>
-    <article><span>02</span><strong>Anatomy</strong><p>Landmark, group label, active item, shortcut, count를 분리합니다.</p></article>
-    <article><span>03</span><strong>Variants</strong><p>Top nav, side nav, toolbar, breadcrumb, pagination, command jump를 구분합니다.</p></article>
-    <article><span>04</span><strong>States</strong><p>Active, hover, focus, disabled, collapsed, current page를 비교합니다.</p></article>
-    <article><span>05</span><strong>Accessibility</strong><p>nav landmark, aria-current, toolbar label, pagination label을 확인합니다.</p></article>
-    <article><span>06</span><strong>QA</strong><p>긴 label, mobile overflow, keyboard order, current page announcement를 검증합니다.</p></article>
-  </div>
-</section>
+<!-- partial:component-template-map -->
 
 <section id="context-example" class="section surface-band">
   <div class="section-heading">
@@ -82,19 +37,7 @@
   </div>
 </section>
 
-<section id="token-contract" class="section">
-  <div class="section-heading">
-    <p class="eyebrow">Token contract</p>
-    <h2>Navigation은 density와 active state 토큰으로 반복 이동을 안정화합니다.</h2>
-  </div>
-  <div class="component-token-contract">
-    <div class="token-contract-row header"><span>Decision</span><span>Token</span><span>Rule</span></div>
-    <div class="token-contract-row"><span><strong>Active</strong></span><span>{colors.primary-soft}</span><span>현재 위치는 배경과 primary text를 함께 사용합니다.</span></div>
-    <div class="token-contract-row"><span><strong>Toolbar</strong></span><span>{density.compact}</span><span>반복 작업 도구는 compact height와 명확한 label을 유지합니다.</span></div>
-    <div class="token-contract-row"><span><strong>Border</strong></span><span>{colors.hairline}</span><span>Navigation chrome은 hairline으로 영역을 구분합니다.</span></div>
-    <div class="token-contract-row"><span><strong>Focus</strong></span><span>{colors.primary}</span><span>키보드 이동 경로가 active state와 구분되어야 합니다.</span></div>
-  </div>
-</section>
+<!-- partial:component-token-contract -->
 
 <section id="navigation" class="section surface-band">
           <div class="section-heading">

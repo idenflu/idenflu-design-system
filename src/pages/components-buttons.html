@@ -4,78 +4,9 @@
   <p class="lede">Action hierarchy, size, icon, loading, disabled states.</p>
 </section>
 
-<section id="component-standard" class="section surface-band">
-  <div class="section-heading">
-    <p class="eyebrow">Component standard</p>
-    <h2>Buttons 문서의 공통 구조.</h2>
-  </div>
-  <div class="component-doc-grid">
-    <article id="doc-anatomy" class="component-doc-card">
-      <strong>Anatomy</strong>
-      <p>기본 구성요소를 정리해 구현과 디자인 리뷰의 출발점을 맞춥니다.</p>
-      <ul><li>Label</li><li>optional icon</li><li>fixed size</li><li>loading indicator</li><li>disabled reason</li></ul>
-    </article>
-    <article id="doc-variants" class="component-doc-card">
-      <strong>Variants</strong>
-      <p>Primary, secondary, quiet, ghost, danger, icon-only, sizes</p>
-    </article>
-    <article id="doc-states" class="component-doc-card">
-      <strong>States</strong>
-      <p>Default, hover, focus, selected, loading, disabled, error 또는 locked 상태를 같은 density로 비교합니다.</p>
-    </article>
-    <article id="doc-accessibility" class="component-doc-card">
-      <strong>Accessibility</strong>
-      <p>Keyboard path, visible focus, semantic role, accessible name, helper/error 연결을 함께 검토합니다.</p>
-    </article>
-    <article id="doc-examples" class="component-doc-card">
-      <strong>Examples</strong>
-      <p>단독 컴포넌트보다 idenflu 제품 화면 안에서 쓰이는 예시를 우선합니다.</p>
-    </article>
-    <article id="doc-qa" class="component-doc-card">
-      <strong>QA</strong>
-      <p>Visual QA에서 light/dark, compact density, disabled hover, focus, long text overflow를 다시 확인합니다.</p>
-    </article>
-  </div>
-</section>
+<!-- partial:component-standard -->
 
-<section id="component-template-map" class="section">
-  <div class="section-heading">
-    <p class="eyebrow">Document template</p>
-    <h2>Buttons 문서는 같은 순서로 판단합니다.</h2>
-  </div>
-  <div class="component-template-map">
-    <article>
-      <span>01</span>
-      <strong>Overview</strong>
-      <p>버튼이 어떤 결정 영역에서 쓰이는지 먼저 정의합니다.</p>
-    </article>
-    <article>
-      <span>02</span>
-      <strong>Anatomy</strong>
-      <p>Label, icon, indicator, hit area, disabled reason을 분리합니다.</p>
-    </article>
-    <article>
-      <span>03</span>
-      <strong>Variants</strong>
-      <p>Primary, quiet, ghost, danger의 역할과 우선순위를 고정합니다.</p>
-    </article>
-    <article>
-      <span>04</span>
-      <strong>States</strong>
-      <p>Focus, loading, selected, disabled, danger를 같은 밀도로 비교합니다.</p>
-    </article>
-    <article>
-      <span>05</span>
-      <strong>Accessibility</strong>
-      <p>Accessible name, aria-busy, tab order, focus ring을 함께 확인합니다.</p>
-    </article>
-    <article>
-      <span>06</span>
-      <strong>QA</strong>
-      <p>크기별 예시, 긴 label, icon-only, disabled hover를 검증합니다.</p>
-    </article>
-  </div>
-</section>
+<!-- partial:component-template-map -->
 
 <section id="context-example" class="section surface-band">
   <div class="section-heading">
@@ -106,19 +37,7 @@
   </div>
 </section>
 
-<section id="token-contract" class="section">
-  <div class="section-heading">
-    <p class="eyebrow">Token contract</p>
-    <h2>버튼 구현은 높이, 간격, 색, 타이포그래피 토큰에 묶습니다.</h2>
-  </div>
-  <div class="component-token-contract">
-    <div class="token-contract-row header"><span>Decision</span><span>Token</span><span>Rule</span></div>
-    <div class="token-contract-row"><span><strong>Height</strong></span><span>{sizing.control-height}</span><span>Medium은 38px, small은 32px, large는 44px로 고정합니다.</span></div>
-    <div class="token-contract-row"><span><strong>Typography</strong></span><span>{typography.button}</span><span>font-weight 450을 기본으로 두고, 상태 표현은 색과 border로 해결합니다.</span></div>
-    <div class="token-contract-row"><span><strong>Priority color</strong></span><span>{colors.primary}</span><span>주요 결정에만 primary를 쓰고 danger는 파괴적 액션에만 사용합니다.</span></div>
-    <div class="token-contract-row"><span><strong>Spacing</strong></span><span>{spacing.xs} / {spacing.md}</span><span>Icon과 label 간격은 좁게, 버튼 그룹 간격은 명확하게 둡니다.</span></div>
-  </div>
-</section>
+<!-- partial:component-token-contract -->
 
 <section id="button-spec" class="section">
   <div class="section-heading">

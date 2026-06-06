@@ -76,6 +76,58 @@
   </div>
 </section>
 
+<section id="coverage-matrix" class="section" data-partial="visual-qa-coverage">
+  <div class="section-heading">
+    <p class="eyebrow">Coverage matrix</p>
+    <h2>QA 범위를 케이스별로 분리합니다.</h2>
+    <p class="lede">각 범위는 자동화 명령, 수동 확인 항목, 대표 컴포넌트를 함께 연결합니다.</p>
+  </div>
+  <div class="visual-qa-coverage-grid">
+    <article>
+      <span>01</span>
+      <strong>Actions</strong>
+      <p>Button, icon button, destructive action, loading, disabled hover를 같은 기준으로 확인합니다.</p>
+      <ul><li>Primary는 결정 영역에서 하나만 남습니다.</li><li>Icon-only action은 aria-label을 가집니다.</li><li>Disabled 상태는 hover와 active style이 살아나지 않습니다.</li></ul>
+      <code>node scripts/visual-qa-check.js</code>
+    </article>
+    <article>
+      <span>02</span>
+      <strong>Forms</strong>
+      <p>Input, combobox, date time, validation helper가 label과 상태를 유지하는지 확인합니다.</p>
+      <ul><li>Label, helper, error는 field 안에서 연결됩니다.</li><li>Combobox는 active option과 keyboard state를 노출합니다.</li><li>Read-only와 disabled는 서로 다른 시각 상태를 가집니다.</li></ul>
+      <code>node scripts/browser-qa-check.js --dry-run</code>
+    </article>
+    <article>
+      <span>03</span>
+      <strong>Data</strong>
+      <p>Table, search toolbar, filter chip, attachment row가 dense layout에서도 정보를 잃지 않는지 확인합니다.</p>
+      <ul><li>Row action과 revision 정보가 작은 폭에서도 유지됩니다.</li><li>Sort, selection, expanded row의 aria 상태를 검토합니다.</li><li>검색과 필터 해제 action이 같은 toolbar 안에 남습니다.</li></ul>
+      <code>node scripts/component-coverage-check.js</code>
+    </article>
+    <article>
+      <span>04</span>
+      <strong>Surfaces</strong>
+      <p>Card, overlay, menu, tooltip, popover의 header, body, footer와 focus 흐름을 확인합니다.</p>
+      <ul><li>Overlay backdrop은 뒤 화면을 약하게 흐리게 합니다.</li><li>Modal, drawer, popover는 케이스별 예시로 분리됩니다.</li><li>Card footer action은 하단에 고정된 구조를 유지합니다.</li></ul>
+      <code>node scripts/verify-site.js</code>
+    </article>
+    <article>
+      <span>05</span>
+      <strong>Feedback</strong>
+      <p>Badge, empty state, progress, toast, locked state가 원인과 다음 action을 같이 제공하는지 확인합니다.</p>
+      <ul><li>상태는 색상만으로 전달하지 않습니다.</li><li>Empty와 error는 recovery action을 함께 제공합니다.</li><li>Permission state는 제한 이유를 visible copy로 설명합니다.</li></ul>
+      <code>node scripts/visual-qa-check.js</code>
+    </article>
+    <article>
+      <span>06</span>
+      <strong>Themes</strong>
+      <p>Light, black-base dark, compact density에서 token contrast와 focus ring을 비교합니다.</p>
+      <ul><li>Text, hairline, selected surface의 contrast를 확인합니다.</li><li>Focus ring은 양쪽 theme에서 선명하게 보입니다.</li><li>Token usage는 tokens.json 경로와 일치합니다.</li></ul>
+      <code>node scripts/token-usage-report.js --check</code>
+    </article>
+  </div>
+</section>
+
 <section id="utilities" class="section surface-band">
   <div class="section-heading">
     <p class="eyebrow">Menu and identity QA</p>

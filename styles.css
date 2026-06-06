@@ -1024,6 +1024,7 @@ h3 {
 .utility-component-grid,
 .interaction-qa-grid,
 .qa-dashboard-grid,
+.visual-qa-coverage-grid,
 .qa-command-board,
 .release-impact-grid {
   display: grid;
@@ -1038,6 +1039,7 @@ h3 {
 .utility-component-grid article,
 .interaction-qa-grid article,
 .qa-dashboard-grid article,
+.visual-qa-coverage-grid article,
 .qa-command-board article,
 .release-impact-grid article {
   display: grid;
@@ -1055,6 +1057,7 @@ h3 {
 .utility-component-grid strong,
 .interaction-qa-grid strong,
 .qa-dashboard-grid strong,
+.visual-qa-coverage-grid strong,
 .qa-command-board strong,
 .release-impact-grid strong {
   color: var(--ink);
@@ -1066,6 +1069,7 @@ h3 {
 .utility-component-grid p,
 .interaction-qa-grid p,
 .qa-dashboard-grid p,
+.visual-qa-coverage-grid p,
 .qa-command-board p,
 .release-impact-grid p {
   margin: 0;
@@ -1106,7 +1110,8 @@ h3 {
   margin-bottom: 0;
 }
 
-.qa-dashboard-grid span {
+.qa-dashboard-grid span,
+.visual-qa-coverage-grid span {
   width: fit-content;
   border: 1px solid var(--hairline);
   padding: 3px 7px;
@@ -1114,6 +1119,24 @@ h3 {
   color: var(--primary);
   font-size: 12px;
   font-weight: 750;
+}
+
+.visual-qa-coverage-grid ul {
+  display: grid;
+  gap: var(--space-xs);
+  margin: 0;
+  padding-left: 18px;
+  color: var(--ink-muted);
+  font-size: 13px;
+}
+
+.visual-qa-coverage-grid code {
+  width: fit-content;
+  border: 1px solid var(--hairline);
+  padding: 5px 8px;
+  background: var(--surface-1);
+  color: var(--ink);
+  font-size: 12px;
 }
 
 .interaction-qa-grid ul {
@@ -4265,6 +4288,7 @@ mark.status {
   .utility-component-grid,
   .interaction-qa-grid,
   .qa-dashboard-grid,
+  .visual-qa-coverage-grid,
   .qa-command-board,
   .release-impact-grid,
   .visual-do-dont-grid,
@@ -4390,6 +4414,7 @@ mark.status {
   .utility-component-grid,
   .interaction-qa-grid,
   .qa-dashboard-grid,
+  .visual-qa-coverage-grid,
   .qa-command-board,
   .release-impact-grid,
   .connected-workflow-demo,

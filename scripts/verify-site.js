@@ -82,6 +82,62 @@ if (config) {
     failures.push("components.html: missing component-index-grid");
   }
 
+  const indexSource = read(path.join("src/pages", "index.html"));
+  [
+    'id="system-positioning"',
+    'id="documentation-path"',
+    "System lens",
+    "Example context",
+    "Recommended path",
+  ].forEach((marker) => {
+    if (!indexSource.includes(marker)) {
+      failures.push(`index.html: missing ${marker}`);
+    }
+  });
+
+  [
+    'id="component-template"',
+    "component-template-grid",
+    "Required depth",
+    "A11y contract",
+    "QA evidence",
+  ].forEach((marker) => {
+    if (!componentIndex.includes(marker)) {
+      failures.push(`components.html: missing ${marker}`);
+    }
+  });
+
+  const guidelinesSource = read(path.join("src/pages", "guidelines.html"));
+  [
+    "visual-do-dont-grid",
+    "do-example",
+    "dont-example",
+    "Good pattern",
+    "Avoid pattern",
+  ].forEach((marker) => {
+    if (!guidelinesSource.includes(marker)) {
+      failures.push(`guidelines.html: missing ${marker}`);
+    }
+  });
+
+  const accessibilitySource = read(path.join("src/pages", "accessibility.html"));
+  [
+    "a11y-flow-diagram",
+    "Modal keyboard flow",
+    "Table row flow",
+    "Combobox flow",
+  ].forEach((marker) => {
+    if (!accessibilitySource.includes(marker)) {
+      failures.push(`accessibility.html: missing ${marker}`);
+    }
+  });
+
+  ["system-positioning-grid", "doc-path-grid", "component-template-grid", "visual-do-dont-grid", "a11y-flow-diagram"].forEach((className) => {
+    if (!styles.includes(`.${className}`)) {
+      failures.push(`styles.css: missing ${className}`);
+    }
+  });
+
   const cardSource = read(path.join("src/pages", "components-cards.html"));
   ["card-header", "card-body", "card-footer"].forEach((className) => {
     if (!cardSource.includes(`class="${className}"`)) {

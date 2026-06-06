@@ -26,6 +26,7 @@
         <p class="sidebar-label">Accessibility</p>
         <a href="#focus">Focus</a>
         <a href="#keyboard">Keyboard</a>
+        <a href="#a11y-flows">Practical flows</a>
         <a href="#component-contracts">Component contracts</a>
         <a href="#aria-roles">ARIA roles</a>
         <a href="#focus-order">Focus order</a>
@@ -91,6 +92,42 @@
     <div class="a11y-row"><span><strong>Menu</strong></span><span>Arrow keys move items, Esc closes, Enter selects.</span><span>Role and active item</span></div>
     <div class="a11y-row"><span><strong>Modal</strong></span><span>Focus is trapped inside, Esc closes when safe.</span><span>Initial focus and restore target</span></div>
     <div class="a11y-row"><span><strong>Table row</strong></span><span>Row actions are reachable without hover.</span><span>Visible action or row menu</span></div>
+  </div>
+</section>
+
+<section id="a11y-flows" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Practical flows</p>
+    <h2>대표 패턴은 키보드 흐름까지 문서화합니다.</h2>
+  </div>
+  <div class="a11y-flow-diagram">
+    <article>
+      <strong>Modal keyboard flow</strong>
+      <ol>
+        <li>Trigger stores restore target.</li>
+        <li>Dialog opens with title and safe initial focus.</li>
+        <li>Tab stays inside header, body, footer actions.</li>
+        <li>Esc or close returns focus to the trigger.</li>
+      </ol>
+    </article>
+    <article>
+      <strong>Table row flow</strong>
+      <ol>
+        <li>Checkbox selects the row scope.</li>
+        <li>Primary cell opens the object detail.</li>
+        <li>Status, owner, and row actions stay reachable.</li>
+        <li>Overflow menu closes back to its trigger.</li>
+      </ol>
+    </article>
+    <article>
+      <strong>Combobox flow</strong>
+      <ol>
+        <li>Input announces expanded state.</li>
+        <li>Arrow keys move the active option.</li>
+        <li>Enter selects and preserves typed value context.</li>
+        <li>Esc collapses without losing focus.</li>
+      </ol>
+    </article>
   </div>
 </section>
 

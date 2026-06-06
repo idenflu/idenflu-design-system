@@ -133,6 +133,46 @@
     <div class="decision-row"><span><strong>Forms</strong></span><span>label, input, helper/error, prefix/suffix를 하나의 field 단위로 묶습니다.</span><span>placeholder만으로 field 의미를 전달하지 않습니다.</span></div>
     <div class="decision-row"><span><strong>State</strong></span><span>empty, loading, error, locked 상태에서도 다음 action을 제공합니다.</span><span>상태를 색 점 하나나 아이콘 하나만으로 표현하지 않습니다.</span></div>
   </div>
+  <div class="visual-do-dont-grid" aria-label="Visual do and don't examples">
+    <article class="do-example">
+      <p class="eyebrow">Good pattern</p>
+      <strong>Decision footer</strong>
+      <div class="example-action-strip">
+        <button class="button quiet" type="button">Cancel</button>
+        <button class="button primary" type="button">Save changes</button>
+      </div>
+      <p>보조 action을 먼저 두고, 사용자가 완료해야 하는 action만 primary로 둡니다.</p>
+    </article>
+    <article class="dont-example">
+      <p class="eyebrow">Avoid pattern</p>
+      <strong>Competing actions</strong>
+      <div class="example-action-strip">
+        <button class="button primary" type="button">Save</button>
+        <button class="button primary" type="button">Publish</button>
+        <button class="button primary" type="button">Send</button>
+      </div>
+      <p>같은 영역에 primary가 반복되면 다음 행동의 우선순위가 흐려집니다.</p>
+    </article>
+    <article class="do-example">
+      <p class="eyebrow">Good pattern</p>
+      <strong>Visible metadata</strong>
+      <div class="example-data-row">
+        <span><small>Status</small><mark class="status amber">Due today</mark></span>
+        <span><small>Owner</small><strong>Mina</strong></span>
+        <span><small>Revision</small><strong>Rev 03</strong></span>
+      </div>
+      <p>판단에 필요한 값은 본문에서 바로 스캔할 수 있어야 합니다.</p>
+    </article>
+    <article class="dont-example">
+      <p class="eyebrow">Avoid pattern</p>
+      <strong>Hidden metadata</strong>
+      <div class="example-data-row muted">
+        <span><small>Status</small><strong>Details in menu</strong></span>
+        <button class="icon-button ghost" type="button" aria-label="More details"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-more"></use></svg></button>
+      </div>
+      <p>핵심 상태를 hover나 menu 뒤에 숨기면 비교와 검토 속도가 느려집니다.</p>
+    </article>
+  </div>
 </section>
 
 <section id="state-matrix" class="section surface-band">

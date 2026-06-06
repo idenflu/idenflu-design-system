@@ -47,6 +47,42 @@
   </div>
 </section>
 
+<section id="a11y-flows" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Practical flows</p>
+    <h2>대표 패턴은 키보드 흐름까지 문서화합니다.</h2>
+  </div>
+  <div class="a11y-flow-diagram">
+    <article>
+      <strong>Modal keyboard flow</strong>
+      <ol>
+        <li>Trigger stores restore target.</li>
+        <li>Dialog opens with title and safe initial focus.</li>
+        <li>Tab stays inside header, body, footer actions.</li>
+        <li>Esc or close returns focus to the trigger.</li>
+      </ol>
+    </article>
+    <article>
+      <strong>Table row flow</strong>
+      <ol>
+        <li>Checkbox selects the row scope.</li>
+        <li>Primary cell opens the object detail.</li>
+        <li>Status, owner, and row actions stay reachable.</li>
+        <li>Overflow menu closes back to its trigger.</li>
+      </ol>
+    </article>
+    <article>
+      <strong>Combobox flow</strong>
+      <ol>
+        <li>Input announces expanded state.</li>
+        <li>Arrow keys move the active option.</li>
+        <li>Enter selects and preserves typed value context.</li>
+        <li>Esc collapses without losing focus.</li>
+      </ol>
+    </article>
+  </div>
+</section>
+
 <section id="component-contracts" class="section">
   <div class="section-heading">
     <p class="eyebrow">Component contracts</p>

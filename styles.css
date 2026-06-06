@@ -725,6 +725,143 @@ h3 {
   line-height: 1.45;
 }
 
+.system-positioning-grid,
+.doc-path-grid,
+.component-template-grid,
+.visual-do-dont-grid,
+.a11y-flow-diagram {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.system-positioning-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.doc-path-grid,
+.component-template-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.visual-do-dont-grid,
+.a11y-flow-diagram {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: var(--space-lg);
+}
+
+.a11y-flow-diagram {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 0;
+}
+
+.system-positioning-grid article,
+.doc-path-grid article,
+.component-template-grid article,
+.do-example,
+.dont-example,
+.a11y-flow-diagram article {
+  display: grid;
+  align-content: start;
+  gap: var(--space-sm);
+  border: 1px solid var(--hairline);
+  padding: var(--space-lg);
+  background: var(--surface-raised);
+}
+
+.system-positioning-grid article,
+.doc-path-grid article,
+.component-template-grid article {
+  min-height: 188px;
+}
+
+.doc-path-grid span,
+.component-template-grid span {
+  width: fit-content;
+  border: 1px solid var(--hairline);
+  padding: 3px 7px;
+  background: var(--surface-1);
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.system-positioning-grid strong,
+.doc-path-grid strong,
+.component-template-grid strong,
+.do-example strong,
+.dont-example strong,
+.a11y-flow-diagram strong {
+  color: var(--ink);
+}
+
+.system-positioning-grid p,
+.doc-path-grid p,
+.component-template-grid p,
+.do-example p,
+.dont-example p {
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: 13px;
+}
+
+.do-example {
+  border-top: 3px solid var(--success);
+}
+
+.dont-example {
+  border-top: 3px solid var(--error);
+}
+
+.do-example .eyebrow {
+  color: var(--success);
+}
+
+.dont-example .eyebrow {
+  color: var(--error);
+}
+
+.example-action-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  border: 1px solid var(--hairline);
+  padding: var(--space-md);
+  background: var(--surface-1);
+}
+
+.example-data-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-xs);
+  border: 1px solid var(--hairline);
+  padding: var(--space-sm);
+  background: var(--surface-1);
+}
+
+.example-data-row.muted {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.example-data-row span {
+  display: grid;
+  gap: 2px;
+}
+
+.example-data-row small {
+  color: var(--ink-muted);
+  font-size: 11px;
+  font-weight: 650;
+}
+
+.a11y-flow-diagram ol {
+  display: grid;
+  gap: var(--space-xs);
+  margin: 0;
+  padding-left: 20px;
+  color: var(--ink-muted);
+  font-size: 13px;
+}
+
 .component-doc-grid,
 .density-grid,
 .screen-template-grid,
@@ -3402,6 +3539,11 @@ mark.status {
   .qa-check-grid,
   .state-grid,
   .a11y-grid,
+  .system-positioning-grid,
+  .doc-path-grid,
+  .component-template-grid,
+  .visual-do-dont-grid,
+  .a11y-flow-diagram,
   .enterprise-grid,
   .spec-grid,
   .case-grid,
@@ -3505,6 +3647,11 @@ mark.status {
   .qa-check-grid,
   .state-grid,
   .a11y-grid,
+  .system-positioning-grid,
+  .doc-path-grid,
+  .component-template-grid,
+  .visual-do-dont-grid,
+  .a11y-flow-diagram,
   .enterprise-grid,
   .spec-grid,
   .case-grid,

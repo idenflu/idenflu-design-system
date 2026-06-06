@@ -41,6 +41,11 @@
               "active": false
             },
             {
+              "label": "Positioning",
+              "href": "#system-positioning",
+              "active": false
+            },
+            {
               "label": "Principles",
               "href": "#principles",
               "active": false
@@ -48,6 +53,11 @@
             {
               "label": "Snapshot",
               "href": "#snapshot",
+              "active": false
+            },
+            {
+              "label": "Recommended path",
+              "href": "#documentation-path",
               "active": false
             },
             {
@@ -1374,6 +1384,11 @@
             {
               "label": "Keyboard",
               "href": "#keyboard",
+              "active": false
+            },
+            {
+              "label": "Practical flows",
+              "href": "#a11y-flows",
               "active": false
             },
             {

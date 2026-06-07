@@ -76,11 +76,11 @@ export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
     const [focusISO, setFocusISO] = React.useState(anchorISO);
     const dayRefs = React.useRef<Record<string, HTMLButtonElement | null>>({});
 
-    const close = () => {
+    const close = (focusTrigger = true) => {
       setOpen(false);
       setPendingStart("");
       setHoverISO("");
-      triggerRef.current?.focus();
+      if (focusTrigger) triggerRef.current?.focus();
     };
 
     const emit = (next: string | DateRange) => {
@@ -113,9 +113,7 @@ export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
       const onDoc = (event: MouseEvent) => {
         const t = event.target as Node;
         if (!popoverRef.current?.contains(t) && !triggerRef.current?.contains(t)) {
-          setOpen(false);
-          setPendingStart("");
-          setHoverISO("");
+          close(false);
         }
       };
       document.addEventListener("mousedown", onDoc);

@@ -2144,6 +2144,11 @@
   outline: 0;
 }
 
+.if-field--invalid .if-datepicker__trigger,
+.if-field--server-error .if-datepicker__trigger {
+  border-color: var(--if-color-error);
+}
+
 .if-datepicker__value {
   flex: 1 1 auto;
   min-width: 0;

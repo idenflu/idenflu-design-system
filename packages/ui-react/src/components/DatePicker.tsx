@@ -138,6 +138,20 @@ export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
     const isEndpoint = (iso: string): boolean =>
       range ? iso === rangeVal.from || iso === rangeVal.to || iso === pendingStart : iso === single;
 
+    const inRange = (iso: string): boolean => {
+      if (!range) return false;
+      let a = "";
+      let b = "";
+      if (pendingStart && hoverISO) {
+        a = pendingStart <= hoverISO ? pendingStart : hoverISO;
+        b = pendingStart <= hoverISO ? hoverISO : pendingStart;
+      } else if (rangeVal.from && rangeVal.to) {
+        a = rangeVal.from;
+        b = rangeVal.to;
+      }
+      return Boolean(a && b && iso > a && iso < b);
+    };
+
     const days = buildMonthGrid(view.year, view.month, weekStartsOn);
     const monthLabel = `${MONTH_LABELS[view.month]} ${view.year}`;
 
@@ -205,9 +219,11 @@ export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
                             "if-datecal__day",
                             outside && "is-outside",
                             iso === todayISO && "is-today",
+                            inRange(iso) && "is-in-range",
                             sel && "is-selected",
                             isDisabled && "is-disabled",
                           )}
+                          onMouseEnter={() => { if (range && pendingStart && !isDisabled) setHoverISO(iso); }}
                           onClick={() => selectDay(iso)}
                         >
                           {d.getDate()}

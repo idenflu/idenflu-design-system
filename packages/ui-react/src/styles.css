@@ -353,6 +353,14 @@
   width: 16px;
 }
 
+/* Normalize any icon (e.g. <Icon> at its own 20px medium size) to fill the 16px
+   field icon slot, so it matches the docs field icon and doesn't overflow. */
+.if-field__icon svg {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
 .if-field__control--select {
   padding-right: 40px;
   text-overflow: ellipsis;

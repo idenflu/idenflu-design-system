@@ -1841,20 +1841,25 @@
 .if-tabs {
   display: flex;
   flex-direction: column;
+  gap: var(--if-space-md);
 }
 
 .if-tabs__list {
-  display: flex;
-  gap: var(--if-space-md);
-  border-bottom: 1px solid var(--if-color-hairline);
+  align-self: flex-start;
+  background: var(--if-color-surface-1);
+  border-radius: var(--if-radius-md);
+  display: inline-flex;
+  gap: var(--if-space-xs);
+  max-width: 100%;
   overflow-x: auto;
+  padding: var(--if-space-xs);
 }
 
 .if-tabs__tab {
   align-items: center;
   background: transparent;
   border: 0;
-  border-bottom: 2px solid transparent;
+  border-radius: var(--if-radius-sm);
   color: var(--if-color-ink-muted);
   cursor: pointer;
   display: inline-flex;
@@ -1862,9 +1867,10 @@
   font-family: var(--if-font-family);
   font-size: var(--if-font-size-body-sm);
   gap: var(--if-space-xs);
-  margin-bottom: -1px;
-  padding: var(--if-space-sm) var(--if-space-xs);
-  transition: color var(--if-duration-fast) ease, border-color var(--if-duration-fast) ease;
+  justify-content: center;
+  min-height: var(--if-control-height);
+  padding: var(--if-space-xs) var(--if-space-sm);
+  transition: background-color var(--if-duration-fast) ease, color var(--if-duration-fast) ease;
 }
 
 .if-tabs__tab:hover:not(:disabled) {
@@ -1872,19 +1878,18 @@
 }
 
 .if-tabs__tab.is-selected {
-  border-bottom-color: var(--if-color-primary);
-  color: var(--if-color-primary);
+  background: var(--if-color-surface-raised);
+  color: var(--if-color-ink);
 }
 
 .if-tabs__tab:focus-visible {
-  border-radius: var(--if-radius-sm);
   box-shadow: 0 0 0 3px var(--if-focus-ring);
   outline: 0;
 }
 
 .if-tabs__tab:disabled {
   cursor: not-allowed;
-  opacity: 0.5;
+  opacity: 0.55;
 }
 
 .if-tabs__icon {

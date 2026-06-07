@@ -29,13 +29,56 @@ export const SegmentedControl = React.forwardRef<HTMLDivElement, SegmentedContro
     { className, defaultValue, disabled = false, label, onChange, options, size = "medium", value, ...props },
     ref,
   ) => {
+    const optionRefs = React.useRef<Array<HTMLButtonElement | null>>([]);
+
     const isControlled = value !== undefined;
     const [internal, setInternal] = React.useState(defaultValue);
     const current = isControlled ? value : internal;
 
+    const isDisabled = (index: number) => disabled || Boolean(options[index]?.disabled);
+
+    // Roving tabindex: only one option is a Tab stop; arrows move between the rest.
+    const selectedIndex = options.findIndex((option) => option.value === current);
+    const firstEnabledIndex = options.findIndex((_, index) => !isDisabled(index));
+    const activeIndex = selectedIndex >= 0 && !isDisabled(selectedIndex) ? selectedIndex : firstEnabledIndex;
+
     const select = (next: string) => {
       if (!isControlled) setInternal(next);
       onChange?.(next);
+    };
+
+    const activate = (index: number) => {
+      const option = options[index];
+      if (!option || isDisabled(index)) return;
+      select(option.value);
+      optionRefs.current[index]?.focus();
+    };
+
+    const onKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>, index: number) => {
+      const count = options.length;
+      const step = (dir: 1 | -1) => {
+        for (let i = 1; i <= count; i += 1) {
+          const next = ((index + dir * i) % count + count) % count;
+          if (!isDisabled(next)) return next;
+        }
+        return index;
+      };
+      let target: number | null = null;
+      if (event.key === "ArrowRight" || event.key === "ArrowDown") target = step(1);
+      else if (event.key === "ArrowLeft" || event.key === "ArrowUp") target = step(-1);
+      else if (event.key === "Home") target = options.findIndex((_, i) => !isDisabled(i));
+      else if (event.key === "End") {
+        for (let i = count - 1; i >= 0; i -= 1) {
+          if (!isDisabled(i)) {
+            target = i;
+            break;
+          }
+        }
+      }
+      if (target !== null && target >= 0) {
+        event.preventDefault();
+        activate(target);
+      }
     };
 
     return (
@@ -46,16 +89,21 @@ export const SegmentedControl = React.forwardRef<HTMLDivElement, SegmentedContro
         className={classNames("if-segmented", `if-segmented--${size}`, disabled && "is-disabled", className)}
         {...props}
       >
-        {options.map((option) => {
+        {options.map((option, index) => {
           const selected = current === option.value;
           return (
             <button
               key={option.value}
+              ref={(node) => {
+                optionRefs.current[index] = node;
+              }}
               type="button"
               className={classNames("if-segmented__option", selected && "is-selected")}
               aria-pressed={selected}
+              tabIndex={index === activeIndex ? 0 : -1}
               disabled={disabled || option.disabled}
               onClick={() => select(option.value)}
+              onKeyDown={(event) => onKeyDown(event, index)}
             >
               {option.icon != null ? (
                 <span className="if-segmented__icon" aria-hidden="true">

@@ -35,6 +35,10 @@
           <a href="components-select.html"><span>Select</span><small>Input and choice</small></a>
           <a href="components-forms.html"><span>Forms</span><small>Input and choice</small></a>
           <a href="components-controls.html"><span>Controls</span><small>Input and choice</small></a>
+          <a href="components-switch.html"><span>Switch</span><small>Input and choice</small></a>
+          <a href="components-checkbox.html"><span>Checkbox</span><small>Input and choice</small></a>
+          <a href="components-radio.html"><span>Radio</span><small>Input and choice</small></a>
+          <a href="components-segmented-control.html"><span>Segmented control</span><small>Input and choice</small></a>
           <a href="components-tabs.html"><span>Tabs</span><small>Input and choice</small></a>
           <a href="components-disclosure.html"><span>Disclosure</span><small>Input and choice</small></a>
           <a href="components-menu.html"><span>Menu</span><small>Input and choice</small></a>
@@ -71,6 +75,10 @@
         <a href="components-select.html">Select</a>
         <a href="components-forms.html">Forms</a>
         <a href="components-controls.html">Controls</a>
+        <a href="components-switch.html">Switch</a>
+        <a href="components-checkbox.html">Checkbox</a>
+        <a href="components-radio.html">Radio</a>
+        <a href="components-segmented-control.html">Segmented control</a>
         <a href="components-tabs.html">Tabs</a>
         <a href="components-disclosure.html">Disclosure</a>
         <a href="components-menu.html">Menu</a>
@@ -155,6 +163,22 @@
         <a href="components-controls.html">
           <span>Controls</span>
           <small>필터, 설정, 선택 상태를 유지하는 control 기준입니다.</small>
+        </a>
+        <a href="components-switch.html">
+          <span>Switch</span>
+          <small>즉시 적용되는 on/off 설정 토글 기준입니다.</small>
+        </a>
+        <a href="components-checkbox.html">
+          <span>Checkbox</span>
+          <small>다중 선택과 boolean 동의를 위한 checkbox 기준입니다.</small>
+        </a>
+        <a href="components-radio.html">
+          <span>Radio</span>
+          <small>여러 옵션 중 하나만 고르는 단일 선택 그룹 기준입니다.</small>
+        </a>
+        <a href="components-segmented-control.html">
+          <span>Segmented control</span>
+          <small>배타적인 view/mode를 inline에서 전환하는 기준입니다.</small>
         </a>
         <a href="components-tabs.html">
           <span>Tabs</span>
@@ -334,6 +358,50 @@
         <dd>checked, selected, indeterminate, disabled, focus</dd>
         <dt>Accessibility</dt>
         <dd>native input, group label, aria-checked where needed, keyboard path</dd>
+      </dl>
+    </article>
+    <article>
+      <strong>Switch API</strong>
+      <dl>
+        <dt>Props</dt>
+        <dd>label, checked, description, helperText, size, disabled</dd>
+        <dt>States</dt>
+        <dd>off, on, focus, disabled, error</dd>
+        <dt>Accessibility</dt>
+        <dd>native checkbox role switch, visible label, aria-checked, keyboard space toggle</dd>
+      </dl>
+    </article>
+    <article>
+      <strong>Checkbox API</strong>
+      <dl>
+        <dt>Props</dt>
+        <dd>label, checked, description, helperText, indeterminate, size, disabled</dd>
+        <dt>States</dt>
+        <dd>unchecked, checked, indeterminate, focus, disabled, error</dd>
+        <dt>Accessibility</dt>
+        <dd>native checkbox input, visible label, aria-checked mixed for indeterminate, keyboard space toggle</dd>
+      </dl>
+    </article>
+    <article>
+      <strong>Radio API</strong>
+      <dl>
+        <dt>Props</dt>
+        <dd>label, options, value, onChange, orientation, disabled</dd>
+        <dt>States</dt>
+        <dd>unselected, selected, focus, disabled, error</dd>
+        <dt>Accessibility</dt>
+        <dd>native radio input, fieldset/legend group label, arrow key navigation, single selection per group</dd>
+      </dl>
+    </article>
+    <article>
+      <strong>Segmented control API</strong>
+      <dl>
+        <dt>Props</dt>
+        <dd>label, options, value, onChange, size, disabled</dd>
+        <dt>States</dt>
+        <dd>default, selected, hover, focus, disabled</dd>
+        <dt>Accessibility</dt>
+        <dd>role=group, aria-pressed on active option, single-select only, keyboard arrow navigation</dd>
       </dl>
     </article>
     <article>

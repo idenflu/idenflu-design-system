@@ -31,6 +31,26 @@
       "avoid": "즉시 실행 명령을 switch나 checkbox로 표현하지 않습니다.",
       "replace": "일회성 명령은 button, 여러 명령 묶음은 menu, 모드 전환은 tabs를 씁니다."
     },
+    "switch": {
+      "use": "즉시 적용되는 on/off 설정처럼 현재 값이 화면에 계속 남아야 할 때 씁니다.",
+      "avoid": "저장 버튼을 눌러야 반영되는 설정이나 즉시 실행 명령을 switch로 표현하지 않습니다.",
+      "replace": "다중 선택은 checkbox, 모드 전환은 segmented control 또는 tabs, 일회성 명령은 button을 씁니다."
+    },
+    "checkbox": {
+      "use": "여러 항목을 동시에 켜고 끄거나 단일 boolean 동의처럼 현재 선택 값이 화면에 계속 남아야 할 때 씁니다.",
+      "avoid": "정확히 하나만 선택해야 하는 경우나 즉시 실행 명령을 checkbox로 표현하지 않습니다.",
+      "replace": "단일 선택은 radio group, 즉시 적용 설정은 switch, 모드 전환은 segmented control 또는 tabs, 일회성 명령은 button을 씁니다."
+    },
+    "radio": {
+      "use": "상호 배타적인 옵션 2~5개를 모두 화면에 보여주고 정확히 하나만 선택하게 할 때 씁니다.",
+      "avoid": "옵션이 많아 목록이 길어지거나 다중 선택이 필요할 때는 radio를 쓰지 않습니다.",
+      "replace": "옵션이 많으면 select 또는 combobox, 다중 선택은 checkbox, 즉시 적용 on/off는 switch, 모드 전환은 segmented control 또는 tabs를 씁니다."
+    },
+    "segmented-control": {
+      "use": "서로 배타적인 view/mode 2~4개를 inline에서 즉시 전환하고 현재 선택이 한눈에 보여야 할 때 씁니다.",
+      "avoid": "옵션이 5개 이상이거나 라벨이 길거나 다중 선택이 필요할 때는 segmented control을 쓰지 않습니다.",
+      "replace": "옵션이 많으면 select, 페이지 단위 전환은 tabs, 다중 선택은 checkbox, 즉시 on/off는 switch를 씁니다."
+    },
     "tabs": {
       "use": "같은 객체나 워크스페이스 안에서 view mode를 바꿀 때 씁니다.",
       "avoid": "페이지 이동, 필터 선택, 순차 단계 진행을 tabs로 만들지 않습니다.",

@@ -37,6 +37,30 @@
       "states": ["checked", "selected", "indeterminate", "disabled", "focus"],
       "accessibility": ["native input", "group label", "aria-checked where needed", "keyboard path"]
     },
+    "switch": {
+      "label": "Switch API",
+      "props": ["label", "checked", "description", "helperText", "size", "disabled"],
+      "states": ["off", "on", "focus", "disabled", "error"],
+      "accessibility": ["native checkbox role switch", "visible label", "aria-checked", "keyboard space toggle"]
+    },
+    "checkbox": {
+      "label": "Checkbox API",
+      "props": ["label", "checked", "description", "helperText", "indeterminate", "size", "disabled"],
+      "states": ["unchecked", "checked", "indeterminate", "focus", "disabled", "error"],
+      "accessibility": ["native checkbox input", "visible label", "aria-checked mixed for indeterminate", "keyboard space toggle"]
+    },
+    "radio": {
+      "label": "Radio API",
+      "props": ["label", "options", "value", "onChange", "orientation", "disabled"],
+      "states": ["unselected", "selected", "focus", "disabled", "error"],
+      "accessibility": ["native radio input", "fieldset/legend group label", "arrow key navigation", "single selection per group"]
+    },
+    "segmented-control": {
+      "label": "Segmented control API",
+      "props": ["label", "options", "value", "onChange", "size", "disabled"],
+      "states": ["default", "selected", "hover", "focus", "disabled"],
+      "accessibility": ["role=group", "aria-pressed on active option", "single-select only", "keyboard arrow navigation"]
+    },
     "tabs": {
       "label": "Tab API",
       "props": ["tabs", "selected", "panel", "disabled", "overflow"],

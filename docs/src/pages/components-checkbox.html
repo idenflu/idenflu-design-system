@@ -1,0 +1,54 @@
+<section class="page-header component-page-header">
+  <p class="eyebrow">Components</p>
+  <h1>Checkbox</h1>
+  <p class="lede">여러 항목을 동시에 켜고 끄는 다중 선택과 boolean 선택 기준입니다.</p>
+</section>
+
+<!-- partial:component-standard -->
+
+<!-- partial:component-template-map -->
+
+<section id="context-example" class="section surface-band">
+  <div class="section-heading"><p class="eyebrow">Context example</p><h2>Checkbox는 여러 항목을 동시에 선택할 수 있게 보여줍니다.</h2></div>
+  <div class="component-context-example">
+    <div class="context-preview">
+      <div class="checkbox-list">
+        <label><input type="checkbox" checked> Instagram reels</label>
+        <label><input type="checkbox" checked> TikTok shorts</label>
+        <label><input type="checkbox"> YouTube longform</label>
+      </div>
+    </div>
+    <div class="context-rules">
+      <strong>Review checklist</strong>
+      <ul>
+        <li>여러 항목을 동시에 선택할 수 있을 때 checkbox를 사용합니다.</li>
+        <li>정확히 하나만 선택해야 하면 radio group을 사용합니다.</li>
+        <li>부분 선택 상태는 aria-checked=mixed로 전달합니다.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- partial:component-token-contract -->
+
+<!-- partial:component-api-contract -->
+
+<!-- partial:component-token-binding -->
+
+<!-- partial:component-usage-guidance -->
+
+<section id="checkbox" class="section">
+  <div class="section-heading"><p class="eyebrow">Checkbox</p><h2>여러 항목을 동시에 켜고 끄는 다중 선택을 표현합니다.</h2></div>
+  <div class="control-matrix">
+    <article class="control-group">
+      <p class="eyebrow">Checkbox group</p>
+      <div class="checkbox-list">
+        <label><input type="checkbox" checked> Instagram reels</label>
+        <label><input type="checkbox" checked> TikTok shorts</label>
+        <label><input type="checkbox"> YouTube longform</label>
+      </div>
+      <p>React: <code>&lt;Checkbox label="Instagram reels" /&gt;</code> — 네이티브 <code>&lt;input type="checkbox"&gt;</code>를 custom box와 checkmark로 스타일링하며 <code>label</code>, <code>description</code>, <code>helperText</code>, <code>indeterminate</code>, <code>size</code> props를 지원합니다.</p>
+      <p>부분 선택 상위 항목은 <code>indeterminate</code>로 두고 <code>aria-checked="mixed"</code>를 전달합니다. 단일 boolean 동의에는 <code>&lt;Checkbox label="이용약관에 동의합니다" /&gt;</code>처럼 한 개만 사용합니다.</p>
+    </article>
+  </div>
+</section>

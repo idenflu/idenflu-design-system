@@ -2564,6 +2564,160 @@
         ]
       }
     },
+    "components-switch.html": {
+      "standard": {
+        "sectionClass": "section surface-band",
+        "eyebrow": "Component standard",
+        "heading": "Switch 문서의 공통 구조.",
+        "cards": [
+          { "id": "doc-anatomy", "title": "Anatomy", "description": "Track, thumb, label, description, helper text를 나눕니다.", "items": ["track", "thumb", "label", "description", "helper text"] },
+          { "id": "doc-variants", "title": "Variants", "description": "Default switch, with description, small size를 구분합니다.", "items": [] },
+          { "id": "doc-states", "title": "States", "description": "Off, on, focus, disabled, error 상태를 같은 density로 비교합니다.", "items": [] },
+          { "id": "doc-accessibility", "title": "Accessibility", "description": "role=switch, visible label, aria-checked, space 토글을 지킵니다.", "items": [] },
+          { "id": "doc-examples", "title": "Examples", "description": "설정 패널, 리뷰 필터, 알림 토글 같은 제품 화면 안에서 보여줍니다.", "items": [] },
+          { "id": "doc-qa", "title": "QA", "description": "긴 label, disabled, dark contrast, focus ring을 확인합니다.", "items": [] }
+        ]
+      },
+      "templateMap": {
+        "sectionClass": "section",
+        "eyebrow": "Document template",
+        "heading": "Switch 문서는 즉시 반영 여부를 먼저 정합니다.",
+        "steps": [
+          { "number": "01", "title": "Overview", "description": "즉시 적용되는 설정인지 먼저 확인합니다." },
+          { "number": "02", "title": "Anatomy", "description": "Track, thumb, label, helper를 분리합니다." },
+          { "number": "03", "title": "Variants", "description": "Default, description 포함, small size를 구분합니다." },
+          { "number": "04", "title": "States", "description": "Off, on, focus, disabled를 비교합니다." },
+          { "number": "05", "title": "Accessibility", "description": "role=switch, label, aria-checked를 확인합니다." },
+          { "number": "06", "title": "QA", "description": "Dark mode, focus ring, disabled 대비를 검증합니다." }
+        ]
+      },
+      "tokenContract": {
+        "sectionClass": "section",
+        "eyebrow": "Token contract",
+        "heading": "Switch는 control height와 primary accent를 사용합니다.",
+        "rows": [
+          { "decision": "Size", "token": "{sizing.control-height}", "rule": "Track 높이는 control-height 기준으로 맞춥니다." },
+          { "decision": "On", "token": "{colors.primary}", "rule": "켜진 상태는 primary로 채웁니다." },
+          { "decision": "Off", "token": "{colors.surface-2}", "rule": "꺼진 상태는 surface-2 track을 씁니다." }
+        ]
+      }
+    },
+    "components-checkbox.html": {
+      "standard": {
+        "sectionClass": "section surface-band",
+        "eyebrow": "Component standard",
+        "heading": "Checkbox 문서의 공통 구조.",
+        "cards": [
+          { "id": "doc-anatomy", "title": "Anatomy", "description": "Box, checkmark, label, description, helper text를 나눕니다.", "items": ["box", "checkmark", "label", "description", "helper text"] },
+          { "id": "doc-variants", "title": "Variants", "description": "Single checkbox, checkbox group, select-all, with description, small size를 구분합니다.", "items": [] },
+          { "id": "doc-states", "title": "States", "description": "Unchecked, checked, indeterminate, focus, disabled, error 상태를 비교합니다.", "items": [] },
+          { "id": "doc-accessibility", "title": "Accessibility", "description": "native checkbox input, visible label, aria-checked=mixed, space 토글을 지킵니다.", "items": [] },
+          { "id": "doc-examples", "title": "Examples", "description": "채널 필터, 권한 선택, 동의 checkbox에 사용합니다.", "items": [] },
+          { "id": "doc-qa", "title": "QA", "description": "긴 label, indeterminate 대비, disabled, dark contrast, focus ring을 확인합니다.", "items": [] }
+        ]
+      },
+      "templateMap": {
+        "sectionClass": "section",
+        "eyebrow": "Document template",
+        "heading": "Checkbox 문서는 다중 선택인지 단일 동의인지 먼저 정합니다.",
+        "steps": [
+          { "number": "01", "title": "Overview", "description": "여러 항목 다중 선택인지 단일 boolean 동의인지 확인합니다." },
+          { "number": "02", "title": "Anatomy", "description": "Box, checkmark, label, description, helper를 분리합니다." },
+          { "number": "03", "title": "Variants", "description": "Single, group, select-all, description 포함, small size를 구분합니다." },
+          { "number": "04", "title": "States", "description": "Unchecked, checked, indeterminate, focus, disabled를 비교합니다." },
+          { "number": "05", "title": "Accessibility", "description": "native input, label, aria-checked=mixed를 확인합니다." },
+          { "number": "06", "title": "QA", "description": "Indeterminate 대비, dark mode, focus ring, disabled를 검증합니다." }
+        ]
+      },
+      "tokenContract": {
+        "sectionClass": "section",
+        "eyebrow": "Token contract",
+        "heading": "Checkbox는 box radius와 primary accent를 사용합니다.",
+        "rows": [
+          { "decision": "Box", "token": "{radius.sm}", "rule": "Box는 작은 radius로 control과 구분합니다." },
+          { "decision": "Checked", "token": "{colors.primary}", "rule": "Checked와 indeterminate는 primary로 채웁니다." },
+          { "decision": "Border", "token": "{colors.hairline}", "rule": "Unchecked box는 hairline border만 씁니다." }
+        ]
+      }
+    },
+    "components-radio.html": {
+      "standard": {
+        "sectionClass": "section surface-band",
+        "eyebrow": "Component standard",
+        "heading": "Radio 문서의 공통 구조.",
+        "cards": [
+          { "id": "doc-anatomy", "title": "Anatomy", "description": "Fieldset, legend, radio circle, dot, label을 나눕니다.", "items": ["fieldset", "legend", "radio circle", "selected dot", "label"] },
+          { "id": "doc-variants", "title": "Variants", "description": "Vertical group, horizontal group, with description를 구분합니다.", "items": [] },
+          { "id": "doc-states", "title": "States", "description": "Unselected, selected, focus, disabled, error 상태를 비교합니다.", "items": [] },
+          { "id": "doc-accessibility", "title": "Accessibility", "description": "Native radio, fieldset/legend group label, arrow key 이동, 그룹당 단일 선택을 지킵니다.", "items": [] },
+          { "id": "doc-examples", "title": "Examples", "description": "Approval routing, review density, export format 선택에 사용합니다.", "items": [] },
+          { "id": "doc-qa", "title": "QA", "description": "긴 label, disabled option, focus ring, dark contrast를 확인합니다.", "items": [] }
+        ]
+      },
+      "templateMap": {
+        "sectionClass": "section",
+        "eyebrow": "Document template",
+        "heading": "Radio 문서는 단일 선택과 그룹 라벨을 먼저 고정합니다.",
+        "steps": [
+          { "number": "01", "title": "Overview", "description": "정확히 하나만 선택하는 상호 배타 옵션인지 확인합니다." },
+          { "number": "02", "title": "Anatomy", "description": "Fieldset, legend, radio circle, dot, label을 분리합니다." },
+          { "number": "03", "title": "Variants", "description": "Vertical, horizontal, description 포함을 구분합니다." },
+          { "number": "04", "title": "States", "description": "Unselected, selected, focus, disabled를 비교합니다." },
+          { "number": "05", "title": "Accessibility", "description": "Native radio, group label, arrow key 이동을 확인합니다." },
+          { "number": "06", "title": "QA", "description": "긴 label, disabled option, focus ring 대비를 검증합니다." }
+        ]
+      },
+      "tokenContract": {
+        "sectionClass": "section",
+        "eyebrow": "Token contract",
+        "heading": "Radio는 control height와 primary accent를 사용합니다.",
+        "rows": [
+          { "decision": "Size", "token": "{sizing.control-height}", "rule": "Radio 정렬 높이는 control-height 체계에 맞춥니다." },
+          { "decision": "Selected", "token": "{colors.primary}", "rule": "선택된 radio는 primary border와 dot으로 표시합니다." },
+          { "decision": "Unselected", "token": "{colors.hairline}", "rule": "선택되지 않은 circle은 hairline border를 씁니다." },
+          { "decision": "Surface", "token": "{colors.surface-2}", "rule": "Radio circle 배경은 surface-2를 씁니다." }
+        ]
+      }
+    },
+    "components-segmented-control.html": {
+      "standard": {
+        "sectionClass": "section surface-band",
+        "eyebrow": "Component standard",
+        "heading": "Segmented control 문서의 공통 구조.",
+        "cards": [
+          { "id": "doc-anatomy", "title": "Anatomy", "description": "Track, segment buttons, active segment, label을 나눕니다.", "items": ["track", "segment buttons", "active segment", "group label"] },
+          { "id": "doc-variants", "title": "Variants", "description": "2-option, 3-option, compact density를 구분합니다.", "items": [] },
+          { "id": "doc-states", "title": "States", "description": "Default, hover, focus, selected, disabled 상태를 비교합니다.", "items": [] },
+          { "id": "doc-accessibility", "title": "Accessibility", "description": "role=group, group label, aria-pressed, 화살표 키보드 이동을 지킵니다.", "items": [] },
+          { "id": "doc-examples", "title": "Examples", "description": "대시보드 기간, 채널, 리뷰 상태 전환에 사용합니다.", "items": [] },
+          { "id": "doc-qa", "title": "QA", "description": "긴 label, compact density, dark contrast, focus ring을 확인합니다.", "items": [] }
+        ]
+      },
+      "templateMap": {
+        "sectionClass": "section",
+        "eyebrow": "Document template",
+        "heading": "Segmented control 문서는 배타적 선택 범위를 먼저 고정합니다.",
+        "steps": [
+          { "number": "01", "title": "Overview", "description": "한 번에 하나만 선택되는 view/mode 전환인지 확인합니다." },
+          { "number": "02", "title": "Anatomy", "description": "Track, segment buttons, active segment, label을 분리합니다." },
+          { "number": "03", "title": "Variants", "description": "2-option, 3-option, compact density를 구분합니다." },
+          { "number": "04", "title": "States", "description": "Default, hover, focus, selected, disabled를 비교합니다." },
+          { "number": "05", "title": "Accessibility", "description": "role=group, group label, aria-pressed, 화살표 이동을 확인합니다." },
+          { "number": "06", "title": "QA", "description": "Dark mode, focus ring, compact density, 긴 label 대비를 검증합니다." }
+        ]
+      },
+      "tokenContract": {
+        "sectionClass": "section",
+        "eyebrow": "Token contract",
+        "heading": "Segmented control은 control height와 primary accent를 사용합니다.",
+        "rows": [
+          { "decision": "Height", "token": "{sizing.control-height}", "rule": "Track 높이는 control-height 기준으로 버튼과 맞춥니다." },
+          { "decision": "Compact", "token": "{density.compact}", "rule": "테이블 toolbar 안에서는 compact 높이와 gap을 사용합니다." },
+          { "decision": "Selected", "token": "{colors.primary-soft}", "rule": "선택된 segment는 soft background와 primary border로 표시합니다." },
+          { "decision": "Focus", "token": "{colors.primary}", "rule": "키보드 focus는 hover와 별개로 항상 보입니다." }
+        ]
+      }
+    },
     "components-tabs.html": {
       "standard": {
         "sectionClass": "section surface-band",

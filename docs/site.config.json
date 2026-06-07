@@ -191,6 +191,46 @@
       "componentSidebar": true
     },
     {
+      "file": "components-switch.html",
+      "title": "Switch - idenflu Design System",
+      "meta": "Switch",
+      "activeTopnav": "components.html",
+      "source": "components-switch.html",
+      "sidebarAria": "Component pages",
+      "sidebarGroups": [],
+      "componentSidebar": true
+    },
+    {
+      "file": "components-checkbox.html",
+      "title": "Checkbox - idenflu Design System",
+      "meta": "Checkbox",
+      "activeTopnav": "components.html",
+      "source": "components-checkbox.html",
+      "sidebarAria": "Component pages",
+      "sidebarGroups": [],
+      "componentSidebar": true
+    },
+    {
+      "file": "components-radio.html",
+      "title": "Radio - idenflu Design System",
+      "meta": "Radio",
+      "activeTopnav": "components.html",
+      "source": "components-radio.html",
+      "sidebarAria": "Component pages",
+      "sidebarGroups": [],
+      "componentSidebar": true
+    },
+    {
+      "file": "components-segmented-control.html",
+      "title": "Segmented control - idenflu Design System",
+      "meta": "Segmented control",
+      "activeTopnav": "components.html",
+      "source": "components-segmented-control.html",
+      "sidebarAria": "Component pages",
+      "sidebarGroups": [],
+      "componentSidebar": true
+    },
+    {
       "file": "components-tabs.html",
       "title": "Tabs - idenflu Design System",
       "meta": "Tabs",

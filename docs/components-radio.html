@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Banner - idenflu Design System</title>
+    <title>Radio - idenflu Design System</title>
     <link rel="stylesheet" href="tokens.generated.css?v=20260606-token-pipeline">
     <link rel="stylesheet" href="styles.css?v=20260606-system-complete">
   </head>
@@ -18,7 +18,7 @@
         <a href="guidelines.html">Reference</a>
       </nav>
       <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode" aria-pressed="false"><svg class="theme-toggle__icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-moon"></use></svg></button>
-      <div class="topbar-meta">Banner</div>
+      <div class="topbar-meta">Radio</div>
     </header>
 
     <div class="doc-layout">
@@ -37,7 +37,7 @@
           <a href="components-controls.html"><span>Controls</span><small>Input and choice</small></a>
           <a href="components-switch.html"><span>Switch</span><small>Input and choice</small></a>
           <a href="components-checkbox.html"><span>Checkbox</span><small>Input and choice</small></a>
-          <a href="components-radio.html"><span>Radio</span><small>Input and choice</small></a>
+          <a class="active" href="components-radio.html"><span>Radio</span><small>Input and choice</small></a>
           <a href="components-segmented-control.html"><span>Segmented control</span><small>Input and choice</small></a>
           <a href="components-tabs.html"><span>Tabs</span><small>Input and choice</small></a>
           <a href="components-disclosure.html"><span>Disclosure</span><small>Input and choice</small></a>
@@ -58,7 +58,7 @@
           <a href="components-examples.html"><span>Examples</span><small>System surfaces</small></a>
           <a href="components-feedback.html"><span>Feedback</span><small>System surfaces</small></a>
           <a href="components-toast.html"><span>Toast</span><small>System surfaces</small></a>
-          <a class="active" href="components-banner.html"><span>Banner</span><small>System surfaces</small></a>
+          <a href="components-banner.html"><span>Banner</span><small>System surfaces</small></a>
           <a href="components-overlays.html"><span>Overlays</span><small>System surfaces</small></a>
           <a href="components-navigation.html"><span>Navigation</span><small>System surfaces</small></a>
           <a href="components-breadcrumb.html"><span>Breadcrumb</span><small>System surfaces</small></a>
@@ -81,7 +81,7 @@
         <a href="components-controls.html">Controls</a>
         <a href="components-switch.html">Switch</a>
         <a href="components-checkbox.html">Checkbox</a>
-        <a href="components-radio.html">Radio</a>
+        <a class="active" href="components-radio.html">Radio</a>
         <a href="components-segmented-control.html">Segmented control</a>
         <a href="components-tabs.html">Tabs</a>
         <a href="components-disclosure.html">Disclosure</a>
@@ -104,7 +104,7 @@
         <a href="components-examples.html">Examples</a>
         <a href="components-feedback.html">Feedback</a>
         <a href="components-toast.html">Toast</a>
-        <a class="active" href="components-banner.html">Banner</a>
+        <a href="components-banner.html">Banner</a>
         <a href="components-overlays.html">Overlays</a>
         <a href="components-navigation.html">Navigation</a>
         <a href="components-breadcrumb.html">Breadcrumb</a>
@@ -118,40 +118,40 @@
       <main>
 <section class="page-header component-page-header">
   <p class="eyebrow">Components</p>
-  <h1>Banner</h1>
-  <p class="lede">페이지 안에 머무르는 inline 메시지로 info, success, warning, error 톤과 선택적 action을 전달하는 기준입니다.</p>
+  <h1>Radio</h1>
+  <p class="lede">여러 옵션 중 정확히 하나만 고르는 단일 선택 그룹 기준입니다.</p>
 </section>
 
 <section id="component-standard" class="section surface-band">
   <div class="section-heading">
     <p class="eyebrow">Component standard</p>
-    <h2>Banner 문서의 공통 구조.</h2>
+    <h2>Radio 문서의 공통 구조.</h2>
   </div>
   <div class="component-doc-grid">
     <article id="doc-anatomy" class="component-doc-card">
       <strong>Anatomy</strong>
-      <p>Icon, tone, title, message, action, dismiss 자리를 나눕니다.</p>
-      <ul><li>tone icon</li><li>title</li><li>message</li><li>action</li><li>dismiss</li></ul>
+      <p>Fieldset, legend, radio circle, dot, label을 나눕니다.</p>
+      <ul><li>fieldset</li><li>legend</li><li>radio circle</li><li>selected dot</li><li>label</li></ul>
     </article>
     <article id="doc-variants" class="component-doc-card">
       <strong>Variants</strong>
-      <p>Info, success, warning, error 톤과 dismissible/persistent 구성을 구분합니다.</p>
+      <p>Vertical group, horizontal group, with description를 구분합니다.</p>
     </article>
     <article id="doc-states" class="component-doc-card">
       <strong>States</strong>
-      <p>Info, success, warning, error, dismissed 상태를 비교합니다.</p>
+      <p>Unselected, selected, focus, disabled, error 상태를 비교합니다.</p>
     </article>
     <article id="doc-accessibility" class="component-doc-card">
       <strong>Accessibility</strong>
-      <p>낮은 심각도는 role=status, error는 role=alert로 알리고 색상에만 의존하지 않습니다.</p>
+      <p>Native radio, fieldset/legend group label, arrow key 이동, 그룹당 단일 선택을 지킵니다.</p>
     </article>
     <article id="doc-examples" class="component-doc-card">
       <strong>Examples</strong>
-      <p>동기화 안내, 승인 마감, 권한 제한, 시스템 오류 복구에 사용합니다.</p>
+      <p>Approval routing, review density, export format 선택에 사용합니다.</p>
     </article>
     <article id="doc-qa" class="component-doc-card">
       <strong>QA</strong>
-      <p>긴 메시지 wrap, dark contrast, reduced motion, dismiss 포커스 복귀를 확인합니다.</p>
+      <p>긴 label, disabled option, focus ring, dark contrast를 확인합니다.</p>
     </article>
   </div>
 </section>
@@ -159,77 +159,59 @@
 <section id="component-template-map" class="section">
   <div class="section-heading">
     <p class="eyebrow">Document template</p>
-    <h2>Banner 문서는 톤과 dismiss 여부, live region을 먼저 정합니다.</h2>
+    <h2>Radio 문서는 단일 선택과 그룹 라벨을 먼저 고정합니다.</h2>
   </div>
   <div class="component-template-map">
     <article>
       <span>01</span>
       <strong>Overview</strong>
-      <p>어떤 범위의 상태 메시지인지, 지속인지 닫을 수 있는지 정합니다.</p>
+      <p>정확히 하나만 선택하는 상호 배타 옵션인지 확인합니다.</p>
     </article>
     <article>
       <span>02</span>
       <strong>Anatomy</strong>
-      <p>Icon, tone, title, message, action, dismiss를 분리합니다.</p>
+      <p>Fieldset, legend, radio circle, dot, label을 분리합니다.</p>
     </article>
     <article>
       <span>03</span>
       <strong>Variants</strong>
-      <p>Info, success, warning, error 톤을 구분합니다.</p>
+      <p>Vertical, horizontal, description 포함을 구분합니다.</p>
     </article>
     <article>
       <span>04</span>
       <strong>States</strong>
-      <p>Persistent, dismissible, dismissed 상태를 비교합니다.</p>
+      <p>Unselected, selected, focus, disabled를 비교합니다.</p>
     </article>
     <article>
       <span>05</span>
       <strong>Accessibility</strong>
-      <p>role status와 role alert, 색상 비의존, dismiss label을 확인합니다.</p>
+      <p>Native radio, group label, arrow key 이동을 확인합니다.</p>
     </article>
     <article>
       <span>06</span>
       <strong>QA</strong>
-      <p>긴 메시지, dark mode, reduced motion, 포커스 복귀를 검증합니다.</p>
+      <p>긴 label, disabled option, focus ring 대비를 검증합니다.</p>
     </article>
   </div>
 </section>
 
 <section id="context-example" class="section surface-band">
-  <div class="section-heading"><p class="eyebrow">Context example</p><h2>Banner는 화면 흐름을 막지 않고 맥락 안에서 상태와 다음 action을 알립니다.</h2></div>
+  <div class="section-heading"><p class="eyebrow">Context example</p><h2>Radio는 상호 배타적인 선택지를 모두 보여줍니다.</h2></div>
   <div class="component-context-example">
     <div class="context-preview">
-      <div class="banner-demo-grid">
-        <div class="banner-sample info" role="status">
-          <span class="banner-glyph" aria-hidden="true">i</span>
-          <div class="banner-copy">
-            <strong>예약된 동기화</strong>
-            <p>다음 데이터 동기화는 18:00에 시작됩니다.</p>
-          </div>
-          <div class="banner-tools">
-            <button class="button quiet small" type="button">일정 보기</button>
-            <button class="button quiet small" type="button" aria-label="배너 닫기">닫기</button>
-          </div>
-        </div>
-        <div class="banner-sample warning" role="status">
-          <span class="banner-glyph" aria-hidden="true">!</span>
-          <div class="banner-copy">
-            <strong>승인 마감 임박</strong>
-            <p>2건의 검토가 오늘 마감입니다.</p>
-          </div>
-          <div class="banner-tools">
-            <button class="button quiet small" type="button">검토 열기</button>
-          </div>
-        </div>
-      </div>
+      <fieldset class="radio-list">
+        <legend>Approval routing</legend>
+        <label><input type="radio" name="context-approval-routing" checked> Auto-route to owner</label>
+        <label><input type="radio" name="context-approval-routing"> Manual reviewer pick</label>
+        <label><input type="radio" name="context-approval-routing"> Hold for compliance</label>
+      </fieldset>
     </div>
-    <p>React: <code>&lt;Banner tone="warning" title="승인 마감 임박" onDismiss={fn} /&gt;</code> — <code>tone</code>(info/success/warning/error)이 <code>role</code>(error → <code>alert</code>, 그 외 <code>status</code>)과 색을 결정하고 <code>title</code>·children·<code>icon</code>·<code>action</code>·<code>onDismiss</code>(<code>dismissLabel</code>) 슬롯을 받습니다. 색만으로 톤을 전달하지 않도록 항상 text를 함께 렌더합니다.</p>
     <div class="context-rules">
       <strong>Review checklist</strong>
       <ul>
-        <li>톤은 색상만이 아니라 아이콘과 text로 함께 구분합니다.</li>
-        <li>error와 같이 즉시 알릴 메시지는 role=alert로 전달합니다.</li>
-        <li>닫을 수 있는 banner는 dismiss action에 aria-label을 둡니다.</li>
+        <li>Radio는 정확히 하나만 선택할 때 사용합니다.</li>
+        <li>옵션이 모두 한눈에 보여야 할 때만 씁니다.</li>
+        <li>fieldset/legend로 그룹 라벨을 항상 제공합니다.</li>
       </ul>
     </div>
   </div>
@@ -238,41 +220,41 @@
 <section id="token-contract" class="section">
   <div class="section-heading">
     <p class="eyebrow">Token contract</p>
-    <h2>Banner는 surface 위에 semantic accent를 낮은 대비로 사용합니다.</h2>
+    <h2>Radio는 control height와 primary accent를 사용합니다.</h2>
   </div>
   <div class="component-token-contract">
     <div class="token-contract-row header"><span>Decision</span><span>Token</span><span>Rule</span></div>
-    <div class="token-contract-row"><span><strong>Text</strong></span><span>{typography.body-sm}</span><span>메시지는 body small을 기준으로 둡니다.</span></div>
-    <div class="token-contract-row"><span><strong>Info</strong></span><span>{colors.primary-soft}</span><span>정보 톤은 primary soft 배경을 사용합니다.</span></div>
-    <div class="token-contract-row"><span><strong>Warning</strong></span><span>{colors.accent-amber}</span><span>주의 톤은 amber 강조와 원인 text를 함께 둡니다.</span></div>
-    <div class="token-contract-row"><span><strong>Error</strong></span><span>{colors.accent-coral}</span><span>오류 톤은 coral 강조와 복구 action을 함께 둡니다.</span></div>
+    <div class="token-contract-row"><span><strong>Size</strong></span><span>{sizing.control-height}</span><span>Radio 정렬 높이는 control-height 체계에 맞춥니다.</span></div>
+    <div class="token-contract-row"><span><strong>Selected</strong></span><span>{colors.primary}</span><span>선택된 radio는 primary border와 dot으로 표시합니다.</span></div>
+    <div class="token-contract-row"><span><strong>Unselected</strong></span><span>{colors.hairline}</span><span>선택되지 않은 circle은 hairline border를 씁니다.</span></div>
+    <div class="token-contract-row"><span><strong>Surface</strong></span><span>{colors.surface-2}</span><span>Radio circle 배경은 surface-2를 씁니다.</span></div>
   </div>
 </section>
 
 <section id="component-api-contract" class="section surface-band">
   <div class="section-heading">
     <p class="eyebrow">API contract</p>
-    <h2>Banner API 구현 계약.</h2>
+    <h2>Radio API 구현 계약.</h2>
   </div>
   <div class="component-api-contract">
     <div class="component-api-row header"><span>Type</span><span>Contract</span></div>
-    <div class="component-api-row"><span><strong>Props</strong></span><span>tone, title, message, action, dismissible</span></div>
-    <div class="component-api-row"><span><strong>States</strong></span><span>info, success, warning, error, dismissed</span></div>
-    <div class="component-api-row"><span><strong>A11y</strong></span><span>role status for low severity, role alert for error, severity not color-only, dismiss button aria-label</span></div>
+    <div class="component-api-row"><span><strong>Props</strong></span><span>label, options, value, onChange, orientation, disabled</span></div>
+    <div class="component-api-row"><span><strong>States</strong></span><span>unselected, selected, focus, disabled, error</span></div>
+    <div class="component-api-row"><span><strong>A11y</strong></span><span>native radio input, fieldset/legend group label, arrow key navigation, single selection per group</span></div>
   </div>
 </section>
 
 <section id="component-token-binding" class="section">
   <div class="section-heading">
     <p class="eyebrow">Token usage</p>
-    <h2>Banner tokens를 실제 token path에 연결합니다.</h2>
+    <h2>Radio tokens를 실제 token path에 연결합니다.</h2>
   </div>
   <div class="component-token-binding">
-    <span>{typography.body-sm}</span>
-    <span>{colors.primary-soft}</span>
-    <span>{colors.accent-amber}</span>
-    <span>{colors.accent-coral}</span>
+    <span>{sizing.control-height}</span>
+    <span>{colors.primary}</span>
+    <span>{colors.surface-2}</span>
     <span>{colors.hairline}</span>
+    <span>{colors.primary-soft}</span>
   </div>
 </section>
 
@@ -284,62 +266,41 @@
   <div class="component-usage-guidance">
     <article>
       <strong>Use</strong>
-      <p>페이지나 섹션 범위의 상태, 안내, 복구 메시지를 흐름 안에 계속 남겨야 할 때 씁니다.</p>
+      <p>상호 배타적인 옵션 2~5개를 모두 화면에 보여주고 정확히 하나만 선택하게 할 때 씁니다.</p>
     </article>
     <article>
       <strong>Avoid</strong>
-      <p>색상만으로 심각도를 전달하거나 짧게 사라져야 할 알림을 banner로 고정하지 않습니다.</p>
+      <p>옵션이 많아 목록이 길어지거나 다중 선택이 필요할 때는 radio를 쓰지 않습니다.</p>
     </article>
     <article>
       <strong>Replace with</strong>
-      <p>잠깐 뜨는 결과는 toast, 빈 화면 안내는 empty state, 필드 오류는 input helper를 씁니다.</p>
+      <p>옵션이 많으면 select 또는 combobox, 다중 선택은 checkbox, 즉시 적용 on/off는 switch, 모드 전환은 segmented control 또는 tabs를 씁니다.</p>
     </article>
   </div>
 </section>
 
-<section id="banner-demo" class="section">
-  <div class="section-heading"><p class="eyebrow">Banner</p><h2>네 가지 톤을 같은 구조로 정렬하고 심각도에 맞는 live region을 사용합니다.</h2></div>
-  <div class="banner-demo-grid">
-    <div class="banner-sample info" role="status">
-      <span class="banner-glyph" aria-hidden="true">i</span>
-      <div class="banner-copy">
-        <strong>Info</strong>
-        <p>진행에 영향이 없는 안내는 role=status로 조용히 전달합니다.</p>
-      </div>
-      <div class="banner-tools">
-        <button class="button quiet small" type="button" aria-label="info 배너 닫기">닫기</button>
-      </div>
-    </div>
-    <div class="banner-sample success" role="status">
-      <span class="banner-glyph" aria-hidden="true">v</span>
-      <div class="banner-copy">
-        <strong>Success</strong>
-        <p>완료 결과는 mint 톤과 완료 text를 함께 보여줍니다.</p>
-      </div>
-      <div class="banner-tools">
-        <button class="button quiet small" type="button" aria-label="success 배너 닫기">닫기</button>
-      </div>
-    </div>
-    <div class="banner-sample warning" role="status">
-      <span class="banner-glyph" aria-hidden="true">!</span>
-      <div class="banner-copy">
-        <strong>Warning</strong>
-        <p>대기나 주의가 필요한 상태는 원인 text를 함께 둡니다.</p>
-      </div>
-      <div class="banner-tools">
-        <button class="button quiet small" type="button">자세히</button>
-      </div>
-    </div>
-    <div class="banner-sample error" role="alert">
-      <span class="banner-glyph" aria-hidden="true">x</span>
-      <div class="banner-copy">
-        <strong>Error</strong>
-        <p>차단 상태는 role=alert로 즉시 알리고 복구 action을 제공합니다.</p>
-      </div>
-      <div class="banner-tools">
-        <button class="button quiet small" type="button">다시 시도</button>
-      </div>
-    </div>
+<section id="radio" class="section">
+  <div class="section-heading"><p class="eyebrow">Radio</p><h2>그룹 안에서 하나의 옵션만 선택합니다.</h2></div>
+  <div class="control-matrix">
+    <article class="control-group">
+      <p class="eyebrow">Radio group</p>
+      <fieldset class="radio-list">
+        <legend>Approval routing</legend>
+        <label><input type="radio" name="approval-routing" checked> Auto-route to owner</label>
+        <label><input type="radio" name="approval-routing"> Manual reviewer pick</label>
+        <label><input type="radio" name="approval-routing"> Hold for compliance</label>
+      </fieldset>
+      <p>여러 옵션 중 정확히 하나만 선택하고 옵션이 모두 보여야 할 때 사용합니다. React: <code>&lt;RadioGroup label="Approval routing" options={[...]} value onChange /&gt;</code> — data-driven options에 fieldset/legend 그룹 라벨, <code>orientation</code> vertical/horizontal을 지원합니다.</p>
+    </article>
+    <article class="control-group">
+      <p class="eyebrow">Horizontal</p>
+      <fieldset class="radio-list">
+        <legend>Review density</legend>
+        <label><input type="radio" name="review-density" checked> Comfortable</label>
+        <label><input type="radio" name="review-density"> Compact</label>
+      </fieldset>
+      <p>옵션이 두세 개로 짧으면 <code>orientation="horizontal"</code>로 한 줄에 배치합니다. 네이티브 <code>&lt;input type="radio"&gt;</code>와 화살표 키 이동을 그대로 사용합니다.</p>
+    </article>
   </div>
 </section>
       </main>

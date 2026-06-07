@@ -25,6 +25,22 @@
       "label": "Control tokens",
       "tokens": ["sizing.control-height", "density.compact", "colors.primary-soft", "colors.primary"]
     },
+    "switch": {
+      "label": "Switch tokens",
+      "tokens": ["sizing.control-height", "colors.primary", "colors.surface-2", "colors.hairline", "motion.duration.base"]
+    },
+    "checkbox": {
+      "label": "Checkbox tokens",
+      "tokens": ["radius.sm", "colors.primary", "colors.surface-raised", "colors.hairline", "colors.inverse-ink"]
+    },
+    "radio": {
+      "label": "Radio tokens",
+      "tokens": ["sizing.control-height", "colors.primary", "colors.surface-2", "colors.hairline", "colors.primary-soft"]
+    },
+    "segmented-control": {
+      "label": "Segmented control tokens",
+      "tokens": ["sizing.control-height", "density.compact", "colors.primary-soft", "colors.primary", "colors.hairline"]
+    },
     "tabs": {
       "label": "Tab tokens",
       "tokens": ["typography.body-emphasis", "colors.primary", "colors.surface-raised", "colors.hairline"]

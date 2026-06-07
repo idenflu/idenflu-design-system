@@ -1,0 +1,64 @@
+<section class="page-header component-page-header">
+  <p class="eyebrow">Components</p>
+  <h1>Radio</h1>
+  <p class="lede">여러 옵션 중 정확히 하나만 고르는 단일 선택 그룹 기준입니다.</p>
+</section>
+
+<!-- partial:component-standard -->
+
+<!-- partial:component-template-map -->
+
+<section id="context-example" class="section surface-band">
+  <div class="section-heading"><p class="eyebrow">Context example</p><h2>Radio는 상호 배타적인 선택지를 모두 보여줍니다.</h2></div>
+  <div class="component-context-example">
+    <div class="context-preview">
+      <fieldset class="radio-list">
+        <legend>Approval routing</legend>
+        <label><input type="radio" name="context-approval-routing" checked> Auto-route to owner</label>
+        <label><input type="radio" name="context-approval-routing"> Manual reviewer pick</label>
+        <label><input type="radio" name="context-approval-routing"> Hold for compliance</label>
+      </fieldset>
+    </div>
+    <div class="context-rules">
+      <strong>Review checklist</strong>
+      <ul>
+        <li>Radio는 정확히 하나만 선택할 때 사용합니다.</li>
+        <li>옵션이 모두 한눈에 보여야 할 때만 씁니다.</li>
+        <li>fieldset/legend로 그룹 라벨을 항상 제공합니다.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- partial:component-token-contract -->
+
+<!-- partial:component-api-contract -->
+
+<!-- partial:component-token-binding -->
+
+<!-- partial:component-usage-guidance -->
+
+<section id="radio" class="section">
+  <div class="section-heading"><p class="eyebrow">Radio</p><h2>그룹 안에서 하나의 옵션만 선택합니다.</h2></div>
+  <div class="control-matrix">
+    <article class="control-group">
+      <p class="eyebrow">Radio group</p>
+      <fieldset class="radio-list">
+        <legend>Approval routing</legend>
+        <label><input type="radio" name="approval-routing" checked> Auto-route to owner</label>
+        <label><input type="radio" name="approval-routing"> Manual reviewer pick</label>
+        <label><input type="radio" name="approval-routing"> Hold for compliance</label>
+      </fieldset>
+      <p>여러 옵션 중 정확히 하나만 선택하고 옵션이 모두 보여야 할 때 사용합니다. React: <code>&lt;RadioGroup label="Approval routing" options={[...]} value onChange /&gt;</code> — data-driven options에 fieldset/legend 그룹 라벨, <code>orientation</code> vertical/horizontal을 지원합니다.</p>
+    </article>
+    <article class="control-group">
+      <p class="eyebrow">Horizontal</p>
+      <fieldset class="radio-list">
+        <legend>Review density</legend>
+        <label><input type="radio" name="review-density" checked> Comfortable</label>
+        <label><input type="radio" name="review-density"> Compact</label>
+      </fieldset>
+      <p>옵션이 두세 개로 짧으면 <code>orientation="horizontal"</code>로 한 줄에 배치합니다. 네이티브 <code>&lt;input type="radio"&gt;</code>와 화살표 키 이동을 그대로 사용합니다.</p>
+    </article>
+  </div>
+</section>

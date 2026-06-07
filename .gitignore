@@ -2,3 +2,6 @@
 /.idea/
 /.claude/
 /.npm-cache/
+node_modules/
+dist/
+.vite/

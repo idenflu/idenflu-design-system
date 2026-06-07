@@ -222,6 +222,11 @@ code {
   color: var(--ink);
 }
 
+.theme-toggle__icon {
+  width: 18px;
+  height: 18px;
+}
+
 .doc-layout {
   display: grid;
   grid-template-columns: 264px minmax(0, 1fr);

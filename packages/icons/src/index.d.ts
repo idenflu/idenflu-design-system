@@ -14,6 +14,8 @@ export declare const iconNames: readonly [
   "icon-alert",
   "icon-settings",
   "icon-lock",
+  "icon-sun",
+  "icon-moon",
 ];
 
 export type IconName = (typeof iconNames)[number];

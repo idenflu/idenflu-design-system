@@ -24,7 +24,8 @@ const applyTheme = (theme) => {
   root.dataset.theme = activeTheme;
   themeButtons.forEach((button) => {
     const isDark = activeTheme === "dark";
-    button.textContent = isDark ? "Light" : "Dark";
+    const use = button.querySelector("use");
+    if (use) use.setAttribute("href", isDark ? "icons.svg#icon-sun" : "icons.svg#icon-moon");
     button.setAttribute("aria-pressed", String(isDark));
     button.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
   });

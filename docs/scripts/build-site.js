@@ -127,7 +127,7 @@ ${renderStyleLinks(config)}
     <header class="topbar">
       <a class="brand" href="index.html"><span class="brand-mark"></span><span>idenflu</span></a>
 ${renderTopnav(config, page.activeTopnav)}
-      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode" aria-pressed="false">Dark</button>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode" aria-pressed="false"><svg class="theme-toggle__icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-moon"></use></svg></button>
       <div class="topbar-meta">${escapeHtml(page.meta)}</div>
     </header>
 

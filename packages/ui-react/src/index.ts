@@ -19,8 +19,8 @@ export type { ChipProps, ChipTone } from "./components/Chip";
 export { Card, CardBody, CardFooter, CardHeader } from "./components/Card";
 export type { CardProps, CardState } from "./components/Card";
 
-export { Table, TableEmptyRow } from "./components/Table";
-export type { TableDensity, TableEmptyRowProps, TableProps } from "./components/Table";
+export { Table, TableBody, TableCell, TableEmptyRow, TableHead, TableHeaderCell, TableRow } from "./components/Table";
+export type { TableDensity, TableEmptyRowProps, TableHeaderCellProps, TableProps } from "./components/Table";
 
 export { EmptyState } from "./components/EmptyState";
 export type { EmptyStateProps, EmptyStateTone } from "./components/EmptyState";

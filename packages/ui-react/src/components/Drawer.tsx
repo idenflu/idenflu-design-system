@@ -43,6 +43,7 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
     const headingId = React.useId();
     const descriptionId = React.useId();
     const panelRef = React.useRef<HTMLDivElement | null>(null);
+    const restoreFocusRef = React.useRef<HTMLElement | null>(null);
 
     const setPanelRef = React.useCallback(
       (node: HTMLDivElement | null) => {
@@ -63,7 +64,10 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
     }, [open, closeOnEsc, onClose]);
 
     React.useEffect(() => {
-      if (open) panelRef.current?.focus();
+      if (!open) return;
+      restoreFocusRef.current = document.activeElement as HTMLElement | null;
+      panelRef.current?.focus();
+      return () => restoreFocusRef.current?.focus?.();
     }, [open]);
 
     if (!open) return null;

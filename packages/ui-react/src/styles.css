@@ -220,7 +220,7 @@
   color: var(--if-color-primary);
 }
 
-.if-icon-button--ghost:not(:disabled):hover {
+.if-icon-button--ghost:not(:disabled):not(.is-selected):hover {
   border-color: transparent;
   background: transparent;
   color: var(--if-color-primary-hover);
@@ -235,7 +235,7 @@
   color: var(--if-color-error);
 }
 
-.if-icon-button--danger:hover {
+.if-icon-button--danger:not(.is-selected):hover {
   border-color: var(--if-color-error);
   background: var(--if-color-error-soft);
   color: var(--if-color-error);
@@ -1119,8 +1119,9 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .if-loading-state__spinner {
-    animation-duration: 1.6s;
+  .if-loading-state__spinner,
+  .if-button.is-loading::after {
+    animation: none;
   }
 }
 
@@ -1173,10 +1174,6 @@
   border-color: var(--if-color-error);
 }
 
-.if-error-state.is-disabled {
-  opacity: 0.6;
-  pointer-events: none;
-}
 
 .if-switch-field {
   display: flex;
@@ -1245,7 +1242,7 @@
   border-color: var(--if-color-primary);
 }
 
-.if-switch__control:checked:hover {
+.if-switch__control:checked:hover:not(:disabled) {
   background: var(--if-color-primary-hover);
   border-color: var(--if-color-primary-hover);
 }
@@ -1903,7 +1900,7 @@
   transition: color var(--if-duration-fast) ease, border-color var(--if-duration-fast) ease;
 }
 
-.if-tabs__tab:hover:not(:disabled) {
+.if-tabs__tab:hover:not(:disabled):not(.is-selected) {
   color: var(--if-color-ink);
 }
 

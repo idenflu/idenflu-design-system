@@ -83,6 +83,29 @@ export function CampaignForm() {
 - `Toolbar`, `ToolbarGroup`
 - `LoadingState`
 - `ErrorState`
+- `Switch`
+
+## Switch
+
+`Switch`는 즉시 적용되는 on/off 설정에 씁니다(일회성 명령은 `Button`). 네이티브 `<input type="checkbox" role="switch">`를 pill 형태로 스타일링해 키보드·focus·폼 제출이 기본으로 동작합니다.
+
+```tsx
+import { Switch } from "@idenflu/ui-react";
+
+// controlled
+<Switch
+  label="Auto-assign reviewers"
+  description="Applies immediately to new submissions"
+  checked={autoAssign}
+  onChange={(event) => setAutoAssign(event.target.checked)}
+/>
+
+// uncontrolled, small
+<Switch label="Notify creator" defaultChecked size="small" />
+
+// label 없이 쓸 때(예: 테이블 셀) — aria-label 필수
+<Switch aria-label="Enable row" checked={enabled} onChange={onToggle} />
+```
 
 ## Tier-2 components
 

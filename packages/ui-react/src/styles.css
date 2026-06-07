@@ -1137,3 +1137,121 @@
   opacity: 0.6;
   pointer-events: none;
 }
+
+.if-switch-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--if-space-xs);
+}
+
+.if-switch {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  font-family: var(--if-font-family);
+  gap: var(--if-space-md);
+  justify-content: space-between;
+}
+
+.if-switch__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--if-space-xxs);
+}
+
+.if-switch__label {
+  color: var(--if-color-ink);
+  font-size: var(--if-font-size-body-sm);
+  font-weight: var(--if-font-weight-emphasis);
+}
+
+.if-switch__description {
+  color: var(--if-color-ink-muted);
+  font-size: var(--if-font-size-caption);
+  line-height: var(--if-line-height-compact);
+}
+
+.if-switch__control {
+  appearance: none;
+  -webkit-appearance: none;
+  background: var(--if-color-surface-2);
+  border: 1px solid var(--if-color-hairline-strong);
+  border-radius: 999px;
+  cursor: pointer;
+  flex: 0 0 auto;
+  height: 22px;
+  margin: 0;
+  position: relative;
+  transition: background-color 120ms ease, border-color 120ms ease;
+  width: 40px;
+}
+
+.if-switch__control::before {
+  background: var(--if-color-surface-raised);
+  border-radius: 50%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  content: "";
+  height: 18px;
+  left: 2px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: left 120ms ease;
+  width: 18px;
+}
+
+.if-switch__control:checked {
+  background: var(--if-color-primary);
+  border-color: var(--if-color-primary);
+}
+
+.if-switch__control:checked:hover {
+  background: var(--if-color-primary-hover);
+  border-color: var(--if-color-primary-hover);
+}
+
+.if-switch__control:checked::before {
+  left: calc(100% - 18px - 2px);
+}
+
+.if-switch__control:focus-visible {
+  box-shadow: 0 0 0 3px var(--if-focus-ring);
+  outline: 0;
+}
+
+.if-switch.is-disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.if-switch.is-disabled .if-switch__control {
+  cursor: not-allowed;
+}
+
+.if-switch--small .if-switch__control {
+  height: 18px;
+  width: 32px;
+}
+
+.if-switch--small .if-switch__control::before {
+  height: 14px;
+  width: 14px;
+}
+
+.if-switch--small .if-switch__control:checked::before {
+  left: calc(100% - 14px - 2px);
+}
+
+.if-switch__helper {
+  color: var(--if-color-ink-muted);
+  font-family: var(--if-font-family);
+  font-size: var(--if-font-size-caption);
+  line-height: var(--if-line-height-compact);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .if-switch__control,
+  .if-switch__control::before {
+    transition: none;
+  }
+}

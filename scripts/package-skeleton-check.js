@@ -130,6 +130,7 @@ if (exists("package.json")) {
   "packages/ui-react/src/components/Toolbar.tsx",
   "packages/ui-react/src/components/LoadingState.tsx",
   "packages/ui-react/src/components/ErrorState.tsx",
+  "packages/ui-react/src/components/Switch.tsx",
 ].forEach(requireFile);
 
 requireIncludes("packages/ui-react/src/index.ts", [
@@ -148,6 +149,22 @@ requireIncludes("packages/ui-react/src/index.ts", [
   "Toolbar",
   "LoadingState",
   "ErrorState",
+  "Switch",
+]);
+
+requireIncludes("packages/ui-react/src/components/Switch.tsx", [
+  "export type SwitchSize = \"small\" | \"medium\"",
+  "role=\"switch\"",
+  "if-switch__control",
+  "aria-describedby={describedBy}",
+  "Switch.displayName",
+]);
+
+requireIncludes("packages/ui-react/src/styles.css", [
+  ".if-switch",
+  ".if-switch__control",
+  ".if-switch__control:checked",
+  ".if-switch--small",
 ]);
 
 requireIncludes("packages/ui-react/src/components/Button.tsx", [

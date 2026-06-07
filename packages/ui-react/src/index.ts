@@ -39,3 +39,6 @@ export type { LoadingStateProps, LoadingStateSize } from "./components/LoadingSt
 
 export { ErrorState } from "./components/ErrorState";
 export type { ErrorStateProps, ErrorStateTone } from "./components/ErrorState";
+
+export { Switch } from "./components/Switch";
+export type { SwitchProps, SwitchSize } from "./components/Switch";

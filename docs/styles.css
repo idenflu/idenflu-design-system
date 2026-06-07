@@ -4335,8 +4335,45 @@ h3 {
 }
 
 .switch-row input {
-  width: 38px;
+  appearance: none;
+  -webkit-appearance: none;
+  position: relative;
+  width: 40px;
   height: 22px;
+  margin: 0;
+  border-radius: 999px;
+  border: 1px solid var(--hairline-strong);
+  background: var(--surface-2);
+  cursor: pointer;
+  transition: background-color 120ms ease, border-color 120ms ease;
+}
+
+.switch-row input::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 2px;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--surface-raised);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  transition: left 120ms ease;
+}
+
+.switch-row input:checked {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+.switch-row input:checked::before {
+  left: calc(100% - 18px - 2px);
+}
+
+.switch-row input:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
 }
 
 .checkbox-list {

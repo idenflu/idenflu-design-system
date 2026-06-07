@@ -11,10 +11,9 @@ export type DialogProps = React.HTMLAttributes<HTMLDivElement> & {
    * built-in close button. The dialog is fully controlled: closing the surface
    * is the consumer's responsibility (flip `open` in response to this).
    *
-   * Focus trapping and returning focus to the trigger are intentionally OUT OF
-   * SCOPE for this source-only, dependency-free component. Manage focus in the
-   * consuming application (e.g. focus the trigger again after `open` flips to
-   * `false`).
+   * On open the surface receives focus; on close focus returns to the element
+   * that was focused before opening. A full focus trap (cycling Tab within the
+   * surface) is left to the consuming application.
    */
   onClose?: () => void;
   /** Surface width preset. */
@@ -64,6 +63,36 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
     const titleId = title != null ? generatedTitleId : undefined;
     const labelledby = ariaLabelledby ?? titleId;
 
+    const surfaceRef = React.useRef<HTMLDivElement | null>(null);
+    const restoreFocusRef = React.useRef<HTMLElement | null>(null);
+
+    const setSurfaceRef = React.useCallback(
+      (node: HTMLDivElement | null) => {
+        surfaceRef.current = node;
+        if (typeof ref === "function") ref(node);
+        else if (ref) ref.current = node;
+      },
+      [ref],
+    );
+
+    // Escape closes regardless of where focus sits (document-level), mirroring Drawer.
+    React.useEffect(() => {
+      if (!open || !dismissOnEscape) return;
+      const onKeyDown = (event: KeyboardEvent) => {
+        if (event.key === "Escape") onClose?.();
+      };
+      document.addEventListener("keydown", onKeyDown);
+      return () => document.removeEventListener("keydown", onKeyDown);
+    }, [open, dismissOnEscape, onClose]);
+
+    // Move focus into the surface on open and restore it to the trigger on close.
+    React.useEffect(() => {
+      if (!open) return;
+      restoreFocusRef.current = document.activeElement as HTMLElement | null;
+      surfaceRef.current?.focus();
+      return () => restoreFocusRef.current?.focus?.();
+    }, [open]);
+
     if (!open) {
       return null;
     }
@@ -74,18 +103,12 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
       }
     };
 
-    const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-      if (dismissOnEscape && event.key === "Escape") {
-        event.stopPropagation();
-        onClose?.();
-      }
-    };
-
     return (
-      <div className="if-dialog__backdrop" onClick={handleBackdropClick} onKeyDown={handleKeyDown}>
+      <div className="if-dialog__backdrop" onClick={handleBackdropClick}>
         <div
-          ref={ref}
+          ref={setSurfaceRef}
           role="dialog"
+          tabIndex={-1}
           aria-modal="true"
           aria-label={labelledby ? undefined : label}
           aria-labelledby={labelledby}

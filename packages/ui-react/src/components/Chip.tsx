@@ -35,7 +35,6 @@ export const Chip = ({
 
   const body = (
     <>
-      {selected ? <span className="if-chip__check" aria-hidden="true">✓</span> : null}
       <span className="if-chip__label">{children}</span>
       {onRemove ? (
         <button

@@ -387,7 +387,7 @@ requireIncludes("packages/ui-react/src/styles.css", [
   ".if-table",
   ".if-empty-state",
   "--if-color-primary",
-  "font-weight: 350",
+  "font-weight: 450",
   ".if-button--primary:hover",
   ".if-button--secondary:hover",
   "var(--if-color-inverse-canvas)",

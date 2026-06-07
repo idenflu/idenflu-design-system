@@ -52,8 +52,8 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
         return index;
       };
       let target: number | null = null;
-      if (event.key === "ArrowRight") target = step(1);
-      else if (event.key === "ArrowLeft") target = step(-1);
+      if (event.key === "ArrowRight" || event.key === "ArrowDown") target = step(1);
+      else if (event.key === "ArrowLeft" || event.key === "ArrowUp") target = step(-1);
       else if (event.key === "Home") target = tabs.findIndex((tab) => !tab.disabled);
       else if (event.key === "End") {
         for (let i = count - 1; i >= 0; i -= 1) {

@@ -165,9 +165,9 @@
     },
     "date-time": {
       "label": "Date Time API",
-      "props": ["value", "timezone", "range", "min date", "validation"],
+      "props": ["value", "range", "min date", "max date", "weekStartsOn", "validation"],
       "states": ["empty", "selected", "range", "disabled date", "invalid", "readonly"],
-      "accessibility": ["visible label", "timezone text", "aria-invalid", "keyboard date navigation"]
+      "accessibility": ["visible label", "role=dialog", "role=grid", "aria-invalid", "keyboard date navigation"]
     },
     "stepper": {
       "label": "Stepper API",

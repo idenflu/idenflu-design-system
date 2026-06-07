@@ -131,6 +131,9 @@ if (exists("package.json")) {
   "packages/ui-react/src/components/LoadingState.tsx",
   "packages/ui-react/src/components/ErrorState.tsx",
   "packages/ui-react/src/components/Switch.tsx",
+  "packages/ui-react/src/components/Checkbox.tsx",
+  "packages/ui-react/src/components/RadioGroup.tsx",
+  "packages/ui-react/src/components/SegmentedControl.tsx",
 ].forEach(requireFile);
 
 requireIncludes("packages/ui-react/src/index.ts", [
@@ -150,6 +153,42 @@ requireIncludes("packages/ui-react/src/index.ts", [
   "LoadingState",
   "ErrorState",
   "Switch",
+  "Checkbox",
+  "RadioGroup",
+  "SegmentedControl",
+]);
+
+requireIncludes("packages/ui-react/src/components/Checkbox.tsx", [
+  "export type CheckboxSize = \"small\" | \"medium\"",
+  "type=\"checkbox\"",
+  "if-checkbox__control",
+  "indeterminate",
+  "Checkbox.displayName",
+]);
+
+requireIncludes("packages/ui-react/src/components/RadioGroup.tsx", [
+  "export type RadioOption",
+  "type=\"radio\"",
+  "if-radio__control",
+  "<legend",
+  "RadioGroup.displayName",
+]);
+
+requireIncludes("packages/ui-react/src/components/SegmentedControl.tsx", [
+  "export type SegmentedOption",
+  "role=\"group\"",
+  "aria-pressed={selected}",
+  "if-segmented__option",
+  "SegmentedControl.displayName",
+]);
+
+requireIncludes("packages/ui-react/src/styles.css", [
+  ".if-checkbox",
+  ".if-checkbox__control:checked",
+  ".if-radio-group",
+  ".if-radio__control",
+  ".if-segmented",
+  ".if-segmented__option",
 ]);
 
 requireIncludes("packages/ui-react/src/components/Switch.tsx", [

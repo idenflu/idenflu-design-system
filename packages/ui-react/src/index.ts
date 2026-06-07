@@ -42,3 +42,12 @@ export type { ErrorStateProps, ErrorStateTone } from "./components/ErrorState";
 
 export { Switch } from "./components/Switch";
 export type { SwitchProps, SwitchSize } from "./components/Switch";
+
+export { Checkbox } from "./components/Checkbox";
+export type { CheckboxProps, CheckboxSize } from "./components/Checkbox";
+
+export { RadioGroup } from "./components/RadioGroup";
+export type { RadioGroupProps, RadioGroupSize, RadioOption } from "./components/RadioGroup";
+
+export { SegmentedControl } from "./components/SegmentedControl";
+export type { SegmentedControlProps, SegmentedControlSize, SegmentedOption } from "./components/SegmentedControl";

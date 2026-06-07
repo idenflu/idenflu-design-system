@@ -1255,3 +1255,285 @@
     transition: none;
   }
 }
+
+.if-checkbox-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--if-space-xs);
+}
+
+.if-checkbox {
+  align-items: flex-start;
+  cursor: pointer;
+  display: flex;
+  font-family: var(--if-font-family);
+  gap: var(--if-space-sm);
+}
+
+.if-checkbox__control {
+  appearance: none;
+  -webkit-appearance: none;
+  background: var(--if-color-surface-raised);
+  border: 1px solid var(--if-color-hairline-strong);
+  border-radius: var(--if-radius-sm);
+  cursor: pointer;
+  flex: 0 0 auto;
+  height: 18px;
+  margin: 0;
+  position: relative;
+  transition: background-color 120ms ease, border-color 120ms ease;
+  width: 18px;
+}
+
+.if-checkbox__control:checked,
+.if-checkbox__control:indeterminate {
+  background: var(--if-color-primary);
+  border-color: var(--if-color-primary);
+}
+
+.if-checkbox__control:checked::after {
+  border: solid var(--if-color-inverse-ink);
+  border-width: 0 2px 2px 0;
+  content: "";
+  height: 9px;
+  left: 50%;
+  position: absolute;
+  top: 46%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  width: 5px;
+}
+
+.if-checkbox__control:indeterminate::after {
+  background: var(--if-color-inverse-ink);
+  border-radius: 1px;
+  content: "";
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+}
+
+.if-checkbox__control:focus-visible {
+  box-shadow: 0 0 0 3px var(--if-focus-ring);
+  outline: 0;
+}
+
+.if-checkbox--small .if-checkbox__control {
+  height: 16px;
+  width: 16px;
+}
+
+.if-checkbox__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--if-space-xxs);
+}
+
+.if-checkbox__label {
+  color: var(--if-color-ink);
+  font-size: var(--if-font-size-body-sm);
+  line-height: var(--if-line-height-compact);
+}
+
+.if-checkbox__description {
+  color: var(--if-color-ink-muted);
+  font-size: var(--if-font-size-caption);
+  line-height: var(--if-line-height-compact);
+}
+
+.if-checkbox.is-disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.if-checkbox.is-disabled .if-checkbox__control {
+  cursor: not-allowed;
+}
+
+.if-checkbox__helper {
+  color: var(--if-color-ink-muted);
+  font-family: var(--if-font-family);
+  font-size: var(--if-font-size-caption);
+  line-height: var(--if-line-height-compact);
+}
+
+.if-radio-group {
+  border: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--if-space-sm);
+  margin: 0;
+  min-inline-size: 0;
+  padding: 0;
+}
+
+.if-radio-group__label {
+  color: var(--if-color-ink);
+  font-family: var(--if-font-family);
+  font-size: var(--if-font-size-body-sm);
+  font-weight: var(--if-font-weight-emphasis);
+  padding: 0;
+}
+
+.if-radio-group__description {
+  color: var(--if-color-ink-muted);
+  font-size: var(--if-font-size-caption);
+  line-height: var(--if-line-height-compact);
+  margin: 0;
+}
+
+.if-radio-group__options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--if-space-sm);
+}
+
+.if-radio-group--horizontal .if-radio-group__options {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--if-space-lg);
+}
+
+.if-radio {
+  align-items: flex-start;
+  cursor: pointer;
+  display: flex;
+  font-family: var(--if-font-family);
+  gap: var(--if-space-sm);
+}
+
+.if-radio__control {
+  appearance: none;
+  -webkit-appearance: none;
+  background: var(--if-color-surface-raised);
+  border: 1px solid var(--if-color-hairline-strong);
+  border-radius: 50%;
+  cursor: pointer;
+  flex: 0 0 auto;
+  height: 18px;
+  margin: 0;
+  position: relative;
+  transition: border-color 120ms ease;
+  width: 18px;
+}
+
+.if-radio__control:checked {
+  border-color: var(--if-color-primary);
+  border-width: 2px;
+}
+
+.if-radio__control:checked::after {
+  background: var(--if-color-primary);
+  border-radius: 50%;
+  content: "";
+  height: 8px;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+}
+
+.if-radio__control:focus-visible {
+  box-shadow: 0 0 0 3px var(--if-focus-ring);
+  outline: 0;
+}
+
+.if-radio-group--small .if-radio__control {
+  height: 16px;
+  width: 16px;
+}
+
+.if-radio__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--if-space-xxs);
+}
+
+.if-radio__label {
+  color: var(--if-color-ink);
+  font-size: var(--if-font-size-body-sm);
+  line-height: var(--if-line-height-compact);
+}
+
+.if-radio__description {
+  color: var(--if-color-ink-muted);
+  font-size: var(--if-font-size-caption);
+  line-height: var(--if-line-height-compact);
+}
+
+.if-radio.is-disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.if-radio.is-disabled .if-radio__control {
+  cursor: not-allowed;
+}
+
+.if-radio-group__helper {
+  color: var(--if-color-ink-muted);
+  font-family: var(--if-font-family);
+  font-size: var(--if-font-size-caption);
+  line-height: var(--if-line-height-compact);
+  margin: 0;
+}
+
+.if-segmented {
+  background: var(--if-color-surface-1);
+  border: 1px solid var(--if-color-hairline);
+  border-radius: var(--if-radius-md);
+  display: inline-flex;
+  gap: 2px;
+  max-width: 100%;
+  padding: 2px;
+  width: fit-content;
+}
+
+.if-segmented__option {
+  align-items: center;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--if-radius-sm);
+  color: var(--if-color-ink-muted);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: var(--if-font-family);
+  font-size: var(--if-font-size-body-sm);
+  gap: var(--if-space-xs);
+  justify-content: center;
+  min-height: var(--if-control-height-sm);
+  padding: 0 12px;
+  transition: background-color 120ms ease, color 120ms ease, border-color 120ms ease;
+}
+
+.if-segmented__option[aria-pressed="true"] {
+  background: var(--if-color-surface-raised);
+  border-color: var(--if-color-hairline);
+  color: var(--if-color-ink);
+}
+
+.if-segmented__option:focus-visible {
+  box-shadow: 0 0 0 3px var(--if-focus-ring);
+  outline: 0;
+}
+
+.if-segmented__option:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.if-segmented__icon {
+  align-items: center;
+  display: inline-flex;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .if-checkbox__control,
+  .if-radio__control,
+  .if-segmented__option {
+    transition: none;
+  }
+}

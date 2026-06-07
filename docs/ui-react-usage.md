@@ -84,6 +84,9 @@ export function CampaignForm() {
 - `LoadingState`
 - `ErrorState`
 - `Switch`
+- `Checkbox`
+- `RadioGroup`
+- `SegmentedControl`
 
 ## Switch
 
@@ -105,6 +108,47 @@ import { Switch } from "@idenflu/ui-react";
 
 // label 없이 쓸 때(예: 테이블 셀) — aria-label 필수
 <Switch aria-label="Enable row" checked={enabled} onChange={onToggle} />
+```
+
+## Controls family
+
+`Checkbox`/`RadioGroup`/`SegmentedControl`은 `Switch`와 함께 controls 패밀리를 이룹니다. Checkbox·RadioGroup은 네이티브 input 기반, SegmentedControl은 단일 선택 버튼 그룹입니다.
+
+```tsx
+import { Checkbox, RadioGroup, SegmentedControl } from "@idenflu/ui-react";
+
+// Checkbox — controlled, with indeterminate
+<Checkbox
+  label="Select all rows"
+  indeterminate={someSelected && !allSelected}
+  checked={allSelected}
+  onChange={(event) => toggleAll(event.target.checked)}
+/>
+
+// RadioGroup — data-driven, uncontrolled
+<RadioGroup
+  label="Review status"
+  name="review-status"
+  defaultValue="ready"
+  options={[
+    { value: "all", label: "All" },
+    { value: "risk", label: "Risk" },
+    { value: "ready", label: "Ready" },
+  ]}
+  onChange={(value) => setStatus(value)}
+/>
+
+// SegmentedControl — single-select, controlled
+<SegmentedControl
+  label="Time range"
+  value={range}
+  onChange={setRange}
+  options={[
+    { value: "today", label: "Today" },
+    { value: "7d", label: "7 days" },
+    { value: "30d", label: "30 days" },
+  ]}
+/>
 ```
 
 ## Tier-2 components

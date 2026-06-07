@@ -120,6 +120,18 @@ export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
       return () => document.removeEventListener("mousedown", onDoc);
     }, [open]);
 
+    React.useEffect(() => {
+      if (!open) return;
+      const anchorOpen = range ? rangeVal.from || todayISO : single || todayISO;
+      const d = parseISO(anchorOpen) ?? new Date();
+      setView({ year: d.getFullYear(), month: d.getMonth() });
+      setFocusISO(anchorOpen);
+    }, [open]);
+
+    React.useEffect(() => {
+      if (open) dayRefs.current[focusISO]?.focus();
+    }, [open, focusISO]);
+
     const display = (): string | null => {
       if (range) {
         if (pendingStart) return pendingStart;
@@ -133,6 +145,31 @@ export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
     const goMonth = (delta: number) => {
       const d = addMonths(new Date(view.year, view.month, 1), delta);
       setView({ year: d.getFullYear(), month: d.getMonth() });
+    };
+
+    const setFocus = (iso: string) => {
+      const d = parseISO(iso);
+      if (d && (d.getFullYear() !== view.year || d.getMonth() !== view.month)) {
+        setView({ year: d.getFullYear(), month: d.getMonth() });
+      }
+      setFocusISO(iso);
+    };
+
+    const onGridKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+      const cur = parseISO(focusISO) ?? new Date();
+      const weekday = (cur.getDay() - weekStartsOn + 7) % 7;
+      let next: Date | null = null;
+      if (event.key === "ArrowLeft") next = addDays(cur, -1);
+      else if (event.key === "ArrowRight") next = addDays(cur, 1);
+      else if (event.key === "ArrowUp") next = addDays(cur, -7);
+      else if (event.key === "ArrowDown") next = addDays(cur, 7);
+      else if (event.key === "PageUp") next = new Date(cur.getFullYear(), cur.getMonth() - 1, cur.getDate());
+      else if (event.key === "PageDown") next = new Date(cur.getFullYear(), cur.getMonth() + 1, cur.getDate());
+      else if (event.key === "Home") next = addDays(cur, -weekday);
+      else if (event.key === "End") next = addDays(cur, 6 - weekday);
+      else if (event.key === "Enter" || event.key === " ") { event.preventDefault(); selectDay(focusISO); return; }
+      else if (event.key === "Escape") { event.preventDefault(); close(); return; }
+      if (next) { event.preventDefault(); setFocus(toISO(next)); }
     };
 
     const isEndpoint = (iso: string): boolean =>
@@ -172,6 +209,13 @@ export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
             aria-expanded={open}
             disabled={disabled}
             onClick={() => { if (!disabled) setOpen((o) => !o); }}
+            onKeyDown={(event) => {
+              if (disabled || open) return;
+              if (event.key === "ArrowDown" || event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                setOpen(true);
+              }
+            }}
           >
             <span className={classNames("if-datepicker__value", !shown && "is-placeholder")}>
               {shown ?? placeholder ?? (range ? "Select range" : "Select date")}
@@ -197,7 +241,7 @@ export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
                   <span key={i} className="if-datecal__weekday">{w}</span>
                 ))}
               </div>
-              <div role="grid" className="if-datecal__grid">
+              <div role="grid" className="if-datecal__grid" onKeyDown={onGridKeyDown}>
                 {Array.from({ length: 6 }, (_, w) => (
                   <div role="row" key={w} className="if-datecal__row">
                     {days.slice(w * 7, w * 7 + 7).map((d) => {

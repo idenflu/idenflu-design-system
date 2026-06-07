@@ -1,6 +1,7 @@
 import * as React from "react";
 import { classNames } from "../utils/classNames";
 import type { FieldState } from "./TextField";
+import { SelectListbox } from "./SelectListbox";
 
 export type SelectOption = {
   disabled?: boolean;
@@ -20,7 +21,7 @@ export type SelectProps = Omit<React.SelectHTMLAttributes<HTMLSelectElement>, "c
   placeholder?: string;
   required?: boolean;
   state?: FieldState;
-  /** Use the custom listbox form. Implied true by multiple/searchable/icon/description. */
+  /** Use the custom listbox form. Implied true by multiple/searchable/icon/description. ref forwards to the native <select> in native mode; in expanded mode it is not forwarded. */
   expanded?: boolean;
   /** Multi-select (expanded). `value` becomes string[]. */
   multiple?: boolean;
@@ -73,10 +74,19 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
             {label}
             {required ? <em className="if-field__required">Required</em> : null}
           </span>
-          {/* Placeholder — replaced by <SelectListbox> in a later task. */}
-          <button type="button" className="if-select__trigger" aria-labelledby={labelId} aria-describedby={describedBy} aria-haspopup="listbox" aria-expanded={false}>
-            <span className="if-select__value">{placeholder ?? "Select"}</span>
-          </button>
+          <SelectListbox
+            baseId={selectId}
+            labelledBy={labelId}
+            describedBy={describedBy}
+            options={options}
+            placeholder={placeholder}
+            multiple={multiple}
+            searchable={searchable}
+            disabled={props.disabled}
+            value={value}
+            defaultValue={defaultValue}
+            onValueChange={onValueChange}
+          />
           {helperId ? <small id={helperId} className="if-field__helper">{error || helperText}</small> : null}
         </div>
       );

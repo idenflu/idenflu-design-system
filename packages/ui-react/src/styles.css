@@ -390,7 +390,10 @@
   -webkit-text-fill-color: var(--if-color-ink-subtle);
 }
 
-.if-field__control:read-only:not(:disabled) {
+/* `<select>` always matches :read-only (no mutable text value), so exclude it
+   here — otherwise this readonly-text styling steals the select's raised
+   background and wipes its chevron background-image. */
+.if-field__control:read-only:not(:disabled):not(.if-field__control--select) {
   background: var(--if-color-surface-1);
   color: var(--if-color-ink);
 }

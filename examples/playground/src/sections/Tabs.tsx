@@ -1,9 +1,10 @@
 import * as React from "react";
-import { Badge, Tabs } from "@idenflu/ui-react";
+import { Badge, Icon, Tabs } from "@idenflu/ui-react";
 import { Group, Section } from "../Section";
 
 export function TabsSection() {
   const [tab, setTab] = React.useState("overview");
+  const [iconTab, setIconTab] = React.useState("inbox");
   return (
     <Section id="tabs" title="Tabs">
       <Group label="Controlled · 화살표 키로 이동">
@@ -25,6 +26,31 @@ export function TabsSection() {
             },
             { value: "settings", label: "Settings", content: <p>접근 권한</p>, disabled: true },
           ]}
+        />
+      </Group>
+
+      <Group label="With icons">
+        <Tabs
+          label="Workspace"
+          value={iconTab}
+          onChange={setIconTab}
+          tabs={[
+            { value: "inbox", label: "Inbox", icon: <Icon name="icon-mail" />, content: <p>읽지 않은 알림을 확인합니다.</p> },
+            { value: "files", label: "Files", icon: <Icon name="icon-file" />, content: <p>첨부 파일과 산출물입니다.</p> },
+            { value: "team", label: "Team", icon: <Icon name="icon-user" />, content: <p>멤버와 권한입니다.</p> },
+          ]}
+        />
+      </Group>
+
+      <Group label="Overflow · 가로 스크롤">
+        <Tabs
+          label="Months"
+          defaultValue="m1"
+          tabs={Array.from({ length: 12 }, (_, i) => ({
+            value: `m${i + 1}`,
+            label: `${i + 1}월`,
+            content: <p>{i + 1}월 캠페인 지표입니다.</p>,
+          }))}
         />
       </Group>
     </Section>

@@ -32,12 +32,18 @@ export function InputsSection() {
           <TextField label="With icon" icon={<Icon name="icon-search" />} placeholder="검색" />
           <TextField label="With prefix" prefix={<span>KRW</span>} placeholder="0" />
           <TextField label="With suffix" suffix={<span>@idenflu.com</span>} placeholder="user" />
+          <TextField label="Prefix + suffix" prefix={<span>₩</span>} suffix={<span>/mo</span>} placeholder="0" />
         </Col>
       </Group>
       <Group label="Textarea & Select">
         <Col>
-          <Textarea label="Notes" placeholder="메모를 입력하세요." />
+          <Textarea label="Notes" placeholder="메모를 입력하세요." helperText="최대 500자" />
+          <Textarea label="Brief (invalid)" state="invalid" error="내용을 입력하세요." />
           <Select label="Status" options={statusOptions} />
+          <Select
+            label="Status (disabled option)"
+            options={[...statusOptions, { value: "archived", label: "Archived (잠금)", disabled: true }]}
+          />
           <Select label="Status (required, invalid)" required state="invalid" error="상태를 선택하세요." options={statusOptions} />
         </Col>
       </Group>

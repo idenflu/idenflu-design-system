@@ -45,6 +45,13 @@ body {
   margin: 0 0 var(--if-space-md);
 }
 
+.pg-section-note {
+  color: var(--if-color-ink-muted);
+  font-size: var(--if-font-size-body-sm);
+  margin: 0 0 var(--if-space-lg);
+  max-width: 720px;
+}
+
 .pg-group {
   margin-bottom: var(--if-space-lg);
 }

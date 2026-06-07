@@ -9,6 +9,7 @@ import { FeedbackSection } from "./sections/Feedback";
 import { DataSection } from "./sections/Data";
 import { OverlaysSection } from "./sections/Overlays";
 import { TabsSection } from "./sections/Tabs";
+import { PatternsSection } from "./sections/Patterns";
 import { IconsSection } from "./sections/Icons";
 
 type Theme = "light" | "dark";
@@ -47,6 +48,7 @@ export function App() {
         <DataSection />
         <OverlaysSection />
         <TabsSection />
+        <PatternsSection />
         <IconsSection />
       </div>
     </IconSpriteProvider>

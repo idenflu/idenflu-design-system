@@ -48,26 +48,33 @@ export const SelectListbox = React.forwardRef<HTMLDivElement, SelectListboxProps
     const [activeIndex, setActiveIndex] = React.useState(-1);
     const typeahead = React.useRef<{ buffer: string; timer: number | null }>({ buffer: "", timer: null });
 
-    const firstEnabled = () => options.findIndex((o) => !o.disabled);
+    const [query, setQuery] = React.useState("");
+    const searchRef = React.useRef<HTMLInputElement | null>(null);
+
+    const visibleOptions = searchable && query
+      ? options.filter((o) => o.label.toLowerCase().includes(query.toLowerCase()))
+      : options;
+
+    const firstEnabled = () => visibleOptions.findIndex((o) => !o.disabled);
     const lastEnabled = () => {
-      for (let i = options.length - 1; i >= 0; i -= 1) if (!options[i].disabled) return i;
+      for (let i = visibleOptions.length - 1; i >= 0; i -= 1) if (!visibleOptions[i].disabled) return i;
       return -1;
     };
-    const indexOfValue = (val: string) => options.findIndex((o) => o.value === val);
+    const indexOfValue = (val: string) => visibleOptions.findIndex((o) => o.value === val);
 
     const openPanel = () => {
       const start = selected.length ? indexOfValue(selected[0]) : firstEnabled();
-      setActiveIndex(start >= 0 && !options[start]?.disabled ? start : firstEnabled());
+      setActiveIndex(start >= 0 && !visibleOptions[start]?.disabled ? start : firstEnabled());
       setOpen(true);
     };
 
     const move = (dir: 1 | -1) => {
-      const count = options.length;
+      const count = visibleOptions.length;
       if (count === 0) return;
       let next = activeIndex;
       for (let i = 0; i < count; i += 1) {
         next = (next + dir + count) % count;
-        if (!options[next]?.disabled) break;
+        if (!visibleOptions[next]?.disabled) break;
       }
       setActiveIndex(next);
     };
@@ -96,9 +103,9 @@ export const SelectListbox = React.forwardRef<HTMLDivElement, SelectListboxProps
       } else if (event.key === "End") {
         event.preventDefault();
         setActiveIndex(lastEnabled());
-      } else if (event.key === "Enter" || event.key === " ") {
+      } else if (event.key === "Enter" || (!searchable && event.key === " ")) {
         event.preventDefault();
-        if (options[activeIndex]) commit(options[activeIndex]);
+        if (visibleOptions[activeIndex]) commit(visibleOptions[activeIndex]);
       } else if (!searchable && event.key.length === 1 && /\S/.test(event.key)) {
         const t = typeahead.current;
         if (t.timer) window.clearTimeout(t.timer);
@@ -119,6 +126,7 @@ export const SelectListbox = React.forwardRef<HTMLDivElement, SelectListboxProps
 
     const close = () => {
       setOpen(false);
+      setQuery("");
       triggerRef.current?.focus();
     };
 
@@ -146,6 +154,10 @@ export const SelectListbox = React.forwardRef<HTMLDivElement, SelectListboxProps
       document.addEventListener("mousedown", onDocMouseDown);
       return () => document.removeEventListener("mousedown", onDocMouseDown);
     }, [open]);
+
+    React.useEffect(() => {
+      if (open && searchable) searchRef.current?.focus();
+    }, [open, searchable]);
 
     const selectedOptions = options.filter((option) => selected.includes(option.value));
 
@@ -180,6 +192,8 @@ export const SelectListbox = React.forwardRef<HTMLDivElement, SelectListboxProps
       );
     };
 
+    const activeDescId = open && visibleOptions[activeIndex] ? optionId(visibleOptions[activeIndex].value) : undefined;
+
     return (
       <div className={classNames("if-select", multiple && "if-select--multiple")}>
         <div
@@ -193,7 +207,7 @@ export const SelectListbox = React.forwardRef<HTMLDivElement, SelectListboxProps
           aria-expanded={open}
           aria-controls={open ? panelId : undefined}
           aria-disabled={disabled || undefined}
-          aria-activedescendant={open && options[activeIndex] ? optionId(options[activeIndex].value) : undefined}
+          aria-activedescendant={activeDescId}
           onClick={() => { if (disabled) return; if (open) { setOpen(false); } else { openPanel(); } }}
           onKeyDown={onTriggerKeyDown}
         >
@@ -205,31 +219,51 @@ export const SelectListbox = React.forwardRef<HTMLDivElement, SelectListboxProps
 
         {open ? (
           <div ref={panelRef} className="if-select__panel">
+            {searchable ? (
+              <div className="if-select__search">
+                <input
+                  ref={searchRef}
+                  type="text"
+                  value={query}
+                  placeholder="Search"
+                  aria-label="Filter options"
+                  aria-controls={panelId}
+                  aria-activedescendant={activeDescId}
+                  autoComplete="off"
+                  onChange={(event) => { setQuery(event.target.value); setActiveIndex(0); }}
+                  onKeyDown={onTriggerKeyDown}
+                />
+              </div>
+            ) : null}
             <ul id={panelId} role="listbox" aria-labelledby={labelledBy} aria-multiselectable={multiple || undefined} className="if-select__options">
-              {options.map((option, index) => {
-                const isSelected = selected.includes(option.value);
-                return (
-                  <li
-                    key={option.value}
-                    id={optionId(option.value)}
-                    role="option"
-                    aria-selected={isSelected}
-                    aria-disabled={option.disabled || undefined}
-                    className={classNames("if-select__option", isSelected && "is-selected", option.disabled && "is-disabled", index === activeIndex && "is-active")}
-                    onClick={() => commit(option)}
-                    onMouseEnter={() => { if (!option.disabled) setActiveIndex(index); }}
-                  >
-                    <span className="if-select__option-check" aria-hidden="true">
-                      {isSelected ? <Icon name="icon-check" size={16} /> : null}
-                    </span>
-                    {option.icon != null ? <span className="if-select__option-icon" aria-hidden="true">{option.icon}</span> : null}
-                    <span className="if-select__option-text">
-                      <span className="if-select__option-label">{option.label}</span>
-                      {option.description != null ? <span className="if-select__option-description">{option.description}</span> : null}
-                    </span>
-                  </li>
-                );
-              })}
+              {visibleOptions.length === 0 ? (
+                <li className="if-select__empty" role="presentation">결과 없음</li>
+              ) : (
+                visibleOptions.map((option, index) => {
+                  const isSelected = selected.includes(option.value);
+                  return (
+                    <li
+                      key={option.value}
+                      id={optionId(option.value)}
+                      role="option"
+                      aria-selected={isSelected}
+                      aria-disabled={option.disabled || undefined}
+                      className={classNames("if-select__option", isSelected && "is-selected", option.disabled && "is-disabled", index === activeIndex && "is-active")}
+                      onClick={() => commit(option)}
+                      onMouseEnter={() => { if (!option.disabled) setActiveIndex(index); }}
+                    >
+                      <span className="if-select__option-check" aria-hidden="true">
+                        {isSelected ? <Icon name="icon-check" size={16} /> : null}
+                      </span>
+                      {option.icon != null ? <span className="if-select__option-icon" aria-hidden="true">{option.icon}</span> : null}
+                      <span className="if-select__option-text">
+                        <span className="if-select__option-label">{option.label}</span>
+                        {option.description != null ? <span className="if-select__option-description">{option.description}</span> : null}
+                      </span>
+                    </li>
+                  );
+                })
+              )}
             </ul>
           </div>
         ) : null}

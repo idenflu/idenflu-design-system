@@ -805,3 +805,335 @@ document.querySelectorAll("[data-toast-demo]").forEach((demo) => {
     bindDismiss(toast);
   });
 });
+
+const DATEPICKER_MONTHS = [
+  "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December",
+];
+
+// Indexed by Date.getDay() (0 = Sunday).
+const DATEPICKER_WEEKDAYS = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
+
+const dpPad2 = (value) => String(value).padStart(2, "0");
+
+// Date -> "YYYY-MM-DD" (local).
+const dpToISO = (date) => `${date.getFullYear()}-${dpPad2(date.getMonth() + 1)}-${dpPad2(date.getDate())}`;
+
+// "YYYY-MM-DD" -> Date (local midnight) or null. Rejects overflow like "2026-02-30".
+const dpParseISO = (iso) => {
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || "");
+  if (!match) return null;
+  const year = Number(match[1]);
+  const month = Number(match[2]) - 1;
+  const day = Number(match[3]);
+  const date = new Date(year, month, day);
+  if (date.getFullYear() !== year || date.getMonth() !== month || date.getDate() !== day) return null;
+  return date;
+};
+
+const dpAddDays = (date, count) => {
+  const next = new Date(date);
+  next.setDate(next.getDate() + count);
+  return next;
+};
+
+// First day of the month `count` months from `date`.
+const dpAddMonths = (date, count) => new Date(date.getFullYear(), date.getMonth() + count, 1);
+
+// 42 dates (6 weeks) covering the month, leading days from `weekStartsOn`.
+const dpBuildMonthGrid = (year, month, weekStartsOn) => {
+  const first = new Date(year, month, 1);
+  const offset = (first.getDay() - weekStartsOn + 7) % 7;
+  const start = dpAddDays(first, -offset);
+  return Array.from({ length: 42 }, (_, index) => dpAddDays(start, index));
+};
+
+// Weekday short labels rotated to `weekStartsOn`.
+const dpWeekdayLabels = (weekStartsOn) =>
+  Array.from({ length: 7 }, (_, index) => DATEPICKER_WEEKDAYS[(weekStartsOn + index) % 7]);
+
+// ISO date strings compare lexically == chronologically.
+const dpIsWithin = (iso, min, max) => (!min || iso >= min) && (!max || iso <= max);
+
+const dpNavButton = (label, icon, onClick) => {
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = "datecal__nav";
+  button.setAttribute("aria-label", label);
+  button.innerHTML = `<svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#${icon}"></use></svg>`;
+  button.addEventListener("click", onClick);
+  return button;
+};
+
+document.querySelectorAll("[data-datepicker]").forEach((root) => {
+  const trigger = root.querySelector("[data-datepicker-trigger]");
+  const valueLabel = root.querySelector("[data-datepicker-value]");
+  const popover = root.querySelector("[data-datepicker-popover]");
+
+  if (!trigger || !valueLabel || !popover) {
+    return;
+  }
+
+  const isRange = root.hasAttribute("data-range");
+  const weekStartsOn = root.getAttribute("data-week-start") === "1" ? 1 : 0;
+  const min = root.getAttribute("data-min") || "";
+  const max = root.getAttribute("data-max") || "";
+  const placeholder = valueLabel.getAttribute("data-placeholder") || (isRange ? "Select range" : "Select date");
+  const todayISO = dpToISO(new Date());
+
+  const viewMatch = /^(\d{4})-(\d{2})$/.exec(root.getAttribute("data-view") || "");
+  const initialView = viewMatch
+    ? { year: Number(viewMatch[1]), month: Number(viewMatch[2]) - 1 }
+    : { year: 2026, month: 5 };
+
+  let view = { ...initialView };
+  let single = isRange ? "" : root.getAttribute("data-value") || "";
+  let rangeVal = { from: root.getAttribute("data-from") || "", to: root.getAttribute("data-to") || "" };
+  let pendingStart = "";
+  let hoverISO = "";
+  let focusISO = "";
+  let dayButtons = {};
+  let dayCells = [];
+
+  const isEndpoint = (iso) =>
+    isRange ? iso === rangeVal.from || iso === rangeVal.to || iso === pendingStart : iso === single;
+
+  const inRange = (iso) => {
+    if (!isRange) return false;
+    let lower = "";
+    let upper = "";
+    if (pendingStart && hoverISO) {
+      lower = pendingStart <= hoverISO ? pendingStart : hoverISO;
+      upper = pendingStart <= hoverISO ? hoverISO : pendingStart;
+    } else if (rangeVal.from && rangeVal.to) {
+      lower = rangeVal.from;
+      upper = rangeVal.to;
+    }
+    return Boolean(lower && upper && iso > lower && iso < upper);
+  };
+
+  const displayText = () => {
+    if (isRange) {
+      if (pendingStart) return pendingStart;
+      if (rangeVal.from && rangeVal.to) return `${rangeVal.from} ~ ${rangeVal.to}`;
+      return null;
+    }
+    return single || null;
+  };
+
+  const renderTrigger = () => {
+    const text = displayText();
+    if (text) {
+      valueLabel.classList.remove("is-placeholder");
+      valueLabel.textContent = text;
+    } else {
+      valueLabel.classList.add("is-placeholder");
+      valueLabel.textContent = placeholder;
+    }
+  };
+
+  const applyDayClasses = () => {
+    dayCells.forEach(({ iso, date, button }) => {
+      const disabled = !dpIsWithin(iso, min, max);
+      const endpoint = isEndpoint(iso);
+      button.classList.toggle("is-outside", date.getMonth() !== view.month);
+      button.classList.toggle("is-today", iso === todayISO);
+      button.classList.toggle("is-in-range", inRange(iso));
+      button.classList.toggle("is-selected", endpoint);
+      button.classList.toggle("is-disabled", disabled);
+      button.setAttribute("aria-selected", String(endpoint));
+      if (disabled) button.setAttribute("aria-disabled", "true");
+      else button.removeAttribute("aria-disabled");
+      button.tabIndex = iso === focusISO ? 0 : -1;
+    });
+  };
+
+  const goMonth = (delta) => {
+    const next = dpAddMonths(new Date(view.year, view.month, 1), delta);
+    view = { year: next.getFullYear(), month: next.getMonth() };
+    focusISO = dpToISO(new Date(view.year, view.month, 1));
+    renderCalendar();
+  };
+
+  const focusDay = (iso) => {
+    focusISO = iso;
+    const date = dpParseISO(iso);
+    if (date && (date.getFullYear() !== view.year || date.getMonth() !== view.month)) {
+      view = { year: date.getFullYear(), month: date.getMonth() };
+      renderCalendar();
+    } else {
+      applyDayClasses();
+    }
+    dayButtons[iso]?.focus();
+  };
+
+  const selectDay = (iso) => {
+    if (!dpIsWithin(iso, min, max)) return;
+    if (!isRange) {
+      single = iso;
+      renderTrigger();
+      closePopover();
+      return;
+    }
+    if (!pendingStart) {
+      pendingStart = iso;
+      hoverISO = "";
+      renderTrigger();
+      applyDayClasses();
+      return;
+    }
+    if (iso >= pendingStart) {
+      rangeVal = { from: pendingStart, to: iso };
+      pendingStart = "";
+      renderTrigger();
+      closePopover();
+    } else {
+      pendingStart = iso;
+      renderTrigger();
+      applyDayClasses();
+    }
+  };
+
+  const onGridKeyDown = (event) => {
+    const current = dpParseISO(focusISO) || new Date(view.year, view.month, 1);
+    const weekday = (current.getDay() - weekStartsOn + 7) % 7;
+    let next = null;
+
+    if (event.key === "ArrowLeft") {
+      next = dpAddDays(current, -1);
+    } else if (event.key === "ArrowRight") {
+      next = dpAddDays(current, 1);
+    } else if (event.key === "ArrowUp") {
+      next = dpAddDays(current, -7);
+    } else if (event.key === "ArrowDown") {
+      next = dpAddDays(current, 7);
+    } else if (event.key === "Home") {
+      next = dpAddDays(current, -weekday);
+    } else if (event.key === "End") {
+      next = dpAddDays(current, 6 - weekday);
+    } else if (event.key === "PageUp") {
+      const lastDay = new Date(current.getFullYear(), current.getMonth(), 0).getDate();
+      next = new Date(current.getFullYear(), current.getMonth() - 1, Math.min(current.getDate(), lastDay));
+    } else if (event.key === "PageDown") {
+      const lastDay = new Date(current.getFullYear(), current.getMonth() + 2, 0).getDate();
+      next = new Date(current.getFullYear(), current.getMonth() + 1, Math.min(current.getDate(), lastDay));
+    } else if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      selectDay(focusISO);
+      return;
+    } else if (event.key === "Escape") {
+      event.preventDefault();
+      closePopover();
+      return;
+    } else {
+      return;
+    }
+
+    event.preventDefault();
+    focusDay(dpToISO(next));
+  };
+
+  function renderCalendar() {
+    popover.replaceChildren();
+    dayButtons = {};
+    dayCells = [];
+
+    const header = document.createElement("div");
+    header.className = "datecal__header";
+    const monthLabel = document.createElement("span");
+    monthLabel.className = "datecal__month";
+    monthLabel.textContent = `${DATEPICKER_MONTHS[view.month]} ${view.year}`;
+    header.append(
+      dpNavButton("Previous month", "icon-chevron-left", () => goMonth(-1)),
+      monthLabel,
+      dpNavButton("Next month", "icon-chevron-right", () => goMonth(1)),
+    );
+
+    const weekdays = document.createElement("div");
+    weekdays.className = "datecal__weekdays";
+    weekdays.setAttribute("aria-hidden", "true");
+    dpWeekdayLabels(weekStartsOn).forEach((label) => {
+      const cell = document.createElement("span");
+      cell.className = "datecal__weekday";
+      cell.textContent = label;
+      weekdays.append(cell);
+    });
+
+    const grid = document.createElement("div");
+    grid.className = "datecal__grid";
+    grid.setAttribute("role", "grid");
+    grid.addEventListener("keydown", onGridKeyDown);
+
+    const days = dpBuildMonthGrid(view.year, view.month, weekStartsOn);
+    for (let week = 0; week < 6; week += 1) {
+      const row = document.createElement("div");
+      row.className = "datecal__row";
+      row.setAttribute("role", "row");
+      days.slice(week * 7, week * 7 + 7).forEach((date) => {
+        const iso = dpToISO(date);
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "datecal__day";
+        button.setAttribute("role", "gridcell");
+        button.setAttribute("aria-label", `${DATEPICKER_MONTHS[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`);
+        button.textContent = String(date.getDate());
+        button.addEventListener("click", () => selectDay(iso));
+        button.addEventListener("mouseenter", () => {
+          if (isRange && pendingStart && dpIsWithin(iso, min, max)) {
+            hoverISO = iso;
+            applyDayClasses();
+          }
+        });
+        dayButtons[iso] = button;
+        dayCells.push({ iso, date, button });
+        row.append(button);
+      });
+      grid.append(row);
+    }
+
+    popover.append(header, weekdays, grid);
+    applyDayClasses();
+  }
+
+  const openPopover = () => {
+    trigger.setAttribute("aria-expanded", "true");
+    popover.hidden = false;
+    const anchorISO = isRange ? rangeVal.from : single;
+    const anchor = dpParseISO(anchorISO || "");
+    view = anchor ? { year: anchor.getFullYear(), month: anchor.getMonth() } : { ...initialView };
+    focusISO = anchor ? anchorISO : dpToISO(new Date(view.year, view.month, 1));
+    renderCalendar();
+    dayButtons[focusISO]?.focus();
+  };
+
+  function closePopover({ focusTrigger = true } = {}) {
+    trigger.setAttribute("aria-expanded", "false");
+    popover.hidden = true;
+    pendingStart = "";
+    hoverISO = "";
+    renderTrigger();
+    if (focusTrigger) trigger.focus();
+  }
+
+  trigger.addEventListener("click", () => {
+    if (trigger.getAttribute("aria-expanded") === "true") closePopover();
+    else openPopover();
+  });
+
+  trigger.addEventListener("keydown", (event) => {
+    if (trigger.getAttribute("aria-expanded") === "true") return;
+    if (event.key === "ArrowDown" || event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openPopover();
+    }
+  });
+
+  document.addEventListener("mousedown", (event) => {
+    if (trigger.getAttribute("aria-expanded") !== "true") return;
+    if (!root.contains(event.target)) closePopover({ focusTrigger: false });
+  });
+
+  trigger.setAttribute("aria-expanded", "false");
+  popover.hidden = true;
+  renderTrigger();
+});

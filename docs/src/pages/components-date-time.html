@@ -43,3 +43,32 @@
     <article class="date-time-demo-surface date-time-board"><strong>Invalid schedule</strong><label class="field invalid"><span>Publish time</span><input type="text" value="2026-06-01 09:00" aria-invalid="true"><small>Past dates cannot be scheduled.</small></label></article>
   </div>
 </section>
+
+<section id="date-picker" class="section">
+  <div class="section-heading"><p class="eyebrow">Date picker</p><h2>달력 팝오버로 단일 날짜와 기간을 직접 고릅니다.</h2></div>
+  <div class="date-time-demo-grid">
+    <article class="date-time-demo-surface">
+      <div class="datepicker" data-datepicker data-view="2026-06" data-min="2026-06-02" data-max="2026-06-26">
+        <span class="datepicker__label" id="due-date-label">Due date</span>
+        <button type="button" class="datepicker__trigger" data-datepicker-trigger aria-haspopup="dialog" aria-expanded="false" aria-labelledby="due-date-label">
+          <span class="datepicker__value is-placeholder" data-datepicker-value data-placeholder="Select date">Select date</span>
+          <span class="datepicker__icon" aria-hidden="true"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-calendar"></use></svg></span>
+        </button>
+        <div class="datepicker__popover" data-datepicker-popover role="dialog" aria-label="Due date" hidden></div>
+      </div>
+      <p class="select-output">하루를 고르면 트리거가 <code>YYYY-MM-DD</code>로 갱신되고 팝오버가 닫힙니다. <code>min</code>/<code>max</code> 밖의 날짜는 비활성으로 잠깁니다.</p>
+    </article>
+    <article class="date-time-demo-surface">
+      <div class="datepicker" data-datepicker data-range data-view="2026-06">
+        <span class="datepicker__label" id="campaign-range-label">Campaign period</span>
+        <button type="button" class="datepicker__trigger" data-datepicker-trigger aria-haspopup="dialog" aria-expanded="false" aria-labelledby="campaign-range-label">
+          <span class="datepicker__value is-placeholder" data-datepicker-value data-placeholder="Select range">Select range</span>
+          <span class="datepicker__icon" aria-hidden="true"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-calendar"></use></svg></span>
+        </button>
+        <div class="datepicker__popover" data-datepicker-popover role="dialog" aria-label="Campaign period" hidden></div>
+      </div>
+      <p class="select-output">시작일을 먼저, 종료일을 두 번째로 고르면 사이 날짜가 강조되고 트리거가 <code>from ~ to</code>로 표시됩니다.</p>
+    </article>
+  </div>
+  <p class="select-output">React: <code>&lt;DatePicker label="Due date" range min max weekStartsOn /&gt;</code> 가 같은 동작을 제공합니다. <code>range</code>는 기간 선택, <code>min</code>/<code>max</code>는 선택 가능 범위, <code>weekStartsOn</code>은 주 시작 요일(0=일, 1=월)을 정합니다.</p>
+</section>

@@ -2141,6 +2141,170 @@ h3 {
   cursor: not-allowed;
 }
 
+.datepicker {
+  position: relative;
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.datepicker__label {
+  color: var(--ink-muted);
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.datepicker__trigger {
+  display: flex;
+  min-height: var(--field-height);
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  padding: 7px 11px;
+  background: var(--surface-raised);
+  color: var(--ink);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.datepicker__trigger:focus-visible {
+  border-color: var(--primary);
+  outline: 0;
+  box-shadow: 0 0 0 3px var(--focus-ring);
+}
+
+.datepicker__trigger[aria-expanded="true"] {
+  border-color: var(--primary);
+}
+
+.datepicker__value {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.datepicker__value.is-placeholder {
+  color: var(--ink-muted);
+}
+
+.datepicker__icon {
+  flex: none;
+  display: inline-flex;
+  color: var(--ink-muted);
+}
+
+.datepicker__popover {
+  width: 280px;
+  max-width: 100%;
+  margin-top: var(--space-xs);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm);
+  background: var(--surface-raised);
+  box-shadow: var(--shadow-panel);
+}
+
+.datepicker__popover[hidden] {
+  display: none;
+}
+
+.datecal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-xs);
+}
+
+.datecal__month {
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.datecal__nav {
+  display: inline-flex;
+  width: 28px;
+  height: 28px;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--ink-muted);
+  cursor: pointer;
+}
+
+.datecal__nav:hover {
+  background: var(--surface-1);
+}
+
+.datecal__nav:focus-visible {
+  outline: 0;
+  box-shadow: 0 0 0 3px var(--focus-ring);
+}
+
+.datecal__weekdays,
+.datecal__row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.datecal__weekday {
+  padding: 4px 0;
+  color: var(--ink-subtle);
+  font-size: 11px;
+  text-align: center;
+}
+
+.datecal__day {
+  display: flex;
+  height: 34px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+}
+
+.datecal__day:hover:not(.is-disabled) {
+  background: var(--surface-1);
+}
+
+.datecal__day:focus-visible {
+  outline: 0;
+  box-shadow: 0 0 0 3px var(--focus-ring);
+}
+
+.datecal__day.is-outside {
+  color: var(--ink-subtle);
+}
+
+.datecal__day.is-today {
+  border-color: var(--hairline-strong);
+}
+
+.datecal__day.is-in-range {
+  border-radius: 0;
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+.datecal__day.is-selected {
+  background: var(--primary);
+  color: var(--inverse-ink);
+}
+
+.datecal__day.is-disabled {
+  color: var(--ink-subtle);
+  cursor: not-allowed;
+}
+
 .workflow-stepper {
   margin: 0;
   padding: 0;

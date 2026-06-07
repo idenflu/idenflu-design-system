@@ -26,6 +26,8 @@ export type RadioGroupProps = Omit<
   name?: string;
   description?: React.ReactNode;
   helperText?: React.ReactNode;
+  /** Validation error message. Replaces helperText and marks the field invalid. */
+  error?: string;
   size?: RadioGroupSize;
   orientation?: "vertical" | "horizontal";
 };
@@ -38,6 +40,7 @@ export const RadioGroup = React.forwardRef<HTMLFieldSetElement, RadioGroupProps>
       defaultValue,
       description,
       disabled,
+      error,
       helperText,
       label,
       name,
@@ -52,7 +55,8 @@ export const RadioGroup = React.forwardRef<HTMLFieldSetElement, RadioGroupProps>
   ) => {
     const generatedId = React.useId();
     const groupName = name ?? generatedId;
-    const helperId = helperText != null ? `${groupName}-helper` : undefined;
+    const invalid = Boolean(error);
+    const helperId = helperText != null || error ? `${groupName}-helper` : undefined;
     const describedBy = [ariaDescribedBy, helperId].filter(Boolean).join(" ") || undefined;
 
     const isControlled = value !== undefined;
@@ -68,11 +72,13 @@ export const RadioGroup = React.forwardRef<HTMLFieldSetElement, RadioGroupProps>
       <fieldset
         ref={ref}
         aria-describedby={describedBy}
+        aria-invalid={invalid || undefined}
         className={classNames(
           "if-radio-group",
           `if-radio-group--${orientation}`,
           `if-radio-group--${size}`,
           disabled && "is-disabled",
+          invalid && "is-invalid",
           className,
         )}
         disabled={disabled}
@@ -104,9 +110,9 @@ export const RadioGroup = React.forwardRef<HTMLFieldSetElement, RadioGroupProps>
             </label>
           ))}
         </div>
-        {helperText != null ? (
+        {helperText != null || error ? (
           <p id={helperId} className="if-radio-group__helper">
-            {helperText}
+            {error || helperText}
           </p>
         ) : null}
       </fieldset>

@@ -1518,6 +1518,12 @@
   margin: 0;
 }
 
+.if-checkbox-field.is-invalid .if-checkbox__helper,
+.if-radio-group.is-invalid .if-radio-group__helper,
+.if-switch-field.is-invalid .if-switch__helper {
+  color: var(--if-color-error);
+}
+
 .if-segmented {
   background: var(--if-color-surface-1);
   border: 1px solid var(--if-color-hairline);

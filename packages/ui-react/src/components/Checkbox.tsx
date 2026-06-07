@@ -13,6 +13,8 @@ export type CheckboxProps = Omit<
   description?: React.ReactNode;
   /** Helper text wired via `aria-describedby`. */
   helperText?: React.ReactNode;
+  /** Validation error message. Replaces helperText and marks the field invalid. */
+  error?: string;
   /** Partial-selection visual + `aria-checked="mixed"`. */
   indeterminate?: boolean;
   /** Control size. Defaults to `"medium"`. */
@@ -26,6 +28,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       className,
       description,
       disabled,
+      error,
       helperText,
       id,
       indeterminate = false,
@@ -51,11 +54,12 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
 
     const generatedId = React.useId();
     const controlId = id ?? generatedId;
-    const helperId = helperText != null ? `${controlId}-helper` : undefined;
+    const invalid = Boolean(error);
+    const helperId = helperText != null || error ? `${controlId}-helper` : undefined;
     const describedBy = [ariaDescribedBy, helperId].filter(Boolean).join(" ") || undefined;
 
     return (
-      <div className="if-checkbox-field">
+      <div className={classNames("if-checkbox-field", invalid && "is-invalid")}>
         <label className={classNames("if-checkbox", `if-checkbox--${size}`, disabled && "is-disabled", className)}>
           <input
             ref={setRef}
@@ -63,6 +67,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
             type="checkbox"
             className="if-checkbox__control"
             aria-describedby={describedBy}
+            aria-invalid={invalid || undefined}
             disabled={disabled}
             {...props}
           />
@@ -73,9 +78,9 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
             </span>
           ) : null}
         </label>
-        {helperText != null ? (
+        {helperText != null || error ? (
           <p id={helperId} className="if-checkbox__helper">
-            {helperText}
+            {error || helperText}
           </p>
         ) : null}
       </div>

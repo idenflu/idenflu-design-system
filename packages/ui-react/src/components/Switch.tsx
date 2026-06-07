@@ -13,6 +13,8 @@ export type SwitchProps = Omit<
   description?: React.ReactNode;
   /** Helper text wired to the input via `aria-describedby`. */
   helperText?: React.ReactNode;
+  /** Validation error message. Replaces helperText and marks the field invalid. */
+  error?: string;
   /** Control size. Defaults to `"medium"`. */
   size?: SwitchSize;
 };
@@ -24,6 +26,7 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
       className,
       description,
       disabled,
+      error,
       helperText,
       id,
       label,
@@ -34,11 +37,12 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
   ) => {
     const generatedId = React.useId();
     const controlId = id ?? generatedId;
-    const helperId = helperText != null ? `${controlId}-helper` : undefined;
+    const invalid = Boolean(error);
+    const helperId = helperText != null || error ? `${controlId}-helper` : undefined;
     const describedBy = [ariaDescribedBy, helperId].filter(Boolean).join(" ") || undefined;
 
     return (
-      <div className="if-switch-field">
+      <div className={classNames("if-switch-field", invalid && "is-invalid")}>
         <label className={classNames("if-switch", `if-switch--${size}`, disabled && "is-disabled", className)}>
           {label != null ? (
             <span className="if-switch__text">
@@ -53,13 +57,14 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
             role="switch"
             className="if-switch__control"
             aria-describedby={describedBy}
+            aria-invalid={invalid || undefined}
             disabled={disabled}
             {...props}
           />
         </label>
-        {helperText != null ? (
+        {helperText != null || error ? (
           <p id={helperId} className="if-switch__helper">
-            {helperText}
+            {error || helperText}
           </p>
         ) : null}
       </div>

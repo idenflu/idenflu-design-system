@@ -134,6 +134,7 @@ if (exists("package.json")) {
   "packages/ui-react/src/components/Checkbox.tsx",
   "packages/ui-react/src/components/RadioGroup.tsx",
   "packages/ui-react/src/components/SegmentedControl.tsx",
+  "packages/ui-react/src/components/Tabs.tsx",
   "packages/ui-react/src/components/Icon.tsx",
   "packages/ui-react/src/components/Avatar.tsx",
   "packages/ui-react/src/components/Skeleton.tsx",
@@ -161,6 +162,7 @@ requireIncludes("packages/ui-react/src/index.ts", [
   "Checkbox",
   "RadioGroup",
   "SegmentedControl",
+  "Tabs",
   "Icon",
   "IconSpriteProvider",
   "Avatar",
@@ -267,6 +269,19 @@ requireIncludes("packages/ui-react/src/components/SegmentedControl.tsx", [
   "aria-pressed={selected}",
   "if-segmented__option",
   "SegmentedControl.displayName",
+]);
+
+requireIncludes("packages/ui-react/src/components/Tabs.tsx", [
+  "export type TabItem",
+  "role=\"tab\"",
+  "aria-selected={selected}",
+  "if-tabs__list",
+  "Tabs.displayName",
+]);
+
+requireIncludes("packages/ui-react/src/styles.css", [
+  ".if-tabs",
+  ".if-tabs__tab.is-selected",
 ]);
 
 requireIncludes("packages/ui-react/src/styles.css", [

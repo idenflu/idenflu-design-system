@@ -87,6 +87,7 @@ export function CampaignForm() {
 - `Checkbox`
 - `RadioGroup`
 - `SegmentedControl`
+- `Tabs`
 - `Icon`, `IconSpriteProvider`
 
 ## Icon
@@ -108,6 +109,28 @@ function App() {
     </IconSpriteProvider>
   );
 }
+```
+
+## Tabs
+
+`Tabs`는 같은 영역의 뷰를 전환합니다. data-driven(`tabs` 배열), WAI-ARIA tabs 패턴(roving tabindex + 화살표 키)을 따릅니다.
+
+```tsx
+import { Tabs } from "@idenflu/ui-react";
+
+// uncontrolled
+<Tabs
+  label="Campaign detail"
+  defaultValue="overview"
+  tabs={[
+    { value: "overview", label: "Overview", content: <p>상태·owner·revision</p> },
+    { value: "creators", label: "Creators", content: <p>크리에이터 목록</p> },
+    { value: "audit", label: "Audit", content: <p>변경 이력</p>, disabled: true },
+  ]}
+/>
+
+// controlled
+<Tabs label="Workspace" value={tab} onChange={setTab} tabs={tabs} />
 ```
 
 ## Switch

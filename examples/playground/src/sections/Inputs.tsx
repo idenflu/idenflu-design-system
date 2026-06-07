@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Icon, Select, TextField, Textarea } from "@idenflu/ui-react";
+import { DatePicker, Icon, Select, TextField, Textarea } from "@idenflu/ui-react";
 import { Col, Group, Section } from "../Section";
 
 const statusOptions = [
@@ -86,6 +86,13 @@ export function InputsSection() {
             placeholder="Select country"
             onValueChange={() => {}}
           />
+        </Col>
+      </Group>
+      <Group label="DatePicker — single / range">
+        <Col>
+          <DatePicker label="Due date" placeholder="Select date" onChange={() => {}} />
+          <DatePicker label="Campaign period" range placeholder="Select range" onChange={() => {}} />
+          <DatePicker label="Within June" min="2026-06-01" max="2026-06-30" defaultValue="2026-06-12" onChange={() => {}} />
         </Col>
       </Group>
     </Section>

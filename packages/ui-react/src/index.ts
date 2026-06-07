@@ -70,5 +70,8 @@ export type { BannerProps, BannerTone } from "./components/Banner";
 export { Breadcrumb } from "./components/Breadcrumb";
 export type { BreadcrumbItem, BreadcrumbProps } from "./components/Breadcrumb";
 
+export { DatePicker } from "./components/DatePicker";
+export type { DatePickerProps, DateRange } from "./components/DatePicker";
+
 export { iconNames } from "@idenflu/ui-icons";
 export type { IconName } from "@idenflu/ui-icons";

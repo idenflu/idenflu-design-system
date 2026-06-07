@@ -1601,6 +1601,29 @@ h3 {
   font-size: 12px;
 }
 
+.disclosure-trigger__end {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.disclosure-trigger__chevron {
+  width: 16px;
+  height: 16px;
+  color: var(--ink-muted);
+  transition: transform 120ms ease;
+}
+
+.disclosure-trigger[aria-expanded="true"] .disclosure-trigger__chevron {
+  transform: rotate(180deg);
+}
+
+.pagination-chevron {
+  width: 14px;
+  height: 14px;
+  vertical-align: -2px;
+}
+
 .disclosure-panel {
   border: 1px solid var(--hairline);
   border-top: 0;

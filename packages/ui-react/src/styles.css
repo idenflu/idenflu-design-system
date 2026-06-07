@@ -2235,7 +2235,7 @@
   justify-content: center;
 }
 
-.if-datecal__day:hover:not(.is-disabled) {
+.if-datecal__day:hover:not(.is-disabled):not(.is-selected):not(.is-in-range) {
   background: var(--if-color-surface-1);
 }
 

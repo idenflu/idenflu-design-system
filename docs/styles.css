@@ -2272,7 +2272,7 @@ h3 {
   font-size: 13px;
 }
 
-.datecal__day:hover:not(.is-disabled) {
+.datecal__day:hover:not(.is-disabled):not(.is-selected):not(.is-in-range) {
   background: var(--surface-1);
 }
 

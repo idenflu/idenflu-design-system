@@ -1922,6 +1922,18 @@
 .if-tabs__icon {
   align-items: center;
   display: inline-flex;
+  flex: 0 0 auto;
+  height: 16px;
+  justify-content: center;
+  width: 16px;
+}
+
+/* Normalize an <Icon> (own 20px medium size) to the 16px tab icon slot so it
+   stays proportional to the body-sm tab label, matching button/field icons. */
+.if-tabs__icon svg {
+  display: block;
+  height: 100%;
+  width: 100%;
 }
 
 .if-tabs__panel {

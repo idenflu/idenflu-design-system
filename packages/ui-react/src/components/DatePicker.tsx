@@ -163,8 +163,13 @@ export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
       else if (event.key === "ArrowRight") next = addDays(cur, 1);
       else if (event.key === "ArrowUp") next = addDays(cur, -7);
       else if (event.key === "ArrowDown") next = addDays(cur, 7);
-      else if (event.key === "PageUp") next = new Date(cur.getFullYear(), cur.getMonth() - 1, cur.getDate());
-      else if (event.key === "PageDown") next = new Date(cur.getFullYear(), cur.getMonth() + 1, cur.getDate());
+      else if (event.key === "PageUp") {
+        const last = new Date(cur.getFullYear(), cur.getMonth(), 0).getDate();
+        next = new Date(cur.getFullYear(), cur.getMonth() - 1, Math.min(cur.getDate(), last));
+      } else if (event.key === "PageDown") {
+        const last = new Date(cur.getFullYear(), cur.getMonth() + 2, 0).getDate();
+        next = new Date(cur.getFullYear(), cur.getMonth() + 1, Math.min(cur.getDate(), last));
+      }
       else if (event.key === "Home") next = addDays(cur, -weekday);
       else if (event.key === "End") next = addDays(cur, 6 - weekday);
       else if (event.key === "Enter" || event.key === " ") { event.preventDefault(); selectDay(focusISO); return; }
@@ -255,7 +260,7 @@ export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
                           ref={(node) => { dayRefs.current[iso] = node; }}
                           type="button"
                           role="gridcell"
-                          aria-label={iso}
+                          aria-label={`${MONTH_LABELS[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`}
                           aria-selected={sel}
                           aria-disabled={isDisabled || undefined}
                           tabIndex={iso === focusISO ? 0 : -1}

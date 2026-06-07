@@ -2793,6 +2793,123 @@
           }
         ]
       }
+    },
+    "components-skeleton.html": {
+      "standard": {
+        "sectionClass": "section surface-band",
+        "eyebrow": "Component standard",
+        "heading": "Skeleton 문서의 공통 구조.",
+        "cards": [
+          { "id": "doc-anatomy", "title": "Anatomy", "description": "Block, line, shimmer, label 자리를 나눕니다.", "items": ["block", "line", "shimmer", "label slot"] },
+          { "id": "doc-variants", "title": "Variants", "description": "Text line, card, table row, avatar placeholder를 구분합니다.", "items": [] },
+          { "id": "doc-states", "title": "States", "description": "Loading, shimmer, static, resolved 상태를 비교합니다.", "items": [] },
+          { "id": "doc-accessibility", "title": "Accessibility", "description": "aria-busy로 로딩을 알리고 장식 요소는 aria-hidden 처리합니다.", "items": [] },
+          { "id": "doc-examples", "title": "Examples", "description": "테이블, 카드, 상세 패널 로딩에 사용합니다.", "items": [] },
+          { "id": "doc-qa", "title": "QA", "description": "긴 로딩, reduced motion, dark contrast를 확인합니다.", "items": [] }
+        ]
+      },
+      "templateMap": {
+        "sectionClass": "section",
+        "eyebrow": "Document template",
+        "heading": "Skeleton 문서는 로딩 자리와 해제 시점을 먼저 정합니다.",
+        "steps": [
+          { "number": "01", "title": "Overview", "description": "어떤 영역의 로딩 자리인지 먼저 정합니다." },
+          { "number": "02", "title": "Anatomy", "description": "Block, line, shimmer, label 자리를 분리합니다." },
+          { "number": "03", "title": "Variants", "description": "Line, card, row, avatar placeholder를 구분합니다." },
+          { "number": "04", "title": "States", "description": "Loading, shimmer, static, resolved 상태를 비교합니다." },
+          { "number": "05", "title": "Accessibility", "description": "aria-busy, reduced motion, 해제 알림을 확인합니다." },
+          { "number": "06", "title": "QA", "description": "reduced motion, dark mode, 긴 로딩 시간을 검증합니다." }
+        ]
+      },
+      "tokenContract": {
+        "sectionClass": "section",
+        "eyebrow": "Token contract",
+        "heading": "Skeleton은 surface와 hairline을 낮은 대비로 사용합니다.",
+        "rows": [
+          { "decision": "Surface", "token": "{colors.surface-2}", "rule": "Placeholder 면은 surface-2를 사용합니다." },
+          { "decision": "Edge", "token": "{colors.hairline}", "rule": "블록 경계는 hairline으로 약하게 둡니다." },
+          { "decision": "Radius", "token": "{radius.md}", "rule": "블록 모서리는 radius md를 따릅니다." },
+          { "decision": "Motion", "token": "{motion.duration.base}", "rule": "shimmer는 base duration으로 반복합니다." }
+        ]
+      }
+    },
+    "components-banner.html": {
+      "standard": {
+        "sectionClass": "section surface-band",
+        "eyebrow": "Component standard",
+        "heading": "Banner 문서의 공통 구조.",
+        "cards": [
+          { "id": "doc-anatomy", "title": "Anatomy", "description": "Icon, tone, title, message, action, dismiss 자리를 나눕니다.", "items": ["tone icon", "title", "message", "action", "dismiss"] },
+          { "id": "doc-variants", "title": "Variants", "description": "Info, success, warning, error 톤과 dismissible/persistent 구성을 구분합니다.", "items": [] },
+          { "id": "doc-states", "title": "States", "description": "Info, success, warning, error, dismissed 상태를 비교합니다.", "items": [] },
+          { "id": "doc-accessibility", "title": "Accessibility", "description": "낮은 심각도는 role=status, error는 role=alert로 알리고 색상에만 의존하지 않습니다.", "items": [] },
+          { "id": "doc-examples", "title": "Examples", "description": "동기화 안내, 승인 마감, 권한 제한, 시스템 오류 복구에 사용합니다.", "items": [] },
+          { "id": "doc-qa", "title": "QA", "description": "긴 메시지 wrap, dark contrast, reduced motion, dismiss 포커스 복귀를 확인합니다.", "items": [] }
+        ]
+      },
+      "templateMap": {
+        "sectionClass": "section",
+        "eyebrow": "Document template",
+        "heading": "Banner 문서는 톤과 dismiss 여부, live region을 먼저 정합니다.",
+        "steps": [
+          { "number": "01", "title": "Overview", "description": "어떤 범위의 상태 메시지인지, 지속인지 닫을 수 있는지 정합니다." },
+          { "number": "02", "title": "Anatomy", "description": "Icon, tone, title, message, action, dismiss를 분리합니다." },
+          { "number": "03", "title": "Variants", "description": "Info, success, warning, error 톤을 구분합니다." },
+          { "number": "04", "title": "States", "description": "Persistent, dismissible, dismissed 상태를 비교합니다." },
+          { "number": "05", "title": "Accessibility", "description": "role status와 role alert, 색상 비의존, dismiss label을 확인합니다." },
+          { "number": "06", "title": "QA", "description": "긴 메시지, dark mode, reduced motion, 포커스 복귀를 검증합니다." }
+        ]
+      },
+      "tokenContract": {
+        "sectionClass": "section",
+        "eyebrow": "Token contract",
+        "heading": "Banner는 surface 위에 semantic accent를 낮은 대비로 사용합니다.",
+        "rows": [
+          { "decision": "Text", "token": "{typography.body-sm}", "rule": "메시지는 body small을 기준으로 둡니다." },
+          { "decision": "Info", "token": "{colors.primary-soft}", "rule": "정보 톤은 primary soft 배경을 사용합니다." },
+          { "decision": "Warning", "token": "{colors.accent-amber}", "rule": "주의 톤은 amber 강조와 원인 text를 함께 둡니다." },
+          { "decision": "Error", "token": "{colors.accent-coral}", "rule": "오류 톤은 coral 강조와 복구 action을 함께 둡니다." }
+        ]
+      }
+    },
+    "components-breadcrumb.html": {
+      "standard": {
+        "sectionClass": "section surface-band",
+        "eyebrow": "Component standard",
+        "heading": "Breadcrumb 문서의 공통 구조.",
+        "cards": [
+          { "id": "doc-anatomy", "title": "Anatomy", "description": "Root link, intermediate link, separator, current item, overflow 자리를 나눕니다.", "items": ["root link", "separator", "intermediate links", "current item", "overflow ellipsis"] },
+          { "id": "doc-variants", "title": "Variants", "description": "Default trail, truncated trail, single-level, icon-leading 경로를 구분합니다.", "items": [] },
+          { "id": "doc-states", "title": "States", "description": "Default, hover, focus, current page, truncated, disabled 상태를 비교합니다.", "items": [] },
+          { "id": "doc-accessibility", "title": "Accessibility", "description": "nav landmark와 aria-label을 두고 현재 위치는 aria-current=page, 구분자는 aria-hidden 처리합니다.", "items": [] },
+          { "id": "doc-examples", "title": "Examples", "description": "캠페인 상세, 설정 하위 페이지, 긴 폴더 경로 이동에 사용합니다.", "items": [] },
+          { "id": "doc-qa", "title": "QA", "description": "긴 label, 좁은 폭 truncation, dark contrast, focus ring을 확인합니다.", "items": [] }
+        ]
+      },
+      "templateMap": {
+        "sectionClass": "section",
+        "eyebrow": "Document template",
+        "heading": "Breadcrumb 문서는 경로 깊이와 현재 위치 표시를 먼저 정합니다.",
+        "steps": [
+          { "number": "01", "title": "Overview", "description": "어떤 계층의 위치를 보여줄 경로인지 먼저 정합니다." },
+          { "number": "02", "title": "Anatomy", "description": "Root, intermediate, separator, current, overflow 자리를 분리합니다." },
+          { "number": "03", "title": "Variants", "description": "Default, truncated, single-level 경로를 구분합니다." },
+          { "number": "04", "title": "States", "description": "Hover, focus, current page, truncated 상태를 비교합니다." },
+          { "number": "05", "title": "Accessibility", "description": "nav aria-label, aria-current=page, 구분자 aria-hidden을 확인합니다." },
+          { "number": "06", "title": "QA", "description": "긴 경로 truncation, 좁은 폭, dark mode, focus ring을 검증합니다." }
+        ]
+      },
+      "tokenContract": {
+        "sectionClass": "section",
+        "eyebrow": "Token contract",
+        "heading": "Breadcrumb는 낮은 대비의 link와 약한 구분자를 사용합니다.",
+        "rows": [
+          { "decision": "Link", "token": "{colors.primary}", "rule": "이동 가능한 상위 경로는 primary link 색을 사용합니다." },
+          { "decision": "Text", "token": "{colors.ink-muted}", "rule": "비활성/기본 경로 text는 ink-muted로 낮춥니다." },
+          { "decision": "Separator", "token": "{colors.hairline}", "rule": "구분자는 hairline 수준의 약한 대비로 둡니다." },
+          { "decision": "Density", "token": "{density.compact}", "rule": "trail은 compact density 높이를 따릅니다." }
+        ]
+      }
     }
   }
 }

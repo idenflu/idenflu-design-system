@@ -112,6 +112,18 @@
     "toast": {
       "label": "Toast tokens",
       "tokens": ["shadow.panel", "typography.body-sm", "colors.surface-raised", "colors.accent-mint", "colors.accent-coral"]
+    },
+    "skeleton": {
+      "label": "Skeleton tokens",
+      "tokens": ["colors.surface-2", "colors.hairline", "radius.md", "motion.duration.base"]
+    },
+    "banner": {
+      "label": "Banner tokens",
+      "tokens": ["typography.body-sm", "colors.primary-soft", "colors.accent-amber", "colors.accent-coral", "colors.hairline"]
+    },
+    "breadcrumb": {
+      "label": "Breadcrumb tokens",
+      "tokens": ["density.compact", "typography.body-sm", "colors.primary", "colors.hairline", "colors.ink-muted"]
     }
   }
 }

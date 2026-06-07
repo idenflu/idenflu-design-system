@@ -1,0 +1,80 @@
+<section class="page-header component-page-header">
+  <p class="eyebrow">Components</p>
+  <h1>Skeleton</h1>
+  <p class="lede">데이터가 로딩되는 동안 콘텐츠 형태를 미리 보여 주는 placeholder 기준입니다. Spinner나 progress bar와 달리 최종 레이아웃의 자리를 그대로 유지합니다.</p>
+</section>
+
+<!-- partial:component-standard -->
+
+<!-- partial:component-template-map -->
+
+<section id="context-example" class="section surface-band">
+  <div class="section-heading"><p class="eyebrow">Context example</p><h2>Skeleton은 로딩 중에도 최종 레이아웃의 자리를 유지합니다.</h2></div>
+  <div class="component-context-example">
+    <div class="context-preview">
+      <div class="skeleton-list" role="status" aria-busy="true" aria-label="Loading creator rows">
+        <span class="skeleton-row" aria-hidden="true"></span>
+        <span class="skeleton-row" aria-hidden="true"></span>
+        <span class="skeleton-row short" aria-hidden="true"></span>
+      </div>
+      <div class="badge-stack">
+        <span class="status blue">Loading rows</span>
+        <span class="status mint">Resolved</span>
+      </div>
+    </div>
+    <div class="context-rules">
+      <strong>Review checklist</strong>
+      <ul>
+        <li>Skeleton 블록은 실제 콘텐츠와 같은 자리와 개수를 차지합니다.</li>
+        <li>데이터가 준비되면 즉시 실제 콘텐츠로 교체하고 placeholder를 남기지 않습니다.</li>
+        <li>장식 블록은 aria-hidden으로 숨기고 옆에 visible Loading 문구를 둡니다.</li>
+        <li>reduced motion 환경에서는 shimmer를 멈추고 정적 면으로 보여 줍니다.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- partial:component-token-contract -->
+
+<!-- partial:component-api-contract -->
+
+<!-- partial:component-token-binding -->
+
+<!-- partial:component-usage-guidance -->
+
+<section id="skeleton-demo" class="section">
+  <div class="section-heading"><p class="eyebrow">Skeleton</p><h2>로딩 자리를 콘텐츠 형태에 맞춰 정렬합니다.</h2></div>
+  <div class="badge-demo-grid">
+    <article class="badge-demo-surface">
+      <strong>Text lines</strong>
+      <div class="skeleton-stack" role="status" aria-busy="true" aria-label="Loading text content">
+        <span class="skeleton-line" aria-hidden="true"></span>
+        <span class="skeleton-line medium" aria-hidden="true"></span>
+        <span class="skeleton-line short" aria-hidden="true"></span>
+      </div>
+    </article>
+    <article class="badge-demo-surface">
+      <strong>Card block</strong>
+      <div class="skeleton-block" role="status" aria-busy="true" aria-label="Loading card">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </div>
+    </article>
+    <article class="badge-demo-surface">
+      <strong>Avatar identity</strong>
+      <div class="skeleton-identity" role="status" aria-busy="true" aria-label="Loading person">
+        <span class="skeleton-circle" aria-hidden="true"></span>
+        <div class="skeleton-stack">
+          <span class="skeleton-line medium" aria-hidden="true"></span>
+          <span class="skeleton-line short" aria-hidden="true"></span>
+        </div>
+      </div>
+    </article>
+  </div>
+  <div class="badge-stack">
+    <span class="status blue">Loading</span>
+    <span class="status amber">Reduced motion</span>
+    <span class="status mint">Resolved</span>
+  </div>
+</section>

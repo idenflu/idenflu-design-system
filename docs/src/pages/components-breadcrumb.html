@@ -1,0 +1,81 @@
+<section class="page-header component-page-header">
+  <p class="eyebrow">Components</p>
+  <h1>Breadcrumb</h1>
+  <p class="lede">계층 구조 안에서 현재 위치와 상위 경로를 짧게 보여주는 navigation trail 기준입니다.</p>
+</section>
+
+<!-- partial:component-standard -->
+
+<!-- partial:component-template-map -->
+
+<section id="context-example" class="section surface-band">
+  <div class="section-heading"><p class="eyebrow">Context example</p><h2>Breadcrumb는 현재 화면이 전체 구조에서 어디인지 알려줍니다.</h2></div>
+  <div class="component-context-example">
+    <div class="context-preview">
+      <nav class="breadcrumb-trail" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="#context-example">Home</a></li>
+          <li><a href="#context-example">Campaigns</a></li>
+          <li><a href="#context-example">Q3 launch</a></li>
+          <li><span aria-current="page">Brief review</span></li>
+        </ol>
+      </nav>
+      <div class="badge-stack">
+        <span class="status blue">Parent link</span>
+        <span class="status mint">Current page</span>
+      </div>
+    </div>
+    <div class="context-rules">
+      <strong>Review checklist</strong>
+      <ul>
+        <li>Breadcrumb는 nav landmark와 aria-label을 함께 가집니다.</li>
+        <li>현재 페이지는 link가 아니라 aria-current="page"로 표시합니다.</li>
+        <li>경로가 길면 가운데를 접고 양 끝 위치를 유지합니다.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- partial:component-token-contract -->
+
+<!-- partial:component-api-contract -->
+
+<!-- partial:component-token-binding -->
+
+<!-- partial:component-usage-guidance -->
+
+<section id="breadcrumb-demo" class="section">
+  <div class="section-heading"><p class="eyebrow">Breadcrumb</p><h2>구분자, 현재 위치, 긴 경로 접힘을 같은 규칙으로 정렬합니다.</h2></div>
+  <div class="breadcrumb-demo">
+    <article class="breadcrumb-demo-surface">
+      <strong>Default trail</strong>
+      <nav class="breadcrumb-trail" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="#breadcrumb-demo">Home</a></li>
+          <li><a href="#breadcrumb-demo">Workspace</a></li>
+          <li><a href="#breadcrumb-demo">Campaigns</a></li>
+          <li><span aria-current="page">Detail</span></li>
+        </ol>
+      </nav>
+    </article>
+    <article class="breadcrumb-demo-surface">
+      <strong>Truncated trail</strong>
+      <nav class="breadcrumb-trail" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="#breadcrumb-demo">Home</a></li>
+          <li><span class="breadcrumb-overflow" aria-hidden="true">…</span></li>
+          <li><a href="#breadcrumb-demo">Q3 launch</a></li>
+          <li><span aria-current="page">Brief review</span></li>
+        </ol>
+      </nav>
+    </article>
+    <article class="breadcrumb-demo-surface">
+      <strong>Status mapping</strong>
+      <div class="badge-stack">
+        <span class="status blue">Separator</span>
+        <span class="status blue">aria-current</span>
+        <span class="status amber">Overflow</span>
+      </div>
+    </article>
+  </div>
+</section>

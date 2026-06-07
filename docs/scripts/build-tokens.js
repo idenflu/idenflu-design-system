@@ -19,6 +19,9 @@ Object.entries(tokens.spacing || {}).forEach(([name, value]) => add(`space-${nam
 Object.entries(tokens.sizing || {}).forEach(([name, value]) => add(name, value));
 Object.entries(tokens.radius || {}).forEach(([name, value]) => add(`radius-${name}`, value));
 Object.entries(tokens.shadow || {}).forEach(([name, value]) => add(`shadow-${name}`, value));
+Object.entries(tokens.motion || {}).forEach(([name, value]) => add(name, value));
+Object.entries(tokens.layering || {}).forEach(([name, value]) => add(`z-${name}`, value));
+Object.entries(tokens.breakpoints || {}).forEach(([name, value]) => add(`breakpoint-${name}`, value));
 
 const lightTheme = Object.entries(tokens.themes?.light || {}).map(([name, value]) => [toCssVar(name === "chrome" ? "chrome-bg" : name), value]);
 const darkTheme = Object.entries(tokens.themes?.dark || {}).map(([name, value]) => [toCssVar(name === "chrome" ? "chrome-bg" : name), value]);

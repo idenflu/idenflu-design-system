@@ -48,6 +48,22 @@
   --if-radius-md: 0;
   --if-shadow-low: 0 1px 2px rgba(11, 18, 32, 0.05);
   --if-shadow-panel: 0 18px 48px rgba(11, 18, 32, 0.14);
+  --if-duration-fast: 120ms;
+  --if-duration-base: 200ms;
+  --if-duration-slow: 320ms;
+  --if-ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --if-ease-emphasized: cubic-bezier(0.3, 0, 0, 1.4);
+  --if-z-base: 0;
+  --if-z-dropdown: 1000;
+  --if-z-sticky: 1100;
+  --if-z-overlay: 1200;
+  --if-z-modal: 1300;
+  --if-z-popover: 1400;
+  --if-z-toast: 1500;
+  --if-breakpoint-sm: 640px;
+  --if-breakpoint-md: 768px;
+  --if-breakpoint-lg: 1024px;
+  --if-breakpoint-xl: 1280px;
 }
 
 :root[data-theme="dark"],

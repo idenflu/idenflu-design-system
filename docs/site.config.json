@@ -411,6 +411,36 @@
       "componentSidebar": true
     },
     {
+      "file": "components-skeleton.html",
+      "title": "Skeleton - idenflu Design System",
+      "meta": "Skeleton",
+      "activeTopnav": "components.html",
+      "source": "components-skeleton.html",
+      "sidebarAria": "Component pages",
+      "sidebarGroups": [],
+      "componentSidebar": true
+    },
+    {
+      "file": "components-banner.html",
+      "title": "Banner - idenflu Design System",
+      "meta": "Banner",
+      "activeTopnav": "components.html",
+      "source": "components-banner.html",
+      "sidebarAria": "Component pages",
+      "sidebarGroups": [],
+      "componentSidebar": true
+    },
+    {
+      "file": "components-breadcrumb.html",
+      "title": "Breadcrumb - idenflu Design System",
+      "meta": "Breadcrumb",
+      "activeTopnav": "components.html",
+      "source": "components-breadcrumb.html",
+      "sidebarAria": "Component pages",
+      "sidebarGroups": [],
+      "componentSidebar": true
+    },
+    {
       "file": "patterns.html",
       "title": "Patterns - idenflu Design System",
       "meta": "Workflow patterns",

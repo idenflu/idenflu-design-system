@@ -32,6 +32,15 @@ export declare const sizingTokens: {
   readonly field: "var(--if-field-height)";
 };
 
+export declare const motionTokens: {
+  readonly durationFast: "var(--if-duration-fast)";
+  readonly durationBase: "var(--if-duration-base)";
+  readonly durationSlow: "var(--if-duration-slow)";
+  readonly easeStandard: "var(--if-ease-standard)";
+  readonly easeEmphasized: "var(--if-ease-emphasized)";
+};
+
 export type ColorToken = keyof typeof colorTokens;
 export type SpacingToken = keyof typeof spacingTokens;
 export type SizingToken = keyof typeof sizingTokens;
+export type MotionToken = keyof typeof motionTokens;

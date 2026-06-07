@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Controls - idenflu Design System</title>
+    <title>Banner - idenflu Design System</title>
     <link rel="stylesheet" href="tokens.generated.css?v=20260606-token-pipeline">
     <link rel="stylesheet" href="styles.css?v=20260606-system-complete">
   </head>
@@ -18,7 +18,7 @@
         <a href="guidelines.html">Reference</a>
       </nav>
       <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode" aria-pressed="false">Dark</button>
-      <div class="topbar-meta">Controls</div>
+      <div class="topbar-meta">Banner</div>
     </header>
 
     <div class="doc-layout">
@@ -34,7 +34,7 @@
           <a href="components-inputs.html"><span>Inputs</span><small>Input and choice</small></a>
           <a href="components-select.html"><span>Select</span><small>Input and choice</small></a>
           <a href="components-forms.html"><span>Forms</span><small>Input and choice</small></a>
-          <a class="active" href="components-controls.html"><span>Controls</span><small>Input and choice</small></a>
+          <a href="components-controls.html"><span>Controls</span><small>Input and choice</small></a>
           <a href="components-tabs.html"><span>Tabs</span><small>Input and choice</small></a>
           <a href="components-disclosure.html"><span>Disclosure</span><small>Input and choice</small></a>
           <a href="components-menu.html"><span>Menu</span><small>Input and choice</small></a>
@@ -54,7 +54,7 @@
           <a href="components-examples.html"><span>Examples</span><small>System surfaces</small></a>
           <a href="components-feedback.html"><span>Feedback</span><small>System surfaces</small></a>
           <a href="components-toast.html"><span>Toast</span><small>System surfaces</small></a>
-          <a href="components-banner.html"><span>Banner</span><small>System surfaces</small></a>
+          <a class="active" href="components-banner.html"><span>Banner</span><small>System surfaces</small></a>
           <a href="components-overlays.html"><span>Overlays</span><small>System surfaces</small></a>
           <a href="components-navigation.html"><span>Navigation</span><small>System surfaces</small></a>
           <a href="components-breadcrumb.html"><span>Breadcrumb</span><small>System surfaces</small></a>
@@ -74,7 +74,7 @@
         <a href="components-inputs.html">Inputs</a>
         <a href="components-select.html">Select</a>
         <a href="components-forms.html">Forms</a>
-        <a class="active" href="components-controls.html">Controls</a>
+        <a href="components-controls.html">Controls</a>
         <a href="components-tabs.html">Tabs</a>
         <a href="components-disclosure.html">Disclosure</a>
         <a href="components-menu.html">Menu</a>
@@ -96,7 +96,7 @@
         <a href="components-examples.html">Examples</a>
         <a href="components-feedback.html">Feedback</a>
         <a href="components-toast.html">Toast</a>
-        <a href="components-banner.html">Banner</a>
+        <a class="active" href="components-banner.html">Banner</a>
         <a href="components-overlays.html">Overlays</a>
         <a href="components-navigation.html">Navigation</a>
         <a href="components-breadcrumb.html">Breadcrumb</a>
@@ -110,40 +110,40 @@
       <main>
 <section class="page-header component-page-header">
   <p class="eyebrow">Components</p>
-  <h1>Controls</h1>
-  <p class="lede">현재 값이 유지되는 필터, 설정, 선택 control 기준입니다.</p>
+  <h1>Banner</h1>
+  <p class="lede">페이지 안에 머무르는 inline 메시지로 info, success, warning, error 톤과 선택적 action을 전달하는 기준입니다.</p>
 </section>
 
 <section id="component-standard" class="section surface-band">
   <div class="section-heading">
     <p class="eyebrow">Component standard</p>
-    <h2>Controls 문서의 공통 구조.</h2>
+    <h2>Banner 문서의 공통 구조.</h2>
   </div>
   <div class="component-doc-grid">
     <article id="doc-anatomy" class="component-doc-card">
       <strong>Anatomy</strong>
-      <p>기본 구성요소를 정리해 구현과 디자인 리뷰의 출발점을 맞춥니다.</p>
-      <ul><li>Label</li><li>selected state</li><li>control group</li><li>helper copy</li><li>disabled state</li></ul>
+      <p>Icon, tone, title, message, action, dismiss 자리를 나눕니다.</p>
+      <ul><li>tone icon</li><li>title</li><li>message</li><li>action</li><li>dismiss</li></ul>
     </article>
     <article id="doc-variants" class="component-doc-card">
       <strong>Variants</strong>
-      <p>Segmented control, switch, checkbox, range, density toggle</p>
+      <p>Info, success, warning, error 톤과 dismissible/persistent 구성을 구분합니다.</p>
     </article>
     <article id="doc-states" class="component-doc-card">
       <strong>States</strong>
-      <p>Default, hover, focus, selected, loading, disabled, error 또는 locked 상태를 같은 density로 비교합니다.</p>
+      <p>Info, success, warning, error, dismissed 상태를 비교합니다.</p>
     </article>
     <article id="doc-accessibility" class="component-doc-card">
       <strong>Accessibility</strong>
-      <p>Keyboard path, visible focus, semantic role, accessible name, helper/error 연결을 함께 검토합니다.</p>
+      <p>낮은 심각도는 role=status, error는 role=alert로 알리고 색상에만 의존하지 않습니다.</p>
     </article>
     <article id="doc-examples" class="component-doc-card">
       <strong>Examples</strong>
-      <p>단독 컴포넌트보다 idenflu 제품 화면 안에서 쓰이는 예시를 우선합니다.</p>
+      <p>동기화 안내, 승인 마감, 권한 제한, 시스템 오류 복구에 사용합니다.</p>
     </article>
     <article id="doc-qa" class="component-doc-card">
       <strong>QA</strong>
-      <p>Visual QA에서 light/dark, compact density, disabled hover, focus, long text overflow를 다시 확인합니다.</p>
+      <p>긴 메시지 wrap, dark contrast, reduced motion, dismiss 포커스 복귀를 확인합니다.</p>
     </article>
   </div>
 </section>
@@ -151,64 +151,76 @@
 <section id="component-template-map" class="section">
   <div class="section-heading">
     <p class="eyebrow">Document template</p>
-    <h2>Controls 문서는 선택 범위와 상태 전환을 먼저 고정합니다.</h2>
+    <h2>Banner 문서는 톤과 dismiss 여부, live region을 먼저 정합니다.</h2>
   </div>
   <div class="component-template-map">
     <article>
       <span>01</span>
       <strong>Overview</strong>
-      <p>컨트롤이 필터, 설정, 상태 변경 중 어떤 역할인지 정의합니다.</p>
+      <p>어떤 범위의 상태 메시지인지, 지속인지 닫을 수 있는지 정합니다.</p>
     </article>
     <article>
       <span>02</span>
       <strong>Anatomy</strong>
-      <p>Label, current value, control target, helper, disabled reason을 나눕니다.</p>
+      <p>Icon, tone, title, message, action, dismiss를 분리합니다.</p>
     </article>
     <article>
       <span>03</span>
       <strong>Variants</strong>
-      <p>Segmented control, switch, checkbox, range를 작업 맥락별로 구분합니다.</p>
+      <p>Info, success, warning, error 톤을 구분합니다.</p>
     </article>
     <article>
       <span>04</span>
       <strong>States</strong>
-      <p>Checked, selected, indeterminate, disabled, focus 상태를 비교합니다.</p>
+      <p>Persistent, dismissible, dismissed 상태를 비교합니다.</p>
     </article>
     <article>
       <span>05</span>
       <strong>Accessibility</strong>
-      <p>Native input, group label, aria-checked, keyboard path를 확인합니다.</p>
+      <p>role status와 role alert, 색상 비의존, dismiss label을 확인합니다.</p>
     </article>
     <article>
       <span>06</span>
       <strong>QA</strong>
-      <p>Long label, compact density, disabled hover, range value 표시를 검증합니다.</p>
+      <p>긴 메시지, dark mode, reduced motion, 포커스 복귀를 검증합니다.</p>
     </article>
   </div>
 </section>
 
 <section id="context-example" class="section surface-band">
-  <div class="section-heading">
-    <p class="eyebrow">Context example</p>
-    <h2>컨트롤은 테이블과 설정 화면에서 선택 범위를 명확하게 만듭니다.</h2>
-  </div>
+  <div class="section-heading"><p class="eyebrow">Context example</p><h2>Banner는 화면 흐름을 막지 않고 맥락 안에서 상태와 다음 action을 알립니다.</h2></div>
   <div class="component-context-example">
     <div class="context-preview">
-      <div class="context-preview-header"><strong>Review filter controls</strong><span>Compact</span></div>
-      <div class="segmented-control" role="group" aria-label="Review status filter">
-        <button class="active" type="button">All</button>
-        <button type="button">Risk</button>
-        <button type="button">Ready</button>
+      <div class="banner-demo-grid">
+        <div class="banner-sample info" role="status">
+          <span class="banner-glyph" aria-hidden="true">i</span>
+          <div class="banner-copy">
+            <strong>예약된 동기화</strong>
+            <p>다음 데이터 동기화는 18:00에 시작됩니다.</p>
+          </div>
+          <div class="banner-tools">
+            <button class="button quiet small" type="button">일정 보기</button>
+            <button class="button quiet small" type="button" aria-label="배너 닫기">닫기</button>
+          </div>
+        </div>
+        <div class="banner-sample warning" role="status">
+          <span class="banner-glyph" aria-hidden="true">!</span>
+          <div class="banner-copy">
+            <strong>승인 마감 임박</strong>
+            <p>2건의 검토가 오늘 마감입니다.</p>
+          </div>
+          <div class="banner-tools">
+            <button class="button quiet small" type="button">검토 열기</button>
+          </div>
+        </div>
       </div>
-      <label class="switch-row"><span>Notify assigned reviewers</span><input type="checkbox" checked></label>
-      <label class="range-field"><span>Audience fit threshold</span><input type="range" min="0" max="100" value="72"><strong>72%</strong></label>
     </div>
     <div class="context-rules">
       <strong>Review checklist</strong>
       <ul>
-        <li>선택값이 하나면 segmented control, 여러 개면 checkbox group을 사용합니다.</li>
-        <li>Switch는 즉시 적용되는 설정에만 사용합니다.</li>
-        <li>Range는 현재 값을 숫자로 항상 함께 보여줍니다.</li>
+        <li>톤은 색상만이 아니라 아이콘과 text로 함께 구분합니다.</li>
+        <li>error와 같이 즉시 알릴 메시지는 role=alert로 전달합니다.</li>
+        <li>닫을 수 있는 banner는 dismiss action에 aria-label을 둡니다.</li>
       </ul>
     </div>
   </div>
@@ -217,40 +229,41 @@
 <section id="token-contract" class="section">
   <div class="section-heading">
     <p class="eyebrow">Token contract</p>
-    <h2>컨트롤은 compact density와 focus token을 기준으로 맞춥니다.</h2>
+    <h2>Banner는 surface 위에 semantic accent를 낮은 대비로 사용합니다.</h2>
   </div>
   <div class="component-token-contract">
     <div class="token-contract-row header"><span>Decision</span><span>Token</span><span>Rule</span></div>
-    <div class="token-contract-row"><span><strong>Height</strong></span><span>{sizing.control-height}</span><span>기본 컨트롤은 버튼과 같은 높이 체계를 씁니다.</span></div>
-    <div class="token-contract-row"><span><strong>Compact</strong></span><span>{density.compact}</span><span>테이블 toolbar 안에서는 compact 높이와 8px gap을 사용합니다.</span></div>
-    <div class="token-contract-row"><span><strong>Selected</strong></span><span>{colors.primary-soft}</span><span>선택 상태는 soft background와 primary border로 표시합니다.</span></div>
-    <div class="token-contract-row"><span><strong>Focus</strong></span><span>{colors.primary}</span><span>키보드 focus는 hover와 별개로 항상 보입니다.</span></div>
+    <div class="token-contract-row"><span><strong>Text</strong></span><span>{typography.body-sm}</span><span>메시지는 body small을 기준으로 둡니다.</span></div>
+    <div class="token-contract-row"><span><strong>Info</strong></span><span>{colors.primary-soft}</span><span>정보 톤은 primary soft 배경을 사용합니다.</span></div>
+    <div class="token-contract-row"><span><strong>Warning</strong></span><span>{colors.accent-amber}</span><span>주의 톤은 amber 강조와 원인 text를 함께 둡니다.</span></div>
+    <div class="token-contract-row"><span><strong>Error</strong></span><span>{colors.accent-coral}</span><span>오류 톤은 coral 강조와 복구 action을 함께 둡니다.</span></div>
   </div>
 </section>
 
 <section id="component-api-contract" class="section surface-band">
   <div class="section-heading">
     <p class="eyebrow">API contract</p>
-    <h2>Control API 구현 계약.</h2>
+    <h2>Banner API 구현 계약.</h2>
   </div>
   <div class="component-api-contract">
     <div class="component-api-row header"><span>Type</span><span>Contract</span></div>
-    <div class="component-api-row"><span><strong>Props</strong></span><span>label, value, checked, group, helper</span></div>
-    <div class="component-api-row"><span><strong>States</strong></span><span>checked, selected, indeterminate, disabled, focus</span></div>
-    <div class="component-api-row"><span><strong>A11y</strong></span><span>native input, group label, aria-checked where needed, keyboard path</span></div>
+    <div class="component-api-row"><span><strong>Props</strong></span><span>tone, title, message, action, dismissible</span></div>
+    <div class="component-api-row"><span><strong>States</strong></span><span>info, success, warning, error, dismissed</span></div>
+    <div class="component-api-row"><span><strong>A11y</strong></span><span>role status for low severity, role alert for error, severity not color-only, dismiss button aria-label</span></div>
   </div>
 </section>
 
 <section id="component-token-binding" class="section">
   <div class="section-heading">
     <p class="eyebrow">Token usage</p>
-    <h2>Control tokens를 실제 token path에 연결합니다.</h2>
+    <h2>Banner tokens를 실제 token path에 연결합니다.</h2>
   </div>
   <div class="component-token-binding">
-    <span>{sizing.control-height}</span>
-    <span>{density.compact}</span>
+    <span>{typography.body-sm}</span>
     <span>{colors.primary-soft}</span>
-    <span>{colors.primary}</span>
+    <span>{colors.accent-amber}</span>
+    <span>{colors.accent-coral}</span>
+    <span>{colors.hairline}</span>
   </div>
 </section>
 
@@ -262,76 +275,64 @@
   <div class="component-usage-guidance">
     <article>
       <strong>Use</strong>
-      <p>필터, on/off 설정, 다중 선택처럼 현재 값이 화면에 계속 남아야 할 때 씁니다.</p>
+      <p>페이지나 섹션 범위의 상태, 안내, 복구 메시지를 흐름 안에 계속 남겨야 할 때 씁니다.</p>
     </article>
     <article>
       <strong>Avoid</strong>
-      <p>즉시 실행 명령을 switch나 checkbox로 표현하지 않습니다.</p>
+      <p>색상만으로 심각도를 전달하거나 짧게 사라져야 할 알림을 banner로 고정하지 않습니다.</p>
     </article>
     <article>
       <strong>Replace with</strong>
-      <p>일회성 명령은 button, 여러 명령 묶음은 menu, 모드 전환은 tabs를 씁니다.</p>
+      <p>잠깐 뜨는 결과는 toast, 빈 화면 안내는 empty state, 필드 오류는 input helper를 씁니다.</p>
     </article>
   </div>
 </section>
 
-<section id="controls" class="section">
-          <div class="section-heading">
-            <p class="eyebrow">Controls</p>
-            <h2>필터, 토글, 선택 상태를 밀도 있게 제어합니다.</h2>
-          </div>
-          <div class="control-matrix">
-            <article class="control-group">
-              <p class="eyebrow">Segmented control</p>
-              <div class="segmented-control" role="group" aria-label="Time range">
-                <button class="active" type="button">Today</button>
-                <button type="button">7 days</button>
-                <button type="button">30 days</button>
-              </div>
-              <p>대시보드 기간, 채널, 리뷰 상태 전환에 사용합니다.</p>
-              <p>React: <code>&lt;SegmentedControl label="Time range" options={[...]} value onChange /&gt;</code> — 단일 선택, <code>role="group"</code> + <code>aria-pressed</code>.</p>
-            </article>
-            <article class="control-group">
-              <p class="eyebrow">Switches</p>
-              <label class="switch-row">
-                <span>Auto-assign reviewers</span>
-                <input type="checkbox" role="switch" checked>
-              </label>
-              <label class="switch-row">
-                <span>Notify creator</span>
-                <input type="checkbox" role="switch">
-              </label>
-              <p>React: <code>&lt;Switch label="Auto-assign reviewers" /&gt;</code> — 네이티브 <code>&lt;input type="checkbox" role="switch"&gt;</code>를 pill로 스타일링합니다. <code>label</code>, <code>description</code>, <code>helperText</code>, <code>size</code> props와 controlled/uncontrolled를 지원합니다.</p>
-            </article>
-            <article class="control-group">
-              <p class="eyebrow">Checkbox group</p>
-              <div class="checkbox-list">
-                <label><input type="checkbox" checked> Instagram reels</label>
-                <label><input type="checkbox" checked> TikTok shorts</label>
-                <label><input type="checkbox"> YouTube longform</label>
-              </div>
-              <p>React: <code>&lt;Checkbox label="Instagram reels" /&gt;</code>(indeterminate 지원)와 <code>&lt;RadioGroup options={[...]} /&gt;</code>(fieldset/legend group label).</p>
-            </article>
-            <article class="control-group">
-              <p class="eyebrow">Range control</p>
-              <label class="range-field">
-                <span>Audience fit threshold</span>
-                <input type="range" min="0" max="100" value="72">
-                <strong>72%</strong>
-              </label>
-            </article>
-            <article class="control-group">
-              <p class="eyebrow">Radio group</p>
-              <fieldset class="radio-list">
-                <legend>Approval routing</legend>
-                <label><input type="radio" name="approval-routing" checked> Auto-route to owner</label>
-                <label><input type="radio" name="approval-routing"> Manual reviewer pick</label>
-                <label><input type="radio" name="approval-routing"> Hold for compliance</label>
-              </fieldset>
-              <p>여러 옵션 중 정확히 하나만 선택하고 옵션이 모두 보여야 할 때 사용합니다. React: <code>&lt;RadioGroup label="Approval routing" options={[...]} value onChange /&gt;</code> — fieldset/legend 그룹 라벨을 사용합니다.</p>
-            </article>
-          </div>
-        </section>
+<section id="banner-demo" class="section">
+  <div class="section-heading"><p class="eyebrow">Banner</p><h2>네 가지 톤을 같은 구조로 정렬하고 심각도에 맞는 live region을 사용합니다.</h2></div>
+  <div class="banner-demo-grid">
+    <div class="banner-sample info" role="status">
+      <span class="banner-glyph" aria-hidden="true">i</span>
+      <div class="banner-copy">
+        <strong>Info</strong>
+        <p>진행에 영향이 없는 안내는 role=status로 조용히 전달합니다.</p>
+      </div>
+      <div class="banner-tools">
+        <button class="button quiet small" type="button" aria-label="info 배너 닫기">닫기</button>
+      </div>
+    </div>
+    <div class="banner-sample success" role="status">
+      <span class="banner-glyph" aria-hidden="true">v</span>
+      <div class="banner-copy">
+        <strong>Success</strong>
+        <p>완료 결과는 mint 톤과 완료 text를 함께 보여줍니다.</p>
+      </div>
+      <div class="banner-tools">
+        <button class="button quiet small" type="button" aria-label="success 배너 닫기">닫기</button>
+      </div>
+    </div>
+    <div class="banner-sample warning" role="status">
+      <span class="banner-glyph" aria-hidden="true">!</span>
+      <div class="banner-copy">
+        <strong>Warning</strong>
+        <p>대기나 주의가 필요한 상태는 원인 text를 함께 둡니다.</p>
+      </div>
+      <div class="banner-tools">
+        <button class="button quiet small" type="button">자세히</button>
+      </div>
+    </div>
+    <div class="banner-sample error" role="alert">
+      <span class="banner-glyph" aria-hidden="true">x</span>
+      <div class="banner-copy">
+        <strong>Error</strong>
+        <p>차단 상태는 role=alert로 즉시 알리고 복구 action을 제공합니다.</p>
+      </div>
+      <div class="banner-tools">
+        <button class="button quiet small" type="button">다시 시도</button>
+      </div>
+    </div>
+  </div>
+</section>
       </main>
     </div>
 

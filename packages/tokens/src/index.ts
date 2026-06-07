@@ -32,6 +32,15 @@ export const sizingTokens = {
   field: "var(--if-field-height)",
 } as const;
 
+export const motionTokens = {
+  durationFast: "var(--if-duration-fast)",
+  durationBase: "var(--if-duration-base)",
+  durationSlow: "var(--if-duration-slow)",
+  easeStandard: "var(--if-ease-standard)",
+  easeEmphasized: "var(--if-ease-emphasized)",
+} as const;
+
 export type ColorToken = keyof typeof colorTokens;
 export type SpacingToken = keyof typeof spacingTokens;
 export type SizingToken = keyof typeof sizingTokens;
+export type MotionToken = keyof typeof motionTokens;

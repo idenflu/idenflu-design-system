@@ -113,6 +113,23 @@
   </div>
 </section>
 
+<section id="overlay-layering" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Layering contract</p>
+    <h2>z-index는 토큰 사다리로만 쌓고 임의 값을 쓰지 않습니다.</h2>
+  </div>
+  <div class="spec-table">
+    <div class="spec-row header"><span>Layer</span><span>Token</span><span>Used by</span><span>Rule</span></div>
+    <div class="spec-row"><span><strong>Base</strong></span><span>--if-z-base</span><span>Page content, table</span><span>기본 문서 흐름입니다. 양수 z-index를 직접 쓰지 않습니다.</span></div>
+    <div class="spec-row"><span><strong>Dropdown</strong></span><span>--if-z-dropdown</span><span>Select, menu surface</span><span>트리거에 앵커된 floating 목록입니다.</span></div>
+    <div class="spec-row"><span><strong>Sticky</strong></span><span>--if-z-sticky</span><span>Sticky toolbar, table header</span><span>스크롤 고정 영역이 본문 위에 머뭅니다.</span></div>
+    <div class="spec-row"><span><strong>Overlay</strong></span><span>--if-z-overlay</span><span>Modal backdrop</span><span>backdrop는 surface 바로 아래 층입니다.</span></div>
+    <div class="spec-row"><span><strong>Modal</strong></span><span>--if-z-modal</span><span>Modal, drawer surface</span><span>backdrop 위에서 결정 표면을 전면화합니다.</span></div>
+    <div class="spec-row"><span><strong>Popover</strong></span><span>--if-z-popover</span><span>Popover, tooltip</span><span>modal 안에서 열리는 보조 표면이 위에 옵니다.</span></div>
+    <div class="spec-row"><span><strong>Toast</strong></span><span>--if-z-toast</span><span>Toast, notification</span><span>항상 최상단에서 비차단 알림을 띄웁니다.</span></div>
+  </div>
+</section>
+
 <section id="overlay-decision-guide" class="section surface-band">
   <div class="section-heading">
     <p class="eyebrow">Overlay decision guide</p>

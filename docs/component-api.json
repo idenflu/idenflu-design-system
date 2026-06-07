@@ -168,6 +168,24 @@
       "props": ["tone", "message", "action", "duration", "dismiss"],
       "states": ["queued", "visible", "success", "warning", "error", "undo", "dismissed"],
       "accessibility": ["aria-live", "role status or alert", "dismiss button label", "no critical hidden content"]
+    },
+    "skeleton": {
+      "label": "Skeleton API",
+      "props": ["variant", "lines", "width", "rounded", "animated"],
+      "states": ["loading", "shimmer", "static", "done"],
+      "accessibility": ["aria-busy true", "aria-hidden decorative", "announce when resolved"]
+    },
+    "banner": {
+      "label": "Banner API",
+      "props": ["tone", "title", "message", "action", "dismissible"],
+      "states": ["info", "success", "warning", "error", "dismissed"],
+      "accessibility": ["role status for low severity", "role alert for error", "severity not color-only", "dismiss button aria-label"]
+    },
+    "breadcrumb": {
+      "label": "Breadcrumb API",
+      "props": ["items", "separator", "current", "maxItems", "overflow"],
+      "states": ["default", "hover", "focus", "current page", "truncated", "disabled"],
+      "accessibility": ["nav landmark with aria-label", "aria-current page for current item", "decorative separator aria-hidden", "keyboard focus order follows trail"]
     }
   }
 }

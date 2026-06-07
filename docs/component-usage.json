@@ -140,6 +140,21 @@
       "use": "저장 완료, 동기화 실패, undo 가능한 단기 결과처럼 화면 흐름을 막지 않는 알림에 씁니다.",
       "avoid": "필수 오류, 권한 이유, 장기 진행 상태를 toast에만 숨기지 않습니다.",
       "replace": "필드 오류는 helper, 화면 상태는 feedback, 결정이 필요한 내용은 overlay를 씁니다."
+    },
+    "skeleton": {
+      "use": "데이터 로딩 동안 레이아웃 자리를 유지할 때 씁니다.",
+      "avoid": "실제 데이터가 준비되면 skeleton을 남겨두지 않습니다.",
+      "replace": "진행률이 의미 있으면 progress, 빈 결과는 empty state로 바꿉니다."
+    },
+    "banner": {
+      "use": "페이지나 섹션 범위의 상태, 안내, 복구 메시지를 흐름 안에 계속 남겨야 할 때 씁니다.",
+      "avoid": "색상만으로 심각도를 전달하거나 짧게 사라져야 할 알림을 banner로 고정하지 않습니다.",
+      "replace": "잠깐 뜨는 결과는 toast, 빈 화면 안내는 empty state, 필드 오류는 input helper를 씁니다."
+    },
+    "breadcrumb": {
+      "use": "사용자가 깊은 계층(워크스페이스, 캠페인, 상세) 안에서 현재 위치와 상위 경로로 빠르게 이동해야 할 때 씁니다.",
+      "avoid": "단계가 1~2단계로 얕거나 순차 진행이 의미인 화면을 breadcrumb로 표현하지 않습니다. 현재 페이지를 다시 link로 만들지 않습니다.",
+      "replace": "순서 진행은 stepper, 같은 화면의 view 전환은 tabs, page 단위 이동은 pagination 또는 navigation을 씁니다."
     }
   }
 }

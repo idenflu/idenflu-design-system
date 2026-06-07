@@ -50,11 +50,14 @@
           <a href="components-date-time.html"><span>Date time</span><small>Data and workflow</small></a>
           <a href="components-stepper.html"><span>Stepper</span><small>Data and workflow</small></a>
           <a href="components-empty-states.html"><span>Empty states</span><small>Data and workflow</small></a>
+          <a href="components-skeleton.html"><span>Skeleton</span><small>Data and workflow</small></a>
           <a href="components-examples.html"><span>Examples</span><small>System surfaces</small></a>
           <a href="components-feedback.html"><span>Feedback</span><small>System surfaces</small></a>
           <a href="components-toast.html"><span>Toast</span><small>System surfaces</small></a>
+          <a href="components-banner.html"><span>Banner</span><small>System surfaces</small></a>
           <a class="active" href="components-overlays.html"><span>Overlays</span><small>System surfaces</small></a>
           <a href="components-navigation.html"><span>Navigation</span><small>System surfaces</small></a>
+          <a href="components-breadcrumb.html"><span>Breadcrumb</span><small>System surfaces</small></a>
           <a href="#component-template-map"><span>Template</span><small>On this page</small></a>
           <a href="#context-example"><span>Context</span><small>On this page</small></a>
           <a href="#token-contract"><span>Tokens</span><small>On this page</small></a>
@@ -88,12 +91,15 @@
         <a href="components-date-time.html">Date time</a>
         <a href="components-stepper.html">Stepper</a>
         <a href="components-empty-states.html">Empty states</a>
+        <a href="components-skeleton.html">Skeleton</a>
         <p class="sidebar-label">System surfaces</p>
         <a href="components-examples.html">Examples</a>
         <a href="components-feedback.html">Feedback</a>
         <a href="components-toast.html">Toast</a>
+        <a href="components-banner.html">Banner</a>
         <a class="active" href="components-overlays.html">Overlays</a>
         <a href="components-navigation.html">Navigation</a>
+        <a href="components-breadcrumb.html">Breadcrumb</a>
         <p class="sidebar-label reference-label">On this page</p>
         <a href="#component-template-map">Template</a>
         <a href="#context-example">Context</a>
@@ -336,6 +342,23 @@
     <div class="spec-row"><span><strong>Header</strong></span><span>Title, description, close action으로 사용자가 열린 이유를 확인합니다.</span><span>제목은 명확한 결정명으로 쓰고, icon-only close는 accessible name을 둡니다.</span><span>Modal, drawer</span></div>
     <div class="spec-row"><span><strong>Body</strong></span><span>결정에 필요한 field, validation, impact summary를 담습니다.</span><span>오류 메시지와 helper text는 body 안에서 해결하고 값은 보존합니다.</span><span>Popover, modal, drawer</span></div>
     <div class="spec-row"><span><strong>Footer</strong></span><span>Cancel, primary, destructive action을 고정된 순서로 제공합니다.</span><span>보조 액션을 먼저 두고, destructive 또는 primary submit을 마지막에 둡니다.</span><span>Modal, drawer</span></div>
+  </div>
+</section>
+
+<section id="overlay-layering" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Layering contract</p>
+    <h2>z-index는 토큰 사다리로만 쌓고 임의 값을 쓰지 않습니다.</h2>
+  </div>
+  <div class="spec-table">
+    <div class="spec-row header"><span>Layer</span><span>Token</span><span>Used by</span><span>Rule</span></div>
+    <div class="spec-row"><span><strong>Base</strong></span><span>--if-z-base</span><span>Page content, table</span><span>기본 문서 흐름입니다. 양수 z-index를 직접 쓰지 않습니다.</span></div>
+    <div class="spec-row"><span><strong>Dropdown</strong></span><span>--if-z-dropdown</span><span>Select, menu surface</span><span>트리거에 앵커된 floating 목록입니다.</span></div>
+    <div class="spec-row"><span><strong>Sticky</strong></span><span>--if-z-sticky</span><span>Sticky toolbar, table header</span><span>스크롤 고정 영역이 본문 위에 머뭅니다.</span></div>
+    <div class="spec-row"><span><strong>Overlay</strong></span><span>--if-z-overlay</span><span>Modal backdrop</span><span>backdrop는 surface 바로 아래 층입니다.</span></div>
+    <div class="spec-row"><span><strong>Modal</strong></span><span>--if-z-modal</span><span>Modal, drawer surface</span><span>backdrop 위에서 결정 표면을 전면화합니다.</span></div>
+    <div class="spec-row"><span><strong>Popover</strong></span><span>--if-z-popover</span><span>Popover, tooltip</span><span>modal 안에서 열리는 보조 표면이 위에 옵니다.</span></div>
+    <div class="spec-row"><span><strong>Toast</strong></span><span>--if-z-toast</span><span>Toast, notification</span><span>항상 최상단에서 비차단 알림을 띄웁니다.</span></div>
   </div>
 </section>
 

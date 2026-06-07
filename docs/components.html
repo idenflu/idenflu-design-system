@@ -50,11 +50,14 @@
           <a href="components-date-time.html"><span>Date time</span><small>Data and workflow</small></a>
           <a href="components-stepper.html"><span>Stepper</span><small>Data and workflow</small></a>
           <a href="components-empty-states.html"><span>Empty states</span><small>Data and workflow</small></a>
+          <a href="components-skeleton.html"><span>Skeleton</span><small>Data and workflow</small></a>
           <a href="components-examples.html"><span>Examples</span><small>System surfaces</small></a>
           <a href="components-feedback.html"><span>Feedback</span><small>System surfaces</small></a>
           <a href="components-toast.html"><span>Toast</span><small>System surfaces</small></a>
+          <a href="components-banner.html"><span>Banner</span><small>System surfaces</small></a>
           <a href="components-overlays.html"><span>Overlays</span><small>System surfaces</small></a>
           <a href="components-navigation.html"><span>Navigation</span><small>System surfaces</small></a>
+          <a href="components-breadcrumb.html"><span>Breadcrumb</span><small>System surfaces</small></a>
           </div>
         </details>
         <p class="sidebar-label">Core components</p>
@@ -84,12 +87,15 @@
         <a href="components-date-time.html">Date time</a>
         <a href="components-stepper.html">Stepper</a>
         <a href="components-empty-states.html">Empty states</a>
+        <a href="components-skeleton.html">Skeleton</a>
         <p class="sidebar-label">System surfaces</p>
         <a href="components-examples.html">Examples</a>
         <a href="components-feedback.html">Feedback</a>
         <a href="components-toast.html">Toast</a>
+        <a href="components-banner.html">Banner</a>
         <a href="components-overlays.html">Overlays</a>
         <a href="components-navigation.html">Navigation</a>
+        <a href="components-breadcrumb.html">Breadcrumb</a>
       </aside>
 
       <main>
@@ -215,6 +221,10 @@
           <span>Empty states</span>
           <small>빈 결과, 오류, 권한, 복구 action 기준입니다.</small>
         </a>
+        <a href="components-skeleton.html">
+          <span>Skeleton</span>
+          <small>로딩 placeholder, shimmer, async pending 기준입니다.</small>
+        </a>
       </div>
     </article>
     <article class="component-index-group">
@@ -232,6 +242,10 @@
           <span>Toast</span>
           <small>toast queue, undo, dismiss, aria-live 기준입니다.</small>
         </a>
+        <a href="components-banner.html">
+          <span>Banner</span>
+          <small>inline 페이지 메시지, info/success/warning/error 톤 기준입니다.</small>
+        </a>
         <a href="components-overlays.html">
           <span>Overlays</span>
           <small>modal, sheet, popover 결정 표면 기준입니다.</small>
@@ -239,6 +253,10 @@
         <a href="components-navigation.html">
           <span>Navigation</span>
           <small>페이지, 섹션, pagination 이동 기준입니다.</small>
+        </a>
+        <a href="components-breadcrumb.html">
+          <span>Breadcrumb</span>
+          <small>계층 구조 안에서 상위 경로와 현재 위치를 보여주는 navigation trail 기준입니다.</small>
         </a>
       </div>
     </article>
@@ -558,6 +576,39 @@
         <dd>queued, visible, success, warning, error, undo, dismissed</dd>
         <dt>Accessibility</dt>
         <dd>aria-live, role status or alert, dismiss button label, no critical hidden content</dd>
+      </dl>
+    </article>
+    <article>
+      <strong>Skeleton API</strong>
+      <dl>
+        <dt>Props</dt>
+        <dd>variant, lines, width, rounded, animated</dd>
+        <dt>States</dt>
+        <dd>loading, shimmer, static, done</dd>
+        <dt>Accessibility</dt>
+        <dd>aria-busy true, aria-hidden decorative, announce when resolved</dd>
+      </dl>
+    </article>
+    <article>
+      <strong>Banner API</strong>
+      <dl>
+        <dt>Props</dt>
+        <dd>tone, title, message, action, dismissible</dd>
+        <dt>States</dt>
+        <dd>info, success, warning, error, dismissed</dd>
+        <dt>Accessibility</dt>
+        <dd>role status for low severity, role alert for error, severity not color-only, dismiss button aria-label</dd>
+      </dl>
+    </article>
+    <article>
+      <strong>Breadcrumb API</strong>
+      <dl>
+        <dt>Props</dt>
+        <dd>items, separator, current, maxItems, overflow</dd>
+        <dt>States</dt>
+        <dd>default, hover, focus, current page, truncated, disabled</dd>
+        <dt>Accessibility</dt>
+        <dd>nav landmark with aria-label, aria-current page for current item, decorative separator aria-hidden, keyboard focus order follows trail</dd>
       </dl>
     </article>
   </div>

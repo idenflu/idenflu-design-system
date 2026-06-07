@@ -37,7 +37,8 @@
         { "label": "Progress", "href": "components-progress.html", "componentKey": "progress", "sectionId": "progress", "description": "skeleton, progress bar, async pending 기준입니다." },
         { "label": "Date time", "href": "components-date-time.html", "componentKey": "date-time", "sectionId": "date-time", "description": "due date, campaign period, timezone, validation 기준입니다." },
         { "label": "Stepper", "href": "components-stepper.html", "componentKey": "stepper", "sectionId": "stepper-component", "description": "brief, review, approval 단계와 blocked reason 기준입니다." },
-        { "label": "Empty states", "href": "components-empty-states.html", "componentKey": "empty-states", "sectionId": "empty-states", "description": "빈 결과, 오류, 권한, 복구 action 기준입니다." }
+        { "label": "Empty states", "href": "components-empty-states.html", "componentKey": "empty-states", "sectionId": "empty-states", "description": "빈 결과, 오류, 권한, 복구 action 기준입니다." },
+        { "label": "Skeleton", "href": "components-skeleton.html", "componentKey": "skeleton", "sectionId": "skeleton-demo", "description": "로딩 placeholder, shimmer, async pending 기준입니다." }
       ]
     },
     {
@@ -46,8 +47,10 @@
         { "label": "Examples", "href": "components-examples.html", "componentKey": "examples", "sectionId": "examples", "description": "idenflu 운영 화면 조합과 실패/권한 상태 기준입니다." },
         { "label": "Feedback", "href": "components-feedback.html", "componentKey": "feedback", "sectionId": "feedback", "description": "notice, progress, toast, 오류 복구 커뮤니케이션 기준입니다." },
         { "label": "Toast", "href": "components-toast.html", "componentKey": "toast", "sectionId": "toast", "description": "toast queue, undo, dismiss, aria-live 기준입니다." },
+        { "label": "Banner", "href": "components-banner.html", "componentKey": "banner", "sectionId": "banner-demo", "description": "inline 페이지 메시지, info/success/warning/error 톤 기준입니다." },
         { "label": "Overlays", "href": "components-overlays.html", "componentKey": "overlays", "sectionId": "overlays", "description": "modal, sheet, popover 결정 표면 기준입니다." },
-        { "label": "Navigation", "href": "components-navigation.html", "componentKey": "navigation", "sectionId": "navigation", "description": "페이지, 섹션, pagination 이동 기준입니다." }
+        { "label": "Navigation", "href": "components-navigation.html", "componentKey": "navigation", "sectionId": "navigation", "description": "페이지, 섹션, pagination 이동 기준입니다." },
+        { "label": "Breadcrumb", "href": "components-breadcrumb.html", "componentKey": "breadcrumb", "sectionId": "breadcrumb-demo", "description": "계층 구조 안에서 상위 경로와 현재 위치를 보여주는 navigation trail 기준입니다." }
       ]
     }
   ]

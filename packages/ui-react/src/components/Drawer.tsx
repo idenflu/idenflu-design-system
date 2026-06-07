@@ -7,8 +7,8 @@ export type DrawerSize = "sm" | "md" | "lg";
 export type DrawerProps = Omit<React.HTMLAttributes<HTMLDivElement>, "title"> & {
   closeIcon?: React.ReactNode;
   closeLabel?: string;
-  closeOnBackdrop?: boolean;
-  closeOnEsc?: boolean;
+  dismissOnBackdrop?: boolean;
+  dismissOnEscape?: boolean;
   description?: React.ReactNode;
   footer?: React.ReactNode;
   label?: string;
@@ -26,8 +26,8 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
       className,
       closeIcon = "×",
       closeLabel = "Close",
-      closeOnBackdrop = true,
-      closeOnEsc = true,
+      dismissOnBackdrop = true,
+      dismissOnEscape = true,
       description,
       footer,
       label,
@@ -55,13 +55,13 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
     );
 
     React.useEffect(() => {
-      if (!open || !closeOnEsc) return;
+      if (!open || !dismissOnEscape) return;
       const onKeyDown = (event: KeyboardEvent) => {
         if (event.key === "Escape") onClose();
       };
       document.addEventListener("keydown", onKeyDown);
       return () => document.removeEventListener("keydown", onKeyDown);
-    }, [open, closeOnEsc, onClose]);
+    }, [open, dismissOnEscape, onClose]);
 
     React.useEffect(() => {
       if (!open) return;
@@ -79,7 +79,7 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
         <div
           className="if-drawer__backdrop"
           aria-hidden="true"
-          onClick={closeOnBackdrop ? onClose : undefined}
+          onClick={dismissOnBackdrop ? onClose : undefined}
         />
         <div
           ref={setPanelRef}

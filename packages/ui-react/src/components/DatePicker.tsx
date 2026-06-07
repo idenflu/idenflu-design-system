@@ -47,6 +47,7 @@ export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
     const baseId = id ?? generatedId;
     const labelId = `${baseId}-label`;
     const helperId = helperText || error ? `${baseId}-helper` : undefined;
+    const popoverId = `${baseId}-popover`;
 
     const triggerRef = React.useRef<HTMLButtonElement | null>(null);
     const popoverRef = React.useRef<HTMLDivElement | null>(null);
@@ -77,10 +78,12 @@ export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
     const dayRefs = React.useRef<Record<string, HTMLButtonElement | null>>({});
 
     const close = (focusTrigger = true) => {
+      // Move focus to the trigger BEFORE unmounting the popover, so closing from a
+      // day/nav button inside it doesn't drop focus to <body>.
+      if (focusTrigger) triggerRef.current?.focus();
       setOpen(false);
       setPendingStart("");
       setHoverISO("");
-      if (focusTrigger) triggerRef.current?.focus();
     };
 
     const emit = (next: string | DateRange) => {
@@ -173,7 +176,7 @@ export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
       else if (event.key === "Home") next = addDays(cur, -weekday);
       else if (event.key === "End") next = addDays(cur, 6 - weekday);
       else if (event.key === "Enter" || event.key === " ") { event.preventDefault(); selectDay(focusISO); return; }
-      else if (event.key === "Escape") { event.preventDefault(); close(); return; }
+      // Escape is handled at the dialog level so it also works from the month-nav buttons.
       if (next) { event.preventDefault(); setFocus(toISO(next)); }
     };
 
@@ -184,9 +187,10 @@ export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
       if (!range) return false;
       let a = "";
       let b = "";
-      if (pendingStart && hoverISO) {
-        a = pendingStart <= hoverISO ? pendingStart : hoverISO;
-        b = pendingStart <= hoverISO ? hoverISO : pendingStart;
+      const previewEnd = hoverISO || focusISO;
+      if (pendingStart && previewEnd) {
+        a = pendingStart <= previewEnd ? pendingStart : previewEnd;
+        b = pendingStart <= previewEnd ? previewEnd : pendingStart;
       } else if (rangeVal.from && rangeVal.to) {
         a = rangeVal.from;
         b = rangeVal.to;
@@ -212,11 +216,14 @@ export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
             aria-describedby={helperId}
             aria-haspopup="dialog"
             aria-expanded={open}
+            aria-controls={open ? popoverId : undefined}
             disabled={disabled}
             onClick={() => { if (!disabled) setOpen((o) => !o); }}
             onKeyDown={(event) => {
+              // Enter/Space open via the native button click; only ArrowDown needs a handler
+              // (Space activates on keyup, which preventDefault on keydown cannot cancel).
               if (disabled || open) return;
-              if (event.key === "ArrowDown" || event.key === "Enter" || event.key === " ") {
+              if (event.key === "ArrowDown") {
                 event.preventDefault();
                 setOpen(true);
               }
@@ -231,7 +238,14 @@ export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
           </button>
 
           {open ? (
-            <div ref={popoverRef} role="dialog" aria-label={label} className="if-datepicker__popover">
+            <div
+              ref={popoverRef}
+              id={popoverId}
+              role="dialog"
+              aria-label={label}
+              className="if-datepicker__popover"
+              onKeyDown={(event) => { if (event.key === "Escape") { event.preventDefault(); close(); } }}
+            >
               <div className="if-datecal__header">
                 <button type="button" className="if-datecal__nav" aria-label="Previous month" onClick={() => goMonth(-1)}>
                   <Icon name="icon-chevron-left" size={16} />

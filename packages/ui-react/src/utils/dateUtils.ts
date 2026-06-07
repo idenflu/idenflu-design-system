@@ -16,8 +16,13 @@ export const toISO = (date: Date): string =>
 export const parseISO = (iso: string): Date | null => {
   const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso ?? "");
   if (!m) return null;
-  const date = new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
-  return Number.isNaN(date.getTime()) ? null : date;
+  const year = Number(m[1]);
+  const month = Number(m[2]) - 1;
+  const day = Number(m[3]);
+  const date = new Date(year, month, day);
+  // Reject overflow (e.g. "2026-02-30" -> Mar 2) by requiring a clean round-trip.
+  if (date.getFullYear() !== year || date.getMonth() !== month || date.getDate() !== day) return null;
+  return date;
 };
 
 export const addDays = (date: Date, n: number): Date => {

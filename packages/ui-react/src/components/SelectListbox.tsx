@@ -21,13 +21,17 @@ export type SelectListboxProps = {
 const toArray = (value: string | string[] | undefined): string[] =>
   value == null ? [] : Array.isArray(value) ? value : [value];
 
-export const SelectListbox = React.forwardRef<HTMLButtonElement, SelectListboxProps>(
-  ({ baseId, labelledBy, describedBy, options, placeholder, multiple, searchable, disabled, value, defaultValue, onValueChange }, ref) => {
-    const triggerRef = React.useRef<HTMLButtonElement | null>(null);
+export const SelectListbox = React.forwardRef<HTMLDivElement, SelectListboxProps>(
+  (
+    // searchable: consumed by the search task
+    { baseId, labelledBy, describedBy, options, placeholder, multiple, searchable, disabled, value, defaultValue, onValueChange },
+    ref,
+  ) => {
+    const triggerRef = React.useRef<HTMLDivElement | null>(null);
     const panelRef = React.useRef<HTMLDivElement | null>(null);
 
     const setTriggerRef = React.useCallback(
-      (node: HTMLButtonElement | null) => {
+      (node: HTMLDivElement | null) => {
         triggerRef.current = node;
         if (typeof ref === "function") ref(node);
         else if (ref) ref.current = node;
@@ -42,7 +46,7 @@ export const SelectListbox = React.forwardRef<HTMLButtonElement, SelectListboxPr
     const [open, setOpen] = React.useState(false);
 
     const panelId = `${baseId}-listbox`;
-    const optionId = (val: string) => `${baseId}-option-${val}`;
+    const optionId = (val: string) => `${baseId}-option-${val.replace(/[^a-zA-Z0-9_-]/g, "-")}`;
 
     const emit = (next: string[]) => {
       if (!isControlled) setInternal(next);
@@ -88,7 +92,7 @@ export const SelectListbox = React.forwardRef<HTMLButtonElement, SelectListboxPr
         const shown = selectedOptions.slice(0, max);
         const extra = selectedOptions.length - shown.length;
         return (
-          <span className="if-select__tags">
+          <span className="if-select__tags" onClick={(e) => e.stopPropagation()}>
             {shown.map((option) => (
               <Chip
                 key={option.value}
@@ -114,23 +118,24 @@ export const SelectListbox = React.forwardRef<HTMLButtonElement, SelectListboxPr
 
     return (
       <div className={classNames("if-select", multiple && "if-select--multiple")}>
-        <button
+        <div
           ref={setTriggerRef}
-          type="button"
-          className="if-select__trigger"
+          role="combobox"
+          tabIndex={disabled ? -1 : 0}
+          className={classNames("if-select__trigger", disabled && "is-disabled")}
           aria-labelledby={labelledBy}
           aria-describedby={describedBy}
           aria-haspopup="listbox"
           aria-expanded={open}
           aria-controls={open ? panelId : undefined}
-          disabled={disabled}
-          onClick={() => setOpen((o) => !o)}
+          aria-disabled={disabled || undefined}
+          onClick={() => { if (!disabled) setOpen((o) => !o); }}
         >
           <span className="if-select__value">{renderTriggerValue()}</span>
           <span className="if-select__chevron" aria-hidden="true">
             <Icon name="icon-chevron-down" size={16} />
           </span>
-        </button>
+        </div>
 
         {open ? (
           <div ref={panelRef} className="if-select__panel">

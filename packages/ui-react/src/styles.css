@@ -2014,6 +2014,17 @@
   color: var(--if-color-ink-subtle);
   display: inline-flex;
   flex: none;
+  transition: transform var(--if-duration-fast) ease;
+}
+
+.if-select__trigger[aria-expanded="true"] .if-select__chevron {
+  transform: rotate(180deg);
+}
+
+.if-select__trigger.is-disabled {
+  background: var(--if-color-surface-2);
+  color: var(--if-color-ink-subtle);
+  cursor: not-allowed;
 }
 
 .if-select__panel {

@@ -45,6 +45,70 @@ export const SelectListbox = React.forwardRef<HTMLDivElement, SelectListboxProps
 
     const [open, setOpen] = React.useState(false);
 
+    const [activeIndex, setActiveIndex] = React.useState(-1);
+    const typeahead = React.useRef<{ buffer: string; timer: number | null }>({ buffer: "", timer: null });
+
+    const firstEnabled = () => options.findIndex((o) => !o.disabled);
+    const lastEnabled = () => {
+      for (let i = options.length - 1; i >= 0; i -= 1) if (!options[i].disabled) return i;
+      return -1;
+    };
+    const indexOfValue = (val: string) => options.findIndex((o) => o.value === val);
+
+    const openPanel = () => {
+      const start = selected.length ? indexOfValue(selected[0]) : firstEnabled();
+      setActiveIndex(start >= 0 && !options[start]?.disabled ? start : firstEnabled());
+      setOpen(true);
+    };
+
+    const move = (dir: 1 | -1) => {
+      const count = options.length;
+      if (count === 0) return;
+      let next = activeIndex;
+      for (let i = 0; i < count; i += 1) {
+        next = (next + dir + count) % count;
+        if (!options[next]?.disabled) break;
+      }
+      setActiveIndex(next);
+    };
+
+    const onTriggerKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+      if (disabled) return;
+      if (!open) {
+        if (event.key === "ArrowDown" || event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          openPanel();
+        }
+        return;
+      }
+      if (event.key === "Escape") {
+        event.preventDefault();
+        close();
+      } else if (event.key === "ArrowDown") {
+        event.preventDefault();
+        move(1);
+      } else if (event.key === "ArrowUp") {
+        event.preventDefault();
+        move(-1);
+      } else if (event.key === "Home") {
+        event.preventDefault();
+        setActiveIndex(firstEnabled());
+      } else if (event.key === "End") {
+        event.preventDefault();
+        setActiveIndex(lastEnabled());
+      } else if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        if (options[activeIndex]) commit(options[activeIndex]);
+      } else if (!searchable && event.key.length === 1 && /\S/.test(event.key)) {
+        const t = typeahead.current;
+        if (t.timer) window.clearTimeout(t.timer);
+        t.buffer += event.key.toLowerCase();
+        const match = options.findIndex((o) => !o.disabled && o.label.toLowerCase().startsWith(t.buffer));
+        if (match >= 0) setActiveIndex(match);
+        t.timer = window.setTimeout(() => { t.buffer = ""; }, 600);
+      }
+    };
+
     const panelId = `${baseId}-listbox`;
     const optionId = (val: string) => `${baseId}-option-${val.replace(/[^a-zA-Z0-9_-]/g, "-")}`;
 
@@ -129,7 +193,9 @@ export const SelectListbox = React.forwardRef<HTMLDivElement, SelectListboxProps
           aria-expanded={open}
           aria-controls={open ? panelId : undefined}
           aria-disabled={disabled || undefined}
-          onClick={() => { if (!disabled) setOpen((o) => !o); }}
+          aria-activedescendant={open && options[activeIndex] ? optionId(options[activeIndex].value) : undefined}
+          onClick={() => { if (disabled) return; if (open) { setOpen(false); } else { openPanel(); } }}
+          onKeyDown={onTriggerKeyDown}
         >
           <span className="if-select__value">{renderTriggerValue()}</span>
           <span className="if-select__chevron" aria-hidden="true">
@@ -140,7 +206,7 @@ export const SelectListbox = React.forwardRef<HTMLDivElement, SelectListboxProps
         {open ? (
           <div ref={panelRef} className="if-select__panel">
             <ul id={panelId} role="listbox" aria-labelledby={labelledBy} aria-multiselectable={multiple || undefined} className="if-select__options">
-              {options.map((option) => {
+              {options.map((option, index) => {
                 const isSelected = selected.includes(option.value);
                 return (
                   <li
@@ -149,8 +215,9 @@ export const SelectListbox = React.forwardRef<HTMLDivElement, SelectListboxProps
                     role="option"
                     aria-selected={isSelected}
                     aria-disabled={option.disabled || undefined}
-                    className={classNames("if-select__option", isSelected && "is-selected", option.disabled && "is-disabled")}
+                    className={classNames("if-select__option", isSelected && "is-selected", option.disabled && "is-disabled", index === activeIndex && "is-active")}
                     onClick={() => commit(option)}
+                    onMouseEnter={() => { if (!option.disabled) setActiveIndex(index); }}
                   >
                     <span className="if-select__option-check" aria-hidden="true">
                       {isSelected ? <Icon name="icon-check" size={16} /> : null}

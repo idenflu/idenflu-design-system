@@ -12,17 +12,20 @@ export type ChipProps = React.HTMLAttributes<HTMLElement> & {
   tone?: ChipTone;
 };
 
-export const Chip = ({
-  children,
-  className,
-  disabled = false,
-  interactive = false,
-  onRemove,
-  removeLabel,
-  selected = false,
-  tone = "neutral",
-  ...props
-}: ChipProps) => {
+export const Chip = React.forwardRef<HTMLElement, ChipProps>((
+  {
+    children,
+    className,
+    disabled = false,
+    interactive = false,
+    onRemove,
+    removeLabel,
+    selected = false,
+    tone = "neutral",
+    ...props
+  },
+  ref,
+) => {
   const asButton = interactive && !onRemove;
   const rootClassName = classNames(
     "if-chip",
@@ -52,15 +55,17 @@ export const Chip = ({
 
   if (asButton) {
     return (
-      <button className={rootClassName} type="button" aria-pressed={selected} disabled={disabled} {...props}>
+      <button ref={ref as React.Ref<HTMLButtonElement>} className={rootClassName} type="button" aria-pressed={selected} disabled={disabled} {...props}>
         {body}
       </button>
     );
   }
 
   return (
-    <span className={rootClassName} {...props}>
+    <span ref={ref as React.Ref<HTMLSpanElement>} className={rootClassName} {...props}>
       {body}
     </span>
   );
-};
+});
+
+Chip.displayName = "Chip";

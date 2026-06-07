@@ -60,7 +60,7 @@
   <div class="section-heading">
     <p class="eyebrow">Select</p>
     <h2>선택지는 짧게 유지하고 결과 상태를 바로 노출합니다.</h2>
-    <p>React: <code>&lt;Select label="Review stage" options={[...]} placeholder="Select stage" error helperText required /&gt;</code> — 네이티브 <code>&lt;select&gt;</code>를 label·helper·error와 연결하고 <code>SelectOption.disabled</code>로 비활성 옵션을 표시합니다. 아래 데모의 요약 패널은 문서용 인터랙션이며, 컴포넌트는 정적 <code>helperText</code>/<code>error</code>만 노출합니다.</p>
+    <p>React: <code>&lt;Select label="Review stage" options={[...]} placeholder="Select stage" error helperText required /&gt;</code> — 네이티브 <code>&lt;select&gt;</code>를 label·helper·error와 연결하고 <code>SelectOption.disabled</code>로 비활성 옵션을 표시합니다. <code>expanded</code>·<code>multiple</code>·<code>searchable</code> 또는 <code>SelectOption.icon</code>/<code>SelectOption.description</code>를 주면 native control 대신 커스텀 <code>role="listbox"</code> 폼으로 전환합니다. 아래 데모의 요약 패널은 문서용 인터랙션이며, 컴포넌트는 정적 <code>helperText</code>/<code>error</code>만 노출합니다.</p>
   </div>
   <div class="select-demo-grid">
     <article class="select-demo-surface" data-select-demo>
@@ -104,6 +104,139 @@
       </label>
       <p id="select-timezone-output" class="select-output" data-select-output data-empty="Required before scheduling the launch.">Required before scheduling the launch.</p>
       <button class="button ghost small" type="button" data-select-reset>Reset</button>
+    </article>
+  </div>
+</section>
+
+<section id="select-expanded" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Expanded select</p>
+    <h2>아이콘·설명·다중 선택·검색이 필요하면 expanded listbox 폼으로 전환합니다.</h2>
+    <p>Native <code>&lt;select&gt;</code>는 짧고 단순한 단일 선택에 쓰고, 옵션에 아이콘·보조 설명이 필요하거나 다중 선택·검색이 필요하면 <code>role="listbox"</code> 팝업으로 바꿉니다. 아래 데모는 React <code>&lt;Select&gt;</code>의 expanded 계약을 문서용 vanilla JS로 재현합니다.</p>
+  </div>
+  <div class="select-demo-grid">
+    <article class="select-demo-surface">
+      <div class="expanded-select" data-select-expanded>
+        <span class="expanded-select__label" id="expanded-stage-label">Review stage</span>
+        <div class="expanded-select__trigger" data-select-trigger role="combobox" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-controls="expanded-stage-listbox" aria-labelledby="expanded-stage-label">
+          <span class="expanded-select__value is-placeholder" data-select-value data-placeholder="Select stage">Select stage</span>
+          <span class="expanded-select__chevron" aria-hidden="true"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-chevron-down"></use></svg></span>
+        </div>
+        <div class="combobox-panel expanded-select__panel" data-select-panel hidden>
+          <div id="expanded-stage-listbox" class="expanded-select__options" role="listbox" aria-labelledby="expanded-stage-label" data-select-listbox>
+            <div id="expanded-stage-draft" class="expanded-select__option" role="option" aria-selected="false" data-select-option data-value="draft" data-label="Draft">
+              <span class="expanded-select__option-check" aria-hidden="true"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-check"></use></svg></span>
+              <span class="expanded-select__option-icon" data-select-option-icon aria-hidden="true"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-edit"></use></svg></span>
+              <span class="expanded-select__option-text"><strong data-select-option-label>Draft</strong><small>Brief and audience can still change</small></span>
+            </div>
+            <div id="expanded-stage-review" class="expanded-select__option" role="option" aria-selected="true" data-select-option data-value="review" data-label="Review queue">
+              <span class="expanded-select__option-check" aria-hidden="true"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-check"></use></svg></span>
+              <span class="expanded-select__option-icon" data-select-option-icon aria-hidden="true"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-eye"></use></svg></span>
+              <span class="expanded-select__option-text"><strong data-select-option-label>Review queue</strong><small>Reviewer and due date stay visible</small></span>
+            </div>
+            <div id="expanded-stage-approved" class="expanded-select__option" role="option" aria-selected="false" data-select-option data-value="approved" data-label="Approved">
+              <span class="expanded-select__option-check" aria-hidden="true"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-check"></use></svg></span>
+              <span class="expanded-select__option-icon" data-select-option-icon aria-hidden="true"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-check-circle"></use></svg></span>
+              <span class="expanded-select__option-text"><strong data-select-option-label>Approved</strong><small>Campaign is ready for activation</small></span>
+            </div>
+            <div id="expanded-stage-admin" class="expanded-select__option" role="option" aria-selected="false" aria-disabled="true" data-select-disabled data-select-option data-value="admin" data-label="Admin lock">
+              <span class="expanded-select__option-check" aria-hidden="true"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-check"></use></svg></span>
+              <span class="expanded-select__option-icon" data-select-option-icon aria-hidden="true"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-lock"></use></svg></span>
+              <span class="expanded-select__option-text"><strong data-select-option-label>Admin lock</strong><small>Disabled until workspace permission is granted</small></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="select-output">아이콘과 보조 설명이 붙는 단일 선택은 expanded 폼을 씁니다. 선택하면 패널이 닫히고 트리거가 갱신됩니다.</p>
+    </article>
+
+    <article class="select-demo-surface">
+      <div class="expanded-select" data-select-expanded data-multi>
+        <span class="expanded-select__label" id="expanded-reviewers-label">Reviewers</span>
+        <div class="expanded-select__trigger" data-select-trigger role="combobox" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-controls="expanded-reviewers-listbox" aria-labelledby="expanded-reviewers-label">
+          <span class="expanded-select__value is-placeholder" data-select-value data-placeholder="Add reviewers">Add reviewers</span>
+          <span class="expanded-select__chevron" aria-hidden="true"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-chevron-down"></use></svg></span>
+        </div>
+        <div class="combobox-panel expanded-select__panel" data-select-panel hidden>
+          <div id="expanded-reviewers-listbox" class="expanded-select__options" role="listbox" aria-multiselectable="true" aria-labelledby="expanded-reviewers-label" data-select-listbox>
+            <div id="expanded-reviewer-mina" class="expanded-select__option" role="option" aria-selected="true" data-select-option data-value="mina" data-label="Mina Park">
+              <span class="expanded-select__option-check" aria-hidden="true"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-check"></use></svg></span>
+              <span class="expanded-select__option-icon" data-select-option-icon aria-hidden="true"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-user"></use></svg></span>
+              <span class="expanded-select__option-text"><strong data-select-option-label>Mina Park</strong><small>Campaign owner</small></span>
+            </div>
+            <div id="expanded-reviewer-minho" class="expanded-select__option" role="option" aria-selected="true" data-select-option data-value="minho" data-label="Minho Lee">
+              <span class="expanded-select__option-check" aria-hidden="true"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-check"></use></svg></span>
+              <span class="expanded-select__option-icon" data-select-option-icon aria-hidden="true"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-user"></use></svg></span>
+              <span class="expanded-select__option-text"><strong data-select-option-label>Minho Lee</strong><small>Primary reviewer</small></span>
+            </div>
+            <div id="expanded-reviewer-alex" class="expanded-select__option" role="option" aria-selected="true" data-select-option data-value="alex" data-label="Alex Kim">
+              <span class="expanded-select__option-check" aria-hidden="true"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-check"></use></svg></span>
+              <span class="expanded-select__option-icon" data-select-option-icon aria-hidden="true"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-user"></use></svg></span>
+              <span class="expanded-select__option-text"><strong data-select-option-label>Alex Kim</strong><small>Approval reviewer</small></span>
+            </div>
+            <div id="expanded-reviewer-hana" class="expanded-select__option" role="option" aria-selected="true" data-select-option data-value="hana" data-label="Hana Cho">
+              <span class="expanded-select__option-check" aria-hidden="true"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-check"></use></svg></span>
+              <span class="expanded-select__option-icon" data-select-option-icon aria-hidden="true"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-user"></use></svg></span>
+              <span class="expanded-select__option-text"><strong data-select-option-label>Hana Cho</strong><small>Brand reviewer</small></span>
+            </div>
+            <div id="expanded-reviewer-jun" class="expanded-select__option" role="option" aria-selected="false" data-select-option data-value="jun" data-label="Jun Seo">
+              <span class="expanded-select__option-check" aria-hidden="true"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-check"></use></svg></span>
+              <span class="expanded-select__option-icon" data-select-option-icon aria-hidden="true"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-user"></use></svg></span>
+              <span class="expanded-select__option-text"><strong data-select-option-label>Jun Seo</strong><small>Legal reviewer</small></span>
+            </div>
+            <div id="expanded-reviewer-sora" class="expanded-select__option" role="option" aria-selected="false" data-select-option data-value="sora" data-label="Sora Han">
+              <span class="expanded-select__option-check" aria-hidden="true"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-check"></use></svg></span>
+              <span class="expanded-select__option-icon" data-select-option-icon aria-hidden="true"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-user"></use></svg></span>
+              <span class="expanded-select__option-text"><strong data-select-option-label>Sora Han</strong><small>Observer</small></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="select-output">다중 선택은 트리거에 removable chip으로 쌓이고, 4개 이상이면 <code>+N</code> 오버플로로 줄입니다. 선택해도 패널은 열린 상태를 유지합니다.</p>
+    </article>
+
+    <article class="select-demo-surface">
+      <div class="expanded-select" data-select-expanded data-searchable>
+        <span class="expanded-select__label" id="expanded-timezone-label">Launch timezone</span>
+        <div class="expanded-select__trigger" data-select-trigger role="combobox" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-controls="expanded-timezone-listbox" aria-labelledby="expanded-timezone-label">
+          <span class="expanded-select__value is-placeholder" data-select-value data-placeholder="Select timezone">Select timezone</span>
+          <span class="expanded-select__chevron" aria-hidden="true"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-chevron-down"></use></svg></span>
+        </div>
+        <div class="combobox-panel expanded-select__panel" data-select-panel hidden>
+          <div class="expanded-select__search">
+            <input type="search" data-select-filter aria-label="Filter timezones" aria-controls="expanded-timezone-listbox" autocomplete="off" placeholder="Search timezones">
+          </div>
+          <div id="expanded-timezone-listbox" class="expanded-select__options" role="listbox" aria-labelledby="expanded-timezone-label" data-select-listbox>
+            <div id="expanded-timezone-kst" class="expanded-select__option" role="option" aria-selected="false" data-select-option data-value="kst" data-label="KST">
+              <span class="expanded-select__option-check" aria-hidden="true"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-check"></use></svg></span>
+              <span class="expanded-select__option-icon" data-select-option-icon aria-hidden="true"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-clock"></use></svg></span>
+              <span class="expanded-select__option-text"><strong data-select-option-label>KST</strong><small>Seoul business hours</small></span>
+            </div>
+            <div id="expanded-timezone-pst" class="expanded-select__option" role="option" aria-selected="false" data-select-option data-value="pst" data-label="PST">
+              <span class="expanded-select__option-check" aria-hidden="true"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-check"></use></svg></span>
+              <span class="expanded-select__option-icon" data-select-option-icon aria-hidden="true"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-clock"></use></svg></span>
+              <span class="expanded-select__option-text"><strong data-select-option-label>PST</strong><small>US west coast review</small></span>
+            </div>
+            <div id="expanded-timezone-utc" class="expanded-select__option" role="option" aria-selected="false" data-select-option data-value="utc" data-label="UTC">
+              <span class="expanded-select__option-check" aria-hidden="true"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-check"></use></svg></span>
+              <span class="expanded-select__option-icon" data-select-option-icon aria-hidden="true"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-clock"></use></svg></span>
+              <span class="expanded-select__option-text"><strong data-select-option-label>UTC</strong><small>Coordinated globally</small></span>
+            </div>
+            <div id="expanded-timezone-cet" class="expanded-select__option" role="option" aria-selected="false" data-select-option data-value="cet" data-label="CET">
+              <span class="expanded-select__option-check" aria-hidden="true"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-check"></use></svg></span>
+              <span class="expanded-select__option-icon" data-select-option-icon aria-hidden="true"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-clock"></use></svg></span>
+              <span class="expanded-select__option-text"><strong data-select-option-label>CET</strong><small>Central Europe review</small></span>
+            </div>
+            <div id="expanded-timezone-jst" class="expanded-select__option" role="option" aria-selected="false" data-select-option data-value="jst" data-label="JST">
+              <span class="expanded-select__option-check" aria-hidden="true"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-check"></use></svg></span>
+              <span class="expanded-select__option-icon" data-select-option-icon aria-hidden="true"><svg class="button-icon" aria-hidden="true" focusable="false"><use href="icons.svg#icon-clock"></use></svg></span>
+              <span class="expanded-select__option-text"><strong data-select-option-label>JST</strong><small>Tokyo business hours</small></span>
+            </div>
+            <div class="combobox-empty" role="status" hidden data-select-empty><strong>No matching timezone</strong><small>Clear the filter to see every zone.</small></div>
+          </div>
+        </div>
+      </div>
+      <p class="select-output">검색 입력으로 긴 목록을 좁히고, 일치하는 옵션이 없으면 listbox 안에 빈 상태 메시지를 노출합니다.</p>
     </article>
   </div>
 </section>

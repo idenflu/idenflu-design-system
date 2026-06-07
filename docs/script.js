@@ -450,6 +450,248 @@ document.querySelectorAll("[data-select-demo]").forEach((demo) => {
   updateSelectOutput();
 });
 
+document.querySelectorAll("[data-select-expanded]").forEach((root) => {
+  const trigger = root.querySelector("[data-select-trigger]");
+  const valueLabel = root.querySelector("[data-select-value]");
+  const panel = root.querySelector("[data-select-panel]");
+  const listbox = root.querySelector("[data-select-listbox]");
+  const filterInput = root.querySelector("[data-select-filter]");
+  const emptyState = root.querySelector("[data-select-empty]");
+  const options = Array.from(root.querySelectorAll("[data-select-option]"));
+
+  if (!trigger || !valueLabel || !panel || options.length === 0) {
+    return;
+  }
+
+  const isMulti = root.hasAttribute("data-multi");
+  const isSearchable = root.hasAttribute("data-searchable");
+  const placeholder = valueLabel.getAttribute("data-placeholder") || "Select";
+
+  const isDisabledOption = (option) =>
+    option.hasAttribute("data-select-disabled") || option.getAttribute("aria-disabled") === "true";
+
+  const optionLabel = (option) =>
+    option.getAttribute("data-label") ||
+    option.querySelector("[data-select-option-label]")?.textContent.trim() ||
+    option.getAttribute("data-value") ||
+    "";
+
+  const getVisibleOptions = () => options.filter((option) => !option.hidden && !isDisabledOption(option));
+  const getSelectedOptions = () => options.filter((option) => option.getAttribute("aria-selected") === "true");
+  const getActiveOption = () => options.find((option) => option.classList.contains("active"));
+
+  const setActiveDescendant = (id) => {
+    [trigger, filterInput].forEach((element) => {
+      if (!element) return;
+      if (id) element.setAttribute("aria-activedescendant", id);
+      else element.removeAttribute("aria-activedescendant");
+    });
+  };
+
+  const clearActiveOption = () => {
+    options.forEach((option) => option.classList.remove("active"));
+    setActiveDescendant(null);
+  };
+
+  const setActiveOption = (option) => {
+    if (!option || option.hidden || isDisabledOption(option)) {
+      clearActiveOption();
+      return;
+    }
+    options.forEach((item) => item.classList.toggle("active", item === option));
+    setActiveDescendant(option.id);
+    option.scrollIntoView({ block: "nearest" });
+  };
+
+  const updateEmptyState = () => {
+    if (emptyState) emptyState.hidden = getVisibleOptions().length > 0;
+  };
+
+  const filterOptions = () => {
+    const query = (filterInput?.value || "").trim().toLowerCase();
+    options.forEach((option) => {
+      const matches = !query || optionLabel(option).toLowerCase().includes(query);
+      option.hidden = !matches;
+    });
+    updateEmptyState();
+  };
+
+  const renderTrigger = () => {
+    const chosen = getSelectedOptions();
+    valueLabel.replaceChildren();
+
+    if (chosen.length === 0) {
+      valueLabel.classList.add("is-placeholder");
+      valueLabel.textContent = placeholder;
+      return;
+    }
+
+    valueLabel.classList.remove("is-placeholder");
+
+    if (isMulti) {
+      const maxChips = 3;
+      chosen.slice(0, maxChips).forEach((option) => {
+        const label = optionLabel(option);
+        const chip = document.createElement("span");
+        chip.className = "tag-chip";
+        chip.append(label);
+
+        const remove = document.createElement("button");
+        remove.type = "button";
+        remove.setAttribute("aria-label", `Remove ${label}`);
+        remove.textContent = "×";
+        remove.addEventListener("click", (event) => {
+          event.stopPropagation();
+          option.setAttribute("aria-selected", "false");
+          renderTrigger();
+          trigger.focus();
+        });
+
+        chip.append(remove);
+        valueLabel.append(chip);
+      });
+
+      const overflow = chosen.length - maxChips;
+      if (overflow > 0) {
+        const more = document.createElement("span");
+        more.className = "expanded-select__more";
+        more.textContent = `+${overflow}`;
+        valueLabel.append(more);
+      }
+      return;
+    }
+
+    const only = chosen[0];
+    const icon = only.querySelector("[data-select-option-icon]");
+    if (icon) valueLabel.append(icon.cloneNode(true));
+    valueLabel.append(optionLabel(only));
+  };
+
+  const setExpanded = (expanded) => {
+    trigger.setAttribute("aria-expanded", String(expanded));
+    panel.hidden = !expanded;
+  };
+
+  const openPanel = () => {
+    setExpanded(true);
+    const current = getSelectedOptions().find((option) => !option.hidden && !isDisabledOption(option));
+    setActiveOption(current || getVisibleOptions()[0]);
+    if (isSearchable && filterInput) filterInput.focus();
+  };
+
+  const closePanel = ({ focusTrigger = true } = {}) => {
+    setExpanded(false);
+    clearActiveOption();
+    if (filterInput) {
+      filterInput.value = "";
+      filterOptions();
+    }
+    if (focusTrigger) trigger.focus();
+  };
+
+  const selectOption = (option) => {
+    if (!option || isDisabledOption(option)) return;
+
+    if (isMulti) {
+      const next = option.getAttribute("aria-selected") === "true" ? "false" : "true";
+      option.setAttribute("aria-selected", next);
+      renderTrigger();
+      setActiveOption(option);
+      if (isSearchable && filterInput) filterInput.focus();
+      else trigger.focus();
+      return;
+    }
+
+    options.forEach((item) => item.setAttribute("aria-selected", String(item === option)));
+    renderTrigger();
+    closePanel();
+  };
+
+  const moveActiveOption = (direction) => {
+    const visible = getVisibleOptions();
+    if (visible.length === 0) return;
+
+    const active = getActiveOption();
+    const currentIndex = active ? visible.indexOf(active) : -1;
+    let nextIndex;
+
+    if (direction === "home") {
+      nextIndex = 0;
+    } else if (direction === "end") {
+      nextIndex = visible.length - 1;
+    } else {
+      const delta = direction === "down" ? 1 : -1;
+      const base = currentIndex === -1 ? (delta === 1 ? -1 : 0) : currentIndex;
+      nextIndex = (base + delta + visible.length) % visible.length;
+    }
+
+    setActiveOption(visible[nextIndex]);
+  };
+
+  const onKeyDown = (event) => {
+    const allowSpace = event.currentTarget !== filterInput;
+    const isOpen = trigger.getAttribute("aria-expanded") === "true";
+
+    if (!isOpen) {
+      if (event.key === "ArrowDown" || event.key === "ArrowUp" || event.key === "Enter" || (allowSpace && event.key === " ")) {
+        event.preventDefault();
+        openPanel();
+      }
+      return;
+    }
+
+    if (event.key === "ArrowDown") {
+      event.preventDefault();
+      moveActiveOption("down");
+    } else if (event.key === "ArrowUp") {
+      event.preventDefault();
+      moveActiveOption("up");
+    } else if (event.key === "Home") {
+      event.preventDefault();
+      moveActiveOption("home");
+    } else if (event.key === "End") {
+      event.preventDefault();
+      moveActiveOption("end");
+    } else if (event.key === "Enter" || (allowSpace && event.key === " ")) {
+      event.preventDefault();
+      selectOption(getActiveOption() || getVisibleOptions()[0]);
+    } else if (event.key === "Escape") {
+      event.preventDefault();
+      closePanel();
+    }
+  };
+
+  trigger.addEventListener("click", () => {
+    if (trigger.getAttribute("aria-expanded") === "true") closePanel();
+    else openPanel();
+  });
+
+  trigger.addEventListener("keydown", onKeyDown);
+  filterInput?.addEventListener("keydown", onKeyDown);
+
+  filterInput?.addEventListener("input", () => {
+    setExpanded(true);
+    filterOptions();
+    setActiveOption(getVisibleOptions()[0]);
+  });
+
+  options.forEach((option) => {
+    option.addEventListener("click", () => selectOption(option));
+    option.addEventListener("mouseenter", () => {
+      if (!option.hidden && !isDisabledOption(option)) setActiveOption(option);
+    });
+  });
+
+  document.addEventListener("mousedown", (event) => {
+    if (trigger.getAttribute("aria-expanded") !== "true") return;
+    if (!root.contains(event.target)) closePanel({ focusTrigger: false });
+  });
+
+  setExpanded(false);
+  filterOptions();
+  renderTrigger();
+});
+
 document.querySelectorAll("[data-disclosure]").forEach((disclosure) => {
   const trigger = disclosure.querySelector("[data-disclosure-trigger]");
   const panel = disclosure.querySelector("[data-disclosure-panel]");

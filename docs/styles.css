@@ -4574,17 +4574,16 @@ h3 {
 .tab-list {
   display: flex;
   overflow-x: auto;
-  gap: var(--space-xs);
-  border-radius: var(--radius-md);
-  background: var(--surface-1);
-  padding: var(--space-xs);
+  gap: var(--space-md);
+  border-bottom: 1px solid var(--hairline);
 }
 
 .tab {
   min-height: var(--control-height);
   border: 0;
-  border-radius: var(--radius-sm);
-  padding: 8px 12px;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  padding: 8px 4px;
   background: transparent;
   color: var(--ink-muted);
   cursor: pointer;
@@ -4593,9 +4592,8 @@ h3 {
 }
 
 .tab.active {
-  background: var(--surface-raised);
-  box-shadow: none;
-  color: var(--ink);
+  border-bottom-color: var(--primary);
+  color: var(--primary);
 }
 
 .tab-panel {

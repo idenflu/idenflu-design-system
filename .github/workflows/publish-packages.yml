@@ -1,0 +1,50 @@
+name: Publish GitHub Packages
+
+on:
+  release:
+    types:
+      - published
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          registry-url: https://npm.pkg.github.com
+          scope: "@idenflu"
+
+      - name: Verify docs and packages
+        run: npm run check
+
+      - name: Preview package contents
+        run: |
+          npm --cache ./.npm-cache pack --workspace @idenflu/ui-tokens --dry-run
+          npm --cache ./.npm-cache pack --workspace @idenflu/ui-icons --dry-run
+          npm --cache ./.npm-cache pack --workspace @idenflu/ui-react --dry-run
+
+      - name: Publish tokens
+        run: npm publish --workspace @idenflu/ui-tokens
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish icons
+        run: npm publish --workspace @idenflu/ui-icons
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish React components
+        run: npm publish --workspace @idenflu/ui-react
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,72 @@
+:root,
+[data-if-theme="light"] {
+  --if-color-primary: #3f6df6;
+  --if-color-primary-hover: #315fe6;
+  --if-color-primary-pressed: #264ab8;
+  --if-color-primary-soft: #edf4ff;
+  --if-color-ink: #0b1220;
+  --if-color-ink-muted: #566173;
+  --if-color-ink-subtle: #8792a5;
+  --if-color-canvas: #ffffff;
+  --if-color-surface-1: #f7f9fc;
+  --if-color-surface-2: #eef2f7;
+  --if-color-surface-raised: #ffffff;
+  --if-color-inverse-ink: #ffffff;
+  --if-color-hairline: #d5dce8;
+  --if-color-hairline-strong: #a8b2c3;
+  --if-color-success: #009f7a;
+  --if-color-warning: #f0a000;
+  --if-color-error: #d04b55;
+  --if-color-error-soft: #ffe9e4;
+  --if-focus-ring: rgba(63, 109, 246, 0.15);
+  --if-space-xxs: 4px;
+  --if-space-xs: 8px;
+  --if-space-sm: 12px;
+  --if-space-md: 16px;
+  --if-space-lg: 20px;
+  --if-space-xl: 24px;
+  --if-space-xxl: 32px;
+  --if-control-height-sm: 32px;
+  --if-control-height: 38px;
+  --if-control-height-lg: 44px;
+  --if-field-height: 40px;
+  --if-font-family: Pretendard, Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --if-font-size-body: 15px;
+  --if-font-size-body-sm: 13px;
+  --if-font-size-caption: 12px;
+  --if-font-size-button: 14px;
+  --if-font-weight-body: 450;
+  --if-font-weight-emphasis: 650;
+  --if-line-height-body: 1.55;
+  --if-line-height-compact: 1.34;
+  --if-radius-none: 0;
+  --if-radius-sm: 0;
+  --if-radius-md: 0;
+  --if-shadow-low: 0 1px 2px rgba(11, 18, 32, 0.05);
+  --if-shadow-panel: 0 18px 48px rgba(11, 18, 32, 0.14);
+}
+
+:root[data-theme="dark"],
+[data-if-theme="dark"] {
+  --if-color-primary: #a3b8ff;
+  --if-color-primary-hover: #bdcbff;
+  --if-color-primary-pressed: #7f9eff;
+  --if-color-primary-soft: #20305c;
+  --if-color-ink: #f7f9fd;
+  --if-color-ink-muted: #c4cedd;
+  --if-color-ink-subtle: #92a0b5;
+  --if-color-canvas: #000000;
+  --if-color-surface-1: #0a0a0b;
+  --if-color-surface-2: #141416;
+  --if-color-surface-raised: #080809;
+  --if-color-inverse-ink: #0b1220;
+  --if-color-hairline: #292b30;
+  --if-color-hairline-strong: #43464f;
+  --if-color-success: #4be0b2;
+  --if-color-warning: #ffd166;
+  --if-color-error: #ff9ba2;
+  --if-color-error-soft: #4a201a;
+  --if-focus-ring: rgba(163, 184, 255, 0.22);
+  --if-shadow-low: 0 1px 2px rgba(0, 0, 0, 0.22);
+  --if-shadow-panel: 0 18px 48px rgba(0, 0, 0, 0.36);
+}

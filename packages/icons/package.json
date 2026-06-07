@@ -1,0 +1,26 @@
+{
+  "name": "@idenflu/ui-icons",
+  "version": "0.0.0-alpha.0",
+  "description": "Icon sprite and names for idenflu product interfaces.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/idenflu/idenflu-design-system.git",
+    "directory": "packages/icons"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "files": [
+    "src"
+  ],
+  "sideEffects": [
+    "./src/icons.svg"
+  ],
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "default": "./src/index.ts"
+    },
+    "./icons.svg": "./src/icons.svg"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "name": "@idenflu/ui-tokens",
+  "version": "0.0.0-alpha.0",
+  "description": "Design tokens for idenflu product interfaces.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/idenflu/idenflu-design-system.git",
+    "directory": "packages/tokens"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "files": [
+    "src"
+  ],
+  "sideEffects": [
+    "./src/tokens.css"
+  ],
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "default": "./src/index.ts"
+    },
+    "./tokens.css": "./src/tokens.css",
+    "./tokens.json": "./src/tokens.json"
+  }
+}

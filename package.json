@@ -1,0 +1,12 @@
+{
+  "name": "idenflu-design-system",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "check:docs": "node docs/scripts/verify-site.js",
+    "check:packages": "node scripts/package-skeleton-check.js",
+    "check": "node docs/scripts/verify-site.js && node scripts/package-skeleton-check.js"
+  }
+}

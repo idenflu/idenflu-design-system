@@ -1,0 +1,33 @@
+{
+  "name": "@idenflu/ui-react",
+  "version": "0.0.0-alpha.0",
+  "description": "React components for idenflu product interfaces.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/idenflu/idenflu-design-system.git",
+    "directory": "packages/ui-react"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "files": [
+    "src"
+  ],
+  "sideEffects": [
+    "./src/styles.css"
+  ],
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "dependencies": {
+    "@idenflu/ui-icons": "0.0.0-alpha.0",
+    "@idenflu/ui-tokens": "0.0.0-alpha.0"
+  },
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./styles.css": "./src/styles.css"
+  }
+}

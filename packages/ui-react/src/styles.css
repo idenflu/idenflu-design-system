@@ -2113,3 +2113,151 @@
   padding: 6px 8px;
   width: 100%;
 }
+
+/* ── DatePicker ─────────────────────────────────────────────────────────── */
+
+.if-datepicker {
+  position: relative;
+}
+
+.if-datepicker__trigger {
+  align-items: center;
+  background: var(--if-color-surface-raised);
+  border: 1px solid var(--if-color-hairline);
+  border-radius: var(--if-radius-md);
+  color: var(--if-color-ink);
+  cursor: pointer;
+  display: flex;
+  font-family: var(--if-font-family);
+  font-size: var(--if-font-size-body-sm);
+  gap: var(--if-space-xs);
+  justify-content: space-between;
+  min-height: var(--if-field-height);
+  padding: 6px 11px;
+  text-align: left;
+  width: 100%;
+}
+
+.if-datepicker__trigger:focus-visible {
+  border-color: var(--if-color-primary);
+  box-shadow: 0 0 0 3px var(--if-focus-ring);
+  outline: 0;
+}
+
+.if-datepicker__value {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.if-datepicker__value.is-placeholder {
+  color: var(--if-color-ink-subtle);
+}
+
+.if-datepicker__icon {
+  align-items: center;
+  color: var(--if-color-ink-subtle);
+  display: inline-flex;
+  flex: none;
+}
+
+.if-datepicker__popover {
+  background: var(--if-color-surface-raised);
+  border: 1px solid var(--if-color-hairline);
+  border-radius: var(--if-radius-md);
+  box-shadow: var(--if-shadow-panel);
+  left: 0;
+  margin-top: 4px;
+  padding: var(--if-space-sm);
+  position: absolute;
+  top: 100%;
+  width: 280px;
+  z-index: var(--if-z-overlay);
+}
+
+.if-datecal__header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--if-space-xs);
+}
+
+.if-datecal__month {
+  font-size: var(--if-font-size-body-sm);
+  font-weight: var(--if-font-weight-emphasis);
+}
+
+.if-datecal__nav {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: var(--if-radius-sm);
+  color: var(--if-color-ink-muted);
+  cursor: pointer;
+  display: inline-flex;
+  height: 28px;
+  justify-content: center;
+  width: 28px;
+}
+
+.if-datecal__nav:hover {
+  background: var(--if-color-surface-1);
+}
+
+.if-datecal__weekdays,
+.if-datecal__row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.if-datecal__weekday {
+  color: var(--if-color-ink-subtle);
+  font-size: var(--if-font-size-caption);
+  padding: 4px 0;
+  text-align: center;
+}
+
+.if-datecal__day {
+  align-items: center;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--if-radius-sm);
+  color: var(--if-color-ink);
+  cursor: pointer;
+  display: flex;
+  font-family: var(--if-font-family);
+  font-size: var(--if-font-size-body-sm);
+  height: 34px;
+  justify-content: center;
+}
+
+.if-datecal__day:hover:not(.is-disabled) {
+  background: var(--if-color-surface-1);
+}
+
+.if-datecal__day:focus-visible {
+  box-shadow: 0 0 0 3px var(--if-focus-ring);
+  outline: 0;
+}
+
+.if-datecal__day.is-outside {
+  color: var(--if-color-ink-subtle);
+}
+
+.if-datecal__day.is-today {
+  border-color: var(--if-color-hairline-strong);
+}
+
+.if-datecal__day.is-in-range {
+  background: var(--if-color-primary-soft);
+  border-radius: 0;
+}
+
+.if-datecal__day.is-selected {
+  background: var(--if-color-primary);
+  color: var(--if-color-inverse-ink);
+}
+
+.if-datecal__day.is-disabled {
+  color: var(--if-color-ink-subtle);
+  cursor: not-allowed;
+}

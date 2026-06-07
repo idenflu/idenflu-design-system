@@ -60,6 +60,9 @@ requireIncludes(".github/workflows/publish-packages.yml", [
   "packages: write",
   "registry-url: https://npm.pkg.github.com",
   "NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}",
+  "npm view @idenflu/ui-tokens@$VERSION version",
+  "npm view @idenflu/ui-icons@$VERSION version",
+  "npm view @idenflu/ui-react@$VERSION version",
   "npm publish --workspace @idenflu/ui-tokens",
   "npm publish --workspace @idenflu/ui-icons",
   "npm publish --workspace @idenflu/ui-react",
@@ -208,6 +211,8 @@ requireIncludes("packages/tokens/src/tokens.css", [
 
 if (exists("packages/ui-react/package.json")) {
   const uiReact = readJson("packages/ui-react/package.json");
+  const uiTokens = exists("packages/tokens/package.json") ? readJson("packages/tokens/package.json") : undefined;
+  const uiIcons = exists("packages/icons/package.json") ? readJson("packages/icons/package.json") : undefined;
   if (!uiReact.peerDependencies?.react) failures.push("packages/ui-react/package.json: missing react peer dependency");
   if (!uiReact.dependencies?.["@idenflu/ui-tokens"]) failures.push("packages/ui-react/package.json: missing token dependency");
   if (!uiReact.dependencies?.["@idenflu/ui-icons"]) failures.push("packages/ui-react/package.json: missing icon dependency");
@@ -216,6 +221,12 @@ if (exists("packages/ui-react/package.json")) {
   }
   if (uiReact.dependencies?.["@idenflu/ui-icons"]?.startsWith("workspace:")) {
     failures.push("packages/ui-react/package.json: publish dependencies must not use workspace protocol");
+  }
+  if (uiTokens && uiReact.dependencies?.["@idenflu/ui-tokens"] !== uiTokens.version) {
+    failures.push("packages/ui-react/package.json: @idenflu/ui-tokens dependency must match package version");
+  }
+  if (uiIcons && uiReact.dependencies?.["@idenflu/ui-icons"] !== uiIcons.version) {
+    failures.push("packages/ui-react/package.json: @idenflu/ui-icons dependency must match package version");
   }
 }
 

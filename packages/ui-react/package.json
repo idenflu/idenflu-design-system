@@ -1,6 +1,6 @@
 {
   "name": "@idenflu/ui-react",
-  "version": "0.0.0-alpha.0",
+  "version": "0.0.0-alpha.1",
   "description": "React components for idenflu product interfaces.",
   "repository": {
     "type": "git",
@@ -20,8 +20,8 @@
     "react": ">=18"
   },
   "dependencies": {
-    "@idenflu/ui-icons": "0.0.0-alpha.0",
-    "@idenflu/ui-tokens": "0.0.0-alpha.0"
+    "@idenflu/ui-icons": "0.0.0-alpha.1",
+    "@idenflu/ui-tokens": "0.0.0-alpha.1"
   },
   "exports": {
     ".": {

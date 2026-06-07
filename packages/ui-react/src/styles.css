@@ -1848,6 +1848,7 @@
   gap: var(--if-space-md);
   border-bottom: 1px solid var(--if-color-hairline);
   overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .if-tabs__tab {

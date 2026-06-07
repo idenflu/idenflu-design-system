@@ -4574,6 +4574,7 @@ h3 {
 .tab-list {
   display: flex;
   overflow-x: auto;
+  overflow-y: hidden;
   gap: var(--space-md);
   border-bottom: 1px solid var(--hairline);
 }

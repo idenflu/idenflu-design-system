@@ -1,6 +1,8 @@
 @import "@idenflu/ui-tokens/tokens.css";
 
 .if-button,
+.if-icon-button,
+.if-input-shell,
 .if-field__control,
 .if-chip__remove {
   font-family: var(--if-font-family);
@@ -9,75 +11,256 @@
 .if-button {
   align-items: center;
   border: 1px solid transparent;
+  border-radius: var(--if-radius-md);
   cursor: pointer;
   display: inline-flex;
   font-size: var(--if-font-size-button);
-  font-weight: var(--if-font-weight-body);
+  font-weight: 350;
   gap: var(--if-space-xs);
   height: var(--if-control-height);
   justify-content: center;
   line-height: var(--if-line-height-compact);
-  padding: 0 14px;
+  min-height: var(--if-control-height);
+  padding: 9px 14px;
+  text-decoration: none;
+  transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease, box-shadow 120ms ease, transform 120ms ease;
 }
 
-.if-button--sm {
+.if-button--small {
+  font-size: var(--if-font-size-body-sm);
+  gap: 6px;
   height: var(--if-control-height-sm);
-  padding-inline: 10px;
+  min-height: var(--if-control-height-sm);
+  padding: 6px 10px;
 }
 
-.if-button--lg {
+.if-button--medium {
+  height: var(--if-control-height);
+  min-height: var(--if-control-height);
+}
+
+.if-button--large {
   height: var(--if-control-height-lg);
-  padding-inline: 18px;
+  min-height: var(--if-control-height-lg);
+  padding: 12px 16px;
 }
 
 .if-button--primary {
+  border-color: var(--if-color-primary);
   background: var(--if-color-primary);
+  color: var(--if-color-inverse-ink);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+}
+
+.if-button--primary:hover {
+  border-color: var(--if-color-primary-hover);
+  background: var(--if-color-primary-hover);
   color: var(--if-color-inverse-ink);
 }
 
+.if-button--primary:active {
+  border-color: var(--if-color-primary-pressed);
+  background: var(--if-color-primary-pressed);
+}
+
 .if-button--secondary {
-  background: var(--if-color-ink);
+  border-color: var(--if-color-inverse-canvas);
+  background: var(--if-color-inverse-canvas);
+  color: var(--if-color-inverse-ink);
+}
+
+.if-button--secondary:hover {
+  border-color: var(--if-color-inverse-surface-1);
+  background: var(--if-color-inverse-surface-1);
   color: var(--if-color-inverse-ink);
 }
 
 .if-button--quiet {
+  border-color: var(--if-color-hairline);
   background: var(--if-color-surface-1);
   color: var(--if-color-ink);
 }
 
+.if-button--quiet:hover,
+.if-icon-button:hover {
+  border-color: var(--if-color-hairline-strong);
+  background: var(--if-color-surface-2);
+  color: var(--if-color-ink);
+}
+
 .if-button--ghost {
+  border-color: transparent;
   background: transparent;
   color: var(--if-color-primary);
 }
 
+.if-button--ghost:hover {
+  border-color: transparent;
+  background: transparent;
+  color: var(--if-color-primary-hover);
+  box-shadow: inset 0 -1px 0 currentColor;
+}
+
+.if-button--ghost:active {
+  color: var(--if-color-primary-pressed);
+}
+
 .if-button--danger {
+  border-color: var(--if-color-error);
   background: var(--if-color-error);
   color: var(--if-color-inverse-ink);
 }
 
-.if-button:hover:not(:disabled) {
-  border-color: var(--if-color-hairline-strong);
+.if-button--danger:hover {
+  border-color: var(--if-color-error-hover);
+  background: var(--if-color-error-hover);
+  color: var(--if-color-inverse-ink);
+}
+
+.if-button:active,
+.if-icon-button:active {
+  transform: translateY(1px);
 }
 
 .if-button:focus-visible,
+.if-icon-button:focus-visible,
+.if-field__control:focus,
 .if-field__control:focus-visible,
+.if-input-shell:focus-within,
 .if-chip__remove:focus-visible {
-  outline: 3px solid var(--if-focus-ring);
-  outline-offset: 2px;
+  border-color: var(--if-color-primary);
+  box-shadow: 0 0 0 3px var(--if-focus-ring);
+  outline: 0;
 }
 
-.if-button:disabled,
 .if-button.is-loading {
-  cursor: not-allowed;
-  opacity: 0.55;
+  cursor: progress;
+  pointer-events: none;
 }
 
-.if-button.is-selected {
-  box-shadow: inset 0 0 0 1px var(--if-color-primary);
+.if-button.is-loading::after {
+  animation: if-loading-pulse 0.9s ease-in-out infinite;
+  background: currentColor;
+  content: "";
+  height: 2px;
+  opacity: 0.78;
+  transform-origin: left center;
+  width: 18px;
+}
+
+.if-button--small.is-loading::after {
+  width: 14px;
+}
+
+.if-button--large.is-loading::after {
+  width: 22px;
 }
 
 .if-button__icon {
   display: inline-flex;
+  flex: 0 0 auto;
+  height: 16px;
+  width: 16px;
+}
+
+.if-button--small .if-button__icon,
+.if-icon-button--small .if-button__icon {
+  height: 14px;
+  width: 14px;
+}
+
+.if-button--large .if-button__icon,
+.if-icon-button--large .if-button__icon {
+  height: 18px;
+  width: 18px;
+}
+
+.if-icon-button {
+  align-items: center;
+  background: var(--if-color-surface-raised);
+  border: 1px solid var(--if-color-hairline);
+  border-radius: var(--if-radius-md);
+  color: var(--if-color-ink-muted);
+  cursor: pointer;
+  display: inline-flex;
+  height: var(--if-control-height);
+  justify-content: center;
+  transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease, box-shadow 120ms ease, transform 120ms ease;
+  width: var(--if-control-height);
+}
+
+.if-icon-button--small {
+  height: var(--if-control-height-sm);
+  width: var(--if-control-height-sm);
+}
+
+.if-icon-button--medium {
+  height: var(--if-control-height);
+  width: var(--if-control-height);
+}
+
+.if-icon-button--large {
+  height: var(--if-control-height-lg);
+  width: var(--if-control-height-lg);
+}
+
+.if-icon-button--ghost:not(:disabled) {
+  border-color: transparent;
+  background: transparent;
+  color: var(--if-color-primary);
+}
+
+.if-icon-button--ghost:not(:disabled):hover {
+  border-color: transparent;
+  background: transparent;
+  color: var(--if-color-primary-hover);
+  box-shadow: inset 0 -1px 0 currentColor;
+}
+
+.if-icon-button--ghost:not(:disabled):active {
+  color: var(--if-color-primary-pressed);
+}
+
+.if-icon-button--danger {
+  color: var(--if-color-error);
+}
+
+.if-icon-button--danger:hover {
+  border-color: var(--if-color-error);
+  background: var(--if-color-error-soft);
+  color: var(--if-color-error);
+}
+
+.if-button.is-selected,
+.if-icon-button.is-selected {
+  border-color: var(--if-color-primary);
+  background: var(--if-color-primary-soft);
+  color: var(--if-color-primary);
+}
+
+.if-button:disabled,
+.if-button:disabled:hover,
+.if-button:disabled:active,
+.if-icon-button:disabled,
+.if-icon-button:disabled:hover,
+.if-icon-button:disabled:active {
+  border: 1px solid var(--if-color-hairline);
+  background: var(--if-color-surface-2);
+  box-shadow: none;
+  color: var(--if-color-ink-subtle);
+  cursor: not-allowed;
+  transform: none;
+}
+
+@keyframes if-loading-pulse {
+  0%,
+  100% {
+    transform: scaleX(0.35);
+  }
+
+  50% {
+    transform: scaleX(1);
+  }
 }
 
 .if-field {
@@ -86,20 +269,78 @@
 }
 
 .if-field__label {
-  color: var(--if-color-ink);
+  color: var(--if-color-ink-muted);
   font-family: var(--if-font-family);
   font-size: var(--if-font-size-body-sm);
   font-weight: var(--if-font-weight-emphasis);
 }
 
+.if-field__required {
+  color: var(--if-color-error);
+  font-size: var(--if-font-size-caption);
+  font-style: normal;
+  font-weight: 550;
+  margin-left: var(--if-space-xs);
+}
+
 .if-field__control {
   background: var(--if-color-surface-raised);
   border: 1px solid var(--if-color-hairline);
+  border-radius: var(--if-radius-md);
   color: var(--if-color-ink);
   font-size: var(--if-font-size-body-sm);
   height: var(--if-field-height);
-  line-height: var(--if-line-height-body);
+  line-height: 1.35;
+  min-height: var(--if-field-height);
+  outline: none;
   padding: 9px 11px;
+  width: 100%;
+}
+
+.if-input-shell {
+  align-items: center;
+  background: var(--if-color-surface-raised);
+  border: 1px solid var(--if-color-hairline);
+  border-radius: var(--if-radius-md);
+  color: var(--if-color-ink);
+  display: flex;
+  gap: var(--if-space-xs);
+  min-height: var(--if-field-height);
+  padding: 0 11px;
+  transition: border-color 120ms ease, box-shadow 120ms ease, background-color 120ms ease;
+}
+
+.if-input-shell .if-field__control {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  flex: 1 1 auto;
+  height: calc(var(--if-field-height) - 2px);
+  min-height: 0;
+  min-width: 0;
+  padding: 0;
+}
+
+.if-input-shell .if-field__control:focus,
+.if-input-shell .if-field__control:focus-visible {
+  box-shadow: none;
+}
+
+.if-field__prefix,
+.if-field__suffix,
+.if-field__icon {
+  color: var(--if-color-ink-subtle);
+  flex: 0 0 auto;
+  font-size: var(--if-font-size-body-sm);
+  line-height: 1;
+}
+
+.if-field__icon {
+  align-items: center;
+  display: inline-flex;
+  height: 16px;
+  justify-content: center;
+  width: 16px;
 }
 
 .if-field__control--select {
@@ -113,6 +354,31 @@
   resize: vertical;
 }
 
+.if-field__control:disabled,
+.if-input-shell.is-disabled {
+  background: var(--if-color-surface-2);
+  border-color: var(--if-color-hairline);
+  box-shadow: none;
+  color: var(--if-color-ink-subtle);
+  cursor: not-allowed;
+  opacity: 1;
+  -webkit-text-fill-color: var(--if-color-ink-subtle);
+}
+
+.if-field__control:read-only:not(:disabled) {
+  background: var(--if-color-surface-1);
+  color: var(--if-color-ink);
+}
+
+.if-input-shell.is-disabled .if-field__control,
+.if-input-shell.is-disabled .if-field__prefix,
+.if-input-shell.is-disabled .if-field__suffix,
+.if-input-shell.is-disabled .if-field__icon {
+  color: var(--if-color-ink-subtle);
+  cursor: not-allowed;
+  -webkit-text-fill-color: var(--if-color-ink-subtle);
+}
+
 .if-field__helper {
   color: var(--if-color-ink-muted);
   font-family: var(--if-font-family);
@@ -120,16 +386,43 @@
   line-height: var(--if-line-height-compact);
 }
 
-.if-field--invalid .if-field__control {
+.if-field--invalid .if-field__control,
+.if-field--invalid .if-input-shell,
+.if-field--server-error .if-field__control,
+.if-field--server-error .if-input-shell {
   border-color: var(--if-color-error);
 }
 
-.if-field--invalid .if-field__helper {
+.if-field--invalid .if-field__helper,
+.if-field--server-error .if-field__helper {
   color: var(--if-color-error);
 }
 
-.if-field--success .if-field__control {
+.if-field--success .if-field__control,
+.if-field--success .if-input-shell {
   border-color: var(--if-color-success);
+}
+
+.if-field--success .if-field__helper {
+  color: var(--if-color-success);
+}
+
+.if-field--readonly .if-field__control,
+.if-field--readonly .if-input-shell {
+  background: var(--if-color-surface-1);
+  color: var(--if-color-ink);
+}
+
+.if-field--disabled .if-field__control,
+.if-field--disabled .if-input-shell,
+.if-field--locked .if-field__control,
+.if-field--locked .if-input-shell {
+  background: var(--if-color-surface-2);
+  border-color: var(--if-color-hairline);
+  color: var(--if-color-ink-subtle);
+  cursor: not-allowed;
+  opacity: 1;
+  -webkit-text-fill-color: var(--if-color-ink-subtle);
 }
 
 .if-badge,

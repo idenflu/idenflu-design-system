@@ -41,6 +41,19 @@ requireIncludes("docs/react-package-plan.md", [
   "Table",
 ]);
 
+requireIncludes("README.md", ["docs/ui-react-usage.md"]);
+
+requireIncludes("docs/ui-react-usage.md", [
+  "@idenflu/ui-react",
+  "npm install @idenflu/ui-react @idenflu/ui-tokens @idenflu/ui-icons",
+  "import \"@idenflu/ui-react/styles.css\";",
+  "data-if-theme=\"dark\"",
+  "Button",
+  "IconButton",
+  "TextField",
+  "Card",
+]);
+
 requireIncludes(".npmrc", ["@idenflu:registry=https://npm.pkg.github.com"]);
 requireIncludes(".github/workflows/publish-packages.yml", [
   "Publish GitHub Packages",
@@ -109,6 +122,7 @@ if (exists("package.json")) {
 
 requireIncludes("packages/ui-react/src/index.ts", [
   "Button",
+  "IconButton",
   "TextField",
   "Textarea",
   "Select",
@@ -119,8 +133,34 @@ requireIncludes("packages/ui-react/src/index.ts", [
   "EmptyState",
 ]);
 
+requireIncludes("packages/ui-react/src/components/Button.tsx", [
+  "export type ButtonSize = \"small\" | \"medium\" | \"large\"",
+  "IconButton",
+  "aria-busy={loading || undefined}",
+  "aria-label={label}",
+  "aria-pressed={pressed ?? undefined}",
+  "size = \"medium\"",
+  "if-icon-button",
+]);
+
+requireIncludes("packages/ui-react/src/components/TextField.tsx", [
+  "export type FieldState = \"default\" | \"invalid\" | \"success\" | \"server-error\"",
+  "export type FieldAvailability = \"editable\" | \"readonly\" | \"disabled\" | \"locked\"",
+  "availability?: FieldAvailability",
+  "required?: boolean",
+  "prefix?: React.ReactNode",
+  "suffix?: React.ReactNode",
+  "icon?: React.ReactNode",
+  "aria-describedby={describedBy}",
+  "readOnly={isReadonly || readOnly}",
+  "disabled={isDisabled || disabled}",
+  "if-input-shell",
+  "if-field__required",
+]);
+
 requireIncludes("packages/ui-react/src/styles.css", [
   ".if-button",
+  ".if-icon-button",
   ".if-field",
   ".if-badge",
   ".if-chip",
@@ -128,11 +168,39 @@ requireIncludes("packages/ui-react/src/styles.css", [
   ".if-table",
   ".if-empty-state",
   "--if-color-primary",
+  "font-weight: 350",
+  ".if-button--primary:hover",
+  ".if-button--secondary:hover",
+  "var(--if-color-inverse-canvas)",
+  "var(--if-color-inverse-surface-1)",
+  ".if-button--ghost:hover",
+  ".if-button.is-loading::after",
+  ".if-button:disabled:hover",
+  ".if-icon-button--ghost:not(:disabled)",
+  "transform: translateY(1px)",
+]);
+
+requireIncludes("packages/ui-react/src/styles.css", [
+  ".if-field__required",
+  ".if-input-shell",
+  ".if-input-shell:focus-within",
+  ".if-input-shell.is-disabled",
+  ".if-field__prefix",
+  ".if-field__suffix",
+  ".if-field__icon",
+  ".if-field--readonly .if-field__control",
+  ".if-field--disabled .if-field__control",
+  ".if-field--locked .if-field__control",
+  ".if-field--server-error .if-field__control",
+  "-webkit-text-fill-color",
+  "opacity: 1",
 ]);
 
 requireIncludes("packages/tokens/src/tokens.css", [
   "--if-color-primary",
   "--if-color-surface-raised",
+  "--if-color-inverse-canvas",
+  "--if-color-inverse-surface-1",
   "--if-space-sm",
   "--if-control-height",
   "[data-if-theme=\"dark\"]",

@@ -194,3 +194,52 @@
     <div class="spec-row"><span><strong>Icon registry</strong></span><span>tokens.json, icons.svg, components-icons.html</span><span>verify-site</span><span>Broken symbol reference or missing accessible name</span></div>
   </div>
 </section>
+
+<section id="motion" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Motion</p>
+    <h2>모션은 세 단계 duration과 두 개의 easing으로만 제어합니다.</h2>
+    <p class="lede">Duration은 표면 크기에 비례해 올라가고, easing은 기본적으로 standard를 쓰며 강조가 필요할 때만 emphasized를 선택합니다. 임의의 ms 값이나 ease 곡선을 직접 쓰지 않습니다.</p>
+  </div>
+  <div class="spec-table">
+    <div class="spec-row header"><span>Token</span><span>Value</span><span>Use</span><span>Rule</span></div>
+    <div class="spec-row"><span><strong>--if-duration-fast</strong></span><span>120ms</span><span>Hover, press, focus ring</span><span>즉각적인 micro-interaction 피드백에 씁니다.</span></div>
+    <div class="spec-row"><span><strong>--if-duration-base</strong></span><span>200ms</span><span>Toggle, dropdown, accordion</span><span>표준 상태 전환의 기본값입니다.</span></div>
+    <div class="spec-row"><span><strong>--if-duration-slow</strong></span><span>320ms</span><span>Modal, drawer, page surface</span><span>큰 표면이 들어오고 나갈 때만 씁니다.</span></div>
+    <div class="spec-row"><span><strong>--if-ease-standard</strong></span><span>cubic-bezier(0.2, 0, 0, 1)</span><span>대부분의 enter/exit 전환</span><span>자연스럽게 감속하는 기본 easing입니다.</span></div>
+    <div class="spec-row"><span><strong>--if-ease-emphasized</strong></span><span>cubic-bezier(0.3, 0, 0, 1.4)</span><span>주의를 끄는 강조 모션</span><span>살짝 overshoot해 강조가 필요할 때만 씁니다.</span></div>
+  </div>
+</section>
+
+<section id="layering" class="section surface-band">
+  <div class="section-heading">
+    <p class="eyebrow">Layering</p>
+    <h2>z-index는 base에서 toast까지 토큰 사다리로만 쌓습니다.</h2>
+    <p class="lede">Overlay 스택은 base, dropdown, sticky, overlay, modal, popover, toast 순서로 쌓입니다. backdrop(overlay)은 modal surface 바로 아래 층이고, popover와 tooltip은 modal 안에서 그 위로 올라오며, toast는 항상 최상단의 비차단 알림 층입니다.</p>
+  </div>
+  <div class="spec-table">
+    <div class="spec-row header"><span>Layer</span><span>Token</span><span>z-index</span><span>Used by</span></div>
+    <div class="spec-row"><span><strong>Base</strong></span><span>--if-z-base</span><span>0</span><span>Page content, table — 양수 z-index를 직접 쓰지 않습니다.</span></div>
+    <div class="spec-row"><span><strong>Dropdown</strong></span><span>--if-z-dropdown</span><span>1000</span><span>Select, menu 등 trigger에 앵커된 목록.</span></div>
+    <div class="spec-row"><span><strong>Sticky</strong></span><span>--if-z-sticky</span><span>1100</span><span>Sticky toolbar, table header.</span></div>
+    <div class="spec-row"><span><strong>Overlay</strong></span><span>--if-z-overlay</span><span>1200</span><span>Modal backdrop layer.</span></div>
+    <div class="spec-row"><span><strong>Modal</strong></span><span>--if-z-modal</span><span>1300</span><span>Modal, drawer surface (backdrop 위).</span></div>
+    <div class="spec-row"><span><strong>Popover</strong></span><span>--if-z-popover</span><span>1400</span><span>Modal 안에서 열리는 popover, tooltip.</span></div>
+    <div class="spec-row"><span><strong>Toast</strong></span><span>--if-z-toast</span><span>1500</span><span>항상 최상단의 비차단 알림.</span></div>
+  </div>
+</section>
+
+<section id="breakpoint" class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Breakpoint</p>
+    <h2>반응형 분기는 sm/md/lg/xl 네 개의 기준 폭으로 맞춥니다.</h2>
+    <p class="lede">CSS 변수는 <code>@media</code> 쿼리 조건에서 사용할 수 없으므로, 아래 토큰과 같은 값을 build/SCSS 단계 상수로 함께 유지하고 미디어 쿼리에는 raw px 값을 적습니다.</p>
+  </div>
+  <div class="spec-table">
+    <div class="spec-row header"><span>Breakpoint</span><span>Token</span><span>Min width</span><span>Target</span></div>
+    <div class="spec-row"><span><strong>sm</strong></span><span>--if-breakpoint-sm</span><span>640px</span><span>Large phone — compact single-column layout 시작점.</span></div>
+    <div class="spec-row"><span><strong>md</strong></span><span>--if-breakpoint-md</span><span>768px</span><span>Tablet portrait — two-column으로 전환합니다.</span></div>
+    <div class="spec-row"><span><strong>lg</strong></span><span>--if-breakpoint-lg</span><span>1024px</span><span>Small laptop — sidebar와 content를 함께 배치합니다.</span></div>
+    <div class="spec-row"><span><strong>xl</strong></span><span>--if-breakpoint-xl</span><span>1280px</span><span>Desktop — full dashboard density.</span></div>
+  </div>
+</section>

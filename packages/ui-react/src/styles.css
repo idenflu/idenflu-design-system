@@ -1748,7 +1748,7 @@
 }
 
 .if-banner--success {
-  background: color-mix(in srgb, var(--if-color-success) 14%, transparent);
+  background: var(--if-color-success-soft);
   border-color: var(--if-color-success);
 }
 
@@ -1757,7 +1757,7 @@
 }
 
 .if-banner--warning {
-  background: color-mix(in srgb, var(--if-color-warning) 18%, transparent);
+  background: var(--if-color-warning-soft);
   border-color: var(--if-color-warning);
 }
 

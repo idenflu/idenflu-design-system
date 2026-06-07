@@ -26,9 +26,13 @@
   --hairline: #D5DCE8;
   --hairline-strong: #A8B2C3;
   --semantic-success: #009F7A;
+  --semantic-success-soft: #DFF8EF;
   --semantic-warning: #F0A000;
+  --semantic-warning-soft: #FFF0C7;
   --semantic-error: #D04B55;
+  --semantic-error-soft: #FFE9E4;
   --semantic-info: #3F6DF6;
+  --semantic-info-soft: #EDF4FF;
   --space-xxs: 4px;
   --space-xs: 8px;
   --space-sm: 12px;

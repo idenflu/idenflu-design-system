@@ -721,7 +721,7 @@
   max-height: calc(100vh - var(--if-space-xxl));
   max-width: 100%;
   overflow: auto;
-  padding: var(--if-space-xl);
+  padding: var(--if-space-lg);
   width: 100%;
 }
 

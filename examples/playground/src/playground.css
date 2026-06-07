@@ -45,6 +45,19 @@ body {
   margin: 0 0 var(--if-space-md);
 }
 
+.pg-group {
+  margin-bottom: var(--if-space-lg);
+}
+
+.pg-group > h3 {
+  font-size: var(--if-font-size-caption);
+  font-weight: var(--if-font-weight-emphasis);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--if-color-ink-muted);
+  margin: 0 0 var(--if-space-sm);
+}
+
 .pg-row {
   display: flex;
   flex-wrap: wrap;

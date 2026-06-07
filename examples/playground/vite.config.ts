@@ -6,10 +6,10 @@ import react from "@vitejs/plugin-react";
 // (esbuild for .tsx), which validates the source-only consumption model.
 export default defineConfig({
   plugins: [react()],
+  // Never inline assets: the icon sprite must stay an external file in BOTH
+  // dev and build so `<use href="…icons.svg#icon-name">` resolves (browsers
+  // refuse data-URL + fragment external references). 0 disables inlining.
   build: {
-    // Never inline SVGs: the icon sprite must stay an external file so
-    // `<use href="…icons.svg#icon-name">` resolves (browsers refuse
-    // data-URL + fragment external references).
-    assetsInlineLimit: (filePath) => (filePath.endsWith(".svg") ? false : undefined),
+    assetsInlineLimit: 0,
   },
 });

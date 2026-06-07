@@ -2,6 +2,7 @@
   "name": "@idenflu/ui-react",
   "version": "0.0.0-alpha.1",
   "description": "React components for idenflu product interfaces.",
+  "types": "./src/index.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/idenflu/idenflu-design-system.git",

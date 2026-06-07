@@ -92,6 +92,10 @@ if (exists("package.json")) {
   if (packageJson.publishConfig?.registry !== "https://npm.pkg.github.com") {
     failures.push(`${file}: missing GitHub Packages publishConfig`);
   }
+  if (!packageJson.types) failures.push(`${file}: missing top-level types field`);
+  if (packageJson.types && packageJson.exports?.["."]?.types !== packageJson.types) {
+    failures.push(`${file}: exports . types must match top-level types`);
+  }
   if (!packageJson.repository?.url?.includes("github.com/idenflu/idenflu-design-system.git")) {
     failures.push(`${file}: missing repository url`);
   }

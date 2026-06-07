@@ -2,6 +2,7 @@
   "name": "@idenflu/ui-tokens",
   "version": "0.0.0-alpha.1",
   "description": "Design tokens for idenflu product interfaces.",
+  "types": "./src/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/idenflu/idenflu-design-system.git",

@@ -135,6 +135,10 @@ if (exists("package.json")) {
   "packages/ui-react/src/components/RadioGroup.tsx",
   "packages/ui-react/src/components/SegmentedControl.tsx",
   "packages/ui-react/src/components/Icon.tsx",
+  "packages/ui-react/src/components/Avatar.tsx",
+  "packages/ui-react/src/components/Skeleton.tsx",
+  "packages/ui-react/src/components/Banner.tsx",
+  "packages/ui-react/src/components/Breadcrumb.tsx",
 ].forEach(requireFile);
 
 requireIncludes("packages/ui-react/src/index.ts", [
@@ -159,6 +163,14 @@ requireIncludes("packages/ui-react/src/index.ts", [
   "SegmentedControl",
   "Icon",
   "IconSpriteProvider",
+  "Avatar",
+  "Skeleton",
+  "SkeletonProps",
+  "SkeletonVariant",
+  "Banner",
+  "BannerProps",
+  "BannerTone",
+  "Breadcrumb",
 ]);
 
 requireIncludes("packages/ui-react/src/components/Icon.tsx", [
@@ -171,6 +183,66 @@ requireIncludes("packages/ui-react/src/components/Icon.tsx", [
 
 requireIncludes("packages/ui-react/src/styles.css", [
   ".if-icon",
+]);
+
+requireIncludes("packages/ui-react/src/components/Avatar.tsx", [
+  "export type AvatarSize = \"small\" | \"medium\" | \"large\"",
+  "export type AvatarPresence = \"online\" | \"busy\"",
+  "React.forwardRef<HTMLSpanElement, AvatarProps>",
+  "if-avatar__presence",
+  "Avatar.displayName",
+]);
+
+requireIncludes("packages/ui-react/src/styles.css", [
+  ".if-avatar",
+  ".if-avatar.is-muted",
+  ".if-avatar__presence",
+  ".if-avatar--small",
+]);
+
+requireIncludes("packages/ui-react/src/components/Skeleton.tsx", [
+  "export const Skeleton = React.forwardRef<HTMLSpanElement, SkeletonProps>",
+  "Skeleton.displayName = \"Skeleton\";",
+  "export type SkeletonVariant = \"text\" | \"block\" | \"circle\";",
+  "classNames(\"if-skeleton\", `if-skeleton--${variant}`, className)",
+  "aria-hidden=\"true\"",
+]);
+
+requireIncludes("packages/ui-react/src/styles.css", [
+  ".if-skeleton {",
+  ".if-skeleton--text {",
+  ".if-skeleton__line.is-last {",
+  "@keyframes if-skeleton-shimmer {",
+]);
+
+requireIncludes("packages/ui-react/src/components/Banner.tsx", [
+  "export type BannerTone = \"info\" | \"success\" | \"warning\" | \"error\";",
+  "React.forwardRef<HTMLDivElement, BannerProps>",
+  "role={tone === \"error\" ? \"alert\" : \"status\"}",
+  "aria-label={dismissLabel ?? \"Dismiss\"}",
+  "Banner.displayName = \"Banner\";",
+]);
+
+requireIncludes("packages/ui-react/src/styles.css", [
+  ".if-banner {",
+  ".if-banner__dismiss {",
+  ".if-banner--error {",
+  ".if-banner--warning {",
+]);
+
+requireIncludes("packages/ui-react/src/components/Breadcrumb.tsx", [
+  "export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(",
+  "aria-label={label ?? \"Breadcrumb\"}",
+  "className=\"if-breadcrumb__list\"",
+  "aria-current=\"page\"",
+  "Breadcrumb.displayName = \"Breadcrumb\";",
+]);
+
+requireIncludes("packages/ui-react/src/styles.css", [
+  ".if-breadcrumb__list",
+  ".if-breadcrumb__separator",
+  ".if-breadcrumb__link",
+  ".if-breadcrumb__current",
 ]);
 
 requireIncludes("packages/ui-react/src/components/Checkbox.tsx", [

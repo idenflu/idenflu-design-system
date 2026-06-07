@@ -55,5 +55,17 @@ export type { SegmentedControlProps, SegmentedControlSize, SegmentedOption } fro
 export { Icon, IconSpriteProvider } from "./components/Icon";
 export type { IconProps, IconSize, IconSpriteProviderProps } from "./components/Icon";
 
+export { Avatar } from "./components/Avatar";
+export type { AvatarPresence, AvatarProps, AvatarSize } from "./components/Avatar";
+
+export { Skeleton } from "./components/Skeleton";
+export type { SkeletonProps, SkeletonVariant } from "./components/Skeleton";
+
+export { Banner } from "./components/Banner";
+export type { BannerProps, BannerTone } from "./components/Banner";
+
+export { Breadcrumb } from "./components/Breadcrumb";
+export type { BreadcrumbItem, BreadcrumbProps } from "./components/Breadcrumb";
+
 export { iconNames } from "@idenflu/ui-icons";
 export type { IconName } from "@idenflu/ui-icons";

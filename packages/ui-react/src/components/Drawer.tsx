@@ -1,4 +1,5 @@
 import * as React from "react";
+import { createPortal } from "react-dom";
 import { classNames } from "../utils/classNames";
 
 export type DrawerSide = "left" | "right";
@@ -70,11 +71,19 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
       return () => restoreFocusRef.current?.focus?.();
     }, [open]);
 
+    // Lock body scroll while the drawer is open.
+    React.useEffect(() => {
+      if (!open) return;
+      const prev = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => { document.body.style.overflow = prev; };
+    }, [open]);
+
     if (!open) return null;
 
     const labelledBy = title ? headingId : undefined;
 
-    return (
+    return createPortal(
       <>
         <div
           className="if-drawer__backdrop"
@@ -114,7 +123,8 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
           <div className="if-drawer__body">{children}</div>
           {footer ? <footer className="if-drawer__footer">{footer}</footer> : null}
         </div>
-      </>
+      </>,
+      document.body,
     );
   },
 );

@@ -1,4 +1,5 @@
 import * as React from "react";
+import { createPortal } from "react-dom";
 import { classNames } from "../utils/classNames";
 
 export type DialogSize = "small" | "medium" | "large";
@@ -93,6 +94,14 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
       return () => restoreFocusRef.current?.focus?.();
     }, [open]);
 
+    // Lock body scroll while the dialog is open.
+    React.useEffect(() => {
+      if (!open) return;
+      const prev = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => { document.body.style.overflow = prev; };
+    }, [open]);
+
     if (!open) {
       return null;
     }
@@ -103,7 +112,7 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
       }
     };
 
-    return (
+    return createPortal(
       <div className="if-dialog__backdrop" onClick={handleBackdropClick}>
         <div
           ref={setSurfaceRef}
@@ -125,7 +134,8 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
           ) : null}
           {children}
         </div>
-      </div>
+      </div>,
+      document.body,
     );
   },
 );

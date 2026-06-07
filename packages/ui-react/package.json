@@ -18,7 +18,8 @@
     "./src/styles.css"
   ],
   "peerDependencies": {
-    "react": ">=18"
+    "react": ">=18",
+    "react-dom": ">=18"
   },
   "dependencies": {
     "@idenflu/ui-icons": "0.0.0-alpha.1",

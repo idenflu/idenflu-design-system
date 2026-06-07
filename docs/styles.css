@@ -237,6 +237,8 @@ code {
   position: sticky;
   top: 56px;
   height: calc(100vh - 56px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
   border-right: 1px solid var(--hairline);
   padding: var(--space-lg) var(--space-md);
   background: var(--surface-raised);

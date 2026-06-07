@@ -157,10 +157,20 @@
 }
 
 .if-button__icon {
+  align-items: center;
   display: inline-flex;
   flex: 0 0 auto;
   height: 16px;
+  justify-content: center;
   width: 16px;
+}
+
+/* Normalize any icon (e.g. <Icon> at its own size) to fill the button's icon
+   slot, so a 20px medium Icon doesn't overflow the 16px slot or shift baseline. */
+.if-button__icon svg {
+  display: block;
+  height: 100%;
+  width: 100%;
 }
 
 .if-button--small .if-button__icon,

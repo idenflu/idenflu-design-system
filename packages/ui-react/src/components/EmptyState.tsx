@@ -11,8 +11,14 @@ export type EmptyStateProps = React.HTMLAttributes<HTMLDivElement> & {
 };
 
 export const EmptyState = ({ action, className, description, title, tone = "empty", ...props }: EmptyStateProps) => (
-  <div className={classNames("if-empty-state", `if-empty-state--${tone}`, className)} {...props}>
-    <strong className="if-empty-state__title">{title}</strong>
+  <div
+    role={tone === "error" ? "alert" : undefined}
+    {...props}
+    className={classNames("if-empty-state", `if-empty-state--${tone}`, className)}
+  >
+    <strong className="if-empty-state__title" role="heading" aria-level={2}>
+      {title}
+    </strong>
     <p className="if-empty-state__description">{description}</p>
     {action ? <div className="if-empty-state__action">{action}</div> : null}
   </div>

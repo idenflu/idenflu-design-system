@@ -14,24 +14,30 @@ export type SelectProps = Omit<React.SelectHTMLAttributes<HTMLSelectElement>, "c
   label: string;
   options: SelectOption[];
   placeholder?: string;
+  required?: boolean;
   state?: FieldState;
 };
 
 export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
-  ({ className, error, helperText, id, label, options, placeholder, state = error ? "invalid" : "default", ...props }, ref) => {
+  ({ "aria-describedby": ariaDescribedBy, className, error, helperText, id, label, options, placeholder, required, state = error ? "invalid" : "default", ...props }, ref) => {
     const generatedId = React.useId();
     const selectId = id ?? generatedId;
     const helperId = helperText || error ? `${selectId}-helper` : undefined;
+    const describedBy = [ariaDescribedBy, helperId].filter(Boolean).join(" ") || undefined;
 
     return (
       <label className={classNames("if-field", `if-field--${state}`, className)} htmlFor={selectId}>
-        <span className="if-field__label">{label}</span>
+        <span className="if-field__label">
+          {label}
+          {required ? <em className="if-field__required">Required</em> : null}
+        </span>
         <select
           ref={ref}
           id={selectId}
-          aria-describedby={helperId}
-          aria-invalid={state === "invalid" || undefined}
+          aria-describedby={describedBy}
+          aria-invalid={state === "invalid" || state === "server-error" || undefined}
           className="if-field__control if-field__control--select"
+          required={required}
           {...props}
         >
           {placeholder ? <option value="">{placeholder}</option> : null}

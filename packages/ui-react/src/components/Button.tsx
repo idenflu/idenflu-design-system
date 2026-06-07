@@ -15,13 +15,21 @@ export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 };
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ children, className, disabled, icon, loading = false, pressed, selected = false, size = "medium", type = "button", variant = "quiet", ...props }, ref) => (
+  ({ children, className, disabled, icon, loading = false, onClick, pressed, selected = false, size = "medium", type = "button", variant = "quiet", ...props }, ref) => (
     <button
       ref={ref}
       aria-busy={loading || undefined}
+      aria-disabled={loading || undefined}
       aria-pressed={pressed ?? undefined}
       className={classNames("if-button", `if-button--${variant}`, `if-button--${size}`, selected && "is-selected", loading && "is-loading", className)}
-      disabled={disabled || loading}
+      disabled={disabled}
+      onClick={(event) => {
+        if (loading) {
+          event.preventDefault();
+          return;
+        }
+        onClick?.(event);
+      }}
       type={type}
       {...props}
     >
@@ -46,6 +54,7 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
     <button
       ref={ref}
       aria-label={label}
+      aria-pressed={selected || undefined}
       className={classNames("if-icon-button", `if-icon-button--${variant}`, `if-icon-button--${size}`, selected && "is-selected", className)}
       type={type}
       {...props}

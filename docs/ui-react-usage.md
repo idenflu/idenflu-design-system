@@ -78,6 +78,111 @@ export function CampaignForm() {
 - `Card`, `CardHeader`, `CardBody`, `CardFooter`
 - `Table`, `TableEmptyRow`
 - `EmptyState`
+- `Dialog`, `DialogHeader`, `DialogBody`, `DialogFooter`, `DialogClose`
+- `Drawer`
+- `Toolbar`, `ToolbarGroup`
+- `LoadingState`
+- `ErrorState`
+
+## Tier-2 components
+
+2차 컴포넌트는 overlay, container, feedback 패턴을 다룹니다. 모든 컴포넌트는 controlled/presentational이며 icon-only action에는 accessible name을 요구합니다.
+
+### Dialog
+
+```tsx
+import { Dialog, DialogBody, DialogFooter, Button } from "@idenflu/ui-react";
+import "@idenflu/ui-react/styles.css";
+
+function RequestChangesDialog({ open, onClose }: { open: boolean; onClose: () => void }) {
+  return (
+    <Dialog open={open} onClose={onClose} size="medium" title="Request changes?" closeLabel="Close dialog">
+      <DialogBody>
+        <p>Rev 03에 남길 사유와 알림 대상을 확인합니다.</p>
+      </DialogBody>
+      <DialogFooter>
+        <Button variant="quiet" onClick={onClose}>Cancel</Button>
+        <Button variant="primary" onClick={onClose}>Request</Button>
+      </DialogFooter>
+    </Dialog>
+  );
+}
+```
+
+### Drawer
+
+```tsx
+import { Drawer, Button } from "@idenflu/ui-react";
+import "@idenflu/ui-react/styles.css";
+
+function CreatorPanel({ open, onClose }: { open: boolean; onClose: () => void }) {
+  return (
+    <Drawer
+      open={open}
+      onClose={onClose}
+      side="right"
+      size="md"
+      title="Creator Hana"
+      description="Rev 03 · Disclosure missing · Due today"
+      closeLabel="Close creator details"
+      footer={
+        <>
+          <Button variant="quiet" onClick={onClose}>Close</Button>
+          <Button variant="primary">Request changes</Button>
+        </>
+      }
+    >
+      <p>Owner: Mina</p>
+      <p>Next action: Request caption change</p>
+    </Drawer>
+  );
+}
+```
+
+### Toolbar
+
+```tsx
+import { Toolbar, ToolbarGroup, Button, IconButton, TextField } from "@idenflu/ui-react";
+import "@idenflu/ui-react/styles.css";
+
+<Toolbar label="Campaign filters" density="compact" align="between">
+  <ToolbarGroup label="Search and filters">
+    <TextField label="Search campaigns" type="search" />
+    <Button variant="quiet" size="small">Status</Button>
+    <Button variant="quiet" size="small">Owner</Button>
+  </ToolbarGroup>
+  <ToolbarGroup align="end" label="Actions">
+    <Button variant="ghost" size="small" disabled>Reset</Button>
+    <IconButton label="Refresh list" icon={<RefreshIcon />} size="small" />
+  </ToolbarGroup>
+</Toolbar>
+```
+
+### LoadingState
+
+```tsx
+import { LoadingState } from "@idenflu/ui-react";
+
+<LoadingState
+  label="Loading roster"
+  description="Fetching your creator roster. This usually takes a few seconds."
+  size="medium"
+/>
+```
+
+### ErrorState
+
+```tsx
+import { ErrorState, Button } from "@idenflu/ui-react";
+import "@idenflu/ui-react/styles.css";
+
+<ErrorState
+  tone="error"
+  title="Rows failed to sync"
+  description="Retry keeps your selected rows and filters."
+  action={<Button variant="danger" onClick={retry}>Retry</Button>}
+/>
+```
 
 ## Notes
 

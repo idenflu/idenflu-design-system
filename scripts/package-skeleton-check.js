@@ -125,6 +125,11 @@ if (exists("package.json")) {
   "packages/ui-react/src/components/Card.tsx",
   "packages/ui-react/src/components/Table.tsx",
   "packages/ui-react/src/components/EmptyState.tsx",
+  "packages/ui-react/src/components/Dialog.tsx",
+  "packages/ui-react/src/components/Drawer.tsx",
+  "packages/ui-react/src/components/Toolbar.tsx",
+  "packages/ui-react/src/components/LoadingState.tsx",
+  "packages/ui-react/src/components/ErrorState.tsx",
 ].forEach(requireFile);
 
 requireIncludes("packages/ui-react/src/index.ts", [
@@ -138,6 +143,11 @@ requireIncludes("packages/ui-react/src/index.ts", [
   "Card",
   "Table",
   "EmptyState",
+  "Dialog",
+  "Drawer",
+  "Toolbar",
+  "LoadingState",
+  "ErrorState",
 ]);
 
 requireIncludes("packages/ui-react/src/components/Button.tsx", [
@@ -163,6 +173,50 @@ requireIncludes("packages/ui-react/src/components/TextField.tsx", [
   "disabled={isDisabled || disabled}",
   "if-input-shell",
   "if-field__required",
+]);
+
+requireIncludes("packages/ui-react/src/components/Dialog.tsx", [
+  "role=\"dialog\"",
+  "aria-modal=\"true\"",
+  "if-dialog__backdrop",
+  "export type DialogProps",
+  "if-dialog--${size}",
+  "export const DialogClose",
+]);
+
+requireIncludes("packages/ui-react/src/components/Drawer.tsx", [
+  "export type DrawerSide = \"left\" | \"right\"",
+  "export type DrawerSize = \"sm\" | \"md\" | \"lg\"",
+  "role=\"dialog\"",
+  "aria-modal=\"true\"",
+  "if-drawer__backdrop",
+  "aria-label={closeLabel}",
+]);
+
+requireIncludes("packages/ui-react/src/components/Toolbar.tsx", [
+  "export type ToolbarProps = React.HTMLAttributes<HTMLDivElement>",
+  "React.forwardRef<HTMLDivElement, ToolbarProps>",
+  "role=\"toolbar\"",
+  "aria-label={label}",
+  "if-toolbar",
+  "ToolbarGroup",
+]);
+
+requireIncludes("packages/ui-react/src/components/LoadingState.tsx", [
+  "export type LoadingStateSize = \"small\" | \"medium\" | \"large\";",
+  "export const LoadingState = React.forwardRef<HTMLDivElement, LoadingStateProps>(",
+  "role=\"status\"",
+  "aria-live=\"polite\"",
+  "className=\"if-loading-state__spinner\"",
+  "LoadingState.displayName = \"LoadingState\";",
+]);
+
+requireIncludes("packages/ui-react/src/components/ErrorState.tsx", [
+  "export type ErrorStateTone = \"error\" | \"warning\" | \"critical\"",
+  "React.forwardRef<HTMLDivElement, ErrorStateProps>",
+  "role={tone === \"warning\" ? \"status\" : \"alert\"}",
+  "if-error-state",
+  "ErrorState.displayName = \"ErrorState\"",
 ]);
 
 requireIncludes("packages/ui-react/src/styles.css", [
@@ -201,6 +255,36 @@ requireIncludes("packages/ui-react/src/styles.css", [
   ".if-field--server-error .if-field__control",
   "-webkit-text-fill-color",
   "opacity: 1",
+]);
+
+requireIncludes("packages/ui-react/src/styles.css", [
+  ".if-dialog__backdrop",
+  ".if-dialog--medium",
+  ".if-dialog__header",
+  ".if-dialog__footer",
+  ".if-dialog__close",
+  ".if-drawer",
+  ".if-drawer__backdrop",
+  ".if-drawer--right",
+  ".if-drawer--left",
+  ".if-drawer__header",
+  ".if-drawer__close:focus-visible",
+  ".if-toolbar",
+  ".if-toolbar--compact",
+  ".if-toolbar--between",
+  ".if-toolbar__group",
+  ".if-toolbar__group--end",
+  ".if-loading-state {",
+  ".if-loading-state__spinner {",
+  ".if-loading-state__label {",
+  ".if-loading-state--small {",
+  ".if-loading-state--large .if-loading-state__spinner {",
+  "@keyframes if-loading-spin {",
+  ".if-error-state",
+  ".if-error-state__title",
+  ".if-error-state__action",
+  ".if-error-state--warning",
+  ".if-error-state--critical",
 ]);
 
 requireIncludes("packages/tokens/src/tokens.css", [

@@ -10,10 +10,11 @@ export type TextareaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & 
 };
 
 export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
-  ({ className, error, helperText, id, label, state = error ? "invalid" : "default", ...props }, ref) => {
+  ({ "aria-describedby": ariaDescribedBy, className, error, helperText, id, label, state = error ? "invalid" : "default", ...props }, ref) => {
     const generatedId = React.useId();
     const textareaId = id ?? generatedId;
     const helperId = helperText || error ? `${textareaId}-helper` : undefined;
+    const describedBy = [ariaDescribedBy, helperId].filter(Boolean).join(" ") || undefined;
 
     return (
       <label className={classNames("if-field", `if-field--${state}`, className)} htmlFor={textareaId}>
@@ -21,8 +22,8 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         <textarea
           ref={ref}
           id={textareaId}
-          aria-describedby={helperId}
-          aria-invalid={state === "invalid" || undefined}
+          aria-describedby={describedBy}
+          aria-invalid={state === "invalid" || state === "server-error" || undefined}
           className="if-field__control if-field__control--textarea"
           {...props}
         />

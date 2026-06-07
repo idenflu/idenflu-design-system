@@ -13,8 +13,12 @@ export const Table = ({ className, density = "comfortable", ...props }: TablePro
   </div>
 );
 
-export const TableEmptyRow = ({ children, colSpan }: { children: React.ReactNode; colSpan: number }) => (
-  <tr className="if-table__empty-row">
+export type TableEmptyRowProps = React.HTMLAttributes<HTMLTableRowElement> & {
+  colSpan: number;
+};
+
+export const TableEmptyRow = ({ children, className, colSpan, ...props }: TableEmptyRowProps) => (
+  <tr className={classNames("if-table__empty-row", className)} {...props}>
     <td colSpan={colSpan}>{children}</td>
   </tr>
 );

@@ -4,7 +4,7 @@ import { classNames } from "../utils/classNames";
 export type FieldState = "default" | "invalid" | "success" | "server-error";
 export type FieldAvailability = "editable" | "readonly" | "disabled" | "locked";
 
-export type TextFieldProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> & {
+export type TextFieldProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "size" | "prefix"> & {
   availability?: FieldAvailability;
   error?: string;
   helperText?: string;
@@ -42,8 +42,8 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
     const helperId = helperText || error ? `${inputId}-helper` : undefined;
     const describedBy = [ariaDescribedBy, helperId].filter(Boolean).join(" ") || undefined;
     const fieldState = error ? "invalid" : state;
-    const isDisabled = availability === "disabled" || availability === "locked";
-    const isReadonly = availability === "readonly";
+    const isDisabled = availability === "disabled";
+    const isReadonly = availability === "readonly" || availability === "locked";
     const visualAvailability = disabled ? "disabled" : readOnly ? "readonly" : availability;
     const hasShell = Boolean(icon || prefix || suffix);
 

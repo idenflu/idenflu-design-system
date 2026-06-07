@@ -47,6 +47,47 @@ export function InputsSection() {
           <Select label="Status (required, invalid)" required state="invalid" error="상태를 선택하세요." options={statusOptions} />
         </Col>
       </Group>
+      <Group label="Select — expanded / custom options / multi / searchable">
+        <Col>
+          <Select
+            label="Owner (expanded, custom options)"
+            expanded
+            options={[
+              { value: "mina", label: "Mina Park", description: "Campaign owner", icon: <Icon name="icon-user" /> },
+              { value: "jiho", label: "Jiho Lee", description: "Reviewer", icon: <Icon name="icon-user" /> },
+              { value: "soo", label: "Soo Kim", description: "External", icon: <Icon name="icon-user" /> },
+            ]}
+            placeholder="Select owner"
+            onValueChange={() => {}}
+          />
+          <Select
+            label="Channels (multiple)"
+            multiple
+            options={[
+              { value: "ig", label: "Instagram" },
+              { value: "tt", label: "TikTok" },
+              { value: "yt", label: "YouTube" },
+              { value: "x", label: "X" },
+              { value: "fb", label: "Facebook" },
+            ]}
+            placeholder="Select channels"
+            onValueChange={() => {}}
+          />
+          <Select
+            label="Country (searchable)"
+            searchable
+            options={[
+              { value: "kr", label: "Korea" },
+              { value: "jp", label: "Japan" },
+              { value: "us", label: "United States" },
+              { value: "de", label: "Germany" },
+              { value: "fr", label: "France" },
+            ]}
+            placeholder="Select country"
+            onValueChange={() => {}}
+          />
+        </Col>
+      </Group>
     </Section>
   );
 }

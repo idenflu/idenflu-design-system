@@ -120,6 +120,7 @@ if (exists("package.json")) {
   "packages/ui-react/src/components/TextField.tsx",
   "packages/ui-react/src/components/Textarea.tsx",
   "packages/ui-react/src/components/Select.tsx",
+  "packages/ui-react/src/components/SelectListbox.tsx",
   "packages/ui-react/src/components/Badge.tsx",
   "packages/ui-react/src/components/Chip.tsx",
   "packages/ui-react/src/components/Card.tsx",
@@ -331,6 +332,28 @@ requireIncludes("packages/ui-react/src/components/TextField.tsx", [
   "disabled={isDisabled || disabled}",
   "if-input-shell",
   "if-field__required",
+]);
+
+requireIncludes("packages/ui-react/src/components/SelectListbox.tsx", [
+  "role=\"listbox\"",
+  "aria-multiselectable",
+  "aria-activedescendant",
+  "if-select__trigger",
+  "SelectListbox.displayName",
+]);
+
+requireIncludes("packages/ui-react/src/components/Select.tsx", [
+  "expanded?: boolean",
+  "multiple?: boolean",
+  "searchable?: boolean",
+  "onValueChange",
+  "SelectListbox",
+]);
+
+requireIncludes("packages/ui-react/src/styles.css", [
+  ".if-select__trigger",
+  ".if-select__panel",
+  ".if-select__option",
 ]);
 
 requireIncludes("packages/ui-react/src/components/Dialog.tsx", [

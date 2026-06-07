@@ -134,6 +134,7 @@ if (exists("package.json")) {
   "packages/ui-react/src/components/Checkbox.tsx",
   "packages/ui-react/src/components/RadioGroup.tsx",
   "packages/ui-react/src/components/SegmentedControl.tsx",
+  "packages/ui-react/src/components/Icon.tsx",
 ].forEach(requireFile);
 
 requireIncludes("packages/ui-react/src/index.ts", [
@@ -156,6 +157,20 @@ requireIncludes("packages/ui-react/src/index.ts", [
   "Checkbox",
   "RadioGroup",
   "SegmentedControl",
+  "Icon",
+  "IconSpriteProvider",
+]);
+
+requireIncludes("packages/ui-react/src/components/Icon.tsx", [
+  "export type IconSize",
+  "name: IconName",
+  "<use href=",
+  "IconSpriteProvider",
+  "Icon.displayName",
+]);
+
+requireIncludes("packages/ui-react/src/styles.css", [
+  ".if-icon",
 ]);
 
 requireIncludes("packages/ui-react/src/components/Checkbox.tsx", [

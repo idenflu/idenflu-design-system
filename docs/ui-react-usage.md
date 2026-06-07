@@ -87,6 +87,28 @@ export function CampaignForm() {
 - `Checkbox`
 - `RadioGroup`
 - `SegmentedControl`
+- `Icon`, `IconSpriteProvider`
+
+## Icon
+
+`Icon`은 `@idenflu/ui-icons` sprite의 symbol을 타입 안전하게 렌더합니다. 앱 루트에서 `IconSpriteProvider`로 sprite URL을 한 번 주입합니다(번들러가 해석한 URL).
+
+```tsx
+import spriteUrl from "@idenflu/ui-icons/icons.svg";
+import { Icon, IconSpriteProvider, Button } from "@idenflu/ui-react";
+
+function App() {
+  return (
+    <IconSpriteProvider href={spriteUrl}>
+      {/* 장식 아이콘 (기본 aria-hidden) — 버튼이 접근 이름 제공 */}
+      <Button icon={<Icon name="icon-search" />}>Search</Button>
+
+      {/* 단독 의미 아이콘 — label로 노출 */}
+      <Icon name="icon-alert" label="Warning" size="large" />
+    </IconSpriteProvider>
+  );
+}
+```
 
 ## Switch
 

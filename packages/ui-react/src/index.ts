@@ -51,3 +51,9 @@ export type { RadioGroupProps, RadioGroupSize, RadioOption } from "./components/
 
 export { SegmentedControl } from "./components/SegmentedControl";
 export type { SegmentedControlProps, SegmentedControlSize, SegmentedOption } from "./components/SegmentedControl";
+
+export { Icon, IconSpriteProvider } from "./components/Icon";
+export type { IconProps, IconSize, IconSpriteProviderProps } from "./components/Icon";
+
+export { iconNames } from "@idenflu/ui-icons";
+export type { IconName } from "@idenflu/ui-icons";

@@ -4357,9 +4357,54 @@ h3 {
   padding-top: var(--space-sm);
 }
 
-.switch-row input,
 .checkbox-list input {
-  accent-color: var(--primary);
+  appearance: none;
+  -webkit-appearance: none;
+  position: relative;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  flex: 0 0 auto;
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface-raised);
+  cursor: pointer;
+  transition: background-color 120ms ease, border-color 120ms ease;
+}
+
+.checkbox-list input:checked,
+.checkbox-list input:indeterminate {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+.checkbox-list input:checked::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  width: 5px;
+  height: 9px;
+  border: solid var(--inverse-ink);
+  border-width: 0 2px 2px 0;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.checkbox-list input:indeterminate::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 10px;
+  height: 2px;
+  background: var(--inverse-ink);
+  border-radius: 1px;
+  transform: translate(-50%, -50%);
+}
+
+.checkbox-list input:focus-visible {
+  outline: 0;
+  box-shadow: 0 0 0 3px var(--focus-ring);
 }
 
 .switch-row input {
@@ -4400,8 +4445,8 @@ h3 {
 }
 
 .switch-row input:focus-visible {
-  outline: 2px solid var(--primary);
-  outline-offset: 2px;
+  outline: 0;
+  box-shadow: 0 0 0 3px var(--focus-ring);
 }
 
 .checkbox-list {
@@ -5410,7 +5455,40 @@ mark.status {
 }
 
 .radio-list input {
-  accent-color: var(--primary);
+  appearance: none;
+  -webkit-appearance: none;
+  position: relative;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  flex: 0 0 auto;
+  border: 1px solid var(--hairline-strong);
+  border-radius: 50%;
+  background: var(--surface-raised);
+  cursor: pointer;
+  transition: border-color 120ms ease;
+}
+
+.radio-list input:checked {
+  border-color: var(--primary);
+  border-width: 2px;
+}
+
+.radio-list input:checked::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--primary);
+  transform: translate(-50%, -50%);
+}
+
+.radio-list input:focus-visible {
+  outline: 0;
+  box-shadow: 0 0 0 3px var(--focus-ring);
 }
 
 /* Skeleton avatar identity (components-skeleton.html) */

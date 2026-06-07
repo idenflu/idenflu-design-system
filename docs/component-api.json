@@ -21,9 +21,9 @@
     },
     "select": {
       "label": "Select API",
-      "props": ["label", "value", "options", "placeholder", "validation"],
-      "states": ["default", "focus", "open", "selected", "invalid", "disabled"],
-      "accessibility": ["native select", "visible label", "helper text", "disabled option reason"]
+      "props": ["label", "value", "options", "placeholder", "validation", "expanded", "multiple", "searchable", "icon", "description"],
+      "states": ["default", "focus", "open", "selected", "invalid", "disabled", "multi", "filtered"],
+      "accessibility": ["native select", "visible label", "helper text", "disabled option reason", "expanded role=listbox", "aria-multiselectable", "aria-activedescendant"]
     },
     "forms": {
       "label": "Form API",

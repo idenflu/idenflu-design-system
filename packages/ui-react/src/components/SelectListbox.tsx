@@ -19,11 +19,10 @@ export type SelectListboxProps = {
 };
 
 const toArray = (value: string | string[] | undefined): string[] =>
-  value == null ? [] : Array.isArray(value) ? value : [value];
+  value == null || value === "" ? [] : Array.isArray(value) ? value.filter(Boolean) : [value];
 
 export const SelectListbox = React.forwardRef<HTMLDivElement, SelectListboxProps>(
   (
-    // searchable: consumed by the search task
     { baseId, labelledBy, describedBy, options, placeholder, multiple, searchable, disabled, value, defaultValue, onValueChange },
     ref,
   ) => {
@@ -124,10 +123,10 @@ export const SelectListbox = React.forwardRef<HTMLDivElement, SelectListboxProps
       onValueChange?.(multiple ? next : (next[0] ?? ""));
     };
 
-    const close = () => {
+    const close = (focusTrigger = true) => {
       setOpen(false);
       setQuery("");
-      triggerRef.current?.focus();
+      if (focusTrigger) triggerRef.current?.focus();
     };
 
     const commit = (option: SelectOption) => {
@@ -148,7 +147,7 @@ export const SelectListbox = React.forwardRef<HTMLDivElement, SelectListboxProps
       const onDocMouseDown = (event: MouseEvent) => {
         const target = event.target as Node;
         if (!panelRef.current?.contains(target) && !triggerRef.current?.contains(target)) {
-          setOpen(false);
+          close(false);
         }
       };
       document.addEventListener("mousedown", onDocMouseDown);
@@ -208,7 +207,7 @@ export const SelectListbox = React.forwardRef<HTMLDivElement, SelectListboxProps
           aria-controls={open ? panelId : undefined}
           aria-disabled={disabled || undefined}
           aria-activedescendant={activeDescId}
-          onClick={() => { if (disabled) return; if (open) { setOpen(false); } else { openPanel(); } }}
+          onClick={() => { if (disabled) return; if (open) { close(); } else { openPanel(); } }}
           onKeyDown={onTriggerKeyDown}
         >
           <span className="if-select__value">{renderTriggerValue()}</span>

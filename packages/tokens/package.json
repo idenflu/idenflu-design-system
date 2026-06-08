@@ -1,6 +1,7 @@
 {
   "name": "@idenflu/ui-tokens",
   "version": "0.0.0-alpha.1",
+  "type": "module",
   "description": "Design tokens for idenflu product interfaces.",
   "types": "./src/index.d.ts",
   "repository": {
@@ -17,6 +18,9 @@
   "sideEffects": [
     "./src/tokens.css"
   ],
+  "scripts": {
+    "build:tokens": "node config.js"
+  },
   "exports": {
     ".": {
       "types": "./src/index.d.ts",
@@ -24,5 +28,8 @@
     },
     "./tokens.css": "./src/tokens.css",
     "./tokens.json": "./src/tokens.json"
+  },
+  "devDependencies": {
+    "style-dictionary": "^5.4.3"
   }
 }

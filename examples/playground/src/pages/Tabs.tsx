@@ -1,12 +1,35 @@
 import * as React from "react";
 import { Badge, Icon, Tabs } from "@idenflu/ui-react";
 import { Group, Section } from "../Section";
+import { Example } from "../Example";
 
 export function TabsSection() {
   const [tab, setTab] = React.useState("overview");
   const [iconTab, setIconTab] = React.useState("inbox");
   return (
     <Section id="tabs" title="Tabs">
+      <Example
+        title="주요 예시 — Tabs"
+        code={`<Tabs
+  label="Campaign detail"
+  defaultValue="overview"
+  tabs={[
+    { value: "overview", label: "Overview", content: <p>요약</p> },
+    { value: "creators", label: "Creators", content: <p>크리에이터</p> },
+  ]}
+/>`}
+      >
+        <div style={{ flex: 1, minWidth: 320 }}>
+          <Tabs
+            label="Campaign detail (example)"
+            defaultValue="overview"
+            tabs={[
+              { value: "overview", label: "Overview", content: <p>요약</p> },
+              { value: "creators", label: "Creators", content: <p>크리에이터</p> },
+            ]}
+          />
+        </div>
+      </Example>
       <Group label="Controlled · 화살표 키로 이동">
         <Tabs
           label="Campaign detail"

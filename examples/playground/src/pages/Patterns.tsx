@@ -23,6 +23,7 @@ import {
   ToolbarGroup,
 } from "@idenflu/ui-react";
 import { Group, Section } from "../Section";
+import { Example } from "../Example";
 
 const channelOptions = [
   { value: "instagram", label: "Instagram" },
@@ -47,6 +48,22 @@ export function PatternsSection() {
         실제 화면에서 컴포넌트가 어떻게 조합되는지 보여주는 예시입니다. 단일 컴포넌트보다 조합 맥락이 디자인 의도를 더 잘 드러냅니다.
       </p>
 
+      <Example
+        title="주요 예시 — 리뷰 행 조합 (Avatar + Badge + Chip)"
+        code={`<div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+  <Avatar name="Mina Park" presence="online" />
+  <strong>Mina Park</strong>
+  <Badge tone="warning">Review pending</Badge>
+  <Chip tone="blue">Instagram</Chip>
+</div>`}
+      >
+        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <Avatar name="Mina Park" presence="online" />
+          <strong>Mina Park</strong>
+          <Badge tone="warning">Review pending</Badge>
+          <Chip tone="blue">Instagram</Chip>
+        </div>
+      </Example>
       <Group label="Settings panel · Switch + Select + Card">
         <div className="pg-row">
           <Panel>

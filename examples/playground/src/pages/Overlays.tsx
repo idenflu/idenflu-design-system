@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Breadcrumb, Button, Dialog, DialogBody, DialogFooter, Drawer } from "@idenflu/ui-react";
 import { Col, Group, Row, Section } from "../Section";
+import { Example } from "../Example";
 
 type DialogSize = "small" | "medium" | "large";
 type DrawerSide = "left" | "right";
@@ -11,6 +12,24 @@ export function OverlaysSection() {
 
   return (
     <Section id="overlays" title="Navigation & overlays">
+      <Example
+        title="주요 예시 — Breadcrumb"
+        code={`<Breadcrumb
+  items={[
+    { label: "Home", href: "#" },
+    { label: "Campaigns", href: "#" },
+    { label: "Detail", current: true },
+  ]}
+/>`}
+      >
+        <Breadcrumb
+          items={[
+            { label: "Home", href: "#" },
+            { label: "Campaigns", href: "#" },
+            { label: "Detail", current: true },
+          ]}
+        />
+      </Example>
       <Group label="Breadcrumb">
         <Col>
           <Breadcrumb

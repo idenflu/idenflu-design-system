@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Badge, Button, Card, CardBody, CardFooter, CardHeader, Icon, Table, TableEmptyRow, Toolbar, ToolbarGroup } from "@idenflu/ui-react";
 import { Group, Row, Section } from "../Section";
+import { Example } from "../Example";
 
 function DemoTable({ density }: { density: "compact" | "comfortable" | "spacious" }) {
   return (
@@ -33,6 +34,28 @@ function DemoTable({ density }: { density: "compact" | "comfortable" | "spacious
 export function DataSection() {
   return (
     <Section id="data" title="Data & surfaces">
+      <Example
+        title="주요 예시 — Card"
+        code={`<Card>
+  <CardHeader><strong>Campaign</strong></CardHeader>
+  <CardBody>캠페인 요약입니다.</CardBody>
+  <CardFooter><Button variant="quiet" size="small">Open</Button></CardFooter>
+</Card>`}
+      >
+        <div style={{ maxWidth: 320 }}>
+          <Card>
+            <CardHeader>
+              <strong>Campaign</strong>
+            </CardHeader>
+            <CardBody>캠페인 요약입니다.</CardBody>
+            <CardFooter>
+              <Button variant="quiet" size="small">
+                Open
+              </Button>
+            </CardFooter>
+          </Card>
+        </div>
+      </Example>
       <Group label="Toolbar — default / compact / aligned">
         <Toolbar label="Review toolbar">
           <ToolbarGroup>

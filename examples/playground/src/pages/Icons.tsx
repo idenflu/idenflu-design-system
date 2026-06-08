@@ -1,10 +1,23 @@
 import * as React from "react";
 import { Icon, iconNames } from "@idenflu/ui-react";
 import { Group, Row, Section } from "../Section";
+import { Example } from "../Example";
 
 export function IconsSection() {
   return (
     <Section id="icons" title="Icons">
+      <Example
+        title="주요 예시 — 크기 / currentColor"
+        code={`<Icon name="icon-search" size="large" />
+<span style={{ color: "var(--if-color-primary)" }}>
+  <Icon name="icon-check" size="large" />
+</span>`}
+      >
+        <Icon name="icon-search" size="large" />
+        <span style={{ color: "var(--if-color-primary)" }}>
+          <Icon name="icon-check" size="large" />
+        </span>
+      </Example>
       <Group label="Sizes / color (currentColor)">
         <Row>
           <Icon name="icon-search" size="small" />

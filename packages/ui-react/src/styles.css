@@ -1,4 +1,6 @@
 @import "@idenflu/ui-tokens/tokens.css";
+@import "@idenflu/ui-tokens/_variables-light.css";
+@import "@idenflu/ui-tokens/_variables-dark.css";
 
 .if-button,
 .if-icon-button,
@@ -23,7 +25,12 @@
   min-height: var(--if-control-height);
   padding: 9px 14px;
   text-decoration: none;
-  transition: background-color var(--if-duration-fast) ease, border-color var(--if-duration-fast) ease, color var(--if-duration-fast) ease, box-shadow var(--if-duration-fast) ease, transform var(--if-duration-fast) ease;
+  transition:
+    background-color var(--if-duration-fast) ease,
+    border-color var(--if-duration-fast) ease,
+    color var(--if-duration-fast) ease,
+    box-shadow var(--if-duration-fast) ease,
+    transform var(--if-duration-fast) ease;
 }
 
 .if-button--small {
@@ -195,7 +202,12 @@
   display: inline-flex;
   height: var(--if-control-height);
   justify-content: center;
-  transition: background-color var(--if-duration-fast) ease, border-color var(--if-duration-fast) ease, color var(--if-duration-fast) ease, box-shadow var(--if-duration-fast) ease, transform var(--if-duration-fast) ease;
+  transition:
+    background-color var(--if-duration-fast) ease,
+    border-color var(--if-duration-fast) ease,
+    color var(--if-duration-fast) ease,
+    box-shadow var(--if-duration-fast) ease,
+    transform var(--if-duration-fast) ease;
   width: var(--if-control-height);
 }
 
@@ -317,7 +329,10 @@
   gap: var(--if-space-xs);
   min-height: var(--if-field-height);
   padding: 0 11px;
-  transition: border-color var(--if-duration-fast) ease, box-shadow var(--if-duration-fast) ease, background-color var(--if-duration-fast) ease;
+  transition:
+    border-color var(--if-duration-fast) ease,
+    box-shadow var(--if-duration-fast) ease,
+    background-color var(--if-duration-fast) ease;
 }
 
 .if-input-shell .if-field__control {
@@ -791,7 +806,10 @@
   height: var(--if-control-height);
   justify-content: center;
   line-height: 1;
-  transition: background-color var(--if-duration-fast) ease, border-color var(--if-duration-fast) ease, color var(--if-duration-fast) ease;
+  transition:
+    background-color var(--if-duration-fast) ease,
+    border-color var(--if-duration-fast) ease,
+    color var(--if-duration-fast) ease;
   width: var(--if-control-height);
 }
 
@@ -810,7 +828,11 @@
   position: fixed;
   inset: 0;
   z-index: var(--if-z-overlay);
-  background: color-mix(in srgb, var(--if-color-inverse-canvas) 45%, transparent);
+  background: color-mix(
+    in srgb,
+    var(--if-color-inverse-canvas) 45%,
+    transparent
+  );
   -webkit-backdrop-filter: blur(2px);
   backdrop-filter: blur(2px);
   animation: if-drawer-fade 160ms ease;
@@ -903,7 +925,11 @@
   font-family: var(--if-font-family);
   font-size: 18px;
   line-height: 1;
-  transition: background-color var(--if-duration-fast) ease, border-color var(--if-duration-fast) ease, color var(--if-duration-fast) ease, box-shadow var(--if-duration-fast) ease;
+  transition:
+    background-color var(--if-duration-fast) ease,
+    border-color var(--if-duration-fast) ease,
+    color var(--if-duration-fast) ease,
+    box-shadow var(--if-duration-fast) ease;
 }
 
 .if-drawer__close:hover {
@@ -1174,7 +1200,6 @@
   border-color: var(--if-color-error);
 }
 
-
 .if-switch-field {
   display: flex;
   flex-direction: column;
@@ -1219,7 +1244,9 @@
   height: 22px;
   margin: 0;
   position: relative;
-  transition: background-color var(--if-duration-fast) ease, border-color var(--if-duration-fast) ease;
+  transition:
+    background-color var(--if-duration-fast) ease,
+    border-color var(--if-duration-fast) ease;
   width: 40px;
 }
 
@@ -1318,7 +1345,9 @@
   height: 18px;
   margin: 0;
   position: relative;
-  transition: background-color var(--if-duration-fast) ease, border-color var(--if-duration-fast) ease;
+  transition:
+    background-color var(--if-duration-fast) ease,
+    border-color var(--if-duration-fast) ease;
   width: 18px;
 }
 
@@ -1549,7 +1578,10 @@
   justify-content: center;
   min-height: var(--if-control-height-sm);
   padding: 0 12px;
-  transition: background-color var(--if-duration-fast) ease, color var(--if-duration-fast) ease, border-color var(--if-duration-fast) ease;
+  transition:
+    background-color var(--if-duration-fast) ease,
+    color var(--if-duration-fast) ease,
+    border-color var(--if-duration-fast) ease;
 }
 
 .if-segmented__option[aria-pressed="true"] {
@@ -1657,7 +1689,8 @@
 .if-skeleton__line,
 .if-skeleton--block,
 .if-skeleton--circle {
-  animation: if-skeleton-shimmer calc(var(--if-duration-slow) * 5) var(--if-ease-standard) infinite;
+  animation: if-skeleton-shimmer calc(var(--if-duration-slow) * 5)
+    var(--if-ease-standard) infinite;
   background-color: var(--if-color-surface-2);
   background-image: linear-gradient(
     90deg,
@@ -1903,7 +1936,9 @@
   gap: var(--if-space-xs);
   margin-bottom: -1px;
   padding: var(--if-space-sm) var(--if-space-xs);
-  transition: color var(--if-duration-fast) ease, border-color var(--if-duration-fast) ease;
+  transition:
+    color var(--if-duration-fast) ease,
+    border-color var(--if-duration-fast) ease;
 }
 
 .if-tabs__tab:hover:not(:disabled):not(.is-selected) {

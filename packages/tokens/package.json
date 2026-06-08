@@ -27,7 +27,8 @@
       "default": "./src/index.ts"
     },
     "./tokens.css": "./src/tokens.css",
-    "./tokens.json": "./src/tokens.json"
+    "./_variables-light.css": "./build/css/_variables-light.css",
+    "./_variables-dark.css": "./build/css/_variables-dark.css"
   },
   "devDependencies": {
     "style-dictionary": "^5.4.3"

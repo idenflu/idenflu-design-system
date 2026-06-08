@@ -194,7 +194,7 @@ body {
 .pg-example {
   border: 1px solid var(--if-color-hairline);
   border-radius: var(--if-radius-md);
-  overflow: hidden;
+  /* overflow는 visible로 둔다: DatePicker/Select 팝오버가 코드 영역 위로 떠야 잘리지 않음. */
   margin-bottom: var(--if-space-lg);
 }
 .pg-example__title {

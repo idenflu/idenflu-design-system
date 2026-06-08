@@ -15,7 +15,7 @@
   cursor: pointer;
   display: inline-flex;
   font-size: var(--if-font-size-button);
-  font-weight: 450;
+  font-weight: 400;
   gap: var(--if-space-xs);
   height: var(--if-control-height);
   justify-content: center;

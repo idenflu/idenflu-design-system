@@ -1,5 +1,6 @@
 import * as React from "react";
 import { DatePicker, Icon, Select, TextField, Textarea } from "@idenflu/ui-react";
+import type { DateRange } from "@idenflu/ui-react";
 import { Col, Group, Section } from "../Section";
 import { Example } from "../Example";
 
@@ -8,6 +9,20 @@ const statusOptions = [
   { value: "review", label: "In review" },
   { value: "done", label: "Done" },
 ];
+
+function ControlledDatePickerDemo() {
+  const [due, setDue] = React.useState<string | DateRange>("2026-06-12");
+  return (
+    <div style={{ display: "grid", gap: 14, maxWidth: 360 }}>
+      <DatePicker
+        label="Due date"
+        value={due}
+        onChange={setDue}
+        helperText={typeof due === "string" ? `선택: ${due}` : ""}
+      />
+    </div>
+  );
+}
 
 export function InputsSection() {
   return (
@@ -99,14 +114,44 @@ export function InputsSection() {
           />
         </Col>
       </Group>
-      <Group label="DatePicker — single / range">
-        <Col>
-          <DatePicker label="Due date" placeholder="Select date" onChange={() => {}} />
-          <DatePicker label="Campaign period" range placeholder="Select range" onChange={() => {}} />
-          <DatePicker label="Within June" min="2026-06-01" max="2026-06-30" defaultValue="2026-06-12" onChange={() => {}} />
-          <DatePicker label="마감일" locale="ko-KR" defaultValue="2026-06-12" onChange={() => {}} />
-        </Col>
-      </Group>
+      <Example
+        title="주요 예시 — DatePicker (single / range)"
+        code={`<DatePicker label="Due date" placeholder="Select date" />
+<DatePicker label="Campaign period" range placeholder="Select range" />`}
+      >
+        <div style={{ display: "grid", gap: 14, maxWidth: 360 }}>
+          <DatePicker label="Due date" placeholder="Select date" />
+          <DatePicker label="Campaign period" range placeholder="Select range" />
+        </div>
+      </Example>
+      <Example
+        title="DatePicker — bounds & locale"
+        code={`<DatePicker
+  label="Within June"
+  min="2026-06-01"
+  max="2026-06-30"
+  defaultValue="2026-06-12"
+/>
+<DatePicker label="마감일" locale="ko-KR" defaultValue="2026-06-12" />`}
+      >
+        <div style={{ display: "grid", gap: 14, maxWidth: 360 }}>
+          <DatePicker label="Within June" min="2026-06-01" max="2026-06-30" defaultValue="2026-06-12" />
+          <DatePicker label="마감일" locale="ko-KR" defaultValue="2026-06-12" />
+        </div>
+      </Example>
+      <Example
+        title="DatePicker — controlled + onChange"
+        code={`const [due, setDue] = React.useState<string | DateRange>("2026-06-12");
+
+<DatePicker
+  label="Due date"
+  value={due}
+  onChange={setDue}
+  helperText={typeof due === "string" ? \`선택: \${due}\` : ""}
+/>`}
+      >
+        <ControlledDatePickerDemo />
+      </Example>
     </Section>
   );
 }

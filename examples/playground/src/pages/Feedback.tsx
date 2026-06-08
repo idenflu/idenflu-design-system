@@ -1,12 +1,23 @@
 import * as React from "react";
 import { Banner, Button, EmptyState, ErrorState, Icon, LoadingState, Skeleton } from "@idenflu/ui-react";
 import { Col, Group, Row, Section } from "../Section";
+import { Example } from "../Example";
 
 export function FeedbackSection() {
   const [bannerOpen, setBannerOpen] = React.useState(true);
 
   return (
     <Section id="feedback" title="Feedback">
+      <Example
+        title="주요 예시 — Banner"
+        code={`<Banner tone="info" title="Info">일반 안내 메시지입니다.</Banner>`}
+      >
+        <div style={{ flex: 1, minWidth: 280 }}>
+          <Banner tone="info" title="Info">
+            일반 안내 메시지입니다.
+          </Banner>
+        </div>
+      </Example>
       <Group label="Banner — tones / action / dismiss">
         <Col>
           {bannerOpen ? (

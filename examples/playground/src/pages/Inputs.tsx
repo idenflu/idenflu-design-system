@@ -1,6 +1,7 @@
 import * as React from "react";
 import { DatePicker, Icon, Select, TextField, Textarea } from "@idenflu/ui-react";
 import { Col, Group, Section } from "../Section";
+import { Example } from "../Example";
 
 const statusOptions = [
   { value: "draft", label: "Draft" },
@@ -11,6 +12,16 @@ const statusOptions = [
 export function InputsSection() {
   return (
     <Section id="inputs" title="Inputs">
+      <Example
+        title="주요 예시 — TextField + Select"
+        code={`<TextField label="Email" placeholder="you@idenflu.com" helperText="회사 이메일" />
+<Select label="Status" options={statusOptions} />`}
+      >
+        <div style={{ display: "grid", gap: 14, maxWidth: 360 }}>
+          <TextField label="Email" placeholder="you@idenflu.com" helperText="회사 이메일" />
+          <Select label="Status" options={statusOptions} />
+        </div>
+      </Example>
       <Group label="TextField — states">
         <Col>
           <TextField label="Default" placeholder="you@idenflu.com" helperText="회사 이메일을 입력하세요." />

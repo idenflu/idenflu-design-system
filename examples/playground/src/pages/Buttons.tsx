@@ -1,10 +1,21 @@
 import * as React from "react";
 import { Button, Icon, IconButton } from "@idenflu/ui-react";
 import { Group, Row, Section } from "../Section";
+import { Example } from "../Example";
 
 export function ButtonsSection() {
   return (
     <Section id="buttons" title="Buttons">
+      <Example
+        title="주요 예시 — variant + IconButton"
+        code={`<Button variant="primary">저장</Button>
+<Button variant="secondary">취소</Button>
+<IconButton icon={<Icon name="icon-settings" />} label="Settings" />`}
+      >
+        <Button variant="primary">저장</Button>
+        <Button variant="secondary">취소</Button>
+        <IconButton icon={<Icon name="icon-settings" />} label="Settings" />
+      </Example>
       <Group label="Variants">
         <Row>
           <Button variant="primary">Primary</Button>

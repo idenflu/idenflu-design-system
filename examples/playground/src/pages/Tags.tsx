@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Avatar, Badge, Chip } from "@idenflu/ui-react";
 import { Group, Row, Section } from "../Section";
+import { Example } from "../Example";
 
 const sampleAvatar =
   "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Crect width='48' height='48' fill='%233f6df6'/%3E%3Ctext x='24' y='31' font-size='20' fill='white' text-anchor='middle' font-family='sans-serif'%3EM%3C/text%3E%3C/svg%3E";
@@ -8,6 +9,18 @@ const sampleAvatar =
 export function TagsSection() {
   return (
     <Section id="tags" title="Tags & identity">
+      <Example
+        title="주요 예시 — Badge + Chip + Avatar"
+        code={`<Badge tone="success">Ready</Badge>
+<Chip tone="blue" interactive onClick={() => {}}>Instagram</Chip>
+<Avatar name="Mina Park" presence="online" />`}
+      >
+        <Badge tone="success">Ready</Badge>
+        <Chip tone="blue" interactive onClick={() => {}}>
+          Instagram
+        </Chip>
+        <Avatar name="Mina Park" presence="online" />
+      </Example>
       <Group label="Badge — tones / removable / selected">
         <Row>
           <Badge tone="neutral">Neutral</Badge>

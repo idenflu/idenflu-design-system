@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Checkbox, RadioGroup, SegmentedControl, Switch } from "@idenflu/ui-react";
 import { Col, Group, Row, Section } from "../Section";
+import { Example } from "../Example";
 
 const statusOptions = [
   { value: "all", label: "All" },
@@ -18,6 +19,16 @@ export function ControlsSection() {
 
   return (
     <Section id="controls" title="Controls">
+      <Example
+        title="주요 예시 — Switch + Checkbox"
+        code={`<Switch label="Auto-assign reviewers" defaultChecked />
+<Checkbox label="검토 정책에 동의합니다" />`}
+      >
+        <div style={{ display: "grid", gap: 14 }}>
+          <Switch label="Auto-assign reviewers" defaultChecked />
+          <Checkbox label="검토 정책에 동의합니다" />
+        </div>
+      </Example>
       <Group label="Switch & Checkbox">
         <Row>
           <Col>

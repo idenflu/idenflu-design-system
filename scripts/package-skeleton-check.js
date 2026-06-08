@@ -376,6 +376,7 @@ requireIncludes("packages/ui-react/src/styles.css", [
   ".if-select__trigger",
   ".if-select__panel",
   ".if-select__option",
+  ".if-select__tag",
 ]);
 
 requireIncludes("packages/ui-react/src/components/Dialog.tsx", [

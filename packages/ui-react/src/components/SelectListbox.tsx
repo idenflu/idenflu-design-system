@@ -1,6 +1,5 @@
 import * as React from "react";
 import { classNames } from "../utils/classNames";
-import { Chip } from "./Chip";
 import { Icon } from "./Icon";
 import type { SelectOption } from "./Select";
 
@@ -167,16 +166,22 @@ export const SelectListbox = React.forwardRef<HTMLDivElement, SelectListboxProps
         const shown = selectedOptions.slice(0, max);
         const extra = selectedOptions.length - shown.length;
         return (
-          <span className="if-select__tags" onClick={(e) => e.stopPropagation()}>
+          <span className="if-select__tags">
             {shown.map((option) => (
-              <Chip
-                key={option.value}
-                tone="blue"
-                onRemove={() => emit(selected.filter((v) => v !== option.value))}
-                removeLabel={`Remove ${option.label}`}
-              >
+              <span key={option.value} className="if-select__tag">
                 {option.label}
-              </Chip>
+                <button
+                  type="button"
+                  className="if-select__tag-remove"
+                  aria-label={`Remove ${option.label}`}
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    emit(selected.filter((v) => v !== option.value));
+                  }}
+                >
+                  ×
+                </button>
+              </span>
             ))}
             {extra > 0 ? <span className="if-select__more">+{extra}</span> : null}
           </span>

@@ -142,6 +142,7 @@ if (exists("package.json")) {
   "packages/ui-react/src/components/Banner.tsx",
   "packages/ui-react/src/components/Breadcrumb.tsx",
   "packages/ui-react/src/components/DatePicker.tsx",
+  "packages/ui-react/src/utils/dateUtils.ts",
 ].forEach(requireFile);
 
 requireIncludes("packages/ui-react/src/index.ts", [
@@ -254,6 +255,7 @@ requireIncludes("packages/ui-react/src/components/DatePicker.tsx", [
   "role=\"dialog\"",
   "role=\"grid\"",
   "if-datepicker__trigger",
+  "locale?: string",
   "DatePicker.displayName",
 ]);
 
@@ -261,6 +263,11 @@ requireIncludes("packages/ui-react/src/styles.css", [
   ".if-datepicker__trigger",
   ".if-datecal__row",
   ".if-datecal__day",
+]);
+
+requireIncludes("packages/ui-react/src/utils/dateUtils.ts", [
+  "export const createDateFormatters",
+  "Intl.DateTimeFormat",
 ]);
 
 requireIncludes("packages/ui-react/src/components/Checkbox.tsx", [

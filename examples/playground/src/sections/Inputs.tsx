@@ -93,6 +93,7 @@ export function InputsSection() {
           <DatePicker label="Due date" placeholder="Select date" onChange={() => {}} />
           <DatePicker label="Campaign period" range placeholder="Select range" onChange={() => {}} />
           <DatePicker label="Within June" min="2026-06-01" max="2026-06-30" defaultValue="2026-06-12" onChange={() => {}} />
+          <DatePicker label="마감일" locale="ko-KR" defaultValue="2026-06-12" onChange={() => {}} />
         </Col>
       </Group>
     </Section>

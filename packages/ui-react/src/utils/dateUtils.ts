@@ -50,3 +50,47 @@ export const weekdayLabels = (weekStartsOn: 0 | 1): string[] =>
 /** ISO date strings compare lexically == chronologically. */
 export const isWithin = (iso: string, min?: string, max?: string): boolean =>
   (!min || iso >= min) && (!max || iso <= max);
+
+export type DateFormatters = {
+  monthLabel: (year: number, month: number) => string;
+  weekdayLabels: (weekStartsOn: 0 | 1) => string[];
+  display: (iso: string) => string;
+  dayLabel: (date: Date) => string;
+};
+
+// A known Sunday, used as the rotation anchor for Intl weekday labels.
+const WEEKDAY_ANCHOR = new Date(2024, 0, 7);
+
+const englishFormatters: DateFormatters = {
+  monthLabel: (year, month) => `${MONTH_LABELS[month]} ${year}`,
+  weekdayLabels,
+  display: (iso) => iso,
+  dayLabel: (date) => `${MONTH_LABELS[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`,
+};
+
+/**
+ * Presentation formatters for a locale. value/min/max stay ISO; this only formats
+ * the calendar's human-readable text. A falsy or invalid locale falls back to
+ * English with ISO-passthrough display (byte-identical to the no-locale behavior).
+ */
+export const createDateFormatters = (locale?: string): DateFormatters => {
+  if (!locale) return englishFormatters;
+  try {
+    const monthFmt = new Intl.DateTimeFormat(locale, { year: "numeric", month: "long" });
+    const weekdayFmt = new Intl.DateTimeFormat(locale, { weekday: "short" });
+    const displayFmt = new Intl.DateTimeFormat(locale, { dateStyle: "medium" });
+    const dayLabelFmt = new Intl.DateTimeFormat(locale, { dateStyle: "long" });
+    return {
+      monthLabel: (year, month) => monthFmt.format(new Date(year, month, 1)),
+      weekdayLabels: (weekStartsOn) =>
+        Array.from({ length: 7 }, (_, i) => weekdayFmt.format(addDays(WEEKDAY_ANCHOR, (weekStartsOn + i) % 7))),
+      display: (iso) => {
+        const date = parseISO(iso);
+        return date ? displayFmt.format(date) : iso;
+      },
+      dayLabel: (date) => dayLabelFmt.format(date),
+    };
+  } catch {
+    return englishFormatters;
+  }
+};

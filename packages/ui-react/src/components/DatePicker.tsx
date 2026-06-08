@@ -2,7 +2,7 @@ import * as React from "react";
 import { classNames } from "../utils/classNames";
 import { Icon } from "./Icon";
 import type { FieldState } from "./TextField";
-import { MONTH_LABELS, addDays, addMonths, buildMonthGrid, isWithin, parseISO, toISO, weekdayLabels } from "../utils/dateUtils";
+import { addDays, addMonths, buildMonthGrid, createDateFormatters, isWithin, parseISO, toISO } from "../utils/dateUtils";
 
 export type DateRange = { from: string; to: string };
 
@@ -25,6 +25,11 @@ export type DatePickerProps = {
   max?: string;
   /** Week start: 0 = Sunday (default), 1 = Monday. */
   weekStartsOn?: 0 | 1;
+  /**
+   * 표시 텍스트(월 헤더·요일·트리거 값·일자 aria-label)를 현지화할 BCP 47 로캘.
+   * 미지정 시 영어 기본 표기. value/onChange/min/max는 항상 ISO YYYY-MM-DD 유지.
+   */
+  locale?: string;
   placeholder?: string;
   id?: string;
   className?: string;
@@ -38,7 +43,7 @@ export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
   (
     {
       label, helperText, error, required, state = error ? "invalid" : "default", disabled,
-      range = false, value, defaultValue, onChange, min, max, weekStartsOn = 0,
+      range = false, value, defaultValue, onChange, min, max, weekStartsOn = 0, locale,
       placeholder, id, className,
     },
     ref,
@@ -76,6 +81,7 @@ export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
     const [view, setView] = React.useState({ year: anchor.getFullYear(), month: anchor.getMonth() });
     const [focusISO, setFocusISO] = React.useState(anchorISO);
     const dayRefs = React.useRef<Record<string, HTMLButtonElement | null>>({});
+    const fmt = React.useMemo(() => createDateFormatters(locale), [locale]);
 
     const close = (focusTrigger = true) => {
       // Move focus to the trigger BEFORE unmounting the popover, so closing from a
@@ -137,11 +143,11 @@ export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
 
     const display = (): string | null => {
       if (range) {
-        if (pendingStart) return pendingStart;
-        if (rangeVal.from && rangeVal.to) return `${rangeVal.from} ~ ${rangeVal.to}`;
+        if (pendingStart) return fmt.display(pendingStart);
+        if (rangeVal.from && rangeVal.to) return `${fmt.display(rangeVal.from)} ~ ${fmt.display(rangeVal.to)}`;
         return null;
       }
-      return single || null;
+      return single ? fmt.display(single) : null;
     };
     const shown = display();
 
@@ -199,7 +205,7 @@ export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
     };
 
     const days = buildMonthGrid(view.year, view.month, weekStartsOn);
-    const monthLabel = `${MONTH_LABELS[view.month]} ${view.year}`;
+    const monthLabel = fmt.monthLabel(view.year, view.month);
 
     return (
       <div className={classNames("if-field", `if-field--${state}`, className)}>
@@ -256,7 +262,7 @@ export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
                 </button>
               </div>
               <div className="if-datecal__weekdays" aria-hidden="true">
-                {weekdayLabels(weekStartsOn).map((w, i) => (
+                {fmt.weekdayLabels(weekStartsOn).map((w, i) => (
                   <span key={i} className="if-datecal__weekday">{w}</span>
                 ))}
               </div>
@@ -274,7 +280,7 @@ export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
                           ref={(node) => { dayRefs.current[iso] = node; }}
                           type="button"
                           role="gridcell"
-                          aria-label={`${MONTH_LABELS[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`}
+                          aria-label={fmt.dayLabel(d)}
                           aria-selected={sel}
                           aria-disabled={isDisabled || undefined}
                           tabIndex={iso === focusISO ? 0 : -1}

@@ -1,55 +1,59 @@
 import * as React from "react";
 import { IconSpriteProvider, SegmentedControl } from "@idenflu/ui-react";
 import spriteUrl from "@idenflu/ui-icons/icons.svg?url";
-import { ButtonsSection } from "./sections/Buttons";
-import { InputsSection } from "./sections/Inputs";
-import { ControlsSection } from "./sections/Controls";
-import { TagsSection } from "./sections/Tags";
-import { FeedbackSection } from "./sections/Feedback";
-import { DataSection } from "./sections/Data";
-import { OverlaysSection } from "./sections/Overlays";
-import { TabsSection } from "./sections/Tabs";
-import { PatternsSection } from "./sections/Patterns";
-import { IconsSection } from "./sections/Icons";
+import { useHashRoute } from "./useHashRoute";
+import { ROUTES } from "./routes";
 
 type Theme = "light" | "dark";
 
 export function App() {
   const [theme, setTheme] = React.useState<Theme>("light");
+  const route = useHashRoute();
 
   React.useEffect(() => {
     document.documentElement.setAttribute("data-if-theme", theme);
   }, [theme]);
 
+  const active = ROUTES.find((r) => r.key === route) ?? ROUTES[0];
+  const ActiveComponent = active.Component;
+
   return (
     <IconSpriteProvider href={spriteUrl}>
       <div className="pg-shell">
-        <header className="pg-topbar">
-          <div>
-            <h1>idenflu ui-react</h1>
-            <p>로컬 플레이그라운드 — source-only 패키지를 Vite로 직접 소비합니다.</p>
+        <nav className="pg-nav" aria-label="Categories">
+          <div className="pg-nav__brand">
+            <strong>idenflu ui-react</strong>
+            <span>플레이그라운드</span>
           </div>
-          <SegmentedControl
-            label="Theme"
-            value={theme}
-            onChange={(v) => setTheme(v as Theme)}
-            options={[
-              { value: "light", label: "Light" },
-              { value: "dark", label: "Dark" },
-            ]}
-          />
-        </header>
-
-        <ButtonsSection />
-        <InputsSection />
-        <ControlsSection />
-        <TagsSection />
-        <FeedbackSection />
-        <DataSection />
-        <OverlaysSection />
-        <TabsSection />
-        <PatternsSection />
-        <IconsSection />
+          <ul className="pg-nav__list">
+            {ROUTES.map((r) => (
+              <li key={r.key}>
+                <a
+                  href={`#/${r.key}`}
+                  className={r.key === active.key ? "pg-nav__link is-active" : "pg-nav__link"}
+                  aria-current={r.key === active.key ? "page" : undefined}
+                >
+                  {r.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <div className="pg-nav__theme">
+            <SegmentedControl
+              label="Theme"
+              size="small"
+              value={theme}
+              onChange={(v) => setTheme(v as Theme)}
+              options={[
+                { value: "light", label: "Light" },
+                { value: "dark", label: "Dark" },
+              ]}
+            />
+          </div>
+        </nav>
+        <main className="pg-main">
+          <ActiveComponent />
+        </main>
       </div>
     </IconSpriteProvider>
   );

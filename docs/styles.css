@@ -1509,7 +1509,7 @@ h3 {
   cursor: pointer;
 }
 
-.expanded-select__trigger:focus-visible {
+.expanded-select__trigger:focus {
   border-color: var(--primary);
   outline: 0;
   box-shadow: 0 0 0 3px var(--focus-ring);
@@ -2169,7 +2169,7 @@ h3 {
   font-size: 14px;
 }
 
-.datepicker__trigger:focus-visible {
+.datepicker__trigger:focus {
   border-color: var(--primary);
   outline: 0;
   box-shadow: 0 0 0 3px var(--focus-ring);

@@ -855,6 +855,40 @@ const dpWeekdayLabels = (weekStartsOn) =>
 // ISO date strings compare lexically == chronologically.
 const dpIsWithin = (iso, min, max) => (!min || iso >= min) && (!max || iso <= max);
 
+// A known Sunday, used as the rotation anchor for Intl weekday labels.
+const DATEPICKER_WEEKDAY_ANCHOR = new Date(2024, 0, 7);
+
+const dpEnglishFormatters = {
+  monthLabel: (year, month) => `${DATEPICKER_MONTHS[month]} ${year}`,
+  weekdayLabels: dpWeekdayLabels,
+  display: (iso) => iso,
+  dayLabel: (date) => `${DATEPICKER_MONTHS[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`,
+};
+
+// Presentation formatters for a locale. Falsy/invalid locale -> English (ISO-passthrough display).
+const dpCreateFormatters = (locale) => {
+  if (!locale) return dpEnglishFormatters;
+  try {
+    const monthFmt = new Intl.DateTimeFormat(locale, { year: "numeric", month: "long" });
+    const weekdayFmt = new Intl.DateTimeFormat(locale, { weekday: "short" });
+    const displayFmt = new Intl.DateTimeFormat(locale, { dateStyle: "medium" });
+    const dayLabelFmt = new Intl.DateTimeFormat(locale, { dateStyle: "long" });
+    return {
+      monthLabel: (year, month) => monthFmt.format(new Date(year, month, 1)),
+      weekdayLabels: (weekStartsOn) =>
+        Array.from({ length: 7 }, (_, index) =>
+          weekdayFmt.format(dpAddDays(DATEPICKER_WEEKDAY_ANCHOR, (weekStartsOn + index) % 7))),
+      display: (iso) => {
+        const date = dpParseISO(iso);
+        return date ? displayFmt.format(date) : iso;
+      },
+      dayLabel: (date) => dayLabelFmt.format(date),
+    };
+  } catch (error) {
+    return dpEnglishFormatters;
+  }
+};
+
 const dpNavButton = (label, icon, onClick) => {
   const button = document.createElement("button");
   button.type = "button";
@@ -880,6 +914,8 @@ document.querySelectorAll("[data-datepicker]").forEach((root) => {
   const max = root.getAttribute("data-max") || "";
   const placeholder = valueLabel.getAttribute("data-placeholder") || (isRange ? "Select range" : "Select date");
   const todayISO = dpToISO(new Date());
+  const locale = root.getAttribute("data-locale") || "";
+  const formatters = dpCreateFormatters(locale);
 
   const viewMatch = /^(\d{4})-(\d{2})$/.exec(root.getAttribute("data-view") || "");
   const initialView = viewMatch
@@ -914,11 +950,11 @@ document.querySelectorAll("[data-datepicker]").forEach((root) => {
 
   const displayText = () => {
     if (isRange) {
-      if (pendingStart) return pendingStart;
-      if (rangeVal.from && rangeVal.to) return `${rangeVal.from} ~ ${rangeVal.to}`;
+      if (pendingStart) return formatters.display(pendingStart);
+      if (rangeVal.from && rangeVal.to) return `${formatters.display(rangeVal.from)} ~ ${formatters.display(rangeVal.to)}`;
       return null;
     }
-    return single || null;
+    return single ? formatters.display(single) : null;
   };
 
   const renderTrigger = () => {
@@ -1042,7 +1078,7 @@ document.querySelectorAll("[data-datepicker]").forEach((root) => {
     header.className = "datecal__header";
     const monthLabel = document.createElement("span");
     monthLabel.className = "datecal__month";
-    monthLabel.textContent = `${DATEPICKER_MONTHS[view.month]} ${view.year}`;
+    monthLabel.textContent = formatters.monthLabel(view.year, view.month);
     header.append(
       dpNavButton("Previous month", "icon-chevron-left", () => goMonth(-1)),
       monthLabel,
@@ -1052,7 +1088,7 @@ document.querySelectorAll("[data-datepicker]").forEach((root) => {
     const weekdays = document.createElement("div");
     weekdays.className = "datecal__weekdays";
     weekdays.setAttribute("aria-hidden", "true");
-    dpWeekdayLabels(weekStartsOn).forEach((label) => {
+    formatters.weekdayLabels(weekStartsOn).forEach((label) => {
       const cell = document.createElement("span");
       cell.className = "datecal__weekday";
       cell.textContent = label;
@@ -1075,7 +1111,7 @@ document.querySelectorAll("[data-datepicker]").forEach((root) => {
         button.type = "button";
         button.className = "datecal__day";
         button.setAttribute("role", "gridcell");
-        button.setAttribute("aria-label", `${DATEPICKER_MONTHS[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`);
+        button.setAttribute("aria-label", formatters.dayLabel(date));
         button.textContent = String(date.getDate());
         button.addEventListener("click", () => selectDay(iso));
         button.addEventListener("mouseenter", () => {

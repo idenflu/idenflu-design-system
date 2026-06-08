@@ -165,7 +165,7 @@
     },
     "date-time": {
       "label": "Date Time API",
-      "props": ["value", "range", "min date", "max date", "weekStartsOn", "validation"],
+      "props": ["value", "range", "min date", "max date", "weekStartsOn", "locale", "validation"],
       "states": ["empty", "selected", "range", "disabled date", "invalid", "readonly"],
       "accessibility": ["visible label", "role=dialog", "role=grid", "aria-invalid", "keyboard date navigation"]
     },

@@ -6,6 +6,7 @@
     "examples/*"
   ],
   "scripts": {
+    "build:foundations": "npm run build:foundations -w @idenflu/ui-foundations",
     "build:tokens": "npm run build:tokens -w @idenflu/ui-tokens",
     "dev:playground": "npm run dev -w playground",
     "check:docs": "node docs/scripts/verify-site.js",

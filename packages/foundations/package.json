@@ -1,0 +1,44 @@
+{
+  "name": "@idenflu/ui-foundations",
+  "version": "0.0.0-alpha.1",
+  "type": "module",
+  "description": "Design foundations for idenflu product interfaces.",
+  "types": "./src/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/idenflu/idenflu-design-system.git",
+    "directory": "packages/foundations"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "files": [
+    "src",
+    "build",
+    "colors",
+    "spacing",
+    "typography",
+    "layout",
+    "border-radius",
+    "theme",
+    "README.md"
+  ],
+  "sideEffects": [
+    "./src/tokens.css"
+  ],
+  "scripts": {
+    "build:foundations": "node config.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "default": "./src/index.ts"
+    },
+    "./tokens.css": "./src/tokens.css",
+    "./_variables-light.css": "./build/css/_variables-light.css",
+    "./_variables-dark.css": "./build/css/_variables-dark.css"
+  },
+  "devDependencies": {
+    "style-dictionary": "^5.4.3"
+  }
+}

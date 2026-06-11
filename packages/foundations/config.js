@@ -1,11 +1,11 @@
 import StyleDictionary from "style-dictionary";
 
 const BASE_SOURCE = [
-  "colors/colors.json",
+  "rounded/rounded.tokens.json",
+  "colors/colors.tokens.json",
   "spacing/tokens.json",
   "typography/tokens.json",
   "layout/tokens.json",
-  "border-radius/tokens.json",
 ];
 
 const themes = [

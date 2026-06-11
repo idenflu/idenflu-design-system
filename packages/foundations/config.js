@@ -3,7 +3,7 @@ import StyleDictionary from "style-dictionary";
 const BASE_SOURCE = [
   "rounded/rounded.tokens.json",
   "colors/colors.tokens.json",
-  "spacing/tokens.json",
+  "spacing/spacing.tokens.json",
   "typography/tokens.json",
   "layout/tokens.json",
 ];

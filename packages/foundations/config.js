@@ -1,6 +1,7 @@
 import StyleDictionary from "style-dictionary";
 
 const BASE_SOURCE = [
+  "colors/colors.json",
   "spacing/tokens.json",
   "typography/tokens.json",
   "layout/tokens.json",

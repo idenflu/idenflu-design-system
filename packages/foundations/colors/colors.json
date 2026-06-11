@@ -878,6 +878,19 @@
           "com.figma.scopes": ["ALL_SCOPES"]
         }
       }
+    },
+    "transparent": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [1, 1, 1],
+        "alpha": 0,
+        "hex": "#FFFFFF"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:133:693",
+        "com.figma.scopes": ["ALL_SCOPES"]
+      }
     }
   },
   "$extensions": {

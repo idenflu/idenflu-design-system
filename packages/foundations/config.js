@@ -4,7 +4,8 @@ const BASE_SOURCE = [
   "rounded/rounded.tokens.json",
   "colors/colors.tokens.json",
   "spacing/spacing.tokens.json",
-  "typography/tokens.json",
+  "typography/typo.tokens.json",
+  "typography/styles.tokens.json",
   "layout/tokens.json",
 ];
 

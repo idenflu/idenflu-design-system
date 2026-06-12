@@ -1,14 +1,7 @@
 @import "@idenflu/ui-tokens/tokens.css";
-@import "@idenflu/ui-foundations/css/tokens-light.css";
-@import "@idenflu/ui-foundations/css/tokens-dark.css";
-
-.if-button,
-.if-icon-button,
-.if-input-shell,
-.if-field__control,
-.if-chip__remove {
-  font-family: var(--if-font-family);
-}
+@import "./styles/normalize.css";
+@import "./styles/tokens.css";
+@import "./components/Button/Button.css";
 
 .if-button {
   align-items: center;
@@ -127,17 +120,6 @@
 .if-button:active,
 .if-icon-button:active {
   transform: translateY(1px);
-}
-
-.if-button:focus-visible,
-.if-icon-button:focus-visible,
-.if-field__control:focus,
-.if-field__control:focus-visible,
-.if-input-shell:focus-within,
-.if-chip__remove:focus-visible {
-  border-color: var(--if-color-primary);
-  box-shadow: 0 0 0 3px var(--if-focus-ring);
-  outline: 0;
 }
 
 .if-button.is-loading {
@@ -272,17 +254,6 @@
   color: var(--if-color-ink-subtle);
   cursor: not-allowed;
   transform: none;
-}
-
-@keyframes if-loading-pulse {
-  0%,
-  100% {
-    transform: scaleX(0.35);
-  }
-
-  50% {
-    transform: scaleX(1);
-  }
 }
 
 .if-field {

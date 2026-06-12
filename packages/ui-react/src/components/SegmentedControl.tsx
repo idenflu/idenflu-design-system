@@ -3,10 +3,14 @@ import { classNames } from "../utils/classNames";
 
 export type SegmentedControlSize = "small" | "medium";
 
+export type SegmentedControlVariant = "boxed" | "quiet";
+
 export type SegmentedOption = {
   value: string;
   label: React.ReactNode;
   icon?: React.ReactNode;
+  /** Hover tooltip — useful when labels are visually hidden (icon-only). */
+  title?: string;
   disabled?: boolean;
 };
 
@@ -21,12 +25,14 @@ export type SegmentedControlProps = Omit<
   defaultValue?: string;
   onChange?: (value: string) => void;
   size?: SegmentedControlSize;
+  /** "boxed" draws the bordered track; "quiet" only marks the selected option. */
+  variant?: SegmentedControlVariant;
   disabled?: boolean;
 };
 
 export const SegmentedControl = React.forwardRef<HTMLDivElement, SegmentedControlProps>(
   (
-    { className, defaultValue, disabled = false, label, onChange, options, size = "medium", value, ...props },
+    { className, defaultValue, disabled = false, label, onChange, options, size = "medium", value, variant = "boxed", ...props },
     ref,
   ) => {
     const optionRefs = React.useRef<Array<HTMLButtonElement | null>>([]);
@@ -86,7 +92,7 @@ export const SegmentedControl = React.forwardRef<HTMLDivElement, SegmentedContro
         ref={ref}
         role="group"
         aria-label={label}
-        className={classNames("if-segmented", `if-segmented--${size}`, disabled && "is-disabled", className)}
+        className={classNames("if-segmented", `if-segmented--${size}`, `if-segmented--${variant}`, disabled && "is-disabled", className)}
         {...props}
       >
         {options.map((option, index) => {
@@ -99,6 +105,7 @@ export const SegmentedControl = React.forwardRef<HTMLDivElement, SegmentedContro
               }}
               type="button"
               className={classNames("if-segmented__option", selected && "is-selected")}
+              title={option.title}
               aria-pressed={selected}
               tabIndex={index === activeIndex ? 0 : -1}
               disabled={disabled || option.disabled}

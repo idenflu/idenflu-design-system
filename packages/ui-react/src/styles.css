@@ -56,7 +56,6 @@
   border-color: var(--if-color-primary);
   background: var(--if-color-primary);
   color: var(--if-color-inverse-ink);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
 }
 
 .if-button--primary:hover {
@@ -1588,6 +1587,21 @@
   background: var(--if-color-surface-raised);
   border-color: var(--if-color-hairline);
   color: var(--if-color-ink);
+}
+
+.if-segmented--quiet {
+  background: transparent;
+  border-color: transparent;
+  padding: 0;
+}
+
+.if-segmented--quiet .if-segmented__option:hover:not(:disabled) {
+  color: var(--if-color-ink);
+}
+
+.if-segmented--quiet .if-segmented__option[aria-pressed="true"] {
+  background: var(--if-color-surface-1);
+  border-color: transparent;
 }
 
 .if-segmented__option:focus-visible {

@@ -1,5 +1,5 @@
-export { Button, IconButton } from "./components/Button";
-export type { ButtonProps, ButtonSize, ButtonVariant, IconButtonProps, IconButtonVariant } from "./components/Button";
+export { Button, IconButton } from "./components/Button/index";
+export type { ButtonProps, ButtonSize, ButtonVariant, IconButtonProps, IconButtonVariant } from "./components/Button/index";
 
 export { TextField } from "./components/TextField";
 export type { FieldState, TextFieldProps } from "./components/TextField";

@@ -1,6 +1,6 @@
 @import "@idenflu/ui-tokens/tokens.css";
-@import "@idenflu/ui-tokens/_variables-light.css";
-@import "@idenflu/ui-tokens/_variables-dark.css";
+@import "@idenflu/ui-foundations/css/tokens-light.css";
+@import "@idenflu/ui-foundations/css/tokens-dark.css";
 
 .if-button,
 .if-icon-button,

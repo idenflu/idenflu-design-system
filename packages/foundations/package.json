@@ -24,7 +24,8 @@
     "README.md"
   ],
   "sideEffects": [
-    "./src/tokens.css"
+    "./css/tokens-light.css",
+    "./css/tokens-dark.css"
   ],
   "scripts": {
     "build:foundations": "node config.js"
@@ -34,9 +35,8 @@
       "types": "./src/index.d.ts",
       "default": "./src/index.ts"
     },
-    "./tokens.css": "./src/tokens.css",
-    "./_variables-light.css": "./src/css/_variables-light.css",
-    "./_variables-dark.css": "./src/css/_variables-dark.css"
+    "./css/tokens-light.css": "./src/css/_variables-light.css",
+    "./css/tokens-dark.css": "./src/css/_variables-dark.css"
   },
   "devDependencies": {
     "style-dictionary": "^5.4.3"

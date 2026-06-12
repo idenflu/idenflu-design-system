@@ -96,7 +96,7 @@
         "fontWeight": "{font.Weight.regular}",
         "lineHeight": "{font.LineHeight.03}",
         "letterSpacing": 0,
-        "fontVariantNumeric": "{font.VariantNumeric.tabular}"
+        "fontVariantNumeric": "{font.Numeric.tabular}"
       }
     },
     "md": {
@@ -107,7 +107,7 @@
         "fontWeight": "{font.Weight.regular}",
         "lineHeight": "{font.LineHeight.02}",
         "letterSpacing": 0,
-        "fontVariantNumeric": "{font.VariantNumeric.tabular}"
+        "fontVariantNumeric": "{font.Numeric.tabular}"
       }
     }
   }

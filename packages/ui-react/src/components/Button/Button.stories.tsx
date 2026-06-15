@@ -119,7 +119,7 @@ function VariantColorMatrix({
               key={`${variant}-${color}`}
               color={color}
               disabled={disabled}
-              endIcon={withEndIcon ? <Icon name="icon-star" /> : undefined}
+              endIcon={withEndIcon ? <Icon name="star" /> : undefined}
               size={size}
               variant={variant}
             >
@@ -191,7 +191,7 @@ export const Overview: Story = {
             <div key={size} style={overviewStyles.cell}>
               <Button
                 color="primary"
-                endIcon={<Icon name="icon-star" />}
+                endIcon={<Icon name="star" />}
                 size={size}
                 variant="default"
               >
@@ -213,7 +213,7 @@ export const Overview: Story = {
             <Button
               key={variant}
               color="primary"
-              endIcon={<Icon name="icon-star" />}
+              endIcon={<Icon name="star" />}
               fullWidth
               variant={variant}
             >
@@ -234,7 +234,7 @@ export const Playground: Story = {
     const button = (
       <Button
         {...args}
-        endIcon={showEndIcon ? <Icon name="icon-star" /> : undefined}
+        endIcon={showEndIcon ? <Icon name="star" /> : undefined}
         fullWidth={fullWidth}
       >
         {children}

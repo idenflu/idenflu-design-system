@@ -81,6 +81,14 @@ export type {
   LoadingStateSize,
 } from "./components/LoadingState";
 
+export { Spinner } from "./components/Spinner/index";
+export type {
+  SpinnerColor,
+  SpinnerProps,
+  SpinnerSize,
+  SpinnerVariant,
+} from "./components/Spinner/index";
+
 export { ErrorState } from "./components/ErrorState";
 export type { ErrorStateProps, ErrorStateTone } from "./components/ErrorState";
 

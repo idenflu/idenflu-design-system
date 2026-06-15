@@ -3,6 +3,7 @@
 @import "./styles/tokens.css";
 @import "./components/Button/Button.css";
 @import "./components/Icon/Icon.css";
+@import "./components/Spinner/Spinner.css";
 
 .if-button {
   align-items: center;

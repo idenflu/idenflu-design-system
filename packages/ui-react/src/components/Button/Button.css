@@ -282,6 +282,14 @@
   color: var(--theme-text-danger-active);
 }
 
+.nova-button--loading {
+  cursor: wait;
+}
+
+.nova-button--loading-solo {
+  justify-content: center;
+}
+
 /* Disabled */
 .nova-button:disabled {
   cursor: not-allowed;

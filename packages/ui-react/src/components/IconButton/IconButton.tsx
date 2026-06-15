@@ -1,6 +1,7 @@
 import * as React from "react";
 import { classNames } from "../../utils/classNames";
 import type { ButtonColor, ButtonSize, ButtonVariant } from "../Button/Button";
+import { ButtonSpinner } from "../Button/ButtonSpinner";
 
 export type IconButtonVariant = ButtonVariant;
 export type IconButtonColor = ButtonColor;
@@ -50,6 +51,7 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
           `nova-button--${variant}`,
           `nova-button--${color}`,
           `nova-button--${size}`,
+          loading && "nova-button--loading",
           className
         )}
         disabled={isDisabled}
@@ -64,7 +66,7 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
         {...props}
       >
         <span className="nova-button__icon" aria-hidden="true">
-          {icon}
+          {loading ? <ButtonSpinner size={size} /> : icon}
         </span>
       </button>
     );

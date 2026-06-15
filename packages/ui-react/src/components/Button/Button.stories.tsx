@@ -56,7 +56,7 @@ const overviewStyles = {
   matrix: {
     display: "grid",
     gap: "12px 16px",
-    gridTemplateColumns: "80px repeat(3, minmax(112px, 1fr))",
+    gridTemplateColumns: "80px repeat(3, minmax(120px, 1fr))",
     alignItems: "center",
   },
   matrixHeader: {
@@ -94,15 +94,7 @@ function OverviewSection({
   );
 }
 
-function VariantColorMatrix({
-  disabled = false,
-  size = "lg",
-  withEndIcon = true,
-}: {
-  disabled?: boolean;
-  size?: ButtonSize;
-  withEndIcon?: boolean;
-}) {
+function VariantColorMatrix({ size = "lg" }: { size?: ButtonSize }) {
   return (
     <div style={overviewStyles.matrix}>
       <div />
@@ -118,8 +110,48 @@ function VariantColorMatrix({
             <Button
               key={`${variant}-${color}`}
               color={color}
-              disabled={disabled}
-              endIcon={withEndIcon ? <Icon name="star" /> : undefined}
+              endIcon={<Icon name="star" />}
+              size={size}
+              variant={variant}
+            >
+              Button
+            </Button>
+          ))}
+        </React.Fragment>
+      ))}
+    </div>
+  );
+}
+
+const primaryVariantColumns = [
+  { id: "withoutEndIcon", label: "Without end icon" },
+  { id: "disabled", label: "Disabled" },
+  { id: "loading", label: "Loading" },
+] as const;
+
+function PrimaryVariantStateMatrix({ size = "lg" }: { size?: ButtonSize }) {
+  return (
+    <div style={overviewStyles.matrix}>
+      <div />
+      {primaryVariantColumns.map((column) => (
+        <span key={column.id} style={overviewStyles.matrixHeader}>
+          {column.label}
+        </span>
+      ))}
+      {variants.map((variant) => (
+        <React.Fragment key={variant}>
+          <span style={overviewStyles.matrixRowLabel}>{variant}</span>
+          {primaryVariantColumns.map((column) => (
+            <Button
+              key={`${variant}-${column.id}`}
+              color="primary"
+              disabled={column.id === "disabled"}
+              endIcon={
+                column.id === "withoutEndIcon" ? undefined : (
+                  <Icon name="star" />
+                )
+              }
+              loading={column.id === "loading"}
               size={size}
               variant={variant}
             >
@@ -181,11 +213,11 @@ export const Overview: Story = {
         <VariantColorMatrix />
       </OverviewSection>
 
-      <OverviewSection title="Variant × Color — Without End Icon">
-        <VariantColorMatrix withEndIcon={false} />
+      <OverviewSection title="Variant × State">
+        <PrimaryVariantStateMatrix />
       </OverviewSection>
 
-      <OverviewSection title="Sizes — Primary / Default">
+      <OverviewSection title="Sizes">
         <div style={overviewStyles.row}>
           {sizes.map((size) => (
             <div key={size} style={overviewStyles.cell}>
@@ -201,10 +233,6 @@ export const Overview: Story = {
             </div>
           ))}
         </div>
-      </OverviewSection>
-
-      <OverviewSection title="Disabled">
-        <VariantColorMatrix disabled />
       </OverviewSection>
 
       <OverviewSection title="Full Width">

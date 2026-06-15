@@ -1,5 +1,6 @@
 import * as React from "react";
 import { classNames } from "../../utils/classNames";
+import { ButtonSpinner } from "./ButtonSpinner";
 
 export type ButtonVariant = "default" | "outlined" | "ghost";
 export type ButtonColor = "primary" | "secondary" | "danger";
@@ -33,6 +34,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const isDisabled = disabled || loading;
+    const showSpinnerInIconSlot = loading && Boolean(endIcon);
+    const showSpinnerInsteadOfLabel = loading && !endIcon;
 
     return (
       <button
@@ -44,6 +47,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           `nova-button--${color}`,
           `nova-button--${size}`,
           fullWidth && "nova-button--full-width",
+          loading && "nova-button--loading",
+          showSpinnerInsteadOfLabel && "nova-button--loading-solo",
           className
         )}
         disabled={isDisabled}
@@ -57,10 +62,18 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         type={type}
         {...props}
       >
-        {children != null && children !== "" ? (
+        {showSpinnerInsteadOfLabel ? (
+          <span className="nova-button__label" aria-hidden="true">
+            <ButtonSpinner size={size} />
+          </span>
+        ) : children != null && children !== "" ? (
           <span className="nova-button__label">{children}</span>
         ) : null}
-        {endIcon ? (
+        {showSpinnerInIconSlot ? (
+          <span className="nova-button__icon" aria-hidden="true">
+            <ButtonSpinner size={size} />
+          </span>
+        ) : endIcon ? (
           <span className="nova-button__icon" aria-hidden="true">
             {endIcon}
           </span>

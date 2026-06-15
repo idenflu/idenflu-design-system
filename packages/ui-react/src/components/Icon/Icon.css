@@ -4,5 +4,6 @@
   color: inherit;
   display: inline-block;
   flex: 0 0 auto;
+  fill: currentColor;
   vertical-align: middle;
 }

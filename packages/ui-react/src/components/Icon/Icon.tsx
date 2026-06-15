@@ -1,5 +1,5 @@
 import * as React from "react";
-import { getIconHref, iconViewBox, type IconName } from "@idenflu/ui-icons";
+import { getIconHref, type IconName } from "@idenflu/ui-icons";
 import { classNames } from "../../utils/classNames";
 import { IconSpriteContext } from "./IconSpriteContext";
 
@@ -35,8 +35,9 @@ export const Icon = React.forwardRef<SVGSVGElement, IconProps>(
         ref={ref}
         width={px}
         height={px}
-        viewBox={iconViewBox}
+        viewBox="0 0 24 24"
         className={classNames("nova-icon", className)}
+        style={{ fill: "var(--theme-text-secondary)" }}
         {...a11y}
         {...props}
       >

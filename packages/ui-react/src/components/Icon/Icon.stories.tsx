@@ -1,36 +1,17 @@
 import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { iconNames } from "@idenflu/ui-icons";
+import { IconName, iconNames } from "@idenflu/ui-icons";
 import { IconButton } from "../IconButton/IconButton";
 import { Icon, type IconSize } from "./Icon";
 
 const sizes: IconSize[] = ["small", "medium", "large"];
-
-/** Figma Icons Grid (85:1069) subset mapped to catalog symbol ids. */
-const figmaSampleNames = [
-  "icon-x",
-  "icon-search",
-  "icon-plus",
-  "icon-trash",
-  "icon-edit",
-  "icon-warning",
-  "icon-filter",
-  "icon-download",
-  "icon-chevron-down",
-  "icon-chevron-up",
-  "icon-chevron-left",
-  "icon-chevron-right",
-  "icon-folder",
-  "icon-star",
-  "icon-menu",
-] as const;
 
 const overviewStyles = {
   root: {
     display: "flex",
     flexDirection: "column" as const,
     gap: "40px",
-    fontFamily: "var(--if-font-family, Inter, system-ui, sans-serif)",
+    fontFamily: "var(Inter, system-ui, sans-serif)",
     width: "100%",
     maxWidth: "960px",
   },
@@ -126,7 +107,7 @@ const meta = {
     },
   },
   args: {
-    name: "icon-search",
+    name: "search",
     size: "medium",
   },
 } satisfies Meta<IconStoryArgs>;
@@ -140,7 +121,7 @@ export const Overview: Story = {
     controls: { disable: true },
   },
   args: {
-    name: "icon-search",
+    name: "search",
   },
   render: () => (
     <div style={overviewStyles.root}>
@@ -148,7 +129,7 @@ export const Overview: Story = {
         <div style={overviewStyles.row}>
           {sizes.map((size) => (
             <div key={size} style={overviewStyles.cell}>
-              <Icon name="icon-search" size={size} />
+              <Icon name="search" size={size} />
               <p style={overviewStyles.label}>{size}</p>
             </div>
           ))}
@@ -157,14 +138,26 @@ export const Overview: Story = {
 
       <OverviewSection title="Color (currentColor via theme tokens)">
         <div style={overviewStyles.row}>
-          <span style={{ color: "var(--theme-text-primary)" }}>
-            <Icon name="icon-check" size="large" />
+          <span>
+            <Icon
+              name="add"
+              size="large"
+              style={{ color: "var(--theme-text-secondary)" }}
+            />
           </span>
-          <span style={{ color: "var(--theme-text-brand)" }}>
-            <Icon name="icon-info" size="large" />
+          <span>
+            <Icon
+              name="info"
+              size="large"
+              style={{ color: "var(--theme-text-brand)" }}
+            />
           </span>
-          <span style={{ color: "var(--theme-text-danger)" }}>
-            <Icon name="icon-warning" size="large" />
+          <span>
+            <Icon
+              name="warning"
+              size="large"
+              style={{ color: "var(--theme-text-danger)" }}
+            />
           </span>
         </div>
       </OverviewSection>
@@ -176,24 +169,13 @@ export const Overview: Story = {
           its own `label`.
         </p>
         <div style={overviewStyles.row}>
-          <Icon name="icon-help" size="large" label="Help" />
+          <Icon name="help" size="large" label="Help" />
           <IconButton
-            icon={<Icon name="icon-search" size="small" />}
+            icon={<Icon name="search" size="small" />}
             label="Search"
             size="md"
             variant="ghost"
           />
-        </div>
-      </OverviewSection>
-
-      <OverviewSection title="Figma catalog sample">
-        <div style={overviewStyles.grid}>
-          {figmaSampleNames.map((name) => (
-            <div key={name} style={overviewStyles.cell}>
-              <Icon name={name} size="large" />
-              <p style={overviewStyles.label}>{name.replace("icon-", "")}</p>
-            </div>
-          ))}
         </div>
       </OverviewSection>
 

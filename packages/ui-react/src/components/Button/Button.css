@@ -2,7 +2,7 @@
 
 .nova-button {
   align-items: center;
-  border: none;
+  border: 1px solid transparent;
   border-radius: var(--rounded-none, 0);
   cursor: pointer;
   display: inline-flex;
@@ -20,10 +20,6 @@
 
 .nova-button--full-width {
   width: 100%;
-}
-
-.nova-button--outlined {
-  border: 1px solid;
 }
 
 .nova-button--icon-only {

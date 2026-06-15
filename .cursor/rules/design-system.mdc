@@ -1,0 +1,60 @@
+---
+description: ui-react 디자인 시스템 원칙 (토큰, a11y, TS, 문서)
+globs: packages/ui-react/**
+alwaysApply: false
+---
+
+# Design System Rules
+
+## Design Source
+
+Figma is the source of truth for visual values:
+
+- spacing, typography, color, component variants
+
+Never invent visual values. Map Figma output to project tokens.
+
+## Design Tokens
+
+Import tokens via `packages/ui-react/src/styles/tokens.css`:
+
+```css
+@import "@idenflu/ui-foundations/css/tokens-light.css";
+@import "@idenflu/ui-foundations/css/tokens-dark.css";
+```
+
+- Use CSS custom properties from `@idenflu/ui-foundations` only
+- Never hardcode colors, spacing, or typography values
+
+## Component API
+
+Reference Material UI and Carbon React for API shape and behavior.
+
+Follow:
+
+- composable / slot-based architecture when needed
+- controlled and uncontrolled patterns
+- accessibility first
+
+Do not copy MUI or Carbon APIs verbatim. Adapt to idenflu naming and tokens.
+
+## Accessibility
+
+Every component must:
+
+- support keyboard interaction
+- support screen readers
+- expose appropriate ARIA attributes
+
+## TypeScript
+
+- strict typing, no `any`
+- export public types from component `index.ts` and `packages/ui-react/src/index.ts`
+
+## Documentation
+
+For every component provide:
+
+- props interface
+- Storybook stories (`*.stories.tsx`)
+- accessibility notes in stories or component comments

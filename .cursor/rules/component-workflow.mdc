@@ -1,0 +1,74 @@
+---
+description: ui-react 컴포넌트 작업 시 MCP 호출 순서와 참조 소스
+globs: packages/ui-react/**
+alwaysApply: false
+---
+
+# Component Workflow
+
+## Project Context
+
+| Item          | Value                                                                                              |
+| ------------- | -------------------------------------------------------------------------------------------------- |
+| Figma file    | [Idenflu Design System](https://www.figma.com/design/aMK1ysrAI4RGk1mrFk0O41/Idenflu-Design-System) |
+| Figma fileKey | `aMK1ysrAI4RGk1mrFk0O41`                                                                           |
+| Tokens        | `packages/ui-react/src/styles/tokens.css` → `@idenflu/ui-foundations`                              |
+| Package       | `packages/ui-react`                                                                                |
+
+## Source Roles
+
+| Source                               | Use for                                                 |
+| ------------------------------------ | ------------------------------------------------------- |
+| Figma MCP                            | Visual specs, variants, spacing, color, typography      |
+| MUI MCP (`useMuiDocs` → `fetchDocs`) | Props API, composition                                  |
+| Carbon React                         | API and a11y patterns                                   |
+| Codebase                             | Final implementation patterns (override generated code) |
+
+Carbon references (until MCP):
+
+- Docs: `https://react.carbondesignsystem.com/`
+- Source: `https://github.com/carbon-design-system/carbon/tree/main/packages/react/src/components`
+
+## Figma → Code
+
+When a Figma URL or node is provided:
+
+1. `get_design_context` with fileKey `aMK1ysrAI4RGk1mrFk0O41` and nodeId from URL
+2. If Code Connect mapping exists, prefer mapped codebase component
+3. Map Figma variables to `@idenflu/ui-foundations` CSS custom properties
+4. Adapt reference code to project conventions — do not paste Tailwind or raw hex values
+5. Match existing component folder structure (see below)
+
+## API Design (no implementation)
+
+When asked to design props only:
+
+1. Figma MCP — variants and states from the component node
+2. MUI MCP — equivalent component docs
+3. Carbon — equivalent component docs or GitHub source
+4. Output: comparison table, recommended idenflu API, a11y notes
+5. Do not write implementation code unless explicitly requested
+
+## Refactor / Sync
+
+When updating an existing component:
+
+1. Figma MCP — current design vs implementation diff
+2. MUI + Carbon — API parity and migration impact
+3. List breaking changes and token mapping updates
+4. Preserve public exports in `packages/ui-react/src/index.ts`
+
+## Component Conventions
+
+- Folder: `packages/ui-react/src/components/<Name>/` for complex components
+- Files: `<Name>.tsx`, `<Name>.css`, `<Name>.stories.tsx`, `index.ts`
+- CSS prefix: `nova-<component>` (e.g. `nova-button`)
+- Utilities: `classNames` from `../../utils/classNames`
+
+## Prompt Templates
+
+Use templates in `.cursor/prompts/`:
+
+- `new-component.md` — Figma → implementation
+- `api-design.md` — props API design only
+- `refactor-component.md` — design sync and API migration

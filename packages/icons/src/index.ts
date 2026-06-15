@@ -9,6 +9,7 @@ export const iconNames = [
   "check",
   "check-circle",
   "close",
+  "clock",
   "crop",
   "dark-mode",
   "delete",

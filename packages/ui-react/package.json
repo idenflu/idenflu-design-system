@@ -56,6 +56,7 @@
     "./styles.css": "./src/styles.css"
   },
   "scripts": {
+    "storybook:ui-react": "npm run storybook",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   }

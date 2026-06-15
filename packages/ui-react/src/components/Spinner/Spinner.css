@@ -1,0 +1,215 @@
+/* Nova Spinner — indeterminate loading indicator */
+
+.nova-spinner {
+  display: inline-flex;
+  flex: 0 0 auto;
+  line-height: 0;
+}
+
+.nova-spinner--primary {
+  --nova-spinner-track: var(--brand-primary-subtle);
+  --nova-spinner-indicator: var(--theme-interactive-primary);
+}
+
+.nova-spinner--secondary {
+  --nova-spinner-track: var(--theme-border-muted);
+  --nova-spinner-indicator: var(--theme-interactive-secondary);
+}
+
+.nova-spinner--inherit {
+  color: inherit;
+  --nova-spinner-track: color-mix(in srgb, currentColor 40%, transparent);
+  --nova-spinner-indicator: currentColor;
+}
+
+/* Ring */
+
+.nova-spinner__ring {
+  animation: nova-spinner-spin 0.8s linear infinite;
+  border-radius: var(--rounded-full);
+  border-style: solid;
+  border-color: var(--nova-spinner-track);
+  border-top-color: var(--nova-spinner-indicator);
+  border-width: 2px;
+  box-sizing: border-box;
+  display: block;
+}
+
+.nova-spinner--xs .nova-spinner__ring {
+  height: 12px;
+  width: 12px;
+}
+
+.nova-spinner--sm .nova-spinner__ring {
+  height: 16px;
+  width: 16px;
+}
+
+.nova-spinner--md .nova-spinner__ring {
+  height: 20px;
+  width: 20px;
+}
+
+.nova-spinner--lg .nova-spinner__ring {
+  height: 24px;
+  width: 24px;
+}
+
+.nova-spinner--inactive .nova-spinner__ring {
+  animation: none;
+  border-top-color: var(--nova-spinner-track);
+}
+
+/* Dot */
+
+.nova-spinner__dots {
+  align-items: center;
+  display: inline-flex;
+  gap: var(--nova-spinner-dot-gap);
+  height: var(--nova-spinner-dot-height);
+}
+
+.nova-spinner__dot {
+  animation: nova-spinner-dot-bounce 1.4s ease-in-out infinite;
+  background-color: var(--nova-spinner-indicator);
+  border-radius: var(--rounded-full);
+  display: block;
+  flex: 0 0 auto;
+  height: var(--nova-spinner-dot-size);
+  width: var(--nova-spinner-dot-size);
+}
+
+.nova-spinner__dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.nova-spinner__dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.nova-spinner--xs {
+  --nova-spinner-bar-gap: 3px;
+  --nova-spinner-bar-height: 12px;
+  --nova-spinner-bar-length: 10px;
+  --nova-spinner-bar-width: 2px;
+  --nova-spinner-dot-gap: 2px;
+  --nova-spinner-dot-height: 12px;
+  --nova-spinner-dot-size: 4px;
+}
+
+.nova-spinner--sm {
+  --nova-spinner-bar-gap: 4px;
+  --nova-spinner-bar-height: 16px;
+  --nova-spinner-bar-length: 14px;
+  --nova-spinner-bar-width: 3px;
+  --nova-spinner-dot-gap: 4px;
+  --nova-spinner-dot-height: 16px;
+  --nova-spinner-dot-size: 4px;
+}
+
+.nova-spinner--md {
+  --nova-spinner-bar-gap: 4px;
+  --nova-spinner-bar-height: 20px;
+  --nova-spinner-bar-length: 20px;
+  --nova-spinner-bar-width: 4px;
+  --nova-spinner-dot-gap: 4px;
+  --nova-spinner-dot-height: 20px;
+  --nova-spinner-dot-size: 6px;
+}
+
+.nova-spinner--lg {
+  --nova-spinner-bar-gap: 4px;
+  --nova-spinner-bar-height: 28px;
+  --nova-spinner-bar-length: 24px;
+  --nova-spinner-bar-width: 5px;
+  --nova-spinner-dot-gap: 6px;
+  --nova-spinner-dot-height: 24px;
+  --nova-spinner-dot-size: 6px;
+}
+
+.nova-spinner--inactive .nova-spinner__dot {
+  animation: none;
+  opacity: 0.5;
+  transform: scale(0.6);
+}
+
+/* Equalizer */
+
+.nova-spinner__bars {
+  align-items: center;
+  display: inline-flex;
+  gap: var(--nova-spinner-bar-gap);
+  height: var(--nova-spinner-bar-height);
+}
+
+.nova-spinner__bar {
+  animation: nova-spinner-bar-scale 1s ease-in-out infinite;
+  background-color: var(--nova-spinner-indicator);
+  border-radius: var(--rounded-sm);
+  display: block;
+  flex: 0 0 auto;
+  height: var(--nova-spinner-bar-length);
+  transform: scaleY(0.4);
+  width: var(--nova-spinner-bar-width);
+}
+
+.nova-spinner__bar:nth-child(1) {
+  animation-delay: -0.4s;
+}
+
+.nova-spinner__bar:nth-child(2) {
+  animation-delay: -0.2s;
+}
+
+.nova-spinner__bar:nth-child(4) {
+  animation-delay: 0.2s;
+}
+
+.nova-spinner__bar:nth-child(5) {
+  animation-delay: 0.4s;
+}
+
+.nova-spinner--inactive .nova-spinner__bar {
+  animation: none;
+  transform: scaleY(0.4);
+}
+
+@keyframes nova-spinner-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes nova-spinner-dot-bounce {
+  0%,
+  80%,
+  100% {
+    opacity: 0.5;
+    transform: scale(0.6);
+  }
+
+  40% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes nova-spinner-bar-scale {
+  0%,
+  40%,
+  100% {
+    transform: scaleY(0.4);
+  }
+
+  20% {
+    transform: scaleY(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nova-spinner__ring,
+  .nova-spinner__dot,
+  .nova-spinner__bar {
+    animation: none;
+  }
+}

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { classNames } from "../../utils/classNames";
-import type { ButtonColor, ButtonSize, ButtonVariant } from "./Button";
+import type { ButtonColor, ButtonSize, ButtonVariant } from "../Button/Button";
 
 export type IconButtonVariant = ButtonVariant;
 export type IconButtonColor = ButtonColor;

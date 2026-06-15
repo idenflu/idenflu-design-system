@@ -1,7 +1,7 @@
 import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { iconNames } from "@idenflu/ui-icons";
-import { IconButton } from "../Button/IconButton";
+import { IconButton } from "../IconButton/IconButton";
 import { Icon, type IconSize } from "./Icon";
 
 const sizes: IconSize[] = ["small", "medium", "large"];

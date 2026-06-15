@@ -5,8 +5,8 @@ import {
   IconButton,
   type IconButtonColor,
   type IconButtonVariant,
-} from "./IconButton";
-import type { ButtonSize } from "./Button";
+} from "../IconButton/IconButton";
+import type { ButtonSize } from "../Button/Button";
 import { Icon } from "../Icon/Icon";
 
 const variants: IconButtonVariant[] = ["default", "outlined", "ghost"];

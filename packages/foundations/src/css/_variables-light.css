@@ -3,12 +3,12 @@
  */
 
 :root {
-  --rounded-none: 0;
-  --rounded-sm: 2;
-  --rounded-md: 4;
-  --rounded-lg: 8;
-  --rounded-xl: 12;
-  --rounded-full: 9999;
+  --rounded-none: 0px;
+  --rounded-sm: 2px;
+  --rounded-md: 4px;
+  --rounded-lg: 8px;
+  --rounded-xl: 12px;
+  --rounded-full: 9999px;
   --base-white: #ffffff;
   --base-black: #000000;
   --base-blue-100: #f0f6ff;
@@ -68,20 +68,20 @@
   --base-gray-subtle-900: #252525;
   --base-gray-subtle-1000: #0e0e0e;
   --base-transparent: rgba(255, 255, 255, 0);
-  --spacing-01: 2;
-  --spacing-02: 4;
-  --spacing-03: 8;
-  --spacing-04: 12;
-  --spacing-05: 16;
-  --spacing-06: 24;
-  --spacing-07: 32;
-  --spacing-08: 40;
-  --spacing-09: 48;
-  --spacing-10: 64;
-  --spacing-11: 80;
-  --spacing-12: 96;
-  --spacing-13: 112;
-  --spacing-14: 160;
+  --spacing-01: 2px;
+  --spacing-02: 4px;
+  --spacing-03: 8px;
+  --spacing-04: 12px;
+  --spacing-05: 16px;
+  --spacing-06: 24px;
+  --spacing-07: 32px;
+  --spacing-08: 40px;
+  --spacing-09: 48px;
+  --spacing-10: 64px;
+  --spacing-11: 80px;
+  --spacing-12: 96px;
+  --spacing-13: 112px;
+  --spacing-14: 160px;
   --font-family-base: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-family-sans: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
@@ -128,9 +128,9 @@
   --font-line-height-07: 36px;
   --font-line-height-08: 40px;
   --font-line-height-09: 44px;
-  --header-height: 48;
-  --side-nav-width: 240;
-  --tabs-height: 40;
+  --header-height: 48px;
+  --side-nav-width: 240px;
+  --tabs-height: 40px;
   --brand-primary-on-primary: #ffffff;
   --theme-border-interactive: #ffffff;
   --theme-interactive-hover: rgba(0, 0, 0, 0.05);
@@ -156,7 +156,7 @@
   --brand-primary-default: var(--base-blue-500);
   --brand-primary-hover: var(--base-blue-600);
   --brand-primary-pressed: var(--base-blue-700);
-  --brand-primary-subtle: var(--base-blue-100);
+  --brand-primary-subtle: var(--base-blue-200);
   --theme-border-default: var(--base-gray-300);
   --theme-border-muted: var(--base-gray-100);
   --theme-border-strong: var(--base-gray-400);

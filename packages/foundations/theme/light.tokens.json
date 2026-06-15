@@ -27,7 +27,7 @@
       },
       "subtle": {
         "$type": "color",
-        "$value": "{Base.Blue.100}",
+        "$value": "{Base.Blue.200}",
         "$extensions": {
           "com.figma.variableId": "VariableID:61:256",
           "com.figma.scopes": ["ALL_SCOPES"]

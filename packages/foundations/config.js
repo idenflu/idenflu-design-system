@@ -1,4 +1,8 @@
 import StyleDictionary from "style-dictionary";
+import {
+  idenfluCssTransformGroup,
+  idenfluTransforms,
+} from "./sd.transforms.js";
 
 const BASE_SOURCE = [
   "rounded/rounded.tokens.json",
@@ -26,10 +30,16 @@ const themes = [
 
 for (const theme of themes) {
   const sd = new StyleDictionary({
+    hooks: {
+      transforms: idenfluTransforms,
+      transformGroups: {
+        "idenflu/css": idenfluCssTransformGroup,
+      },
+    },
     source: theme.source,
     platforms: {
       css: {
-        transformGroup: "css",
+        transformGroup: "idenflu/css",
         buildPath: "src/css/",
         files: [
           {

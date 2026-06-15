@@ -5,7 +5,6 @@ export type {
   ButtonProps,
   ButtonSize,
   ButtonVariant,
-  ButtonType,
 } from "./Button";
 export type {
   IconButtonColor,

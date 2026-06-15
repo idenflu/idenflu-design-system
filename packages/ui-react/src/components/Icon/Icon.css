@@ -1,7 +1,8 @@
-/* Nova Icon — Figma node 85:1069 (24×24 stroke symbols, currentColor) */
+/* Nova Icon — Figma node 85:1069 (24×24 stroke symbols, currentColor)
+   Default: --theme-text-secondary. Inside .nova-button: follows button color. */
 
 .nova-icon {
-  color: inherit;
+  color: var(--theme-text-secondary);
   display: inline-block;
   flex: 0 0 auto;
   fill: currentColor;

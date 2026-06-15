@@ -136,14 +136,10 @@ export const Overview: Story = {
         </div>
       </OverviewSection>
 
-      <OverviewSection title="Color (currentColor via theme tokens)">
+      <OverviewSection title="Color (default secondary, override via color)">
         <div style={overviewStyles.row}>
           <span>
-            <Icon
-              name="add"
-              size="large"
-              style={{ color: "var(--theme-text-secondary)" }}
-            />
+            <Icon name="add" size="large" />
           </span>
           <span>
             <Icon

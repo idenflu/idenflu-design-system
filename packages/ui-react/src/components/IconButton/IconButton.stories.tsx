@@ -120,7 +120,7 @@ function VariantColorMatrix({
               key={`${variant}-${color}`}
               color={color}
               disabled={disabled}
-              icon={<Icon name="icon-star" />}
+              icon={<Icon name="star" />}
               label="Favorite"
               loading={loading}
               size={size}
@@ -167,7 +167,7 @@ export const Overview: Story = {
   args: {
     color: "primary",
     disabled: false,
-    icon: <Icon name="icon-star" />,
+    icon: <Icon name="star" />,
     label: "Favorite",
     loading: false,
     size: "md",
@@ -189,7 +189,7 @@ export const Overview: Story = {
             <div key={size} style={overviewStyles.cell}>
               <IconButton
                 color="primary"
-                icon={<Icon name="icon-star" />}
+                icon={<Icon name="star" />}
                 label="Favorite"
                 size={size}
                 variant="default"
@@ -226,7 +226,7 @@ export const Playground: Story = {
   args: {
     color: "primary",
     disabled: false,
-    icon: <Icon name="icon-star" />,
+    icon: <Icon name="star" />,
     label: "Favorite",
     loading: false,
     size: "md",

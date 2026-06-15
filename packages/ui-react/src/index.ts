@@ -1,13 +1,17 @@
-export { Button, IconButton } from "./components/Button/index";
+export { Button } from "./components/Button/index";
 export type {
   ButtonColor,
   ButtonProps,
   ButtonSize,
   ButtonVariant,
+} from "./components/Button/index";
+
+export { IconButton } from "./components/IconButton/index";
+export type {
   IconButtonColor,
   IconButtonProps,
   IconButtonVariant,
-} from "./components/Button/index";
+} from "./components/IconButton/index";
 
 export { TextField } from "./components/TextField";
 export type { FieldState, TextFieldProps } from "./components/TextField";

@@ -91,6 +91,10 @@
   width: 100%;
 }
 
+.nova-button .nova-icon {
+  color: currentColor;
+}
+
 .nova-button:has(.nova-button__label):has(.nova-button__icon) {
   justify-content: space-between;
   gap: 16px;

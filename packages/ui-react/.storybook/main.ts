@@ -1,4 +1,5 @@
 import type { StorybookConfig } from "@storybook/react-vite";
+import { mergeConfig } from "vite";
 
 import { dirname } from "path";
 
@@ -25,5 +26,13 @@ const config: StorybookConfig = {
     getAbsolutePath("@storybook/addon-mcp"),
   ],
   framework: getAbsolutePath("@storybook/react-vite"),
+  async viteFinal(config) {
+    return mergeConfig(config, {
+      // Keep the icon sprite as an external asset so `<use href="…icons.svg#id">` resolves.
+      build: {
+        assetsInlineLimit: 0,
+      },
+    });
+  },
 };
 export default config;

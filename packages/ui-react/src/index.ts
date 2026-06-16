@@ -16,6 +16,14 @@ export type {
 export { TextField } from "./components/TextField";
 export type { FieldState, TextFieldProps } from "./components/TextField";
 
+export { TextInput } from "./components/TextInput/index";
+export type {
+  TextInputProps,
+  TextInputSize,
+  TextInputType,
+  TextInputVariant,
+} from "./components/TextInput/index";
+
 export { Textarea } from "./components/Textarea";
 export type { TextareaProps } from "./components/Textarea";
 

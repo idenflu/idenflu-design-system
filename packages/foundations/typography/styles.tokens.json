@@ -71,7 +71,7 @@
       "$value": {
         "fontFamily": "{font.family.sans}",
         "fontSize": "{font.Size.02}",
-        "fontWeight": "{font.Weight.medium}",
+        "fontWeight": "{font.Weight.regular}",
         "lineHeight": "{font.LineHeight.02}",
         "letterSpacing": 0
       }
@@ -81,7 +81,29 @@
       "$value": {
         "fontFamily": "{font.family.sans}",
         "fontSize": "{font.Size.01}",
-        "fontWeight": "{font.Weight.medium}",
+        "fontWeight": "{font.Weight.regular}",
+        "lineHeight": "{font.LineHeight.01}",
+        "letterSpacing": 0
+      }
+    }
+  },
+  "caption": {
+    "lg": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{font.family.sans}",
+        "fontSize": "{font.Size.02}",
+        "fontWeight": "{font.Weight.regular}",
+        "lineHeight": "{font.LineHeight.02}",
+        "letterSpacing": 0
+      }
+    },
+    "md": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{font.family.sans}",
+        "fontSize": "{font.Size.01}",
+        "fontWeight": "{font.Weight.regular}",
         "lineHeight": "{font.LineHeight.01}",
         "letterSpacing": 0
       }

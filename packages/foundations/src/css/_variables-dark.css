@@ -149,8 +149,10 @@
   --title-md: var(--font-weight-medium) var(--font-size-04)/var(--font-line-height-04) var(--font-family-sans);
   --body-lg: var(--font-weight-regular) var(--font-size-03)/var(--font-line-height-03) var(--font-family-sans);
   --body-md: var(--font-weight-regular) var(--font-size-02)/var(--font-line-height-02) var(--font-family-sans);
-  --label-lg: var(--font-weight-medium) var(--font-size-02)/var(--font-line-height-02) var(--font-family-sans);
-  --label-md: var(--font-weight-medium) var(--font-size-01)/var(--font-line-height-01) var(--font-family-sans);
+  --label-lg: var(--font-weight-regular) var(--font-size-02)/var(--font-line-height-02) var(--font-family-sans);
+  --label-md: var(--font-weight-regular) var(--font-size-01)/var(--font-line-height-01) var(--font-family-sans);
+  --caption-lg: var(--font-weight-regular) var(--font-size-02)/var(--font-line-height-02) var(--font-family-sans);
+  --caption-md: var(--font-weight-regular) var(--font-size-01)/var(--font-line-height-01) var(--font-family-sans);
   --numeric-lg: var(--font-weight-regular) var(--font-size-03)/var(--font-line-height-03) var(--font-family-sans);
   --numeric-md: var(--font-weight-regular) var(--font-size-02)/var(--font-line-height-02) var(--font-family-sans);
   --brand-primary-default: var(--base-blue-500);

@@ -1,6 +1,6 @@
 # Layout
 
-> 소스: `layout/tokens.json`
+> 소스: `src/layout/tokens.json`
 
 ## 철학
 

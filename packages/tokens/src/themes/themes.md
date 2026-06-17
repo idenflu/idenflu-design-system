@@ -1,6 +1,6 @@
 # Theme
 
-> 소스: `theme/light.tokens.json`, `theme/dark.tokens.json`
+> 소스: `src/themes/light.tokens.json`, `src/themes/dark.tokens.json`
 
 ## 철학
 

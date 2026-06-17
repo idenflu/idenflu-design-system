@@ -1,17 +1,28 @@
 import StyleDictionary from "style-dictionary";
+import {
+  idenfluCssTransformGroup,
+  idenfluTransforms,
+} from "./sd.transforms.js";
 
-const BASE_SOURCE = ["tokens/base/**/*.json"];
+const BASE_SOURCE = [
+  "rounded/rounded.tokens.json",
+  "colors/colors.tokens.json",
+  "spacing/spacing.tokens.json",
+  "typography/typo.tokens.json",
+  "typography/styles.tokens.json",
+  "layout/tokens.json",
+];
 
 const themes = [
   {
     id: "light",
-    source: [...BASE_SOURCE, "tokens/themes/light.tokens.json"],
+    source: [...BASE_SOURCE, "theme/light.tokens.json"],
     destination: "_variables-light.css",
     selector: ":root",
   },
   {
     id: "dark",
-    source: [...BASE_SOURCE, "tokens/themes/dark.tokens.json"],
+    source: [...BASE_SOURCE, "theme/dark.tokens.json"],
     destination: "_variables-dark.css",
     selector: ".dark",
   },
@@ -19,11 +30,17 @@ const themes = [
 
 for (const theme of themes) {
   const sd = new StyleDictionary({
+    hooks: {
+      transforms: idenfluTransforms,
+      transformGroups: {
+        "idenflu/css": idenfluCssTransformGroup,
+      },
+    },
     source: theme.source,
     platforms: {
       css: {
-        transformGroup: "css",
-        buildPath: "build/css/",
+        transformGroup: "idenflu/css",
+        buildPath: "src/css/",
         files: [
           {
             destination: theme.destination,

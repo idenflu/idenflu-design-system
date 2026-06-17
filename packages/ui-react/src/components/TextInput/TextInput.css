@@ -3,7 +3,7 @@
 .nova-text-input {
   display: flex;
   flex-direction: column;
-  width: 216px;
+  width: 240px;
 }
 
 .nova-text-input--full-width {
@@ -32,7 +32,6 @@
     background-color 200ms ease,
     border-color 200ms ease,
     box-shadow 200ms ease;
-  width: 100%;
 }
 
 .nova-text-input__control:focus-within {

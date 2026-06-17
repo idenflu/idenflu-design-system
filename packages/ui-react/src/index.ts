@@ -24,6 +24,13 @@ export type {
   TextInputVariant,
 } from "./components/TextInput/index";
 
+export { TextArea } from "./components/TextArea/index";
+export type {
+  TextAreaProps,
+  TextAreaSize,
+  TextAreaVariant,
+} from "./components/TextArea/index";
+
 export { Textarea } from "./components/Textarea";
 export type { TextareaProps } from "./components/Textarea";
 

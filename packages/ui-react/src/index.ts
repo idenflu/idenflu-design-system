@@ -34,8 +34,14 @@ export type {
 export { Textarea } from "./components/Textarea";
 export type { TextareaProps } from "./components/Textarea";
 
-export { Select } from "./components/Select";
-export type { SelectOption, SelectProps } from "./components/Select";
+export { Select, SelectItem } from "./components/Select/index";
+export type {
+  SelectItemProps,
+  SelectItemSize,
+  SelectProps,
+  SelectSize,
+  SelectVariant,
+} from "./components/Select/index";
 
 export { Badge } from "./components/Badge";
 export type { BadgeProps, BadgeTone } from "./components/Badge";

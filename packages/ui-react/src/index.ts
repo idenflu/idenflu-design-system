@@ -13,9 +13,6 @@ export type {
   IconButtonVariant,
 } from "./components/IconButton/index";
 
-export { TextField } from "./components/TextField";
-export type { FieldState, TextFieldProps } from "./components/TextField";
-
 export { TextInput } from "./components/TextInput/index";
 export type {
   TextInputProps,
@@ -30,9 +27,6 @@ export type {
   TextAreaSize,
   TextAreaVariant,
 } from "./components/TextArea/index";
-
-export { Textarea } from "./components/Textarea";
-export type { TextareaProps } from "./components/Textarea";
 
 export { Select, SelectItem } from "./components/Select/index";
 export type {
@@ -95,12 +89,6 @@ export type {
   ToolbarGroupProps,
   ToolbarProps,
 } from "./components/Toolbar";
-
-export { LoadingState } from "./components/LoadingState";
-export type {
-  LoadingStateProps,
-  LoadingStateSize,
-} from "./components/LoadingState";
 
 export { Spinner } from "./components/Spinner/index";
 export type {

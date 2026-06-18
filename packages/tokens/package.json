@@ -22,9 +22,15 @@
     "./dist/index.d.ts"
   ],
   "exports": {
-    ".": "./dist/index.d.ts",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/js/tokens.js"
+    },
     "./css/variables.css": "./dist/css/variables.css",
-    "./js/tokens.js": "./dist/js/tokens.js"
+    "./js/tokens.js": {
+      "types": "./dist/js/tokens.d.ts",
+      "default": "./dist/js/tokens.js"
+    }
   },
   "scripts": {
     "build:tokens": "node sd.config.js"

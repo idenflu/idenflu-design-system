@@ -9,6 +9,7 @@ import {
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const CSS_BUILD_PATH = path.join(__dirname, "dist/css");
+const JS_BUILD_PATH = path.join(__dirname, "dist/js");
 
 const BASE_SOURCE = [
   "src/rounded/rounded.tokens.json",
@@ -119,3 +120,13 @@ const sdJs = new StyleDictionary({
 });
 
 await sdJs.buildPlatform("js");
+
+const tokensDeclaration = `declare const tokens: Record<string, string | number>;
+
+export default tokens;
+`;
+
+await Promise.all([
+  fs.writeFile(path.join(__dirname, "dist/index.d.ts"), tokensDeclaration),
+  fs.writeFile(path.join(JS_BUILD_PATH, "tokens.d.ts"), tokensDeclaration),
+]);

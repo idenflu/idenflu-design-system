@@ -1,42 +1,33 @@
 {
-  "name": "@idenflu/ui-foundations",
+  "name": "@idenflu/ui-tokens",
   "version": "0.0.0-alpha.1",
   "type": "module",
-  "description": "Design foundations for idenflu product interfaces.",
-  "types": "./src/index.d.ts",
+  "description": "Design tokens for idenflu product interfaces.",
+  "types": "./dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/idenflu/idenflu-design-system.git",
-    "directory": "packages/foundations"
+    "directory": "packages/tokens"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
   "files": [
-    "src",
-    "build",
-    "colors",
-    "spacing",
-    "typography",
-    "layout",
-    "border-radius",
-    "theme",
+    "dist",
     "README.md"
   ],
   "sideEffects": [
-    "./css/tokens-light.css",
-    "./css/tokens-dark.css"
+    "./dist/css/variables.css",
+    "./dist/js/tokens.js",
+    "./dist/index.d.ts"
   ],
-  "scripts": {
-    "build:foundations": "node config.js"
-  },
   "exports": {
-    ".": {
-      "types": "./src/index.d.ts",
-      "default": "./src/index.ts"
-    },
-    "./css/tokens-light.css": "./src/css/_variables-light.css",
-    "./css/tokens-dark.css": "./src/css/_variables-dark.css"
+    ".": "./dist/index.d.ts",
+    "./css/variables.css": "./dist/css/variables.css",
+    "./js/tokens.js": "./dist/js/tokens.js"
+  },
+  "scripts": {
+    "build:tokens": "node sd.config.js"
   },
   "devDependencies": {
     "style-dictionary": "^5.4.3"

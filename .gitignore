@@ -4,6 +4,7 @@
 /.npm-cache/
 node_modules/
 dist/
+!packages/tokens/dist/
 .vite/
 
 *storybook.log

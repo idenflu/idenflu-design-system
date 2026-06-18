@@ -40,8 +40,13 @@ export type {
 export { Badge } from "./components/Badge";
 export type { BadgeProps, BadgeTone } from "./components/Badge";
 
-export { Chip } from "./components/Chip";
-export type { ChipProps, ChipTone } from "./components/Chip";
+export { Chip } from "./components/Chip/index";
+export type {
+  ChipColor,
+  ChipProps,
+  ChipSize,
+  ChipVariant,
+} from "./components/Chip/index";
 
 export { Card, CardBody, CardFooter, CardHeader } from "./components/Card";
 export type { CardProps, CardState } from "./components/Card";

@@ -2,11 +2,10 @@ import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   Select,
-  SelectItem,
+  type SelectOption,
   type SelectSize,
   type SelectVariant,
 } from "./Select";
-import { Icon } from "../Icon/Icon";
 
 const variants: SelectVariant[] = ["default", "filled", "outlined"];
 const sizes: SelectSize[] = ["lg", "md", "sm"];
@@ -72,6 +71,13 @@ const stateColumns = [
   { id: "disabled", label: "Disabled", props: { disabled: true } },
 ] as const;
 
+const demoOptions: SelectOption[] = [
+  { value: "analytics", label: "Analytics" },
+  { value: "campaigns", label: "Campaigns" },
+  { value: "audiences", label: "Audiences" },
+  { value: "billing", label: "Billing", disabled: true },
+];
+
 function OverviewSection({
   children,
   title,
@@ -87,33 +93,15 @@ function OverviewSection({
   );
 }
 
-function renderDemoItems({ withIcon = false }: { withIcon?: boolean } = {}) {
+function renderDemoItems() {
   return (
     <>
-      <SelectItem
-        value="analytics"
-        startIcon={withIcon ? <Icon name="star" size="medium" /> : undefined}
-        endIcon={withIcon ? <Icon name="star" size="medium" /> : undefined}
-      >
-        Analytics
-      </SelectItem>
-      <SelectItem
-        value="campaigns"
-        startIcon={withIcon ? <Icon name="star" size="medium" /> : undefined}
-        endIcon={withIcon ? <Icon name="star" size="medium" /> : undefined}
-      >
-        Campaigns
-      </SelectItem>
-      <SelectItem
-        value="audiences"
-        startIcon={withIcon ? <Icon name="star" size="medium" /> : undefined}
-        endIcon={withIcon ? <Icon name="star" size="medium" /> : undefined}
-      >
-        Audiences
-      </SelectItem>
-      <SelectItem value="billing" disabled>
+      <option value="analytics">Analytics</option>
+      <option value="campaigns">Campaigns</option>
+      <option value="audiences">Audiences</option>
+      <option value="billing" disabled>
         Billing
-      </SelectItem>
+      </option>
     </>
   );
 }
@@ -158,9 +146,9 @@ const meta = {
     docs: {
       description: {
         component:
-          "Figma Input/Menu (nodes 84:3474, 78:1208). Keyboard: Enter/Space opens, " +
-          "Arrow/Home/End moves active option, Enter/Space selects, Escape closes. " +
-          "Screen readers: trigger uses combobox + listbox semantics; helper/error text is connected with aria-describedby.",
+          "Figma Input/Menu visual treatment adapted to a native select element. " +
+          "Keyboard and screen reader behavior follows the platform <select>/<option> semantics. " +
+          "Helper/error text is connected with aria-describedby and error state sets aria-invalid.",
       },
     },
   },
@@ -189,20 +177,14 @@ export const Overview: Story = {
         </OverviewSection>
       ))}
 
-      <OverviewSection title="Menu With Start / End Icon">
-        <div style={overviewStyles.row}>
-          {sizes.map((size) => (
-            <Select
-              key={size}
-              defaultValue="analytics"
-              label="Label"
-              size={size}
-              variant="outlined"
-            >
-              {renderDemoItems({ withIcon: true })}
-            </Select>
-          ))}
-        </div>
+      <OverviewSection title="Options Prop">
+        <Select
+          defaultValue="analytics"
+          helperText="The same menu can be provided through the options prop."
+          label="Label"
+          options={demoOptions}
+          variant="outlined"
+        />
       </OverviewSection>
 
       <OverviewSection title="Accessibility">
@@ -231,30 +213,12 @@ export const Playground: Story = {
   },
   render: (args) => (
     <Select {...args}>
-      <SelectItem
-        value="analytics"
-        startIcon={<Icon name="star" size="medium" />}
-        endIcon={<Icon name="star" size="medium" />}
-      >
-        Analytics
-      </SelectItem>
-      <SelectItem
-        value="campaigns"
-        startIcon={<Icon name="star" size="medium" />}
-        endIcon={<Icon name="star" size="medium" />}
-      >
-        Campaigns
-      </SelectItem>
-      <SelectItem
-        value="audiences"
-        startIcon={<Icon name="star" size="medium" />}
-        endIcon={<Icon name="star" size="medium" />}
-      >
-        Audiences
-      </SelectItem>
-      <SelectItem value="billing" disabled>
+      <option value="analytics">Analytics</option>
+      <option value="campaigns">Campaigns</option>
+      <option value="audiences">Audiences</option>
+      <option value="billing" disabled>
         Billing
-      </SelectItem>
+      </option>
     </Select>
   ),
 };

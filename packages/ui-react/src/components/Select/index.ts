@@ -1,8 +1,8 @@
-export { Select, SelectItem } from "./Select";
+export { Select } from "./Select";
 
 export type {
   SelectItemProps,
-  SelectItemSize,
+  SelectOption,
   SelectProps,
   SelectSize,
   SelectVariant,

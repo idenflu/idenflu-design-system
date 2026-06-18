@@ -28,10 +28,10 @@ export type {
   TextAreaVariant,
 } from "./components/TextArea/index";
 
-export { Select, SelectItem } from "./components/Select/index";
+export { Select } from "./components/Select/index";
 export type {
   SelectItemProps,
-  SelectItemSize,
+  SelectOption,
   SelectProps,
   SelectSize,
   SelectVariant,

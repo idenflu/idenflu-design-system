@@ -251,7 +251,7 @@ Run:
 ```bash
 comm -23 \
   <(grep -oE 'var\(\s*--if-[a-z0-9-]+' packages/ui-react/src/styles.css | grep -oE '--if-[a-z0-9-]+' | sort -u) \
-  <(grep -oE '--if-[a-z0-9-]+' packages/tokens/src/tokens.css | sort -u)
+  <(grep -oE '--if-[a-z0-9-]+' packages/tokens/dist/css/variables.css | sort -u)
 ```
 Expected: empty output (all referenced tokens are defined).
 

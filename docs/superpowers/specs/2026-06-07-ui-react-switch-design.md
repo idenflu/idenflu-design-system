@@ -103,7 +103,7 @@ export type SwitchProps = Omit<
 
 ## 6. 비주얼 / CSS (`packages/ui-react/src/styles.css`에 append)
 
-토큰만 사용. 정확한 토큰명은 구현 시 `packages/tokens/src/tokens.css`로 재확인(현재 확인됨: `--if-color-primary`, `--if-color-primary-hover`, `--if-color-surface-2`, `--if-color-surface-raised`, `--if-color-hairline-strong`, `--if-color-ink`, `--if-color-ink-muted`, `--if-focus-ring`, `--if-space-*`).
+토큰만 사용. 정확한 토큰명은 구현 시 `packages/tokens/dist/css/variables.css`로 재확인(현재 확인됨: `--if-color-primary`, `--if-color-primary-hover`, `--if-color-surface-2`, `--if-color-surface-raised`, `--if-color-hairline-strong`, `--if-color-ink`, `--if-color-ink-muted`, `--if-focus-ring`, `--if-space-*`).
 
 치수(고정 px, docs의 38×22 참고):
 - **medium**: 트랙 40×22, thumb 18, inset 2px, 이동거리 `calc(100% - 18px - 2px)`

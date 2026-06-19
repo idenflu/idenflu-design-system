@@ -100,16 +100,21 @@ if (exists("package.json")) {
     failures.push(`${file}: missing repository url`);
   }
   if (!packageJson.repository?.directory) failures.push(`${file}: missing repository directory`);
-  if (!Array.isArray(packageJson.files) || !packageJson.files.includes("src")) {
+  if (!Array.isArray(packageJson.files)) {
+    failures.push(`${file}: missing files allowlist`);
+  } else if (file === "packages/tokens/package.json") {
+    if (!packageJson.files.includes("dist")) {
+      failures.push(`${file}: missing files dist allowlist`);
+    }
+  } else if (!packageJson.files.includes("src")) {
     failures.push(`${file}: missing files src allowlist`);
   }
 });
 
 [
-  "packages/tokens/src/index.ts",
-  "packages/tokens/src/index.d.ts",
-  "packages/tokens/src/tokens.css",
-  "packages/tokens/src/tokens.json",
+  "packages/tokens/dist/index.d.ts",
+  "packages/tokens/dist/js/tokens.js",
+  "packages/tokens/dist/css/variables.css",
   "packages/icons/src/index.ts",
   "packages/icons/src/index.d.ts",
   "packages/icons/src/icons.svg",
@@ -491,14 +496,13 @@ requireIncludes("packages/ui-react/src/styles.css", [
   ".if-error-state--critical",
 ]);
 
-requireIncludes("packages/tokens/src/tokens.css", [
-  "--if-color-primary",
-  "--if-color-surface-raised",
-  "--if-color-inverse-canvas",
-  "--if-color-inverse-surface-1",
-  "--if-space-sm",
-  "--if-control-height",
-  "[data-if-theme=\"dark\"]",
+requireIncludes("packages/tokens/dist/css/variables.css", [
+  "--brand-primary-default",
+  "--theme-surface-surface-00",
+  "--spacing-04",
+  "--header-height",
+  ":root",
+  ".dark",
 ]);
 
 if (exists("packages/ui-react/package.json")) {
@@ -524,7 +528,7 @@ if (exists("packages/ui-react/package.json")) {
 
 [
   "docs/react-package-plan.md",
-  "packages/tokens/src/index.ts",
+  "packages/tokens/dist/js/tokens.js",
   "packages/icons/src/index.ts",
   "packages/ui-react/src/index.ts",
   "packages/ui-react/src/styles.css",

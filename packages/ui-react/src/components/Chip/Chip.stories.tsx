@@ -127,7 +127,6 @@ type PlaygroundArgs = React.ComponentProps<typeof Chip>;
 const meta = {
   title: "Components/Chip",
   component: Chip,
-  tags: ["autodocs"],
   parameters: {
     docs: {
       description: {
@@ -143,9 +142,6 @@ const meta = {
     color: { control: "select", options: colors },
     size: { control: "select", options: sizes },
     deleteLabel: { control: "text" },
-  },
-  args: {
-    onDelete: fn(),
   },
 } satisfies Meta<PlaygroundArgs>;
 
@@ -214,5 +210,6 @@ export const Playground: Story = {
     size: "md",
     startIcon: <Icon name="filter" />,
     variant: "filled",
+    // onDelete: fn(),
   },
 };

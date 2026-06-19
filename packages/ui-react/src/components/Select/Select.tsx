@@ -1,7 +1,8 @@
 import * as React from "react";
-import { classNames } from "../../utils/classNames";
+import { cva } from "class-variance-authority";
+import { cn } from "@/utils/classNames";
 import { Icon } from "../Icon/Icon";
-import "./Select.css";
+import styles from "./Select.module.css";
 
 export type SelectVariant = "default" | "filled" | "outlined";
 export type SelectSize = "lg" | "md" | "sm";
@@ -86,6 +87,45 @@ const collectOptionsFromChildren = (
   return options;
 };
 
+const selectClassName = cva(styles.root, {
+  defaultVariants: {
+    disabled: false,
+    error: false,
+    fullWidth: false,
+    readOnly: false,
+    size: "md",
+    variant: "default",
+  },
+  variants: {
+    disabled: {
+      false: null,
+      true: styles.disabled,
+    },
+    error: {
+      false: null,
+      true: styles.error,
+    },
+    fullWidth: {
+      false: null,
+      true: styles.fullWidth,
+    },
+    readOnly: {
+      false: null,
+      true: styles.readOnly,
+    },
+    size: {
+      lg: styles.sizeLg,
+      md: styles.sizeMd,
+      sm: styles.sizeSm,
+    },
+    variant: {
+      default: styles.variantDefault,
+      filled: styles.variantFilled,
+      outlined: styles.variantOutlined,
+    },
+  },
+});
+
 export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
   (
     {
@@ -136,28 +176,29 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
 
     return (
       <div
-        className={classNames(
-          "nova-select",
-          `nova-select--${variant}`,
-          `nova-select--${size}`,
-          fullWidth && "nova-select--full-width",
-          hasError && "nova-select--error",
-          disabled && "nova-select--disabled",
-          readOnly && "nova-select--readonly",
+        className={cn(
+          selectClassName({
+            disabled,
+            error: hasError,
+            fullWidth,
+            readOnly,
+            size,
+            variant,
+          }),
           className
         )}
       >
         {label ? (
-          <label className="nova-select__label" htmlFor={selectId}>
+          <label className={styles.label} htmlFor={selectId}>
             {label}
           </label>
         ) : null}
 
-        <div className="nova-select__control-wrap">
+        <div className={styles.controlWrap}>
           <select
             ref={ref}
             id={selectId}
-            className="nova-select__control"
+            className={styles.control}
             aria-describedby={describedBy}
             aria-invalid={hasError || undefined}
             aria-label={label ? undefined : ariaLabel}
@@ -179,7 +220,7 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
             ) : null}
             {options ? renderedOptions : children}
           </select>
-          <span className="nova-select__indicator" aria-hidden="true">
+          <span className={styles.indicator} aria-hidden="true">
             <Icon name="keyboard-arrow-down" size={16} />
           </span>
         </div>
@@ -187,10 +228,7 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
         {helperId ? (
           <p
             id={helperId}
-            className={classNames(
-              "nova-select__helper",
-              hasError && "nova-select__helper--error"
-            )}
+            className={cn(styles.helper, hasError && styles.helperError)}
           >
             {error || helperText}
           </p>

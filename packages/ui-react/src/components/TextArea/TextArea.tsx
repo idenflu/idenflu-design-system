@@ -1,7 +1,8 @@
 import * as React from "react";
-import { classNames } from "../../utils/classNames";
+import { cva } from "class-variance-authority";
+import { cn } from "@/utils/classNames";
 import type { TextInputSize, TextInputVariant } from "../TextInput/TextInput";
-import "./TextArea.css";
+import styles from "./TextArea.module.css";
 
 export type TextAreaVariant = TextInputVariant;
 export type TextAreaSize = TextInputSize;
@@ -22,6 +23,62 @@ export type TextAreaProps = Omit<
   size?: TextAreaSize;
   variant?: TextAreaVariant;
 };
+
+const textAreaClassName = cva(styles.root, {
+  defaultVariants: {
+    autoGrow: false,
+    disabled: false,
+    error: false,
+    fullWidth: false,
+    readOnly: false,
+    size: "md",
+    variant: "default",
+  },
+  variants: {
+    autoGrow: {
+      false: null,
+      true: styles.autoGrow,
+    },
+    disabled: {
+      false: null,
+      true: styles.disabled,
+    },
+    error: {
+      false: null,
+      true: styles.error,
+    },
+    fullWidth: {
+      false: null,
+      true: styles.fullWidth,
+    },
+    readOnly: {
+      false: null,
+      true: styles.readOnly,
+    },
+    size: {
+      lg: styles.sizeLg,
+      md: styles.sizeMd,
+      sm: styles.sizeSm,
+    },
+    variant: {
+      default: styles.variantDefault,
+      filled: styles.variantFilled,
+      outlined: styles.variantOutlined,
+    },
+  },
+});
+
+const controlClassName = cva(styles.control, {
+  defaultVariants: {
+    filled: false,
+  },
+  variants: {
+    filled: {
+      false: null,
+      true: styles.controlFilled,
+    },
+  },
+});
 
 function getLineHeight(element: HTMLTextAreaElement): number {
   const style = window.getComputedStyle(element);
@@ -167,7 +224,7 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
         id={textareaId}
         aria-describedby={describedBy}
         aria-invalid={hasError || undefined}
-        className="nova-text-area__textarea"
+        className={styles.textarea}
         disabled={disabled}
         maxLength={maxLength}
         readOnly={readOnly}
@@ -178,63 +235,61 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
       />
     );
 
-    const controlClassName = classNames(
-      "nova-text-area__control",
-      isFilled && "nova-text-area__control--filled"
-    );
-
     const hasFooter = Boolean(helperId || showCounter);
 
     return (
       <div
-        className={classNames(
-          "nova-text-area",
-          `nova-text-area--${variant}`,
-          `nova-text-area--${size}`,
-          autoGrow && "nova-text-area--auto-grow",
-          fullWidth && "nova-text-area--full-width",
-          hasError && "nova-text-area--error",
-          disabled && "nova-text-area--disabled",
-          readOnly && "nova-text-area--readonly",
+        className={cn(
+          textAreaClassName({
+            autoGrow,
+            disabled,
+            error: hasError,
+            fullWidth,
+            readOnly,
+            size,
+            variant,
+          }),
           className
         )}
       >
         {!isFilled && label ? (
-          <label className="nova-text-area__label" htmlFor={textareaId}>
+          <label className={styles.label} htmlFor={textareaId}>
             {label}
           </label>
         ) : null}
 
         {isFilled ? (
-          <label className={controlClassName} htmlFor={textareaId}>
+          <label
+            className={controlClassName({ filled: isFilled })}
+            htmlFor={textareaId}
+          >
             {label ? (
-              <span className="nova-text-area__label">{label}</span>
+              <span className={styles.label}>{label}</span>
             ) : null}
             {textarea}
           </label>
         ) : (
-          <div className={controlClassName}>{textarea}</div>
+          <div className={controlClassName({ filled: isFilled })}>
+            {textarea}
+          </div>
         )}
 
         {hasFooter ? (
-          <div className="nova-text-area__footer">
+          <div className={styles.footer}>
             {helperId ? (
               <p
                 id={helperId}
-                className={classNames(
-                  "nova-text-area__helper",
-                  hasError && "nova-text-area__helper--error"
-                )}
+                className={cn(styles.helper, hasError && styles.helperError)}
               >
                 {error || helperText}
               </p>
             ) : (
-              <span className="nova-text-area__footer-spacer" />
+              <span className={styles.footerSpacer} />
             )}
             {showCounter ? (
               <p
                 id={countId}
-                className="nova-text-area__count"
+                className={styles.count}
                 aria-live="polite"
               >
                 {charCount} / {maxLength}

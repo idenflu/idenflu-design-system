@@ -1,5 +1,7 @@
 import * as React from "react";
-import { classNames } from "../../utils/classNames";
+import { cva } from "class-variance-authority";
+import { cn } from "@/utils/classNames";
+import styles from "./Spinner.module.css";
 
 export type SpinnerColor = "primary" | "secondary" | "inherit";
 export type SpinnerSize = "xs" | "sm" | "md" | "lg";
@@ -18,29 +20,60 @@ export type SpinnerProps = React.HTMLAttributes<HTMLSpanElement> & {
   variant?: SpinnerVariant;
 };
 
+const spinnerClassName = cva(styles.root, {
+  defaultVariants: {
+    active: true,
+    color: "primary",
+    size: "md",
+    variant: "ring",
+  },
+  variants: {
+    active: {
+      false: styles.inactive,
+      true: null,
+    },
+    color: {
+      inherit: styles.colorInherit,
+      primary: styles.colorPrimary,
+      secondary: styles.colorSecondary,
+    },
+    size: {
+      lg: styles.sizeLg,
+      md: styles.sizeMd,
+      sm: styles.sizeSm,
+      xs: styles.sizeXs,
+    },
+    variant: {
+      dot: styles.variantDot,
+      equalizer: styles.variantEqualizer,
+      ring: styles.variantRing,
+    },
+  },
+});
+
 function SpinnerIndicator({ variant }: { variant: SpinnerVariant }) {
   if (variant === "dot") {
     return (
-      <span className="nova-spinner__dots" aria-hidden="true">
-        <span className="nova-spinner__dot" />
-        <span className="nova-spinner__dot" />
-        <span className="nova-spinner__dot" />
+      <span className={styles.dots} aria-hidden="true">
+        <span className={styles.dot} />
+        <span className={styles.dot} />
+        <span className={styles.dot} />
       </span>
     );
   }
 
   if (variant === "equalizer") {
     return (
-      <span className="nova-spinner__bars" aria-hidden="true">
-        <span className="nova-spinner__bar" />
-        <span className="nova-spinner__bar" />
-        <span className="nova-spinner__bar" />
-        <span className="nova-spinner__bar" />
+      <span className={styles.bars} aria-hidden="true">
+        <span className={styles.bar} />
+        <span className={styles.bar} />
+        <span className={styles.bar} />
+        <span className={styles.bar} />
       </span>
     );
   }
 
-  return <span className="nova-spinner__ring" aria-hidden="true" />;
+  return <span className={styles.ring} aria-hidden="true" />;
 }
 
 export const Spinner = React.forwardRef<HTMLSpanElement, SpinnerProps>(
@@ -61,12 +94,13 @@ export const Spinner = React.forwardRef<HTMLSpanElement, SpinnerProps>(
       aria-hidden={active ? undefined : true}
       aria-label={active ? label : undefined}
       aria-live={active ? "polite" : undefined}
-      className={classNames(
-        "nova-spinner",
-        `nova-spinner--${variant}`,
-        `nova-spinner--${size}`,
-        `nova-spinner--${color}`,
-        !active && "nova-spinner--inactive",
+      className={cn(
+        spinnerClassName({
+          active,
+          color,
+          size,
+          variant,
+        }),
         className
       )}
       role={active ? "status" : undefined}

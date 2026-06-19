@@ -1,0 +1,9 @@
+/* Nova Icon — Figma node 85:1069 (24x24 stroke symbols, currentColor) */
+
+.root {
+  color: var(--theme-text-secondary);
+  display: inline-block;
+  flex: 0 0 auto;
+  fill: currentColor;
+  vertical-align: middle;
+}

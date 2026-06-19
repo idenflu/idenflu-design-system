@@ -1,7 +1,9 @@
 import * as React from "react";
-import { classNames } from "../../utils/classNames";
+import { cva } from "class-variance-authority";
+import { cn } from "@/utils/classNames";
 import type { ButtonColor, ButtonSize, ButtonVariant } from "../Button/Button";
 import { ButtonSpinner } from "../Button/ButtonSpinner";
+import styles from "./IconButton.module.css";
 
 export type IconButtonVariant = ButtonVariant;
 export type IconButtonColor = ButtonColor;
@@ -20,6 +22,37 @@ export type IconButtonProps = Omit<
   size?: ButtonSize;
   variant?: IconButtonVariant;
 };
+
+const iconButtonClassName = cva(styles.root, {
+  defaultVariants: {
+    color: "primary",
+    loading: false,
+    size: "md",
+    variant: "default",
+  },
+  variants: {
+    color: {
+      danger: styles.colorDanger,
+      primary: styles.colorPrimary,
+      secondary: styles.colorSecondary,
+    },
+    loading: {
+      false: null,
+      true: styles.loading,
+    },
+    size: {
+      lg: styles.sizeLg,
+      md: styles.sizeMd,
+      sm: styles.sizeSm,
+      xs: styles.sizeXs,
+    },
+    variant: {
+      default: styles.variantDefault,
+      ghost: styles.variantGhost,
+      outlined: styles.variantOutlined,
+    },
+  },
+});
 
 export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
   (
@@ -45,13 +78,13 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
         ref={ref}
         aria-busy={loading || undefined}
         aria-label={label}
-        className={classNames(
-          "nova-button",
-          "nova-button--icon-only",
-          `nova-button--${variant}`,
-          `nova-button--${color}`,
-          `nova-button--${size}`,
-          loading && "nova-button--loading",
+        className={cn(
+          iconButtonClassName({
+            color,
+            loading,
+            size,
+            variant,
+          }),
           className
         )}
         disabled={isDisabled}
@@ -65,7 +98,7 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
         type={type}
         {...props}
       >
-        <span className="nova-button__icon" aria-hidden="true">
+        <span className={styles.icon} aria-hidden="true">
           {loading ? <ButtonSpinner size={size} /> : icon}
         </span>
       </button>

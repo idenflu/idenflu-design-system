@@ -1,17 +1,17 @@
 /* Nova Chip — API adapted from MUI Chip and Carbon Tag patterns */
 
-.nova-chip {
+.root {
   align-items: center;
   background: var(--nova-chip-bg);
   border: 1px solid var(--nova-chip-border);
   border-radius: var(--rounded-full);
+  box-sizing: border-box;
   color: var(--nova-chip-fg);
   display: inline-flex;
   font: var(--body-md);
   gap: 8px;
-  padding-inline: 8px;
-  width: fit-content;
-  min-width: 40px;
+  justify-content: space-between;
+  padding-inline: 10px;
   transition:
     background-color 200ms ease,
     border-color 200ms ease,
@@ -19,36 +19,39 @@
   vertical-align: middle;
 }
 
-.nova-chip:focus-visible {
+.root:focus-visible {
   outline: 2px solid var(--theme-border-focused);
   outline-offset: 1px;
 }
 
-.nova-chip__label {
-  min-width: 0;
+.label {
+  flex: 1;
   overflow: hidden;
+  text-align: center;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.nova-chip__icon,
-.nova-chip__delete {
+.icon,
+.delete {
   align-items: center;
   display: inline-flex;
   flex: 0 0 auto;
   justify-content: center;
 }
 
-.nova-chip__icon {
+.icon {
+  color: currentColor;
+  height: 16px;
+  width: 16px;
+}
+
+.icon svg,
+.delete svg {
   color: currentColor;
 }
 
-.nova-chip__icon .nova-icon,
-.nova-chip__delete .nova-icon {
-  color: currentColor;
-}
-
-.nova-chip__delete {
+.delete {
   appearance: none;
   background: transparent;
   border: 0;
@@ -56,103 +59,97 @@
   color: currentColor;
   cursor: pointer;
   margin: 0;
-  padding: 0;
+  padding: 2px;
 }
 
-.nova-chip__delete:focus-visible {
+.delete:focus-visible {
   outline: 2px solid var(--theme-border-focused);
   outline-offset: 1px;
 }
 
-.nova-chip--sm {
+.sizeSm {
   padding-block: 2px;
+  min-width: 48px;
 }
 
-.nova-chip--md {
+.sizeMd {
   padding-block: 4px;
+  min-width: 56px;
 }
 
-.nova-chip--lg {
+.sizeLg {
   padding-block: 8px;
+  min-width: 60px;
 }
 
-.nova-chip__icon {
-  height: 16px;
-  width: 16px;
-}
-
-.nova-chip__delete {
-  padding: 2px;
-}
-
-.nova-chip--filled.nova-chip--neutral {
+.variantFilled.colorNeutral {
   --nova-chip-bg: var(--base-gray-200);
   --nova-chip-border: var(--base-gray-200);
   --nova-chip-fg: var(--base-gray-700);
   --nova-chip-hover-bg: var(--base-gray-300);
 }
 
-.nova-chip--filled.nova-chip--primary {
+.variantFilled.colorPrimary {
   --nova-chip-bg: var(--base-blue-200);
   --nova-chip-border: var(--base-blue-200);
   --nova-chip-fg: var(--base-blue-700);
   --nova-chip-hover-bg: var(--base-blue-300);
 }
 
-.nova-chip--filled.nova-chip--success {
+.variantFilled.colorSuccess {
   --nova-chip-bg: var(--base-green-200);
   --nova-chip-border: var(--base-green-200);
   --nova-chip-fg: var(--base-green-700);
   --nova-chip-hover-bg: var(--base-green-300);
 }
 
-.nova-chip--filled.nova-chip--warning {
+.variantFilled.colorWarning {
   --nova-chip-bg: var(--base-amber-200);
   --nova-chip-border: var(--base-amber-200);
   --nova-chip-fg: var(--base-amber-700);
   --nova-chip-hover-bg: var(--base-amber-300);
 }
 
-.nova-chip--filled.nova-chip--danger {
+.variantFilled.colorDanger {
   --nova-chip-bg: var(--base-red-200);
   --nova-chip-border: var(--base-red-200);
   --nova-chip-fg: var(--base-red-700);
   --nova-chip-hover-bg: var(--base-red-300);
 }
 
-.nova-chip--outlined {
+.variantOutlined {
   --nova-chip-bg: var(--theme-interactive-transparent);
 }
 
-.nova-chip--outlined.nova-chip--neutral {
+.variantOutlined.colorNeutral {
   --nova-chip-bg: var(--base-gray-100);
   --nova-chip-border: var(--base-gray-500);
   --nova-chip-fg: var(--base-gray-700);
   --nova-chip-hover-bg: var(--base-gray-200);
 }
 
-.nova-chip--outlined.nova-chip--primary {
+.variantOutlined.colorPrimary {
   --nova-chip-bg: var(--base-blue-100);
   --nova-chip-border: var(--base-blue-500);
   --nova-chip-fg: var(--base-blue-700);
   --nova-chip-hover-bg: var(--base-blue-200);
 }
 
-.nova-chip--outlined.nova-chip--success {
+.variantOutlined.colorSuccess {
   --nova-chip-bg: var(--base-green-100);
   --nova-chip-border: var(--base-green-500);
   --nova-chip-fg: var(--base-green-700);
   --nova-chip-hover-bg: var(--base-green-200);
 }
 
-.nova-chip--outlined.nova-chip--warning {
+.variantOutlined.colorWarning {
   --nova-chip-bg: var(--base-amber-100);
   --nova-chip-border: var(--base-amber-500);
   --nova-chip-fg: var(--base-amber-700);
   --nova-chip-hover-bg: var(--base-amber-200);
 }
 
-.nova-chip--outlined.nova-chip--danger {
+.variantOutlined.colorDanger {
   --nova-chip-bg: var(--base-red-100);
   --nova-chip-border: var(--base-red-500);
   --nova-chip-fg: var(--base-red-700);
@@ -160,7 +157,7 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .nova-chip__delete:hover {
+  .delete:hover {
     background: var(--nova-chip-hover-bg);
   }
 }

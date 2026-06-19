@@ -1,7 +1,8 @@
 import * as React from "react";
+import { cva } from "class-variance-authority";
+import { cn } from "@/utils/classNames";
 import { Icon } from "../Icon/Icon";
-import { classNames } from "../../utils/classNames";
-import "./TextInput.css";
+import styles from "./TextInput.module.css";
 
 export type TextInputType = "text" | "password" | "email";
 export type TextInputVariant = "default" | "filled" | "outlined";
@@ -19,6 +20,57 @@ export type TextInputProps = Omit<
   type?: TextInputType;
   variant?: TextInputVariant;
 };
+
+const textInputClassName = cva(styles.root, {
+  defaultVariants: {
+    disabled: false,
+    error: false,
+    fullWidth: false,
+    readOnly: false,
+    size: "md",
+    variant: "default",
+  },
+  variants: {
+    disabled: {
+      false: null,
+      true: styles.disabled,
+    },
+    error: {
+      false: null,
+      true: styles.error,
+    },
+    fullWidth: {
+      false: null,
+      true: styles.fullWidth,
+    },
+    readOnly: {
+      false: null,
+      true: styles.readOnly,
+    },
+    size: {
+      lg: styles.sizeLg,
+      md: styles.sizeMd,
+      sm: styles.sizeSm,
+    },
+    variant: {
+      default: styles.variantDefault,
+      filled: styles.variantFilled,
+      outlined: styles.variantOutlined,
+    },
+  },
+});
+
+const controlClassName = cva(styles.control, {
+  defaultVariants: {
+    filled: false,
+  },
+  variants: {
+    filled: {
+      false: null,
+      true: styles.controlFilled,
+    },
+  },
+});
 
 export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
   (
@@ -60,7 +112,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
         type={isPassword && showPassword ? "text" : type}
         aria-describedby={describedBy}
         aria-invalid={hasError || undefined}
-        className="nova-text-input__input"
+        className={styles.input}
         disabled={disabled}
         readOnly={readOnly}
         {...props}
@@ -68,11 +120,11 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
     );
 
     const fieldContent = isPassword ? (
-      <div className="nova-text-input__input-row">
+      <div className={styles.inputRow}>
         {input}
         <button
           type="button"
-          className="nova-text-input__toggle"
+          className={styles.toggle}
           aria-label={showPassword ? "Hide password" : "Show password"}
           aria-pressed={showPassword}
           disabled={disabled}
@@ -88,48 +140,43 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
       input
     );
 
-    const controlClassName = classNames(
-      "nova-text-input__control",
-      isFilled && "nova-text-input__control--filled"
-    );
-
     return (
       <div
-        className={classNames(
-          "nova-text-input",
-          `nova-text-input--${variant}`,
-          `nova-text-input--${size}`,
-          fullWidth && "nova-text-input--full-width",
-          hasError && "nova-text-input--error",
-          disabled && "nova-text-input--disabled",
-          readOnly && "nova-text-input--readonly",
+        className={cn(
+          textInputClassName({
+            disabled,
+            error: hasError,
+            fullWidth,
+            readOnly,
+            size,
+            variant,
+          }),
           className
         )}
       >
         {!isFilled && label ? (
-          <label className="nova-text-input__label" htmlFor={inputId}>
+          <label className={styles.label} htmlFor={inputId}>
             {label}
           </label>
         ) : null}
 
         {isFilled ? (
-          <label className={controlClassName} htmlFor={inputId}>
+          <label className={controlClassName({ filled: isFilled })} htmlFor={inputId}>
             {label ? (
-              <span className="nova-text-input__label">{label}</span>
+              <span className={styles.label}>{label}</span>
             ) : null}
             {fieldContent}
           </label>
         ) : (
-          <div className={controlClassName}>{fieldContent}</div>
+          <div className={controlClassName({ filled: isFilled })}>
+            {fieldContent}
+          </div>
         )}
 
         {helperId ? (
           <p
             id={helperId}
-            className={classNames(
-              "nova-text-input__helper",
-              hasError && "nova-text-input__helper--error"
-            )}
+            className={cn(styles.helper, hasError && styles.helperError)}
           >
             {error || helperText}
           </p>

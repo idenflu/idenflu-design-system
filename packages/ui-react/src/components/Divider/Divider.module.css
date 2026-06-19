@@ -1,6 +1,6 @@
 /* Nova Divider — separator pattern adapted from MUI Divider and Carbon UI shell dividers */
 
-.nova-divider {
+.root {
   --nova-divider-color: var(--theme-border-default);
   --nova-divider-gap: var(--spacing-04);
   --nova-divider-thickness: thin;
@@ -14,14 +14,14 @@
   padding: 0;
 }
 
-.nova-divider--horizontal {
+.orientationHorizontal {
   border-block-start: var(--nova-divider-thickness) solid
     var(--nova-divider-color);
   inline-size: auto;
   margin-inline: var(--spacing-08);
 }
 
-.nova-divider--vertical {
+.orientationVertical {
   align-self: stretch;
   border-inline-start: var(--nova-divider-thickness) solid
     var(--nova-divider-color);
@@ -29,55 +29,55 @@
   min-block-size: var(--spacing-12);
 }
 
-.nova-divider--horizontal.nova-divider--full-width {
+.orientationHorizontal.fullWidth {
   margin-inline: 0;
 }
 
-.nova-divider--vertical.nova-divider--full-width {
+.orientationVertical.fullWidth {
   margin-block: 0;
 }
 
-.nova-divider--flex-item {
+.flexItem {
   align-self: stretch;
 }
 
-.nova-divider--with-children {
+.withChildren {
   align-items: center;
   border: 0;
   display: flex;
   gap: var(--nova-divider-gap);
 }
 
-.nova-divider--with-children::before,
-.nova-divider--with-children::after {
+.withChildren::before,
+.withChildren::after {
   border-color: var(--nova-divider-color);
   content: "";
   flex: 1 1 auto;
 }
 
-.nova-divider--horizontal.nova-divider--with-children::before,
-.nova-divider--horizontal.nova-divider--with-children::after {
+.orientationHorizontal.withChildren::before,
+.orientationHorizontal.withChildren::after {
   border-block-start: var(--nova-divider-thickness) solid
     var(--nova-divider-color);
 }
 
-.nova-divider--vertical.nova-divider--with-children {
+.orientationVertical.withChildren {
   flex-direction: column;
   min-block-size: var(--spacing-12);
 }
 
-.nova-divider--vertical.nova-divider--with-children::before,
-.nova-divider--vertical.nova-divider--with-children::after {
+.orientationVertical.withChildren::before,
+.orientationVertical.withChildren::after {
   border-inline-start: var(--nova-divider-thickness) solid
     var(--nova-divider-color);
 }
 
-.nova-divider--text-start::before,
-.nova-divider--text-end::after {
+.textStart::before,
+.textEnd::after {
   flex: 0 0 var(--spacing-08);
 }
 
-.nova-divider__label {
+.label {
   color: currentColor;
   flex: 0 0 auto;
   white-space: nowrap;

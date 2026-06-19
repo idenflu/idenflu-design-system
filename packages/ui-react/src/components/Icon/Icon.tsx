@@ -1,7 +1,9 @@
 import * as React from "react";
 import { getIconHref, type IconName } from "@idenflu/ui-icons";
-import { classNames } from "../../utils/classNames";
+import { cva } from "class-variance-authority";
+import { cn } from "@/utils/classNames";
 import { IconSpriteContext } from "./IconSpriteContext";
+import styles from "./Icon.module.css";
 
 export type IconSize = "small" | "medium" | "large";
 
@@ -10,6 +12,8 @@ const ICON_SIZES: Record<IconSize, number> = {
   medium: 16,
   large: 20,
 };
+
+const iconClassName = cva(styles.root);
 
 export type IconProps = Omit<React.SVGAttributes<SVGSVGElement>, "children"> & {
   /** Icon symbol name from @idenflu/ui-icons. */
@@ -36,7 +40,7 @@ export const Icon = React.forwardRef<SVGSVGElement, IconProps>(
         width={px}
         height={px}
         viewBox="0 0 24 24"
-        className={classNames("nova-icon", className)}
+        className={cn(iconClassName(), "nova-icon", className)}
         {...a11y}
         {...props}
       >

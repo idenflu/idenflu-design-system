@@ -1,26 +1,26 @@
 /* Nova TextInput — Figma node 84:2177 */
 
-.nova-text-input {
+.root {
   display: flex;
   flex-direction: column;
   width: 240px;
 }
 
-.nova-text-input--full-width {
+.fullWidth {
   width: 100%;
 }
 
-.nova-text-input__label {
+.label {
   color: var(--theme-text-secondary);
   font: var(--label-md);
   padding-bottom: 4px;
 }
 
-.nova-text-input--disabled .nova-text-input__label {
+.disabled .label {
   color: var(--theme-text-disabled);
 }
 
-.nova-text-input__control {
+.control {
   align-items: stretch;
   background: var(--theme-control-default);
   border: 0 solid transparent;
@@ -34,11 +34,11 @@
     box-shadow 200ms ease;
 }
 
-.nova-text-input__control:focus-within {
+.control:focus-within {
   outline: none;
 }
 
-.nova-text-input__input {
+.input {
   background: transparent;
   border: 0;
   color: var(--theme-text-primary);
@@ -50,33 +50,33 @@
   width: 100%;
 }
 
-.nova-text-input__input::placeholder {
+.input::placeholder {
   color: var(--theme-text-tertiary);
 }
 
-.nova-text-input__input:disabled {
+.input:disabled {
   color: var(--theme-text-disabled);
   cursor: not-allowed;
   -webkit-text-fill-color: var(--theme-text-disabled);
 }
 
-.nova-text-input__input:read-only:not(:disabled) {
+.input:read-only:not(:disabled) {
   cursor: default;
 }
 
-.nova-text-input__input-row {
+.inputRow {
   align-items: center;
   display: flex;
   gap: 8px;
   width: 100%;
 }
 
-.nova-text-input__input-row .nova-text-input__input {
+.inputRow .input {
   flex: 1 1 auto;
   min-width: 0;
 }
 
-.nova-text-input__toggle {
+.toggle {
   align-items: center;
   background: transparent;
   border: 0;
@@ -89,188 +89,169 @@
   padding: 0;
 }
 
-.nova-text-input__toggle:disabled {
+.toggle:disabled {
   color: var(--theme-text-disabled);
   cursor: not-allowed;
 }
 
-.nova-text-input__toggle:focus-visible {
+.toggle:focus-visible {
   outline: 2px solid var(--theme-border-focused);
   outline-offset: 1px;
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .nova-text-input__toggle:hover:not(:disabled) {
+  .toggle:hover:not(:disabled) {
     color: var(--theme-text-primary);
   }
 }
 
-.nova-text-input__helper {
+.helper {
   color: var(--theme-text-tertiary);
   font: var(--label-md);
   margin: 0;
   padding-top: 4px;
 }
 
-.nova-text-input__helper--error,
-.nova-text-input--error .nova-text-input__helper {
+.helperError,
+.error .helper {
   color: var(--theme-text-danger);
 }
 
-.nova-text-input--disabled .nova-text-input__helper {
+.disabled .helper {
   color: var(--theme-text-disabled);
 }
 
-/* Sizes — default / outlined */
-.nova-text-input--lg:not(.nova-text-input--filled) .nova-text-input__control {
+.sizeLg:not(.variantFilled) .control {
   padding-block: 14px;
 }
 
-.nova-text-input--md:not(.nova-text-input--filled) .nova-text-input__control {
+.sizeMd:not(.variantFilled) .control {
   padding-block: 10px;
 }
 
-.nova-text-input--sm:not(.nova-text-input--filled) .nova-text-input__control {
+.sizeSm:not(.variantFilled) .control {
   padding-block: 6px;
 }
 
-/* Sizes — filled (label + input stack) */
-.nova-text-input--filled.nova-text-input--lg .nova-text-input__control {
+.variantFilled.sizeLg .control {
   gap: 4px;
   padding-block: 12px;
 }
 
-.nova-text-input--filled.nova-text-input--md .nova-text-input__control {
+.variantFilled.sizeMd .control {
   gap: 4px;
   padding-block: 8px;
 }
 
-.nova-text-input--filled.nova-text-input--sm .nova-text-input__control {
+.variantFilled.sizeSm .control {
   gap: 4px;
   padding-block: 4px;
 }
 
-/* Variant: default */
-.nova-text-input--default .nova-text-input__control {
+.variantDefault .control {
   background: var(--theme-control-default);
   border-bottom: 0;
   box-shadow: inset 0 -1px 0 var(--theme-border-strong);
 }
 
-.nova-text-input--default .nova-text-input__control:focus-within {
+.variantDefault .control:focus-within {
   box-shadow: inset 0 -2px 0 var(--theme-border-focused);
 }
 
-.nova-text-input--default.nova-text-input--error .nova-text-input__control {
+.variantDefault.error .control {
   box-shadow: inset 0 -2px 0 var(--theme-border-error);
 }
 
-.nova-text-input--default.nova-text-input--error
-  .nova-text-input__control:focus-within {
+.variantDefault.error .control:focus-within {
   box-shadow: inset 0 -2px 0 var(--theme-border-error);
 }
 
-.nova-text-input--default.nova-text-input--disabled .nova-text-input__control {
+.variantDefault.disabled .control {
   background: var(--theme-control-disabled);
   box-shadow: inset 0 -1px 0 var(--theme-border-disabled);
 }
 
-/* Variant: outlined */
-.nova-text-input--outlined .nova-text-input__control {
+.variantOutlined .control {
   background: var(--theme-control-primary);
   border: 1px solid var(--theme-border-strong);
 }
 
-.nova-text-input--outlined .nova-text-input__control:focus-within {
+.variantOutlined .control:focus-within {
   border-color: var(--theme-border-focused);
   border-width: 2px;
   padding-inline: 15px;
 }
 
-.nova-text-input--outlined.nova-text-input--lg:not(.nova-text-input--filled)
-  .nova-text-input__control:focus-within {
+.variantOutlined.sizeLg:not(.variantFilled) .control:focus-within {
   padding-block: 13px;
 }
 
-.nova-text-input--outlined.nova-text-input--md:not(.nova-text-input--filled)
-  .nova-text-input__control:focus-within {
+.variantOutlined.sizeMd:not(.variantFilled) .control:focus-within {
   padding-block: 9px;
 }
 
-.nova-text-input--outlined.nova-text-input--sm:not(.nova-text-input--filled)
-  .nova-text-input__control:focus-within {
+.variantOutlined.sizeSm:not(.variantFilled) .control:focus-within {
   padding-block: 5px;
 }
 
-.nova-text-input--outlined.nova-text-input--error .nova-text-input__control {
+.variantOutlined.error .control {
   border-color: var(--theme-border-error);
   border-width: 2px;
   padding-inline: 15px;
 }
 
-.nova-text-input--outlined.nova-text-input--lg.nova-text-input--error:not(
-    .nova-text-input--filled
-  )
-  .nova-text-input__control {
+.variantOutlined.sizeLg.error:not(.variantFilled) .control {
   padding-block: 13px;
 }
 
-.nova-text-input--outlined.nova-text-input--md.nova-text-input--error:not(
-    .nova-text-input--filled
-  )
-  .nova-text-input__control {
+.variantOutlined.sizeMd.error:not(.variantFilled) .control {
   padding-block: 9px;
 }
 
-.nova-text-input--outlined.nova-text-input--sm.nova-text-input--error:not(
-    .nova-text-input--filled
-  )
-  .nova-text-input__control {
+.variantOutlined.sizeSm.error:not(.variantFilled) .control {
   padding-block: 5px;
 }
 
-.nova-text-input--outlined.nova-text-input--disabled .nova-text-input__control {
+.variantOutlined.disabled .control {
   background: var(--theme-control-disabled);
   border-color: var(--theme-border-disabled);
 }
 
-/* Variant: filled */
-.nova-text-input--filled .nova-text-input__control {
+.variantFilled .control {
   background: var(--theme-control-default);
   border-bottom: 0;
   box-shadow: inset 0 -1px 0 var(--theme-border-strong);
   cursor: text;
 }
 
-.nova-text-input--filled .nova-text-input__control .nova-text-input__label {
+.variantFilled .control .label {
   padding-bottom: 0;
 }
 
-.nova-text-input--filled .nova-text-input__control:focus-within {
+.variantFilled .control:focus-within {
   box-shadow: inset 0 -2px 0 var(--theme-border-focused);
 }
 
-.nova-text-input--filled.nova-text-input--error .nova-text-input__control {
+.variantFilled.error .control {
   box-shadow: inset 0 -2px 0 var(--theme-border-error);
 }
 
-.nova-text-input--filled.nova-text-input--error
-  .nova-text-input__control:focus-within {
+.variantFilled.error .control:focus-within {
   box-shadow: inset 0 -2px 0 var(--theme-border-error);
 }
 
-.nova-text-input--filled.nova-text-input--disabled .nova-text-input__control {
+.variantFilled.disabled .control {
   background: var(--theme-control-disabled);
   box-shadow: inset 0 -1px 0 var(--theme-border-disabled);
   cursor: not-allowed;
 }
 
-.nova-text-input--filled.nova-text-input--disabled .nova-text-input__input {
+.variantFilled.disabled .input {
   pointer-events: none;
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .nova-text-input__control {
+  .control {
     transition:
       background-color 200ms ease,
       border-color 200ms ease,
@@ -279,7 +260,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .nova-text-input__control {
+  .control {
     transition: none;
   }
 }

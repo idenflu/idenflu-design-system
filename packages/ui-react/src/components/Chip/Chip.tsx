@@ -1,7 +1,8 @@
 import * as React from "react";
-import { classNames } from "../../utils/classNames";
+import { cva } from "class-variance-authority";
+import { cn } from "@/utils/classNames";
 import { Icon } from "../Icon/Icon";
-import "./Chip.css";
+import styles from "./Chip.module.css";
 
 export type ChipVariant = "filled" | "outlined";
 export type ChipColor =
@@ -25,6 +26,37 @@ export type ChipProps = Omit<
   variant?: ChipVariant;
 };
 
+const chipClassName = cva(styles.root, {
+  defaultVariants: {
+    color: "neutral",
+    deletable: false,
+    size: "md",
+    variant: "filled",
+  },
+  variants: {
+    color: {
+      danger: styles.colorDanger,
+      neutral: styles.colorNeutral,
+      primary: styles.colorPrimary,
+      success: styles.colorSuccess,
+      warning: styles.colorWarning,
+    },
+    deletable: {
+      false: null,
+      true: styles.deletable,
+    },
+    size: {
+      lg: styles.sizeLg,
+      md: styles.sizeMd,
+      sm: styles.sizeSm,
+    },
+    variant: {
+      filled: styles.variantFilled,
+      outlined: styles.variantOutlined,
+    },
+  },
+});
+
 export const Chip = React.forwardRef<HTMLSpanElement, ChipProps>(
   (
     {
@@ -42,26 +74,27 @@ export const Chip = React.forwardRef<HTMLSpanElement, ChipProps>(
   ) => (
     <span
       ref={ref}
-      className={classNames(
-        "nova-chip",
-        `nova-chip--${variant}`,
-        `nova-chip--${color}`,
-        `nova-chip--${size}`,
-        onDelete && "nova-chip--deletable",
+      className={cn(
+        chipClassName({
+          color,
+          deletable: Boolean(onDelete),
+          size,
+          variant,
+        }),
         className
       )}
       {...props}
     >
       {startIcon ? (
-        <span className="nova-chip__icon" aria-hidden="true">
+        <span className={styles.icon} aria-hidden="true">
           {startIcon}
         </span>
       ) : null}
-      <span className="nova-chip__label">{children}</span>
+      <span className={styles.label}>{children}</span>
       {onDelete ? (
         <button
           aria-label={deleteLabel}
-          className="nova-chip__delete"
+          className={styles.delete}
           onClick={(event) => {
             event.stopPropagation();
             onDelete(event);

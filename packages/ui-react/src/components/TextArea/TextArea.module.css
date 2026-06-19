@@ -1,26 +1,26 @@
 /* Nova TextArea — visual parity with TextInput (Figma node 84:2177) */
 
-.nova-text-area {
+.root {
   display: flex;
   flex-direction: column;
   width: 240px;
 }
 
-.nova-text-area--full-width {
+.fullWidth {
   width: 100%;
 }
 
-.nova-text-area__label {
+.label {
   color: var(--theme-text-secondary);
   font: var(--label-md);
   padding-bottom: 4px;
 }
 
-.nova-text-area--disabled .nova-text-area__label {
+.disabled .label {
   color: var(--theme-text-disabled);
 }
 
-.nova-text-area__control {
+.control {
   align-items: stretch;
   background: var(--theme-control-default);
   border: 0 solid transparent;
@@ -34,11 +34,11 @@
     box-shadow 200ms ease;
 }
 
-.nova-text-area__control:focus-within {
+.control:focus-within {
   outline: none;
 }
 
-.nova-text-area__textarea {
+.textarea {
   background: transparent;
   border: 0;
   color: var(--theme-text-primary);
@@ -51,37 +51,36 @@
   width: 100%;
 }
 
-.nova-text-area--auto-grow .nova-text-area__textarea {
+.autoGrow .textarea {
   overflow-y: hidden;
 }
 
-.nova-text-area__textarea::placeholder {
+.textarea::placeholder {
   color: var(--theme-text-tertiary);
 }
 
-.nova-text-area__textarea:disabled {
+.textarea:disabled {
   color: var(--theme-text-disabled);
   cursor: not-allowed;
   -webkit-text-fill-color: var(--theme-text-disabled);
 }
 
-.nova-text-area__textarea:read-only:not(:disabled) {
+.textarea:read-only:not(:disabled) {
   cursor: default;
 }
 
-.nova-text-area__footer {
+.footer {
   align-items: flex-start;
   display: flex;
-  /* gap: 8px; */
   justify-content: space-between;
   padding-top: 4px;
 }
 
-.nova-text-area__footer-spacer {
+.footerSpacer {
   flex: 1 1 auto;
 }
 
-.nova-text-area__helper {
+.helper {
   color: var(--theme-text-tertiary);
   flex: 1 1 auto;
   font: var(--label-md);
@@ -89,17 +88,17 @@
   min-width: 0;
 }
 
-.nova-text-area__helper--error,
-.nova-text-area--error .nova-text-area__helper {
+.helperError,
+.error .helper {
   color: var(--theme-text-danger);
 }
 
-.nova-text-area--disabled .nova-text-area__helper,
-.nova-text-area--disabled .nova-text-area__count {
+.disabled .helper,
+.disabled .count {
   color: var(--theme-text-disabled);
 }
 
-.nova-text-area__count {
+.count {
   color: var(--theme-text-tertiary);
   flex-shrink: 0;
   font: var(--label-md);
@@ -108,156 +107,137 @@
   white-space: nowrap;
 }
 
-/* Sizes — default / outlined */
-.nova-text-area--lg:not(.nova-text-area--filled) .nova-text-area__control {
+.sizeLg:not(.variantFilled) .control {
   padding-block: 14px;
 }
 
-.nova-text-area--md:not(.nova-text-area--filled) .nova-text-area__control {
+.sizeMd:not(.variantFilled) .control {
   padding-block: 10px;
 }
 
-.nova-text-area--sm:not(.nova-text-area--filled) .nova-text-area__control {
+.sizeSm:not(.variantFilled) .control {
   padding-block: 6px;
 }
 
-/* Sizes — filled (label + textarea stack) */
-.nova-text-area--filled.nova-text-area--lg .nova-text-area__control {
+.variantFilled.sizeLg .control {
   gap: 4px;
   padding-block: 12px;
 }
 
-.nova-text-area--filled.nova-text-area--md .nova-text-area__control {
+.variantFilled.sizeMd .control {
   gap: 4px;
   padding-block: 8px;
 }
 
-.nova-text-area--filled.nova-text-area--sm .nova-text-area__control {
+.variantFilled.sizeSm .control {
   gap: 4px;
   padding-block: 4px;
 }
 
-/* Variant: default */
-.nova-text-area--default .nova-text-area__control {
+.variantDefault .control {
   background: var(--theme-control-default);
   border-bottom: 0;
   box-shadow: inset 0 -1px 0 var(--theme-border-strong);
 }
 
-.nova-text-area--default .nova-text-area__control:focus-within {
+.variantDefault .control:focus-within {
   box-shadow: inset 0 -2px 0 var(--theme-border-focused);
 }
 
-.nova-text-area--default.nova-text-area--error .nova-text-area__control {
+.variantDefault.error .control {
   box-shadow: inset 0 -2px 0 var(--theme-border-error);
 }
 
-.nova-text-area--default.nova-text-area--error
-  .nova-text-area__control:focus-within {
+.variantDefault.error .control:focus-within {
   box-shadow: inset 0 -2px 0 var(--theme-border-error);
 }
 
-.nova-text-area--default.nova-text-area--disabled .nova-text-area__control {
+.variantDefault.disabled .control {
   background: var(--theme-control-disabled);
   box-shadow: inset 0 -1px 0 var(--theme-border-disabled);
 }
 
-/* Variant: outlined */
-.nova-text-area--outlined .nova-text-area__control {
+.variantOutlined .control {
   background: var(--theme-control-primary);
   border: 1px solid var(--theme-border-strong);
 }
 
-.nova-text-area--outlined .nova-text-area__control:focus-within {
+.variantOutlined .control:focus-within {
   border-color: var(--theme-border-focused);
   border-width: 2px;
   padding-inline: 15px;
 }
 
-.nova-text-area--outlined.nova-text-area--lg:not(.nova-text-area--filled)
-  .nova-text-area__control:focus-within {
+.variantOutlined.sizeLg:not(.variantFilled) .control:focus-within {
   padding-block: 13px;
 }
 
-.nova-text-area--outlined.nova-text-area--md:not(.nova-text-area--filled)
-  .nova-text-area__control:focus-within {
+.variantOutlined.sizeMd:not(.variantFilled) .control:focus-within {
   padding-block: 9px;
 }
 
-.nova-text-area--outlined.nova-text-area--sm:not(.nova-text-area--filled)
-  .nova-text-area__control:focus-within {
+.variantOutlined.sizeSm:not(.variantFilled) .control:focus-within {
   padding-block: 5px;
 }
 
-.nova-text-area--outlined.nova-text-area--error .nova-text-area__control {
+.variantOutlined.error .control {
   border-color: var(--theme-border-error);
   border-width: 2px;
   padding-inline: 15px;
 }
 
-.nova-text-area--outlined.nova-text-area--lg.nova-text-area--error:not(
-    .nova-text-area--filled
-  )
-  .nova-text-area__control {
+.variantOutlined.sizeLg.error:not(.variantFilled) .control {
   padding-block: 13px;
 }
 
-.nova-text-area--outlined.nova-text-area--md.nova-text-area--error:not(
-    .nova-text-area--filled
-  )
-  .nova-text-area__control {
+.variantOutlined.sizeMd.error:not(.variantFilled) .control {
   padding-block: 9px;
 }
 
-.nova-text-area--outlined.nova-text-area--sm.nova-text-area--error:not(
-    .nova-text-area--filled
-  )
-  .nova-text-area__control {
+.variantOutlined.sizeSm.error:not(.variantFilled) .control {
   padding-block: 5px;
 }
 
-.nova-text-area--outlined.nova-text-area--disabled .nova-text-area__control {
+.variantOutlined.disabled .control {
   background: var(--theme-control-disabled);
   border-color: var(--theme-border-disabled);
 }
 
-/* Variant: filled */
-.nova-text-area--filled .nova-text-area__control {
+.variantFilled .control {
   background: var(--theme-control-default);
   border-bottom: 0;
   box-shadow: inset 0 -1px 0 var(--theme-border-strong);
   cursor: text;
 }
 
-.nova-text-area--filled .nova-text-area__control .nova-text-area__label {
+.variantFilled .control .label {
   padding-bottom: 0;
 }
 
-.nova-text-area--filled .nova-text-area__control:focus-within {
+.variantFilled .control:focus-within {
   box-shadow: inset 0 -2px 0 var(--theme-border-focused);
 }
 
-.nova-text-area--filled.nova-text-area--error .nova-text-area__control {
+.variantFilled.error .control {
   box-shadow: inset 0 -2px 0 var(--theme-border-error);
 }
 
-.nova-text-area--filled.nova-text-area--error
-  .nova-text-area__control:focus-within {
+.variantFilled.error .control:focus-within {
   box-shadow: inset 0 -2px 0 var(--theme-border-error);
 }
 
-.nova-text-area--filled.nova-text-area--disabled .nova-text-area__control {
+.variantFilled.disabled .control {
   background: var(--theme-control-disabled);
   box-shadow: inset 0 -1px 0 var(--theme-border-disabled);
   cursor: not-allowed;
 }
 
-.nova-text-area--filled.nova-text-area--disabled .nova-text-area__textarea {
+.variantFilled.disabled .textarea {
   pointer-events: none;
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .nova-text-area__control {
+  .control {
     transition:
       background-color 200ms ease,
       border-color 200ms ease,
@@ -266,7 +246,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .nova-text-area__control {
+  .control {
     transition: none;
   }
 }

@@ -1,6 +1,7 @@
 import * as React from "react";
-import { classNames } from "../../utils/classNames";
-import "./Divider.css";
+import { cva } from "class-variance-authority";
+import { cn } from "@/utils/classNames";
+import styles from "./Divider.module.css";
 
 export type DividerOrientation = "horizontal" | "vertical";
 export type DividerTextAlign = "start" | "center" | "end";
@@ -19,6 +20,39 @@ export type DividerProps = React.HTMLAttributes<HTMLDivElement> & {
   /** Label alignment for dividers with children. */
   textAlign?: DividerTextAlign;
 };
+
+const dividerClassName = cva(styles.root, {
+  defaultVariants: {
+    flexItem: false,
+    fullWidth: false,
+    orientation: "horizontal",
+    textAlign: "center",
+    withChildren: false,
+  },
+  variants: {
+    flexItem: {
+      false: null,
+      true: styles.flexItem,
+    },
+    fullWidth: {
+      false: null,
+      true: styles.fullWidth,
+    },
+    orientation: {
+      horizontal: styles.orientationHorizontal,
+      vertical: styles.orientationVertical,
+    },
+    textAlign: {
+      center: null,
+      end: styles.textEnd,
+      start: styles.textStart,
+    },
+    withChildren: {
+      false: null,
+      true: styles.withChildren,
+    },
+  },
+});
 
 export const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
   (
@@ -42,20 +76,21 @@ export const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
         ref={ref}
         aria-hidden={isSemantic ? undefined : true}
         aria-orientation={isSemantic ? orientation : undefined}
-        className={classNames(
-          "nova-divider",
-          `nova-divider--${orientation}`,
-          fullWidth && "nova-divider--full-width",
-          hasChildren && "nova-divider--with-children",
-          hasChildren && `nova-divider--text-${textAlign}`,
-          flexItem && "nova-divider--flex-item",
+        className={cn(
+          dividerClassName({
+            flexItem,
+            fullWidth,
+            orientation,
+            textAlign: hasChildren ? textAlign : "center",
+            withChildren: hasChildren,
+          }),
           className
         )}
         role={isSemantic ? "separator" : undefined}
         {...props}
       >
         {hasChildren ? (
-          <span className="nova-divider__label">{children}</span>
+          <span className={styles.label}>{children}</span>
         ) : null}
       </div>
     );

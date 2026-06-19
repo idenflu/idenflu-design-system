@@ -48,6 +48,13 @@ export type {
   ChipVariant,
 } from "./components/Chip/index";
 
+export { Divider } from "./components/Divider/index";
+export type {
+  DividerOrientation,
+  DividerProps,
+  DividerTextAlign,
+} from "./components/Divider/index";
+
 export { Card, CardBody, CardFooter, CardHeader } from "./components/Card";
 export type { CardProps, CardState } from "./components/Card";
 

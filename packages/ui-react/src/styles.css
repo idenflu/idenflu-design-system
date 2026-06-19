@@ -4,5 +4,6 @@
 @import "./components/TextInput/TextInput.css";
 @import "./components/Select/Select.css";
 @import "./components/Chip/Chip.css";
+@import "./components/Divider/Divider.css";
 @import "./components/Icon/Icon.css";
 @import "./components/Spinner/Spinner.css";

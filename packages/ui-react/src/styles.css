@@ -1,9 +1,350 @@
 @import "./styles/normalize.css";
 @import "./styles/tokens.css";
-@import "./components/Button/Button.css";
-@import "./components/TextInput/TextInput.css";
-@import "./components/Select/Select.css";
-@import "./components/Chip/Chip.css";
-@import "./components/Divider/Divider.css";
-@import "./components/Icon/Icon.css";
-@import "./components/Spinner/Spinner.css";
+
+.if-field {
+  display: grid;
+  gap: var(--if-space-xs);
+}
+
+.if-field__label {
+  color: var(--if-color-ink-muted);
+  font-family: var(--if-font-family);
+  font-size: var(--if-font-size-body-sm);
+  font-weight: var(--if-font-weight-emphasis);
+}
+
+.if-field__required {
+  color: var(--if-color-error);
+  font-size: var(--if-font-size-caption);
+  font-style: normal;
+  font-weight: 550;
+  margin-left: var(--if-space-xs);
+}
+
+.if-field__control {
+  background: var(--if-color-surface-raised);
+  border: 1px solid var(--if-color-hairline);
+  border-radius: var(--if-radius-md);
+  color: var(--if-color-ink);
+  font-size: var(--if-font-size-body-sm);
+  height: var(--if-field-height);
+  line-height: 1.35;
+  min-height: var(--if-field-height);
+  outline: none;
+  padding: 9px 11px;
+  width: 100%;
+}
+
+.if-input-shell {
+  align-items: center;
+  background: var(--if-color-surface-raised);
+  border: 1px solid var(--if-color-hairline);
+  border-radius: var(--if-radius-md);
+  color: var(--if-color-ink);
+  display: flex;
+  gap: var(--if-space-xs);
+  min-height: var(--if-field-height);
+  padding: 0 11px;
+  transition:
+    border-color var(--if-duration-fast) ease,
+    box-shadow var(--if-duration-fast) ease,
+    background-color var(--if-duration-fast) ease;
+}
+
+.if-input-shell .if-field__control {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  flex: 1 1 auto;
+  height: calc(var(--if-field-height) - 2px);
+  min-height: 0;
+  min-width: 0;
+  padding: 0;
+}
+
+.if-input-shell .if-field__control:focus,
+.if-input-shell .if-field__control:focus-visible {
+  box-shadow: none;
+}
+
+.if-field__prefix,
+.if-field__suffix,
+.if-field__icon {
+  color: var(--if-color-ink-subtle);
+  flex: 0 0 auto;
+  font-size: var(--if-font-size-body-sm);
+  line-height: 1;
+}
+
+.if-field__icon {
+  align-items: center;
+  display: inline-flex;
+  height: 16px;
+  justify-content: center;
+  width: 16px;
+}
+
+/* Normalize any icon (e.g. <Icon> at its own 20px medium size) to fill the 16px
+     field icon slot, so it matches the docs field icon and doesn't overflow. */
+.if-field__icon svg {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.if-field__control--select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20stroke='%238792a5'%20stroke-width='1.5'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Cpath%20d='M4%206l4%204%204-4'/%3E%3C/svg%3E");
+  background-position: right 12px center;
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+  padding-right: 36px;
+  text-overflow: ellipsis;
+}
+
+.if-field__control--textarea {
+  height: auto;
+  min-height: 96px;
+  resize: vertical;
+}
+
+.if-field__control:disabled,
+.if-input-shell.is-disabled {
+  background: var(--if-color-surface-2);
+  border-color: var(--if-color-hairline);
+  box-shadow: none;
+  color: var(--if-color-ink-subtle);
+  cursor: not-allowed;
+  opacity: 1;
+  -webkit-text-fill-color: var(--if-color-ink-subtle);
+}
+
+/* `<select>` always matches :read-only (no mutable text value), so exclude it
+     here — otherwise this readonly-text styling steals the select's raised
+     background and wipes its chevron background-image. */
+.if-field__control:read-only:not(:disabled):not(.if-field__control--select) {
+  background: var(--if-color-surface-1);
+  color: var(--if-color-ink);
+}
+
+.if-input-shell.is-disabled .if-field__control,
+.if-input-shell.is-disabled .if-field__prefix,
+.if-input-shell.is-disabled .if-field__suffix,
+.if-input-shell.is-disabled .if-field__icon {
+  color: var(--if-color-ink-subtle);
+  cursor: not-allowed;
+  -webkit-text-fill-color: var(--if-color-ink-subtle);
+}
+
+.if-field__helper {
+  color: var(--if-color-ink-muted);
+  font-family: var(--if-font-family);
+  font-size: var(--if-font-size-caption);
+  line-height: 1.45;
+}
+
+.if-field--invalid .if-field__control,
+.if-field--invalid .if-input-shell,
+.if-field--server-error .if-field__control,
+.if-field--server-error .if-input-shell {
+  border-color: var(--if-color-error);
+}
+
+/* Invalid fields signal state with the red border only — drop the blue focus
+     ring on focus to match the docs field standard. */
+.if-field--invalid .if-field__control:focus,
+.if-field--invalid .if-field__control:focus-visible,
+.if-field--invalid .if-input-shell:focus-within,
+.if-field--server-error .if-field__control:focus,
+.if-field--server-error .if-field__control:focus-visible,
+.if-field--server-error .if-input-shell:focus-within {
+  border-color: var(--if-color-error);
+  box-shadow: none;
+}
+
+.if-field--invalid .if-field__helper,
+.if-field--server-error .if-field__helper {
+  color: var(--if-color-error);
+}
+
+.if-field--success .if-field__control,
+.if-field--success .if-input-shell {
+  border-color: var(--if-color-success);
+}
+
+.if-field--success .if-field__helper {
+  color: var(--if-color-success);
+}
+
+.if-field--readonly .if-field__control,
+.if-field--readonly .if-input-shell {
+  background: var(--if-color-surface-1);
+  color: var(--if-color-ink);
+}
+
+.if-field--disabled .if-field__control,
+.if-field--disabled .if-input-shell,
+.if-field--locked .if-field__control,
+.if-field--locked .if-input-shell {
+  background: var(--if-color-surface-2);
+  border-color: var(--if-color-hairline);
+  color: var(--if-color-ink-subtle);
+  cursor: not-allowed;
+  opacity: 1;
+  -webkit-text-fill-color: var(--if-color-ink-subtle);
+}
+
+/* ── DatePicker ─────────────────────────────────────────────────────────── */
+
+.if-datepicker {
+  position: relative;
+}
+
+.if-datepicker__trigger {
+  align-items: center;
+  background: var(--if-color-surface-raised);
+  border: 1px solid var(--if-color-hairline);
+  border-radius: var(--if-radius-md);
+  color: var(--if-color-ink);
+  cursor: pointer;
+  display: flex;
+  font-family: var(--if-font-family);
+  font-size: var(--if-font-size-body-sm);
+  gap: var(--if-space-xs);
+  justify-content: space-between;
+  min-height: var(--if-field-height);
+  padding: 6px 11px;
+  text-align: left;
+  width: 100%;
+}
+
+.if-datepicker__trigger:focus {
+  border-color: var(--if-color-primary);
+  box-shadow: 0 0 0 3px var(--if-focus-ring);
+  outline: 0;
+}
+
+.if-field--invalid .if-datepicker__trigger,
+.if-field--server-error .if-datepicker__trigger {
+  border-color: var(--if-color-error);
+}
+
+.if-datepicker__value {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.if-datepicker__value.is-placeholder {
+  color: var(--if-color-ink-subtle);
+}
+
+.if-datepicker__icon {
+  align-items: center;
+  color: var(--if-color-ink-subtle);
+  display: inline-flex;
+  flex: none;
+}
+
+.if-datepicker__popover {
+  background: var(--if-color-surface-raised);
+  border: 1px solid var(--if-color-hairline);
+  border-radius: var(--if-radius-md);
+  box-shadow: var(--if-shadow-panel);
+  left: 0;
+  margin-top: 4px;
+  padding: var(--if-space-sm);
+  position: absolute;
+  top: 100%;
+  width: 280px;
+  z-index: var(--if-z-overlay);
+}
+
+.if-datecal__header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--if-space-xs);
+}
+
+.if-datecal__month {
+  font-size: var(--if-font-size-body-sm);
+  font-weight: var(--if-font-weight-emphasis);
+}
+
+.if-datecal__nav {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: var(--if-radius-sm);
+  color: var(--if-color-ink-muted);
+  cursor: pointer;
+  display: inline-flex;
+  height: 28px;
+  justify-content: center;
+  width: 28px;
+}
+
+.if-datecal__nav:hover {
+  background: var(--if-color-surface-1);
+}
+
+.if-datecal__weekdays,
+.if-datecal__row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.if-datecal__weekday {
+  color: var(--if-color-ink-subtle);
+  font-size: var(--if-font-size-caption);
+  padding: 4px 0;
+  text-align: center;
+}
+
+.if-datecal__day {
+  align-items: center;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--if-radius-sm);
+  color: var(--if-color-ink);
+  cursor: pointer;
+  display: flex;
+  font-family: var(--if-font-family);
+  font-size: var(--if-font-size-body-sm);
+  height: 34px;
+  justify-content: center;
+}
+
+.if-datecal__day:hover:not(.is-disabled):not(.is-selected):not(.is-in-range) {
+  background: var(--if-color-surface-1);
+}
+
+.if-datecal__day:focus-visible {
+  box-shadow: 0 0 0 3px var(--if-focus-ring);
+  outline: 0;
+}
+
+.if-datecal__day.is-outside {
+  color: var(--if-color-ink-subtle);
+}
+
+.if-datecal__day.is-today {
+  border-color: var(--if-color-hairline-strong);
+}
+
+.if-datecal__day.is-in-range {
+  background: var(--if-color-primary-soft);
+  border-radius: 0;
+}
+
+.if-datecal__day.is-selected {
+  background: var(--if-color-primary);
+  color: var(--if-color-inverse-ink);
+}
+
+.if-datecal__day.is-disabled {
+  color: var(--if-color-ink-subtle);
+  cursor: not-allowed;
+}

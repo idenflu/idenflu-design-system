@@ -1,8 +1,16 @@
 import * as React from "react";
 import { classNames } from "../utils/classNames";
 import { Icon } from "./Icon";
-import type { FieldState } from "./TextField";
-import { addDays, addMonths, buildMonthGrid, createDateFormatters, isWithin, parseISO, toISO } from "../utils/dateUtils";
+import { FieldState } from "./TextField";
+import {
+  addDays,
+  addMonths,
+  buildMonthGrid,
+  createDateFormatters,
+  isWithin,
+  parseISO,
+  toISO,
+} from "../utils/dateUtils";
 
 export type DateRange = { from: string; to: string };
 
@@ -42,11 +50,25 @@ const asRange = (v: string | DateRange | undefined): DateRange =>
 export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
   (
     {
-      label, helperText, error, required, state = error ? "invalid" : "default", disabled,
-      range = false, value, defaultValue, onChange, min, max, weekStartsOn = 0, locale,
-      placeholder, id, className,
+      label,
+      helperText,
+      error,
+      required,
+      state = error ? "invalid" : "default",
+      disabled,
+      range = false,
+      value,
+      defaultValue,
+      onChange,
+      min,
+      max,
+      weekStartsOn = 0,
+      locale,
+      placeholder,
+      id,
+      className,
     },
-    ref,
+    ref
   ) => {
     const generatedId = React.useId();
     const baseId = id ?? generatedId;
@@ -62,11 +84,13 @@ export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
         if (typeof ref === "function") ref(node);
         else if (ref) ref.current = node;
       },
-      [ref],
+      [ref]
     );
 
     const isControlled = value !== undefined;
-    const [internal, setInternal] = React.useState<string | DateRange>(defaultValue ?? (range ? EMPTY_RANGE : ""));
+    const [internal, setInternal] = React.useState<string | DateRange>(
+      defaultValue ?? (range ? EMPTY_RANGE : "")
+    );
     const selected = isControlled ? (value as string | DateRange) : internal;
     const single = typeof selected === "string" ? selected : "";
     const rangeVal = asRange(selected);
@@ -78,7 +102,10 @@ export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
     const todayISO = toISO(new Date());
     const anchorISO = range ? rangeVal.from || todayISO : single || todayISO;
     const anchor = parseISO(anchorISO) ?? new Date();
-    const [view, setView] = React.useState({ year: anchor.getFullYear(), month: anchor.getMonth() });
+    const [view, setView] = React.useState({
+      year: anchor.getFullYear(),
+      month: anchor.getMonth(),
+    });
     const [focusISO, setFocusISO] = React.useState(anchorISO);
     const dayRefs = React.useRef<Record<string, HTMLButtonElement | null>>({});
     const fmt = React.useMemo(() => createDateFormatters(locale), [locale]);
@@ -121,7 +148,10 @@ export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
       if (!open) return;
       const onDoc = (event: MouseEvent) => {
         const t = event.target as Node;
-        if (!popoverRef.current?.contains(t) && !triggerRef.current?.contains(t)) {
+        if (
+          !popoverRef.current?.contains(t) &&
+          !triggerRef.current?.contains(t)
+        ) {
           close(false);
         }
       };
@@ -144,7 +174,8 @@ export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
     const display = (): string | null => {
       if (range) {
         if (pendingStart) return fmt.display(pendingStart);
-        if (rangeVal.from && rangeVal.to) return `${fmt.display(rangeVal.from)} ~ ${fmt.display(rangeVal.to)}`;
+        if (rangeVal.from && rangeVal.to)
+          return `${fmt.display(rangeVal.from)} ~ ${fmt.display(rangeVal.to)}`;
         return null;
       }
       return single ? fmt.display(single) : null;
@@ -174,20 +205,40 @@ export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
       else if (event.key === "ArrowDown") next = addDays(cur, 7);
       else if (event.key === "PageUp") {
         const last = new Date(cur.getFullYear(), cur.getMonth(), 0).getDate();
-        next = new Date(cur.getFullYear(), cur.getMonth() - 1, Math.min(cur.getDate(), last));
+        next = new Date(
+          cur.getFullYear(),
+          cur.getMonth() - 1,
+          Math.min(cur.getDate(), last)
+        );
       } else if (event.key === "PageDown") {
-        const last = new Date(cur.getFullYear(), cur.getMonth() + 2, 0).getDate();
-        next = new Date(cur.getFullYear(), cur.getMonth() + 1, Math.min(cur.getDate(), last));
-      }
-      else if (event.key === "Home") next = addDays(cur, -weekday);
+        const last = new Date(
+          cur.getFullYear(),
+          cur.getMonth() + 2,
+          0
+        ).getDate();
+        next = new Date(
+          cur.getFullYear(),
+          cur.getMonth() + 1,
+          Math.min(cur.getDate(), last)
+        );
+      } else if (event.key === "Home") next = addDays(cur, -weekday);
       else if (event.key === "End") next = addDays(cur, 6 - weekday);
-      else if (event.key === "Enter" || event.key === " ") { event.preventDefault(); selectDay(focusISO); return; }
+      else if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        selectDay(focusISO);
+        return;
+      }
       // Escape is handled at the dialog level so it also works from the month-nav buttons.
-      if (next) { event.preventDefault(); setFocus(toISO(next)); }
+      if (next) {
+        event.preventDefault();
+        setFocus(toISO(next));
+      }
     };
 
     const isEndpoint = (iso: string): boolean =>
-      range ? iso === rangeVal.from || iso === rangeVal.to || iso === pendingStart : iso === single;
+      range
+        ? iso === rangeVal.from || iso === rangeVal.to || iso === pendingStart
+        : iso === single;
 
     const inRange = (iso: string): boolean => {
       if (!range) return false;
@@ -224,7 +275,9 @@ export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
             aria-expanded={open}
             aria-controls={open ? popoverId : undefined}
             disabled={disabled}
-            onClick={() => { if (!disabled) setOpen((o) => !o); }}
+            onClick={() => {
+              if (!disabled) setOpen((o) => !o);
+            }}
             onKeyDown={(event) => {
               // Enter/Space open via the native button click; only ArrowDown needs a handler
               // (Space activates on keyup, which preventDefault on keydown cannot cancel).
@@ -235,11 +288,16 @@ export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
               }
             }}
           >
-            <span className={classNames("if-datepicker__value", !shown && "is-placeholder")}>
+            <span
+              className={classNames(
+                "if-datepicker__value",
+                !shown && "is-placeholder"
+              )}
+            >
               {shown ?? placeholder ?? (range ? "Select range" : "Select date")}
             </span>
             <span className="if-datepicker__icon" aria-hidden="true">
-              <Icon name="icon-calendar" size={16} />
+              <Icon name="calendar" size={16} />
             </span>
           </button>
 
@@ -250,23 +308,44 @@ export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
               role="dialog"
               aria-label={label}
               className="if-datepicker__popover"
-              onKeyDown={(event) => { if (event.key === "Escape") { event.preventDefault(); close(); } }}
+              onKeyDown={(event) => {
+                if (event.key === "Escape") {
+                  event.preventDefault();
+                  close();
+                }
+              }}
             >
               <div className="if-datecal__header">
-                <button type="button" className="if-datecal__nav" aria-label="Previous month" onClick={() => goMonth(-1)}>
-                  <Icon name="icon-chevron-left" size={16} />
+                <button
+                  type="button"
+                  className="if-datecal__nav"
+                  aria-label="Previous month"
+                  onClick={() => goMonth(-1)}
+                >
+                  <Icon name="keyboard-arrow-left" size={16} />
                 </button>
                 <span className="if-datecal__month">{monthLabel}</span>
-                <button type="button" className="if-datecal__nav" aria-label="Next month" onClick={() => goMonth(1)}>
-                  <Icon name="icon-chevron-right" size={16} />
+                <button
+                  type="button"
+                  className="if-datecal__nav"
+                  aria-label="Next month"
+                  onClick={() => goMonth(1)}
+                >
+                  <Icon name="keyboard-arrow-right" size={16} />
                 </button>
               </div>
               <div className="if-datecal__weekdays" aria-hidden="true">
                 {fmt.weekdayLabels(weekStartsOn).map((w, i) => (
-                  <span key={i} className="if-datecal__weekday">{w}</span>
+                  <span key={i} className="if-datecal__weekday">
+                    {w}
+                  </span>
                 ))}
               </div>
-              <div role="grid" className="if-datecal__grid" onKeyDown={onGridKeyDown}>
+              <div
+                role="grid"
+                className="if-datecal__grid"
+                onKeyDown={onGridKeyDown}
+              >
                 {Array.from({ length: 6 }, (_, w) => (
                   <div role="row" key={w} className="if-datecal__row">
                     {days.slice(w * 7, w * 7 + 7).map((d) => {
@@ -277,7 +356,9 @@ export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
                       return (
                         <button
                           key={iso}
-                          ref={(node) => { dayRefs.current[iso] = node; }}
+                          ref={(node) => {
+                            dayRefs.current[iso] = node;
+                          }}
                           type="button"
                           role="gridcell"
                           aria-label={fmt.dayLabel(d)}
@@ -290,9 +371,12 @@ export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
                             iso === todayISO && "is-today",
                             inRange(iso) && "is-in-range",
                             sel && "is-selected",
-                            isDisabled && "is-disabled",
+                            isDisabled && "is-disabled"
                           )}
-                          onMouseEnter={() => { if (range && pendingStart && !isDisabled) setHoverISO(iso); }}
+                          onMouseEnter={() => {
+                            if (range && pendingStart && !isDisabled)
+                              setHoverISO(iso);
+                          }}
                           onClick={() => selectDay(iso)}
                         >
                           {d.getDate()}
@@ -305,10 +389,14 @@ export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
             </div>
           ) : null}
         </div>
-        {helperId ? <small id={helperId} className="if-field__helper">{error || helperText}</small> : null}
+        {helperId ? (
+          <small id={helperId} className="if-field__helper">
+            {error || helperText}
+          </small>
+        ) : null}
       </div>
     );
-  },
+  }
 );
 
 DatePicker.displayName = "DatePicker";

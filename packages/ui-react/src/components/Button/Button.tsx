@@ -1,5 +1,7 @@
 import * as React from "react";
-import { classNames } from "../../utils/classNames";
+import { cva } from "class-variance-authority";
+import { cn } from "@/utils/classNames";
+import styles from "./Button.module.css";
 import { ButtonSpinner } from "./ButtonSpinner";
 
 export type ButtonVariant = "default" | "outlined" | "ghost";
@@ -14,6 +16,47 @@ export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   size?: ButtonSize;
   variant?: ButtonVariant;
 };
+
+const buttonClassName = cva(styles.root, {
+  defaultVariants: {
+    color: "primary",
+    fullWidth: false,
+    loading: false,
+    loadingSolo: false,
+    size: "md",
+    variant: "default",
+  },
+  variants: {
+    color: {
+      danger: styles.colorDanger,
+      primary: styles.colorPrimary,
+      secondary: styles.colorSecondary,
+    },
+    fullWidth: {
+      false: null,
+      true: styles.fullWidth,
+    },
+    loading: {
+      false: null,
+      true: styles.loading,
+    },
+    loadingSolo: {
+      false: null,
+      true: styles.loadingSolo,
+    },
+    size: {
+      lg: styles.sizeLg,
+      md: styles.sizeMd,
+      sm: styles.sizeSm,
+      xs: styles.sizeXs,
+    },
+    variant: {
+      default: styles.variantDefault,
+      ghost: styles.variantGhost,
+      outlined: styles.variantOutlined,
+    },
+  },
+});
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
@@ -41,14 +84,15 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         aria-busy={loading || undefined}
-        className={classNames(
-          "nova-button",
-          `nova-button--${variant}`,
-          `nova-button--${color}`,
-          `nova-button--${size}`,
-          fullWidth && "nova-button--full-width",
-          loading && "nova-button--loading",
-          showSpinnerInsteadOfLabel && "nova-button--loading-solo",
+        className={cn(
+          buttonClassName({
+            color,
+            fullWidth,
+            loading,
+            loadingSolo: showSpinnerInsteadOfLabel,
+            size,
+            variant,
+          }),
           className
         )}
         disabled={isDisabled}
@@ -63,18 +107,18 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       >
         {showSpinnerInsteadOfLabel ? (
-          <span className="nova-button__label" aria-hidden="true">
+          <span className={styles.label} aria-hidden="true">
             <ButtonSpinner size={size} />
           </span>
         ) : children != null && children !== "" ? (
-          <span className="nova-button__label">{children}</span>
+          <span className={styles.label}>{children}</span>
         ) : null}
         {showSpinnerInIconSlot ? (
-          <span className="nova-button__icon" aria-hidden="true">
+          <span className={styles.icon} aria-hidden="true">
             <ButtonSpinner size={size} />
           </span>
         ) : endIcon ? (
-          <span className="nova-button__icon" aria-hidden="true">
+          <span className={styles.icon} aria-hidden="true">
             {endIcon}
           </span>
         ) : null}

@@ -1,6 +1,6 @@
 /* Nova Button — Figma node 66:9394 */
 
-.nova-button {
+.root {
   align-items: center;
   border: 1px solid transparent;
   border-radius: var(--rounded-none, 0);
@@ -10,6 +10,7 @@
   justify-content: flex-start;
   min-width: 96px;
   overflow: hidden;
+  padding-inline: 16px;
   transition:
     background-color 120ms ease,
     border-color 120ms ease,
@@ -18,65 +19,36 @@
   width: fit-content;
 }
 
-.nova-button--full-width {
+.fullWidth {
   width: 100%;
 }
 
-.nova-button--icon-only {
-  justify-content: center;
-  min-width: 0;
-}
-
-.nova-button--lg {
+.sizeLg {
   height: 48px;
-  padding: 14px 16px;
+  padding-block: 14px;
 }
 
-.nova-button--md {
+.sizeMd {
   height: 40px;
-  padding: 10px 16px;
+  padding-block: 10px;
 }
 
-.nova-button--sm {
+.sizeSm {
   height: 32px;
-  padding: 6px 16px;
+  padding-block: 6px;
 }
 
-.nova-button--xs {
+.sizeXs {
   height: 24px;
-  padding: 2px 16px;
+  padding-block: 2px;
 }
 
-.nova-button--icon-only.nova-button--lg {
-  height: 48px;
-  padding: 16px;
-  width: 48px;
-}
-
-.nova-button--icon-only.nova-button--md {
-  height: 40px;
-  padding: 12px;
-  width: 40px;
-}
-
-.nova-button--icon-only.nova-button--sm {
-  height: 32px;
-  padding: 8px;
-  width: 32px;
-}
-
-.nova-button--icon-only.nova-button--xs {
-  height: 24px;
-  padding: 4px;
-  width: 24px;
-}
-
-.nova-button__label {
+.label {
   align-items: center;
   display: inline-flex;
 }
 
-.nova-button__icon {
+.icon {
   align-items: center;
   display: inline-flex;
   flex-shrink: 0;
@@ -85,236 +57,237 @@
   width: 16px;
 }
 
-.nova-button__icon svg {
+.icon svg {
   display: block;
   height: 100%;
   width: 100%;
 }
 
-.nova-button .nova-icon {
+.root :global(.nova-icon) {
   color: currentColor;
 }
 
-.nova-button:has(.nova-button__label):has(.nova-button__icon) {
+.root:has(.label):has(.icon) {
   justify-content: space-between;
   gap: 16px;
 }
 
-.nova-button:focus-visible {
+.root:focus-visible {
   outline: 2px solid var(--theme-border-focused);
   outline-offset: 1px;
 }
 
-/* Default + Primary */
-.nova-button--default.nova-button--primary {
-  background: var(--theme-interactive-primary);
-  border-color: var(--theme-interactive-primary);
+.variantDefault {
   color: var(--theme-text-on-color);
 }
 
+/* Default + Primary */
+.variantDefault.colorPrimary {
+  background: var(--theme-interactive-primary);
+  border-color: var(--theme-interactive-primary);
+}
+
 @media (hover: hover) and (pointer: fine) {
-  .nova-button--default.nova-button--primary:hover:not(:disabled) {
+  .variantDefault.colorPrimary:hover:not(:disabled) {
     background: var(--theme-interactive-primary-hover);
     border-color: var(--theme-interactive-primary-hover);
   }
 }
 
-.nova-button--default.nova-button--primary:active:not(:disabled) {
+.variantDefault.colorPrimary:active:not(:disabled) {
   background: var(--theme-interactive-primary-active);
   border-color: var(--theme-interactive-primary-active);
 }
 
 /* Default + Secondary */
-.nova-button--default.nova-button--secondary {
+.variantDefault.colorSecondary {
   background: var(--theme-interactive-secondary);
   border-color: var(--theme-interactive-secondary);
-  color: var(--theme-text-on-color);
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .nova-button--default.nova-button--secondary:hover:not(:disabled) {
+  .variantDefault.colorSecondary:hover:not(:disabled) {
     background: var(--theme-interactive-secondary-hover);
     border-color: var(--theme-interactive-secondary-hover);
   }
 }
 
-.nova-button--default.nova-button--secondary:active:not(:disabled) {
+.variantDefault.colorSecondary:active:not(:disabled) {
   background: var(--theme-interactive-secondary-active);
   border-color: var(--theme-interactive-secondary-active);
 }
 
 /* Default + Danger */
-.nova-button--default.nova-button--danger {
+.variantDefault.colorDanger {
   background: var(--theme-interactive-danger);
   border-color: var(--theme-interactive-danger);
-  color: var(--theme-text-on-color);
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .nova-button--default.nova-button--danger:hover:not(:disabled) {
+  .variantDefault.colorDanger:hover:not(:disabled) {
     background: var(--theme-interactive-danger-hover);
     border-color: var(--theme-interactive-danger-hover);
   }
 }
 
-.nova-button--default.nova-button--danger:active:not(:disabled) {
+.variantDefault.colorDanger:active:not(:disabled) {
   background: var(--theme-interactive-danger-active);
   border-color: var(--theme-interactive-danger-active);
 }
 
 /* Outlined + Primary */
-.nova-button--outlined.nova-button--primary {
+.variantOutlined.colorPrimary {
   background: var(--theme-interactive-transparent);
   border-color: var(--theme-border-primary);
   color: var(--theme-text-brand);
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .nova-button--outlined.nova-button--primary:hover:not(:disabled) {
+  .variantOutlined.colorPrimary:hover:not(:disabled) {
     background: var(--theme-interactive-hover);
     border-color: var(--theme-border-primary-hover);
     color: var(--theme-text-brand-hover);
   }
 }
 
-.nova-button--outlined.nova-button--primary:active:not(:disabled) {
+.variantOutlined.colorPrimary:active:not(:disabled) {
   background: var(--theme-interactive-active);
   border-color: var(--theme-border-primary-active);
   color: var(--theme-text-brand-active);
 }
 
 /* Outlined + Secondary */
-.nova-button--outlined.nova-button--secondary {
+.variantOutlined.colorSecondary {
   background: var(--theme-interactive-transparent);
   border-color: var(--theme-border-secondary);
   color: var(--theme-text-primary);
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .nova-button--outlined.nova-button--secondary:hover:not(:disabled) {
+  .variantOutlined.colorSecondary:hover:not(:disabled) {
     background: var(--theme-interactive-hover);
     border-color: var(--theme-border-secondary-hover);
     color: var(--theme-text-hover);
   }
 }
 
-.nova-button--outlined.nova-button--secondary:active:not(:disabled) {
+.variantOutlined.colorSecondary:active:not(:disabled) {
   background: var(--theme-interactive-active);
   border-color: var(--theme-border-secondary-active);
   color: var(--theme-text-active);
 }
 
 /* Outlined + Danger */
-.nova-button--outlined.nova-button--danger {
+.variantOutlined.colorDanger {
   background: var(--theme-interactive-transparent);
   border-color: var(--theme-border-error);
   color: var(--theme-text-danger);
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .nova-button--outlined.nova-button--danger:hover:not(:disabled) {
+  .variantOutlined.colorDanger:hover:not(:disabled) {
     background: var(--theme-interactive-hover);
     border-color: var(--theme-border-error-hover);
     color: var(--theme-text-danger-hover);
   }
 }
 
-.nova-button--outlined.nova-button--danger:active:not(:disabled) {
+.variantOutlined.colorDanger:active:not(:disabled) {
   background: var(--theme-interactive-active);
   border-color: var(--theme-border-error-active);
   color: var(--theme-text-danger-active);
 }
 
 /* Ghost + Primary */
-.nova-button--ghost.nova-button--primary {
+.variantGhost.colorPrimary {
   background: var(--theme-interactive-transparent);
   border-color: transparent;
   color: var(--theme-text-brand);
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .nova-button--ghost.nova-button--primary:hover:not(:disabled) {
+  .variantGhost.colorPrimary:hover:not(:disabled) {
     background: var(--theme-interactive-hover);
     color: var(--theme-text-brand-hover);
   }
 }
 
-.nova-button--ghost.nova-button--primary:active:not(:disabled) {
+.variantGhost.colorPrimary:active:not(:disabled) {
   background: var(--theme-interactive-active);
   color: var(--theme-text-brand-active);
 }
 
 /* Ghost + Secondary */
-.nova-button--ghost.nova-button--secondary {
+.variantGhost.colorSecondary {
   background: var(--theme-interactive-transparent);
   border-color: transparent;
   color: var(--theme-text-primary);
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .nova-button--ghost.nova-button--secondary:hover:not(:disabled) {
+  .variantGhost.colorSecondary:hover:not(:disabled) {
     background: var(--theme-interactive-hover);
     color: var(--theme-text-hover);
   }
 }
 
-.nova-button--ghost.nova-button--secondary:active:not(:disabled) {
+.variantGhost.colorSecondary:active:not(:disabled) {
   background: var(--theme-interactive-active);
   color: var(--theme-text-active);
 }
 
 /* Ghost + Danger */
-.nova-button--ghost.nova-button--danger {
+.variantGhost.colorDanger {
   background: var(--theme-interactive-transparent);
   border-color: transparent;
   color: var(--theme-text-danger);
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .nova-button--ghost.nova-button--danger:hover:not(:disabled) {
+  .variantGhost.colorDanger:hover:not(:disabled) {
     background: var(--theme-interactive-hover);
     color: var(--theme-text-danger-hover);
   }
 }
 
-.nova-button--ghost.nova-button--danger:active:not(:disabled) {
+.variantGhost.colorDanger:active:not(:disabled) {
   background: var(--theme-interactive-active);
   color: var(--theme-text-danger-active);
 }
 
-.nova-button--loading {
+.loading {
   cursor: wait;
 }
 
-.nova-button--loading-solo {
+.loadingSolo {
   justify-content: center;
 }
 
 /* Disabled */
-.nova-button:disabled {
+.root:disabled {
   cursor: not-allowed;
   pointer-events: none;
 }
 
-.nova-button--default:disabled {
+.variantDefault:disabled {
   background: var(--theme-interactive-disabled);
   border-color: var(--theme-interactive-disabled);
   color: var(--theme-text-disabled);
 }
 
-.nova-button--outlined:disabled,
-.nova-button--ghost:disabled {
+.variantOutlined:disabled,
+.variantGhost:disabled {
   background: var(--theme-interactive-transparent);
   border-color: var(--theme-border-disabled);
   color: var(--theme-text-disabled);
 }
 
-.nova-button--ghost:disabled {
+.variantGhost:disabled {
   border-color: transparent;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .nova-button {
+  .root {
     transition: none;
   }
 }

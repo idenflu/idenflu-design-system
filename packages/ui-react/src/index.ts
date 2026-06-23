@@ -133,8 +133,22 @@ export type {
   SegmentedOption,
 } from "./components/SegmentedControl";
 
-export { Tabs } from "./components/Tabs";
-export type { TabsProps, TabItem } from "./components/Tabs";
+export {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsScrollButton,
+  TabsTrigger,
+} from "./components/Tabs/index";
+export type {
+  TabsContentProps,
+  TabsListProps,
+  TabsOrientation,
+  TabsProps,
+  TabsScrollButtonProps,
+  TabsTriggerProps,
+  TabsVariant,
+} from "./components/Tabs/index";
 
 export { Icon, IconSpriteProvider } from "./components/Icon/index";
 export type {
@@ -156,8 +170,20 @@ export type { SkeletonProps, SkeletonVariant } from "./components/Skeleton";
 export { Banner } from "./components/Banner";
 export type { BannerProps, BannerTone } from "./components/Banner";
 
-export { Breadcrumb } from "./components/Breadcrumb";
-export type { BreadcrumbItem, BreadcrumbProps } from "./components/Breadcrumb";
+export {
+  Breadcrumb,
+  BreadcrumbEllipsis,
+  BreadcrumbItem,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "./components/Breadcrumb/index";
+export type {
+  BreadcrumbItemData,
+  BreadcrumbItemProps,
+  BreadcrumbProps,
+  BreadcrumbSize,
+} from "./components/Breadcrumb/index";
 
 export { DatePicker } from "./components/DatePicker";
 export type { DatePickerProps, DateRange } from "./components/DatePicker";

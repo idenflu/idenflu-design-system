@@ -1,0 +1,82 @@
+/* Nova Breadcrumb — informed by MUI Breadcrumbs and Carbon Breadcrumb a11y patterns */
+
+.root {
+  color: var(--theme-text-secondary);
+  font: var(--label-lg);
+  max-inline-size: 100%;
+}
+
+.sizeSm {
+  font: var(--label-md);
+}
+
+.list {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-03);
+  list-style: none;
+  margin: 0;
+  min-inline-size: 0;
+  padding: 0;
+}
+
+.item {
+  align-items: center;
+  display: inline-flex;
+  min-inline-size: 0;
+}
+
+.itemCurrent {
+  color: var(--theme-text-primary);
+}
+
+.page,
+.text {
+  align-items: center;
+  color: inherit;
+  display: inline-flex;
+  font: inherit;
+  gap: var(--spacing-02);
+  margin: 0;
+  max-inline-size: 100%;
+  min-inline-size: 0;
+}
+
+.page {
+  color: var(--theme-text-primary);
+}
+
+.text {
+  color: var(--base-gray-500);
+}
+
+.separator {
+  align-items: center;
+  color: var(--theme-text-tertiary);
+  display: inline-flex;
+  flex: 0 0 auto;
+  user-select: none;
+}
+
+.ellipsis {
+  align-items: center;
+  color: var(--theme-text-tertiary);
+  display: inline-flex;
+  justify-content: center;
+}
+
+.icon {
+  align-items: center;
+  color: currentColor;
+  display: inline-flex;
+  flex: 0 0 auto;
+}
+
+.label {
+  display: inline-block;
+  min-inline-size: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

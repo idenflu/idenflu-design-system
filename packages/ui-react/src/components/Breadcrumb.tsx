@@ -10,7 +10,10 @@ export type BreadcrumbItem = {
   current?: boolean;
 };
 
-export type BreadcrumbProps = Omit<React.HTMLAttributes<HTMLElement>, "children"> & {
+export type BreadcrumbProps = Omit<
+  React.HTMLAttributes<HTMLElement>,
+  "children"
+> & {
   /** Ordered trail from root to the current page. */
   items: BreadcrumbItem[];
   /** Accessible name for the navigation landmark. Defaults to `"Breadcrumb"`. */
@@ -53,7 +56,7 @@ export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
         })}
       </ol>
     </nav>
-  ),
+  )
 );
 
 Breadcrumb.displayName = "Breadcrumb";

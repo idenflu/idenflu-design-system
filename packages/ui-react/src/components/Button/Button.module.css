@@ -181,21 +181,21 @@
 .variantOutlined.colorDanger {
   background: var(--theme-interactive-transparent);
   border-color: var(--theme-border-error);
-  color: var(--theme-text-danger);
+  color: var(--theme-text-error);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .variantOutlined.colorDanger:hover:not(:disabled) {
     background: var(--theme-interactive-hover);
     border-color: var(--theme-border-error-hover);
-    color: var(--theme-text-danger-hover);
+    color: var(--theme-text-error-hover);
   }
 }
 
 .variantOutlined.colorDanger:active:not(:disabled) {
   background: var(--theme-interactive-active);
   border-color: var(--theme-border-error-active);
-  color: var(--theme-text-danger-active);
+  color: var(--theme-text-error-active);
 }
 
 /* Ghost + Primary */
@@ -240,19 +240,19 @@
 .variantGhost.colorDanger {
   background: var(--theme-interactive-transparent);
   border-color: transparent;
-  color: var(--theme-text-danger);
+  color: var(--theme-text-error);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .variantGhost.colorDanger:hover:not(:disabled) {
     background: var(--theme-interactive-hover);
-    color: var(--theme-text-danger-hover);
+    color: var(--theme-text-error-hover);
   }
 }
 
 .variantGhost.colorDanger:active:not(:disabled) {
   background: var(--theme-interactive-active);
-  color: var(--theme-text-danger-active);
+  color: var(--theme-text-error-active);
 }
 
 .loading {

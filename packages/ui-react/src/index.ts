@@ -175,7 +175,6 @@ export {
   BreadcrumbEllipsis,
   BreadcrumbItem,
   BreadcrumbList,
-  BreadcrumbPage,
   BreadcrumbSeparator,
 } from "./components/Breadcrumb/index";
 export type {

@@ -12,16 +12,16 @@ const CSS_BUILD_PATH = path.join(__dirname, "dist/css");
 const JS_BUILD_PATH = path.join(__dirname, "dist/js");
 
 const BASE_SOURCE = [
-  "src/rounded/rounded.tokens.json",
-  "src/colors/colors.tokens.json",
-  "src/spacing/spacing.tokens.json",
-  "src/typography/typo.tokens.json",
-  "src/typography/styles.tokens.json",
+  "src/rounded/rounded.json",
+  "src/colors/colors.json",
+  "src/spacing/spacing.json",
+  "src/typography/typo.json",
+  "src/typography/styles.json",
   "src/layout/tokens.json",
 ];
 
-const LIGHT_THEME_SOURCE = "src/themes/light.tokens.json";
-const DARK_THEME_SOURCE = "src/themes/dark.tokens.json";
+const LIGHT_THEME_SOURCE = "src/themes/light.json";
+const DARK_THEME_SOURCE = "src/themes/dark.json";
 
 const sdHooks = {
   transforms: idenfluTransforms,
@@ -34,7 +34,7 @@ const sdHooks = {
  * @param {import('style-dictionary/types').TransformedToken} token
  */
 function isDarkThemeToken(token) {
-  return token.filePath?.includes("dark.tokens.json") ?? false;
+  return token.filePath?.includes("dark.json") ?? false;
 }
 
 /**
@@ -85,7 +85,7 @@ const [lightCss, darkCss] = await Promise.all([
     selector: ":root",
   }),
   buildCssSection({
-    source: ["src/colors/colors.tokens.json", DARK_THEME_SOURCE],
+    source: ["src/colors/colors.json", DARK_THEME_SOURCE],
     selector: ".dark",
     filter: isDarkThemeToken,
   }),

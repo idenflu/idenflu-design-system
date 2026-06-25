@@ -559,5 +559,51 @@
       "$type": "color",
       "$value": "{Base.Blue.900}"
     }
+  },
+  "Transparent": {
+    "0": {
+      "$type": "color",
+      "$value": "rgba(255, 255, 255, 0)"
+    },
+    "50": {
+      "$type": "color",
+      "$value": "rgba(255, 255, 255, 0.05)"
+    },
+    "100": {
+      "$type": "color",
+      "$value": "rgba(255, 255, 255, 0.1)"
+    },
+    "200": {
+      "$type": "color",
+      "$value": "rgba(255, 255, 255, 0.2)"
+    },
+    "300": {
+      "$type": "color",
+      "$value": "rgba(255, 255, 255, 0.3)"
+    },
+    "400": {
+      "$type": "color",
+      "$value": "rgba(255, 255, 255, 0.4)"
+    },
+    "500": {
+      "$type": "color",
+      "$value": "rgba(255, 255, 255, 0.5)"
+    },
+    "600": {
+      "$type": "color",
+      "$value": "rgba(255, 255, 255, 0.6)"
+    },
+    "700": {
+      "$type": "color",
+      "$value": "rgba(255, 255, 255, 0.7)"
+    },
+    "800": {
+      "$type": "color",
+      "$value": "rgba(255, 255, 255, 0.8)"
+    },
+    "900": {
+      "$type": "color",
+      "$value": "rgba(255, 255, 255, 0.9)"
+    }
   }
 }

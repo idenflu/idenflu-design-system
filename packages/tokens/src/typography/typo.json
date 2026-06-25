@@ -100,6 +100,22 @@
       "16": {
         "$type": "number",
         "$value": 92
+      },
+      "17": {
+        "$type": "number",
+        "$value": 104
+      },
+      "18": {
+        "$type": "number",
+        "$value": 116
+      },
+      "19": {
+        "$type": "number",
+        "$value": 128
+      },
+      "20": {
+        "$type": "number",
+        "$value": 140
       }
     },
     "Numeric": {

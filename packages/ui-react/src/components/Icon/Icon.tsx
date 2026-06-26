@@ -40,7 +40,7 @@ export const Icon = React.forwardRef<SVGSVGElement, IconProps>(
         width={px}
         height={px}
         viewBox="0 0 24 24"
-        className={cn(iconClassName(), "nova-icon", className)}
+        className={cn(iconClassName(), className)}
         {...a11y}
         {...props}
       >

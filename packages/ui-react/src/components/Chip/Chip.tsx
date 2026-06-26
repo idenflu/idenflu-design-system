@@ -5,12 +5,7 @@ import { Icon } from "../Icon/Icon";
 import styles from "./Chip.module.css";
 
 export type ChipVariant = "filled" | "outlined";
-export type ChipColor =
-  | "neutral"
-  | "primary"
-  | "success"
-  | "warning"
-  | "danger";
+export type ChipColor = "neutral" | "info" | "success" | "warning" | "error";
 export type ChipSize = "sm" | "md" | "lg";
 
 export type ChipProps = Omit<
@@ -35,9 +30,9 @@ const chipClassName = cva(styles.root, {
   },
   variants: {
     color: {
-      danger: styles.colorDanger,
+      error: styles.colorError,
       neutral: styles.colorNeutral,
-      primary: styles.colorPrimary,
+      info: styles.colorInfo,
       success: styles.colorSuccess,
       warning: styles.colorWarning,
     },

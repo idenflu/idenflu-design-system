@@ -34,7 +34,7 @@ const iconButtonClassName = cva(styles.root, {
     color: {
       danger: styles.colorDanger,
       primary: styles.colorPrimary,
-      secondary: styles.colorSecondary,
+      neutral: styles.colorNeutral,
     },
     loading: {
       false: null,

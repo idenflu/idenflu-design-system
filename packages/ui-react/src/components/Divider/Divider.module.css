@@ -1,13 +1,9 @@
 /* Nova Divider — separator pattern adapted from MUI Divider and Carbon UI shell dividers */
 
 .root {
-  --nova-divider-color: var(--theme-border-default);
-  --nova-divider-gap: var(--spacing-04);
-  --nova-divider-thickness: thin;
-
   border: 0;
   box-sizing: border-box;
-  color: var(--theme-text-secondary);
+  color: var(--text-muted);
   flex: 0 0 auto;
   font: var(--label-md);
   margin: 0;
@@ -15,18 +11,16 @@
 }
 
 .orientationHorizontal {
-  border-block-start: var(--nova-divider-thickness) solid
-    var(--nova-divider-color);
+  border-block-start: 1px solid var(--border-subtle);
   inline-size: auto;
-  margin-inline: var(--spacing-08);
+  margin-inline: 8px;
 }
 
 .orientationVertical {
   align-self: stretch;
-  border-inline-start: var(--nova-divider-thickness) solid
-    var(--nova-divider-color);
-  margin-block: var(--spacing-08);
-  min-block-size: var(--spacing-12);
+  border-inline-start: 1px solid var(--border-subtle);
+  margin-block: 8px;
+  min-block-size: 48px;
 }
 
 .orientationHorizontal.fullWidth {
@@ -45,36 +39,34 @@
   align-items: center;
   border: 0;
   display: flex;
-  gap: var(--nova-divider-gap);
+  gap: 12px;
 }
 
 .withChildren::before,
 .withChildren::after {
-  border-color: var(--nova-divider-color);
+  border-color: var(--border-subtle);
   content: "";
   flex: 1 1 auto;
 }
 
 .orientationHorizontal.withChildren::before,
 .orientationHorizontal.withChildren::after {
-  border-block-start: var(--nova-divider-thickness) solid
-    var(--nova-divider-color);
+  border-block-start: 1px solid var(--border-subtle);
 }
 
 .orientationVertical.withChildren {
   flex-direction: column;
-  min-block-size: var(--spacing-12);
+  min-block-size: 48px;
 }
 
 .orientationVertical.withChildren::before,
 .orientationVertical.withChildren::after {
-  border-inline-start: var(--nova-divider-thickness) solid
-    var(--nova-divider-color);
+  border-inline-start: 1px solid var(--border-subtle);
 }
 
 .textStart::before,
 .textEnd::after {
-  flex: 0 0 var(--spacing-08);
+  flex: 0 0 32px;
 }
 
 .label {

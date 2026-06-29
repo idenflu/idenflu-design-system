@@ -159,6 +159,7 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
     const describedBy =
       [ariaDescribedBy, helperId].filter(Boolean).join(" ") || undefined;
     const hasError = Boolean(error);
+    const isFilled = variant === "filled";
     const optionItems = React.useMemo(
       () => options ?? collectOptionsFromChildren(children),
       [children, options]
@@ -174,6 +175,39 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
       </option>
     ));
 
+    const control = (
+      <>
+        <select
+          ref={ref}
+          id={selectId}
+          className={styles.control}
+          aria-describedby={describedBy}
+          aria-invalid={hasError || undefined}
+          aria-label={label ? undefined : ariaLabel}
+          aria-readonly={readOnly || undefined}
+          defaultValue={value === undefined ? defaultValue : undefined}
+          disabled={disabled || readOnly}
+          required={required}
+          value={value}
+          onChange={(event) => {
+            onChange?.(event.target.value, event);
+            onValueChange?.(event.target.value);
+          }}
+          {...props}
+        >
+          {placeholder ? (
+            <option value="" disabled={required}>
+              {placeholder}
+            </option>
+          ) : null}
+          {options ? renderedOptions : children}
+        </select>
+        <span className={styles.chevron} aria-hidden="true">
+          <Icon name="keyboard-arrow-down" size={16} />
+        </span>
+      </>
+    );
+
     return (
       <div
         className={cn(
@@ -188,42 +222,20 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
           className
         )}
       >
-        {label ? (
+        {!isFilled && label ? (
           <label className={styles.label} htmlFor={selectId}>
             {label}
           </label>
         ) : null}
 
-        <div className={styles.controlWrap}>
-          <select
-            ref={ref}
-            id={selectId}
-            className={styles.control}
-            aria-describedby={describedBy}
-            aria-invalid={hasError || undefined}
-            aria-label={label ? undefined : ariaLabel}
-            aria-readonly={readOnly || undefined}
-            defaultValue={value === undefined ? defaultValue : undefined}
-            disabled={disabled || readOnly}
-            required={required}
-            value={value}
-            onChange={(event) => {
-              onChange?.(event.target.value, event);
-              onValueChange?.(event.target.value);
-            }}
-            {...props}
-          >
-            {placeholder ? (
-              <option value="" disabled={required}>
-                {placeholder}
-              </option>
-            ) : null}
-            {options ? renderedOptions : children}
-          </select>
-          <span className={styles.chevron} aria-hidden="true">
-            <Icon name="keyboard-arrow-down" size={16} />
-          </span>
-        </div>
+        {isFilled ? (
+          <label className={styles.controlWrap} htmlFor={selectId}>
+            {label ? <span className={styles.label}>{label}</span> : null}
+            {control}
+          </label>
+        ) : (
+          <div className={styles.controlWrap}>{control}</div>
+        )}
 
         {helperId ? (
           <p

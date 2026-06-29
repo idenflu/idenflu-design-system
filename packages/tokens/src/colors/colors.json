@@ -240,47 +240,43 @@
   "Transparent": {
     "0": {
       "$type": "color",
-      "$value": "rgba(255, 255, 255, 0)"
-    },
-    "50": {
-      "$type": "color",
-      "$value": "rgba(255, 255, 255, 0.05)"
+      "$value": "rgba(0, 0, 0, 0)"
     },
     "100": {
       "$type": "color",
-      "$value": "rgba(255, 255, 255, 0.1)"
+      "$value": "rgba(0, 0, 0, 0.03)"
     },
     "200": {
       "$type": "color",
-      "$value": "rgba(255, 255, 255, 0.2)"
+      "$value": "rgba(0, 0, 0, 0.06)"
     },
     "300": {
       "$type": "color",
-      "$value": "rgba(255, 255, 255, 0.3)"
+      "$value": "rgba(0, 0, 0, 0.3)"
     },
     "400": {
       "$type": "color",
-      "$value": "rgba(255, 255, 255, 0.4)"
+      "$value": "rgba(0, 0, 0, 0.4)"
     },
     "500": {
       "$type": "color",
-      "$value": "rgba(255, 255, 255, 0.5)"
+      "$value": "rgba(0, 0, 0, 0.5)"
     },
     "600": {
       "$type": "color",
-      "$value": "rgba(255, 255, 255, 0.6)"
+      "$value": "rgba(0, 0, 0, 0.6)"
     },
     "700": {
       "$type": "color",
-      "$value": "rgba(255, 255, 255, 0.7)"
+      "$value": "rgba(0, 0, 0, 0.7)"
     },
     "800": {
       "$type": "color",
-      "$value": "rgba(255, 255, 255, 0.8)"
+      "$value": "rgba(0, 0, 0, 0.8)"
     },
     "900": {
       "$type": "color",
-      "$value": "rgba(255, 255, 255, 0.9)"
+      "$value": "rgba(0, 0, 0, 0.9)"
     }
   }
 }

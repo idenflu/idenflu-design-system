@@ -6,6 +6,14 @@ export type {
   ButtonVariant,
 } from "./components/Button/index";
 
+export { Alert, AlertTitle } from "./components/Alert/index";
+export type {
+  AlertProps,
+  AlertSeverity,
+  AlertTitleProps,
+  AlertVariant,
+} from "./components/Alert/index";
+
 export { IconButton } from "./components/IconButton/index";
 export type {
   IconButtonColor,

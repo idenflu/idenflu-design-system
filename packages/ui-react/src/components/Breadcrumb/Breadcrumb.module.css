@@ -1,7 +1,5 @@
-/* Nova Breadcrumb — informed by MUI Breadcrumbs and Carbon Breadcrumb a11y patterns */
-
 .root {
-  color: var(--theme-text-secondary);
+  color: var(--text-secondary);
   font: var(--label-lg);
   max-inline-size: 100%;
 }
@@ -23,18 +21,7 @@
 
 .item {
   align-items: center;
-  display: inline-flex;
-  min-inline-size: 0;
-}
-
-.itemCurrent {
-  color: var(--theme-text-primary);
-}
-
-.page,
-.text {
-  align-items: center;
-  color: inherit;
+  color: var(--text-muted);
   display: inline-flex;
   font: inherit;
   gap: var(--spacing-02);
@@ -43,17 +30,13 @@
   min-inline-size: 0;
 }
 
-.page {
-  color: var(--theme-text-primary);
-}
-
-.text {
-  color: var(--base-gray-500);
+.itemCurrent {
+  color: var(--text-primary);
 }
 
 .separator {
   align-items: center;
-  color: var(--theme-text-tertiary);
+  color: var(--text-muted);
   display: inline-flex;
   flex: 0 0 auto;
   user-select: none;
@@ -61,7 +44,7 @@
 
 .ellipsis {
   align-items: center;
-  color: var(--theme-text-tertiary);
+  color: var(--text-muted);
   display: inline-flex;
   justify-content: center;
 }

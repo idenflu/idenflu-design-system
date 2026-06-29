@@ -1,5 +1,3 @@
-/* Nova Spinner — indeterminate loading indicator */
-
 .root {
   display: inline-flex;
   flex: 0 0 auto;
@@ -7,13 +5,13 @@
 }
 
 .colorPrimary {
-  --nova-spinner-track: var(--brand-primary-subtle);
-  --nova-spinner-indicator: var(--theme-interactive-primary);
+  --nova-spinner-track: var(--background-primary-subtle);
+  --nova-spinner-indicator: var(--background-primary-default);
 }
 
-.colorSecondary {
-  --nova-spinner-track: var(--theme-border-muted);
-  --nova-spinner-indicator: var(--theme-interactive-secondary);
+.colorNeutral {
+  --nova-spinner-track: var(--background-neutral-subtle);
+  --nova-spinner-indicator: var(--background-neutral-default);
 }
 
 .colorInherit {
@@ -129,45 +127,6 @@
   transform: scale(0.6);
 }
 
-.bars {
-  align-items: center;
-  display: inline-flex;
-  gap: var(--nova-spinner-bar-gap);
-  height: var(--nova-spinner-bar-height);
-}
-
-.bar {
-  animation: nova-spinner-bar-scale 1s ease-in-out infinite;
-  background-color: var(--nova-spinner-indicator);
-  border-radius: var(--rounded-sm);
-  display: block;
-  flex: 0 0 auto;
-  height: var(--nova-spinner-bar-length);
-  transform: scaleY(0.4);
-  width: var(--nova-spinner-bar-width);
-}
-
-.bar:nth-child(1) {
-  animation-delay: -0.4s;
-}
-
-.bar:nth-child(2) {
-  animation-delay: -0.2s;
-}
-
-.bar:nth-child(4) {
-  animation-delay: 0.2s;
-}
-
-.bar:nth-child(5) {
-  animation-delay: 0.4s;
-}
-
-.inactive .bar {
-  animation: none;
-  transform: scaleY(0.4);
-}
-
 @keyframes nova-spinner-spin {
   to {
     transform: rotate(360deg);
@@ -188,22 +147,9 @@
   }
 }
 
-@keyframes nova-spinner-bar-scale {
-  0%,
-  40%,
-  100% {
-    transform: scaleY(0.4);
-  }
-
-  20% {
-    transform: scaleY(1);
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .ring,
-  .dot,
-  .bar {
+  .dot {
     animation: none;
   }
 }

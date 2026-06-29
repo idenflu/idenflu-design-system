@@ -1,11 +1,10 @@
 import * as React from "react";
 import { cva } from "class-variance-authority";
 import { cn } from "@/utils/classNames";
-import type { TextInputSize, TextInputVariant } from "../TextInput/TextInput";
+import type { TextInputVariant } from "../TextInput/TextInput";
 import styles from "./TextArea.module.css";
 
 export type TextAreaVariant = TextInputVariant;
-export type TextAreaSize = TextInputSize;
 
 export type TextAreaProps = Omit<
   React.TextareaHTMLAttributes<HTMLTextAreaElement>,
@@ -20,7 +19,6 @@ export type TextAreaProps = Omit<
   minRows?: number;
   rows?: number;
   showCount?: boolean;
-  size?: TextAreaSize;
   variant?: TextAreaVariant;
 };
 
@@ -31,7 +29,6 @@ const textAreaClassName = cva(styles.root, {
     error: false,
     fullWidth: false,
     readOnly: false,
-    size: "md",
     variant: "default",
   },
   variants: {
@@ -54,11 +51,6 @@ const textAreaClassName = cva(styles.root, {
     readOnly: {
       false: null,
       true: styles.readOnly,
-    },
-    size: {
-      lg: styles.sizeLg,
-      md: styles.sizeMd,
-      sm: styles.sizeSm,
     },
     variant: {
       default: styles.variantDefault,
@@ -144,7 +136,6 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
       readOnly,
       rows = 4,
       showCount = false,
-      size = "md",
       value,
       variant = "default",
       ...props
@@ -246,7 +237,6 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             error: hasError,
             fullWidth,
             readOnly,
-            size,
             variant,
           }),
           className

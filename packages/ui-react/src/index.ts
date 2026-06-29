@@ -24,7 +24,6 @@ export type {
 export { TextArea } from "./components/TextArea/index";
 export type {
   TextAreaProps,
-  TextAreaSize,
   TextAreaVariant,
 } from "./components/TextArea/index";
 
@@ -175,7 +174,6 @@ export {
   BreadcrumbEllipsis,
   BreadcrumbItem,
   BreadcrumbList,
-  BreadcrumbPage,
   BreadcrumbSeparator,
 } from "./components/Breadcrumb/index";
 export type {
@@ -191,8 +189,8 @@ export type { DatePickerProps, DateRange } from "./components/DatePicker";
 export { iconNames } from "@idenflu/ui-icons";
 export type { IconName } from "@idenflu/ui-icons";
 
-export { SelectListbox } from "./components/SelectListbox";
-export type { SelectListboxProps } from "./components/SelectListbox";
+export { SelectListbox } from "./components/SelectListBox";
+export type { SelectListboxProps } from "./components/SelectListBox";
 
 export { Textarea } from "./components/Textarea";
 export type { TextareaProps } from "./components/Textarea";

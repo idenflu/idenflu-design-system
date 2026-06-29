@@ -95,15 +95,6 @@ function isCurrentItem(
   return item.current || current === item.id || current === index;
 }
 
-function renderItemContent(item: BreadcrumbItem) {
-  return (
-    <>
-      {item.icon ? <span className={styles.icon}>{item.icon}</span> : null}
-      <span className={styles.label}>{item.label}</span>
-    </>
-  );
-}
-
 export const Breadcrumb = React.forwardRef<HTMLDivElement, BreadcrumbProps>(
   (
     {
@@ -133,12 +124,7 @@ export const Breadcrumb = React.forwardRef<HTMLDivElement, BreadcrumbProps>(
     return (
       <div
         ref={ref}
-        className={cn(
-          "nova-breadcrumb",
-          styles.root,
-          size === "sm" && styles.sizeSm,
-          className
-        )}
+        className={cn(styles.root, size === "sm" && styles.sizeSm, className)}
         {...props}
       >
         {items ? (
@@ -156,13 +142,13 @@ export const Breadcrumb = React.forwardRef<HTMLDivElement, BreadcrumbProps>(
               return (
                 <React.Fragment key={itemKey}>
                   {item.collapsed ? (
-                    <BreadcrumbItem>
-                      <BreadcrumbEllipsis aria-label={overflowLabel} />
-                    </BreadcrumbItem>
+                    <BreadcrumbEllipsis aria-label={overflowLabel} />
                   ) : (
-                    <BreadcrumbItem current={isCurrent}>
-                      <RenderedBreadcrumbItem item={item} current={isCurrent} />
-                    </BreadcrumbItem>
+                    <BreadcrumbItem
+                      current={isCurrent}
+                      icon={item.icon}
+                      label={item.label}
+                    />
                   )}
                   {index < renderableItems.length - 1 ? (
                     <BreadcrumbSeparator>{separator}</BreadcrumbSeparator>
@@ -185,46 +171,34 @@ export function BreadcrumbList({
   className,
   ...props
 }: React.ComponentProps<"ol">) {
-  return (
-    <ol
-      className={cn("nova-breadcrumb__list", styles.list, className)}
-      {...props}
-    />
-  );
+  return <ol className={cn(styles.list, className)} {...props} />;
 }
 
-export type BreadcrumbItemProps = React.ComponentPropsWithoutRef<"li"> & {
+export type BreadcrumbItemProps = Omit<
+  React.ComponentPropsWithoutRef<"li">,
+  "children"
+> & {
   current?: boolean;
+  icon?: React.ReactNode;
+  label: React.ReactNode;
 };
 
 export function BreadcrumbItem({
   className,
   current = false,
+  icon,
+  label,
   ...props
 }: BreadcrumbItemProps) {
   return (
     <li
-      className={cn(
-        "nova-breadcrumb__item",
-        styles.item,
-        current && styles.itemCurrent,
-        className
-      )}
+      aria-current={current ? "page" : undefined}
+      className={cn(styles.item, current && styles.itemCurrent, className)}
       {...props}
-    />
-  );
-}
-
-export function BreadcrumbPage({
-  className,
-  ...props
-}: React.ComponentProps<"span">) {
-  return (
-    <span
-      aria-current="page"
-      className={cn("nova-breadcrumb__page", styles.page, className)}
-      {...props}
-    />
+    >
+      {icon ? <span className={styles.icon}>{icon}</span> : null}
+      <span className={styles.label}>{label}</span>
+    </li>
   );
 }
 
@@ -237,7 +211,7 @@ export function BreadcrumbSeparator({
     <li
       role="presentation"
       aria-hidden="true"
-      className={cn("nova-breadcrumb__separator", styles.separator, className)}
+      className={cn(styles.separator, className)}
       {...props}
     >
       {children ?? "/"}
@@ -249,39 +223,14 @@ export function BreadcrumbEllipsis({
   "aria-label": ariaLabel = "Collapsed breadcrumb items",
   className,
   ...props
-}: React.ComponentProps<"span">) {
+}: React.ComponentProps<"li">) {
   return (
-    <span
+    <li
       aria-label={ariaLabel}
-      role="img"
-      className={cn("nova-breadcrumb__ellipsis", styles.ellipsis, className)}
+      className={cn(styles.ellipsis, className)}
       {...props}
     >
-      <Icon
-        name="more-horizontal"
-        size={16}
-        style={{ color: "var(--theme-text-secondary)" }}
-      />
-    </span>
-  );
-}
-
-function RenderedBreadcrumbItem({
-  current,
-  item,
-}: {
-  current: boolean;
-  item: BreadcrumbItem;
-}) {
-  const className = cn(
-    "nova-breadcrumb__text",
-    current ? styles.page : styles.text
-  );
-  const content = renderItemContent(item);
-
-  return (
-    <span aria-current={current ? "page" : undefined} className={className}>
-      {content}
-    </span>
+      <Icon name="more-horizontal" size={16} />
+    </li>
   );
 }

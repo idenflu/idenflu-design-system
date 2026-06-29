@@ -10,54 +10,53 @@ const overviewStyles = {
   root: {
     display: "flex",
     flexDirection: "column" as const,
+    alignItems: "flex-start",
     gap: "40px",
-    fontFamily: "var(Inter, system-ui, sans-serif)",
-    width: "100%",
-    maxWidth: "960px",
+    fontFamily: "var(--if-font-family, Inter, system-ui, sans-serif)",
+    padding: "0 120px",
   },
   section: {
     display: "flex",
     flexDirection: "column" as const,
     gap: "16px",
+    width: "100%",
   },
   heading: {
-    fontSize: "13px",
-    fontWeight: 600,
+    fontSize: "14px",
+    font: "var(--title-md)",
+    fontWeight: 500,
     letterSpacing: "0.02em",
     margin: 0,
     textTransform: "uppercase" as const,
-    color: "var(--theme-text-secondary, #566173)",
+    color: "var(--text-secondary)",
   },
   row: {
-    alignItems: "center",
+    alignItems: "flex-start",
     display: "flex",
     flexWrap: "wrap" as const,
-    gap: "16px",
+    gap: "40px",
   },
   cell: {
     alignItems: "center",
     display: "flex",
     flexDirection: "column" as const,
-    gap: "8px",
+    gap: "20px",
     minWidth: "72px",
   },
   label: {
-    color: "var(--theme-text-secondary, #8792a5)",
-    fontSize: "11px",
-    margin: 0,
-    textAlign: "center" as const,
+    color: "var(--text-muted)",
+    fontSize: "12px",
   },
   grid: {
     display: "grid",
-    gap: "16px 24px",
-    gridTemplateColumns: "repeat(auto-fill, minmax(88px, 1fr))",
+    gap: "var(--spacing-08) var(--spacing-07)",
+    gridTemplateColumns: "repeat(auto-fill, minmax(80px, 1fr))",
+    width: "100%",
   },
   note: {
-    color: "var(--theme-text-secondary, #566173)",
-    fontSize: "13px",
-    lineHeight: 1.5,
+    color: "var(--text-secondary)",
+    fontSize: "12px",
     margin: 0,
-    maxWidth: "640px",
   },
 };
 
@@ -136,7 +135,15 @@ export const Overview: Story = {
         </div>
       </OverviewSection>
 
-      <OverviewSection title="Color (default secondary, override via color)">
+      <OverviewSection title="Color">
+        <div>
+          <p style={overviewStyles.note}>
+            style 속성으로 color 제어 (text token 사용을 권장)
+          </p>
+          <p
+            style={overviewStyles.note}
+          >{`style={{ color: "var(--text-link)" }}`}</p>
+        </div>
         <div style={overviewStyles.row}>
           <span>
             <Icon name="add" size="large" />
@@ -145,33 +152,16 @@ export const Overview: Story = {
             <Icon
               name="info"
               size="large"
-              style={{ color: "var(--theme-text-brand)" }}
+              style={{ color: "var(--text-link)" }}
             />
           </span>
           <span>
             <Icon
               name="warning"
               size="large"
-              style={{ color: "var(--theme-text-danger)" }}
+              style={{ color: "var(--text-error)" }}
             />
           </span>
-        </div>
-      </OverviewSection>
-
-      <OverviewSection title="Accessibility">
-        <p style={overviewStyles.note}>
-          Decorative (default): hidden from assistive tech. Semantic: pass
-          `label` for `role="img"`. Icon-only actions must use `IconButton` with
-          its own `label`.
-        </p>
-        <div style={overviewStyles.row}>
-          <Icon name="help" size="large" label="Help" />
-          <IconButton
-            icon={<Icon name="search" size="small" />}
-            label="Search"
-            size="md"
-            variant="ghost"
-          />
         </div>
       </OverviewSection>
 
@@ -179,7 +169,11 @@ export const Overview: Story = {
         <div style={overviewStyles.grid}>
           {iconNames.map((name) => (
             <div key={name} style={overviewStyles.cell}>
-              <Icon name={name} size="medium" />
+              <Icon
+                name={name}
+                size="large"
+                style={{ color: "var(--text-secondary)" }}
+              />
               <p style={overviewStyles.label}>{name.replace("icon-", "")}</p>
             </div>
           ))}

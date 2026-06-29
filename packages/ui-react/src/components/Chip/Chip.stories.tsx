@@ -1,83 +1,69 @@
 import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { fn } from "storybook/test";
 import { Chip, type ChipColor, type ChipSize, type ChipVariant } from "./Chip";
 import { Icon } from "../Icon/Icon";
 
 const variants: ChipVariant[] = ["filled", "outlined"];
-const colors: ChipColor[] = [
-  "neutral",
-  "primary",
-  "success",
-  "warning",
-  "danger",
-];
+const colors: ChipColor[] = ["neutral", "info", "success", "warning", "error"];
 const sizes: ChipSize[] = ["lg", "md", "sm"];
 
 const overviewStyles = {
   root: {
     display: "flex",
     flexDirection: "column" as const,
-    gap: "var(--spacing-08)",
-    fontFamily: "var(--font-family-sans)",
-    width: "100%",
-    maxWidth: "960px",
+    alignItems: "flex-start",
+    gap: "40px",
+    fontFamily: "var(--if-font-family, Inter, system-ui, sans-serif)",
+    padding: "0 120px",
   },
   section: {
     display: "flex",
     flexDirection: "column" as const,
-    gap: "var(--spacing-05)",
+    gap: "16px",
   },
   heading: {
-    color: "var(--theme-text-secondary)",
-    font: "var(--label-md)",
-    fontWeight: "var(--font-weight-semibold)",
+    fontSize: "14px",
+    font: "var(--title-md)",
+    fontWeight: 500,
     letterSpacing: "0.02em",
     margin: 0,
     textTransform: "uppercase" as const,
+    color: "var(--text-secondary)",
   },
   matrix: {
     alignItems: "center",
     display: "grid",
-    gap: "var(--spacing-04) var(--spacing-05)",
+    gap: "var(--spacing-06) var(--spacing-07)",
     gridTemplateColumns: "80px repeat(5, minmax(116px, 1fr))",
     justifyItems: "center",
   },
   stateMatrix: {
     alignItems: "center",
     display: "grid",
-    gap: "var(--spacing-04) var(--spacing-05)",
+    gap: "var(--spacing-06) var(--spacing-07)",
     gridTemplateColumns: "80px repeat(2, minmax(116px, 1fr))",
     justifyItems: "center",
   },
   matrixHeader: {
-    color: "var(--theme-text-tertiary)",
+    color: "var(--text-secondary)",
     font: "var(--label-md)",
     textAlign: "center" as const,
   },
   matrixRowLabel: {
-    color: "var(--theme-text-tertiary)",
+    color: "var(--text-secondary)",
     font: "var(--label-md)",
     textTransform: "capitalize" as const,
-  },
-  row: {
-    alignItems: "center",
-    display: "flex",
-    flexWrap: "wrap" as const,
-    gap: "var(--spacing-03)",
-  },
-  note: {
-    color: "var(--theme-text-secondary)",
-    font: "var(--body-md)",
-    margin: 0,
-    maxWidth: "680px",
   },
 };
 
 const stateColumns = [
   { id: "default", label: "Default", props: {} },
-  { id: "deletable", label: "Deletable", props: { onDelete: fn() } },
+  { id: "deletable", label: "Deletable", props: { onDelete: handleDelete } },
 ] as const;
+
+function handleDelete() {
+  console.log("chip deleted");
+}
 
 function OverviewSection({
   children,
@@ -122,7 +108,9 @@ function ColorSizeMatrix({ variant }: { variant: ChipVariant }) {
   );
 }
 
-type PlaygroundArgs = React.ComponentProps<typeof Chip>;
+type PlaygroundArgs = Omit<React.ComponentProps<typeof Chip>, "onDelete"> & {
+  onDelete?: boolean;
+};
 
 const meta = {
   title: "Components/Chip",
@@ -142,8 +130,9 @@ const meta = {
     color: { control: "select", options: colors },
     size: { control: "select", options: sizes },
     deleteLabel: { control: "text" },
+    onDelete: { control: "boolean" },
   },
-} satisfies Meta<PlaygroundArgs>;
+} satisfies Meta<typeof Chip>;
 
 export default meta;
 type Story = StoryObj<PlaygroundArgs>;
@@ -175,7 +164,7 @@ export const Overview: Story = {
               {stateColumns.map((column) => (
                 <Chip
                   key={`${variant}-${column.id}`}
-                  color="primary"
+                  color="info"
                   startIcon={<Icon name="filter" />}
                   variant={variant}
                   {...column.props}
@@ -187,14 +176,6 @@ export const Overview: Story = {
           ))}
         </div>
       </OverviewSection>
-
-      <OverviewSection title="Accessibility">
-        <p style={overviewStyles.note}>
-          Use <code>onDelete</code> for removable filters; the delete control
-          renders a native <code>button</code>. Provide <code>deleteLabel</code>{" "}
-          when the label needs domain-specific screen reader text.
-        </p>
-      </OverviewSection>
     </div>
   ),
 };
@@ -203,6 +184,9 @@ export const Playground: Story = {
   parameters: {
     layout: "centered",
   },
+  render: ({ onDelete, ...args }) => (
+    <Chip {...args} onDelete={onDelete ? handleDelete : undefined} />
+  ),
   args: {
     children: "Audience",
     color: "neutral",
@@ -210,6 +194,6 @@ export const Playground: Story = {
     size: "md",
     startIcon: <Icon name="filter" />,
     variant: "filled",
-    // onDelete: fn(),
+    onDelete: true,
   },
 };

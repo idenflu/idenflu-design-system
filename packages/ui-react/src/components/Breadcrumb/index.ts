@@ -3,7 +3,6 @@ export {
   BreadcrumbEllipsis,
   BreadcrumbItem,
   BreadcrumbList,
-  BreadcrumbPage,
   BreadcrumbSeparator,
 } from "./Breadcrumb";
 

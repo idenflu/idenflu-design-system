@@ -13,61 +13,57 @@ const overviewStyles = {
   root: {
     display: "flex",
     flexDirection: "column" as const,
-    gap: "var(--spacing-08)",
-    fontFamily: "var(--font-family-sans)",
-    width: "100%",
-    maxWidth: "960px",
+    alignItems: "flex-start",
+    gap: "40px",
+    fontFamily: "var(--if-font-family, Inter, system-ui, sans-serif)",
+    padding: "0 120px",
   },
   section: {
     display: "flex",
     flexDirection: "column" as const,
-    gap: "var(--spacing-05)",
+    gap: "16px",
   },
   heading: {
-    color: "var(--theme-text-secondary)",
-    font: "var(--label-md)",
-    fontWeight: "var(--font-weight-semibold)",
+    fontSize: "14px",
+    fontWeight: 500,
     letterSpacing: "0.02em",
     margin: 0,
     textTransform: "uppercase" as const,
+    color: "#566173",
   },
   matrix: {
     display: "grid",
-    gap: "var(--spacing-05)",
+    gap: "20px 40px",
     gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+    alignItems: "center",
+    justifyItems: "center",
   },
   sample: {
     display: "flex",
     flexDirection: "column" as const,
-    gap: "var(--spacing-04)",
+    gap: "8px",
+    width: "100%",
   },
   variantFrame: {
-    border: "thin dashed var(--theme-border-default)",
-    padding: "var(--spacing-04)",
+    border: "thin dashed #e0e0e0",
+    padding: "8px",
   },
   horizontalRow: {
     alignItems: "center",
     display: "flex",
     flexDirection: "column" as const,
-    gap: "var(--spacing-06)",
-    minHeight: "var(--spacing-12)",
+    gap: "24px",
+    minHeight: "48px",
   },
   verticalRow: {
     alignItems: "center",
     display: "flex",
-    gap: "var(--spacing-06)",
-    minHeight: "var(--spacing-12)",
+    gap: "24px",
+    minHeight: "48px",
   },
   label: {
-    color: "var(--theme-text-tertiary)",
-    font: "var(--label-md)",
-    margin: 0,
-  },
-  note: {
-    color: "var(--theme-text-secondary)",
-    font: "var(--body-md)",
-    margin: 0,
-    maxWidth: "680px",
+    color: "#8792a5",
+    fontSize: "12px",
   },
 };
 
@@ -95,7 +91,6 @@ type PlaygroundArgs = React.ComponentProps<typeof Divider>;
 const meta = {
   title: "Components/Divider",
   component: Divider,
-  tags: ["autodocs"],
   parameters: {
     docs: {
       description: {
@@ -141,6 +136,8 @@ export const Overview: Story = {
         </div>
       </OverviewSection>
 
+      <Divider flexItem fullWidth />
+
       <OverviewSection title="Orientation">
         <LabeledSample>
           <p style={overviewStyles.label}>horizontal</p>
@@ -161,6 +158,8 @@ export const Overview: Story = {
         </LabeledSample>
       </OverviewSection>
 
+      <Divider flexItem fullWidth />
+
       <OverviewSection title="Text Alignment">
         {textAligns.map((textAlign) => (
           <LabeledSample key={textAlign}>
@@ -168,15 +167,6 @@ export const Overview: Story = {
             <Divider textAlign={textAlign}>Section</Divider>
           </LabeledSample>
         ))}
-      </OverviewSection>
-
-      <OverviewSection title="Accessibility">
-        <p style={overviewStyles.note}>
-          Dividers are hidden from assistive technology by default because they
-          are usually visual separators. Set <code>semantic</code> when the
-          divider communicates a meaningful content boundary. Dividers with
-          labels are always exposed as separators so the label is not hidden.
-        </p>
       </OverviewSection>
     </div>
   ),

@@ -3,9 +3,13 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Icon } from "../Icon";
 import {
   Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbList,
+  BreadcrumbSeparator,
   type BreadcrumbItem as BreadcrumbItemData,
   type BreadcrumbSize,
 } from "./Breadcrumb";
+import { Divider } from "../Divider";
 
 const sizes: BreadcrumbSize[] = ["md", "sm"];
 
@@ -13,9 +17,10 @@ const overviewStyles = {
   root: {
     display: "flex",
     flexDirection: "column" as const,
+    alignItems: "flex-start",
     gap: "40px",
-    width: "100%",
-    maxWidth: "960px",
+    fontFamily: "var(--if-font-family, Inter, system-ui, sans-serif)",
+    padding: "0 120px",
   },
   section: {
     display: "flex",
@@ -23,30 +28,27 @@ const overviewStyles = {
     gap: "16px",
   },
   heading: {
-    color: "var(--theme-text-secondary)",
-    fontSize: "13px",
-    fontWeight: 600,
+    fontSize: "14px",
+    fontWeight: 500,
     letterSpacing: "0.02em",
     margin: 0,
     textTransform: "uppercase" as const,
+    color: "#566173",
   },
   matrix: {
     display: "grid",
-    gap: "16px 24px",
+    gap: "20px 40px",
     gridTemplateColumns: "80px 1fr",
+    alignItems: "center",
+    justifyItems: "center",
   },
   matrixLabel: {
-    color: "var(--theme-text-secondary)",
-    fontSize: "11px",
+    color: "#8792a5",
+    fontSize: "12px",
     fontWeight: 500,
     textTransform: "capitalize" as const,
-  },
-  note: {
-    color: "var(--theme-text-secondary)",
-    fontSize: "13px",
-    lineHeight: 1.5,
-    margin: 0,
-    maxWidth: "680px",
+    width: "100%",
+    textAlign: "left" as const,
   },
 };
 
@@ -83,7 +85,6 @@ function OverviewSection({
 const meta = {
   title: "Components/Breadcrumb",
   component: Breadcrumb,
-  tags: ["autodocs"],
   parameters: {
     docs: {
       description: {
@@ -120,31 +121,36 @@ export const Overview: Story = {
         </div>
       </OverviewSection>
 
+      <Divider flexItem fullWidth />
+
       <OverviewSection title="Truncated">
         <Breadcrumb items={longItems} maxItems={3} />
       </OverviewSection>
+
+      <Divider flexItem fullWidth />
 
       <OverviewSection title="Icons and Custom Separator">
         <Breadcrumb
           items={[
             {
               id: "home",
-              icon: <Icon name="arrow-right" size={16} />,
+              icon: <Icon name="star" size={16} />,
               label: "Home",
             },
-            { id: "settings", label: "Settings" },
-            { id: "profile", label: "Profile", current: true },
+            {
+              id: "settings",
+              icon: <Icon name="star" size={16} />,
+              label: "Settings",
+            },
+            {
+              id: "profile",
+              icon: <Icon name="star" size={16} />,
+              label: "Profile",
+              current: true,
+            },
           ]}
           separator=">"
         />
-      </OverviewSection>
-
-      <OverviewSection title="Accessibility">
-        <p style={overviewStyles.note}>
-          Use <code>current</code> or item <code>current</code> to mark the
-          active page. Breadcrumb items are text only, so keyboard focus remains
-          with the page content instead of the path indicator.
-        </p>
       </OverviewSection>
     </div>
   ),
@@ -158,4 +164,19 @@ export const Playground: Story = {
     separator: "/",
     size: "md",
   },
+};
+
+export const Composition: Story = {
+  parameters: { layout: "centered" },
+  render: () => (
+    <Breadcrumb>
+      <BreadcrumbList>
+        <BreadcrumbItem label="Home" />
+        <BreadcrumbSeparator />
+        <BreadcrumbItem label="Campaigns" />
+        <BreadcrumbSeparator />
+        <BreadcrumbItem current label="Performance Report" />
+      </BreadcrumbList>
+    </Breadcrumb>
+  ),
 };

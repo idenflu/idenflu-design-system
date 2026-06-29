@@ -5,7 +5,7 @@ import styles from "./Button.module.css";
 import { ButtonSpinner } from "./ButtonSpinner";
 
 export type ButtonVariant = "default" | "outlined" | "ghost";
-export type ButtonColor = "primary" | "secondary" | "danger";
+export type ButtonColor = "primary" | "neutral" | "danger";
 export type ButtonSize = "xs" | "sm" | "md" | "lg";
 
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
@@ -30,7 +30,7 @@ const buttonClassName = cva(styles.root, {
     color: {
       danger: styles.colorDanger,
       primary: styles.colorPrimary,
-      secondary: styles.colorSecondary,
+      neutral: styles.colorNeutral,
     },
     fullWidth: {
       false: null,

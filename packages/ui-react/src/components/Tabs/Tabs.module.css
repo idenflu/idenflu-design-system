@@ -1,8 +1,5 @@
-/* Nova Tabs — Figma nodes 119:624, 119:830 */
-
 .root {
   display: flex;
-  gap: 16px;
 }
 
 .orientationHorizontal {
@@ -59,9 +56,9 @@
 .trigger {
   align-items: center;
   appearance: none;
-  background: var(--theme-interactive-transparent);
+  background: var(--background-transparent);
   border: 0;
-  color: var(--theme-text-muted);
+  color: var(--text-muted);
   cursor: pointer;
   display: inline-flex;
   flex: 0 0 auto;
@@ -73,7 +70,7 @@
   min-height: 40px;
   min-width: 80px;
   overflow: hidden;
-  padding-block: 12px;
+  padding-block: 8px;
   padding-inline: 16px;
   position: relative;
   text-align: start;
@@ -85,7 +82,7 @@
 }
 
 .indicator {
-  background: var(--theme-border-strong);
+  background: var(--background-primary-default);
   opacity: 1;
   pointer-events: none;
   position: absolute;
@@ -124,8 +121,8 @@
 
 @media (hover: hover) and (pointer: fine) {
   .trigger:hover:not(:disabled):not([data-state="active"]) {
-    background: var(--theme-interactive-hover);
-    color: var(--theme-text-hover);
+    /* background: var(--background-transparent-hover); */
+    color: var(--text-hover);
   }
 
   .trigger:hover:not(:disabled) .closeIcon {
@@ -133,19 +130,19 @@
   }
 
   .closeIcon:hover {
-    background: var(--theme-interactive-active);
+    background: var(--background-transparent-active);
   }
 }
 
 .trigger:focus-visible {
-  outline: 2px solid var(--theme-border-focused);
+  outline: 2px solid var(--border-focused);
   outline-offset: -2px;
   z-index: 2;
 }
 
 .trigger:disabled,
 .trigger[data-disabled] {
-  color: var(--theme-text-disabled);
+  color: var(--text-disabled);
   cursor: not-allowed;
   pointer-events: none;
 }
@@ -180,7 +177,7 @@
 }
 
 .closeIcon {
-  background: var(--theme-interactive-transparent);
+  background: var(--background-transparent);
   border-radius: var(--rounded-full);
   cursor: pointer;
   height: 24px;
@@ -220,9 +217,9 @@
 .scrollButton {
   align-items: center;
   appearance: none;
-  background: var(--theme-surface-transparent);
+  background: var(--background-transparent);
   border: 0;
-  color: var(--theme-text-primary);
+  color: var(--text-primary);
   cursor: pointer;
   display: inline-flex;
   flex: 0 0 auto;
@@ -238,29 +235,29 @@
 
 @media (hover: hover) and (pointer: fine) {
   .scrollButton:hover:not(:disabled) {
-    background: var(--theme-surface-hover);
+    background: var(--background-transparent-hover);
   }
 }
 
 .scrollButton:focus-visible {
-  outline: 2px solid var(--theme-border-focused);
+  outline: 2px solid var(--border-focused);
   outline-offset: -2px;
 }
 
 .scrollButton:disabled {
-  color: var(--theme-text-disabled);
+  color: var(--text-disabled);
   cursor: not-allowed;
 }
 
 .content {
-  color: var(--theme-text-primary);
+  color: var(--text-primary);
   font: var(--body-md);
   min-width: 0;
   outline: none;
 }
 
 .content:focus-visible {
-  outline: 2px solid var(--theme-border-focused);
+  outline: 2px solid var(--border-focused);
   outline-offset: 1px;
 }
 

@@ -14,7 +14,7 @@
     },
     "disabled": {
       "$type": "color",
-      "$value": "{Base.Gray.300}"
+      "$value": "{Base.Gray.200}"
     },
     "focused": {
       "$type": "color",
@@ -50,11 +50,11 @@
     },
     "neutral-hover": {
       "$type": "color",
-      "$value": "{Base.Gray.800}"
+      "$value": "{Base.Gray.700}"
     },
     "neutral-active": {
       "$type": "color",
-      "$value": "{Base.Gray.700}"
+      "$value": "{Base.Gray.500}"
     }
   },
   "Background": {
@@ -78,6 +78,10 @@
       "subtle-hover": {
         "$type": "color",
         "$value": "{Brand.300}"
+      },
+      "tint": {
+        "$type": "color",
+        "$value": "{Brand.100}"
       }
     },
     "Neutral": {
@@ -100,6 +104,10 @@
       "subtle-hover": {
         "$type": "color",
         "$value": "{Base.Gray.300}"
+      },
+      "tint": {
+        "$type": "color",
+        "$value": "{Base.Gray.100}"
       }
     },
     "Error": {
@@ -122,6 +130,10 @@
       "subtle-hover": {
         "$type": "color",
         "$value": "{Base.Red.300}"
+      },
+      "tint": {
+        "$type": "color",
+        "$value": "{Base.Red.100}"
       }
     },
     "Success": {
@@ -144,6 +156,10 @@
       "subtle-hover": {
         "$type": "color",
         "$value": "{Base.Green.300}"
+      },
+      "tint": {
+        "$type": "color",
+        "$value": "{Base.Green.100}"
       }
     },
     "Warning": {
@@ -166,6 +182,10 @@
       "subtle-hover": {
         "$type": "color",
         "$value": "{Base.Amber.300}"
+      },
+      "tint": {
+        "$type": "color",
+        "$value": "{Base.Amber.100}"
       }
     },
     "Info": {
@@ -188,23 +208,25 @@
       "subtle-hover": {
         "$type": "color",
         "$value": "{Base.Blue.300}"
+      },
+      "tint": {
+        "$type": "color",
+        "$value": "{Base.Blue.100}"
       }
     },
-    "Transparent": {
-      "default": {
-        "$type": "color",
-        "$value": "{Transparent.0}"
-      },
-      "hover": {
-        "$type": "color",
-        "$value": "{Transparent.50}"
-      },
-      "active": {
-        "$type": "color",
-        "$value": "{Transparent.100}"
-      }
+    "transparent": {
+      "$type": "color",
+      "$value": "{Transparent.0}"
     },
-    "Disabled": {
+    "transparent-hover": {
+      "$type": "color",
+      "$value": "{Transparent.100}"
+    },
+    "transparent-active": {
+      "$type": "color",
+      "$value": "{Transparent.200}"
+    },
+    "disabled": {
       "$type": "color",
       "$value": "{Base.Gray.200}"
     }

@@ -15,10 +15,10 @@ const overviewStyles = {
   root: {
     display: "flex",
     flexDirection: "column" as const,
+    alignItems: "flex-start",
     gap: "40px",
-    fontFamily: "var(Inter, system-ui, sans-serif)",
-    width: "100%",
-    maxWidth: "960px",
+    fontFamily: "var(--if-font-family, Inter, system-ui, sans-serif)",
+    padding: "0 120px",
   },
   section: {
     display: "flex",
@@ -26,54 +26,40 @@ const overviewStyles = {
     gap: "16px",
   },
   heading: {
-    fontSize: "13px",
-    fontWeight: 600,
+    fontSize: "14px",
+    font: "var(--title-md)",
+    fontWeight: 500,
     letterSpacing: "0.02em",
     margin: 0,
     textTransform: "uppercase" as const,
-    color: "var(--theme-text-secondary, #566173)",
+    color: "var(--text-secondary)",
   },
   row: {
     alignItems: "flex-start",
     display: "flex",
     flexWrap: "wrap" as const,
-    gap: "24px",
+    gap: "40px",
   },
-  cell: {
-    display: "flex",
-    flexDirection: "column" as const,
-    gap: "8px",
-    minWidth: "240px",
-  },
-  label: {
-    color: "var(--theme-text-tertiary, #8792a5)",
-    fontSize: "11px",
-    margin: 0,
+  fullWidthExample: {
+    maxWidth: "100%",
+    width: "640px",
   },
   matrix: {
-    display: "grid",
-    gap: "16px 24px",
-    gridTemplateColumns: "80px repeat(3, minmax(200px, 1fr))",
     alignItems: "start",
+    display: "grid",
+    gap: "var(--spacing-06) var(--spacing-07)",
+    gridTemplateColumns: "80px repeat(3, minmax(200px, 1fr))",
+    justifyItems: "center",
   },
   matrixHeader: {
-    color: "var(--theme-text-tertiary, #8792a5)",
-    fontSize: "11px",
-    fontWeight: 500,
+    color: "var(--text-secondary)",
+    font: "var(--label-md)",
     textAlign: "center" as const,
   },
   matrixRowLabel: {
-    color: "var(--theme-text-tertiary, #8792a5)",
-    fontSize: "11px",
-    fontWeight: 500,
+    color: "var(--text-secondary)",
+    font: "var(--label-md)",
     textTransform: "capitalize" as const,
-  },
-  a11yNote: {
-    color: "var(--theme-text-secondary, #566173)",
-    fontSize: "13px",
-    lineHeight: 1.5,
-    margin: 0,
-    maxWidth: "640px",
   },
 };
 
@@ -94,11 +80,11 @@ function OverviewSection({
 
 const stateColumns = [
   { id: "enabled", label: "Enabled", props: {} },
-  { id: "error", label: "Error", props: { error: "Helper Text" } },
+  { id: "error", label: "Error", props: { error: "Error Description" } },
   { id: "disabled", label: "Disabled", props: { disabled: true } },
 ] as const;
 
-function VariantStateMatrix({ variant }: { variant: TextInputVariant }) {
+function VariantStateMatrix() {
   return (
     <div style={overviewStyles.matrix}>
       <div />
@@ -107,16 +93,15 @@ function VariantStateMatrix({ variant }: { variant: TextInputVariant }) {
           {column.label}
         </span>
       ))}
-      {sizes.map((size) => (
-        <React.Fragment key={size}>
-          <span style={overviewStyles.matrixRowLabel}>{size}</span>
+      {variants.map((variant) => (
+        <React.Fragment key={variant}>
+          <span style={overviewStyles.matrixRowLabel}>{variant}</span>
           {stateColumns.map((column) => (
             <TextInput
-              key={`${variant}-${size}-${column.id}`}
+              key={`${variant}-${column.id}`}
               defaultValue="Value"
-              helperText={column.id === "enabled" ? "Helper Text" : undefined}
               label="Label"
-              size={size}
+              size="md"
               variant={variant}
               {...column.props}
             />
@@ -127,12 +112,79 @@ function VariantStateMatrix({ variant }: { variant: TextInputVariant }) {
   );
 }
 
+function SizeDefaultMatrix() {
+  return (
+    <div style={overviewStyles.row}>
+      {sizes.map((size) => (
+        <TextInput
+          key={size}
+          defaultValue="Value"
+          helperText={size}
+          label="Label"
+          size={size}
+          variant="default"
+        />
+      ))}
+    </div>
+  );
+}
+
+function FullWidthExample() {
+  return (
+    <div style={overviewStyles.fullWidthExample}>
+      <TextInput defaultValue="Value" fullWidth label="Label" variant="default" />
+    </div>
+  );
+}
+
+function HelperTextExample() {
+  return (
+    <div style={overviewStyles.row}>
+      <TextInput
+        defaultValue="Value"
+        helperText="Helper Text"
+        label="Label"
+        variant="default"
+      />
+      <TextInput
+        defaultValue="Value"
+        error="Helper Text"
+        label="Label"
+        variant="default"
+      />
+    </div>
+  );
+}
+
+function TypeExample() {
+  return (
+    <div style={overviewStyles.row}>
+      {types.map((type) => (
+        <TextInput
+          key={type}
+          defaultValue={type === "email" ? "value@example.com" : "Value"}
+          helperText={type}
+          label="Label"
+          placeholder={
+            type === "email"
+              ? "you@example.com"
+              : type === "password"
+                ? "Password"
+                : "Placeholder"
+          }
+          type={type}
+          variant="default"
+        />
+      ))}
+    </div>
+  );
+}
+
 type PlaygroundArgs = React.ComponentProps<typeof TextInput>;
 
 const meta = {
   title: "Components/TextInput",
   component: TextInput,
-  tags: ["autodocs"],
   parameters: {
     docs: {
       description: {
@@ -163,43 +215,24 @@ export const Overview: Story = {
   },
   render: () => (
     <div style={overviewStyles.root}>
-      {variants.map((variant) => (
-        <OverviewSection key={variant} title={`${variant} — size × state`}>
-          <VariantStateMatrix variant={variant} />
-        </OverviewSection>
-      ))}
-
-      <OverviewSection title="Input types">
-        <div style={overviewStyles.row}>
-          {types.map((type) => (
-            <div key={type} style={overviewStyles.cell}>
-              <TextInput
-                defaultValue={type === "email" ? "value@example.com" : "value"}
-                helperText="Helper Text"
-                label="Label"
-                placeholder={
-                  type === "email"
-                    ? "you@example.com"
-                    : type === "password"
-                      ? "••••••••"
-                      : "Placeholder"
-                }
-                type={type}
-              />
-              <p style={overviewStyles.label}>{type}</p>
-            </div>
-          ))}
-        </div>
+      <OverviewSection title="Variant x State">
+        <VariantStateMatrix />
       </OverviewSection>
 
-      <OverviewSection title="Accessibility">
-        <p style={overviewStyles.a11yNote}>
-          Use a visible <code>label</code> (or <code>aria-label</code> when
-          label is omitted). Pair validation messages with <code>error</code> so
-          they are linked through <code>aria-describedby</code>. Password fields
-          include a visibility toggle with <code>aria-label</code> and{" "}
-          <code>aria-pressed</code>.
-        </p>
+      <OverviewSection title="Size">
+        <SizeDefaultMatrix />
+      </OverviewSection>
+
+      <OverviewSection title="FullWidth">
+        <FullWidthExample />
+      </OverviewSection>
+
+      <OverviewSection title="Helper Text">
+        <HelperTextExample />
+      </OverviewSection>
+
+      <OverviewSection title="Type">
+        <TypeExample />
       </OverviewSection>
     </div>
   ),

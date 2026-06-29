@@ -3,9 +3,9 @@ import { cva } from "class-variance-authority";
 import { cn } from "@/utils/classNames";
 import styles from "./Spinner.module.css";
 
-export type SpinnerColor = "primary" | "secondary" | "inherit";
+export type SpinnerColor = "primary" | "neutral" | "inherit";
 export type SpinnerSize = "xs" | "sm" | "md" | "lg";
-export type SpinnerVariant = "ring" | "dot" | "equalizer";
+export type SpinnerVariant = "ring" | "dot";
 
 export type SpinnerProps = React.HTMLAttributes<HTMLSpanElement> & {
   /** When false, shows a static indicator without animation. Defaults to true. */
@@ -35,7 +35,7 @@ const spinnerClassName = cva(styles.root, {
     color: {
       inherit: styles.colorInherit,
       primary: styles.colorPrimary,
-      secondary: styles.colorSecondary,
+      neutral: styles.colorNeutral,
     },
     size: {
       lg: styles.sizeLg,
@@ -45,7 +45,6 @@ const spinnerClassName = cva(styles.root, {
     },
     variant: {
       dot: styles.variantDot,
-      equalizer: styles.variantEqualizer,
       ring: styles.variantRing,
     },
   },
@@ -58,17 +57,6 @@ function SpinnerIndicator({ variant }: { variant: SpinnerVariant }) {
         <span className={styles.dot} />
         <span className={styles.dot} />
         <span className={styles.dot} />
-      </span>
-    );
-  }
-
-  if (variant === "equalizer") {
-    return (
-      <span className={styles.bars} aria-hidden="true">
-        <span className={styles.bar} />
-        <span className={styles.bar} />
-        <span className={styles.bar} />
-        <span className={styles.bar} />
       </span>
     );
   }

@@ -220,7 +220,7 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
             ) : null}
             {options ? renderedOptions : children}
           </select>
-          <span className={styles.indicator} aria-hidden="true">
+          <span className={styles.chevron} aria-hidden="true">
             <Icon name="keyboard-arrow-down" size={16} />
           </span>
         </div>

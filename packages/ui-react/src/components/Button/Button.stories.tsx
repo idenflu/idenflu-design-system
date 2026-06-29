@@ -9,6 +9,7 @@ import {
   type ButtonVariant,
 } from "./Button";
 import { Icon } from "../Icon/Icon";
+import { Divider } from "../Divider";
 
 const variants: ButtonVariant[] = ["default", "outlined", "ghost"];
 const colors: ButtonColor[] = ["primary", "neutral", "danger"];
@@ -30,11 +31,12 @@ const overviewStyles = {
   },
   heading: {
     fontSize: "14px",
+    font: "var(--title-md)",
     fontWeight: 500,
     letterSpacing: "0.02em",
     margin: 0,
     textTransform: "uppercase" as const,
-    color: "#566173",
+    color: "var(--text-secondary)",
   },
   row: {
     alignItems: "flex-start",
@@ -46,33 +48,30 @@ const overviewStyles = {
     alignItems: "center",
     display: "flex",
     flexDirection: "column" as const,
-    gap: "20px",
-    minWidth: "120px",
+    gap: "8px",
+    minWidth: "72px",
   },
   label: {
-    color: "#8792a5",
-    fontSize: "12px",
+    color: "var(--text-secondary)",
+    font: "var(--label-md)",
+    margin: 0,
   },
   matrix: {
     display: "grid",
-    gap: "20px 40px",
+    gap: "var(--spacing-06) var(--spacing-07)",
     gridTemplateColumns: "80px repeat(3, minmax(120px, 1fr))",
     alignItems: "center",
     justifyItems: "center",
   },
   matrixHeader: {
-    color: "#8792a5",
-    fontSize: "12px",
-    fontWeight: 500,
+    color: "var(--text-secondary)",
+    font: "var(--label-md)",
     textAlign: "center" as const,
   },
   matrixRowLabel: {
-    color: "#8792a5",
-    fontSize: "12px",
-    fontWeight: 500,
+    color: "var(--text-secondary)",
+    font: "var(--label-md)",
     textTransform: "capitalize" as const,
-    width: "100%",
-    textAlign: "left" as const,
   },
   fullWidthContainer: {
     display: "flex",
@@ -177,6 +176,8 @@ export const Overview: Story = {
         </div>
       </OverviewSection>
 
+      <Divider flexItem fullWidth />
+
       <OverviewSection title="Variant × State">
         <div style={overviewStyles.matrix}>
           <div />
@@ -210,6 +211,8 @@ export const Overview: Story = {
         </div>
       </OverviewSection>
 
+      <Divider flexItem fullWidth />
+
       <OverviewSection title="Sizes">
         <div style={overviewStyles.row}>
           {sizes.map((size) => (
@@ -227,6 +230,8 @@ export const Overview: Story = {
           ))}
         </div>
       </OverviewSection>
+
+      <Divider flexItem fullWidth />
 
       <OverviewSection title="Full Width">
         <div style={overviewStyles.fullWidthContainer}>

@@ -7,6 +7,7 @@ import { ButtonSpinner } from "./ButtonSpinner";
 export type ButtonVariant = "default" | "outlined" | "ghost";
 export type ButtonColor = "primary" | "neutral" | "danger";
 export type ButtonSize = "xs" | "sm" | "md" | "lg";
+type ButtonIconLayout = "both" | "endOnly" | "none" | "startOnly";
 
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   color?: ButtonColor;
@@ -14,6 +15,7 @@ export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   fullWidth?: boolean;
   loading?: boolean;
   size?: ButtonSize;
+  startIcon?: React.ReactNode;
   variant?: ButtonVariant;
 };
 
@@ -21,6 +23,8 @@ const buttonClassName = cva(styles.root, {
   defaultVariants: {
     color: "primary",
     fullWidth: false,
+    hasStartIcon: false,
+    iconLayout: "none",
     loading: false,
     loadingSolo: false,
     size: "md",
@@ -35,6 +39,16 @@ const buttonClassName = cva(styles.root, {
     fullWidth: {
       false: null,
       true: styles.fullWidth,
+    },
+    hasStartIcon: {
+      false: null,
+      true: styles.hasStartIcon,
+    },
+    iconLayout: {
+      both: styles.iconLayoutBoth,
+      endOnly: styles.iconLayoutEndOnly,
+      none: null,
+      startOnly: styles.iconLayoutStartOnly,
     },
     loading: {
       false: null,
@@ -58,6 +72,28 @@ const buttonClassName = cva(styles.root, {
   },
 });
 
+function resolveIconLayout(
+  startIcon?: React.ReactNode,
+  endIcon?: React.ReactNode
+): ButtonIconLayout {
+  const hasStartIcon = Boolean(startIcon);
+  const hasEndIcon = Boolean(endIcon);
+
+  if (hasStartIcon && hasEndIcon) {
+    return "both";
+  }
+
+  if (hasStartIcon) {
+    return "startOnly";
+  }
+
+  if (hasEndIcon) {
+    return "endOnly";
+  }
+
+  return "none";
+}
+
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
@@ -70,6 +106,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       loading = false,
       onClick,
       size = "md",
+      startIcon,
       type = "button",
       variant = "default",
       ...props
@@ -77,8 +114,29 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const isDisabled = disabled || loading;
-    const showSpinnerInIconSlot = loading && Boolean(endIcon);
-    const showSpinnerInsteadOfLabel = loading && !endIcon;
+    const iconLayout = resolveIconLayout(startIcon, endIcon);
+    const hasIcon = iconLayout !== "none";
+    const showSpinnerInsteadOfLabel = loading && !hasIcon;
+
+    const labelElement = showSpinnerInsteadOfLabel ? (
+      <span className={styles.label} aria-hidden="true">
+        <ButtonSpinner size={size} />
+      </span>
+    ) : children != null && children !== "" ? (
+      <span className={styles.label}>{children}</span>
+    ) : null;
+
+    const startIconElement = startIcon ? (
+      <span className={styles.icon} aria-hidden="true">
+        {loading ? <ButtonSpinner size={size} /> : startIcon}
+      </span>
+    ) : null;
+
+    const endIconElement = endIcon ? (
+      <span className={styles.icon} aria-hidden="true">
+        {loading ? <ButtonSpinner size={size} /> : endIcon}
+      </span>
+    ) : null;
 
     return (
       <button
@@ -88,6 +146,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           buttonClassName({
             color,
             fullWidth,
+            hasStartIcon: Boolean(startIcon),
+            iconLayout,
             loading,
             loadingSolo: showSpinnerInsteadOfLabel,
             size,
@@ -106,22 +166,9 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         type={type}
         {...props}
       >
-        {showSpinnerInsteadOfLabel ? (
-          <span className={styles.label} aria-hidden="true">
-            <ButtonSpinner size={size} />
-          </span>
-        ) : children != null && children !== "" ? (
-          <span className={styles.label}>{children}</span>
-        ) : null}
-        {showSpinnerInIconSlot ? (
-          <span className={styles.icon} aria-hidden="true">
-            <ButtonSpinner size={size} />
-          </span>
-        ) : endIcon ? (
-          <span className={styles.icon} aria-hidden="true">
-            {endIcon}
-          </span>
-        ) : null}
+        {startIconElement}
+        {labelElement}
+        {endIconElement}
       </button>
     );
   }

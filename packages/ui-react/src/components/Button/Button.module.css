@@ -10,7 +10,11 @@
   justify-content: flex-start;
   min-width: 96px;
   overflow: hidden;
-  padding-inline: 16px;
+  padding-inline-end: calc(
+    16px + 16px + 16px
+  ); /* 16px (paddding) + 16px (icon) + 16px (gap) */
+  padding-inline-start: 16px;
+  position: relative;
   transition:
     background-color 120ms ease,
     border-color 120ms ease,
@@ -37,9 +41,61 @@
   color: currentColor;
 }
 
-.root:has(.label):has(.icon) {
-  justify-content: space-between;
-  gap: 16px;
+.hasStartIcon {
+  padding-inline-end: 16px;
+  padding-inline-start: calc(16px + 16px + 16px);
+  /* 16px (paddding) + 16px (icon) + 16px (gap) */
+}
+
+.iconLayoutEndOnly .label {
+  text-align: left;
+}
+
+.iconLayoutEndOnly > .icon {
+  inset-block: 0;
+  margin-block: auto;
+  position: absolute;
+  right: 16px; /* 16px (padding) */
+}
+
+.iconLayoutStartOnly {
+  justify-content: flex-end;
+}
+
+.iconLayoutStartOnly .label {
+  text-align: right;
+}
+
+.iconLayoutStartOnly > .icon {
+  inset-block: 0;
+  left: 16px; /* 16px (padding) */
+  margin-block: auto;
+  position: absolute;
+}
+
+.iconLayoutBoth {
+  justify-content: center;
+  padding-inline: calc(16px + 16px + 16px);
+  /* 16px (paddding) + 16px (icon) + 16px (gap) */
+}
+
+.iconLayoutBoth > .icon:first-child {
+  inset-block: 0;
+  left: 16px; /* 16px (padding) */
+  margin-block: auto;
+  position: absolute;
+}
+
+.iconLayoutBoth > .label {
+  text-align: center;
+  width: 100%;
+}
+
+.iconLayoutBoth > .icon:last-child {
+  inset-block: 0;
+  margin-block: auto;
+  position: absolute;
+  right: 16px; /* 16px (padding) */
 }
 
 .root:focus-visible {

@@ -84,6 +84,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
       id,
       label,
       readOnly,
+      required,
       size = "md",
       type = "text",
       variant = "default",
@@ -115,6 +116,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
         className={styles.input}
         disabled={disabled}
         readOnly={readOnly}
+        required={required}
         {...props}
       />
     );
@@ -156,14 +158,25 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
       >
         {!isFilled && label ? (
           <label className={styles.label} htmlFor={inputId}>
-            {label}
+            <span>{label}</span>
+            {required ? (
+              <span className={styles.required}>Required*</span>
+            ) : null}
           </label>
         ) : null}
 
         {isFilled ? (
-          <label className={controlClassName({ filled: isFilled })} htmlFor={inputId}>
+          <label
+            className={controlClassName({ filled: isFilled })}
+            htmlFor={inputId}
+          >
             {label ? (
-              <span className={styles.label}>{label}</span>
+              <span className={styles.label}>
+                <span>{label}</span>
+                {required ? (
+                  <span className={styles.required}>Required*</span>
+                ) : null}
+              </span>
             ) : null}
             {fieldContent}
           </label>

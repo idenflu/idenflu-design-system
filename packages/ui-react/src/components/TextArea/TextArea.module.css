@@ -9,13 +9,26 @@
 }
 
 .label {
-  color: var(--text-muted);
+  align-items: center;
+  box-sizing: border-box;
+  color: var(--text-secondary);
+  display: flex;
   font: var(--label-md);
+  gap: 16px;
+  justify-content: space-between;
   padding-bottom: 4px;
+  width: 100%;
 }
 
 .disabled .label {
   color: var(--text-disabled);
+}
+
+.required {
+  color: var(--text-muted);
+  font: var(--label-md);
+  font-style: normal;
+  flex-shrink: 0;
 }
 
 .control {
@@ -66,6 +79,13 @@
 
 .textarea:read-only:not(:disabled) {
   cursor: default;
+}
+
+.readOnly .textarea {
+  color: var(--text-disabled);
+  cursor: default;
+  pointer-events: none;
+  -webkit-text-fill-color: var(--text-disabled);
 }
 
 .footer {
@@ -160,6 +180,10 @@
   cursor: text;
   gap: 4px;
   padding-block: 8px;
+}
+
+.variantFilled.readOnly .control {
+  cursor: default;
 }
 
 .variantFilled .control .label {

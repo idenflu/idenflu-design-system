@@ -12,13 +12,26 @@
 }
 
 .label {
-  color: var(--text-muted);
+  align-items: center;
+  box-sizing: border-box;
+  color: var(--text-secondary);
+  display: flex;
   font: var(--label-md);
+  gap: 16px;
+  justify-content: space-between;
   padding-bottom: 4px;
+  width: 100%;
 }
 
 .disabled .label {
   color: var(--text-disabled);
+}
+
+.required {
+  color: var(--text-muted);
+  font: var(--label-md);
+  font-style: normal;
+  flex-shrink: 0;
 }
 
 .control {
@@ -65,13 +78,19 @@
   transform: translateY(-50%);
 }
 
-.disabled .control,
-.readOnly .control {
+.disabled .control {
   cursor: not-allowed;
 }
 
 .disabled .control {
   color: var(--text-disabled);
+}
+
+.readOnly .control {
+  color: var(--text-disabled);
+  cursor: default;
+  pointer-events: none;
+  -webkit-text-fill-color: var(--text-disabled);
 }
 
 .disabled .chevron {

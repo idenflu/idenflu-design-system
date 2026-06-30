@@ -48,7 +48,7 @@ const overviewStyles = {
     alignItems: "start",
     display: "grid",
     gap: "var(--spacing-06) var(--spacing-07)",
-    gridTemplateColumns: "80px repeat(3, minmax(200px, 1fr))",
+    gridTemplateColumns: "80px repeat(5, minmax(200px, 1fr))",
     justifyItems: "center",
   },
   matrixHeader: {
@@ -80,6 +80,8 @@ function OverviewSection({
 
 const stateColumns = [
   { id: "enabled", label: "Enabled", props: {} },
+  { id: "required", label: "Required", props: { required: true } },
+  { id: "read-only", label: "Read-only", props: { readOnly: true } },
   { id: "error", label: "Error", props: { error: "Error Description" } },
   { id: "disabled", label: "Disabled", props: { disabled: true } },
 ] as const;
@@ -202,6 +204,7 @@ const meta = {
     fullWidth: { control: "boolean" },
     disabled: { control: "boolean" },
     readOnly: { control: "boolean" },
+    required: { control: "boolean" },
   },
 } satisfies Meta<PlaygroundArgs>;
 
@@ -247,6 +250,7 @@ export const Playground: Story = {
     helperText: "Helper Text",
     label: "Label",
     readOnly: false,
+    required: false,
     size: "lg",
     type: "text",
     variant: "default",

@@ -81,11 +81,12 @@
   cursor: default;
 }
 
-.readOnly .textarea {
-  color: var(--text-disabled);
+.readOnly .textarea,
+.readOnly .label {
+  color: var(--text-muted);
   cursor: default;
   pointer-events: none;
-  -webkit-text-fill-color: var(--text-disabled);
+  -webkit-text-fill-color: var(--text-muted);
 }
 
 .footer {

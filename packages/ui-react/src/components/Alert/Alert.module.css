@@ -1,0 +1,119 @@
+.root {
+  align-items: flex-start;
+  border: 1px solid;
+  box-sizing: border-box;
+  display: flex;
+  font: var(--body-md);
+  gap: 16px;
+  padding: 12px 16px;
+  width: 100%;
+}
+
+.icon,
+.close {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  justify-content: center;
+}
+
+.icon {
+  margin-block-start: 2px;
+}
+
+.content {
+  color: currentColor;
+  display: grid;
+  flex: 1 1 auto;
+  font: var(--body-md);
+  gap: var(--spacing-01);
+  min-width: 0;
+}
+
+.title {
+  font: var(--label-lg);
+  font-weight: var(--font-weight-semibold);
+}
+
+.content p {
+  margin: 0;
+}
+
+.action {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: var(--spacing-02);
+  margin-inline-start: auto;
+}
+
+.close {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  border-radius: var(--rounded-full);
+  cursor: pointer;
+  color: var(--text-secondary);
+  margin-block-start: calc(4px * -1);
+  margin-inline-end: calc(4px * -1);
+  padding: 4px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .close:hover:not(:disabled) {
+    background: var(--background-transparent-active);
+  }
+}
+
+.close:focus-visible {
+  outline: 2px solid var(--border-focused);
+  outline-offset: 1px;
+}
+
+.variantOutlined.severityInfo {
+  background: var(--background-info-tint);
+  border-color: var(--border-info);
+  color: var(--text-link-strong);
+}
+
+.variantOutlined.severitySuccess {
+  background: var(--background-success-tint);
+  border-color: var(--border-success);
+  color: var(--text-success-strong);
+}
+
+.variantOutlined.severityWarning {
+  background: var(--background-warning-tint);
+  border-color: var(--border-warning);
+  color: var(--text-warning-strong);
+}
+
+.variantOutlined.severityError {
+  background: var(--background-error-tint);
+  border-color: var(--border-error);
+  color: var(--text-error-strong);
+}
+
+.variantFilled {
+  border: none;
+}
+
+.variantFilled.severityInfo {
+  background: var(--background-info-subtle);
+  color: var(--text-link-strong);
+}
+
+.variantFilled.severitySuccess {
+  background: var(--background-success-subtle);
+  color: var(--text-success-strong);
+}
+
+.variantFilled.severityWarning {
+  background: var(--background-warning-subtle);
+  color: var(--text-warning-strong);
+}
+
+.variantFilled.severityError {
+  background: var(--background-error-subtle);
+  color: var(--text-error-strong);
+}

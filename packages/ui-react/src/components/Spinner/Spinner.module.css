@@ -6,12 +6,12 @@
 
 .colorPrimary {
   --nova-spinner-track: var(--background-primary-subtle);
-  --nova-spinner-indicator: var(--background-primary-default);
+  --nova-spinner-indicator: var(--background-primary);
 }
 
 .colorNeutral {
   --nova-spinner-track: var(--background-neutral-subtle);
-  --nova-spinner-indicator: var(--background-neutral-default);
+  --nova-spinner-indicator: var(--background-neutral);
 }
 
 .colorInherit {

@@ -6,6 +6,14 @@ export type {
   ButtonVariant,
 } from "./components/Button/index";
 
+export { Alert, AlertTitle } from "./components/Alert/index";
+export type {
+  AlertProps,
+  AlertSeverity,
+  AlertTitleProps,
+  AlertVariant,
+} from "./components/Alert/index";
+
 export { IconButton } from "./components/IconButton/index";
 export type {
   IconButtonColor,
@@ -115,6 +123,20 @@ export type { ErrorStateProps, ErrorStateTone } from "./components/ErrorState";
 export { Switch } from "./components/Switch";
 export type { SwitchProps, SwitchSize } from "./components/Switch";
 
+export {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "./components/Tooltip/index";
+export type {
+  TooltipContentProps,
+  TooltipPosition,
+  TooltipProps,
+  TooltipTransition,
+  TooltipTriggerProps,
+} from "./components/Tooltip/index";
+
 export { Checkbox } from "./components/Checkbox";
 export type { CheckboxProps, CheckboxSize } from "./components/Checkbox";
 
@@ -157,11 +179,7 @@ export type {
 } from "./components/Icon/index";
 
 export { Avatar } from "./components/Avatar";
-export type {
-  AvatarPresence,
-  AvatarProps,
-  AvatarSize,
-} from "./components/Avatar";
+export type { AvatarProps, AvatarSize } from "./components/Avatar";
 
 export { Skeleton } from "./components/Skeleton";
 export type { SkeletonProps, SkeletonVariant } from "./components/Skeleton";

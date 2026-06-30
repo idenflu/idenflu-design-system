@@ -99,7 +99,7 @@
 /* Default + Primary */
 
 .variantDefault.colorPrimary {
-  background: var(--background-primary-default);
+  background: var(--background-primary);
   border-color: var(--border-brand);
 }
 
@@ -116,24 +116,24 @@
 }
 
 .variantDefault.colorNeutral {
-  background: var(--background-neutral-default);
+  background: var(--background-neutral-strong);
   border-color: var(--border-neutral);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .variantDefault.colorNeutral:hover:not(:disabled) {
-    background: var(--background-neutral-hover);
+    background: var(--background-neutral-strong-hover);
     border-color: var(--border-neutral-hover);
   }
 }
 
 .variantDefault.colorNeutral:active:not(:disabled) {
-  background: var(--background-neutral-active);
+  background: var(--background-neutral-strong-active);
   border-color: var(--border-neutral-active);
 }
 
 .variantDefault.colorDanger {
-  background: var(--background-error-default);
+  background: var(--background-error);
   border-color: var(--border-error);
 }
 

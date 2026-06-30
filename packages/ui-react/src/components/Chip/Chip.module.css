@@ -119,28 +119,28 @@
 
 .variantOutlined.colorInfo {
   background: var(--background-info-tint);
-  border-color: var(--background-info-default);
+  border-color: var(--border-info);
   color: var(--text-link-strong);
   --i-chip-hover-bg: var(--background-info-subtle);
 }
 
 .variantOutlined.colorSuccess {
   background: var(--background-success-tint);
-  border-color: var(--background-success-default);
+  border-color: var(--border-success);
   color: var(--text-success-strong);
   --i-chip-hover-bg: var(--background-success-subtle);
 }
 
 .variantOutlined.colorWarning {
   background: var(--background-warning-tint);
-  border-color: var(--background-warning-default);
+  border-color: var(--border-warning);
   color: var(--text-warning-strong);
   --i-chip-hover-bg: var(--background-warning-subtle);
 }
 
 .variantOutlined.colorError {
   background: var(--background-error-tint);
-  border-color: var(--background-error-default);
+  border-color: var(--border-error);
   color: var(--text-error-strong);
   --i-chip-hover-bg: var(--background-error-subtle);
 }

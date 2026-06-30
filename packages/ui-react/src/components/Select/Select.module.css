@@ -120,7 +120,7 @@
 
 .variantDefault .controlWrap {
   background: var(--surface-on-00);
-  box-shadow: inset 0 -1px 0 var(--border-default);
+  box-shadow: inset 0 -1px 0 var(--border-primary);
   transition:
     background-color 200ms ease,
     box-shadow 200ms ease;

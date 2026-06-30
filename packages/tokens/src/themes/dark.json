@@ -257,7 +257,11 @@
     },
     "disabled": {
       "$type": "color",
-      "$value": "{Base.Gray.200}"
+      "$value": "{Transparent.100}"
+    },
+    "transparent-active": {
+      "$type": "color",
+      "$value": "{Transparent.200}"
     }
   },
 

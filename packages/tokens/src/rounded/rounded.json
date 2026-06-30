@@ -15,10 +15,6 @@
     "$type": "number",
     "$value": 8
   },
-  "rounded-xl": {
-    "$type": "number",
-    "$value": 12
-  },
   "rounded-full": {
     "$type": "number",
     "$value": 9999

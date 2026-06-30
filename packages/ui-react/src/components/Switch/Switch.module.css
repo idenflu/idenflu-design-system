@@ -1,0 +1,124 @@
+.root {
+  align-items: center;
+  background: var(--background-neutral-subtle);
+  border: 1px solid var(--border-default);
+  border-radius: var(--rounded-full);
+  box-sizing: border-box;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: inline-flex;
+  flex-shrink: 0;
+  margin: 0;
+  outline: none;
+  padding: 0;
+  position: relative;
+  transition:
+    background-color 200ms ease,
+    border-color 200ms ease;
+}
+
+.root[data-state="checked"] {
+  background: var(--base-blue-500);
+  border-color: var(--base-blue-500);
+}
+
+.root:active:not(:disabled) {
+  border-color: var(--base-blue-700);
+}
+
+.root:focus-visible {
+  border-color: var(--border-focused);
+  outline: 2px solid var(--border-focused);
+  outline-offset: var(--spacing-01);
+}
+
+.root:disabled {
+  background: var(--background-disabled);
+  border-color: var(--border-disabled);
+  color: var(--text-disabled);
+  cursor: not-allowed;
+  opacity: 0.75;
+}
+
+.root[aria-invalid="true"] {
+  border-color: var(--border-error);
+}
+
+.sizeSm {
+  block-size: 20px;
+  inline-size: 32px;
+}
+
+.sizeMd {
+  block-size: 24px;
+  inline-size: 40px;
+}
+
+.thumb {
+  align-items: center;
+  background: var(--base-white);
+  border-radius: var(--rounded-full);
+  color: var(--text-muted);
+  display: block;
+  flex-shrink: 0;
+  justify-content: center;
+  pointer-events: none;
+  transform: translateX(2px);
+  transition: transform 200ms ease;
+}
+
+.root:disabled .thumb {
+  color: var(--text-disabled);
+}
+
+.sizeSm[data-state="checked"] .thumb {
+  transform: translateX(14px);
+}
+
+.sizeMd[data-state="checked"] .thumb {
+  transform: translateX(18px);
+}
+
+.thumbSizeSm {
+  block-size: 14px;
+  inline-size: 14px;
+
+  .icon {
+    block-size: 12px;
+    inline-size: 12px;
+  }
+}
+
+.thumbSizeMd {
+  block-size: 18px;
+  inline-size: 18px;
+
+  .icon {
+    block-size: 16px;
+    inline-size: 16px;
+  }
+}
+
+.thumbWithIcon {
+  display: flex;
+}
+
+.icon {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+}
+
+.icon svg {
+  block-size: 100%;
+  display: block;
+  inline-size: 100%;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root,
+  .thumb {
+    transition: none;
+  }
+}

@@ -166,7 +166,6 @@ export type {
 
 export { Avatar } from "./components/Avatar";
 export type {
-  AvatarPresence,
   AvatarProps,
   AvatarSize,
 } from "./components/Avatar";

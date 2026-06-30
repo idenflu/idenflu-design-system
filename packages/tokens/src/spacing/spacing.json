@@ -37,22 +37,26 @@
   },
   "spacing-10": {
     "$type": "number",
-    "$value": 64
+    "$value": 54
   },
   "spacing-11": {
     "$type": "number",
-    "$value": 80
+    "$value": 64
   },
   "spacing-12": {
     "$type": "number",
-    "$value": 96
+    "$value": 80
   },
   "spacing-13": {
     "$type": "number",
-    "$value": 112
+    "$value": 96
   },
   "spacing-14": {
     "$type": "number",
-    "$value": 160
+    "$value": 112
+  },
+  "spacing-15": {
+    "$type": "number",
+    "$value": 144
   }
 }

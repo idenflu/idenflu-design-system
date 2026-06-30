@@ -1,7 +1,7 @@
 .root {
   align-items: center;
   background: var(--background-neutral-subtle);
-  border: 1px solid var(--border-default);
+  border: 1px solid var(--border-primary);
   border-radius: var(--rounded-full);
   box-sizing: border-box;
   color: var(--text-secondary);

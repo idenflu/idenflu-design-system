@@ -82,7 +82,7 @@
 }
 
 .indicator {
-  background: var(--background-primary-default);
+  background: var(--background-primary);
   opacity: 1;
   pointer-events: none;
   position: absolute;

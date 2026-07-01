@@ -15,8 +15,8 @@ const BASE_SOURCE = [
   "src/rounded/rounded.json",
   "src/colors/colors.json",
   "src/spacing/spacing.json",
-  "src/typography/typo.json",
-  "src/typography/styles.json",
+  "src/typography/font.json",
+  "src/typography/typo-styles.json",
   "src/layout/tokens.json",
 ];
 

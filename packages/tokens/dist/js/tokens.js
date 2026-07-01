@@ -7,7 +7,6 @@ export default {
   "rounded-sm": "2px",
   "rounded-md": "4px",
   "rounded-lg": "8px",
-  "rounded-xl": "12px",
   "rounded-full": "9999px",
   "base-white": "#ffffff",
   "base-black": "#000000",
@@ -75,24 +74,25 @@ export default {
   "transparent-700": "rgba(0, 0, 0, 0.7)",
   "transparent-800": "rgba(0, 0, 0, 0.8)",
   "transparent-900": "rgba(0, 0, 0, 0.9)",
-  "spacing-01": "2px",
-  "spacing-02": "4px",
-  "spacing-03": "8px",
-  "spacing-04": "12px",
-  "spacing-05": "16px",
-  "spacing-06": "24px",
-  "spacing-07": "32px",
-  "spacing-08": "40px",
+  "spacing-01": "1px",
+  "spacing-02": "2px",
+  "spacing-03": "4px",
+  "spacing-04": "8px",
+  "spacing-05": "12px",
+  "spacing-06": "16px",
+  "spacing-07": "24px",
+  "spacing-08": "32px",
   "spacing-09": "48px",
   "spacing-10": "64px",
   "spacing-11": "80px",
   "spacing-12": "96px",
-  "spacing-13": "112px",
+  "spacing-13": "128px",
   "spacing-14": "160px",
+  "spacing-15": "192px",
   "font-family-base":
-    "Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+    "'Noto Sans KR', 'Noto Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
   "font-family-sans":
-    "Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+    "'Noto Sans KR', 'Noto Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
   "font-family-mono":
     "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
   "font-weight-light": 300,
@@ -143,29 +143,41 @@ export default {
   "font-line-height-08": "40px",
   "font-line-height-09": "44px",
   "heading-lg":
-    "600 32px/40px Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+    "600 36px/44px 'Noto Sans KR', 'Noto Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
   "heading-md":
-    "600 28px/36px Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+    "600 32px/40px 'Noto Sans KR', 'Noto Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+  "heading-sm":
+    "600 28px/36px 'Noto Sans KR', 'Noto Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
   "title-lg":
-    "600 20px/28px Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+    "400 28px/36px 'Noto Sans KR', 'Noto Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
   "title-md":
-    "500 18px/26px Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+    "400 24px/32px 'Noto Sans KR', 'Noto Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+  "title-sm":
+    "400 20px/28px 'Noto Sans KR', 'Noto Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
   "body-lg":
-    "400 16px/24px Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+    "300 18px/26px 'Noto Sans KR', 'Noto Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
   "body-md":
-    "400 14px/20px Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+    "300 16px/24px 'Noto Sans KR', 'Noto Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+  "body-sm":
+    "300 14px/20px 'Noto Sans KR', 'Noto Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
   "label-lg":
-    "400 14px/20px Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+    "400 14px/20px 'Noto Sans KR', 'Noto Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
   "label-md":
-    "400 12px/16px Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+    "400 12px/16px 'Noto Sans KR', 'Noto Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
   "caption-lg":
-    "400 14px/20px Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+    "400 14px/20px 'Noto Sans KR', 'Noto Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
   "caption-md":
-    "400 12px/16px Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+    "400 12px/16px 'Noto Sans KR', 'Noto Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+  "numeric-xl":
+    "400 40px/48px 'Noto Sans KR', 'Noto Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
   "numeric-lg":
-    "400 16px/24px Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+    "400 32px/40px 'Noto Sans KR', 'Noto Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
   "numeric-md":
-    "400 14px/20px Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+    "400 24px/32px 'Noto Sans KR', 'Noto Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+  "numeric-sm":
+    "300 18px/26px 'Noto Sans KR', 'Noto Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+  "numeric-xs":
+    "300 14px/20px 'Noto Sans KR', 'Noto Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
   "border-primary": "#919191",
   "border-subtle": "#e1e1e1",
   "border-strong": "#737373",
@@ -243,11 +255,12 @@ export default {
   "surface-on-03": "#ffffff",
   "surface-on-03-hover": "#fafafa",
   "surface-transparent": "rgba(0, 0, 0, 0)",
+  "surface-overlay": "rgba(0, 0, 0, 0.5)",
   "text-brand": "#266ee1",
   "text-brand-hover": "#0f54bb",
   "text-brand-active": "#063d8f",
   "text-primary": "#141414",
-  "text-secondary": "#3c3c3c",
+  "text-secondary": "#555555",
   "text-muted": "#737373",
   "text-on-color": "#ffffff",
   "text-hover": "#262626",

@@ -313,6 +313,10 @@
     "transparent": {
       "$type": "color",
       "$value": "{Transparent.0}"
+    },
+    "overlay": {
+      "$type": "color",
+      "$value": "{Transparent.500}"
     }
   },
   "Text": {
@@ -334,7 +338,7 @@
     },
     "secondary": {
       "$type": "color",
-      "$value": "{Base.Gray.700}"
+      "$value": "{Base.Gray.600}"
     },
     "muted": {
       "$type": "color",

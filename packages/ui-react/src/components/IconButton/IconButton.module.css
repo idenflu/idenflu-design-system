@@ -56,11 +56,6 @@
   color: currentColor;
 }
 
-.root:focus-visible {
-  outline: 2px solid var(--border-focused);
-  outline-offset: 1px;
-}
-
 /* Variant */
 
 .variantDefault {
@@ -271,4 +266,12 @@
   .root {
     transition: none;
   }
+}
+
+.root:focus-visible {
+  border-color: var(--border-focused);
+  box-shadow:
+    inset 0 0 0 1px var(--border-focused),
+    inset 0 0 0 2px var(--base-white);
+  outline: none;
 }

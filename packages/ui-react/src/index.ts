@@ -6,6 +6,14 @@ export type {
   ButtonVariant,
 } from "./components/Button/index";
 
+export { Typography } from "./components/Typography/index";
+export type {
+  TypographyAlign,
+  TypographyElement,
+  TypographyProps,
+  TypographyVariant,
+} from "./components/Typography/index";
+
 export { Alert, AlertTitle } from "./components/Alert/index";
 export type {
   AlertProps,

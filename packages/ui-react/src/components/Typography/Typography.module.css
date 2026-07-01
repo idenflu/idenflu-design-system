@@ -1,0 +1,103 @@
+.root {
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.headingLg {
+  font: var(--heading-lg);
+}
+
+.headingMd {
+  font: var(--heading-md);
+}
+
+.headingSm {
+  font: var(--heading-sm);
+}
+
+.titleLg {
+  font: var(--title-lg);
+}
+
+.titleMd {
+  font: var(--title-md);
+}
+
+.titleSm {
+  font: var(--title-sm);
+}
+
+.bodyLg {
+  font: var(--body-lg);
+}
+
+.bodyMd {
+  font: var(--body-md);
+}
+
+.bodySm {
+  font: var(--body-sm);
+}
+
+.labelLg {
+  font: var(--label-lg);
+}
+
+.labelMd {
+  font: var(--label-md);
+}
+
+.captionLg {
+  font: var(--caption-lg);
+}
+
+.captionMd {
+  font: var(--caption-md);
+}
+
+.numericXl {
+  font: var(--numeric-xl);
+}
+
+.numericLg {
+  font: var(--numeric-lg);
+}
+
+.numericMd {
+  font: var(--numeric-md);
+}
+
+.numericSm {
+  font: var(--numeric-sm);
+}
+
+.numericXs {
+  font: var(--numeric-xs);
+}
+
+.alignInherit {
+  text-align: inherit;
+}
+
+.alignLeft {
+  text-align: left;
+}
+
+.alignCenter {
+  text-align: center;
+}
+
+.alignRight {
+  text-align: right;
+}
+
+.alignJustify {
+  text-align: justify;
+}
+
+.noWrap {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

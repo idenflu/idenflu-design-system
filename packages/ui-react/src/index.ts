@@ -229,3 +229,25 @@ export type {
 
 export { TextField } from "./components/TextField";
 export type { TextFieldProps } from "./components/TextField";
+
+export {
+  Dropdown,
+  DropdownContent,
+  DropdownGroup,
+  DropdownItem,
+  DropdownLabel,
+  DropdownSeparator,
+  DropdownTrigger,
+} from "./components/Dropdown/index";
+export type {
+  DropdownContentProps,
+  DropdownGroupProps,
+  DropdownItemProps,
+  DropdownLabelProps,
+  DropdownPosition,
+  DropdownProps,
+  DropdownSeparatorProps,
+  DropdownSize,
+  DropdownTransition,
+  DropdownTriggerProps,
+} from "./components/Dropdown/index";

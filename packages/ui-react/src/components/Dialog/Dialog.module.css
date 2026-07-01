@@ -1,0 +1,198 @@
+.viewport {
+  align-items: center;
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  padding: var(--spacing-09);
+  position: fixed;
+  z-index: 1000;
+}
+
+.overlay {
+  animation-duration: var(--nova-dialog-out-duration, 150ms);
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  background: var(--surface-overlay);
+  inset: 0;
+  position: fixed;
+}
+
+.overlay[data-state="open"] {
+  animation-duration: var(--nova-dialog-enter-duration, 200ms);
+  animation-name: nova-dialog-overlay-enter;
+}
+
+.overlay[data-state="closed"] {
+  animation-name: nova-dialog-overlay-out;
+}
+
+.content {
+  animation-duration: var(--nova-dialog-out-duration, 150ms);
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  background: var(--surface-02);
+  box-shadow:
+    0 2px 4px 2px var(--transparent-200),
+    0 1px 2px 0 color-mix(in srgb, var(--base-black) 10%, transparent);
+  box-sizing: border-box;
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  max-block-size: calc(100dvh - var(--spacing-12));
+  max-inline-size: calc(100dvw - var(--spacing-07));
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+.content[data-state="open"] {
+  animation-duration: var(--nova-dialog-enter-duration, 200ms);
+  animation-name: nova-dialog-content-enter;
+}
+
+.content[data-state="closed"] {
+  animation-name: nova-dialog-content-out;
+}
+
+.sizeSm {
+  max-inline-size: 420px;
+}
+
+.sizeContain {
+  inline-size: max-content;
+  max-inline-size: calc(100dvw - var(--spacing-07));
+}
+
+.sizeMd {
+  max-inline-size: 560px;
+}
+
+.sizeLg {
+  max-inline-size: 760px;
+}
+
+.header {
+  align-items: flex-start;
+  display: flex;
+  flex-shrink: 0;
+  gap: var(--spacing-05);
+  justify-content: space-between;
+  padding-block: var(--spacing-05);
+  padding-inline-end: var(--spacing-06);
+  padding-inline-start: var(--spacing-06);
+}
+
+.content[data-show-close] .header {
+  padding-inline-end: calc(var(--spacing-06) + 40px);
+}
+
+.title {
+  color: var(--text-primary);
+  margin: 0;
+  min-inline-size: 0;
+}
+
+.description {
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: var(--spacing-06);
+  min-block-size: 0;
+  min-inline-size: 0;
+  overflow: auto;
+  padding-block-end: var(--spacing-07);
+  padding-block-start: var(--spacing-05);
+  padding-inline: var(--spacing-06);
+}
+
+.body p {
+  margin: 0;
+}
+
+.footer {
+  align-items: center;
+  border-block-start: 1px solid var(--border-subtle);
+  display: flex;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  gap: var(--spacing-01);
+  justify-content: flex-end;
+  padding: var(--spacing-01);
+}
+
+.close {
+  inset-block-start: var(--spacing-01);
+  inset-inline-end: var(--spacing-01);
+  position: absolute;
+  z-index: 1;
+}
+
+@keyframes nova-dialog-overlay-enter {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes nova-dialog-overlay-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes nova-dialog-content-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes nova-dialog-content-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .content[data-state="open"],
+  .content[data-state="closed"],
+  .overlay[data-state="open"],
+  .overlay[data-state="closed"] {
+    animation: none;
+  }
+
+  .content[data-state="open"],
+  .overlay[data-state="open"] {
+    opacity: 1;
+    transform: none;
+  }
+
+  .content[data-state="closed"],
+  .overlay[data-state="closed"] {
+    opacity: 0;
+  }
+}

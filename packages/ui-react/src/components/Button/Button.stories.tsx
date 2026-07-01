@@ -97,13 +97,14 @@ function OverviewSection({
 }
 
 const primaryVariantColumns = [
-  { id: "withoutEndIcon", label: "Without end icon" },
+  { id: "withoutIcon", label: "Without icon" },
   { id: "disabled", label: "Disabled" },
   { id: "loading", label: "Loading" },
 ] as const;
 
 type PlaygroundArgs = React.ComponentProps<typeof Button> & {
   endIconName?: IconName | "none";
+  startIconName?: IconName | "none";
 };
 
 const meta = {
@@ -129,6 +130,10 @@ const meta = {
     disabled: { control: "boolean" },
     fullWidth: { control: "boolean" },
     loading: { control: "boolean" },
+    startIconName: {
+      control: "select",
+      options: ["none", ...iconNames],
+    },
     endIconName: {
       control: "select",
       options: ["none", ...iconNames],
@@ -195,7 +200,7 @@ export const Overview: Story = {
                   color="primary"
                   disabled={column.id === "disabled"}
                   endIcon={
-                    column.id === "withoutEndIcon" ? undefined : (
+                    column.id === "withoutIcon" ? undefined : (
                       <Icon name="star" />
                     )
                   }
@@ -233,6 +238,42 @@ export const Overview: Story = {
 
       <Divider flexItem fullWidth />
 
+      <OverviewSection title="Icons">
+        <div style={overviewStyles.row}>
+          {(
+            [
+              {
+                id: "start",
+                label: "startIcon",
+                props: { startIcon: <Icon name="star" /> },
+              },
+              {
+                id: "end",
+                label: "endIcon",
+                props: { endIcon: <Icon name="star" /> },
+              },
+              {
+                id: "both",
+                label: "both",
+                props: {
+                  endIcon: <Icon name="star" />,
+                  startIcon: <Icon name="star" />,
+                },
+              },
+            ] as const
+          ).map(({ id, label, props }) => (
+            <div key={id} style={overviewStyles.cell}>
+              <p style={overviewStyles.label}>{label}</p>
+              <Button color="primary" size="lg" variant="default" {...props}>
+                Button
+              </Button>
+            </div>
+          ))}
+        </div>
+      </OverviewSection>
+
+      <Divider flexItem fullWidth />
+
       <OverviewSection title="Full Width">
         <div style={overviewStyles.fullWidthContainer}>
           <Button
@@ -253,12 +294,21 @@ export const Playground: Story = {
   parameters: {
     layout: "centered",
   },
-  render: ({ endIconName = "star", children, fullWidth, ...args }) => {
+  render: ({
+    endIconName = "star",
+    startIconName = "none",
+    children,
+    fullWidth,
+    ...args
+  }) => {
     const button = (
       <Button
         {...args}
         endIcon={
           endIconName === "none" ? undefined : <Icon name={endIconName} />
+        }
+        startIcon={
+          startIconName === "none" ? undefined : <Icon name={startIconName} />
         }
         fullWidth={fullWidth}
         onClick={() => console.log("clicked")}
@@ -278,6 +328,7 @@ export const Playground: Story = {
     color: "primary",
     disabled: false,
     endIconName: "star",
+    startIconName: "none",
     fullWidth: false,
     loading: false,
     size: "md",

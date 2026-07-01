@@ -6,6 +6,14 @@ export type {
   ButtonVariant,
 } from "./components/Button/index";
 
+export { Typography } from "./components/Typography/index";
+export type {
+  TypographyAlign,
+  TypographyElement,
+  TypographyProps,
+  TypographyVariant,
+} from "./components/Typography/index";
+
 export { Alert, AlertTitle } from "./components/Alert/index";
 export type {
   AlertProps,
@@ -88,14 +96,31 @@ export {
   Dialog,
   DialogBody,
   DialogClose,
+  DialogContent,
+  DialogDescription,
   DialogFooter,
   DialogHeader,
-} from "./components/Dialog";
+  DialogOverlay,
+  DialogPortal,
+  DialogTitle,
+  DialogTrigger,
+} from "./components/Dialog/index";
 export type {
+  DialogBodyProps,
   DialogCloseProps,
+  DialogContentProps,
+  DialogDescriptionProps,
+  DialogFooterProps,
+  DialogHeaderProps,
+  DialogOpenAutoFocusEvent,
+  DialogOverlayProps,
+  DialogPortalProps,
   DialogProps,
   DialogSize,
-} from "./components/Dialog";
+  DialogTitleProps,
+  DialogTransition,
+  DialogTriggerProps,
+} from "./components/Dialog/index";
 
 export { Drawer } from "./components/Drawer";
 export type { DrawerProps, DrawerSide, DrawerSize } from "./components/Drawer";
@@ -221,3 +246,25 @@ export type {
 
 export { TextField } from "./components/TextField";
 export type { TextFieldProps } from "./components/TextField";
+
+export {
+  Dropdown,
+  DropdownContent,
+  DropdownGroup,
+  DropdownItem,
+  DropdownLabel,
+  DropdownSeparator,
+  DropdownTrigger,
+} from "./components/Dropdown/index";
+export type {
+  DropdownContentProps,
+  DropdownGroupProps,
+  DropdownItemProps,
+  DropdownLabelProps,
+  DropdownPosition,
+  DropdownProps,
+  DropdownSeparatorProps,
+  DropdownSize,
+  DropdownTransition,
+  DropdownTriggerProps,
+} from "./components/Dropdown/index";

@@ -224,13 +224,23 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
       >
         {!isFilled && label ? (
           <label className={styles.label} htmlFor={selectId}>
-            {label}
+            <span>{label}</span>
+            {required ? (
+              <span className={styles.required}>Required*</span>
+            ) : null}
           </label>
         ) : null}
 
         {isFilled ? (
           <label className={styles.controlWrap} htmlFor={selectId}>
-            {label ? <span className={styles.label}>{label}</span> : null}
+            {label ? (
+              <span className={styles.label}>
+                <span>{label}</span>
+                {required ? (
+                  <span className={styles.required}>Required*</span>
+                ) : null}
+              </span>
+            ) : null}
             {control}
           </label>
         ) : (

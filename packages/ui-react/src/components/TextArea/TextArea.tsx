@@ -134,6 +134,7 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
       minRows,
       onChange,
       readOnly,
+      required,
       rows = 4,
       showCount = false,
       value,
@@ -194,7 +195,11 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
     }, [syncHeight, value, charCount]);
 
     React.useEffect(() => {
-      if (process.env.NODE_ENV !== "production" && showCount && maxLength == null) {
+      if (
+        process.env.NODE_ENV !== "production" &&
+        showCount &&
+        maxLength == null
+      ) {
         console.warn("TextArea: showCount requires maxLength.");
       }
     }, [maxLength, showCount]);
@@ -219,6 +224,7 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
         disabled={disabled}
         maxLength={maxLength}
         readOnly={readOnly}
+        required={required}
         rows={autoGrow ? resolvedMinRows : rows}
         onChange={handleChange}
         {...(value !== undefined ? { value } : { defaultValue })}
@@ -244,7 +250,10 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
       >
         {!isFilled && label ? (
           <label className={styles.label} htmlFor={textareaId}>
-            {label}
+            <span>{label}</span>
+            {required ? (
+              <span className={styles.required}>Required*</span>
+            ) : null}
           </label>
         ) : null}
 
@@ -254,7 +263,12 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             htmlFor={textareaId}
           >
             {label ? (
-              <span className={styles.label}>{label}</span>
+              <span className={styles.label}>
+                <span>{label}</span>
+                {required ? (
+                  <span className={styles.required}>Required*</span>
+                ) : null}
+              </span>
             ) : null}
             {textarea}
           </label>
@@ -277,11 +291,7 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
               <span className={styles.footerSpacer} />
             )}
             {showCounter ? (
-              <p
-                id={countId}
-                className={styles.count}
-                aria-live="polite"
-              >
+              <p id={countId} className={styles.count} aria-live="polite">
                 {charCount} / {maxLength}
               </p>
             ) : null}

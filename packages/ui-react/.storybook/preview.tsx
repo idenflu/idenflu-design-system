@@ -5,6 +5,43 @@ import { IconSpriteProvider } from "../src/components/Icon/IconSpriteContext";
 import { TooltipProvider } from "../src/components/Tooltip";
 import "../src/styles.css";
 
+const appendFontLink = (id: string, linkAttributes: Record<string, string>) => {
+  if (typeof document === "undefined") {
+    return;
+  }
+
+  if (document.getElementById(id)) {
+    return;
+  }
+
+  const link = document.createElement("link");
+  link.id = id;
+
+  Object.entries(linkAttributes).forEach(([key, value]) => {
+    link.setAttribute(key, value);
+  });
+
+  document.head.appendChild(link);
+};
+
+const appendNotoSansKrFontLinks = () => {
+  appendFontLink("noto-sans-kr-googleapis-preconnect", {
+    rel: "preconnect",
+    href: "https://fonts.googleapis.com",
+  });
+  appendFontLink("noto-sans-kr-gstatic-preconnect", {
+    rel: "preconnect",
+    href: "https://fonts.gstatic.com",
+    crossorigin: "",
+  });
+  appendFontLink("noto-sans-kr-stylesheet", {
+    rel: "stylesheet",
+    href: "https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap",
+  });
+};
+
+appendNotoSansKrFontLinks();
+
 const preview: Preview = {
   decorators: [
     (Story) => (

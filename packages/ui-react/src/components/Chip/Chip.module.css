@@ -4,7 +4,7 @@
   border-radius: var(--rounded-full);
   box-sizing: border-box;
   display: inline-flex;
-  font: var(--body-md);
+  font: var(--label-md);
   gap: 8px;
   justify-content: space-between;
   min-width: 48px;
@@ -61,15 +61,12 @@
 
 /* Sizes */
 .sizeSm {
-  padding-block: 1px;
-}
-
-.sizeMd {
   padding-block: 2px;
 }
 
-.sizeLg {
-  padding-block: 4px;
+.sizeMd {
+  font: var(--label-lg);
+  padding-block: 3px;
 }
 
 /* Variants + Colors */

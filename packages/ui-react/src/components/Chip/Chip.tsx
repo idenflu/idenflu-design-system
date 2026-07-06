@@ -6,7 +6,7 @@ import styles from "./Chip.module.css";
 
 export type ChipVariant = "filled" | "outlined";
 export type ChipColor = "neutral" | "info" | "success" | "warning" | "error";
-export type ChipSize = "sm" | "md" | "lg";
+export type ChipSize = "sm" | "md";
 
 export type ChipProps = Omit<
   React.HTMLAttributes<HTMLSpanElement>,
@@ -41,7 +41,6 @@ const chipClassName = cva(styles.root, {
       true: styles.deletable,
     },
     size: {
-      lg: styles.sizeLg,
       md: styles.sizeMd,
       sm: styles.sizeSm,
     },
@@ -96,7 +95,7 @@ export const Chip = React.forwardRef<HTMLSpanElement, ChipProps>(
           }}
           type="button"
         >
-          <Icon name="close" />
+          <Icon name="close" size={size === "sm" ? 12 : 16} />
         </button>
       ) : null}
     </span>

@@ -18,20 +18,20 @@
 }
 
 .icon {
-  margin-block-start: 2px;
+  margin-block-start: 3px;
 }
 
 .content {
   color: currentColor;
   display: grid;
   flex: 1 1 auto;
-  font: var(--body-md);
+  font: var(--body-sm);
   gap: var(--spacing-01);
   min-width: 0;
 }
 
 .title {
-  font: var(--label-lg);
+  font: var(--body-sm);
   font-weight: var(--font-weight-semibold);
 }
 

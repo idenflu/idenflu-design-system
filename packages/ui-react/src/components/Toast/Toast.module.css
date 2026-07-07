@@ -1,0 +1,184 @@
+.viewport {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-04);
+  inset-block-end: var(--spacing-07);
+  inset-block-start: auto;
+  inset-inline: var(--spacing-07);
+  max-inline-size: min(420px, calc(100dvw - var(--spacing-07) * 2));
+  pointer-events: none;
+  position: fixed;
+  z-index: 1500;
+}
+
+.viewport[data-position^="top"] {
+  flex-direction: column-reverse;
+  inset-block-end: auto;
+  inset-block-start: var(--spacing-07);
+}
+
+.viewport[data-position$="-start"] {
+  align-items: flex-start;
+  inset-inline-end: auto;
+}
+
+.viewport[data-position$="-end"] {
+  align-items: flex-end;
+  inset-inline-start: auto;
+}
+
+.viewport[data-position="top"],
+.viewport[data-position="bottom"] {
+  align-items: center;
+  inset-inline: var(--spacing-07);
+}
+
+.root {
+  animation-duration: var(--nova-toast-out-duration, 180ms);
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  background: var(--surface-02);
+  border: 1px solid var(--border-subtle);
+  box-shadow:
+    0 2px 4px 2px var(--transparent-100),
+    0 1px 2px 0 color-mix(in srgb, var(--base-black) 10%, transparent);
+  box-sizing: border-box;
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  font: var(--body-sm);
+  gap: var(--spacing-02);
+  inline-size: 100%;
+  max-inline-size: 420px;
+  padding-block: var(--spacing-04);
+  padding-inline: var(--spacing-05);
+  pointer-events: auto;
+}
+
+.root[data-state="open"] {
+  animation-duration: var(--nova-toast-enter-duration, 220ms);
+  animation-name: nova-toast-enter;
+}
+
+.root[data-state="closed"] {
+  animation-name: nova-toast-out;
+}
+
+.root[data-position^="bottom"][data-state="open"] {
+  animation-name: nova-toast-enter-bottom;
+}
+
+.root[data-position^="bottom"][data-state="closed"] {
+  animation-name: nova-toast-out-bottom;
+}
+
+.root[data-position^="top"][data-state="open"] {
+  animation-name: nova-toast-enter-top;
+}
+
+.root[data-position^="top"][data-state="closed"] {
+  animation-name: nova-toast-out-top;
+}
+
+.rootComposed {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+}
+
+.header {
+  align-items: flex-start;
+  display: flex;
+  gap: var(--spacing-04);
+  inline-size: 100%;
+}
+
+.content {
+  flex: 1 1 auto;
+  min-inline-size: 0;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-02);
+}
+
+.title {
+  font: var(--body-sm);
+  font-weight: var(--font-weight-regular);
+}
+
+.message {
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.action {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: var(--spacing-02);
+  inline-size: 100%;
+  padding-block-start: var(--spacing-04);
+}
+
+.dismiss {
+  flex: 0 0 auto;
+}
+
+@keyframes nova-toast-enter-bottom {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes nova-toast-out-bottom {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+@keyframes nova-toast-enter-top {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes nova-toast-out-top {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root {
+    animation: none;
+  }
+}

@@ -212,6 +212,14 @@ export type { SkeletonProps, SkeletonVariant } from "./components/Skeleton";
 export { Banner } from "./components/Banner";
 export type { BannerProps, BannerTone } from "./components/Banner";
 
+export { Toast } from "./components/Toast/index";
+export type {
+  ToastCloseReason,
+  ToastPosition,
+  ToastProps,
+  ToastTransition,
+} from "./components/Toast/index";
+
 export {
   Breadcrumb,
   BreadcrumbEllipsis,

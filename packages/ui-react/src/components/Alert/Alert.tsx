@@ -3,6 +3,7 @@ import { cva } from "class-variance-authority";
 import { cn } from "@/utils/classNames";
 import { Icon } from "../Icon/Icon";
 import styles from "./Alert.module.css";
+import { IconButton } from "../IconButton";
 
 export type AlertVariant = "filled" | "outlined";
 export type AlertSeverity = "success" | "info" | "warning" | "error";
@@ -91,25 +92,30 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
         className={cn(alertClassName({ severity, variant }), className)}
         {...props}
       >
-        {statusIcon ? (
-          <span className={styles.icon} aria-hidden="true">
-            {statusIcon}
-          </span>
-        ) : null}
-        {children != null ? (
-          <div className={styles.content}>{children}</div>
+        {statusIcon || children != null || onClose ? (
+          <div className={styles.header}>
+            {statusIcon ? (
+              <span className={styles.icon} aria-hidden="true">
+                {statusIcon}
+              </span>
+            ) : null}
+            {children != null ? (
+              <div className={styles.content}>{children}</div>
+            ) : null}
+            {onClose ? (
+              <IconButton
+                variant="ghost"
+                size="md"
+                color="neutral"
+                icon={<Icon name="close" />}
+                label={closeLabel}
+                className={styles.close}
+                onClick={onClose}
+              />
+            ) : null}
+          </div>
         ) : null}
         {action ? <div className={styles.action}>{action}</div> : null}
-        {onClose ? (
-          <button
-            type="button"
-            aria-label={closeLabel}
-            className={styles.close}
-            onClick={onClose}
-          >
-            <Icon name="close" size="medium" />
-          </button>
-        ) : null}
       </div>
     );
   }

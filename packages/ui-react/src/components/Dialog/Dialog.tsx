@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import { cva } from "class-variance-authority";
 
 import { cn } from "@/utils/classNames";
+import { lockBodyScroll } from "@/utils/lockBodyScroll";
 import { Icon } from "../Icon/Icon";
 import { IconButton } from "../IconButton/IconButton";
 import { Typography } from "../Typography/Typography";
@@ -439,12 +440,7 @@ export const DialogContent = React.forwardRef<
         return undefined;
       }
 
-      const previousOverflow = document.body.style.overflow;
-      document.body.style.overflow = "hidden";
-
-      return () => {
-        document.body.style.overflow = previousOverflow;
-      };
+      return lockBodyScroll();
     }, [mounted, open]);
 
     React.useEffect(() => {

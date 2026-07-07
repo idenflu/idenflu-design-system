@@ -122,8 +122,35 @@ export type {
   DialogTriggerProps,
 } from "./components/Dialog/index";
 
-export { Drawer } from "./components/Drawer";
-export type { DrawerProps, DrawerSide, DrawerSize } from "./components/Drawer";
+export {
+  Drawer,
+  DrawerBody,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerPortal,
+  DrawerTitle,
+  DrawerTrigger,
+} from "./components/Drawer/index";
+export type {
+  DrawerBodyProps,
+  DrawerCloseProps,
+  DrawerContentProps,
+  DrawerDescriptionProps,
+  DrawerFooterProps,
+  DrawerHeaderProps,
+  DrawerOverlayProps,
+  DrawerPortalProps,
+  DrawerProps,
+  DrawerSide,
+  DrawerSize,
+  DrawerTitleProps,
+  DrawerTransition,
+  DrawerTriggerProps,
+} from "./components/Drawer/index";
 
 export { Toolbar, ToolbarGroup } from "./components/Toolbar";
 export type {

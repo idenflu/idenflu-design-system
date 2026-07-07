@@ -2,15 +2,13 @@
   animation-duration: var(--nova-dropdown-out-duration, 100ms);
   animation-fill-mode: both;
   animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  background: var(--surface-02);
-  /* border: 1px solid var(--border-subtle); */
+  background: var(--surface-on-00);
   box-shadow:
     0 2px 4px 2px var(--transparent-200),
     0 1px 2px 0 color-mix(in srgb, var(--base-black) 10%, transparent);
   box-sizing: border-box;
   min-inline-size: 240px;
   overflow: hidden;
-  /* transform-origin: var(--radix-dropdown-menu-content-transform-origin); */
   z-index: 1000;
 }
 
@@ -28,14 +26,14 @@
   color: var(--text-secondary);
   cursor: default;
   display: flex;
-  font: var(--caption-lg);
+  font: var(--label-lg);
+  font-weight: var(--font-weight-light);
   gap: 16px;
   outline: none;
   user-select: none;
 }
 
 .sizeSm .item {
-  font: var(--caption-md);
   padding-block: 4px;
   padding-inline: 16px;
 }
@@ -61,7 +59,6 @@
 
 .label {
   flex: 1;
-  font: var(--label-lg);
   min-inline-size: 0;
   overflow: hidden;
   text-overflow: ellipsis;

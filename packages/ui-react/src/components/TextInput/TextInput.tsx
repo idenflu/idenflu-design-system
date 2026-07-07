@@ -2,7 +2,8 @@ import * as React from "react";
 import { cva } from "class-variance-authority";
 import { cn } from "@/utils/classNames";
 import { Icon } from "../Icon/Icon";
-import styles from "./TextInput.module.css";
+import inputSharedStyles from "../_fields/Field.module.css";
+import textInputStyles from "./TextInput.module.css";
 
 export type TextInputType = "text" | "password" | "email";
 export type TextInputVariant = "default" | "filled" | "outlined";
@@ -21,7 +22,7 @@ export type TextInputProps = Omit<
   variant?: TextInputVariant;
 };
 
-const textInputClassName = cva(styles.root, {
+const textInputClassName = cva(inputSharedStyles.root, {
   defaultVariants: {
     disabled: false,
     error: false,
@@ -33,41 +34,29 @@ const textInputClassName = cva(styles.root, {
   variants: {
     disabled: {
       false: null,
-      true: styles.disabled,
+      true: inputSharedStyles.disabled,
     },
     error: {
       false: null,
-      true: styles.error,
+      true: inputSharedStyles.error,
     },
     fullWidth: {
       false: null,
-      true: styles.fullWidth,
+      true: inputSharedStyles.fullWidth,
     },
     readOnly: {
       false: null,
-      true: styles.readOnly,
+      true: inputSharedStyles.readOnly,
     },
     size: {
-      lg: styles.sizeLg,
-      md: styles.sizeMd,
-      sm: styles.sizeSm,
+      lg: inputSharedStyles.sizeLg,
+      md: inputSharedStyles.sizeMd,
+      sm: inputSharedStyles.sizeSm,
     },
     variant: {
-      default: styles.variantDefault,
-      filled: styles.variantFilled,
-      outlined: styles.variantOutlined,
-    },
-  },
-});
-
-const controlClassName = cva(styles.control, {
-  defaultVariants: {
-    filled: false,
-  },
-  variants: {
-    filled: {
-      false: null,
-      true: styles.controlFilled,
+      default: inputSharedStyles.variantDefault,
+      filled: inputSharedStyles.variantFilled,
+      outlined: inputSharedStyles.variantOutlined,
     },
   },
 });
@@ -113,7 +102,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
         type={isPassword && showPassword ? "text" : type}
         aria-describedby={describedBy}
         aria-invalid={hasError || undefined}
-        className={styles.input}
+        className={inputSharedStyles.control}
         disabled={disabled}
         readOnly={readOnly}
         required={required}
@@ -122,11 +111,11 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
     );
 
     const fieldContent = isPassword ? (
-      <div className={styles.inputRow}>
+      <div className={textInputStyles.inputRow}>
         {input}
         <button
           type="button"
-          className={styles.toggle}
+          className={textInputStyles.toggle}
           aria-label={showPassword ? "Hide password" : "Show password"}
           aria-pressed={showPassword}
           disabled={disabled}
@@ -157,39 +146,37 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
         )}
       >
         {!isFilled && label ? (
-          <label className={styles.label} htmlFor={inputId}>
+          <label className={inputSharedStyles.label} htmlFor={inputId}>
             <span>{label}</span>
             {required ? (
-              <span className={styles.required}>Required*</span>
+              <span className={inputSharedStyles.required}>Required*</span>
             ) : null}
           </label>
         ) : null}
 
         {isFilled ? (
-          <label
-            className={controlClassName({ filled: isFilled })}
-            htmlFor={inputId}
-          >
+          <label className={inputSharedStyles.controlWrapper} htmlFor={inputId}>
             {label ? (
-              <span className={styles.label}>
+              <span className={inputSharedStyles.label}>
                 <span>{label}</span>
                 {required ? (
-                  <span className={styles.required}>Required*</span>
+                  <span className={inputSharedStyles.required}>Required*</span>
                 ) : null}
               </span>
             ) : null}
             {fieldContent}
           </label>
         ) : (
-          <div className={controlClassName({ filled: isFilled })}>
-            {fieldContent}
-          </div>
+          <div className={inputSharedStyles.controlWrapper}>{fieldContent}</div>
         )}
 
         {helperId ? (
           <p
             id={helperId}
-            className={cn(styles.helper, hasError && styles.helperError)}
+            className={cn(
+              inputSharedStyles.helper,
+              hasError && inputSharedStyles.helperError
+            )}
           >
             {error || helperText}
           </p>

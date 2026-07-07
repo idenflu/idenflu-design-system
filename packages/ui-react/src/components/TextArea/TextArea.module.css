@@ -1,92 +1,11 @@
-.root {
-  display: flex;
-  flex-direction: column;
-  width: 240px;
-}
-
-.fullWidth {
-  width: 100%;
-}
-
-.label {
-  align-items: center;
-  box-sizing: border-box;
-  color: var(--text-secondary);
-  display: flex;
-  font: var(--label-md);
-  gap: 16px;
-  justify-content: space-between;
-  padding-bottom: 4px;
-  width: 100%;
-}
-
-.disabled .label {
-  color: var(--text-disabled);
-}
-
-.required {
-  color: var(--text-muted);
-  font: var(--label-md);
-  font-style: normal;
-  flex-shrink: 0;
-}
+/* ─── TextArea-specific ──────────────────────────────────────────── */
 
 .control {
-  align-items: stretch;
-  background: var(--surface-on-00);
-  border: 0 solid transparent;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-block: 10px;
-  padding-inline: 12px;
-  transition:
-    background-color 200ms ease,
-    border-color 200ms ease,
-    box-shadow 200ms ease;
-}
-
-.control:focus-within {
-  outline: none;
-}
-
-.textarea {
-  background: transparent;
-  border: 0;
-  color: var(--text-primary);
-  font: var(--body-md);
-  margin: 0;
-  min-width: 0;
-  outline: none;
-  padding: 0;
   resize: none;
-  width: 100%;
 }
 
-.autoGrow .textarea {
+.autoGrow .control {
   overflow-y: hidden;
-}
-
-.textarea::placeholder {
-  color: var(--text-secondary);
-}
-
-.textarea:disabled {
-  color: var(--text-disabled);
-  cursor: not-allowed;
-  -webkit-text-fill-color: var(--text-disabled);
-}
-
-.textarea:read-only:not(:disabled) {
-  cursor: default;
-}
-
-.readOnly .textarea,
-.readOnly .label {
-  color: var(--text-muted);
-  cursor: default;
-  pointer-events: none;
-  -webkit-text-fill-color: var(--text-muted);
 }
 
 .footer {
@@ -96,26 +15,17 @@
   padding-top: 4px;
 }
 
+.footer .helper {
+  padding-top: 0;
+}
+
 .footerSpacer {
   flex: 1 1 auto;
 }
 
 .helper {
-  color: var(--text-muted);
   flex: 1 1 auto;
-  font: var(--label-md);
-  margin: 0;
   min-width: 0;
-}
-
-.helperError,
-.error .helper {
-  color: var(--text-error);
-}
-
-.disabled .helper,
-.disabled .count {
-  color: var(--text-disabled);
 }
 
 .count {
@@ -125,105 +35,4 @@
   margin: 0;
   text-align: right;
   white-space: nowrap;
-}
-
-.variantDefault .control {
-  background: var(--surface-on-00);
-  border-bottom: 0;
-  box-shadow: inset 0 -1px 0 var(--border-strong);
-}
-
-.variantDefault .control:focus-within {
-  box-shadow: inset 0 -2px 0 var(--border-focused);
-}
-
-.variantDefault.error .control {
-  box-shadow: inset 0 -2px 0 var(--border-error);
-}
-
-.variantDefault.error .control:focus-within {
-  box-shadow: inset 0 -2px 0 var(--border-error);
-}
-
-.variantDefault.disabled .control {
-  background: var(--background-disabled);
-  box-shadow: inset 0 -1px 0 var(--border-disabled);
-}
-
-.variantOutlined .control {
-  background: var(--background-transparent);
-  border: 1px solid var(--border-strong);
-}
-
-.variantOutlined .control:focus-within {
-  border-color: var(--border-focused);
-  border-width: 2px;
-  padding-block: 9px;
-  padding-inline: 15px;
-}
-
-.variantOutlined.error .control {
-  border-color: var(--border-error);
-  border-width: 2px;
-  padding-block: 9px;
-  padding-inline: 15px;
-}
-
-.variantOutlined.disabled .control {
-  background: var(--background-disabled);
-  border-color: var(--border-disabled);
-}
-
-.variantFilled .control {
-  background: var(--surface-on-00);
-  border-bottom: 0;
-  box-shadow: inset 0 -1px 0 var(--border-strong);
-  cursor: text;
-  gap: 4px;
-  padding-block: 8px;
-}
-
-.variantFilled.readOnly .control {
-  cursor: default;
-}
-
-.variantFilled .control .label {
-  padding-bottom: 0;
-}
-
-.variantFilled .control:focus-within {
-  box-shadow: inset 0 -2px 0 var(--border-focused);
-}
-
-.variantFilled.error .control {
-  box-shadow: inset 0 -2px 0 var(--border-error);
-}
-
-.variantFilled.error .control:focus-within {
-  box-shadow: inset 0 -2px 0 var(--border-error);
-}
-
-.variantFilled.disabled .control {
-  background: var(--background-disabled);
-  box-shadow: inset 0 -1px 0 var(--border-disabled);
-  cursor: not-allowed;
-}
-
-.variantFilled.disabled .textarea {
-  pointer-events: none;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .control {
-    transition:
-      background-color 200ms ease,
-      border-color 200ms ease,
-      box-shadow 200ms ease;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .control {
-    transition: none;
-  }
 }

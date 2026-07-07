@@ -2,7 +2,8 @@ import * as React from "react";
 import { cva } from "class-variance-authority";
 import { cn } from "@/utils/classNames";
 import type { TextInputVariant } from "../TextInput/TextInput";
-import styles from "./TextArea.module.css";
+import textAreaStyles from "./TextArea.module.css";
+import inputSharedStyles from "../_fields/Field.module.css";
 
 export type TextAreaVariant = TextInputVariant;
 
@@ -22,7 +23,7 @@ export type TextAreaProps = Omit<
   variant?: TextAreaVariant;
 };
 
-const textAreaClassName = cva(styles.root, {
+const textAreaClassName = cva(inputSharedStyles.root, {
   defaultVariants: {
     autoGrow: false,
     disabled: false,
@@ -34,40 +35,28 @@ const textAreaClassName = cva(styles.root, {
   variants: {
     autoGrow: {
       false: null,
-      true: styles.autoGrow,
+      true: inputSharedStyles.autoGrow,
     },
     disabled: {
       false: null,
-      true: styles.disabled,
+      true: inputSharedStyles.disabled,
     },
     error: {
       false: null,
-      true: styles.error,
+      true: inputSharedStyles.error,
     },
     fullWidth: {
       false: null,
-      true: styles.fullWidth,
+      true: inputSharedStyles.fullWidth,
     },
     readOnly: {
       false: null,
-      true: styles.readOnly,
+      true: inputSharedStyles.readOnly,
     },
     variant: {
-      default: styles.variantDefault,
-      filled: styles.variantFilled,
-      outlined: styles.variantOutlined,
-    },
-  },
-});
-
-const controlClassName = cva(styles.control, {
-  defaultVariants: {
-    filled: false,
-  },
-  variants: {
-    filled: {
-      false: null,
-      true: styles.controlFilled,
+      default: inputSharedStyles.variantDefault,
+      filled: inputSharedStyles.variantFilled,
+      outlined: inputSharedStyles.variantOutlined,
     },
   },
 });
@@ -220,7 +209,7 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
         id={textareaId}
         aria-describedby={describedBy}
         aria-invalid={hasError || undefined}
-        className={styles.textarea}
+        className={cn(inputSharedStyles.control, textAreaStyles.control)}
         disabled={disabled}
         maxLength={maxLength}
         readOnly={readOnly}
@@ -249,49 +238,55 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
         )}
       >
         {!isFilled && label ? (
-          <label className={styles.label} htmlFor={textareaId}>
+          <label className={inputSharedStyles.label} htmlFor={textareaId}>
             <span>{label}</span>
             {required ? (
-              <span className={styles.required}>Required*</span>
+              <span className={inputSharedStyles.required}>Required*</span>
             ) : null}
           </label>
         ) : null}
 
         {isFilled ? (
           <label
-            className={controlClassName({ filled: isFilled })}
+            className={inputSharedStyles.controlWrapper}
             htmlFor={textareaId}
           >
             {label ? (
-              <span className={styles.label}>
+              <span className={inputSharedStyles.label}>
                 <span>{label}</span>
                 {required ? (
-                  <span className={styles.required}>Required*</span>
+                  <span className={inputSharedStyles.required}>Required*</span>
                 ) : null}
               </span>
             ) : null}
             {textarea}
           </label>
         ) : (
-          <div className={controlClassName({ filled: isFilled })}>
-            {textarea}
-          </div>
+          <div className={inputSharedStyles.controlWrapper}>{textarea}</div>
         )}
 
         {hasFooter ? (
-          <div className={styles.footer}>
+          <div className={textAreaStyles.footer}>
             {helperId ? (
               <p
                 id={helperId}
-                className={cn(styles.helper, hasError && styles.helperError)}
+                className={cn(
+                  inputSharedStyles.helper,
+                  textAreaStyles.helper,
+                  hasError && inputSharedStyles.helperError
+                )}
               >
                 {error || helperText}
               </p>
             ) : (
-              <span className={styles.footerSpacer} />
+              <span className={textAreaStyles.footerSpacer} />
             )}
             {showCounter ? (
-              <p id={countId} className={styles.count} aria-live="polite">
+              <p
+                id={countId}
+                className={textAreaStyles.count}
+                aria-live="polite"
+              >
                 {charCount} / {maxLength}
               </p>
             ) : null}

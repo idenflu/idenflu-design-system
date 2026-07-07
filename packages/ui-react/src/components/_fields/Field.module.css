@@ -1,0 +1,212 @@
+/* Shared field chrome — TextInput, TextArea, Select */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  width: 240px;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.label {
+  align-items: center;
+  box-sizing: border-box;
+  color: var(--text-secondary);
+  display: flex;
+  font: var(--label-md);
+  gap: 16px;
+  justify-content: space-between;
+  padding-bottom: 4px;
+  width: 100%;
+}
+
+.disabled .label {
+  color: var(--text-disabled);
+}
+
+.required {
+  color: var(--text-muted);
+  flex-shrink: 0;
+  font: var(--label-md);
+  font-style: normal;
+}
+
+.controlWrapper {
+  align-items: stretch;
+  background: var(--surface-on-00);
+  box-shadow: inset 0 -1px 0 var(--border-strong);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-block: 10px;
+  padding-inline: 12px;
+  transition:
+    background-color 200ms ease,
+    border-color 200ms ease,
+    box-shadow 200ms ease;
+  width: 100%;
+}
+
+.root:not(.readOnly):not(.error):not(.variantOutlined)
+  .controlWrapper:focus-within {
+  outline: none;
+  box-shadow: inset 0 -2px 0 var(--border-focused);
+}
+
+.error .controlWrapper {
+  box-shadow: inset 0 -2px 0 var(--border-error);
+}
+
+.control {
+  color: var(--text-primary);
+  font: var(--body-sm);
+  min-width: 0;
+  outline: none;
+  width: 100%;
+}
+
+.control::placeholder {
+  color: var(--text-secondary);
+}
+
+.control:disabled {
+  color: var(--text-disabled);
+  cursor: not-allowed;
+  -webkit-text-fill-color: var(--text-disabled);
+}
+
+.control:read-only:not(:disabled) {
+  cursor: default;
+}
+
+.variantFilled.disabled .control {
+  pointer-events: none;
+}
+
+.helper {
+  color: var(--text-muted);
+  font: var(--label-md);
+  margin: 0;
+  padding-top: 4px;
+}
+
+.helperError,
+.error .helper {
+  color: var(--text-error);
+}
+
+.disabled .helper {
+  color: var(--text-disabled);
+}
+
+.readOnly .label {
+  color: var(--text-muted);
+  cursor: default;
+  pointer-events: none;
+}
+
+.readOnly .controlWrapper {
+  color: var(--text-muted);
+  cursor: default;
+  pointer-events: none;
+  -webkit-text-fill-color: var(--text-muted);
+}
+
+/* .readOnly .controlWrapper:focus-within {
+  outline: none;
+} */
+
+/* .readOnly.error .controlWrapper:focus-within {
+  box-shadow: inset 0 -2px 0 var(--border-error);
+} */
+
+.disabled .controlWrapper {
+  background: var(--background-disabled);
+  box-shadow: inset 0 -1px 0 var(--border-disabled);
+  cursor: not-allowed;
+}
+
+/* ─── Sizes ──────────────────────────────────────────────────────── */
+
+.sizeLg .controlWrapper {
+  padding-block: 14px;
+}
+
+.sizeMd .controlWrapper {
+  padding-block: 10px;
+}
+
+.sizeSm .controlWrapper {
+  padding-block: 6px;
+}
+
+/* ─── Outlined variant ───────────────────────────────────────────── */
+
+.variantOutlined .controlWrapper {
+  background: var(--background-transparent);
+  border: 1px solid var(--border-strong);
+  box-shadow: none;
+}
+
+.variantOutlined.error .controlWrapper {
+  border-color: var(--border-error);
+  border-width: 2px;
+  padding-inline: 11px;
+}
+
+.root.variantOutlined:not(.readOnly):not(.error) .controlWrapper:focus-within {
+  border-color: var(--border-focused);
+  border-width: 2px;
+  padding-inline: 11px;
+}
+
+.sizeLg.variantOutlined .controlWrapper {
+  padding-block: 13px;
+}
+
+.sizeMd.variantOutlined .controlWrapper {
+  padding-block: 9px;
+}
+
+.sizeSm.variantOutlined .controlWrapper {
+  padding-block: 5px;
+}
+
+.variantOutlined.sizeLg.error .controlWrapper,
+.variantOutlined.sizeLg:not(.readOnly) .controlWrapper:focus-within {
+  padding-block: 12px;
+}
+
+.variantOutlined.sizeMd.error .controlWrapper,
+.variantOutlined.sizeMd:not(.readOnly) .controlWrapper:focus-within {
+  padding-block: 8px;
+}
+
+.variantOutlined.sizeSm.error .controlWrapper,
+.variantOutlined.sizeSm:not(.readOnly) .controlWrapper:focus-within {
+  padding-block: 4px;
+}
+
+.variantOutlined.disabled .controlWrapper {
+  background: var(--background-disabled);
+  border-color: var(--border-disabled);
+  cursor: not-allowed;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .controlWrapper {
+    transition:
+      background-color 200ms ease,
+      border-color 200ms ease,
+      box-shadow 200ms ease;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .controlWrapper {
+    transition: none;
+  }
+}

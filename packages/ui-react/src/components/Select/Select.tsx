@@ -2,7 +2,8 @@ import * as React from "react";
 import { cva } from "class-variance-authority";
 import { cn } from "@/utils/classNames";
 import { Icon } from "../Icon/Icon";
-import styles from "./Select.module.css";
+import selectStyles from "./Select.module.css";
+import inputSharedStyles from "../_fields/Field.module.css";
 
 export type SelectVariant = "default" | "filled" | "outlined";
 export type SelectSize = "lg" | "md" | "sm";
@@ -87,7 +88,7 @@ const collectOptionsFromChildren = (
   return options;
 };
 
-const selectClassName = cva(styles.root, {
+const selectClassName = cva([inputSharedStyles.root, selectStyles.root], {
   defaultVariants: {
     disabled: false,
     error: false,
@@ -99,29 +100,29 @@ const selectClassName = cva(styles.root, {
   variants: {
     disabled: {
       false: null,
-      true: styles.disabled,
+      true: [inputSharedStyles.disabled, selectStyles.disabled],
     },
     error: {
       false: null,
-      true: styles.error,
+      true: inputSharedStyles.error,
     },
     fullWidth: {
       false: null,
-      true: styles.fullWidth,
+      true: inputSharedStyles.fullWidth,
     },
     readOnly: {
       false: null,
-      true: styles.readOnly,
+      true: inputSharedStyles.readOnly,
     },
     size: {
-      lg: styles.sizeLg,
-      md: styles.sizeMd,
-      sm: styles.sizeSm,
+      lg: [inputSharedStyles.sizeLg, selectStyles.sizeLg],
+      md: [inputSharedStyles.sizeMd, selectStyles.sizeMd],
+      sm: [inputSharedStyles.sizeSm, selectStyles.sizeSm],
     },
     variant: {
-      default: styles.variantDefault,
-      filled: styles.variantFilled,
-      outlined: styles.variantOutlined,
+      default: inputSharedStyles.variantDefault,
+      filled: [inputSharedStyles.variantFilled, selectStyles.variantFilled],
+      outlined: inputSharedStyles.variantOutlined,
     },
   },
 });
@@ -180,13 +181,13 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
         <select
           ref={ref}
           id={selectId}
-          className={styles.control}
+          className={cn(inputSharedStyles.control, selectStyles.control)}
           aria-describedby={describedBy}
           aria-invalid={hasError || undefined}
           aria-label={label ? undefined : ariaLabel}
           aria-readonly={readOnly || undefined}
           defaultValue={value === undefined ? defaultValue : undefined}
-          disabled={disabled || readOnly}
+          disabled={disabled}
           required={required}
           value={value}
           onChange={(event) => {
@@ -202,9 +203,12 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
           ) : null}
           {options ? renderedOptions : children}
         </select>
-        <span className={styles.chevron} aria-hidden="true">
-          <Icon name="keyboard-arrow-down" size={16} />
-        </span>
+        <Icon
+          name="keyboard-arrow-down"
+          size={16}
+          className={selectStyles.expandIcon}
+          aria-hidden="true"
+        />
       </>
     );
 
@@ -223,34 +227,50 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
         )}
       >
         {!isFilled && label ? (
-          <label className={styles.label} htmlFor={selectId}>
+          <label className={inputSharedStyles.label} htmlFor={selectId}>
             <span>{label}</span>
             {required ? (
-              <span className={styles.required}>Required*</span>
+              <span className={inputSharedStyles.required}>Required*</span>
             ) : null}
           </label>
         ) : null}
 
         {isFilled ? (
-          <label className={styles.controlWrap} htmlFor={selectId}>
+          <label
+            className={cn(
+              inputSharedStyles.controlWrapper,
+              selectStyles.controlWrapper
+            )}
+            htmlFor={selectId}
+          >
             {label ? (
-              <span className={styles.label}>
+              <span className={inputSharedStyles.label}>
                 <span>{label}</span>
                 {required ? (
-                  <span className={styles.required}>Required*</span>
+                  <span className={inputSharedStyles.required}>Required*</span>
                 ) : null}
               </span>
             ) : null}
             {control}
           </label>
         ) : (
-          <div className={styles.controlWrap}>{control}</div>
+          <div
+            className={cn(
+              inputSharedStyles.controlWrapper,
+              selectStyles.controlWrapper
+            )}
+          >
+            {control}
+          </div>
         )}
 
         {helperId ? (
           <p
             id={helperId}
-            className={cn(styles.helper, hasError && styles.helperError)}
+            className={cn(
+              inputSharedStyles.helper,
+              hasError && inputSharedStyles.helperError
+            )}
           >
             {error || helperText}
           </p>

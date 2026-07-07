@@ -54,6 +54,11 @@
   padding-block: var(--spacing-04);
   padding-inline: var(--spacing-05);
   pointer-events: auto;
+  position: relative;
+}
+
+.root[data-show-close] {
+  padding-inline-end: calc(var(--spacing-05) + 32px);
 }
 
 .root[data-state="open"] {
@@ -86,6 +91,10 @@
   border: 0;
   box-shadow: none;
   padding: 0;
+}
+
+.rootComposed[data-show-close] {
+  padding-inline-end: 32px;
 }
 
 .header {
@@ -126,7 +135,12 @@
 }
 
 .dismiss {
+  color: var(--text-secondary);
   flex: 0 0 auto;
+  inset-block-start: var(--spacing-01);
+  inset-inline-end: var(--spacing-01);
+  position: absolute;
+  z-index: 1;
 }
 
 @keyframes nova-toast-enter-bottom {

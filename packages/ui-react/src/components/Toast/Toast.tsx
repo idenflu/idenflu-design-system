@@ -296,9 +296,7 @@ export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
           {title != null ? (
             <strong className={styles.title}>{title}</strong>
           ) : null}
-          {message != null ? (
-            <p className={styles.message}>{message}</p>
-          ) : null}
+          {message != null ? <p className={styles.message}>{message}</p> : null}
         </div>
       ) : null);
 
@@ -312,6 +310,7 @@ export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
             className
           )}
           data-position={position}
+          data-show-close={hideCloseButton ? undefined : ""}
           data-state={exiting ? "closed" : "open"}
           onPointerEnter={autoHideDuration != null ? pauseHideTimer : undefined}
           onPointerLeave={
@@ -321,20 +320,20 @@ export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
           style={toastStyle}
           {...props}
         >
+          {!hideCloseButton ? (
+            <IconButton
+              className={styles.dismiss}
+              variant="ghost"
+              size="sm"
+              color="neutral"
+              onClick={(event) => requestClose(event, "closeClick")}
+              aria-label={closeLabel}
+              icon={<Icon name="close" />}
+              label={closeLabel}
+            />
+          ) : null}
           <div className={styles.header}>
             {content ? <div className={styles.content}>{content}</div> : null}
-            {!hideCloseButton ? (
-              <IconButton
-                className={styles.dismiss}
-                variant="ghost"
-                size="sm"
-                color="neutral"
-                onClick={(event) => requestClose(event, "closeClick")}
-                aria-label={closeLabel}
-                icon={<Icon name="close" size={16} />}
-                label={closeLabel}
-              />
-            ) : null}
           </div>
           {action ? <div className={styles.action}>{action}</div> : null}
         </div>

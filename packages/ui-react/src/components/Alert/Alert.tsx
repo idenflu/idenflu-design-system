@@ -82,6 +82,8 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
               name={severityIconName[severity]}
               size="medium"
               color="currentColor"
+              className={styles.icon}
+              aria-hidden="true"
             />
           ));
 
@@ -94,11 +96,7 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
       >
         {statusIcon || children != null || onClose ? (
           <div className={styles.header}>
-            {statusIcon ? (
-              <span className={styles.icon} aria-hidden="true">
-                {statusIcon}
-              </span>
-            ) : null}
+            {statusIcon ? statusIcon : null}
             {children != null ? (
               <div className={styles.content}>{children}</div>
             ) : null}

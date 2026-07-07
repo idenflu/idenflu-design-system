@@ -74,6 +74,7 @@
 
 .header {
   align-items: flex-start;
+  border-block-end: 1px solid var(--border-subtle);
   display: flex;
   flex-shrink: 0;
   gap: var(--spacing-05);
@@ -106,8 +107,7 @@
   min-block-size: 0;
   min-inline-size: 0;
   overflow: auto;
-  padding-block-end: var(--spacing-07);
-  padding-block-start: var(--spacing-05);
+  padding-block: var(--spacing-05);
   padding-inline: var(--spacing-06);
 }
 
@@ -123,7 +123,8 @@
   flex-wrap: wrap;
   gap: var(--spacing-01);
   justify-content: flex-end;
-  padding: var(--spacing-01);
+  padding-block: var(--spacing-05);
+  padding-inline: var(--spacing-06);
 }
 
 .close {

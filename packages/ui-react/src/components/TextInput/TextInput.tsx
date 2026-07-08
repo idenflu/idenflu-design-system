@@ -15,11 +15,12 @@ export type TextInputProps = Omit<
   "size" | "type"
 > & {
   clearable?: boolean;
+  controlRef?: React.Ref<HTMLElement>;
   endAdornment?: React.ReactNode;
   error?: string;
   fullWidth?: boolean;
   helperText?: string;
-  label?: string;
+  label?: React.ReactNode;
   onClear?: () => void;
   size?: TextInputSize;
   startAdornment?: React.ReactNode;
@@ -72,6 +73,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
       "aria-describedby": ariaDescribedBy,
       className,
       clearable = false,
+      controlRef,
       defaultValue,
       disabled,
       endAdornment,
@@ -110,6 +112,19 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
     const inputRef = React.useRef<HTMLInputElement | null>(null);
 
     React.useImperativeHandle(ref, () => inputRef.current as HTMLInputElement);
+
+    const assignControlRef = React.useCallback(
+      (node: HTMLDivElement | HTMLLabelElement | null) => {
+        if (!controlRef) return;
+        if (typeof controlRef === "function") {
+          controlRef(node);
+          return;
+        }
+        (controlRef as React.MutableRefObject<HTMLElement | null>).current =
+          node;
+      },
+      [controlRef]
+    );
 
     React.useEffect(() => {
       setShowPassword(false);
@@ -255,7 +270,11 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
         ) : null}
 
         {isFilled ? (
-          <label className={inputSharedStyles.controlWrapper} htmlFor={inputId}>
+          <label
+            ref={assignControlRef}
+            className={inputSharedStyles.controlWrapper}
+            htmlFor={inputId}
+          >
             {label ? (
               <span className={inputSharedStyles.label}>
                 <span>{label}</span>
@@ -267,7 +286,12 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
             {fieldContent}
           </label>
         ) : (
-          <div className={inputSharedStyles.controlWrapper}>{fieldContent}</div>
+          <div
+            ref={assignControlRef}
+            className={inputSharedStyles.controlWrapper}
+          >
+            {fieldContent}
+          </div>
         )}
 
         {helperId ? (

@@ -1,40 +1,51 @@
 .inputRow {
   align-items: center;
   display: flex;
-  gap: 8px;
+  gap: var(--spacing-04);
   width: 100%;
 }
 
 .inputRow .control {
   flex: 1 1 auto;
   min-width: 0;
+  width: auto;
 }
 
-.toggle {
+.adornment {
   align-items: center;
-  background: transparent;
-  border: 0;
+  color: var(--text-muted);
+  display: inline-flex;
+  flex-shrink: 0;
+  font: var(--body-sm);
+  gap: var(--spacing-04);
+}
+
+.adornmentDisabled {
+  color: var(--text-disabled);
+}
+
+.actionButton {
+  align-items: center;
+  border-radius: var(--rounded-full);
   color: var(--text-muted);
   cursor: pointer;
   display: inline-flex;
   flex-shrink: 0;
+  height: fit-content;
   justify-content: center;
   margin: 0;
-  padding: 0;
+  padding: 1px;
+  width: fit-content;
 }
 
-.toggle:disabled {
-  color: var(--text-disabled);
-  cursor: not-allowed;
-}
-
-.toggle:focus-visible {
-  outline: 2px solid var(--border-focused);
-  outline-offset: 1px;
+.actionButtonHidden {
+  pointer-events: none;
+  visibility: hidden;
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .toggle:hover:not(:disabled) {
-    color: var(--text-primary);
+  .actionButton:hover:not(:disabled) {
+    background-color: var(--background-transparent-active);
+    color: var(--text-secondary);
   }
 }

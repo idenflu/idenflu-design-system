@@ -1,5 +1,6 @@
 import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Icon } from "../Icon/Icon";
 import {
   TextInput,
   type TextInputSize,
@@ -105,6 +106,7 @@ function VariantStateMatrix() {
               label="Label"
               size="md"
               variant={variant}
+              fullWidth
               {...column.props}
             />
           ))}
@@ -134,7 +136,12 @@ function SizeDefaultMatrix() {
 function FullWidthExample() {
   return (
     <div style={overviewStyles.fullWidthExample}>
-      <TextInput defaultValue="Value" fullWidth label="Label" variant="default" />
+      <TextInput
+        defaultValue="Value"
+        fullWidth
+        label="Label"
+        variant="default"
+      />
     </div>
   );
 }
@@ -182,6 +189,72 @@ function TypeExample() {
   );
 }
 
+function AdornmentExample() {
+  return (
+    <div style={overviewStyles.row}>
+      <TextInput
+        defaultValue="Value"
+        label="Start adornment"
+        startAdornment={<Icon name="search" size="medium" aria-hidden="true" />}
+        variant="default"
+      />
+      <TextInput
+        defaultValue="Value"
+        clearable
+        label="Clearable"
+        variant="default"
+      />
+      <TextInput
+        defaultValue="Value"
+        endAdornment={
+          <button
+            type="button"
+            aria-label="Open menu"
+            style={{
+              alignItems: "center",
+              background: "transparent",
+              border: 0,
+              color: "var(--text-muted)",
+              cursor: "pointer",
+              display: "inline-flex",
+              margin: 0,
+              padding: 0,
+            }}
+          >
+            <Icon name="arrow-down" size="medium" aria-hidden="true" />
+          </button>
+        }
+        label="End adornment"
+        variant="default"
+      />
+      <TextInput
+        defaultValue="Value"
+        clearable
+        endAdornment={
+          <button
+            type="button"
+            aria-label="Open menu"
+            style={{
+              alignItems: "center",
+              background: "transparent",
+              border: 0,
+              color: "var(--text-muted)",
+              cursor: "pointer",
+              display: "inline-flex",
+              margin: 0,
+              padding: 0,
+            }}
+          >
+            <Icon name="arrow-down" size="medium" aria-hidden="true" />
+          </button>
+        }
+        label="Multiple end actions"
+        variant="default"
+      />
+    </div>
+  );
+}
+
 type PlaygroundArgs = React.ComponentProps<typeof TextInput>;
 
 const meta = {
@@ -205,6 +278,7 @@ const meta = {
     disabled: { control: "boolean" },
     readOnly: { control: "boolean" },
     required: { control: "boolean" },
+    clearable: { control: "boolean" },
   },
 } satisfies Meta<PlaygroundArgs>;
 
@@ -236,6 +310,10 @@ export const Overview: Story = {
 
       <OverviewSection title="Type">
         <TypeExample />
+      </OverviewSection>
+
+      <OverviewSection title="Adornments">
+        <AdornmentExample />
       </OverviewSection>
     </div>
   ),

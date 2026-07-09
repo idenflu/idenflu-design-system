@@ -23,19 +23,6 @@
   min-inline-size: min(100%, 240px);
 }
 
-.title {
-  color: var(--text-primary);
-  font: var(--title-md);
-  font-weight: var(--font-weight-regular);
-  margin: 0;
-}
-
-.description {
-  color: var(--text-secondary);
-  font: var(--body-sm);
-  margin: 0;
-}
-
 .actions {
   align-items: center;
   display: flex;
@@ -50,15 +37,47 @@
   overflow-x: auto;
 }
 
-.content :global(.if-table-shell) {
-  background: transparent;
-  border: 0;
+.table {
+  border-collapse: collapse;
+  color: var(--text-primary);
+  font: var(--body-sm);
+  inline-size: 100%;
+  min-inline-size: 100%;
+}
+
+.tableHeaderCell,
+.tableCell {
+  border-block-end: 1px solid var(--border-primary);
+  padding-block: 11px;
+  padding-inline: 12px;
+  text-align: start;
+  vertical-align: middle;
+}
+
+.tableHeaderCell {
+  background: var(--surface-primary);
+  color: var(--text-secondary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.emptyRow .tableCell {
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.densitySm .tableHeaderCell,
+.densitySm .tableCell {
+  padding-block: 8px;
+}
+
+.densityLg .tableHeaderCell,
+.densityLg .tableCell {
+  padding-block: 16px;
 }
 
 .footer {
   align-items: center;
   background: var(--surface-primary);
-  border-block-start: 1px solid var(--border-primary);
   display: flex;
   flex-wrap: wrap;
   gap: var(--spacing-04) var(--spacing-06);

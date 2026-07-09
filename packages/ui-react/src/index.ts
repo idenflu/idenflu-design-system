@@ -87,7 +87,9 @@ export {
 } from "./components/DataTable/index";
 export type {
   DataTableActionsProps,
+  DataTableColumn,
   DataTableContentProps,
+  DataTableDensity,
   DataTableDescriptionProps,
   DataTableFooterProps,
   DataTableHeaderContentProps,

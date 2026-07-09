@@ -1,4 +1,5 @@
 import * as React from "react";
+import { cva } from "class-variance-authority";
 
 import { cn } from "@/utils/classNames";
 import {
@@ -16,7 +17,9 @@ import { Divider } from "../Divider";
 type DataTableContextValue = {
   descriptionId: string;
   descriptionPresent: boolean;
+  rowTotal: number | undefined;
   setDescriptionPresent: (present: boolean) => void;
+  setRowTotal: (total: number | undefined) => void;
   setTitlePresent: (present: boolean) => void;
   titleId: string;
   titlePresent: boolean;
@@ -40,6 +43,21 @@ function useStableId() {
   return React.useId().replace(/:/g, "");
 }
 
+function resolveDataTablePageCount(
+  rowTotal: number | undefined,
+  pageSize: number | undefined
+) {
+  if (rowTotal === undefined || pageSize === undefined) {
+    return 1;
+  }
+
+  if (pageSize >= rowTotal) {
+    return 1;
+  }
+
+  return Math.max(1, Math.ceil(rowTotal / pageSize));
+}
+
 export type DataTableProps = React.ComponentPropsWithoutRef<"section"> & {
   /** Accessible name when no DataTable.Title is provided. */
   "aria-label"?: string;
@@ -56,6 +74,7 @@ export function DataTable({
   const descriptionId = `${baseId}-description`;
   const [titlePresent, setTitlePresent] = React.useState(false);
   const [descriptionPresent, setDescriptionPresent] = React.useState(false);
+  const [rowTotal, setRowTotal] = React.useState<number | undefined>(undefined);
 
   const labelledBy =
     [titlePresent ? titleId : null, descriptionPresent ? descriptionId : null]
@@ -68,17 +87,22 @@ export function DataTable({
     );
   }
 
+  const contextValue = React.useMemo(
+    () => ({
+      descriptionId,
+      descriptionPresent,
+      rowTotal,
+      setDescriptionPresent,
+      setRowTotal,
+      setTitlePresent,
+      titleId,
+      titlePresent,
+    }),
+    [descriptionId, descriptionPresent, rowTotal, titleId, titlePresent]
+  );
+
   return (
-    <DataTableContext.Provider
-      value={{
-        descriptionId,
-        descriptionPresent,
-        setDescriptionPresent,
-        setTitlePresent,
-        titleId,
-        titlePresent,
-      }}
-    >
+    <DataTableContext.Provider value={contextValue}>
       <section
         aria-label={labelledBy ? undefined : ariaLabel}
         aria-labelledby={labelledBy}
@@ -127,6 +151,7 @@ export function DataTableTitle({
   className,
   component = "span",
   id,
+  variant = "title-sm",
   ...props
 }: DataTableTitleProps) {
   const context = useDataTableContext("DataTable.Title");
@@ -143,7 +168,8 @@ export function DataTableTitle({
     <Typography
       component={component}
       id={titleId}
-      className={cn(styles.title, className)}
+      className={cn(className)}
+      variant={variant}
       {...props}
     >
       {children}
@@ -170,13 +196,15 @@ export function DataTableDescription({
   }, [context]);
 
   return (
-    <p
+    <Typography
+      component="p"
       className={cn(styles.description, className)}
       id={descriptionId}
+      variant="body-sm"
       {...props}
     >
       {children}
-    </p>
+    </Typography>
   );
 }
 
@@ -194,16 +222,139 @@ export function DataTableActions({
   );
 }
 
-export type DataTableContentProps = React.ComponentPropsWithoutRef<"div">;
+export type DataTableColumn<TRow extends object> = {
+  id: string;
+  header: React.ReactNode;
+  /** Field key used when `render` is not provided. */
+  accessor?: keyof TRow & string;
+  render?: (row: TRow, rowIndex: number) => React.ReactNode;
+  headerProps?: Omit<React.ThHTMLAttributes<HTMLTableCellElement>, "children">;
+  cellProps?: Omit<React.TdHTMLAttributes<HTMLTableCellElement>, "children">;
+};
 
-export function DataTableContent({
-  children,
+export type DataTableDensity = "lg" | "md" | "sm";
+
+const tableClassName = cva(styles.table, {
+  defaultVariants: {
+    density: "md",
+  },
+  variants: {
+    density: {
+      lg: styles.densityLg,
+      md: styles.densityMd,
+      sm: styles.densitySm,
+    },
+  },
+});
+
+export type DataTableContentProps<TRow extends object> = Omit<
+  React.ComponentPropsWithoutRef<"div">,
+  "children"
+> & {
+  columns: DataTableColumn<TRow>[];
+  rows: TRow[];
+  /** Total row count for pagination. Defaults to `rows.length`. */
+  total?: number;
+  density?: DataTableDensity;
+  emptyMessage?: React.ReactNode;
+  getRowId?: (row: TRow, rowIndex: number) => string;
+};
+
+function renderCellValue<TRow extends object>(
+  row: TRow,
+  rowIndex: number,
+  column: DataTableColumn<TRow>
+) {
+  if (column.render) {
+    return column.render(row, rowIndex);
+  }
+
+  if (!column.accessor) {
+    return null;
+  }
+
+  const value = row[column.accessor];
+
+  if (value == null) {
+    return null;
+  }
+
+  if (
+    typeof value === "string" ||
+    typeof value === "number" ||
+    typeof value === "boolean"
+  ) {
+    return String(value);
+  }
+
+  return value as React.ReactNode;
+}
+
+export function DataTableContent<TRow extends object>({
   className,
+  columns,
+  density = "md",
+  emptyMessage = "No items found.",
+  getRowId,
+  rows,
+  total,
   ...props
-}: DataTableContentProps) {
+}: DataTableContentProps<TRow>) {
+  const context = useDataTableContext("DataTable.Content");
+  const resolvedTotal = total ?? rows.length;
+
+  React.useEffect(() => {
+    context.setRowTotal(resolvedTotal);
+
+    return () => {
+      context.setRowTotal(undefined);
+    };
+  }, [context, resolvedTotal]);
+
   return (
     <div className={cn(styles.content, className)} {...props}>
-      {children}
+      <table className={tableClassName({ density })}>
+        <thead className={styles.tableHead}>
+          <tr className={styles.tableRow}>
+            {columns.map((column) => (
+              <th
+                key={column.id}
+                className={styles.tableHeaderCell}
+                scope="col"
+                {...column.headerProps}
+              >
+                {column.header}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody className={styles.tableBody}>
+          {rows.length === 0 ? (
+            <tr className={styles.emptyRow}>
+              <td className={styles.tableCell} colSpan={columns.length}>
+                {emptyMessage}
+              </td>
+            </tr>
+          ) : (
+            rows.map((row, rowIndex) => (
+              <tr
+                className={styles.tableRow}
+                key={getRowId?.(row, rowIndex) ?? rowIndex}
+              >
+                {columns.map((column) => (
+                  <td
+                    key={column.id}
+                    className={styles.tableCell}
+                    {...column.cellProps}
+                  >
+                    {renderCellValue(row, rowIndex, column)}
+                  </td>
+                ))}
+              </tr>
+            ))
+          )}
+        </tbody>
+      </table>
     </div>
   );
 }
@@ -224,7 +375,8 @@ export function DataTableFooter({
 
 export type DataTableRowCountProps = React.ComponentPropsWithoutRef<"p"> & {
   itemLabel?: string;
-  total: number;
+  /** Defaults to the total registered by DataTable.Content. */
+  total?: number;
 };
 
 export function DataTableRowCount({
@@ -234,9 +386,16 @@ export function DataTableRowCount({
   total,
   ...props
 }: DataTableRowCountProps) {
+  const context = useDataTableContext("DataTable.RowCount");
+  const resolvedTotal = total ?? context.rowTotal ?? 0;
+
   return (
     <p className={cn(styles.rowCount, className)} {...props}>
-      {total} {itemLabel}
+      {children ?? (
+        <>
+          {resolvedTotal} {itemLabel}
+        </>
+      )}
     </p>
   );
 }
@@ -261,7 +420,8 @@ export type DataTablePaginationProps = {
   /** 1-based current page index. */
   divider?: boolean;
   page: number;
-  pageCount: number;
+  /** Defaults to a value derived from DataTable.Content total and pageSize. */
+  pageCount?: number;
   onPageChange?: (page: number) => void;
   /** Current number of rows shown per page. Enables the page size selector when set. */
   pageSize?: number;
@@ -298,14 +458,9 @@ export function DataTablePagination({
   showPageIndicator = true,
   showPageSize,
 }: DataTablePaginationProps) {
+  const context = useDataTableContext("DataTable.Pagination");
   const pageSizeId = useStableId();
   const pageSelectId = useStableId();
-  const safePageCount = Math.max(1, pageCount);
-  const currentPage = Math.min(Math.max(page, 1), safePageCount);
-  const isFirstPage = currentPage <= 1;
-  const isLastPage = currentPage >= safePageCount;
-  const shouldShowPageSize =
-    showPageSize ?? (pageSize !== undefined || onPageSizeChange !== undefined);
   const pageSizeSelectOptions = React.useMemo(
     () => normalizePageSizeOptions(pageSizeOptions),
     [pageSizeOptions]
@@ -314,6 +469,23 @@ export function DataTablePagination({
     pageSize ??
     Number(pageSizeSelectOptions[0]?.value) ??
     DEFAULT_PAGE_SIZE_OPTIONS[0];
+  const resolvedPageCount =
+    pageCount ?? resolveDataTablePageCount(context.rowTotal, resolvedPageSize);
+
+  const safePageCount = Math.max(1, resolvedPageCount);
+  const currentPage = Math.min(Math.max(page, 1), safePageCount);
+  const isFirstPage = currentPage <= 1;
+  const isLastPage = currentPage >= safePageCount;
+  const shouldShowPageSize =
+    showPageSize ?? (pageSize !== undefined || onPageSizeChange !== undefined);
+
+  React.useEffect(() => {
+    if (pageCount === undefined && context.rowTotal === undefined) {
+      console.warn(
+        "DataTable.Pagination: provide pageCount or register row total via DataTable.Content."
+      );
+    }
+  }, [context.rowTotal, pageCount]);
 
   const handlePrevious = () => {
     if (isFirstPage || disabled) {

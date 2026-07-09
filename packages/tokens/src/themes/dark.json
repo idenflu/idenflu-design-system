@@ -2,7 +2,7 @@
   "Border": {
     "primary": {
       "$type": "color",
-      "$value": "{Base.Gray.400}"
+      "$value": "{Base.Gray.300}"
     },
     "subtle": {
       "$type": "color",

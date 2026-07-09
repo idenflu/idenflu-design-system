@@ -74,6 +74,33 @@ export { Card, CardBody, CardFooter, CardHeader } from "./components/Card";
 export type { CardProps, CardState } from "./components/Card";
 
 export {
+  DataTable,
+  DataTableActions,
+  DataTableContent,
+  DataTableDescription,
+  DataTableFooter,
+  DataTableHeader,
+  DataTableHeaderContent,
+  DataTablePagination,
+  DataTableRowCount,
+  DataTableTitle,
+} from "./components/DataTable/index";
+export type {
+  DataTableActionsProps,
+  DataTableContentProps,
+  DataTableDescriptionProps,
+  DataTableFooterProps,
+  DataTableHeaderContentProps,
+  DataTableHeaderProps,
+  DataTablePaginationProps,
+  DataTablePageSizeOption,
+  DataTableProps,
+  DataTableRowCountProps,
+  DataTableRowCountTextOptions,
+  DataTableTitleProps,
+} from "./components/DataTable/index";
+
+export {
   Table,
   TableBody,
   TableCell,

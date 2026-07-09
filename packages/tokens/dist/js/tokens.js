@@ -178,7 +178,7 @@ export default {
     "300 18px/26px 'Noto Sans KR', 'Noto Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
   "numeric-xs":
     "300 14px/20px 'Noto Sans KR', 'Noto Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-  "border-primary": "#919191",
+  "border-primary": "#bebebe",
   "border-subtle": "#e1e1e1",
   "border-strong": "#737373",
   "border-disabled": "#e1e1e1",

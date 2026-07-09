@@ -6,7 +6,7 @@
   border-radius: var(--rounded-none, 0);
   cursor: pointer;
   display: inline-flex;
-  font: var(--body-md);
+  font: var(--body-sm);
   justify-content: flex-start;
   min-width: 96px;
   overflow: hidden;

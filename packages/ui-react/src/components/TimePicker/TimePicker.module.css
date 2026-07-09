@@ -1,0 +1,84 @@
+/* TimePicker / TimePickerRange — nova-time-picker */
+
+.wrapper {
+  display: inline-flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* ─── Popover ────────────────────────────────────────────────────── */
+
+.popover {
+  background: var(--surface-on-00);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--rounded-md);
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  top: calc(100% + 4px);
+  z-index: 1000;
+}
+
+.timeRange {
+  min-width: 240px;
+}
+
+.rangeStepHeader {
+  align-items: center;
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  gap: var(--spacing-04);
+  padding: var(--spacing-04) var(--spacing-05);
+}
+
+.rangeStepTitle {
+  color: var(--text-muted);
+  font: var(--label-md);
+  padding: var(--spacing-02) var(--spacing-03);
+  width: 40px;
+}
+
+.rangeStepTitleActive {
+  color: var(--text-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+.rangeStepDivider {
+  background: var(--border-subtle);
+  flex-shrink: 0;
+  height: 12px;
+  width: 1px;
+}
+
+.rangeStepFooter {
+  --range-step-action-width: 72px;
+  align-items: center;
+  border-top: 1px solid var(--border-subtle);
+  display: grid;
+  gap: var(--spacing-02);
+  grid-template-columns: 1fr 1fr;
+  margin-top: auto;
+  min-width: calc(var(--range-step-action-width) * 2);
+  padding: var(--spacing-04) var(--spacing-05);
+
+  & > button {
+    max-width: var(--range-step-action-width);
+    min-width: var(--range-step-action-width);
+    width: var(--range-step-action-width);
+  }
+}
+
+.rangeStepButtonHidden {
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.rangeStepError {
+  color: var(--text-error);
+  font: var(--label-md);
+  margin: 0;
+  padding: 0 var(--spacing-05) var(--spacing-03);
+}

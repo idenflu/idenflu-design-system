@@ -7,36 +7,39 @@ import { lockBodyScroll } from "@/utils/lockBodyScroll";
 import { Icon } from "../Icon/Icon";
 import { IconButton } from "../IconButton/IconButton";
 import { Typography } from "../Typography/Typography";
-import styles from "./Dialog.module.css";
+import styles from "./Drawer.module.css";
 
-export type DialogSize = "contain" | "sm" | "md" | "lg";
+export type DrawerSide = "bottom" | "left" | "right" | "top";
+export type DrawerSize = "lg" | "md" | "sm";
 
-export type DialogTransition = {
+export type DrawerTransition = {
   /** Enter animation duration in milliseconds. Defaults to 200. */
   enter?: number;
-  /** Exit animation duration in milliseconds. Defaults to 150. */
+  /** Exit animation duration in milliseconds. Defaults to 160. */
   out?: number;
 };
 
-type DialogContextValue = {
+type DrawerContextValue = {
   descriptionId: string;
   descriptionPresent: boolean;
+  onClose: () => void;
   open: boolean;
   setDescriptionPresent: (present: boolean) => void;
   setOpen: (open: boolean) => void;
   setTitlePresent: (present: boolean) => void;
-  size: DialogSize;
+  side: DrawerSide;
+  size: DrawerSize;
   titleId: string;
   titlePresent: boolean;
   triggerRef: React.RefObject<HTMLElement | null>;
 };
 
-type DialogStyle = React.CSSProperties & {
-  "--nova-dialog-enter-duration"?: string;
-  "--nova-dialog-out-duration"?: string;
+type DrawerStyle = React.CSSProperties & {
+  "--nova-drawer-enter-duration"?: string;
+  "--nova-drawer-out-duration"?: string;
 };
 
-const DialogContext = React.createContext<DialogContextValue | null>(null);
+const DrawerContext = React.createContext<DrawerContextValue | null>(null);
 
 const contentClassName = cva(styles.content, {
   defaultVariants: {
@@ -44,7 +47,6 @@ const contentClassName = cva(styles.content, {
   },
   variants: {
     size: {
-      contain: styles.sizeContain,
       lg: styles.sizeLg,
       md: styles.sizeMd,
       sm: styles.sizeSm,
@@ -52,11 +54,11 @@ const contentClassName = cva(styles.content, {
   },
 });
 
-function useDialogContext(component: string) {
-  const context = React.useContext(DialogContext);
+function useDrawerContext(component: string) {
+  const context = React.useContext(DrawerContext);
 
   if (!context) {
-    throw new Error(`${component} must be used within Dialog.`);
+    throw new Error(`${component} must be used within Drawer.`);
   }
 
   return context;
@@ -96,7 +98,7 @@ function getTabbableElements(container: HTMLElement) {
 
 function getInitialFocusTarget(surface: HTMLElement) {
   const tabbables = getTabbableElements(surface).filter(
-    (element) => element.dataset.slot !== "dialog-close"
+    (element) => element.dataset.slot !== "drawer-close"
   );
   const field = tabbables.find((element) =>
     element.matches("input, textarea, select")
@@ -130,28 +132,28 @@ function usePresence(open: boolean, duration: number) {
   return { mounted, state };
 }
 
-export type DialogProps = {
+export type DrawerProps = {
   children?: React.ReactNode;
   defaultOpen?: boolean;
-  /**
-   * Convenience callback fired when the dialog requests to close. Prefer
-   * `onOpenChange` when you need the next open state explicitly.
-   */
-  onClose?: () => void;
+  /** Callback fired when the drawer requests to close. */
+  onClose: () => void;
   onOpenChange?: (open: boolean) => void;
   open?: boolean;
-  /** Surface width preset. Defaults to `md`. */
-  size?: DialogSize;
+  /** Edge from which the drawer panel slides in. */
+  side: DrawerSide;
+  /** Panel width preset for left/right drawers. Defaults to `md`. */
+  size?: DrawerSize;
 };
 
-export const Dialog = ({
+export const Drawer = ({
   children,
   defaultOpen = false,
   onClose,
   onOpenChange,
   open,
+  side,
   size = "md",
-}: DialogProps) => {
+}: DrawerProps) => {
   const titleId = React.useId();
   const descriptionId = React.useId();
   const triggerRef = React.useRef<HTMLElement | null>(null);
@@ -170,20 +172,22 @@ export const Dialog = ({
       onOpenChange?.(nextOpen);
 
       if (!nextOpen) {
-        onClose?.();
+        onClose();
       }
     },
     [isControlled, onClose, onOpenChange]
   );
 
-  const contextValue = React.useMemo<DialogContextValue>(
+  const contextValue = React.useMemo<DrawerContextValue>(
     () => ({
       descriptionId,
       descriptionPresent,
+      onClose,
       open: isOpen,
       setDescriptionPresent,
       setOpen,
       setTitlePresent,
+      side,
       size,
       titleId,
       titlePresent,
@@ -193,7 +197,9 @@ export const Dialog = ({
       descriptionId,
       descriptionPresent,
       isOpen,
+      onClose,
       setOpen,
+      side,
       size,
       titleId,
       titlePresent,
@@ -201,24 +207,24 @@ export const Dialog = ({
   );
 
   return (
-    <DialogContext.Provider value={contextValue}>
-      <div data-slot="dialog">{children}</div>
-    </DialogContext.Provider>
+    <DrawerContext.Provider value={contextValue}>
+      <div data-slot="drawer">{children}</div>
+    </DrawerContext.Provider>
   );
 };
 
-Dialog.displayName = "Dialog";
+Drawer.displayName = "Drawer";
 
-export type DialogTriggerProps =
+export type DrawerTriggerProps =
   React.ButtonHTMLAttributes<HTMLButtonElement> & {
     asChild?: boolean;
   };
 
-export const DialogTrigger = React.forwardRef<
+export const DrawerTrigger = React.forwardRef<
   HTMLButtonElement,
-  DialogTriggerProps
+  DrawerTriggerProps
 >(({ asChild = false, children, onClick, type = "button", ...props }, ref) => {
-  const { setOpen, triggerRef } = useDialogContext("DialogTrigger");
+  const { setOpen, triggerRef } = useDrawerContext("DrawerTrigger");
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     onClick?.(event);
@@ -236,7 +242,7 @@ export const DialogTrigger = React.forwardRef<
 
     return React.cloneElement(child, {
       ...(props as Partial<typeof child.props>),
-      "data-slot": "dialog-trigger",
+      "data-slot": "drawer-trigger",
       onClick: (event: React.MouseEvent<HTMLButtonElement>) => {
         child.props.onClick?.(event);
         handleClick(event);
@@ -248,7 +254,7 @@ export const DialogTrigger = React.forwardRef<
   return (
     <button
       ref={composeRefs(ref, triggerRef)}
-      data-slot="dialog-trigger"
+      data-slot="drawer-trigger"
       onClick={handleClick}
       type={type}
       {...props}
@@ -258,20 +264,20 @@ export const DialogTrigger = React.forwardRef<
   );
 });
 
-DialogTrigger.displayName = "DialogTrigger";
+DrawerTrigger.displayName = "DrawerTrigger";
 
-export type DialogPortalProps = {
+export type DrawerPortalProps = {
   children?: React.ReactNode;
   container?: HTMLElement | null;
   /** When `false`, nothing is portaled. Used for exit animations. */
   mounted?: boolean;
 };
 
-export const DialogPortal = ({
+export const DrawerPortal = ({
   children,
   container,
   mounted = true,
-}: DialogPortalProps) => {
+}: DrawerPortalProps) => {
   if (!mounted || typeof document === "undefined") {
     return null;
   }
@@ -279,19 +285,19 @@ export const DialogPortal = ({
   return createPortal(children, container ?? document.body);
 };
 
-DialogPortal.displayName = "DialogPortal";
+DrawerPortal.displayName = "DrawerPortal";
 
-export type DialogOverlayProps = React.HTMLAttributes<HTMLDivElement> & {
-  transition?: DialogTransition;
+export type DrawerOverlayProps = React.HTMLAttributes<HTMLDivElement> & {
+  transition?: DrawerTransition;
 };
 
-export const DialogOverlay = React.forwardRef<
+export const DrawerOverlay = React.forwardRef<
   HTMLDivElement,
-  DialogOverlayProps
+  DrawerOverlayProps
 >(({ className, style, transition, ...props }, ref) => {
-  const overlayStyle: DialogStyle = {
-    "--nova-dialog-enter-duration": `${transition?.enter ?? 200}ms`,
-    "--nova-dialog-out-duration": `${transition?.out ?? 150}ms`,
+  const overlayStyle: DrawerStyle = {
+    "--nova-drawer-enter-duration": `${transition?.enter ?? 200}ms`,
+    "--nova-drawer-out-duration": `${transition?.out ?? 160}ms`,
     ...style,
   };
 
@@ -300,40 +306,37 @@ export const DialogOverlay = React.forwardRef<
       ref={ref}
       aria-hidden="true"
       className={cn(styles.overlay, className)}
-      data-slot="dialog-overlay"
+      data-slot="drawer-overlay"
       style={overlayStyle}
       {...props}
     />
   );
 });
 
-DialogOverlay.displayName = "DialogOverlay";
+DrawerOverlay.displayName = "DrawerOverlay";
 
-export type DialogOpenAutoFocusEvent = {
-  preventDefault: () => void;
-};
-
-export type DialogContentProps = React.HTMLAttributes<HTMLDivElement> & {
+export type DrawerContentProps = React.HTMLAttributes<HTMLDivElement> & {
   /** Portal mount target. Defaults to `document.body`. */
   container?: HTMLElement | null;
-  /** When `false`, clicking the backdrop does not close the dialog. */
+  /** When `false`, clicking the backdrop does not close the drawer. */
   dismissOnBackdrop?: boolean;
-  /** When `false`, pressing Escape does not close the dialog. */
+  /** When `false`, pressing Escape does not close the drawer. */
   dismissOnEscape?: boolean;
   onBackdropClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
   onEscapeKeyDown?: (event: KeyboardEvent) => void;
-  role?: "alertdialog" | "dialog";
-  /** Renders `DialogClose` in the top-end corner. Defaults to `true`. */
+  /** Renders `DrawerClose` in the top-end corner. Defaults to `true`. */
   showClose?: boolean;
-  /** Surface width override. */
-  size?: DialogSize;
+  /** Edge override for this content instance. */
+  side?: DrawerSide;
+  /** Panel width override for left/right drawers. */
+  size?: DrawerSize;
   /** Enter and exit animation durations in milliseconds. */
-  transition?: DialogTransition;
+  transition?: DrawerTransition;
 };
 
-export const DialogContent = React.forwardRef<
+export const DrawerContent = React.forwardRef<
   HTMLDivElement,
-  DialogContentProps
+  DrawerContentProps
 >(
   (
     {
@@ -347,8 +350,8 @@ export const DialogContent = React.forwardRef<
       dismissOnEscape = true,
       onBackdropClick,
       onEscapeKeyDown,
-      role = "dialog",
       showClose = true,
+      side: sideProp,
       size: sizeProp,
       style,
       transition,
@@ -361,12 +364,14 @@ export const DialogContent = React.forwardRef<
       descriptionPresent,
       open,
       setOpen,
+      side: contextSide,
       size: contextSize,
       titleId,
       titlePresent,
-    } = useDialogContext("DialogContent");
+    } = useDrawerContext("DrawerContent");
+    const side = sideProp ?? contextSide;
     const size = sizeProp ?? contextSize;
-    const outDuration = transition?.out ?? 150;
+    const outDuration = transition?.out ?? 160;
     const { mounted, state } = usePresence(open, outDuration);
     const surfaceRef = React.useRef<HTMLDivElement | null>(null);
     const restoreFocusRef = React.useRef<HTMLElement | null>(null);
@@ -384,9 +389,9 @@ export const DialogContent = React.forwardRef<
       [ref]
     );
 
-    const contentStyle: DialogStyle = {
-      "--nova-dialog-enter-duration": `${transition?.enter ?? 200}ms`,
-      "--nova-dialog-out-duration": `${outDuration}ms`,
+    const contentStyle: DrawerStyle = {
+      "--nova-drawer-enter-duration": `${transition?.enter ?? 200}ms`,
+      "--nova-drawer-out-duration": `${outDuration}ms`,
       ...style,
     };
 
@@ -522,9 +527,9 @@ export const DialogContent = React.forwardRef<
     }
 
     return (
-      <DialogPortal container={container} mounted={mounted}>
-        <div className={styles.viewport} data-slot="dialog-portal">
-          <DialogOverlay
+      <DrawerPortal container={container} mounted={mounted}>
+        <div className={styles.viewport} data-slot="drawer-portal">
+          <DrawerOverlay
             data-state={state}
             onMouseDown={handleBackdropClick}
             transition={transition}
@@ -537,45 +542,46 @@ export const DialogContent = React.forwardRef<
             aria-modal="true"
             className={cn(contentClassName({ size }), className)}
             data-show-close={showClose ? "" : undefined}
+            data-side={side}
             data-size={size}
-            data-slot="dialog-content"
+            data-slot="drawer-content"
             data-state={state}
             onMouseDown={(event) => event.stopPropagation()}
-            role={role}
+            role="dialog"
             style={contentStyle}
             tabIndex={-1}
             {...props}
           >
-            {showClose ? <DialogClose className={styles.close} /> : null}
+            {showClose ? <DrawerClose className={styles.close} /> : null}
             {children}
           </div>
         </div>
-      </DialogPortal>
+      </DrawerPortal>
     );
   }
 );
 
-DialogContent.displayName = "DialogContent";
+DrawerContent.displayName = "DrawerContent";
 
-export type DialogHeaderProps = React.HTMLAttributes<HTMLElement>;
+export type DrawerHeaderProps = React.HTMLAttributes<HTMLElement>;
 
-export const DialogHeader = ({ className, ...props }: DialogHeaderProps) => (
+export const DrawerHeader = ({ className, ...props }: DrawerHeaderProps) => (
   <header
     className={cn(styles.header, className)}
-    data-slot="dialog-header"
+    data-slot="drawer-header"
     {...props}
   />
 );
 
-DialogHeader.displayName = "DialogHeader";
+DrawerHeader.displayName = "DrawerHeader";
 
-export type DialogTitleProps = React.ComponentPropsWithoutRef<
+export type DrawerTitleProps = React.ComponentPropsWithoutRef<
   typeof Typography
 >;
 
-export const DialogTitle = React.forwardRef<HTMLElement, DialogTitleProps>(
-  ({ children, className, id, variant = "title-md", ...props }, ref) => {
-    const { setTitlePresent, titleId } = useDialogContext("DialogTitle");
+export const DrawerTitle = React.forwardRef<HTMLElement, DrawerTitleProps>(
+  ({ children, className, id, variant = "title-sm", ...props }, ref) => {
+    const { setTitlePresent, titleId } = useDrawerContext("DrawerTitle");
 
     React.useEffect(() => {
       setTitlePresent(true);
@@ -587,7 +593,7 @@ export const DialogTitle = React.forwardRef<HTMLElement, DialogTitleProps>(
         ref={ref}
         className={cn(styles.title, className)}
         component="h2"
-        data-slot="dialog-title"
+        data-slot="drawer-title"
         id={id ?? titleId}
         variant={variant}
         {...props}
@@ -598,18 +604,18 @@ export const DialogTitle = React.forwardRef<HTMLElement, DialogTitleProps>(
   }
 );
 
-DialogTitle.displayName = "DialogTitle";
+DrawerTitle.displayName = "DrawerTitle";
 
-export type DialogDescriptionProps = React.ComponentPropsWithoutRef<
+export type DrawerDescriptionProps = React.ComponentPropsWithoutRef<
   typeof Typography
 >;
 
-export const DialogDescription = React.forwardRef<
+export const DrawerDescription = React.forwardRef<
   HTMLElement,
-  DialogDescriptionProps
->(({ children, className, id, variant = "body-md", ...props }, ref) => {
+  DrawerDescriptionProps
+>(({ children, className, id, variant = "body-sm", ...props }, ref) => {
   const { descriptionId, setDescriptionPresent } =
-    useDialogContext("DialogDescription");
+    useDrawerContext("DrawerDescription");
 
   React.useEffect(() => {
     setDescriptionPresent(true);
@@ -621,7 +627,7 @@ export const DialogDescription = React.forwardRef<
       ref={ref}
       className={cn(styles.description, className)}
       component="p"
-      data-slot="dialog-description"
+      data-slot="drawer-description"
       id={id ?? descriptionId}
       variant={variant}
       {...props}
@@ -631,33 +637,33 @@ export const DialogDescription = React.forwardRef<
   );
 });
 
-DialogDescription.displayName = "DialogDescription";
+DrawerDescription.displayName = "DrawerDescription";
 
-export type DialogBodyProps = React.HTMLAttributes<HTMLDivElement>;
+export type DrawerBodyProps = React.HTMLAttributes<HTMLDivElement>;
 
-export const DialogBody = ({ className, ...props }: DialogBodyProps) => (
+export const DrawerBody = ({ className, ...props }: DrawerBodyProps) => (
   <div
     className={cn(styles.body, className)}
-    data-slot="dialog-body"
+    data-slot="drawer-body"
     {...props}
   />
 );
 
-DialogBody.displayName = "DialogBody";
+DrawerBody.displayName = "DrawerBody";
 
-export type DialogFooterProps = React.HTMLAttributes<HTMLElement>;
+export type DrawerFooterProps = React.HTMLAttributes<HTMLElement>;
 
-export const DialogFooter = ({ className, ...props }: DialogFooterProps) => (
+export const DrawerFooter = ({ className, ...props }: DrawerFooterProps) => (
   <footer
     className={cn(styles.footer, className)}
-    data-slot="dialog-footer"
+    data-slot="drawer-footer"
     {...props}
   />
 );
 
-DialogFooter.displayName = "DialogFooter";
+DrawerFooter.displayName = "DrawerFooter";
 
-export type DialogCloseProps = Omit<
+export type DrawerCloseProps = Omit<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
   "children" | "color"
 > & {
@@ -670,9 +676,9 @@ export type DialogCloseProps = Omit<
   variant?: React.ComponentProps<typeof IconButton>["variant"];
 };
 
-export const DialogClose = React.forwardRef<
+export const DrawerClose = React.forwardRef<
   HTMLButtonElement,
-  DialogCloseProps
+  DrawerCloseProps
 >(
   (
     {
@@ -689,7 +695,7 @@ export const DialogClose = React.forwardRef<
     },
     ref
   ) => {
-    const { setOpen } = useDialogContext("DialogClose");
+    const { setOpen } = useDrawerContext("DrawerClose");
 
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
       onClick?.(event);
@@ -707,7 +713,7 @@ export const DialogClose = React.forwardRef<
 
       return React.cloneElement(child, {
         ...(props as Partial<typeof child.props>),
-        "data-slot": "dialog-close",
+        "data-slot": "drawer-close",
         onClick: (event: React.MouseEvent<HTMLButtonElement>) => {
           child.props.onClick?.(event);
           handleClick(event);
@@ -721,7 +727,7 @@ export const DialogClose = React.forwardRef<
         ref={ref}
         className={className}
         color={color}
-        data-slot="dialog-close"
+        data-slot="drawer-close"
         icon={<Icon name="close" />}
         label={label}
         onClick={handleClick}
@@ -734,4 +740,4 @@ export const DialogClose = React.forwardRef<
   }
 );
 
-DialogClose.displayName = "DialogClose";
+DrawerClose.displayName = "DrawerClose";

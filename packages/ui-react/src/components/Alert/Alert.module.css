@@ -1,37 +1,46 @@
 .root {
-  align-items: flex-start;
-  border: 1px solid;
+  border: 1px solid var(--border-primary);
   box-sizing: border-box;
   display: flex;
+  flex-direction: column;
   font: var(--body-md);
-  gap: 16px;
+  gap: var(--spacing-06);
   padding: 12px 16px;
   width: 100%;
+  position: relative;
 }
 
-.icon,
-.close {
-  align-items: center;
-  display: inline-flex;
-  flex: 0 0 auto;
-  justify-content: center;
+.header {
+  align-items: flex-start;
+  display: flex;
+  gap: var(--spacing-04);
+  inline-size: 100%;
 }
 
 .icon {
-  margin-block-start: 2px;
+  flex: 0 0 auto;
+  margin-block-start: 3px;
+}
+
+.close {
+  color: var(--text-secondary);
+  inset-block-start: var(--spacing-01);
+  inset-inline-end: var(--spacing-01);
+  position: absolute;
+  z-index: 1;
 }
 
 .content {
-  color: currentColor;
+  color: var(--text-primary);
   display: grid;
   flex: 1 1 auto;
-  font: var(--body-md);
+  font: var(--body-sm);
   gap: var(--spacing-01);
   min-width: 0;
 }
 
 .title {
-  font: var(--label-lg);
+  font: var(--body-sm);
   font-weight: var(--font-weight-semibold);
 }
 
@@ -44,19 +53,7 @@
   display: inline-flex;
   flex: 0 0 auto;
   gap: var(--spacing-02);
-  margin-inline-start: auto;
-}
-
-.close {
-  appearance: none;
-  background: transparent;
-  border: 0;
-  border-radius: var(--rounded-full);
-  cursor: pointer;
-  color: var(--text-secondary);
-  margin-block-start: calc(4px * -1);
-  margin-inline-end: calc(4px * -1);
-  padding: 4px;
+  inline-size: 100%;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -70,27 +67,27 @@
   outline-offset: 1px;
 }
 
+.variantOutlined {
+  background: var(--surface-02);
+}
+
 .variantOutlined.severityInfo {
-  background: var(--background-info-tint);
-  border-color: var(--border-info);
+  border-left: 2px solid var(--border-info);
   color: var(--text-link-strong);
 }
 
 .variantOutlined.severitySuccess {
-  background: var(--background-success-tint);
-  border-color: var(--border-success);
+  border-left: 2px solid var(--border-success);
   color: var(--text-success-strong);
 }
 
 .variantOutlined.severityWarning {
-  background: var(--background-warning-tint);
-  border-color: var(--border-warning);
+  border-left: 2px solid var(--border-warning);
   color: var(--text-warning-strong);
 }
 
 .variantOutlined.severityError {
-  background: var(--background-error-tint);
-  border-color: var(--border-error);
+  border-left: 2px solid var(--border-error);
   color: var(--text-error-strong);
 }
 

@@ -1,0 +1,27 @@
+/* DatePicker / DatePickerRange — nova-date-picker */
+
+.wrapper {
+  display: inline-flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* ─── Popover ────────────────────────────────────────────────────── */
+
+.popover {
+  background: var(--surface-on-00);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--rounded-none);
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  top: calc(100% + 4px);
+  z-index: 1000;
+}
+
+.dateRange {
+  min-width: 240px;
+}

@@ -5,7 +5,7 @@ import { Icon } from "../Icon/Icon";
 
 const variants: ChipVariant[] = ["filled", "outlined"];
 const colors: ChipColor[] = ["neutral", "info", "success", "warning", "error"];
-const sizes: ChipSize[] = ["lg", "md", "sm"];
+const sizes: ChipSize[] = ["md", "sm"];
 
 const overviewStyles = {
   root: {

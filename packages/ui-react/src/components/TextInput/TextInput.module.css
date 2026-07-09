@@ -1,289 +1,51 @@
-.root {
-  display: flex;
-  flex-direction: column;
-  width: 240px;
-}
-
-.fullWidth {
-  width: 100%;
-}
-
-.label {
-  align-items: center;
-  box-sizing: border-box;
-  color: var(--text-secondary);
-  display: flex;
-  font: var(--label-md);
-  gap: 16px;
-  justify-content: space-between;
-  padding-bottom: 4px;
-  width: 100%;
-}
-
-.disabled .label {
-  color: var(--text-disabled);
-}
-
-.required {
-  color: var(--text-muted);
-  font: var(--label-md);
-  font-style: normal;
-  flex-shrink: 0;
-}
-
-.control {
-  align-items: stretch;
-  background: var(--surface-on-00);
-  border: 0 solid transparent;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-inline: 12px;
-  transition:
-    background-color 200ms ease,
-    border-color 200ms ease,
-    box-shadow 200ms ease;
-}
-
-.control:focus-within {
-  outline: none;
-}
-
-.input {
-  background: transparent;
-  border: 0;
-  color: var(--text-primary);
-  font: var(--body-md);
-  margin: 0;
-  min-width: 0;
-  outline: none;
-  padding: 0;
-  width: 100%;
-}
-
-.input::placeholder {
-  color: var(--text-secondary);
-}
-
-.input:disabled {
-  color: var(--text-disabled);
-  cursor: not-allowed;
-  -webkit-text-fill-color: var(--text-disabled);
-}
-
-.input:read-only:not(:disabled) {
-  cursor: default;
-}
-
-.readOnly .input,
-.readOnly .label {
-  color: var(--text-muted);
-  cursor: default;
-  pointer-events: none;
-  -webkit-text-fill-color: var(--text-muted);
-}
-
 .inputRow {
   align-items: center;
   display: flex;
-  gap: 8px;
+  gap: var(--spacing-04);
   width: 100%;
 }
 
-.inputRow .input {
+.inputRow .control {
   flex: 1 1 auto;
   min-width: 0;
+  width: auto;
 }
 
-.toggle {
+.adornment {
   align-items: center;
-  background: transparent;
-  border: 0;
+  color: var(--text-muted);
+  display: inline-flex;
+  flex-shrink: 0;
+  font: var(--body-sm);
+  gap: var(--spacing-04);
+}
+
+.adornmentDisabled {
+  color: var(--text-disabled);
+}
+
+.actionButton {
+  align-items: center;
+  border-radius: var(--rounded-full);
   color: var(--text-muted);
   cursor: pointer;
   display: inline-flex;
   flex-shrink: 0;
+  height: fit-content;
   justify-content: center;
   margin: 0;
-  padding: 0;
+  padding: 1px;
+  width: fit-content;
 }
 
-.toggle:disabled {
-  color: var(--text-disabled);
-  cursor: not-allowed;
-}
-
-.toggle:focus-visible {
-  outline: 2px solid var(--border-focused);
-  outline-offset: 1px;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .toggle:hover:not(:disabled) {
-    color: var(--text-primary);
-  }
-}
-
-.helper {
-  color: var(--text-muted);
-  font: var(--label-md);
-  margin: 0;
-  padding-top: 4px;
-}
-
-.helperError,
-.error .helper {
-  color: var(--text-error);
-}
-
-.disabled .helper {
-  color: var(--text-disabled);
-}
-
-.sizeLg:not(.variantFilled) .control {
-  padding-block: 14px;
-}
-
-.sizeMd:not(.variantFilled) .control {
-  padding-block: 10px;
-}
-
-.sizeSm:not(.variantFilled) .control {
-  padding-block: 6px;
-}
-
-.variantFilled.sizeLg .control {
-  gap: 4px;
-  padding-block: 12px;
-}
-
-.variantFilled.sizeMd .control {
-  gap: 4px;
-  padding-block: 8px;
-}
-
-.variantFilled.sizeSm .control {
-  gap: 4px;
-  padding-block: 4px;
-}
-
-.variantDefault .control {
-  background: var(--surface-on-00);
-  border-bottom: 0;
-  box-shadow: inset 0 -1px 0 var(--border-strong);
-}
-
-.variantDefault .control:focus-within {
-  box-shadow: inset 0 -2px 0 var(--border-focused);
-}
-
-.variantDefault.error .control {
-  box-shadow: inset 0 -2px 0 var(--border-error);
-}
-
-.variantDefault.error .control:focus-within {
-  box-shadow: inset 0 -2px 0 var(--border-error);
-}
-
-.variantDefault.disabled .control {
-  background: var(--background-disabled);
-  box-shadow: inset 0 -1px 0 var(--border-disabled);
-}
-
-.variantOutlined .control {
-  background: var(--background-transparent);
-  border: 1px solid var(--border-strong);
-}
-
-.variantOutlined .control:focus-within {
-  border-color: var(--border-focused);
-  border-width: 2px;
-  padding-inline: 11px;
-}
-
-.variantOutlined.sizeLg:not(.variantFilled) .control:focus-within {
-  padding-block: 13px;
-}
-
-.variantOutlined.sizeMd:not(.variantFilled) .control:focus-within {
-  padding-block: 9px;
-}
-
-.variantOutlined.sizeSm:not(.variantFilled) .control:focus-within {
-  padding-block: 5px;
-}
-
-.variantOutlined.error .control {
-  border-color: var(--border-error);
-  border-width: 2px;
-  padding-inline: 11px;
-}
-
-.variantOutlined.sizeLg.error:not(.variantFilled) .control {
-  padding-block: 13px;
-}
-
-.variantOutlined.sizeMd.error:not(.variantFilled) .control {
-  padding-block: 9px;
-}
-
-.variantOutlined.sizeSm.error:not(.variantFilled) .control {
-  padding-block: 5px;
-}
-
-.variantOutlined.disabled .control {
-  background: var(--background-disabled);
-  border-color: var(--border-disabled);
-}
-
-.variantFilled .control {
-  background: var(--surface-on-00);
-  border-bottom: 0;
-  box-shadow: inset 0 -1px 0 var(--border-strong);
-  cursor: text;
-}
-
-.variantFilled.readOnly .control {
-  cursor: default;
-}
-
-.variantFilled .control .label {
-  padding-bottom: 0;
-}
-
-.variantFilled .control:focus-within {
-  box-shadow: inset 0 -2px 0 var(--border-focused);
-}
-
-.variantFilled.error .control {
-  box-shadow: inset 0 -2px 0 var(--border-error);
-}
-
-.variantFilled.error .control:focus-within {
-  box-shadow: inset 0 -2px 0 var(--border-error);
-}
-
-.variantFilled.disabled .control {
-  background: var(--background-disabled);
-  box-shadow: inset 0 -1px 0 var(--border-disabled);
-  cursor: not-allowed;
-}
-
-.variantFilled.disabled .input {
+.actionButtonHidden {
   pointer-events: none;
+  visibility: hidden;
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .control {
-    transition:
-      background-color 200ms ease,
-      border-color 200ms ease,
-      box-shadow 200ms ease;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .control {
-    transition: none;
+  .actionButton:hover:not(:disabled) {
+    background-color: var(--background-transparent-active);
+    color: var(--text-secondary);
   }
 }

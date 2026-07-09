@@ -43,6 +43,8 @@ export type DateRangeProps = {
   weekStartsOn?: 0 | 1;
 };
 
+type ActiveEndpoint = "from" | "to";
+
 const EMPTY_RANGE: DateRangeValue = { from: "", to: null };
 
 export const DateRange = React.forwardRef<HTMLInputElement, DateRangeProps>(
@@ -84,7 +86,8 @@ export const DateRange = React.forwardRef<HTMLInputElement, DateRangeProps>(
     );
     const rangeVal = isControlled ? (value as DateRangeValue) : internal;
 
-    const [pendingFrom, setPendingFrom] = React.useState("");
+    const [activeEndpoint, setActiveEndpoint] =
+      React.useState<ActiveEndpoint>("from");
     const [hoverISO, setHoverISO] = React.useState("");
 
     const fromDate = parseDateValue(rangeVal.from);
@@ -123,52 +126,40 @@ export const DateRange = React.forwardRef<HTMLInputElement, DateRangeProps>(
       const [y2, m2] = anchor.split("-").map(Number);
       setView({ year: y2, month: m2 - 1 });
       setFocusISO(anchor);
-      setPendingFrom("");
+      setActiveEndpoint("from");
       setHoverISO("");
     }, [open]); // eslint-disable-line react-hooks/exhaustive-deps
 
+    const commitRange = (next: DateRangeValue) => {
+      if (!isControlled) setInternal(next);
+      onChange?.(next);
+      clearInputError();
+    };
+
     const handleSelect = (iso: string) => {
-      // Phase 2: pendingFrom 이 있으면 범위를 완성한다.
-      if (pendingFrom) {
-        const [a, b] =
-          iso >= pendingFrom ? [pendingFrom, iso] : [iso, pendingFrom];
-        const next: DateRangeValue = {
-          from: formatDateISO(a),
-          to: formatDateISO(b),
-        };
-        if (!isControlled) setInternal(next);
-        onChange?.(next);
-        setPendingFrom("");
-        clearInputError();
-        // closePicker();
-        return;
-      }
+      if (activeEndpoint === "from") {
+        const nextFrom = formatDateISO(iso);
+        let nextTo = rangeVal.to;
 
-      const { from: currentFrom, to: currentTo } = rangeVal;
-
-      // Phase 1-A: from, to 가 모두 확정된 상태에서 재선택
-      if (currentFrom && currentTo) {
-        const currentToDate = parseDateValue(currentTo);
-        if (iso <= currentToDate) {
-          const next: DateRangeValue = {
-            from: formatDateISO(iso),
-            to: currentTo,
-          };
-          if (!isControlled) setInternal(next);
-          onChange?.(next);
-          clearInputError();
-          // closePicker();
-        } else {
-          // to 이후 → from 을 해당 날짜로 바꾸고 to 는 초기화
-          // 커밋된 범위를 숨기고 pendingFrom 으로 전환하여 to 재선택 대기
-          setPendingFrom(iso);
-          setHoverISO("");
+        if (toDate && iso > toDate) {
+          nextTo = null;
         }
+
+        commitRange({ from: nextFrom, to: nextTo });
+        setActiveEndpoint("to");
+        setHoverISO("");
         return;
       }
 
-      // Phase 1-B: 범위가 없거나 from 만 있는 초기 상태 → pendingFrom 시작
-      setPendingFrom(iso);
+      const anchorFrom = fromDate || iso;
+      const [a, b] =
+        iso >= anchorFrom ? [anchorFrom, iso] : [iso, anchorFrom];
+
+      commitRange({
+        from: formatDateISO(a),
+        to: formatDateISO(b),
+      });
+      setActiveEndpoint("from");
       setHoverISO("");
     };
 
@@ -210,10 +201,10 @@ export const DateRange = React.forwardRef<HTMLInputElement, DateRangeProps>(
         return true;
       }
 
-      const [fromDate, toDate] = parts;
+      const [fromPart, toPart] = parts;
       const next: DateRangeValue = {
-        from: formatDateISO(fromDate),
-        to: formatDateISO(toDate),
+        from: formatDateISO(fromPart),
+        to: formatDateISO(toPart),
       };
       if (!isControlled) setInternal(next);
       onChange?.(next);
@@ -222,13 +213,15 @@ export const DateRange = React.forwardRef<HTMLInputElement, DateRangeProps>(
     };
 
     const displayValue = (() => {
-      if (pendingFrom) return pendingFrom;
       if (rangeVal.from && rangeVal.to) {
         return `${formatDateDisplay(rangeVal.from)} ~ ${formatDateDisplay(rangeVal.to)}`;
       }
       if (rangeVal.from) return formatDateDisplay(rangeVal.from);
       return undefined;
     })();
+
+    const calendarMinDate =
+      activeEndpoint === "to" ? fromDate || minDate : minDate;
 
     return (
       <div className={cn(styles.wrapper, className)}>
@@ -253,6 +246,7 @@ export const DateRange = React.forwardRef<HTMLInputElement, DateRangeProps>(
           onInputFocus={clearInputError}
           onPopupOpenChange={setPopupOpen}
           placeholder={placeholder ?? "YYYY-MM-DD ~ YYYY-MM-DD"}
+          range
           readOnly={readOnly}
           required={required}
           size={size}
@@ -284,11 +278,15 @@ export const DateRange = React.forwardRef<HTMLInputElement, DateRangeProps>(
               year={view.year}
               month={view.month}
               focusISO={focusISO}
-              rangeFrom={pendingFrom ? undefined : fromDate || undefined}
-              rangeTo={pendingFrom ? null : toDate}
-              pendingFrom={pendingFrom || undefined}
-              hoverISO={pendingFrom ? hoverISO : undefined}
-              minDate={minDate}
+              rangeFrom={fromDate || undefined}
+              rangeTo={toDate}
+              pendingFrom={
+                activeEndpoint === "to" && fromDate ? fromDate : undefined
+              }
+              hoverISO={
+                activeEndpoint === "to" && fromDate ? hoverISO : undefined
+              }
+              minDate={calendarMinDate}
               maxDate={maxDate}
               weekStartsOn={weekStartsOn}
               locale={locale}
@@ -296,7 +294,9 @@ export const DateRange = React.forwardRef<HTMLInputElement, DateRangeProps>(
               onFocusChange={setFocusISO}
               onSelect={handleSelect}
               onHover={(iso) => {
-                if (pendingFrom) setHoverISO(iso);
+                if (activeEndpoint === "to" && fromDate) {
+                  setHoverISO(iso);
+                }
               }}
               onHoverEnd={() => setHoverISO("")}
             />

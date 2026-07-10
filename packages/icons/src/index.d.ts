@@ -23,6 +23,7 @@ export declare const iconNames: readonly [
   "help",
   "image",
   "info",
+  "light-mode",
   "link",
   "list",
   "lock",

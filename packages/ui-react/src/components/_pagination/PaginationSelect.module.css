@@ -1,0 +1,67 @@
+.root {
+  display: inline-flex;
+  inline-size: auto;
+  position: relative;
+}
+
+.control {
+  appearance: none;
+  border: 0;
+  color: var(--text-primary);
+  cursor: pointer;
+  font: var(--body-sm);
+  inline-size: 100%;
+  margin: 0;
+  padding-inline: var(--spacing-04)
+    calc(16px + var(--spacing-03) + var(--spacing-04));
+  text-align: end;
+
+  &::-ms-expand {
+    display: none;
+  }
+}
+
+.control:disabled {
+  color: var(--text-disabled);
+  cursor: not-allowed;
+}
+
+.control:focus-visible {
+  outline: 2px solid var(--border-focused);
+  outline-offset: 0;
+}
+
+.expandIcon {
+  color: var(--text-secondary);
+  display: inline-flex;
+  flex: 0 0 auto;
+  inset-inline-end: 0;
+  pointer-events: none;
+  position: absolute;
+  right: var(--spacing-03);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.root:has(.control:disabled) .expandIcon {
+  color: var(--text-disabled);
+}
+
+.sizePage {
+  min-inline-size: calc(3ch + 16px);
+}
+
+.sizePage .control {
+  font-variant-numeric: tabular-nums;
+  text-align: end;
+}
+
+/* .sizePageSize {
+  min-inline-size: 4.5rem;
+} */
+
+@media (hover: hover) and (pointer: fine) {
+  .control:hover:not(:disabled) {
+    background-color: var(--background-transparent-hover);
+  }
+}

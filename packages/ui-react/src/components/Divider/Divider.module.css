@@ -20,7 +20,7 @@
   align-self: stretch;
   border-inline-start: 1px solid var(--border-subtle);
   margin-block: 8px;
-  min-block-size: 48px;
+  min-block-size: 24px;
 }
 
 .orientationHorizontal.fullWidth {

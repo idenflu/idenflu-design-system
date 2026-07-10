@@ -1,0 +1,49 @@
+.pagination {
+  align-items: center;
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+
+.pageSize {
+  align-items: center;
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-02);
+  padding-block: 14px;
+  padding-inline: 16px;
+}
+
+.label {
+  color: var(--text-secondary);
+  font: var(--body-sm);
+  margin: 0;
+  white-space: nowrap;
+}
+
+.pageSelector {
+  align-items: center;
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-02);
+}
+
+.pageCountSuffix {
+  color: var(--text-secondary);
+  font: var(--body-sm);
+  margin: 0;
+  white-space: nowrap;
+}
+
+.pageCountValue {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+  min-inline-size: 2ch;
+  text-align: end;
+}
+
+.pageNavigation {
+  align-items: center;
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-02);
+}

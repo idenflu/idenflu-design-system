@@ -62,6 +62,6 @@
 
 @media (hover: hover) and (pointer: fine) {
   .control:hover:not(:disabled) {
-    background-color: var(--background-transparent-active);
+    background-color: var(--background-transparent-hover);
   }
 }

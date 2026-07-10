@@ -23,6 +23,7 @@ export const iconNames = [
   "help",
   "image",
   "info",
+  "light-mode",
   "link",
   "list",
   "lock",

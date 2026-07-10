@@ -386,7 +386,7 @@ export const Default: Story = {
     const total = campaigns.length;
 
     return (
-      <DataTable defaultPageSize={10}>
+      <DataTable defaultPageSize={10} aria-label="Campaign review queue">
         <DataTable.Header>
           <DataTable.HeaderContent>
             <DataTable.Title>Campaign review queue</DataTable.Title>

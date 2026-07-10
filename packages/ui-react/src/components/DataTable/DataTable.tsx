@@ -596,14 +596,6 @@ export function DataTablePagination({
     }
   }, [contextPage, isPageControlled, safePageCount, setPage]);
 
-  React.useEffect(() => {
-    if (pageCount === undefined && rowTotal === undefined) {
-      console.warn(
-        "DataTable.Pagination: provide pageCount or register row total via DataTable.Content."
-      );
-    }
-  }, [pageCount, rowTotal]);
-
   const commitPageChange = (nextPage: number) => {
     if (!isPageControlled) {
       setPage(nextPage);

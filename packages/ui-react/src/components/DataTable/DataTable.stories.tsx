@@ -1,11 +1,10 @@
 import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { fn } from "storybook/test";
 
-import { Badge } from "../Badge";
 import { Button } from "../Button/Button";
 import { DataTable, type DataTableColumn } from "./DataTable";
 import { Icon } from "../Icon/Icon";
+import { Chip } from "../Chip/Chip";
 
 type CampaignRow = {
   due: string;
@@ -338,7 +337,11 @@ const campaignColumns: DataTableColumn<CampaignRow>[] = [
   {
     id: "status",
     header: "Status",
-    render: (row) => <Badge tone={row.tone}>{row.status}</Badge>,
+    render: (row) => (
+      <Chip color={row.tone} size="sm">
+        {row.status}
+      </Chip>
+    ),
   },
   {
     id: "owner",
@@ -365,7 +368,8 @@ const meta = {
       description: {
         component:
           "Compound data table shell for structured row and column content. " +
-          "Pass columns and rows to DataTable.Content and compose header/footer with subcomponents.",
+          "Client pagination is uncontrolled by default (pass pageSizeOptions only). " +
+          "Server pagination uses controlled page/pageSize with manualPagination.",
       },
     },
   },
@@ -377,18 +381,17 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
+  name: "ClientPagination",
   render: () => {
-    const [page, setPage] = React.useState(1);
-    const [pageSize, setPageSize] = React.useState(campaigns.length);
     const total = campaigns.length;
 
     return (
-      <DataTable>
+      <DataTable defaultPageSize={10}>
         <DataTable.Header>
           <DataTable.HeaderContent>
             <DataTable.Title>Campaign review queue</DataTable.Title>
             <DataTable.Description>
-              24 campaigns · filtered by review stage · updated 2 min ago
+              Client pagination — page and pageSize are owned by DataTable.
             </DataTable.Description>
           </DataTable.HeaderContent>
           <DataTable.Actions>
@@ -415,6 +418,42 @@ export const Default: Story = {
           columns={campaignColumns}
           getRowId={(row) => row.id}
           rows={campaigns}
+        />
+        <DataTable.Footer>
+          <DataTable.RowCount itemLabel="campaigns" />
+          <DataTable.Pagination
+            aria-label="Campaign table pages"
+            pageSizeOptions={[10, 25, 50, 100, { label: "All", value: total }]}
+          />
+        </DataTable.Footer>
+      </DataTable>
+    );
+  },
+};
+
+export const ServerPagination: Story = {
+  render: () => {
+    const [page, setPage] = React.useState(1);
+    const [pageSize, setPageSize] = React.useState(10);
+    const total = campaigns.length;
+    const pageRows = campaigns.slice((page - 1) * pageSize, page * pageSize);
+
+    return (
+      <DataTable>
+        <DataTable.Header>
+          <DataTable.HeaderContent>
+            <DataTable.Title>Campaign review queue</DataTable.Title>
+            <DataTable.Description>
+              Server pagination — parent owns page state and supplies the
+              current page rows.
+            </DataTable.Description>
+          </DataTable.HeaderContent>
+        </DataTable.Header>
+        <DataTable.Content
+          columns={campaignColumns}
+          getRowId={(row) => row.id}
+          manualPagination
+          rows={pageRows}
           total={total}
         />
         <DataTable.Footer>
@@ -438,7 +477,7 @@ export const Default: Story = {
 
 export const CompoundAliases: Story = {
   render: () => (
-    <DataTable aria-label="Compact campaign table">
+    <DataTable aria-label="Compact campaign table" defaultPageSize={10}>
       <DataTable.Header>
         <DataTable.HeaderContent>
           <DataTable.Title>Compact queue</DataTable.Title>
@@ -454,13 +493,7 @@ export const CompoundAliases: Story = {
       />
       <DataTable.Footer>
         <DataTable.RowCount itemLabel="campaigns" />
-        <DataTable.Pagination
-          aria-label="Compact campaign pages"
-          onPageChange={fn()}
-          onPageSizeChange={fn()}
-          page={1}
-          pageSize={25}
-        />
+        <DataTable.Pagination aria-label="Compact campaign pages" />
       </DataTable.Footer>
     </DataTable>
   ),
@@ -493,7 +526,7 @@ export const AccessibilityNotes: Story = {
       />
       <DataTable.Footer>
         <DataTable.RowCount itemLabel="campaigns" />
-        <DataTable.Pagination aria-label="Accessible table pages" page={1} />
+        <DataTable.Pagination aria-label="Accessible table pages" />
       </DataTable.Footer>
     </DataTable>
   ),

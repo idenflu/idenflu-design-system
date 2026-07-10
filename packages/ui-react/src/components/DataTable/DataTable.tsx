@@ -14,11 +14,18 @@ import styles from "./DataTable.module.css";
 import { Typography, TypographyProps } from "../Typography/Typography";
 import { Divider } from "../Divider";
 
+const DEFAULT_PAGE_SIZE = 10;
+const DEFAULT_PAGE_SIZE_OPTIONS = [10, 25, 50, 100] as const;
+
 type DataTableContextValue = {
   descriptionId: string;
   descriptionPresent: boolean;
+  page: number;
+  pageSize: number;
   rowTotal: number | undefined;
   setDescriptionPresent: (present: boolean) => void;
+  setPage: (page: number) => void;
+  setPageSize: (pageSize: number) => void;
   setRowTotal: (total: number | undefined) => void;
   setTitlePresent: (present: boolean) => void;
   titleId: string;
@@ -45,9 +52,9 @@ function useStableId() {
 
 function resolveDataTablePageCount(
   rowTotal: number | undefined,
-  pageSize: number | undefined
+  pageSize: number
 ) {
-  if (rowTotal === undefined || pageSize === undefined) {
+  if (rowTotal === undefined) {
     return 1;
   }
 
@@ -58,15 +65,51 @@ function resolveDataTablePageCount(
   return Math.max(1, Math.ceil(rowTotal / pageSize));
 }
 
+function isManualPagination(
+  manualPagination: boolean | undefined,
+  total: number | undefined,
+  rowCount: number
+) {
+  if (manualPagination !== undefined) {
+    return manualPagination;
+  }
+
+  return total !== undefined && total > rowCount;
+}
+
+function sliceRowsForPage<TRow>(
+  rows: TRow[],
+  page: number,
+  pageSize: number,
+  rowTotal: number
+) {
+  if (pageSize >= rowTotal) {
+    return { rows, startIndex: 0 };
+  }
+
+  const startIndex = (page - 1) * pageSize;
+
+  return {
+    rows: rows.slice(startIndex, startIndex + pageSize),
+    startIndex,
+  };
+}
+
 export type DataTableProps = React.ComponentPropsWithoutRef<"section"> & {
   /** Accessible name when no DataTable.Title is provided. */
   "aria-label"?: string;
+  /** Initial page for client (uncontrolled) pagination. Defaults to 1. */
+  defaultPage?: number;
+  /** Initial page size for client (uncontrolled) pagination. Defaults to 10. */
+  defaultPageSize?: number;
 };
 
 export function DataTable({
   "aria-label": ariaLabel,
   children,
   className,
+  defaultPage = 1,
+  defaultPageSize = DEFAULT_PAGE_SIZE,
   ...props
 }: DataTableProps) {
   const baseId = useStableId();
@@ -75,6 +118,8 @@ export function DataTable({
   const [titlePresent, setTitlePresent] = React.useState(false);
   const [descriptionPresent, setDescriptionPresent] = React.useState(false);
   const [rowTotal, setRowTotal] = React.useState<number | undefined>(undefined);
+  const [page, setPage] = React.useState(defaultPage);
+  const [pageSize, setPageSize] = React.useState(defaultPageSize);
 
   const labelledBy =
     [titlePresent ? titleId : null, descriptionPresent ? descriptionId : null]
@@ -91,14 +136,26 @@ export function DataTable({
     () => ({
       descriptionId,
       descriptionPresent,
+      page,
+      pageSize,
       rowTotal,
       setDescriptionPresent,
+      setPage,
+      setPageSize,
       setRowTotal,
       setTitlePresent,
       titleId,
       titlePresent,
     }),
-    [descriptionId, descriptionPresent, rowTotal, titleId, titlePresent]
+    [
+      descriptionId,
+      descriptionPresent,
+      page,
+      pageSize,
+      rowTotal,
+      titleId,
+      titlePresent,
+    ]
   );
 
   return (
@@ -253,8 +310,16 @@ export type DataTableContentProps<TRow extends object> = Omit<
 > & {
   columns: DataTableColumn<TRow>[];
   rows: TRow[];
-  /** Total row count for pagination. Defaults to `rows.length`. */
+  /**
+   * Total row count. Defaults to `rows.length`.
+   * Pass the full dataset size when using server pagination.
+   */
   total?: number;
+  /**
+   * When true, rows are treated as the current server page and are not sliced.
+   * Defaults to detecting server pagination when `total` exceeds `rows.length`.
+   */
+  manualPagination?: boolean;
   density?: DataTableDensity;
   emptyMessage?: React.ReactNode;
   getRowId?: (row: TRow, rowIndex: number) => string;
@@ -296,20 +361,37 @@ export function DataTableContent<TRow extends object>({
   density = "md",
   emptyMessage = "No items found.",
   getRowId,
+  manualPagination,
   rows,
   total,
   ...props
 }: DataTableContentProps<TRow>) {
-  const context = useDataTableContext("DataTable.Content");
+  const { page, pageSize, setRowTotal } =
+    useDataTableContext("DataTable.Content");
   const resolvedTotal = total ?? rows.length;
+  const resolvedManualPagination = isManualPagination(
+    manualPagination,
+    total,
+    rows.length
+  );
 
   React.useEffect(() => {
-    context.setRowTotal(resolvedTotal);
+    setRowTotal(resolvedTotal);
 
     return () => {
-      context.setRowTotal(undefined);
+      setRowTotal(undefined);
     };
-  }, [context, resolvedTotal]);
+  }, [resolvedTotal, setRowTotal]);
+
+  const shouldSliceRows = !resolvedManualPagination;
+
+  const { rows: visibleRows, startIndex } = React.useMemo(() => {
+    if (!shouldSliceRows) {
+      return { rows, startIndex: 0 };
+    }
+
+    return sliceRowsForPage(rows, page, pageSize, resolvedTotal);
+  }, [page, pageSize, resolvedTotal, rows, shouldSliceRows]);
 
   return (
     <div className={cn(styles.content, className)} {...props}>
@@ -329,29 +411,33 @@ export function DataTableContent<TRow extends object>({
           </tr>
         </thead>
         <tbody className={styles.tableBody}>
-          {rows.length === 0 ? (
+          {visibleRows.length === 0 ? (
             <tr className={styles.emptyRow}>
               <td className={styles.tableCell} colSpan={columns.length}>
                 {emptyMessage}
               </td>
             </tr>
           ) : (
-            rows.map((row, rowIndex) => (
-              <tr
-                className={styles.tableRow}
-                key={getRowId?.(row, rowIndex) ?? rowIndex}
-              >
-                {columns.map((column) => (
-                  <td
-                    key={column.id}
-                    className={styles.tableCell}
-                    {...column.cellProps}
-                  >
-                    {renderCellValue(row, rowIndex, column)}
-                  </td>
-                ))}
-              </tr>
-            ))
+            visibleRows.map((row, rowIndex) => {
+              const globalRowIndex = startIndex + rowIndex;
+
+              return (
+                <tr
+                  className={styles.tableRow}
+                  key={getRowId?.(row, globalRowIndex) ?? globalRowIndex}
+                >
+                  {columns.map((column) => (
+                    <td
+                      key={column.id}
+                      className={styles.tableCell}
+                      {...column.cellProps}
+                    >
+                      {renderCellValue(row, globalRowIndex, column)}
+                    </td>
+                  ))}
+                </tr>
+              );
+            })
           )}
         </tbody>
       </table>
@@ -400,8 +486,6 @@ export function DataTableRowCount({
   );
 }
 
-const DEFAULT_PAGE_SIZE_OPTIONS = [10, 25, 50, 100] as const;
-
 export type DataTablePageSizeOption = number | PaginationSelectOption;
 
 function normalizePageSizeOptions(
@@ -417,13 +501,19 @@ export type DataTablePaginationProps = {
   "aria-label": string;
   className?: string;
   disabled?: boolean;
-  /** 1-based current page index. */
   divider?: boolean;
-  page: number;
+  /**
+   * Controlled 1-based page. Omit for client (uncontrolled) pagination —
+   * DataTable owns page state internally.
+   */
+  page?: number;
   /** Defaults to a value derived from DataTable.Content total and pageSize. */
   pageCount?: number;
   onPageChange?: (page: number) => void;
-  /** Current number of rows shown per page. Enables the page size selector when set. */
+  /**
+   * Controlled page size. Omit for client (uncontrolled) pagination —
+   * DataTable owns pageSize state internally.
+   */
   pageSize?: number;
   /** Available page size values. Defaults to 10, 25, 50, 100. */
   pageSizeOptions?: DataTablePageSizeOption[];
@@ -447,52 +537,96 @@ export function DataTablePagination({
   nextLabel = "Next page",
   onPageChange,
   onPageSizeChange,
-  page,
+  page: pageProp,
   pageCount,
-  pageSize,
+  pageSize: pageSizeProp,
   pageSizeLabel = "Rows per page",
   pageSizeOptions = [...DEFAULT_PAGE_SIZE_OPTIONS],
   pageLabel = "Page",
   currentPageLabel = "Current page",
   previousLabel = "Previous page",
   showPageIndicator = true,
-  showPageSize,
+  showPageSize = true,
 }: DataTablePaginationProps) {
-  const context = useDataTableContext("DataTable.Pagination");
+  const {
+    page: contextPage,
+    pageSize: contextPageSize,
+    rowTotal,
+    setPage,
+    setPageSize,
+  } = useDataTableContext("DataTable.Pagination");
   const pageSizeId = useStableId();
   const pageSelectId = useStableId();
+  const isPageControlled = pageProp !== undefined;
+  const isPageSizeControlled = pageSizeProp !== undefined;
+
   const pageSizeSelectOptions = React.useMemo(
     () => normalizePageSizeOptions(pageSizeOptions),
     [pageSizeOptions]
   );
-  const resolvedPageSize =
-    pageSize ??
-    Number(pageSizeSelectOptions[0]?.value) ??
-    DEFAULT_PAGE_SIZE_OPTIONS[0];
-  const resolvedPageCount =
-    pageCount ?? resolveDataTablePageCount(context.rowTotal, resolvedPageSize);
 
+  const resolvedPageSize = isPageSizeControlled
+    ? pageSizeProp
+    : contextPageSize;
+  const resolvedPageCount =
+    pageCount ?? resolveDataTablePageCount(rowTotal, resolvedPageSize);
   const safePageCount = Math.max(1, resolvedPageCount);
-  const currentPage = Math.min(Math.max(page, 1), safePageCount);
+  const currentPage = Math.min(
+    Math.max(isPageControlled ? pageProp : contextPage, 1),
+    safePageCount
+  );
   const isFirstPage = currentPage <= 1;
   const isLastPage = currentPage >= safePageCount;
-  const shouldShowPageSize =
-    showPageSize ?? (pageSize !== undefined || onPageSizeChange !== undefined);
 
   React.useEffect(() => {
-    if (pageCount === undefined && context.rowTotal === undefined) {
+    if (isPageControlled && pageProp !== contextPage) {
+      setPage(pageProp);
+    }
+  }, [contextPage, isPageControlled, pageProp, setPage]);
+
+  React.useEffect(() => {
+    if (isPageSizeControlled && pageSizeProp !== contextPageSize) {
+      setPageSize(pageSizeProp);
+    }
+  }, [contextPageSize, isPageSizeControlled, pageSizeProp, setPageSize]);
+
+  React.useEffect(() => {
+    if (!isPageControlled && contextPage > safePageCount) {
+      setPage(safePageCount);
+    }
+  }, [contextPage, isPageControlled, safePageCount, setPage]);
+
+  React.useEffect(() => {
+    if (pageCount === undefined && rowTotal === undefined) {
       console.warn(
         "DataTable.Pagination: provide pageCount or register row total via DataTable.Content."
       );
     }
-  }, [context.rowTotal, pageCount]);
+  }, [pageCount, rowTotal]);
+
+  const commitPageChange = (nextPage: number) => {
+    if (!isPageControlled) {
+      setPage(nextPage);
+    }
+
+    onPageChange?.(nextPage);
+  };
+
+  const commitPageSizeChange = (nextPageSize: number) => {
+    if (!isPageSizeControlled) {
+      setPageSize(nextPageSize);
+      setPage(1);
+    }
+
+    onPageSizeChange?.(nextPageSize);
+  };
 
   const handlePrevious = () => {
     if (isFirstPage || disabled) {
       return;
     }
 
-    onPageChange?.(currentPage - 1);
+    commitPageChange(currentPage - 1);
   };
 
   const handleNext = () => {
@@ -500,7 +634,7 @@ export function DataTablePagination({
       return;
     }
 
-    onPageChange?.(currentPage + 1);
+    commitPageChange(currentPage + 1);
   };
 
   const handlePageSizeChange = (
@@ -512,7 +646,7 @@ export function DataTablePagination({
       return;
     }
 
-    onPageSizeChange?.(nextPageSize);
+    commitPageSizeChange(nextPageSize);
   };
 
   const handlePageSelectChange = (
@@ -524,7 +658,7 @@ export function DataTablePagination({
       return;
     }
 
-    onPageChange?.(nextPage);
+    commitPageChange(nextPage);
   };
 
   const pageOptions = React.useMemo(
@@ -542,7 +676,7 @@ export function DataTablePagination({
 
   return (
     <div className={cn(paginationStyles.pagination, className)}>
-      {shouldShowPageSize && (
+      {showPageSize && (
         <PageSize
           disabled={disabled}
           id={pageSizeId}

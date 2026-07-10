@@ -395,23 +395,12 @@ export const Default: Story = {
             </DataTable.Description>
           </DataTable.HeaderContent>
           <DataTable.Actions>
-            <Button
-              size="sm"
-              startIcon={<Icon name="filter" />}
-              variant="ghost"
-            >
-              Status
-            </Button>
-            <Button size="sm" variant="ghost">
-              Owner
-            </Button>
-            <Button
-              size="sm"
-              startIcon={<Icon name="download" />}
-              variant="outlined"
-            >
-              Export
-            </Button>
+            <DataTable.InstantSearch
+              size="md"
+              color="neutral"
+              placeholder="Search"
+            />
+            <Button startIcon={<Icon name="download" />}>Export</Button>
           </DataTable.Actions>
         </DataTable.Header>
         <DataTable.Content

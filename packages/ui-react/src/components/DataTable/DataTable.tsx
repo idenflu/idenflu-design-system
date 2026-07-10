@@ -13,9 +13,15 @@ import paginationStyles from "../_pagination/pagination.module.css";
 import styles from "./DataTable.module.css";
 import { Typography, TypographyProps } from "../Typography/Typography";
 import { Divider } from "../Divider";
+import { Icon } from "../Icon/Icon";
+import { IconButton } from "../IconButton/IconButton";
+import { TextInput } from "../TextInput/TextInput";
+import { type ButtonColor } from "../Button/Button";
 
 const DEFAULT_PAGE_SIZE = 10;
 const DEFAULT_PAGE_SIZE_OPTIONS = [10, 25, 50, 100] as const;
+
+type DataTableSearchFilterFn = (row: object, query: string) => boolean;
 
 type DataTableContextValue = {
   descriptionId: string;
@@ -23,10 +29,14 @@ type DataTableContextValue = {
   page: number;
   pageSize: number;
   rowTotal: number | undefined;
+  searchFilterFn: DataTableSearchFilterFn | undefined;
+  searchQuery: string;
   setDescriptionPresent: (present: boolean) => void;
   setPage: (page: number) => void;
   setPageSize: (pageSize: number) => void;
   setRowTotal: (total: number | undefined) => void;
+  setSearchFilterFn: (filterFn: DataTableSearchFilterFn | undefined) => void;
+  setSearchQuery: (query: string) => void;
   setTitlePresent: (present: boolean) => void;
   titleId: string;
   titlePresent: boolean;
@@ -95,6 +105,26 @@ function sliceRowsForPage<TRow>(
   };
 }
 
+function defaultRowSearchFilter(row: object, query: string) {
+  const normalized = query.trim().toLowerCase();
+
+  if (!normalized) {
+    return true;
+  }
+
+  return Object.values(row).some((value) => {
+    if (
+      typeof value === "string" ||
+      typeof value === "number" ||
+      typeof value === "boolean"
+    ) {
+      return String(value).toLowerCase().includes(normalized);
+    }
+
+    return false;
+  });
+}
+
 export type DataTableProps = React.ComponentPropsWithoutRef<"section"> & {
   /** Accessible name when no DataTable.Title is provided. */
   "aria-label"?: string;
@@ -120,6 +150,17 @@ export function DataTable({
   const [rowTotal, setRowTotal] = React.useState<number | undefined>(undefined);
   const [page, setPage] = React.useState(defaultPage);
   const [pageSize, setPageSize] = React.useState(defaultPageSize);
+  const [searchQuery, setSearchQuery] = React.useState("");
+  const [searchFilterFn, setSearchFilterFnState] = React.useState<
+    DataTableSearchFilterFn | undefined
+  >(undefined);
+
+  const setSearchFilterFn = React.useCallback(
+    (filterFn: DataTableSearchFilterFn | undefined) => {
+      setSearchFilterFnState(() => filterFn);
+    },
+    []
+  );
 
   const labelledBy =
     [titlePresent ? titleId : null, descriptionPresent ? descriptionId : null]
@@ -139,10 +180,14 @@ export function DataTable({
       page,
       pageSize,
       rowTotal,
+      searchFilterFn,
+      searchQuery,
       setDescriptionPresent,
       setPage,
       setPageSize,
       setRowTotal,
+      setSearchFilterFn,
+      setSearchQuery,
       setTitlePresent,
       titleId,
       titlePresent,
@@ -153,6 +198,8 @@ export function DataTable({
       page,
       pageSize,
       rowTotal,
+      searchFilterFn,
+      searchQuery,
       titleId,
       titlePresent,
     ]
@@ -279,6 +326,195 @@ export function DataTableActions({
   );
 }
 
+export type DataTableInstantSearchProps = {
+  className?: string;
+  /** Accessible name for the search icon button. */
+  color?: ButtonColor;
+  label?: string;
+  placeholder?: string;
+  defaultOpen?: boolean;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  value?: string;
+  defaultValue?: string;
+  onValueChange?: (value: string) => void;
+  /**
+   * Custom row matcher. Defaults to case-insensitive includes across
+   * string/number/boolean fields.
+   */
+  filterFn?: <TRow extends object>(row: TRow, query: string) => boolean;
+  size?: "sm" | "md" | "lg";
+};
+
+export function DataTableInstantSearch({
+  className,
+  color = "neutral",
+  defaultOpen = false,
+  defaultValue = "",
+  filterFn,
+  label = "Search",
+  onOpenChange,
+  onValueChange,
+  open: openProp,
+  placeholder = "Search",
+  size = "sm",
+  value: valueProp,
+}: DataTableInstantSearchProps) {
+  const { setPage, setSearchFilterFn, setSearchQuery } = useDataTableContext(
+    "DataTable.InstantSearch"
+  );
+  const inputRef = React.useRef<HTMLInputElement>(null);
+  const rootRef = React.useRef<HTMLDivElement>(null);
+  const isOpenControlled = openProp !== undefined;
+  const isValueControlled = valueProp !== undefined;
+  const [uncontrolledOpen, setUncontrolledOpen] = React.useState(defaultOpen);
+  const [uncontrolledValue, setUncontrolledValue] =
+    React.useState(defaultValue);
+
+  const open = isOpenControlled ? openProp : uncontrolledOpen;
+  const value = isValueControlled ? valueProp : uncontrolledValue;
+
+  React.useEffect(() => {
+    if (!filterFn) {
+      setSearchFilterFn(undefined);
+      return;
+    }
+
+    const boundFilter: DataTableSearchFilterFn = (row, query) =>
+      filterFn(row, query);
+
+    setSearchFilterFn(boundFilter);
+
+    return () => {
+      setSearchFilterFn(undefined);
+    };
+  }, [filterFn, setSearchFilterFn]);
+
+  React.useEffect(() => {
+    setSearchQuery(value);
+
+    return () => {
+      setSearchQuery("");
+    };
+  }, [setSearchQuery, value]);
+
+  React.useEffect(() => {
+    if (open) {
+      inputRef.current?.focus();
+    }
+  }, [open]);
+
+  const setOpen = (nextOpen: boolean) => {
+    if (!isOpenControlled) {
+      setUncontrolledOpen(nextOpen);
+    }
+
+    onOpenChange?.(nextOpen);
+  };
+
+  const commitValue = (nextValue: string) => {
+    if (!isValueControlled) {
+      setUncontrolledValue(nextValue);
+    }
+
+    setSearchQuery(nextValue);
+    setPage(1);
+    onValueChange?.(nextValue);
+  };
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    commitValue("");
+    setOpen(false);
+  };
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    commitValue(event.target.value);
+  };
+
+  const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+    const nextTarget = event.relatedTarget;
+
+    if (nextTarget instanceof Node && rootRef.current?.contains(nextTarget)) {
+      return;
+    }
+
+    if (!event.currentTarget.value.trim()) {
+      setOpen(false);
+    }
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Escape") {
+      event.preventDefault();
+      handleClose();
+    }
+  };
+
+  const sizeClassName =
+    size === "lg"
+      ? styles.instantSearchSizeLg
+      : size === "md"
+        ? styles.instantSearchSizeMd
+        : undefined;
+
+  return (
+    <div
+      ref={rootRef}
+      className={cn(
+        styles.instantSearch,
+        sizeClassName,
+        open && styles.instantSearchExpanded,
+        className
+      )}
+    >
+      <IconButton
+        aria-expanded={open}
+        aria-hidden={open || undefined}
+        className={cn(
+          styles.instantSearchButton,
+          open && styles.instantSearchLayerHidden
+        )}
+        color={color}
+        icon={<Icon name="search" />}
+        label={label}
+        onClick={handleOpen}
+        size={size}
+        tabIndex={open ? -1 : undefined}
+        variant="ghost"
+      />
+      <div
+        className={cn(
+          styles.instantSearchField,
+          !open && styles.instantSearchLayerHidden
+        )}
+      >
+        <TextInput
+          ref={inputRef}
+          aria-hidden={!open || undefined}
+          aria-label={label}
+          clearable
+          fullWidth
+          onBlur={handleBlur}
+          onChange={handleChange}
+          onClear={handleClose}
+          onKeyDown={handleKeyDown}
+          placeholder={placeholder}
+          size={size}
+          startAdornment={<Icon name="search" />}
+          tabIndex={open ? undefined : -1}
+          type="text"
+          value={value}
+          variant="outlined"
+        />
+      </div>
+    </div>
+  );
+}
+
 export type DataTableColumn<TRow extends object> = {
   id: string;
   header: React.ReactNode;
@@ -316,8 +552,9 @@ export type DataTableContentProps<TRow extends object> = Omit<
    */
   total?: number;
   /**
-   * When true, rows are treated as the current server page and are not sliced.
-   * Defaults to detecting server pagination when `total` exceeds `rows.length`.
+   * When true, rows are treated as the current server page and are not sliced
+   * or filtered by InstantSearch. Defaults to detecting server pagination when
+   * `total` exceeds `rows.length`.
    */
   manualPagination?: boolean;
   density?: DataTableDensity;
@@ -366,14 +603,31 @@ export function DataTableContent<TRow extends object>({
   total,
   ...props
 }: DataTableContentProps<TRow>) {
-  const { page, pageSize, setRowTotal } =
+  const { page, pageSize, searchFilterFn, searchQuery, setRowTotal } =
     useDataTableContext("DataTable.Content");
-  const resolvedTotal = total ?? rows.length;
   const resolvedManualPagination = isManualPagination(
     manualPagination,
     total,
     rows.length
   );
+
+  const filteredRows = React.useMemo(() => {
+    if (resolvedManualPagination) {
+      return rows;
+    }
+
+    const query = searchQuery.trim();
+
+    if (!query) {
+      return rows;
+    }
+
+    const match = searchFilterFn ?? defaultRowSearchFilter;
+
+    return rows.filter((row) => match(row, query));
+  }, [resolvedManualPagination, rows, searchFilterFn, searchQuery]);
+
+  const resolvedTotal = total ?? filteredRows.length;
 
   React.useEffect(() => {
     setRowTotal(resolvedTotal);
@@ -387,11 +641,11 @@ export function DataTableContent<TRow extends object>({
 
   const { rows: visibleRows, startIndex } = React.useMemo(() => {
     if (!shouldSliceRows) {
-      return { rows, startIndex: 0 };
+      return { rows: filteredRows, startIndex: 0 };
     }
 
-    return sliceRowsForPage(rows, page, pageSize, resolvedTotal);
-  }, [page, pageSize, resolvedTotal, rows, shouldSliceRows]);
+    return sliceRowsForPage(filteredRows, page, pageSize, resolvedTotal);
+  }, [filteredRows, page, pageSize, resolvedTotal, shouldSliceRows]);
 
   return (
     <div className={cn(styles.content, className)} {...props}>
@@ -727,6 +981,7 @@ DataTable.HeaderContent = DataTableHeaderContent;
 DataTable.Title = DataTableTitle;
 DataTable.Description = DataTableDescription;
 DataTable.Actions = DataTableActions;
+DataTable.InstantSearch = DataTableInstantSearch;
 DataTable.Content = DataTableContent;
 DataTable.Footer = DataTableFooter;
 DataTable.RowCount = DataTableRowCount;

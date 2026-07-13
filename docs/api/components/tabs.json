@@ -1,0 +1,32 @@
+{
+  "id": "tabs",
+  "label": "Tabs",
+  "status": "implemented",
+  "source": {
+    "react": "packages/ui-react/src/components/Tabs/Tabs.tsx"
+  },
+  "props": [
+    {
+      "name": "variant",
+      "kind": "unknown",
+      "required": false,
+      "default": "standard"
+    }
+  ],
+  "states": [
+    "default",
+    "hover",
+    "focus",
+    "disabled"
+  ],
+  "accessibility": [
+    {
+      "id": "documented",
+      "rule": "Public Tabs accessibility is covered by component implementation and stories."
+    }
+  ],
+  "notes": [
+    "Events are framework-specific and omitted from this contract.",
+    "Synced from packages/ui-react TabsProps (engineering-first)."
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "id": "dialog",
+  "label": "Dialog",
+  "status": "implemented",
+  "source": {
+    "react": "packages/ui-react/src/components/Dialog/Dialog.tsx"
+  },
+  "props": [
+    {
+      "name": "children",
+      "kind": "node",
+      "required": false
+    },
+    {
+      "name": "defaultOpen",
+      "kind": "boolean",
+      "required": false,
+      "default": false
+    },
+    {
+      "name": "open",
+      "kind": "boolean",
+      "required": false,
+      "description": "Controlled open state."
+    },
+    {
+      "name": "size",
+      "kind": "enum",
+      "values": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "required": false,
+      "default": "md"
+    }
+  ],
+  "states": [
+    "default",
+    "open",
+    "focus",
+    "disabled"
+  ],
+  "accessibility": [
+    {
+      "id": "dialog-role",
+      "rule": "Expose dialog semantics (role=dialog, aria-modal) on the surface."
+    },
+    {
+      "id": "labelled",
+      "rule": "Associate a title/description for accessible naming."
+    }
+  ],
+  "notes": [
+    "Events (onClose, onOpenChange) are framework-specific and omitted.",
+    "Synced from packages/ui-react DialogProps (engineering-first)."
+  ]
+}

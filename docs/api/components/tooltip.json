@@ -1,0 +1,43 @@
+{
+  "id": "tooltip",
+  "label": "Tooltip",
+  "status": "implemented",
+  "source": {
+    "react": "packages/ui-react/src/components/Tooltip/Tooltip.tsx"
+  },
+  "props": [
+    {
+      "name": "delay",
+      "kind": "number",
+      "required": false,
+      "default": 500
+    },
+    {
+      "name": "enterDelayMs",
+      "kind": "number",
+      "required": false
+    },
+    {
+      "name": "leaveDelayMs",
+      "kind": "number",
+      "required": false,
+      "default": 0
+    }
+  ],
+  "states": [
+    "default",
+    "hover",
+    "focus",
+    "open"
+  ],
+  "accessibility": [
+    {
+      "id": "documented",
+      "rule": "Public Tooltip accessibility is covered by component implementation and stories."
+    }
+  ],
+  "notes": [
+    "Events are framework-specific and omitted from this contract.",
+    "Synced from packages/ui-react TooltipProps (engineering-first)."
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "id": "alert",
+  "label": "Alert",
+  "status": "implemented",
+  "source": {
+    "react": "packages/ui-react/src/components/Alert/Alert.tsx"
+  },
+  "props": [
+    {
+      "name": "action",
+      "kind": "node",
+      "required": false
+    },
+    {
+      "name": "closeLabel",
+      "kind": "string",
+      "required": false,
+      "default": "Dismiss alert"
+    },
+    {
+      "name": "icon",
+      "kind": "node",
+      "required": false
+    },
+    {
+      "name": "severity",
+      "kind": "unknown",
+      "required": false,
+      "default": "info"
+    },
+    {
+      "name": "variant",
+      "kind": "unknown",
+      "required": false,
+      "default": "outlined"
+    }
+  ],
+  "states": [
+    "default",
+    "hover",
+    "focus",
+    "disabled",
+    "error"
+  ],
+  "accessibility": [
+    {
+      "id": "documented",
+      "rule": "Public Alert accessibility is covered by component implementation and stories."
+    }
+  ],
+  "notes": [
+    "Events are framework-specific and omitted from this contract.",
+    "Synced from packages/ui-react AlertProps (engineering-first)."
+  ]
+}

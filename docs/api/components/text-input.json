@@ -1,0 +1,89 @@
+{
+  "id": "text-input",
+  "label": "TextInput",
+  "status": "implemented",
+  "source": {
+    "react": "packages/ui-react/src/components/TextInput/TextInput.tsx"
+  },
+  "props": [
+    {
+      "name": "clearable",
+      "kind": "boolean",
+      "required": false,
+      "default": false
+    },
+    {
+      "name": "controlRef",
+      "kind": "unknown",
+      "required": false
+    },
+    {
+      "name": "endAdornment",
+      "kind": "node",
+      "required": false
+    },
+    {
+      "name": "error",
+      "kind": "string",
+      "required": false
+    },
+    {
+      "name": "fullWidth",
+      "kind": "boolean",
+      "required": false,
+      "default": false
+    },
+    {
+      "name": "helperText",
+      "kind": "string",
+      "required": false
+    },
+    {
+      "name": "label",
+      "kind": "node",
+      "required": false,
+      "default": "Clear value"
+    },
+    {
+      "name": "size",
+      "kind": "unknown",
+      "required": false,
+      "default": "md"
+    },
+    {
+      "name": "startAdornment",
+      "kind": "node",
+      "required": false
+    },
+    {
+      "name": "type",
+      "kind": "unknown",
+      "required": false,
+      "default": "text"
+    },
+    {
+      "name": "variant",
+      "kind": "unknown",
+      "required": false,
+      "default": "default"
+    }
+  ],
+  "states": [
+    "default",
+    "hover",
+    "focus",
+    "disabled",
+    "open",
+    "error"
+  ],
+  "accessibility": [
+    {
+      "id": "documented",
+      "rule": "Public TextInput accessibility is covered by component implementation and stories."
+    }
+  ],
+  "notes": [
+    "Events are framework-specific and omitted from this contract.",
+    "Synced from packages/ui-react TextInputProps (engineering-first)."
+  ]
+}

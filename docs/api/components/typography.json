@@ -1,0 +1,46 @@
+{
+  "id": "typography",
+  "label": "Typography",
+  "status": "implemented",
+  "source": {
+    "react": "packages/ui-react/src/components/Typography/Typography.tsx"
+  },
+  "props": [
+    {
+      "name": "align",
+      "kind": "unknown",
+      "required": false,
+      "default": "inherit"
+    },
+    {
+      "name": "component",
+      "kind": "unknown",
+      "required": false
+    },
+    {
+      "name": "noWrap",
+      "kind": "boolean",
+      "required": false,
+      "default": false
+    },
+    {
+      "name": "variant",
+      "kind": "unknown",
+      "required": false,
+      "default": "body-md"
+    }
+  ],
+  "states": [
+    "default"
+  ],
+  "accessibility": [
+    {
+      "id": "documented",
+      "rule": "Public Typography accessibility is covered by component implementation and stories."
+    }
+  ],
+  "notes": [
+    "Events are framework-specific and omitted from this contract.",
+    "Synced from packages/ui-react TypographyProps (engineering-first)."
+  ]
+}

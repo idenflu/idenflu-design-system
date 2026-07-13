@@ -102,12 +102,34 @@ const validateContract = (contract, file) => {
 
 const extractPropNames = (sourceFile) => {
   const source = read(sourceFile);
-  const startMatch = source.match(/export type (\w+Props)\s*=/);
+  const componentName = path.basename(sourceFile, path.extname(sourceFile));
+  let startMatch = source.match(
+    new RegExp(`export type ${componentName}Props\\s*=`)
+  );
+  if (!startMatch) {
+    startMatch = source.match(/export type (\w+Props)\s*=/);
+  }
   if (!startMatch) return null;
 
   const from = startMatch.index + startMatch[0].length;
   const slice = source.slice(from);
-  const objectStart = slice.indexOf("{");
+
+  // First `{` outside generics — covers `= { ... }` and `Omit<...> & { ... }`.
+  let objectStart = -1;
+  let depthAngle = 0;
+  for (let i = 0; i < slice.length; i += 1) {
+    const char = slice[i];
+    if (char === "<") depthAngle += 1;
+    else if (char === ">") depthAngle = Math.max(0, depthAngle - 1);
+    else if (char === "{" && depthAngle === 0) {
+      objectStart = i;
+      break;
+    } else if (char === ";" && depthAngle === 0 && objectStart === -1) {
+      // Type ended without an object body
+      break;
+    }
+  }
+
   if (objectStart === -1) return null;
 
   let depth = 0;
@@ -136,8 +158,11 @@ const extractPropNames = (sourceFile) => {
     names.add(match[1]);
   }
 
-  // Native attrs kept in shared contracts when extending button HTML attributes
-  if (/ButtonHTMLAttributes/.test(header)) {
+  if (
+    /ButtonHTMLAttributes|InputHTMLAttributes|SelectHTMLAttributes|TextareaHTMLAttributes|HTMLAttributes/.test(
+      header
+    )
+  ) {
     names.add("disabled");
     names.add("children");
   }

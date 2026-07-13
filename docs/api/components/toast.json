@@ -1,0 +1,100 @@
+{
+  "id": "toast",
+  "label": "Toast",
+  "status": "implemented",
+  "source": {
+    "react": "packages/ui-react/src/components/Toast/Toast.tsx"
+  },
+  "props": [
+    {
+      "name": "action",
+      "kind": "node",
+      "required": false
+    },
+    {
+      "name": "autoHideDuration",
+      "kind": "number",
+      "required": true
+    },
+    {
+      "name": "closeLabel",
+      "kind": "string",
+      "required": false,
+      "default": "Dismiss notification"
+    },
+    {
+      "name": "children",
+      "kind": "node",
+      "required": false,
+      "native": true
+    },
+    {
+      "name": "disableWindowBlurListener",
+      "kind": "boolean",
+      "required": false,
+      "default": false
+    },
+    {
+      "name": "dismissOnEscape",
+      "kind": "boolean",
+      "required": false,
+      "default": true
+    },
+    {
+      "name": "hideCloseButton",
+      "kind": "boolean",
+      "required": false,
+      "default": false
+    },
+    {
+      "name": "message",
+      "kind": "node",
+      "required": false
+    },
+    {
+      "name": "reason",
+      "kind": "unknown",
+      "required": true
+    },
+    {
+      "name": "open",
+      "kind": "boolean",
+      "required": true
+    },
+    {
+      "name": "position",
+      "kind": "unknown",
+      "required": true
+    },
+    {
+      "name": "resumeHideDuration",
+      "kind": "number",
+      "required": false
+    },
+    {
+      "name": "title",
+      "kind": "node",
+      "required": false
+    },
+    {
+      "name": "transition",
+      "kind": "unknown",
+      "required": false
+    }
+  ],
+  "states": [
+    "default",
+    "open",
+    "error"
+  ],
+  "accessibility": [
+    {
+      "id": "documented",
+      "rule": "Public Toast accessibility is covered by component implementation and stories."
+    }
+  ],
+  "notes": [
+    "Events are framework-specific and omitted from this contract.",
+    "Synced from packages/ui-react ToastProps (engineering-first)."
+  ]
+}

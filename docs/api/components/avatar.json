@@ -1,0 +1,50 @@
+{
+  "id": "avatar",
+  "label": "Avatar",
+  "status": "implemented",
+  "source": {
+    "react": "packages/ui-react/src/components/Avatar/Avatar.tsx"
+  },
+  "props": [
+    {
+      "name": "alt",
+      "kind": "string",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "sizes",
+      "kind": "string",
+      "required": false
+    },
+    {
+      "name": "size",
+      "kind": "unknown",
+      "required": false,
+      "default": "md"
+    },
+    {
+      "name": "src",
+      "kind": "string",
+      "required": false
+    },
+    {
+      "name": "srcSet",
+      "kind": "string",
+      "required": false
+    }
+  ],
+  "states": [
+    "default"
+  ],
+  "accessibility": [
+    {
+      "id": "documented",
+      "rule": "Public Avatar accessibility is covered by component implementation and stories."
+    }
+  ],
+  "notes": [
+    "Events are framework-specific and omitted from this contract.",
+    "Synced from packages/ui-react AvatarProps (engineering-first)."
+  ]
+}

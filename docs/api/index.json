@@ -1,4 +1,29 @@
 {
   "version": 1,
-  "components": ["button"]
+  "components": [
+    "alert",
+    "avatar",
+    "breadcrumb",
+    "button",
+    "chip",
+    "data-table",
+    "date-picker",
+    "date-time-picker",
+    "dialog",
+    "divider",
+    "drawer",
+    "dropdown",
+    "icon",
+    "icon-button",
+    "select",
+    "spinner",
+    "switch",
+    "tabs",
+    "text-area",
+    "text-input",
+    "time-picker",
+    "toast",
+    "tooltip",
+    "typography"
+  ]
 }

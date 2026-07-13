@@ -1,0 +1,81 @@
+{
+  "id": "text-area",
+  "label": "TextArea",
+  "status": "implemented",
+  "source": {
+    "react": "packages/ui-react/src/components/TextArea/TextArea.tsx"
+  },
+  "props": [
+    {
+      "name": "autoGrow",
+      "kind": "boolean",
+      "required": false,
+      "default": false
+    },
+    {
+      "name": "error",
+      "kind": "string",
+      "required": false
+    },
+    {
+      "name": "fullWidth",
+      "kind": "boolean",
+      "required": false,
+      "default": false
+    },
+    {
+      "name": "helperText",
+      "kind": "string",
+      "required": false
+    },
+    {
+      "name": "label",
+      "kind": "string",
+      "required": false
+    },
+    {
+      "name": "maxRows",
+      "kind": "number",
+      "required": false
+    },
+    {
+      "name": "minRows",
+      "kind": "number",
+      "required": false
+    },
+    {
+      "name": "rows",
+      "kind": "number",
+      "required": false,
+      "default": 4
+    },
+    {
+      "name": "showCount",
+      "kind": "boolean",
+      "required": false,
+      "default": false
+    },
+    {
+      "name": "variant",
+      "kind": "unknown",
+      "required": false,
+      "default": "default"
+    }
+  ],
+  "states": [
+    "default",
+    "focus",
+    "disabled",
+    "error"
+  ],
+  "accessibility": [
+    {
+      "id": "documented",
+      "rule": "Public TextArea accessibility is covered by component implementation and stories."
+    }
+  ],
+  "notes": [
+    "Events are framework-specific and omitted from this contract.",
+    "Synced from packages/ui-react TextAreaProps (engineering-first)."
+  ]
+}

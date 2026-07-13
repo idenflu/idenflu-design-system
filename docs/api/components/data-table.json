@@ -1,0 +1,38 @@
+{
+  "id": "data-table",
+  "label": "DataTable",
+  "status": "implemented",
+  "source": {
+    "react": "packages/ui-react/src/components/DataTable/DataTable.tsx"
+  },
+  "props": [
+    {
+      "name": "defaultPage",
+      "kind": "number",
+      "required": false,
+      "default": 1
+    },
+    {
+      "name": "defaultPageSize",
+      "kind": "number",
+      "required": false
+    }
+  ],
+  "states": [
+    "default",
+    "focus",
+    "disabled",
+    "open",
+    "error"
+  ],
+  "accessibility": [
+    {
+      "id": "documented",
+      "rule": "Public DataTable accessibility is covered by component implementation and stories."
+    }
+  ],
+  "notes": [
+    "Events are framework-specific and omitted from this contract.",
+    "Synced from packages/ui-react DataTableProps (engineering-first)."
+  ]
+}

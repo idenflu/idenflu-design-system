@@ -1,0 +1,37 @@
+{
+  "id": "switch",
+  "label": "Switch",
+  "status": "implemented",
+  "source": {
+    "react": "packages/ui-react/src/components/Switch/Switch.tsx"
+  },
+  "props": [
+    {
+      "name": "icon",
+      "kind": "node",
+      "required": false
+    },
+    {
+      "name": "size",
+      "kind": "unknown",
+      "required": false,
+      "default": "md"
+    }
+  ],
+  "states": [
+    "default",
+    "focus",
+    "disabled",
+    "error"
+  ],
+  "accessibility": [
+    {
+      "id": "documented",
+      "rule": "Public Switch accessibility is covered by component implementation and stories."
+    }
+  ],
+  "notes": [
+    "Events are framework-specific and omitted from this contract.",
+    "Synced from packages/ui-react SwitchProps (engineering-first)."
+  ]
+}

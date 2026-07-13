@@ -1,0 +1,62 @@
+{
+  "id": "icon-button",
+  "label": "IconButton",
+  "status": "implemented",
+  "source": {
+    "react": "packages/ui-react/src/components/IconButton/IconButton.tsx"
+  },
+  "props": [
+    {
+      "name": "color",
+      "kind": "unknown",
+      "required": false,
+      "default": "primary"
+    },
+    {
+      "name": "icon",
+      "kind": "node",
+      "required": true
+    },
+    {
+      "name": "label",
+      "kind": "string",
+      "required": true
+    },
+    {
+      "name": "loading",
+      "kind": "boolean",
+      "required": false,
+      "default": false
+    },
+    {
+      "name": "size",
+      "kind": "unknown",
+      "required": false,
+      "default": "md"
+    },
+    {
+      "name": "variant",
+      "kind": "unknown",
+      "required": false,
+      "default": "default"
+    }
+  ],
+  "states": [
+    "default",
+    "hover",
+    "focus",
+    "disabled",
+    "loading",
+    "error"
+  ],
+  "accessibility": [
+    {
+      "id": "documented",
+      "rule": "Public IconButton accessibility is covered by component implementation and stories."
+    }
+  ],
+  "notes": [
+    "Events are framework-specific and omitted from this contract.",
+    "Synced from packages/ui-react IconButtonProps (engineering-first)."
+  ]
+}

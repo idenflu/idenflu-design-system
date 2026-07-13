@@ -1,0 +1,99 @@
+{
+  "id": "select",
+  "label": "Select",
+  "status": "implemented",
+  "source": {
+    "react": "packages/ui-react/src/components/Select/Select.tsx"
+  },
+  "props": [
+    {
+      "name": "children",
+      "kind": "node",
+      "required": false,
+      "native": true
+    },
+    {
+      "name": "defaultValue",
+      "kind": "string",
+      "required": false
+    },
+    {
+      "name": "error",
+      "kind": "string",
+      "required": false
+    },
+    {
+      "name": "fullWidth",
+      "kind": "boolean",
+      "required": false,
+      "default": false
+    },
+    {
+      "name": "helperText",
+      "kind": "string",
+      "required": false
+    },
+    {
+      "name": "label",
+      "kind": "node",
+      "required": false
+    },
+    {
+      "name": "options",
+      "kind": "unknown",
+      "required": false,
+      "description": "SelectOption[] alternative to children."
+    },
+    {
+      "name": "placeholder",
+      "kind": "node",
+      "required": false
+    },
+    {
+      "name": "readOnly",
+      "kind": "boolean",
+      "required": false,
+      "default": false
+    },
+    {
+      "name": "size",
+      "kind": "enum",
+      "values": ["lg", "md", "sm"],
+      "required": false,
+      "default": "md"
+    },
+    {
+      "name": "value",
+      "kind": "string",
+      "required": false
+    },
+    {
+      "name": "variant",
+      "kind": "enum",
+      "values": ["default", "filled", "outlined"],
+      "required": false,
+      "default": "default"
+    },
+    {
+      "name": "disabled",
+      "kind": "boolean",
+      "required": false,
+      "native": true
+    }
+  ],
+  "states": ["default", "disabled", "error"],
+  "accessibility": [
+    {
+      "id": "visible-label",
+      "rule": "Provide a visible label or accessible name for the select."
+    },
+    {
+      "id": "native-select",
+      "rule": "Render a native select (or equivalent) with keyboard access."
+    }
+  ],
+  "notes": [
+    "Events (onChange, onValueChange) are framework-specific and omitted.",
+    "Synced from packages/ui-react SelectProps (engineering-first)."
+  ]
+}

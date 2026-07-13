@@ -1,0 +1,75 @@
+{
+  "id": "breadcrumb",
+  "label": "Breadcrumb",
+  "status": "implemented",
+  "source": {
+    "react": "packages/ui-react/src/components/Breadcrumb/Breadcrumb.tsx"
+  },
+  "props": [
+    {
+      "name": "children",
+      "kind": "node",
+      "required": false,
+      "native": true
+    },
+    {
+      "name": "items",
+      "kind": "unknown",
+      "required": false
+    },
+    {
+      "name": "current",
+      "kind": "unknown",
+      "required": false,
+      "default": "page\". */"
+    },
+    {
+      "name": "maxItems",
+      "kind": "number",
+      "required": false
+    },
+    {
+      "name": "itemsBeforeCollapse",
+      "kind": "number",
+      "required": false,
+      "default": 1
+    },
+    {
+      "name": "itemsAfterCollapse",
+      "kind": "number",
+      "required": false,
+      "default": 1
+    },
+    {
+      "name": "overflowLabel",
+      "kind": "string",
+      "required": false,
+      "default": "Collapsed breadcrumb items"
+    },
+    {
+      "name": "separator",
+      "kind": "node",
+      "required": false,
+      "default": "/"
+    },
+    {
+      "name": "size",
+      "kind": "unknown",
+      "required": false,
+      "default": "md"
+    }
+  ],
+  "states": [
+    "default"
+  ],
+  "accessibility": [
+    {
+      "id": "documented",
+      "rule": "Public Breadcrumb accessibility is covered by component implementation and stories."
+    }
+  ],
+  "notes": [
+    "Events are framework-specific and omitted from this contract.",
+    "Synced from packages/ui-react BreadcrumbProps (engineering-first)."
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "id": "time-picker",
+  "label": "TimePicker",
+  "status": "implemented",
+  "source": {
+    "react": "packages/ui-react/src/components/TimePicker/TimePicker.tsx"
+  },
+  "props": [
+    {
+      "name": "className",
+      "kind": "string",
+      "required": false
+    },
+    {
+      "name": "defaultValue",
+      "kind": "string",
+      "required": false
+    },
+    {
+      "name": "disabled",
+      "kind": "boolean",
+      "required": false,
+      "native": true
+    },
+    {
+      "name": "error",
+      "kind": "string",
+      "required": false
+    },
+    {
+      "name": "fullWidth",
+      "kind": "boolean",
+      "required": false
+    },
+    {
+      "name": "helperText",
+      "kind": "string",
+      "required": false
+    },
+    {
+      "name": "id",
+      "kind": "string",
+      "required": false
+    },
+    {
+      "name": "label",
+      "kind": "node",
+      "required": false
+    },
+    {
+      "name": "minutesStep",
+      "kind": "number",
+      "required": false,
+      "default": 1
+    },
+    {
+      "name": "open",
+      "kind": "boolean",
+      "required": false
+    },
+    {
+      "name": "placeholder",
+      "kind": "string",
+      "required": false
+    },
+    {
+      "name": "readOnly",
+      "kind": "boolean",
+      "required": false
+    },
+    {
+      "name": "required",
+      "kind": "boolean",
+      "required": false
+    },
+    {
+      "name": "secondsStep",
+      "kind": "number",
+      "required": false,
+      "default": 1
+    },
+    {
+      "name": "size",
+      "kind": "unknown",
+      "required": false
+    },
+    {
+      "name": "value",
+      "kind": "string",
+      "required": false
+    },
+    {
+      "name": "variant",
+      "kind": "unknown",
+      "required": false
+    }
+  ],
+  "states": [
+    "default",
+    "disabled",
+    "open",
+    "error"
+  ],
+  "accessibility": [
+    {
+      "id": "documented",
+      "rule": "Public TimePicker accessibility is covered by component implementation and stories."
+    }
+  ],
+  "notes": [
+    "Events are framework-specific and omitted from this contract.",
+    "Synced from packages/ui-react TimePickerProps (engineering-first)."
+  ]
+}

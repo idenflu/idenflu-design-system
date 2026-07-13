@@ -1,0 +1,61 @@
+{
+  "id": "chip",
+  "label": "Chip",
+  "status": "implemented",
+  "source": {
+    "react": "packages/ui-react/src/components/Chip/Chip.tsx"
+  },
+  "props": [
+    {
+      "name": "children",
+      "kind": "node",
+      "required": true,
+      "native": true
+    },
+    {
+      "name": "color",
+      "kind": "unknown",
+      "required": false,
+      "default": "neutral"
+    },
+    {
+      "name": "deleteLabel",
+      "kind": "string",
+      "required": false,
+      "default": "Delete chip"
+    },
+    {
+      "name": "size",
+      "kind": "unknown",
+      "required": false,
+      "default": "md"
+    },
+    {
+      "name": "startIcon",
+      "kind": "node",
+      "required": false
+    },
+    {
+      "name": "variant",
+      "kind": "unknown",
+      "required": false,
+      "default": "filled"
+    }
+  ],
+  "states": [
+    "default",
+    "hover",
+    "focus",
+    "error"
+  ],
+  "accessibility": [
+    {
+      "id": "documented",
+      "rule": "Public Chip accessibility is covered by component implementation and stories."
+    }
+  ],
+  "notes": [
+    "Events are framework-specific and omitted from this contract.",
+    "Synced from packages/ui-react ChipProps (engineering-first)."
+  ]
+}

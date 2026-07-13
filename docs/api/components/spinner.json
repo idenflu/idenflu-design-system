@@ -1,0 +1,53 @@
+{
+  "id": "spinner",
+  "label": "Spinner",
+  "status": "implemented",
+  "source": {
+    "react": "packages/ui-react/src/components/Spinner/Spinner.tsx"
+  },
+  "props": [
+    {
+      "name": "active",
+      "kind": "boolean",
+      "required": false,
+      "default": true
+    },
+    {
+      "name": "color",
+      "kind": "unknown",
+      "required": false,
+      "default": "primary"
+    },
+    {
+      "name": "label",
+      "kind": "string",
+      "required": false,
+      "default": "Loading"
+    },
+    {
+      "name": "size",
+      "kind": "unknown",
+      "required": false,
+      "default": "md"
+    },
+    {
+      "name": "variant",
+      "kind": "unknown",
+      "required": false
+    }
+  ],
+  "states": [
+    "default",
+    "loading"
+  ],
+  "accessibility": [
+    {
+      "id": "documented",
+      "rule": "Public Spinner accessibility is covered by component implementation and stories."
+    }
+  ],
+  "notes": [
+    "Events are framework-specific and omitted from this contract.",
+    "Synced from packages/ui-react SpinnerProps (engineering-first)."
+  ]
+}

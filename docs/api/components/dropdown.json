@@ -1,0 +1,33 @@
+{
+  "id": "dropdown",
+  "label": "Dropdown",
+  "status": "implemented",
+  "source": {
+    "react": "packages/ui-react/src/components/Dropdown/Dropdown.tsx"
+  },
+  "props": [
+    {
+      "name": "size",
+      "kind": "unknown",
+      "required": false,
+      "default": "md"
+    }
+  ],
+  "states": [
+    "default",
+    "hover",
+    "focus",
+    "disabled",
+    "open"
+  ],
+  "accessibility": [
+    {
+      "id": "documented",
+      "rule": "Public Dropdown accessibility is covered by component implementation and stories."
+    }
+  ],
+  "notes": [
+    "Events are framework-specific and omitted from this contract.",
+    "Synced from packages/ui-react DropdownProps (engineering-first)."
+  ]
+}

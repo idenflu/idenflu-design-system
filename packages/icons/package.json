@@ -1,6 +1,6 @@
 {
   "name": "@idenflu/ui-icons",
-  "version": "0.0.0-alpha.1",
+  "version": "0.0.0-alpha.2",
   "description": "Icon sprite and names for idenflu product interfaces.",
   "types": "./src/index.d.ts",
   "repository": {

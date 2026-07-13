@@ -2,9 +2,6 @@
   "id": "drawer",
   "label": "Drawer",
   "status": "implemented",
-  "source": {
-    "react": "packages/ui-react/src/components/Drawer/Drawer.tsx"
-  },
   "props": [
     {
       "name": "children",

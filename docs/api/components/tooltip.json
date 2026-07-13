@@ -2,9 +2,6 @@
   "id": "tooltip",
   "label": "Tooltip",
   "status": "implemented",
-  "source": {
-    "react": "packages/ui-react/src/components/Tooltip/Tooltip.tsx"
-  },
   "props": [
     {
       "name": "delay",

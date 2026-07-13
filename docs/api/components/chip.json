@@ -2,9 +2,6 @@
   "id": "chip",
   "label": "Chip",
   "status": "implemented",
-  "source": {
-    "react": "packages/ui-react/src/components/Chip/Chip.tsx"
-  },
   "props": [
     {
       "name": "children",

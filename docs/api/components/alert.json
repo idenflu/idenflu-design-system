@@ -2,9 +2,6 @@
   "id": "alert",
   "label": "Alert",
   "status": "implemented",
-  "source": {
-    "react": "packages/ui-react/src/components/Alert/Alert.tsx"
-  },
   "props": [
     {
       "name": "action",

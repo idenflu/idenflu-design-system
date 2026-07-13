@@ -2,9 +2,6 @@
   "id": "toast",
   "label": "Toast",
   "status": "implemented",
-  "source": {
-    "react": "packages/ui-react/src/components/Toast/Toast.tsx"
-  },
   "props": [
     {
       "name": "action",

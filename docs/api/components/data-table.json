@@ -2,9 +2,6 @@
   "id": "data-table",
   "label": "DataTable",
   "status": "implemented",
-  "source": {
-    "react": "packages/ui-react/src/components/DataTable/DataTable.tsx"
-  },
   "props": [
     {
       "name": "defaultPage",

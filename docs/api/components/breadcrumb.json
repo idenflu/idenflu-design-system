@@ -2,9 +2,6 @@
   "id": "breadcrumb",
   "label": "Breadcrumb",
   "status": "implemented",
-  "source": {
-    "react": "packages/ui-react/src/components/Breadcrumb/Breadcrumb.tsx"
-  },
   "props": [
     {
       "name": "children",

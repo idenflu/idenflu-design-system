@@ -2,9 +2,6 @@
   "id": "date-time-picker",
   "label": "DateTimePicker",
   "status": "implemented",
-  "source": {
-    "react": "packages/ui-react/src/components/DateTimePicker/DateTimePicker.tsx"
-  },
   "props": [
     {
       "name": "className",

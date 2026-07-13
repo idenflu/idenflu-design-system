@@ -2,9 +2,6 @@
   "id": "dialog",
   "label": "Dialog",
   "status": "implemented",
-  "source": {
-    "react": "packages/ui-react/src/components/Dialog/Dialog.tsx"
-  },
   "props": [
     {
       "name": "children",

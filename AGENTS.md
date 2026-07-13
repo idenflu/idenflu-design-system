@@ -40,6 +40,7 @@ All styling must use these CSS custom properties — no hardcoded visual values.
 - `.cursor/rules/design-system.mdc` — principles (tokens, a11y, TS)
 - `.cursor/rules/component-workflow.mdc` — MCP workflows
 - `.cursor/prompts/` — copy-paste prompt templates
+- `docs/api/` — shared API contracts; validate via `check:api-contracts` on ui-react
 
 ## Component Structure
 

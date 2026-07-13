@@ -2,9 +2,6 @@
   "id": "spinner",
   "label": "Spinner",
   "status": "implemented",
-  "source": {
-    "react": "packages/ui-react/src/components/Spinner/Spinner.tsx"
-  },
   "props": [
     {
       "name": "active",

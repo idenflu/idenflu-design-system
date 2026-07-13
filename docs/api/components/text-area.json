@@ -2,9 +2,6 @@
   "id": "text-area",
   "label": "TextArea",
   "status": "implemented",
-  "source": {
-    "react": "packages/ui-react/src/components/TextArea/TextArea.tsx"
-  },
   "props": [
     {
       "name": "autoGrow",

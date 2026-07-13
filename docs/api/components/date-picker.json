@@ -2,9 +2,6 @@
   "id": "date-picker",
   "label": "DatePicker",
   "status": "implemented",
-  "source": {
-    "react": "packages/ui-react/src/components/DatePicker/DatePicker.tsx"
-  },
   "props": [
     {
       "name": "className",

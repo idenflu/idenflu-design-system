@@ -2,9 +2,6 @@
   "id": "divider",
   "label": "Divider",
   "status": "implemented",
-  "source": {
-    "react": "packages/ui-react/src/components/Divider/Divider.tsx"
-  },
   "props": [
     {
       "name": "children",

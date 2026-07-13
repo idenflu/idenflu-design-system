@@ -2,9 +2,6 @@
   "id": "typography",
   "label": "Typography",
   "status": "implemented",
-  "source": {
-    "react": "packages/ui-react/src/components/Typography/Typography.tsx"
-  },
   "props": [
     {
       "name": "align",

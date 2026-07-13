@@ -1,0 +1,78 @@
+.scale {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-04, 8px);
+  margin: var(--spacing-07, 24px) 0;
+}
+
+.hint {
+  margin: 0 0 var(--spacing-04, 8px);
+  font: var(--caption-md, 12px/1.3 sans-serif);
+  color: var(--text-muted, #737373);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 110px 72px minmax(0, 1fr);
+  align-items: center;
+  gap: var(--spacing-04, 8px);
+  min-height: 36px;
+}
+
+.token {
+  margin: 0;
+  font: var(--label-md, 12px/1.3 monospace);
+  color: var(--text-secondary, #555);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.value {
+  margin: 0;
+  font: var(--label-md, 12px/1.3 monospace);
+  color: var(--text-muted, #737373);
+}
+
+.barButton {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 20px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+}
+
+.barButton:focus-visible {
+  outline: 2px solid var(--border-focused, #266ee1);
+  outline-offset: 2px;
+}
+
+.bar {
+  display: block;
+  height: 100%;
+  max-width: 100%;
+  background: var(--background-primary, #266ee1);
+  transition: opacity 0.2s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .barButton:hover .bar {
+    opacity: 0.85;
+  }
+}
+
+.copied {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 2px 6px;
+  background: color-mix(in srgb, var(--base-black, #000) 70%, transparent);
+  color: var(--base-white, #fff);
+  font: var(--caption-md, 12px/1.3 monospace);
+  pointer-events: none;
+}

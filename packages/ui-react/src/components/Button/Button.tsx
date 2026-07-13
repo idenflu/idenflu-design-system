@@ -7,7 +7,6 @@ import { ButtonSpinner } from "./ButtonSpinner";
 export type ButtonVariant = "default" | "outlined" | "ghost";
 export type ButtonColor = "primary" | "neutral" | "danger";
 export type ButtonSize = "xs" | "sm" | "md" | "lg";
-type ButtonIconLayout = "both" | "endOnly" | "none" | "startOnly";
 
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   color?: ButtonColor;
@@ -24,9 +23,7 @@ const buttonClassName = cva(styles.root, {
     color: "primary",
     fullWidth: false,
     hasStartIcon: false,
-    iconLayout: "none",
     loading: false,
-    loadingSolo: false,
     size: "md",
     variant: "default",
   },
@@ -44,19 +41,9 @@ const buttonClassName = cva(styles.root, {
       false: null,
       true: styles.hasStartIcon,
     },
-    iconLayout: {
-      both: styles.iconLayoutBoth,
-      endOnly: styles.iconLayoutEndOnly,
-      none: null,
-      startOnly: styles.iconLayoutStartOnly,
-    },
     loading: {
       false: null,
       true: styles.loading,
-    },
-    loadingSolo: {
-      false: null,
-      true: styles.loadingSolo,
     },
     size: {
       lg: styles.sizeLg,
@@ -71,28 +58,6 @@ const buttonClassName = cva(styles.root, {
     },
   },
 });
-
-function resolveIconLayout(
-  startIcon?: React.ReactNode,
-  endIcon?: React.ReactNode
-): ButtonIconLayout {
-  const hasStartIcon = Boolean(startIcon);
-  const hasEndIcon = Boolean(endIcon);
-
-  if (hasStartIcon && hasEndIcon) {
-    return "both";
-  }
-
-  if (hasStartIcon) {
-    return "startOnly";
-  }
-
-  if (hasEndIcon) {
-    return "endOnly";
-  }
-
-  return "none";
-}
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
@@ -114,29 +79,44 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const isDisabled = disabled || loading;
-    const iconLayout = resolveIconLayout(startIcon, endIcon);
-    const hasIcon = iconLayout !== "none";
-    const showSpinnerInsteadOfLabel = loading && !hasIcon;
+    const hasIcon = Boolean(startIcon) || Boolean(endIcon);
+    const hasBothIcons = Boolean(startIcon) && Boolean(endIcon);
+    const showLoadingOverlay = loading && (!hasIcon || hasBothIcons);
+    const contentHiddenClass = showLoadingOverlay
+      ? styles.contentHidden
+      : undefined;
 
-    const labelElement = showSpinnerInsteadOfLabel ? (
-      <span className={styles.label} aria-hidden="true">
-        <ButtonSpinner size={size} />
+    const labelEl =
+      children != null && children !== "" ? (
+        showLoadingOverlay ? (
+          <span className={contentHiddenClass}>{children}</span>
+        ) : (
+          children
+        )
+      ) : null;
+    const startIconEl = startIcon && (
+      <span
+        className={cn(styles.icon, styles.startIcon, contentHiddenClass)}
+        aria-hidden="true"
+      >
+        {loading && !hasBothIcons ? <ButtonSpinner size="md" /> : startIcon}
       </span>
-    ) : children != null && children !== "" ? (
-      <span className={styles.label}>{children}</span>
-    ) : null;
+    );
 
-    const startIconElement = startIcon ? (
-      <span className={styles.icon} aria-hidden="true">
-        {loading ? <ButtonSpinner size={size} /> : startIcon}
+    const endIconEl = endIcon && (
+      <span
+        className={cn(styles.icon, styles.endIcon, contentHiddenClass)}
+        aria-hidden="true"
+      >
+        {loading && !hasBothIcons ? <ButtonSpinner size="md" /> : endIcon}
       </span>
-    ) : null;
+    );
 
-    const endIconElement = endIcon ? (
-      <span className={styles.icon} aria-hidden="true">
-        {loading ? <ButtonSpinner size={size} /> : endIcon}
+    const loadingOverlayEl = showLoadingOverlay && (
+      <span className={styles.loadingOverlay} aria-hidden="true">
+        <ButtonSpinner size="md" />
       </span>
-    ) : null;
+    );
 
     return (
       <button
@@ -147,9 +127,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             color,
             fullWidth,
             hasStartIcon: Boolean(startIcon),
-            iconLayout,
             loading,
-            loadingSolo: showSpinnerInsteadOfLabel,
             size,
             variant,
           }),
@@ -166,9 +144,10 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         type={type}
         {...props}
       >
-        {startIconElement}
-        {labelElement}
-        {endIconElement}
+        {startIconEl}
+        {labelEl}
+        {endIconEl}
+        {loadingOverlayEl}
       </button>
     );
   }

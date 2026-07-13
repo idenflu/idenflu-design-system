@@ -6,6 +6,7 @@ export declare const iconNames: readonly [
   "arrow-right",
   "attach",
   "calendar",
+  "calendar-clock",
   "check",
   "check-circle",
   "clock",

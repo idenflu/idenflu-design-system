@@ -6,6 +6,7 @@ export const iconNames = [
   "arrow-right",
   "attach",
   "calendar",
+  "calendar-clock",
   "check",
   "check-circle",
   "close",

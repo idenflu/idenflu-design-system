@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://idenflu.local/docs/contracts/schema.json",
+  "title": "Idenflu component API contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "label", "status", "props", "states", "accessibility"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "description": "Stable component id (kebab-case)."
+    },
+    "label": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "implemented", "deprecated"]
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": { "type": "string" },
+      "description": "Map of framework key → repo-relative source path for sync checks."
+    },
+    "props": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "kind"],
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "kind": {
+            "type": "string",
+            "enum": ["boolean", "string", "number", "enum", "node", "unknown"]
+          },
+          "values": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string" }
+          },
+          "default": {
+            "type": ["string", "boolean", "number", "null"]
+          },
+          "required": { "type": "boolean" },
+          "native": {
+            "type": "boolean",
+            "description": "True when the prop is a native HTML attribute kept in the shared contract."
+          },
+          "description": { "type": "string" }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": { "kind": { "const": "enum" } },
+              "required": ["kind"]
+            },
+            "then": { "required": ["values"] }
+          }
+        ]
+      }
+    },
+    "states": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "accessibility": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "rule"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "rule": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "notes": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

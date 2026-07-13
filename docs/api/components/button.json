@@ -1,0 +1,95 @@
+{
+  "id": "button",
+  "label": "Button",
+  "status": "implemented",
+  "source": {
+    "react": "packages/ui-react/src/components/Button/Button.tsx"
+  },
+  "props": [
+    {
+      "name": "variant",
+      "kind": "enum",
+      "values": ["default", "outlined", "ghost"],
+      "default": "default",
+      "required": false,
+      "description": "Visual emphasis style."
+    },
+    {
+      "name": "color",
+      "kind": "enum",
+      "values": ["primary", "neutral", "danger"],
+      "default": "primary",
+      "required": false,
+      "description": "Color tone; danger is for destructive actions."
+    },
+    {
+      "name": "size",
+      "kind": "enum",
+      "values": ["xs", "sm", "md", "lg"],
+      "default": "md",
+      "required": false
+    },
+    {
+      "name": "startIcon",
+      "kind": "node",
+      "required": false,
+      "description": "Leading icon slot."
+    },
+    {
+      "name": "endIcon",
+      "kind": "node",
+      "required": false,
+      "description": "Trailing icon slot."
+    },
+    {
+      "name": "fullWidth",
+      "kind": "boolean",
+      "default": false,
+      "required": false
+    },
+    {
+      "name": "loading",
+      "kind": "boolean",
+      "default": false,
+      "required": false,
+      "description": "Shows progress and blocks interaction."
+    },
+    {
+      "name": "disabled",
+      "kind": "boolean",
+      "default": false,
+      "required": false,
+      "native": true,
+      "description": "Native disabled; also applied while loading."
+    },
+    {
+      "name": "children",
+      "kind": "node",
+      "required": false,
+      "description": "Button label content."
+    }
+  ],
+  "states": ["default", "hover", "focus", "loading", "disabled"],
+  "accessibility": [
+    {
+      "id": "native-button",
+      "rule": "Render a native button element."
+    },
+    {
+      "id": "aria-busy-loading",
+      "rule": "Set aria-busy when loading is true."
+    },
+    {
+      "id": "icon-only-label",
+      "rule": "Icon-only usage requires an accessible name (aria-label or equivalent)."
+    },
+    {
+      "id": "decorative-icons",
+      "rule": "startIcon and endIcon wrappers are aria-hidden."
+    }
+  ],
+  "notes": [
+    "Events (e.g. onClick) are framework-specific and intentionally omitted from this contract.",
+    "Synced from packages/ui-react ButtonProps (engineering-first)."
+  ]
+}

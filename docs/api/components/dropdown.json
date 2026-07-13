@@ -2,9 +2,6 @@
   "id": "dropdown",
   "label": "Dropdown",
   "status": "implemented",
-  "source": {
-    "react": "packages/ui-react/src/components/Dropdown/Dropdown.tsx"
-  },
   "props": [
     {
       "name": "size",

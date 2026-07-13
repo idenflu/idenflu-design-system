@@ -2,9 +2,6 @@
   "id": "select",
   "label": "Select",
   "status": "implemented",
-  "source": {
-    "react": "packages/ui-react/src/components/Select/Select.tsx"
-  },
   "props": [
     {
       "name": "children",
@@ -58,7 +55,11 @@
     {
       "name": "size",
       "kind": "enum",
-      "values": ["lg", "md", "sm"],
+      "values": [
+        "lg",
+        "md",
+        "sm"
+      ],
       "required": false,
       "default": "md"
     },
@@ -70,7 +71,11 @@
     {
       "name": "variant",
       "kind": "enum",
-      "values": ["default", "filled", "outlined"],
+      "values": [
+        "default",
+        "filled",
+        "outlined"
+      ],
       "required": false,
       "default": "default"
     },
@@ -81,7 +86,11 @@
       "native": true
     }
   ],
-  "states": ["default", "disabled", "error"],
+  "states": [
+    "default",
+    "disabled",
+    "error"
+  ],
   "accessibility": [
     {
       "id": "visible-label",

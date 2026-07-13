@@ -2,9 +2,6 @@
   "id": "switch",
   "label": "Switch",
   "status": "implemented",
-  "source": {
-    "react": "packages/ui-react/src/components/Switch/Switch.tsx"
-  },
   "props": [
     {
       "name": "icon",

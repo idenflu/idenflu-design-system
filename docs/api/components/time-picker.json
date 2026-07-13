@@ -2,9 +2,6 @@
   "id": "time-picker",
   "label": "TimePicker",
   "status": "implemented",
-  "source": {
-    "react": "packages/ui-react/src/components/TimePicker/TimePicker.tsx"
-  },
   "props": [
     {
       "name": "className",

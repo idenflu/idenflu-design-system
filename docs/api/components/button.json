@@ -2,14 +2,15 @@
   "id": "button",
   "label": "Button",
   "status": "implemented",
-  "source": {
-    "react": "packages/ui-react/src/components/Button/Button.tsx"
-  },
   "props": [
     {
       "name": "variant",
       "kind": "enum",
-      "values": ["default", "outlined", "ghost"],
+      "values": [
+        "default",
+        "outlined",
+        "ghost"
+      ],
       "default": "default",
       "required": false,
       "description": "Visual emphasis style."
@@ -17,7 +18,11 @@
     {
       "name": "color",
       "kind": "enum",
-      "values": ["primary", "neutral", "danger"],
+      "values": [
+        "primary",
+        "neutral",
+        "danger"
+      ],
       "default": "primary",
       "required": false,
       "description": "Color tone; danger is for destructive actions."
@@ -25,7 +30,12 @@
     {
       "name": "size",
       "kind": "enum",
-      "values": ["xs", "sm", "md", "lg"],
+      "values": [
+        "xs",
+        "sm",
+        "md",
+        "lg"
+      ],
       "default": "md",
       "required": false
     },
@@ -69,7 +79,13 @@
       "description": "Button label content."
     }
   ],
-  "states": ["default", "hover", "focus", "loading", "disabled"],
+  "states": [
+    "default",
+    "hover",
+    "focus",
+    "loading",
+    "disabled"
+  ],
   "accessibility": [
     {
       "id": "native-button",

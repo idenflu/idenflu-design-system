@@ -2,9 +2,6 @@
   "id": "tabs",
   "label": "Tabs",
   "status": "implemented",
-  "source": {
-    "react": "packages/ui-react/src/components/Tabs/Tabs.tsx"
-  },
   "props": [
     {
       "name": "variant",

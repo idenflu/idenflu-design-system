@@ -2,9 +2,6 @@
   "id": "avatar",
   "label": "Avatar",
   "status": "implemented",
-  "source": {
-    "react": "packages/ui-react/src/components/Avatar/Avatar.tsx"
-  },
   "props": [
     {
       "name": "alt",

@@ -2,9 +2,6 @@
   "id": "icon",
   "label": "Icon",
   "status": "implemented",
-  "source": {
-    "react": "packages/ui-react/src/components/Icon/Icon.tsx"
-  },
   "props": [
     {
       "name": "name",

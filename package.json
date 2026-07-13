@@ -11,8 +11,8 @@
     "dev:playground": "npm run dev -w playground",
     "check:docs": "node docs/scripts/verify-site.js",
     "check:packages": "node scripts/package-skeleton-check.js",
-    "check:api-contracts": "node docs/scripts/validate-api-contracts.js",
+    "check:api-contracts": "npm run check:api-contracts -w @idenflu/ui-react",
     "check": "node docs/scripts/verify-site.js && node scripts/package-skeleton-check.js",
-    "storybook:ui-react": "npm -w @idenflu/ui-react run storybook"
+    "storybook:ui-react": "npm run storybook -w @idenflu/ui-react"
   }
 }

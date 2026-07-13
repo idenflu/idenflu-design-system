@@ -2,9 +2,6 @@
   "id": "icon-button",
   "label": "IconButton",
   "status": "implemented",
-  "source": {
-    "react": "packages/ui-react/src/components/IconButton/IconButton.tsx"
-  },
   "props": [
     {
       "name": "color",

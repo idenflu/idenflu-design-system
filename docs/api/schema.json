@@ -19,11 +19,6 @@
       "type": "string",
       "enum": ["draft", "implemented", "deprecated"]
     },
-    "source": {
-      "type": "object",
-      "additionalProperties": { "type": "string" },
-      "description": "Map of framework key → repo-relative source path for sync checks."
-    },
     "props": {
       "type": "array",
       "minItems": 1,

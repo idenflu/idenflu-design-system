@@ -2,9 +2,6 @@
   "id": "text-input",
   "label": "TextInput",
   "status": "implemented",
-  "source": {
-    "react": "packages/ui-react/src/components/TextInput/TextInput.tsx"
-  },
   "props": [
     {
       "name": "clearable",

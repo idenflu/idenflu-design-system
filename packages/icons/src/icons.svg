@@ -1,70 +1,242 @@
 <svg xmlns="http://www.w3.org/2000/svg">
-  <symbol id="add" viewBox="0 0 24 24"><path d="M12 3L12 21 M3 12L21 12" /></symbol>
-  <symbol id="arrow-down" viewBox="0 0 24 24"><path d="M12 4L12 20 M6 14L12 20L18 14" /></symbol>
-  <symbol id="attach" viewBox="0 0 24 24">
+  <symbol
+    id="add"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
+    <path d="M12 3L12 21 M3 12L21 12" />
+  </symbol>
+  <symbol
+    id="arrow-down"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
+    <path d="M12 4L12 20 M6 14L12 20L18 14" />
+  </symbol>
+  <symbol
+    id="attach"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
     <path
       d="M21.292 11.002L12.102 20.192C11.072 21.224 9.672 21.803 8.212 21.803C6.752 21.803 5.351 21.224 4.32 20.192C3.288 19.16 2.708 17.761 2.708 16.302C2.708 14.843 3.288 13.444 4.32 12.412L13.512 3.222C14.162 2.566 15.052 2.197 15.982 2.197C16.912 2.197 17.802 2.566 18.462 3.222C19.112 3.878 19.482 4.769 19.482 5.697C19.482 6.625 19.112 7.515 18.462 8.172L9.262 17.362C8.972 17.627 8.602 17.771 8.212 17.764C7.822 17.757 7.452 17.6 7.172 17.325C6.902 17.05 6.742 16.68 6.742 16.291C6.732 15.902 6.872 15.526 7.142 15.242L15.632 6.762"
     />
   </symbol>
-  <symbol id="arrow-left" viewBox="0 0 24 24"><path d="M20 12L4 12 M10 6L4 12L10 18" /></symbol>
-  <symbol id="arrow-right" viewBox="0 0 24 24">
+  <symbol
+    id="arrow-left"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
+    <path d="M20 12L4 12 M10 6L4 12L10 18" />
+  </symbol>
+  <symbol
+    id="arrow-right"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
     <path d="M3.999 12L20.001 12 M14.001 6L20.001 12L14.001 18" />
   </symbol>
-  <symbol id="arrow-up" viewBox="0 0 24 24"><path d="M12 20L12 4 M6 10L12 4L18 10" /></symbol>
-  <symbol id="check-circle" viewBox="0 0 24 24">
+  <symbol
+    id="arrow-up"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
+    <path d="M12 20L12 4 M6 10L12 4L18 10" />
+  </symbol>
+  <symbol
+    id="check-circle"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
     <path
       d="M12 21C16.97 21 21 16.971 21 12C21 7.029 16.97 3 12 3C7.029 3 3 7.029 3 12C3 16.971 7.029 21 12 21Z M7.5 12L10.5 15.5L16.5 8.5"
     />
   </symbol>
-  <symbol id="check" viewBox="0 0 24 24"><path d="M4 12.5L9 17.5L20 6.5" /></symbol>
-  <symbol id="crop" viewBox="0 0 24 24">
+  <symbol
+    id="check"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
+    <path d="M4 12.5L9 17.5L20 6.5" />
+  </symbol>
+  <symbol
+    id="crop"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
     <path
       d="M6 2L6 16C6 16.53 6.211 17.039 6.586 17.414C6.961 17.789 7.47 18 8 18L22 18 M18 22L18 8C18 7.47 17.79 6.961 17.415 6.586C17.039 6.211 16.531 6 16 6L2 6"
     />
   </symbol>
-  <symbol id="calendar" viewBox="0 0 24 24">
+  <symbol
+    id="calendar"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
     <path
       d="M19 4L5 4C3.896 4 3 4.895 3 6L3 20C3 21.105 3.896 22 5 22L19 22C20.105 22 21 21.105 21 20L21 6C21 4.895 20.105 4 19 4Z M8 2L8 6 M16 2L16 6 M3 10L21 10"
     />
   </symbol>
-  <symbol id="clock" viewBox="0 0 24 24">
+  <symbol
+    id="clock"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
     <path
       d="M12 21C16.97 21 21 16.971 21 12C21 7.029 16.97 3 12 3C7.029 3 3 7.029 3 12C3 16.971 7.029 21 12 21Z M12 6.5L12 12L15.5 14.5"
     />
   </symbol>
-  <symbol id="dark-mode" viewBox="0 0 24 24">
+  <symbol
+    id="dark-mode"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
     <path
       d="M20.982 12.809C20.822 14.511 20.182 16.133 19.142 17.486C18.092 18.838 16.682 19.865 15.072 20.446C13.472 21.026 11.732 21.137 10.062 20.765C8.392 20.393 6.862 19.554 5.654 18.345C4.445 17.136 3.606 15.608 3.234 13.939C2.862 12.271 2.972 10.531 3.553 8.923C4.134 7.316 5.161 5.906 6.512 4.861C7.862 3.815 9.492 3.176 11.192 3.019C10.192 4.367 9.712 6.028 9.842 7.7C9.962 9.372 10.682 10.944 11.872 12.13C13.052 13.315 14.622 14.036 16.302 14.16C17.972 14.285 19.632 13.806 20.982 12.809Z"
     />
   </symbol>
-  <symbol id="download" viewBox="0 0 24 24">
+  <symbol
+    id="download"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
     <path d="M12 3.5L12 15.5 M6 9.5L12 15.5L18 9.5 M4 20.5L20 20.5" />
   </symbol>
-  <symbol id="edit" viewBox="0 0 24 24">
+  <symbol
+    id="edit"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
     <path
       d="M10.94 4.06L3.94 4.06C3.409 4.06 2.901 4.272 2.526 4.647C2.151 5.022 1.94 5.531 1.94 6.06L1.94 20.06C1.94 20.59 2.151 21.099 2.526 21.474C2.901 21.849 3.409 22.06 3.94 22.06L17.94 22.06C18.47 22.06 18.979 21.849 19.354 21.474C19.729 21.099 19.94 20.59 19.94 20.06L19.94 13.06 M18.44 2.56C18.838 2.162 19.377 1.94 19.94 1.94C20.502 1.94 21.042 2.162 21.44 2.56C21.838 2.959 22.061 3.498 22.061 4.06C22.061 4.623 21.838 5.162 21.44 5.56L11.94 15.06L7.94 16.06L8.94 12.06L18.44 2.56Z"
     />
   </symbol>
-  <symbol id="file" viewBox="0 0 24 24">
+  <symbol
+    id="file"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
     <path
       d="M14 2L6 2C5.47 2 4.961 2.211 4.586 2.586C4.211 2.961 4 3.47 4 4L4 20C4 20.53 4.211 21.039 4.586 21.414C4.961 21.789 5.47 22 6 22L18 22C18.531 22 19.039 21.789 19.414 21.414C19.789 21.039 20 20.53 20 20L20 8L14 2Z M14 2L14 8L20 8"
     />
   </symbol>
-  <symbol id="filter" viewBox="0 0 24 24"><path d="M3 7L21 7 M6 12L18 12 M10 17L14 17" /></symbol>
-  <symbol id="folder" viewBox="0 0 24 24">
+  <symbol
+    id="filter"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
+    <path d="M3 7L21 7 M6 12L18 12 M10 17L14 17" />
+  </symbol>
+  <symbol
+    id="folder"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
     <path
       d="M3 6.5C3 5.97 3.211 5.461 3.586 5.086C3.961 4.711 4.47 4.5 5 4.5L9 4.5L11 6.5L19 6.5C19.531 6.5 20.039 6.711 20.414 7.086C20.789 7.461 21 7.97 21 8.5L21 17.5C21 18.03 20.789 18.539 20.414 18.914C20.039 19.289 19.531 19.5 19 19.5L5 19.5C4.47 19.5 3.961 19.289 3.586 18.914C3.211 18.539 3 18.03 3 17.5L3 6.5Z"
     />
   </symbol>
-  <symbol id="expand" viewBox="0 0 24 24">
+  <symbol
+    id="expand"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
     <path d="M12 3L12 21 M6 9L12 3L18 9 M6 15L12 21L18 15" />
   </symbol>
-  <symbol id="grid" viewBox="0 0 24 24">
+  <symbol
+    id="grid"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
     <path
       d="M9 3L4 3C3.448 3 3 3.448 3 4L3 9C3 9.552 3.448 10 4 10L9 10C9.553 10 10 9.552 10 9L10 4C10 3.448 9.553 3 9 3Z M20 3L15 3C14.448 3 14 3.448 14 4L14 9C14 9.552 14.448 10 15 10L20 10C20.553 10 21 9.552 21 9L21 4C21 3.448 20.553 3 20 3Z M9 14L4 14C3.448 14 3 14.448 3 15L3 20C3 20.552 3.448 21 4 21L9 21C9.553 21 10 20.552 10 20L10 15C10 14.448 9.553 14 9 14Z M20 14L15 14C14.448 14 14 14.448 14 15L14 20C14 20.552 14.448 21 15 21L20 21C20.553 21 21 20.552 21 20L21 15C21 14.448 20.553 14 20 14Z"
     />
   </symbol>
-  <symbol id="help" viewBox="0 0 24 24">
+  <symbol
+    id="help"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
     <path
       d="M12 21C16.971 21 21 16.971 21 12C21 7.029 16.971 3 12 3C7.03 3 3 7.029 3 12C3 16.971 7.03 21 12 21Z M9.5 9C9.5 8.337 9.764 7.701 10.233 7.232C10.701 6.763 11.337 6.5 12 6.5C12.663 6.5 13.299 6.763 13.768 7.232C14.237 7.701 14.5 8.337 14.5 9C14.5 11 12 11.5 12 13"
     />
@@ -74,24 +246,76 @@
       stroke="none"
     />
   </symbol>
-  <symbol id="image" viewBox="0 0 24 24">
+  <symbol
+    id="image"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
     <path
       d="M19 3L5 3C3.896 3 3 3.895 3 5L3 19C3 20.105 3.896 21 5 21L19 21C20.105 21 21 20.105 21 19L21 5C21 3.895 20.105 3 19 3Z M8.5 10C9.329 10 10 9.328 10 8.5C10 7.672 9.329 7 8.5 7C7.672 7 7 7.672 7 8.5C7 9.328 7.672 10 8.5 10Z M3 17L8 12L13 16L16 13L21 17"
     />
   </symbol>
-  <symbol id="keyboard-arrow-down" viewBox="0 0 24 24"><path d="M6 9L12 15L18 9" /></symbol>
-  <symbol id="keyboard-arrow-up" viewBox="0 0 24 24"><path d="M6 15L12 9L18 15" /></symbol>
-  <symbol id="link" viewBox="0 0 24 24">
+  <symbol
+    id="keyboard-arrow-down"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
+    <path d="M6 9L12 15L18 9" />
+  </symbol>
+  <symbol
+    id="keyboard-arrow-up"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
+    <path d="M6 15L12 9L18 15" />
+  </symbol>
+  <symbol
+    id="link"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
     <path
       d="M10 13C10.429 13.574 10.977 14.049 11.606 14.393C12.236 14.737 12.931 14.941 13.647 14.992C14.362 15.044 15.079 14.94 15.751 14.69C16.423 14.439 17.033 14.047 17.54 13.54L19.54 11.54C20.451 10.597 20.955 9.334 20.943 8.023C20.932 6.712 20.406 5.458 19.479 4.531C18.552 3.604 17.298 3.078 15.987 3.067C14.676 3.055 13.413 3.559 12.47 4.47L11.4 5.54 M14 11C13.57 10.426 13.023 9.951 12.393 9.607C11.764 9.263 11.068 9.059 10.353 9.008C9.638 8.956 8.92 9.06 8.249 9.31C7.577 9.561 6.967 9.953 6.46 10.46L4.46 12.46C3.549 13.403 3.045 14.666 3.057 15.977C3.068 17.288 3.594 18.542 4.521 19.469C5.448 20.396 6.702 20.922 8.013 20.933C9.324 20.945 10.587 20.441 11.53 19.53L12.6 18.46"
     />
   </symbol>
-  <symbol id="light-mode" viewBox="0 0 24 24">
+  <symbol
+    id="light-mode"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
     <path
       d="M12 16C14.209 16 16 14.209 16 12C16 9.791 14.209 8 12 8C9.791 8 8 9.791 8 12C8 14.209 9.791 16 12 16Z M12 2L12 5 M12 19L12 22 M2 12L5 12 M19 12L22 12 M4.93 4.93L7.05 7.05 M16.95 16.95L19.07 19.07 M19.07 4.93L16.95 7.05 M7.05 16.95L4.93 19.07"
     />
   </symbol>
-  <symbol id="list" viewBox="0 0 24 24">
+  <symbol
+    id="list"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
     <path d="M8 7L21 7 M8 12L21 12 M8 17L21 17" />
     <path
       d="M4 8C4.552 8 5 7.552 5 7C5 6.448 4.552 6 4 6C3.448 6 3 6.448 3 7C3 7.552 3.448 8 4 8Z"
@@ -109,7 +333,15 @@
       stroke="none"
     />
   </symbol>
-  <symbol id="lock" viewBox="0 0 24 24">
+  <symbol
+    id="lock"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
     <path
       d="M17 10.5L7 10.5C5.895 10.5 5 11.395 5 12.5L5 19.5C5 20.605 5.895 21.5 7 21.5L17 21.5C18.105 21.5 19 20.605 19 19.5L19 12.5C19 11.395 18.105 10.5 17 10.5Z M8 10.5L8 6.5C8 5.439 8.421 4.422 9.172 3.672C9.922 2.921 10.939 2.5 12 2.5C13.061 2.5 14.078 2.921 14.828 3.672C15.579 4.422 16 5.439 16 6.5L16 10.5"
     />
@@ -119,7 +351,15 @@
       stroke="none"
     />
   </symbol>
-  <symbol id="info" viewBox="0 0 24 24">
+  <symbol
+    id="info"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
     <path
       d="M12 21C16.971 21 21 16.971 21 12C21 7.029 16.971 3 12 3C7.03 3 3 7.029 3 12C3 16.971 7.03 21 12 21Z M12 11L12 16.5"
     />
@@ -129,16 +369,50 @@
       stroke="none"
     />
   </symbol>
-  <symbol id="mail" viewBox="0 0 24 24">
+  <symbol
+    id="mail"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
     <path
       d="M20 5L4 5C2.895 5 2 5.895 2 7L2 17C2 18.105 2.895 19 4 19L20 19C21.104 19 22 18.105 22 17L22 7C22 5.895 21.104 5 20 5Z M2 5L12 13L22 5"
     />
   </symbol>
-  <symbol id="menu" viewBox="0 0 24 24">
+  <symbol
+    id="menu"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
     <path d="M2.999 8L21.001 8 M2.999 12L21.001 12 M2.999 16L21.001 16" />
   </symbol>
-  <symbol id="keyboard-arrow-left" viewBox="0 0 24 24"><path d="M15 6L9 12L15 18" /></symbol>
-  <symbol id="more-vertical" viewBox="0 0 24 24">
+  <symbol
+    id="keyboard-arrow-left"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
+    <path d="M15 6L9 12L15 18" />
+  </symbol>
+  <symbol
+    id="more-vertical"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
     <path
       d="M12 6.5C12.828 6.5 13.5 5.828 13.5 5C13.5 4.172 12.828 3.5 12 3.5C11.171 3.5 10.5 4.172 10.5 5C10.5 5.828 11.171 6.5 12 6.5Z"
       fill="currentColor"
@@ -155,7 +429,15 @@
       stroke="none"
     />
   </symbol>
-  <symbol id="more-horizontal" viewBox="0 0 24 24">
+  <symbol
+    id="more-horizontal"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
     <path
       d="M5 13.5C5.828 13.5 6.5 12.828 6.5 12C6.5 11.172 5.828 10.5 5 10.5C4.172 10.5 3.5 11.172 3.5 12C3.5 12.828 4.172 13.5 5 13.5Z"
       fill="currentColor"
@@ -172,60 +454,196 @@
       stroke="none"
     />
   </symbol>
-  <symbol id="person" viewBox="0 0 24 24">
+  <symbol
+    id="person"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
     <path
       d="M12 11.5C14.209 11.5 16 9.709 16 7.5C16 5.291 14.209 3.5 12 3.5C9.791 3.5 8 5.291 8 7.5C8 9.709 9.791 11.5 12 11.5Z M4 20.5C4 18.378 4.843 16.343 6.343 14.843C7.843 13.343 9.878 12.5 12 12.5C14.122 12.5 16.156 13.343 17.657 14.843C19.157 16.343 20 18.378 20 20.5"
     />
   </symbol>
-  <symbol id="play-disabled" viewBox="0 0 24 24">
+  <symbol
+    id="play-disabled"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
     <path d="M6 4L6 20L20 12L6 4Z M4 4L20 20" />
   </symbol>
-  <symbol id="remove" viewBox="0 0 24 24"><path d="M2.999 12L21.001 12" /></symbol>
-  <symbol id="play" viewBox="0 0 24 24"><path d="M5 4L5 20L19 12L5 4Z" /></symbol>
-  <symbol id="restart" viewBox="0 0 24 24">
+  <symbol
+    id="remove"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
+    <path d="M2.999 12L21.001 12" />
+  </symbol>
+  <symbol
+    id="play"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
+    <path d="M5 4L5 20L19 12L5 4Z" />
+  </symbol>
+  <symbol
+    id="restart"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
     <path
       d="M23 4L23 10L17 10 M1 20L1 14L7 14 M3.51 9C4.017 7.567 4.879 6.285 6.016 5.275C7.152 4.265 8.526 3.56 10.009 3.224C11.491 2.889 13.035 2.934 14.495 3.357C15.956 3.779 17.286 4.565 18.36 5.64L23 10 M20.49 15C19.983 16.433 19.121 17.715 17.985 18.725C16.849 19.735 15.475 20.44 13.992 20.776C12.509 21.111 10.966 21.066 9.505 20.643C8.045 20.221 6.715 19.435 5.64 18.36L1 14"
     />
   </symbol>
-  <symbol id="swap" viewBox="0 0 24 24">
+  <symbol
+    id="swap"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
     <path d="M4 9L20 9 M14 5L20 9L14 13 M20 15L4 15 M10 11L4 15L10 19" />
   </symbol>
-  <symbol id="search" viewBox="0 0 24 24">
+  <symbol
+    id="search"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
     <path
       d="M10 16.5C13.59 16.5 16.5 13.59 16.5 10C16.5 6.41 13.59 3.5 10 3.5C6.41 3.5 3.5 6.41 3.5 10C3.5 13.59 6.41 16.5 10 16.5Z M15 15L20.5 20.5"
     />
   </symbol>
-  <symbol id="star" viewBox="0 0 24 24">
+  <symbol
+    id="star"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
     <path
       d="M12 2.49L15.09 8.75L22 9.76L17 14.63L18.18 21.51L12 18.26L5.82 21.51L7 14.63L2 9.76L8.91 8.75L12 2.49Z"
     />
   </symbol>
-  <symbol id="keyboard-arrow-right" viewBox="0 0 24 24"><path d="M9 6L15 12L9 18" /></symbol>
-  <symbol id="table" viewBox="0 0 24 24">
+  <symbol
+    id="keyboard-arrow-right"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
+    <path d="M9 6L15 12L9 18" />
+  </symbol>
+  <symbol
+    id="table"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
     <path
       d="M20 3L4 3C2.896 3 2 3.895 2 5L2 19C2 20.105 2.896 21 4 21L20 21C21.105 21 22 20.105 22 19L22 5C22 3.895 21.105 3 20 3Z M2 9L22 9 M2 15L22 15 M9 9L9 21 M16 9L16 21"
     />
   </symbol>
-  <symbol id="text" viewBox="0 0 24 24"><path d="M4 5L20 5 M12 5L12 19" /></symbol>
-  <symbol id="tree" viewBox="0 0 24 24">
+  <symbol
+    id="text"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
+    <path d="M4 5L20 5 M12 5L12 19" />
+  </symbol>
+  <symbol
+    id="tree"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
     <path
       d="M13 4.5L11 4.5C10.448 4.5 10 4.948 10 5.5L10 7.5C10 8.052 10.448 8.5 11 8.5L13 8.5C13.552 8.5 14 8.052 14 7.5L14 5.5C14 4.948 13.552 4.5 13 4.5Z M12 8.5L12 12.5 M6 12.5L18 12.5 M6 12.5L6 15.5 M7.5 15.5L4.5 15.5C3.948 15.5 3.5 15.948 3.5 16.5L3.5 18.5C3.5 19.052 3.948 19.5 4.5 19.5L7.5 19.5C8.052 19.5 8.5 19.052 8.5 18.5L8.5 16.5C8.5 15.948 8.052 15.5 7.5 15.5Z M18 12.5L18 15.5 M19.5 15.5L16.5 15.5C15.948 15.5 15.5 15.948 15.5 16.5L15.5 18.5C15.5 19.052 15.948 19.5 16.5 19.5L19.5 19.5C20.052 19.5 20.5 19.052 20.5 18.5L20.5 16.5C20.5 15.948 20.052 15.5 19.5 15.5Z"
     />
   </symbol>
-  <symbol id="upload" viewBox="0 0 24 24">
+  <symbol
+    id="upload"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
     <path d="M12 15.5L12 3.5 M6 9.5L12 3.5L18 9.5 M4 20.5L20 20.5" />
   </symbol>
-  <symbol id="visibility-off" viewBox="0 0 24 24">
+  <symbol
+    id="visibility-off"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
     <path
       d="M17.94 17.94C16.231 19.243 14.15 19.965 12 20C5 20 1 12 1 12C2.244 9.682 3.97 7.657 6.06 6.06M9.9 4.24C10.589 4.079 11.294 3.998 12 4C19 4 23 12 23 12C22.393 13.136 21.669 14.205 20.84 15.19M14.12 14.12C13.846 14.415 13.515 14.651 13.147 14.815C12.779 14.979 12.381 15.067 11.979 15.074C11.576 15.081 11.176 15.007 10.802 14.857C10.428 14.706 10.089 14.481 9.804 14.196C9.519 13.911 9.295 13.572 9.144 13.198C8.993 12.825 8.919 12.425 8.926 12.022C8.933 11.619 9.021 11.222 9.185 10.854C9.349 10.486 9.586 10.155 9.88 9.88 M1 1L23 23"
     />
   </symbol>
-  <symbol id="visibility" viewBox="0 0 24 24">
+  <symbol
+    id="visibility"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
     <path
       d="M1 12C1 12 5 4 12 4C19 4 23 12 23 12C23 12 19 20 12 20C5 20 1 12 1 12Z M12 15C13.657 15 15 13.657 15 12C15 10.343 13.657 9 12 9C10.343 9 9 10.343 9 12C9 13.657 10.343 15 12 15Z"
     />
   </symbol>
-  <symbol id="warning" viewBox="0 0 24 24">
+  <symbol
+    id="warning"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
     <path
       d="M10.3 3.973C10.479 3.684 10.73 3.445 11.027 3.279C11.325 3.114 11.66 3.027 12 3.027C12.341 3.027 12.675 3.114 12.973 3.279C13.27 3.445 13.521 3.684 13.7 3.973L22 18.373C22.091 18.657 22.117 18.957 22.077 19.252C22.038 19.547 21.932 19.829 21.769 20.078C21.607 20.327 21.39 20.537 21.136 20.692C20.882 20.847 20.596 20.943 20.3 20.973L3.7 20.973C3.404 20.943 3.118 20.847 2.864 20.692C2.61 20.537 2.394 20.327 2.231 20.078C2.068 19.829 1.963 19.547 1.923 19.252C1.883 18.957 1.909 18.657 2 18.373L10.3 3.973Z M12 8.973L12 13.973"
     />
@@ -235,13 +653,39 @@
       stroke="none"
     />
   </symbol>
-  <symbol id="close" viewBox="0 0 24 24"><path d="M5 5L19 19 M19 5L5 19" /></symbol>
-  <symbol id="delete" viewBox="0 0 24 24">
+  <symbol
+    id="close"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
+    <path d="M5 5L19 19 M19 5L5 19" />
+  </symbol>
+  <symbol
+    id="delete"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
     <path
       d="M3 5.5L5 5.5L21 5.5 M19 5.5L18 19.5C18 20.03 17.789 20.539 17.414 20.914C17.039 21.289 16.53 21.5 16 21.5L8 21.5C7.469 21.5 6.961 21.289 6.585 20.914C6.21 20.539 6 20.03 6 19.5L5 5.5 M10 10.5L10 16.5M14 10.5L14 16.5 M9 5.5L9 3.5C9 3.235 9.105 2.98 9.293 2.793C9.48 2.605 9.734 2.5 10 2.5L14 2.5C14.265 2.5 14.519 2.605 14.707 2.793C14.894 2.98 15 3.235 15 3.5L15 5.5"
     />
   </symbol>
-  <symbol id="calendar-clock" viewBox="0 0 24 24">
+  <symbol
+    id="calendar-clock"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
     <path
       d="M12 3.5L4 3.5C3.469 3.5 2.961 3.711 2.586 4.086C2.211 4.461 2 4.97 2 5.5L2 17.5C2 18.03 2.211 18.539 2.586 18.914C2.961 19.289 3.469 19.5 4 19.5L12 19.5C12.531 19.5 13.039 19.289 13.414 18.914C13.789 18.538 14 18.03 14 17.5L14 5.5C14 4.97 13.789 4.461 13.414 4.086C13.039 3.711 12.531 3.5 12 3.5Z M7 1.5L7 5.5 M11 1.5L11 5.5 M2 9.5L14 9.5 M18 22.5C20.209 22.5 22 20.709 22 18.5C22 16.291 20.209 14.5 18 14.5C15.791 14.5 14 16.291 14 18.5C14 20.709 15.791 22.5 18 22.5Z M18 16.5L18 18.5L20 18.5"
     />

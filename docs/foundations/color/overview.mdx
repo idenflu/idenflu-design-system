@@ -1,0 +1,81 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { Table } from "../components/Table";
+
+<Meta title="Foundations/Color/Overview" />
+
+# Color
+
+Idenflu 컬러 시스템은 **엔터프라이즈 환경**에 최적화된 색상 체계를 구성하여 일관되고 신뢰감 있는 인터페이스를 제공합니다.
+
+<br />
+<br />
+
+## 기준색과 확장
+
+각 컬러 패밀리의 중심축이 되는 `500` 단계는 가장 대표적이고 활용도 높은 중심 색상입니다.  
+[Tailwind](https://tailwindcss.com/docs/colors)의 `[color]-500`을 기반으로, **운영 화면 및 관리자 인터페이스**에 적합하도록 채도·명도를 재조정해 실제 업무 환경에서 안정적으로 보이게 구성합니다.
+
+- 명도 기준
+  - `Gray 500` 인근의 중간 명도
+  - 목표 OKLCH Lightness: `54` ~ `60`
+  - Hue 특성에 따라 $\pm3$ 허용
+
+각 컬러 패밀리는 `100`부터 `900`까지 균등한 명도 축을 기준으로 나누어져 있으며, 이는 **의미와 상태 전달**을 우선하여 사용자가 명확한 **시각적 위계**를 인지할 수 있도록 돕습니다.
+
+인터랙션을 정의할 때는 Anchor를 기준으로 상·하 단계를 **규칙적으로** 매핑합니다.
+
+<Table
+  headers={["Level", "Role"]}
+  rows={[
+    ["100", "Tint"],
+    ["200", "Subtle"],
+    ["300", "Subtle-hover"],
+    ["400", "Tint"],
+    ["500", "Anchor"],
+    ["600", "Hover"],
+    ["700", "Active"],
+    ["800", "Strong"],
+    ["800", "Tint"],
+  ]}
+/>
+
+<br />
+<br />
+
+## 스케일을 통한 접근성 추정
+
+Gray 스케일(텍스트)에서는 **간격(Δ)** 으로 [WCAG 2.2 Contrast](https://www.w3.org/TR/WCAG22/#contrast-minimum)를 1차 스크리닝할 수 있습니다.
+
+<Table
+  headers={["Delta", "Approximate target", "Usage"]}
+  rows={[
+    ["Δ4", "AA 4.5:1", "일반 텍스트 white + gray-500"],
+    ["Δ3", "AA 3:1", "큰 텍스트, UI"],
+  ]}
+/>
+
+<br />
+
+> **⚠️ 유의사항**
+>
+> 1.  위 전제는 빠른 작업을 위한 **1차 스크리닝 가이드**입니다.
+> 2.  이 기준은 **Gray** 스케일의 경험적 규칙입니다.
+> 3.  컬러 스케일(Blue/Red 등)은 명도 체감이 다르므로 동일 규칙을 그대로 적용하지 않습니다.
+> 4.  최종 검토 시에는 실제 명도 대비 도구를 활용해 실측 검증을 반드시 완료해야 합니다.
+
+<br />
+<br />
+
+## Tokens
+
+제품 코드에서는 Primitive 단계 대신 Themes의 시맨틱 토큰 사용을 권장합니다.
+
+Hex와 CSS variable은 [Palette](?path=/docs/foundations-color-palette--docs)에서 확인하세요.
+
+```text
+Primitive (Base / Brand / Transparent)
+    ↓
+Themes (Background / Border / Surface / Text)
+    ↓
+Components (Button, Alert, Input, …)
+```

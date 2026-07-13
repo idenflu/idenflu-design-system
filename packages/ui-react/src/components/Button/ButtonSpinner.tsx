@@ -6,7 +6,7 @@ type ButtonSpinnerProps = {
 };
 
 /** Decorative spinner for buttons — parent exposes `aria-busy`. */
-export function ButtonSpinner({ size }: ButtonSpinnerProps) {
+export const ButtonSpinner = ({ size }: ButtonSpinnerProps) => {
   return (
     <Spinner
       aria-hidden
@@ -17,4 +17,4 @@ export function ButtonSpinner({ size }: ButtonSpinnerProps) {
       size={size}
     />
   );
-}
+};

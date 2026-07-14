@@ -1,0 +1,151 @@
+{
+  "id": "combobox",
+  "label": "Combobox",
+  "status": "implemented",
+  "props": [
+    {
+      "name": "children",
+      "kind": "node",
+      "required": false
+    },
+    {
+      "name": "chipSize",
+      "kind": "enum",
+      "values": ["sm", "md"],
+      "required": false,
+      "default": "sm",
+      "description": "Chip size for multiple selection. Defaults to sm; pass md explicitly when needed."
+    },
+    {
+      "name": "className",
+      "kind": "string",
+      "required": false
+    },
+    {
+      "name": "defaultOpen",
+      "kind": "boolean",
+      "required": false,
+      "default": false
+    },
+    {
+      "name": "defaultValue",
+      "kind": "unknown",
+      "required": false,
+      "description": "string | string[] depending on multiple."
+    },
+    {
+      "name": "disabled",
+      "kind": "boolean",
+      "required": false,
+      "default": false
+    },
+    {
+      "name": "error",
+      "kind": "string",
+      "required": false
+    },
+    {
+      "name": "fullWidth",
+      "kind": "boolean",
+      "required": false,
+      "default": false
+    },
+    {
+      "name": "helperText",
+      "kind": "string",
+      "required": false
+    },
+    {
+      "name": "id",
+      "kind": "string",
+      "required": false
+    },
+    {
+      "name": "label",
+      "kind": "node",
+      "required": false
+    },
+    {
+      "name": "multiple",
+      "kind": "boolean",
+      "required": false,
+      "default": false
+    },
+    {
+      "name": "open",
+      "kind": "boolean",
+      "required": false
+    },
+    {
+      "name": "options",
+      "kind": "unknown",
+      "required": false,
+      "description": "ComboboxOption[] alternative to ComboboxItem children."
+    },
+    {
+      "name": "overflow",
+      "kind": "enum",
+      "values": ["wrap", "ellipsis"],
+      "required": false,
+      "default": "wrap",
+      "description": "Multiple chips inside the field: wrap onto next line, or one line with hidden horizontal scroll."
+    },
+    {
+      "name": "placeholder",
+      "kind": "string",
+      "required": false,
+      "default": "Search…"
+    },
+    {
+      "name": "readOnly",
+      "kind": "boolean",
+      "required": false,
+      "default": false
+    },
+    {
+      "name": "required",
+      "kind": "boolean",
+      "required": false
+    },
+    {
+      "name": "size",
+      "kind": "enum",
+      "values": ["lg", "md", "sm"],
+      "required": false,
+      "default": "md"
+    },
+    {
+      "name": "value",
+      "kind": "unknown",
+      "required": false,
+      "description": "string | string[] depending on multiple."
+    },
+    {
+      "name": "variant",
+      "kind": "enum",
+      "values": ["default", "filled", "outlined"],
+      "required": false,
+      "default": "default"
+    }
+  ],
+  "states": ["default", "disabled", "error", "open"],
+  "accessibility": [
+    {
+      "id": "combobox-role",
+      "rule": "Expose role=combobox on the input with aria-expanded, aria-controls, and aria-autocomplete=list."
+    },
+    {
+      "id": "listbox",
+      "rule": "Present filtered options in a listbox; support keyboard highlight and selection."
+    },
+    {
+      "id": "chips",
+      "rule": "When multiple, selected values are removable chips with accessible delete labels."
+    }
+  ],
+  "notes": [
+    "Events (onOpenChange, onValueChange) are framework-specific and omitted.",
+    "Built with Radix Popover + custom listbox (no Radix Combobox primitive).",
+    "Synced from packages/ui-react ComboboxProps (engineering-first)."
+  ]
+}

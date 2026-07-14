@@ -61,6 +61,16 @@ export type {
   SelectVariant,
 } from "./components/Select/index";
 
+export { Combobox, ComboboxItem } from "./components/Combobox/index";
+export type {
+  ComboboxItemProps,
+  ComboboxOption,
+  ComboboxOverflow,
+  ComboboxProps,
+  ComboboxSize,
+  ComboboxVariant,
+} from "./components/Combobox/index";
+
 export { Chip } from "./components/Chip/index";
 export type {
   ChipColor,

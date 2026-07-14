@@ -43,7 +43,16 @@ export type {
   TextAreaVariant,
 } from "./components/TextArea/index";
 
-export { Select } from "./components/Select/index";
+export { NativeSelect } from "./components/NativeSelect/index";
+export type {
+  NativeSelectItemProps,
+  NativeSelectOption,
+  NativeSelectProps,
+  NativeSelectSize,
+  NativeSelectVariant,
+} from "./components/NativeSelect/index";
+
+export { Select, SelectItem } from "./components/Select/index";
 export type {
   SelectItemProps,
   SelectOption,

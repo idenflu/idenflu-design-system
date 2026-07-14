@@ -1,14 +1,13 @@
 import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
-  Select,
-  SelectItem,
-  type SelectSize,
-  type SelectVariant,
-} from "./Select";
+  NativeSelect,
+  type NativeSelectSize,
+  type NativeSelectVariant,
+} from "./NativeSelect";
 
-const variants: SelectVariant[] = ["default", "filled", "outlined"];
-const sizes: SelectSize[] = ["lg", "md", "sm"];
+const variants: NativeSelectVariant[] = ["default", "filled", "outlined"];
+const sizes: NativeSelectSize[] = ["lg", "md", "sm"];
 
 const overviewStyles = {
   root: {
@@ -88,12 +87,12 @@ function OverviewSection({
 function renderDemoItems() {
   return (
     <>
-      <SelectItem value="analytics">Analytics</SelectItem>
-      <SelectItem value="campaigns">Campaigns</SelectItem>
-      <SelectItem value="audiences">Audiences</SelectItem>
-      <SelectItem value="billing" disabled>
+      <option value="analytics">Analytics</option>
+      <option value="campaigns">Campaigns</option>
+      <option value="audiences">Audiences</option>
+      <option value="billing" disabled>
         Billing
-      </SelectItem>
+      </option>
     </>
   );
 }
@@ -111,7 +110,7 @@ function VariantStateMatrix() {
         <React.Fragment key={variant}>
           <span style={overviewStyles.matrixRowLabel}>{variant}</span>
           {stateColumns.map((column) => (
-            <Select
+            <NativeSelect
               key={`${variant}-${column.id}`}
               defaultValue="analytics"
               label="Label"
@@ -120,7 +119,7 @@ function VariantStateMatrix() {
               {...column.props}
             >
               {renderDemoItems()}
-            </Select>
+            </NativeSelect>
           ))}
         </React.Fragment>
       ))}
@@ -132,7 +131,7 @@ function SizeDefaultMatrix() {
   return (
     <div style={overviewStyles.row}>
       {sizes.map((size) => (
-        <Select
+        <NativeSelect
           key={size}
           defaultValue="analytics"
           helperText={size}
@@ -141,7 +140,7 @@ function SizeDefaultMatrix() {
           variant="default"
         >
           {renderDemoItems()}
-        </Select>
+        </NativeSelect>
       ))}
     </div>
   );
@@ -150,14 +149,14 @@ function SizeDefaultMatrix() {
 function FullWidthExample() {
   return (
     <div style={overviewStyles.fullWidthExample}>
-      <Select
+      <NativeSelect
         defaultValue="analytics"
         fullWidth
         label="Label"
         variant="default"
       >
         {renderDemoItems()}
-      </Select>
+      </NativeSelect>
     </div>
   );
 }
@@ -165,58 +164,38 @@ function FullWidthExample() {
 function HelperTextExample() {
   return (
     <div style={overviewStyles.row}>
-      <Select
+      <NativeSelect
         defaultValue="analytics"
         helperText="Helper Text"
         label="Label"
         variant="default"
       >
         {renderDemoItems()}
-      </Select>
-      <Select
+      </NativeSelect>
+      <NativeSelect
         defaultValue="analytics"
         error="Helper Text"
         label="Label"
         variant="default"
       >
         {renderDemoItems()}
-      </Select>
+      </NativeSelect>
     </div>
   );
 }
 
-function OptionsPropExample() {
-  return (
-    <div style={overviewStyles.row}>
-      <Select
-        defaultValue="campaigns"
-        helperText="options prop"
-        label="With options"
-        options={[
-          { label: "Analytics", value: "analytics" },
-          { label: "Campaigns", value: "campaigns" },
-          { label: "Audiences", value: "audiences" },
-          { disabled: true, label: "Billing", value: "billing" },
-        ]}
-        variant="outlined"
-      />
-    </div>
-  );
-}
-
-type PlaygroundArgs = React.ComponentProps<typeof Select>;
+type PlaygroundArgs = React.ComponentProps<typeof NativeSelect>;
 
 const meta = {
-  title: "Components/Select",
-  component: Select,
+  title: "Components/NativeSelect",
+  component: NativeSelect,
   parameters: {
     docs: {
       description: {
         component:
-          "Custom select built on Radix Select with TextInput-aligned field chrome. " +
-          "Uses listbox semantics (not Dropdown Menu). `Select.Value` keeps the selected label " +
-          "after the panel closes. Keyboard: Arrow keys, typeahead, Enter/Space, Escape. " +
-          "Filterable/searchable input is not part of Radix Select — use a Combobox pattern for that.",
+          "Native `<select>` field with TextInput-aligned variants and sizes. " +
+          "Keyboard and screen reader behavior follows platform `<select>`/`<option>` semantics. " +
+          "Helper/error text is connected with aria-describedby and error state sets aria-invalid.",
       },
     },
   },
@@ -255,10 +234,6 @@ export const Overview: Story = {
       <OverviewSection title="Helper Text">
         <HelperTextExample />
       </OverviewSection>
-
-      <OverviewSection title="Options prop">
-        <OptionsPropExample />
-      </OverviewSection>
     </div>
   ),
 };
@@ -277,13 +252,13 @@ export const Playground: Story = {
     variant: "default",
   },
   render: (args) => (
-    <Select {...args}>
-      <SelectItem value="analytics">Analytics</SelectItem>
-      <SelectItem value="campaigns">Campaigns</SelectItem>
-      <SelectItem value="audiences">Audiences</SelectItem>
-      <SelectItem value="billing" disabled>
+    <NativeSelect {...args}>
+      <option value="analytics">Analytics</option>
+      <option value="campaigns">Campaigns</option>
+      <option value="audiences">Audiences</option>
+      <option value="billing" disabled>
         Billing
-      </SelectItem>
-    </Select>
+      </option>
+    </NativeSelect>
   ),
 };

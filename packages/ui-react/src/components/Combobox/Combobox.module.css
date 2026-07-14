@@ -1,0 +1,199 @@
+.root {
+  /* field chrome from Field.module.css */
+}
+
+.controlRow {
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+  inline-size: 100%;
+  min-inline-size: 0;
+}
+
+.chips {
+  align-items: center;
+  display: flex;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  gap: 4px;
+  min-inline-size: 0;
+}
+
+/** Single-line chip row: horizontal scroll with hidden scrollbar. */
+.chipsEllipsis {
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.chipsEllipsis::-webkit-scrollbar {
+  display: none;
+  block-size: 0;
+  inline-size: 0;
+}
+
+.chipSlot {
+  flex: 0 0 auto;
+  min-inline-size: 0;
+}
+
+.input {
+  background: transparent;
+  border: 0;
+  color: inherit;
+  flex: 1 1 8ch;
+  margin: 0;
+  min-inline-size: 8ch;
+  outline: none;
+  padding: 0;
+}
+
+.chipsEllipsis .input {
+  flex: 1 0 8ch;
+  min-inline-size: 8ch;
+}
+
+.input::placeholder {
+  color: var(--text-secondary);
+}
+
+.input:disabled {
+  color: var(--text-disabled);
+  cursor: not-allowed;
+  -webkit-text-fill-color: var(--text-disabled);
+}
+
+.chevron {
+  align-self: flex-start;
+  color: var(--text-secondary);
+  display: inline-flex;
+  flex: 0 0 auto;
+  /* Optical align with first chip/input row */
+  margin-block-start: 2px;
+}
+
+.disabled .chevron {
+  color: var(--text-disabled);
+}
+
+.content {
+  animation-duration: var(--nova-combobox-out-duration, 100ms);
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  background: var(--surface-on-00);
+  box-shadow:
+    0 2px 4px 2px var(--transparent-200),
+    0 1px 2px 0 color-mix(in srgb, var(--base-black) 10%, transparent);
+  box-sizing: border-box;
+  inline-size: var(--nova-combobox-anchor-width, 240px);
+  min-inline-size: var(--nova-combobox-anchor-width, 240px);
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.content[data-state="open"] {
+  animation-duration: var(--nova-combobox-enter-duration, 200ms);
+  animation-name: nova-combobox-enter;
+}
+
+.content[data-state="closed"] {
+  animation-name: nova-combobox-out;
+}
+
+.listbox {
+  list-style: none;
+  margin: 0;
+  max-block-size: 320px;
+  overflow: auto;
+  padding: 0;
+}
+
+.item {
+  align-items: center;
+  color: var(--text-secondary);
+  cursor: default;
+  display: flex;
+  font: var(--label-lg);
+  font-weight: var(--font-weight-light);
+  gap: 16px;
+  outline: none;
+  user-select: none;
+}
+
+.sizeSm .item {
+  padding-block: 4px;
+  padding-inline: 16px;
+}
+
+.sizeMd .item {
+  padding-block: 8px;
+  padding-inline: 16px;
+}
+
+.sizeLg .item {
+  padding-block: 12px;
+  padding-inline: 16px;
+}
+
+.item[data-highlighted] {
+  background: var(--background-transparent-hover);
+}
+
+.item[data-disabled] {
+  color: var(--text-disabled);
+  pointer-events: none;
+}
+
+.item[data-selected] {
+  color: var(--text-primary);
+}
+
+.itemLabel {
+  flex: 1;
+  min-inline-size: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.itemCheck {
+  color: currentColor;
+  display: inline-flex;
+  flex: 0 0 auto;
+}
+
+.empty {
+  color: var(--text-secondary);
+  font: var(--label-md);
+  padding-block: 8px;
+  padding-inline: 16px;
+}
+
+@keyframes nova-combobox-enter {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes nova-combobox-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .content {
+    animation: none;
+  }
+}

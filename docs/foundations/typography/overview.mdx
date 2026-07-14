@@ -1,0 +1,84 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { Table } from "../components/Table";
+import { TypeSpecimen } from "./components/TypeSpecimen";
+
+<Meta title="Foundations/Typography/Overview" />
+
+# Typography
+
+Typography는 정보의 **위계와 가독성**을 정의합니다.
+뷰포트에 따라 변하는 fluid 스케일 대신, **고정(Fixed) 타입 스타일**을 사용해 안정적이고 단단한 UI를 제공합니다.
+
+<br />
+<br />
+
+## 원칙
+
+1. **고정 스케일**  
+   `heading` · `title` · `body` · `label` · `caption` · `numeric` 역할로 조합해 레이아웃을 예측 가능하게 유지합니다.
+
+2. **픽셀 단위 렌더링**  
+   `fontSize`와 `lineHeight`는 px로 관리해 화면에서 왜곡 없이 맞추며, 같은 단계끼리 매칭합니다.  
+   예: `font-size-02` ↔ `font-line-height-02`
+
+3. **수치 가독성**  
+   금액 · 통계 · 시간처럼 정렬이 중요한 값은 `numeric` 스타일과 `tabular-nums`를 사용합니다.
+
+<br />
+<br />
+
+## 폰트
+
+<Table
+  headers={["Token", "Value"]}
+  rows={[
+    ["font-family-sans / base", "'Noto Sans KR', 'Noto Sans', system-ui, …"],
+    ["font-family-mono", "ui-monospace, SFMono-Regular, Menlo, …"],
+  ]}
+/>
+
+<br />
+<br />
+
+## 타입 스타일
+
+<TypeSpecimen />
+
+<br />
+<br />
+
+## 사용 가이드
+
+### Do
+
+- 본문 기본은 `body-md`를 기준으로 잡습니다.
+- 같은 역할의 텍스트는 같은 스타일을 유지합니다.
+- 표 · 실시간 지표에는 `numeric` 세트를 지정합니다.
+
+### Don't
+
+- UI 일반 강조에 Bold를 남발하지 않습니다. 필요 시 Medium(`500`)까지를 우선합니다.
+- `fontSize`와 `lineHeight` 단계를 교차 결합하지 않습니다.
+- Primitive size만 조합해 새 스타일을 만들지 말고, 정의된 type style을 사용합니다.
+
+<br />
+<br />
+
+## Code
+
+```css
+@import "@idenflu/ui-tokens/css/variables.css";
+
+.page-title {
+  font: var(--heading-md);
+}
+
+.body {
+  font: var(--body-md);
+}
+
+.metric {
+  font: var(--numeric-md);
+  font-variant-numeric: tabular-nums;
+}
+```

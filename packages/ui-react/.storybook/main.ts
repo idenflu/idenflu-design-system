@@ -1,8 +1,6 @@
 import type { StorybookConfig } from "@storybook/react-vite";
 import { mergeConfig } from "vite";
-
-import { dirname } from "path";
-
+import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
 /**
@@ -12,9 +10,15 @@ import { fileURLToPath } from "url";
 function getAbsolutePath(value: string) {
   return dirname(fileURLToPath(import.meta.resolve(`${value}/package.json`)));
 }
+
+const packageDir = dirname(fileURLToPath(import.meta.url));
+const repoRoot = resolve(packageDir, "../../..");
+const foundationsDir = resolve(repoRoot, "docs/foundations");
+
 const config: StorybookConfig = {
   stories: [
     "./Configure.mdx",
+    "../../../docs/foundations/**/*.mdx",
     "../src/**/*.mdx",
     "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
   ],
@@ -31,6 +35,11 @@ const config: StorybookConfig = {
       // Keep the icon sprite as an external asset so `<use href="…icons.svg#id">` resolves.
       build: {
         assetsInlineLimit: 0,
+      },
+      resolve: {
+        alias: {
+          "@foundations": foundationsDir,
+        },
       },
     });
   },

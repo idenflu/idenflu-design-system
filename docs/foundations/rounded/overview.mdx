@@ -1,0 +1,68 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { Table } from "../components/Table";
+import { RadiusPreview } from "./components/RadiusPreview";
+
+<Meta title="Foundations/Rounded/Overview" />
+
+# Rounded
+
+Rounded(Border radius)는 장식 요소가 아니라 시스템 전반에 일관된 인상을 형성하고 인터페이스의 시각적 성격을 조정하기 위한 기준입니다.  
+기본은 직선적·구조적인 형태를 유지하며, 필요한 경우에 단계적으로 반경을 키워 **요소의 성격과 중요도를 표현**합니다.
+
+<br />
+<br />
+
+## 원칙
+
+1. **작은 요소는 더 둥글게, 큰 컨테이너는 덜 둥글게**  
+   Chip · Badge처럼 짧은 단위는 또렷한 반경으로 강조하고, Card · Modal은 작은 반경으로 견고함과 안정감을 줍니다.
+
+2. **`rounded-none`이 기본 축**  
+   특별한 의도 없이 반경을 올리지 않습니다. Hairline border로 구분이 충분하면 `none`을 유지합니다.
+
+3. **늘어나는 칩에는 `full`**  
+   Tag · Chip처럼 가로로 늘어나는 요소는 `rounded-full`로 형태를 일정하게 유지합니다.
+
+<br />
+<br />
+
+## 스케일
+
+<RadiusPreview />
+
+<br />
+<br />
+
+## 사용 가이드
+
+### Do
+
+- 컴포넌트 계열 안에서는 하나의 반경 값을 유지합니다.
+- 요소 크기와 정보 단위에 비례해 반경을 고릅니다.
+
+### Don't
+
+- 임의의 px 반경을 직접 쓰지 않습니다.
+- 큰 컨테이너에 과도한 반경을 쓰지 않습니다.
+- 같은 컴포넌트 계열에서 여러 반경을 섞지 않습니다.
+
+<br />
+<br />
+
+## Code
+
+```css
+@import "@idenflu/ui-tokens/css/variables.css";
+
+.panel {
+  border-radius: var(--rounded-none);
+}
+
+.control {
+  border-radius: var(--rounded-md);
+}
+
+.chip {
+  border-radius: var(--rounded-full);
+}
+```

@@ -1,0 +1,71 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { Table } from "../components/Table";
+import { SpacingScale } from "./components/SpacingScale";
+
+<Meta title="Foundations/Spacing/Overview" />
+
+# Spacing
+
+Spacing은 요소 사이의 여백을 통해 **밀도 · 관계 · 위계**를 만드는 기준입니다.
+
+적절한 간격은 콘텐츠를 구분하고 그룹화하며, 사용자가 정보를 빠르게 이해할 수 있도록 돕습니다.
+
+본 시스템은 [Carbon Design System - Spacing]의 체계를 참고하여, 2·4·8 배수 기반의 스케일을 사용해 일관된 시각적 리듬을 부여합니다.
+
+<br />
+<br />
+
+## 원칙
+
+1. **2·4·8 배수 기반 스케일**  
+   `2px`, `4px`, `8px` 배수를 엮은 체계를 사용하여, 촘촘한 내부 요소 정렬부터 거대한 페이지 간격 정의까지 하나의 흐름으로 유연하게 대응합니다.
+
+2. **근접성(Proximity)**
+   - 관계 표현
+     - 가까울수록 관련성이 높음
+     - 멀수록 독립적인 정보로 인식
+   - 위계 표현
+     - Heading과 Section의 여백은 Title과 Content 여백보다 크다
+     - Section 간 여백 `>` Group 간 여백 `>` Group 내부 요소 간 여백
+
+<br />
+<br />
+
+## 스케일
+
+토큰은 `spacing-01`부터 `spacing-15`까지이며, 값은 `@idenflu/ui-tokens` JSON을 기준으로 합니다.
+
+<SpacingScale />
+
+<br />
+
+### 권장 매핑
+
+<Table
+  headers={["범위", "토큰 예시", "용도"]}
+  rows={[
+    ["Micro", "spacing-01 ~ 03", "아이콘·보더·밀착 정렬"],
+    ["Component", "spacing-04 ~ 07", "패딩, 컨트롤 내부, 리스트 행간"],
+    ["Layout", "spacing-08 ~ 11", "카드·섹션·폼 블록 간격"],
+    ["Page", "spacing-12 ~ 15", "페이지·히어로급 여백"],
+  ]}
+/>
+
+<br />
+<br />
+
+## 사용 가이드
+
+### Do
+
+- 관련 정보는 더 가깝게, 독립 섹션은 더 멀게 둡니다.
+- 인접한 단계의 토큰을 우선 선택합니다.
+- 한 화면 안에서 3~4개 이내의 토큰만 사용합니다.
+
+### Don't
+
+- 임의의 px 값을 직접 쓰지 않습니다.
+- 너무 많은 간격 단계를 한 화면에 섞지 않습니다.
+- 그룹 내부 간격이 그룹 사이 간격보다 커지지 않게 합니다.
+
+[Carbon Design System - Spacing]: https://carbondesignsystem.com/elements/spacing/overview/

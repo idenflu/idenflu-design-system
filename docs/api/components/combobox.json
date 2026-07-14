@@ -1,12 +1,20 @@
 {
-  "id": "select",
-  "label": "Select",
+  "id": "combobox",
+  "label": "Combobox",
   "status": "implemented",
   "props": [
     {
       "name": "children",
       "kind": "node",
       "required": false
+    },
+    {
+      "name": "chipSize",
+      "kind": "enum",
+      "values": ["sm", "md"],
+      "required": false,
+      "default": "sm",
+      "description": "Chip size for multiple selection. Defaults to sm; pass md explicitly when needed."
     },
     {
       "name": "className",
@@ -16,12 +24,14 @@
     {
       "name": "defaultOpen",
       "kind": "boolean",
-      "required": false
+      "required": false,
+      "default": false
     },
     {
       "name": "defaultValue",
-      "kind": "string",
-      "required": false
+      "kind": "unknown",
+      "required": false,
+      "description": "string | string[] depending on multiple."
     },
     {
       "name": "disabled",
@@ -56,9 +66,10 @@
       "required": false
     },
     {
-      "name": "name",
-      "kind": "string",
-      "required": false
+      "name": "multiple",
+      "kind": "boolean",
+      "required": false,
+      "default": false
     },
     {
       "name": "open",
@@ -69,13 +80,21 @@
       "name": "options",
       "kind": "unknown",
       "required": false,
-      "description": "SelectOption[] alternative to SelectItem children."
+      "description": "ComboboxOption[] alternative to ComboboxItem children."
+    },
+    {
+      "name": "overflow",
+      "kind": "enum",
+      "values": ["wrap", "ellipsis"],
+      "required": false,
+      "default": "wrap",
+      "description": "Multiple chips inside the field: wrap onto next line, or one line with hidden horizontal scroll."
     },
     {
       "name": "placeholder",
       "kind": "string",
       "required": false,
-      "default": "Select"
+      "default": "Search…"
     },
     {
       "name": "readOnly",
@@ -97,8 +116,9 @@
     },
     {
       "name": "value",
-      "kind": "string",
-      "required": false
+      "kind": "unknown",
+      "required": false,
+      "description": "string | string[] depending on multiple."
     },
     {
       "name": "variant",
@@ -111,17 +131,21 @@
   "states": ["default", "disabled", "error", "open"],
   "accessibility": [
     {
-      "id": "visible-label",
-      "rule": "Provide a visible label or accessible name for the select field."
+      "id": "combobox-role",
+      "rule": "Expose role=combobox on the input with aria-expanded, aria-controls, and aria-autocomplete=list."
     },
     {
-      "id": "listbox-select",
-      "rule": "Use Radix Select listbox semantics with keyboard access and typeahead."
+      "id": "listbox",
+      "rule": "Present filtered options in a listbox; support keyboard highlight and selection."
+    },
+    {
+      "id": "chips",
+      "rule": "When multiple, selected values are removable chips with accessible delete labels."
     }
   ],
   "notes": [
     "Events (onOpenChange, onValueChange) are framework-specific and omitted.",
-    "searchable/filter is not supported on Radix Select; use a Combobox pattern instead.",
-    "Synced from packages/ui-react SelectProps (engineering-first)."
+    "Built with Radix Popover + custom listbox (no Radix Combobox primitive).",
+    "Synced from packages/ui-react ComboboxProps (engineering-first)."
   ]
 }

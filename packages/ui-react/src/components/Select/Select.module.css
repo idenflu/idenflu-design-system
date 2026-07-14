@@ -1,56 +1,152 @@
 .root {
-  position: relative;
-  --chevron-inline-end-padding: 12px;
-}
-
-.controlWrapper {
-  position: relative;
-}
-
-/* ─── Select-specific ────────────────────────────────────────────── */
-
-.control {
-  appearance: none;
-  padding-inline: 0 calc(16px + 8px);
-  text-align: start;
-
-  &::-ms-expand {
-    display: none;
-  }
-
-  &:focus-visible {
+  .trigger {
+    align-items: center;
+    appearance: none;
+    background: transparent;
+    border: 0;
+    box-sizing: border-box;
+    color: inherit;
+    cursor: pointer;
+    display: inline-flex;
+    gap: 8px;
+    inline-size: 100%;
+    justify-content: space-between;
+    margin: 0;
+    min-inline-size: 0;
     outline: none;
+    padding: 0;
+    text-align: start;
+  }
+
+  .trigger:disabled {
+    cursor: not-allowed;
   }
 }
 
-.expandIcon {
+.value {
+  flex: 1;
+  min-inline-size: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.value[data-placeholder] {
+  color: var(--text-secondary);
+}
+
+.chevron {
   color: var(--text-secondary);
   display: inline-flex;
   flex: 0 0 auto;
-  inset-inline-end: var(--chevron-inline-end-padding);
-  pointer-events: none;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
 }
 
-.disabled .expandIcon {
+.trigger:disabled .chevron {
   color: var(--text-disabled);
 }
 
-.variantFilled.sizeLg .expandIcon {
-  bottom: 14px;
+.content {
+  animation-duration: var(--nova-select-out-duration, 100ms);
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  background: var(--surface-on-00);
+  box-shadow:
+    0 2px 4px 2px var(--transparent-200),
+    0 1px 2px 0 color-mix(in srgb, var(--base-black) 10%, transparent);
+  box-sizing: border-box;
+  min-inline-size: var(--radix-select-trigger-width, 240px);
+  overflow: hidden;
+  z-index: 1000;
 }
 
-.variantFilled.sizeMd .expandIcon {
-  bottom: 10px;
+.content[data-state="open"] {
+  animation-duration: var(--nova-select-enter-duration, 200ms);
+  animation-name: nova-select-enter;
 }
 
-.variantFilled.sizeSm .expandIcon {
-  bottom: 6px;
+.content[data-state="closed"] {
+  animation-name: nova-select-out;
 }
 
-.variantFilled .expandIcon {
-  top: auto;
-  transform: none;
+.viewport {
+  max-block-size: var(--radix-select-content-available-height, 320px);
+  overflow: auto;
+}
+
+.item {
+  align-items: center;
+  color: var(--text-secondary);
+  cursor: default;
+  display: flex;
+  font: var(--label-lg);
+  font-weight: var(--font-weight-light);
+  gap: 16px;
+  outline: none;
+  user-select: none;
+}
+
+.sizeSm .item {
+  padding-block: 4px;
+  padding-inline: 16px;
+}
+
+.sizeMd .item {
+  padding-block: 8px;
+  padding-inline: 16px;
+}
+
+.sizeLg .item {
+  padding-block: 12px;
+  padding-inline: 16px;
+}
+
+.item[data-highlighted] {
+  background: var(--background-transparent-hover);
+}
+
+.item[data-disabled] {
+  color: var(--text-disabled);
+  pointer-events: none;
+}
+
+.item[data-state="checked"] {
+  color: var(--text-primary);
+}
+
+.itemLabel {
+  flex: 1;
+  min-inline-size: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@keyframes nova-select-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes nova-select-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .content {
+    animation: none;
+  }
 }

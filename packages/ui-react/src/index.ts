@@ -43,7 +43,16 @@ export type {
   TextAreaVariant,
 } from "./components/TextArea/index";
 
-export { Select } from "./components/Select/index";
+export { NativeSelect } from "./components/NativeSelect/index";
+export type {
+  NativeSelectItemProps,
+  NativeSelectOption,
+  NativeSelectProps,
+  NativeSelectSize,
+  NativeSelectVariant,
+} from "./components/NativeSelect/index";
+
+export { Select, SelectItem } from "./components/Select/index";
 export type {
   SelectItemProps,
   SelectOption,
@@ -51,6 +60,16 @@ export type {
   SelectSize,
   SelectVariant,
 } from "./components/Select/index";
+
+export { Combobox, ComboboxItem } from "./components/Combobox/index";
+export type {
+  ComboboxItemProps,
+  ComboboxOption,
+  ComboboxOverflow,
+  ComboboxProps,
+  ComboboxSize,
+  ComboboxVariant,
+} from "./components/Combobox/index";
 
 export { Chip } from "./components/Chip/index";
 export type {

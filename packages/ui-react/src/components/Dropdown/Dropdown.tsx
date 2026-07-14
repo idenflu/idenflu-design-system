@@ -2,7 +2,7 @@ import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui";
 import * as React from "react";
 import { cva } from "class-variance-authority";
 
-import { cn } from "@/utils/classNames";
+import { cn } from "../../utils/classNames";
 import { Divider, type DividerProps } from "../Divider/Divider";
 import styles from "./Dropdown.module.css";
 

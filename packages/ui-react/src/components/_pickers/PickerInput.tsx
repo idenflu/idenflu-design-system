@@ -1,5 +1,5 @@
 import * as React from "react";
-import { cn } from "@/utils/classNames";
+import { cn } from "../../utils/classNames";
 import type { IconName } from "@idenflu/ui-icons";
 import { Icon } from "../Icon/Icon";
 import { IconButton } from "../IconButton/IconButton";

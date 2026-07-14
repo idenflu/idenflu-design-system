@@ -1,7 +1,7 @@
 import * as React from "react";
 import { cva } from "class-variance-authority";
 
-import { cn } from "@/utils/classNames";
+import { cn } from "../../utils/classNames";
 import { Icon } from "../Icon/Icon";
 import styles from "./PaginationSelect.module.css";
 

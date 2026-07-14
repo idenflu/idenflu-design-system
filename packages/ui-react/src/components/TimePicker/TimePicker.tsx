@@ -1,5 +1,5 @@
 import * as React from "react";
-import { cn } from "@/utils/classNames";
+import { cn } from "../../utils/classNames";
 import {
   formatTime,
   formatTimeDisplay,

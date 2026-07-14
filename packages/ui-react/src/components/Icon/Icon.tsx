@@ -1,7 +1,7 @@
 import * as React from "react";
 import { getIconHref, type IconName } from "@idenflu/ui-icons";
 import { cva } from "class-variance-authority";
-import { cn } from "@/utils/classNames";
+import { cn } from "../../utils/classNames";
 import { IconSpriteContext } from "./IconSpriteContext";
 import styles from "./Icon.module.css";
 

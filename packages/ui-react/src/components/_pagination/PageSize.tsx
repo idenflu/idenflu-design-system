@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { cn } from "@/utils/classNames";
+import { cn } from "../../utils/classNames";
 import { PaginationSelect, type PaginationSelectOption } from "./PaginationSelect";
 import styles from "./pagination.module.css";
 

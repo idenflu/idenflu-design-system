@@ -2,8 +2,8 @@ import * as React from "react";
 import { createPortal } from "react-dom";
 import { cva } from "class-variance-authority";
 
-import { cn } from "@/utils/classNames";
-import { lockBodyScroll } from "@/utils/lockBodyScroll";
+import { cn } from "../../utils/classNames";
+import { lockBodyScroll } from "../../utils/lockBodyScroll";
 import { Icon } from "../Icon/Icon";
 import { IconButton } from "../IconButton/IconButton";
 import { Typography } from "../Typography/Typography";

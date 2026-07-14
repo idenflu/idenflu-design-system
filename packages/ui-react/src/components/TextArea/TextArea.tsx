@@ -1,6 +1,6 @@
 import * as React from "react";
 import { cva } from "class-variance-authority";
-import { cn } from "@/utils/classNames";
+import { cn } from "../../utils/classNames";
 import type { TextInputVariant } from "../TextInput/TextInput";
 import textAreaStyles from "./TextArea.module.css";
 import inputSharedStyles from "../_fields/Field.module.css";

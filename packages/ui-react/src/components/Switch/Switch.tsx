@@ -2,7 +2,7 @@ import { Switch as SwitchPrimitive } from "radix-ui";
 import * as React from "react";
 import { cva } from "class-variance-authority";
 
-import { cn } from "@/utils/classNames";
+import { cn } from "../../utils/classNames";
 import styles from "./Switch.module.css";
 
 export type SwitchSize = "sm" | "md";

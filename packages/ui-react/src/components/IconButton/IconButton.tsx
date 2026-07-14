@@ -1,6 +1,6 @@
 import * as React from "react";
 import { cva } from "class-variance-authority";
-import { cn } from "@/utils/classNames";
+import { cn } from "../../utils/classNames";
 import type { ButtonColor, ButtonSize, ButtonVariant } from "../Button/Button";
 import { ButtonSpinner } from "../Button/ButtonSpinner";
 import styles from "./IconButton.module.css";

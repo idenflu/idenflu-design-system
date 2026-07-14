@@ -2,7 +2,7 @@ import { Popover as PopoverPrimitive } from "radix-ui";
 import * as React from "react";
 import { cva } from "class-variance-authority";
 
-import { cn } from "@/utils/classNames";
+import { cn } from "../../utils/classNames";
 import { Chip, type ChipSize } from "../Chip/Chip";
 import { Icon } from "../Icon/Icon";
 import inputSharedStyles from "../_fields/Field.module.css";

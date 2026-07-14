@@ -6,13 +6,28 @@
     {
       "name": "children",
       "kind": "node",
-      "required": false,
-      "native": true
+      "required": false
+    },
+    {
+      "name": "className",
+      "kind": "string",
+      "required": false
+    },
+    {
+      "name": "defaultOpen",
+      "kind": "boolean",
+      "required": false
     },
     {
       "name": "defaultValue",
       "kind": "string",
       "required": false
+    },
+    {
+      "name": "disabled",
+      "kind": "boolean",
+      "required": false,
+      "default": false
     },
     {
       "name": "error",
@@ -31,20 +46,36 @@
       "required": false
     },
     {
+      "name": "id",
+      "kind": "string",
+      "required": false
+    },
+    {
       "name": "label",
       "kind": "node",
+      "required": false
+    },
+    {
+      "name": "name",
+      "kind": "string",
+      "required": false
+    },
+    {
+      "name": "open",
+      "kind": "boolean",
       "required": false
     },
     {
       "name": "options",
       "kind": "unknown",
       "required": false,
-      "description": "SelectOption[] alternative to children."
+      "description": "SelectOption[] alternative to SelectItem children."
     },
     {
       "name": "placeholder",
-      "kind": "node",
-      "required": false
+      "kind": "string",
+      "required": false,
+      "default": "Select"
     },
     {
       "name": "readOnly",
@@ -53,13 +84,14 @@
       "default": false
     },
     {
+      "name": "required",
+      "kind": "boolean",
+      "required": false
+    },
+    {
       "name": "size",
       "kind": "enum",
-      "values": [
-        "lg",
-        "md",
-        "sm"
-      ],
+      "values": ["lg", "md", "sm"],
       "required": false,
       "default": "md"
     },
@@ -71,38 +103,25 @@
     {
       "name": "variant",
       "kind": "enum",
-      "values": [
-        "default",
-        "filled",
-        "outlined"
-      ],
+      "values": ["default", "filled", "outlined"],
       "required": false,
       "default": "default"
-    },
-    {
-      "name": "disabled",
-      "kind": "boolean",
-      "required": false,
-      "native": true
     }
   ],
-  "states": [
-    "default",
-    "disabled",
-    "error"
-  ],
+  "states": ["default", "disabled", "error", "open"],
   "accessibility": [
     {
       "id": "visible-label",
-      "rule": "Provide a visible label or accessible name for the select."
+      "rule": "Provide a visible label or accessible name for the select field."
     },
     {
-      "id": "native-select",
-      "rule": "Render a native select (or equivalent) with keyboard access."
+      "id": "listbox-select",
+      "rule": "Use Radix Select listbox semantics with keyboard access and typeahead."
     }
   ],
   "notes": [
-    "Events (onChange, onValueChange) are framework-specific and omitted.",
+    "Events (onOpenChange, onValueChange) are framework-specific and omitted.",
+    "searchable/filter is not supported on Radix Select; use a Combobox pattern instead.",
     "Synced from packages/ui-react SelectProps (engineering-first)."
   ]
 }

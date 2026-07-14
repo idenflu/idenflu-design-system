@@ -1,6 +1,11 @@
 import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Select, type SelectSize, type SelectVariant } from "./Select";
+import {
+  Select,
+  SelectItem,
+  type SelectSize,
+  type SelectVariant,
+} from "./Select";
 
 const variants: SelectVariant[] = ["default", "filled", "outlined"];
 const sizes: SelectSize[] = ["lg", "md", "sm"];
@@ -83,12 +88,12 @@ function OverviewSection({
 function renderDemoItems() {
   return (
     <>
-      <option value="analytics">Analytics</option>
-      <option value="campaigns">Campaigns</option>
-      <option value="audiences">Audiences</option>
-      <option value="billing" disabled>
+      <SelectItem value="analytics">Analytics</SelectItem>
+      <SelectItem value="campaigns">Campaigns</SelectItem>
+      <SelectItem value="audiences">Audiences</SelectItem>
+      <SelectItem value="billing" disabled>
         Billing
-      </option>
+      </SelectItem>
     </>
   );
 }
@@ -180,6 +185,25 @@ function HelperTextExample() {
   );
 }
 
+function OptionsPropExample() {
+  return (
+    <div style={overviewStyles.row}>
+      <Select
+        defaultValue="campaigns"
+        helperText="options prop"
+        label="With options"
+        options={[
+          { label: "Analytics", value: "analytics" },
+          { label: "Campaigns", value: "campaigns" },
+          { label: "Audiences", value: "audiences" },
+          { disabled: true, label: "Billing", value: "billing" },
+        ]}
+        variant="outlined"
+      />
+    </div>
+  );
+}
+
 type PlaygroundArgs = React.ComponentProps<typeof Select>;
 
 const meta = {
@@ -189,9 +213,10 @@ const meta = {
     docs: {
       description: {
         component:
-          "Figma Input/Menu visual treatment adapted to a native select element. " +
-          "Keyboard and screen reader behavior follows the platform <select>/<option> semantics. " +
-          "Helper/error text is connected with aria-describedby and error state sets aria-invalid.",
+          "Custom select built on Radix Select with TextInput-aligned field chrome. " +
+          "Uses listbox semantics (not Dropdown Menu). `Select.Value` keeps the selected label " +
+          "after the panel closes. Keyboard: Arrow keys, typeahead, Enter/Space, Escape. " +
+          "Filterable/searchable input is not part of Radix Select — use a Combobox pattern for that.",
       },
     },
   },
@@ -230,6 +255,10 @@ export const Overview: Story = {
       <OverviewSection title="Helper Text">
         <HelperTextExample />
       </OverviewSection>
+
+      <OverviewSection title="Options prop">
+        <OptionsPropExample />
+      </OverviewSection>
     </div>
   ),
 };
@@ -249,12 +278,12 @@ export const Playground: Story = {
   },
   render: (args) => (
     <Select {...args}>
-      <option value="analytics">Analytics</option>
-      <option value="campaigns">Campaigns</option>
-      <option value="audiences">Audiences</option>
-      <option value="billing" disabled>
+      <SelectItem value="analytics">Analytics</SelectItem>
+      <SelectItem value="campaigns">Campaigns</SelectItem>
+      <SelectItem value="audiences">Audiences</SelectItem>
+      <SelectItem value="billing" disabled>
         Billing
-      </option>
+      </SelectItem>
     </Select>
   ),
 };

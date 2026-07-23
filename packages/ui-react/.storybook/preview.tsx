@@ -4,6 +4,7 @@ import spriteUrl from "@idenflu/ui-icons/icons.svg?url";
 import { IconSpriteProvider } from "../src/components/Icon/IconSpriteContext";
 import { TooltipProvider } from "../src/components/Tooltip";
 import "../src/styles.css";
+import { createTheme, ThemeProvider } from "../src/theme";
 
 const appendFontLink = (id: string, linkAttributes: Record<string, string>) => {
   if (typeof document === "undefined") {
@@ -42,14 +43,26 @@ const appendNotoSansKrFontLinks = () => {
 
 appendNotoSansKrFontLinks();
 
+const theme = createTheme({
+  components: {
+    Button: {
+      defaultProps: {
+        variant: "ghost",
+      },
+    },
+  },
+});
+
 const preview: Preview = {
   decorators: [
     (Story) => (
-      <TooltipProvider>
-        <IconSpriteProvider href={spriteUrl}>
-          <Story />
-        </IconSpriteProvider>
-      </TooltipProvider>
+      <ThemeProvider theme={theme}>
+        <TooltipProvider>
+          <IconSpriteProvider href={spriteUrl}>
+            <Story />
+          </IconSpriteProvider>
+        </TooltipProvider>
+      </ThemeProvider>
     ),
   ],
   parameters: {

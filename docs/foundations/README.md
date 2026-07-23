@@ -12,12 +12,11 @@ Canonical **design foundations** content (Carbon/KRDS-style guides).
 
 | Domain     | Path                      | Storybook title                 |
 | ---------- | ------------------------- | ------------------------------- |
-| Color      | `color/overview.mdx`      | Foundations/Color/Overview      |
-| Color      | `color/palette.mdx`       | Foundations/Color/Palette       |
+| Color      | `color/color.mdx`         | Foundations/Color               |
 | Theme      | `theme/overview.mdx`      | Foundations/Theme/Overview      |
 | Typography | `typography/overview.mdx` | Foundations/Typography/Overview |
-| Spacing    | `spacing/overview.mdx`    | Foundations/Spacing/Overview    |
-| Rounded    | `rounded/overview.mdx`    | Foundations/Rounded/Overview    |
-| Icons      | `icons/overview.mdx`      | Foundations/Icons/Overview      |
+| Spacing    | `spacing/spacing.mdx`     | Foundations/Spacing             |
+| Rounded    | `rounded/rounded.mdx`     | Foundations/Rounded             |
+| Icons      | `icons/icons.mdx`         | Foundations/Icons               |
 
 Language: Korean

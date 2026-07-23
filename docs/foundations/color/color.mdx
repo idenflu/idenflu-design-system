@@ -1,27 +1,37 @@
 import { Meta } from "@storybook/addon-docs/blocks";
 import { Table } from "../components/Table";
+import { ColorRamp, SolidSwatch } from "./components/ColorRamp";
+import { Tabs, TabPanel } from "../components/Tabs";
 
-<Meta title="Foundations/Color/Overview" />
+<Meta title="Foundations/Color" />
 
 # Color
 
 Idenflu 컬러 시스템은 **엔터프라이즈 환경**에 최적화된 색상 체계를 구성하여 일관되고 신뢰감 있는 인터페이스를 제공합니다.
 
-<br />
-<br />
+<Tabs
+  baseId="color"
+  label="Color documentation"
+  defaultTab="overview"
+  tabs={[
+    { id: "overview", label: "Overview" },
+    { id: "palette", label: "Palette" },
+  ]}
+>
+  <TabPanel id="overview">
 
+<br />
 ## 기준색과 확장
 
 각 컬러 패밀리의 중심축이 되는 `500` 단계는 가장 대표적이고 활용도 높은 중심 색상입니다.  
 [Tailwind](https://tailwindcss.com/docs/colors)의 `[color]-500`을 기반으로, **운영 화면 및 관리자 인터페이스**에 적합하도록 채도·명도를 재조정해 실제 업무 환경에서 안정적으로 보이게 구성합니다.
 
 - 명도 기준
-  - `Gray 500` 인근의 중간 명도
-  - 목표 OKLCH Lightness: `54` ~ `60`
-  - Hue 특성에 따라 $\pm3$ 허용
+  - `Gray 500` 인근의 명도
+  - Hue 특성에 따라 `±3`
+  - OKLCH Lightness: `54` ~ `60`
 
-각 컬러 패밀리는 `100`부터 `900`까지 균등한 명도 축을 기준으로 나누어져 있으며, 이는 **의미와 상태 전달**을 우선하여 사용자가 명확한 **시각적 위계**를 인지할 수 있도록 돕습니다.
-
+각 컬러 패밀리는 `100`부터 `900`까지 균등한 명도 축을 기준으로 나누어져 있으며, 이는 **의미와 상태 전달**을 우선하여 사용자가 명확한 **시각적 위계**를 인지할 수 있도록 돕습니다.  
 인터랙션을 정의할 때는 Anchor를 기준으로 상·하 단계를 **규칙적으로** 매핑합니다.
 
 <Table
@@ -30,12 +40,12 @@ Idenflu 컬러 시스템은 **엔터프라이즈 환경**에 최적화된 색상
     ["100", "Tint"],
     ["200", "Subtle"],
     ["300", "Subtle-hover"],
-    ["400", "Tint"],
+    ["400", "Subtle-active"],
     ["500", "Anchor"],
     ["600", "Hover"],
     ["700", "Active"],
     ["800", "Strong"],
-    ["800", "Tint"],
+    ["900", "Strong-hover"],
   ]}
 />
 
@@ -70,7 +80,7 @@ Gray 스케일(텍스트)에서는 **간격(Δ)** 으로 [WCAG 2.2 Contrast](htt
 
 제품 코드에서는 Primitive 단계 대신 Themes의 시맨틱 토큰 사용을 권장합니다.
 
-Hex와 CSS variable은 [Palette](?path=/docs/foundations-color-palette--docs)에서 확인하세요.
+Hex와 CSS variables는 [Palette](#tab-palette) 탭에서 확인하세요.
 
 ```text
 Primitive (Base / Brand / Transparent)
@@ -79,3 +89,62 @@ Themes (Background / Border / Surface / Text)
     ↓
 Components (Button, Alert, Input, …)
 ```
+
+<br />
+<br />
+
+## 코드 예시
+
+> CSS 변수를 제공하지만, 제품 코드에서는 `Color` 토큰 대신 `Themes`의 시멘틱 토큰 사용을 권장합니다.
+
+```css
+@import "@idenflu/ui-tokens/css/variables.css";
+
+.example {
+  color: var(--base-gray-900);
+  background: var(--brand-500);
+  border: 1px solid var(--border-subtle);
+}
+```
+
+```ts
+// JS object — optional for non-CSS tooling
+import tokens from "@idenflu/ui-tokens";
+```
+
+  </TabPanel>
+  <TabPanel id="palette">
+
+**Color Token**은 테마와 무관한 원색(Primitives)입니다.
+
+<br />
+
+## Base(Primitives)
+
+<div style={{ display: "flex", flexWrap: "wrap", gap: 0 }}>
+  <SolidSwatch token="base-white" label="White" />
+  <SolidSwatch token="base-black" label="Black" />
+</div>
+
+<ColorRamp prefix="base" family="blue" label="Blue" />
+<ColorRamp prefix="base" family="green" label="Green" />
+<ColorRamp prefix="base" family="red" label="Red" />
+<ColorRamp prefix="base" family="amber" label="Amber" />
+<ColorRamp prefix="base" family="gray" label="Gray" />
+
+<br />
+
+## Brand
+
+<ColorRamp prefix="brand" label="" />
+
+<br />
+
+## Transparent
+
+`--transparent-0`은 완전한 투명값입니다. `rgba(0,0,0,0)`
+
+<ColorRamp prefix="transparent" label="" />
+
+  </TabPanel>
+</Tabs>

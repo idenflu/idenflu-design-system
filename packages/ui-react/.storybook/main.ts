@@ -18,6 +18,7 @@ const foundationsDir = resolve(repoRoot, "docs/foundations");
 const config: StorybookConfig = {
   stories: [
     "./Configure.mdx",
+    "../../../docs/**/**/*.mdx",
     "../../../docs/foundations/**/*.mdx",
     "../src/**/*.mdx",
     "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)",

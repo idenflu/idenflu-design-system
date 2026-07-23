@@ -2,7 +2,7 @@
   "spacing": {
     "2xs": {
       "$type": "number",
-      "$value": "{size-0_5}"
+      "$value": "{size.0_5}"
     },
     "xs": {
       "$type": "number",

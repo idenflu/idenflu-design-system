@@ -1,0 +1,72 @@
+{
+  "size": {
+    "0.5": {
+      "$type": "number",
+      "$value": 2
+    },
+    "1": {
+      "$type": "number",
+      "$value": 4
+    },
+    "2": {
+      "$type": "number",
+      "$value": 8
+    },
+    "3": {
+      "$type": "number",
+      "$value": 12
+    },
+    "4": {
+      "$type": "number",
+      "$value": 16
+    },
+    "5": {
+      "$type": "number",
+      "$value": 20
+    },
+    "6": {
+      "$type": "number",
+      "$value": 24
+    },
+    "7": {
+      "$type": "number",
+      "$value": 28
+    },
+    "8": {
+      "$type": "number",
+      "$value": 32
+    },
+    "9": {
+      "$type": "number",
+      "$value": 36
+    },
+    "10": {
+      "$type": "number",
+      "$value": 40
+    },
+    "11": {
+      "$type": "number",
+      "$value": 44
+    },
+    "12": {
+      "$type": "number",
+      "$value": 48
+    },
+    "13": {
+      "$type": "number",
+      "$value": 52
+    },
+    "14": {
+      "$type": "number",
+      "$value": 56
+    },
+    "15": {
+      "$type": "number",
+      "$value": 60
+    },
+    "16": {
+      "$type": "number",
+      "$value": 64
+    }
+  }
+}

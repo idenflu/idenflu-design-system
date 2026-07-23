@@ -163,7 +163,7 @@
     "Gray": {
       "100": {
         "$type": "color",
-        "$value": "#FAFAFA"
+        "$value": "#F6F6F6"
       },
       "200": {
         "$type": "color",

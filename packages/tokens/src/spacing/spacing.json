@@ -1,4 +1,34 @@
 {
+  "spacing": {
+    "2xs": {
+      "$type": "number",
+      "$value": "{size-0.5}"
+    },
+    "xs": {
+      "$type": "number",
+      "$value": "{size-1}"
+    },
+    "sm": {
+      "$type": "number",
+      "$value": "{size-2}"
+    },
+    "md": {
+      "$type": "number",
+      "$value": "{size-4}"
+    },
+    "lg": {
+      "$type": "number",
+      "$value": "{size-8}"
+    },
+    "xl": {
+      "$type": "number",
+      "$value": "{size-12}"
+    },
+    "2xl": {
+      "$type": "number",
+      "$value": "{size-16}"
+    }
+  },
   "spacing-01": {
     "$type": "number",
     "$value": 1

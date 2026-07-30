@@ -64,6 +64,16 @@
   color: var(--text-primary, #141414);
 }
 
+.count {
+  margin-left: var(--spacing-03, 4px);
+  color: var(--text-muted, #737373);
+  font: var(--caption-md, 12px/1.3 sans-serif);
+}
+
+.tab[aria-selected="true"] .count {
+  color: var(--text-secondary, #555);
+}
+
 .tab:focus-visible {
   outline: 2px solid var(--border-focused, #266ee1);
   outline-offset: 2px;

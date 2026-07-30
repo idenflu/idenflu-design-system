@@ -13,7 +13,7 @@ Canonical **design foundations** content (Carbon/KRDS-style guides).
 | Domain     | Path                      | Storybook title                 |
 | ---------- | ------------------------- | ------------------------------- |
 | Color      | `color/color.mdx`         | Foundations/Color               |
-| Theme      | `theme/overview.mdx`      | Foundations/Theme/Overview      |
+| Themes     | `themes/themes.mdx`       | Foundations/Themes              |
 | Typography | `typography/overview.mdx` | Foundations/Typography/Overview |
 | Spacing    | `spacing/spacing.mdx`     | Foundations/Spacing             |
 | Rounded    | `rounded/rounded.mdx`     | Foundations/Rounded             |

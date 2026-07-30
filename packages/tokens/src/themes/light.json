@@ -2,19 +2,15 @@
   "Border": {
     "primary": {
       "$type": "color",
-      "$value": "{Base.Gray.300}"
-    },
-    "subtle": {
-      "$type": "color",
       "$value": "{Base.Gray.200}"
     },
     "strong": {
       "$type": "color",
-      "$value": "{Base.Gray.500}"
+      "$value": "{Base.Gray.400}"
     },
     "disabled": {
       "$type": "color",
-      "$value": "{Base.Gray.200}"
+      "$value": "{Base.Gray.300}"
     },
     "focused": {
       "$type": "color",
@@ -260,29 +256,12 @@
       "$value": "{Base.Gray.200}"
     }
   },
-
   "Surface": {
     "00": {
       "$type": "color",
       "$value": "{Base.White}"
     },
-    "on-00": {
-      "$type": "color",
-      "$value": "{Base.Gray.100}"
-    },
-    "on-00-hover": {
-      "$type": "color",
-      "$value": "{Base.Gray.200}"
-    },
     "01": {
-      "$type": "color",
-      "$value": "{Base.Gray.100}"
-    },
-    "on-01": {
-      "$type": "color",
-      "$value": "{Base.White}"
-    },
-    "on-01-hover": {
       "$type": "color",
       "$value": "{Base.Gray.100}"
     },
@@ -290,23 +269,7 @@
       "$type": "color",
       "$value": "{Base.White}"
     },
-    "on-02": {
-      "$type": "color",
-      "$value": "{Base.Gray.100}"
-    },
-    "on-02-hover": {
-      "$type": "color",
-      "$value": "{Base.Gray.200}"
-    },
     "03": {
-      "$type": "color",
-      "$value": "{Base.Gray.100}"
-    },
-    "on-03": {
-      "$type": "color",
-      "$value": "{Base.White}"
-    },
-    "on-03-hover": {
       "$type": "color",
       "$value": "{Base.Gray.100}"
     },

@@ -80,7 +80,7 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
         : (icon ?? (
             <Icon
               name={severityIconName[severity]}
-              size="medium"
+              size="large"
               color="currentColor"
               className={styles.icon}
               aria-hidden="true"
@@ -94,26 +94,26 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
         className={cn(alertClassName({ severity, variant }), className)}
         {...props}
       >
-        {statusIcon || children != null || onClose ? (
-          <div className={styles.header}>
-            {statusIcon ? statusIcon : null}
-            {children != null ? (
-              <div className={styles.content}>{children}</div>
-            ) : null}
-            {onClose ? (
-              <IconButton
-                variant="ghost"
-                size="md"
-                color="neutral"
-                icon={<Icon name="close" />}
-                label={closeLabel}
-                className={styles.close}
-                onClick={onClose}
-              />
-            ) : null}
+        {(statusIcon || children != null) && (
+          <div className={styles.content}>
+            {statusIcon && statusIcon}
+            {children != null && (
+              <div className={styles.message}>{children}</div>
+            )}
           </div>
-        ) : null}
-        {action ? <div className={styles.action}>{action}</div> : null}
+        )}
+        {action && <div className={styles.action}>{action}</div>}
+        {onClose && (
+          <IconButton
+            variant="ghost"
+            size="md"
+            color="neutral"
+            icon={<Icon name="close" />}
+            label={closeLabel}
+            className={styles.close}
+            onClick={onClose}
+          />
+        )}
       </div>
     );
   }

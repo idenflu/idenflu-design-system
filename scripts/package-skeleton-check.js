@@ -58,15 +58,29 @@ requireIncludes(".npmrc", ["@idenflu:registry=https://npm.pkg.github.com"]);
 requireIncludes(".github/workflows/publish-packages.yml", [
   "Publish GitHub Packages",
   "packages: write",
+  "pull-requests: write",
   "registry-url: https://npm.pkg.github.com",
   "NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}",
-  "npm view @idenflu/ui-tokens@$VERSION version",
+  "changesets/action@v1",
+  "npm run version-packages",
+  "npm run release:tokens",
   "npm view @idenflu/ui-icons@$VERSION version",
   "npm view @idenflu/ui-react@$VERSION version",
-  "npm publish --workspace @idenflu/ui-tokens",
   "npm publish --workspace @idenflu/ui-icons",
   "npm publish --workspace @idenflu/ui-react",
 ]);
+
+requireFile(".changeset/config.json");
+requireFile(".changeset/pre.json");
+requireIncludes(".changeset/config.json", [
+  '"baseBranch": "main"',
+  '"access": "restricted"',
+  "@idenflu/ui-icons",
+  "@idenflu/ui-react",
+  "playground",
+]);
+requireIncludes(".changeset/pre.json", ['"mode": "pre"', '"tag": "alpha"']);
+requireFile("packages/tokens/CHANGELOG.md");
 
 requireFile("package.json");
 if (exists("package.json")) {

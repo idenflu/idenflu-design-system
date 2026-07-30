@@ -12,6 +12,12 @@
     "check:docs": "node docs/scripts/verify-site.js",
     "check:packages": "node scripts/package-skeleton-check.js",
     "check": "node docs/scripts/verify-site.js && node scripts/package-skeleton-check.js",
-    "storybook:ui-react": "npm -w @idenflu/ui-react run storybook"
+    "storybook:ui-react": "npm -w @idenflu/ui-react run storybook",
+    "changeset": "changeset",
+    "version-packages": "changeset version && node scripts/reset-playground-deps.js",
+    "release:tokens": "npm run build:tokens && changeset publish"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.31.1"
   }
 }

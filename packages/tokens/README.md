@@ -34,3 +34,8 @@ Style Dictionary가 `src/**/*.json`을 읽어 `dist/css/`, `dist/js/`에 산출�
 | `dist/js/tokens.js` | Light 테마 기준 JS 토큰 객체 |
 
 패키지 소비자는 `@idenflu/ui-tokens/css/variables.css` export 경로를 사용합니다.
+
+## 버전 · 변경 이력
+
+버전과 변경 이력은 Changesets로 관리하며, 상세 내용은 [CHANGELOG.md](./CHANGELOG.md)를 참고하세요.
+토큰을 변경한 PR에서는 루트에서 `npm run changeset`으로 변경 요약을 남깁니다.

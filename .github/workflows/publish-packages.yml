@@ -1,18 +1,75 @@
 name: Publish GitHub Packages
 
 on:
-  release:
-    types:
-      - published
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
-  contents: read
+  contents: write
   packages: write
+  pull-requests: write
 
 jobs:
-  publish:
+  tokens:
+    name: Version or publish tokens
     runs-on: ubuntu-latest
+    env:
+      NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install dependencies
+        run: |
+          # @idenflu 패키지는 workspaces로 링크한다.
+          # 루트 .npmrc의 GitHub Packages registry는 install 중 401/미배포 버전 조회를 유발하므로 잠시 제거한다.
+          if [ -f .npmrc ]; then mv .npmrc .npmrc.publish; fi
+          npm ci
+          if [ -f .npmrc.publish ]; then mv .npmrc.publish .npmrc; fi
+
+      - name: Verify docs and packages
+        run: npm run check
+
+      - name: Setup Node for GitHub Packages
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          registry-url: https://npm.pkg.github.com
+          scope: "@idenflu"
+
+      - name: Create Release Pull Request or Publish
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          version: npm run version-packages
+          publish: npm run release:tokens
+          title: "chore(tokens): 버전 패키지"
+          commit: "chore(tokens): 버전 패키지"
+          createGithubReleases: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  icons-react:
+    name: Publish icons and ui-react
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    env:
+      NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       - name: Checkout
@@ -22,28 +79,28 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          registry-url: https://npm.pkg.github.com
-          scope: "@idenflu"
+          cache: npm
+
+      - name: Install dependencies
+        run: |
+          if [ -f .npmrc ]; then mv .npmrc .npmrc.publish; fi
+          npm ci
+          if [ -f .npmrc.publish ]; then mv .npmrc.publish .npmrc; fi
 
       - name: Verify docs and packages
         run: npm run check
 
+      - name: Setup Node for GitHub Packages
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          registry-url: https://npm.pkg.github.com
+          scope: "@idenflu"
+
       - name: Preview package contents
         run: |
-          npm --cache ./.npm-cache pack --workspace @idenflu/ui-tokens --dry-run
           npm --cache ./.npm-cache pack --workspace @idenflu/ui-icons --dry-run
           npm --cache ./.npm-cache pack --workspace @idenflu/ui-react --dry-run
-
-      - name: Publish tokens
-        run: |
-          VERSION=$(node -p "require('./packages/tokens/package.json').version")
-          if npm view @idenflu/ui-tokens@$VERSION version --registry=https://npm.pkg.github.com >/dev/null 2>&1; then
-            echo "@idenflu/ui-tokens@$VERSION already exists. Skipping."
-          else
-            npm publish --workspace @idenflu/ui-tokens
-          fi
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish icons
         run: |
@@ -53,8 +110,6 @@ jobs:
           else
             npm publish --workspace @idenflu/ui-icons
           fi
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish React components
         run: |
@@ -64,5 +119,3 @@ jobs:
           else
             npm publish --workspace @idenflu/ui-react
           fi
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

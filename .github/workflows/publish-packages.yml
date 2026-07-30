@@ -20,6 +20,7 @@ jobs:
     name: Version or publish tokens
     runs-on: ubuntu-latest
     env:
+      # setup-node .npmrc의 //npm.pkg.github.com/:_authToken 치환용
       NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
@@ -32,29 +33,15 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: npm
-
-      - name: Install dependencies
-        run: |
-          # @idenflu 패키지는 workspaces로 링크한다.
-          # 루트 .npmrc의 GitHub Packages registry는 install 중 401/미배포 버전 조회를 유발하므로 잠시 제거한다.
-          if [ -f .npmrc ]; then mv .npmrc .npmrc.publish; fi
-          npm ci
-          if [ -f .npmrc.publish ]; then mv .npmrc.publish .npmrc; fi
-
-      - name: Verify docs and packages
-        run: npm run check
-
-      - name: Setup Node for GitHub Packages
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
           registry-url: https://npm.pkg.github.com
           scope: "@idenflu"
           cache: npm
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Verify docs and packages
+        run: npm run check
 
       - name: Create Release Pull Request or Publish
         id: changesets
@@ -83,23 +70,15 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
+          registry-url: https://npm.pkg.github.com
+          scope: "@idenflu"
           cache: npm
 
       - name: Install dependencies
-        run: |
-          if [ -f .npmrc ]; then mv .npmrc .npmrc.publish; fi
-          npm ci
-          if [ -f .npmrc.publish ]; then mv .npmrc.publish .npmrc; fi
+        run: npm ci
 
       - name: Verify docs and packages
         run: npm run check
-
-      - name: Setup Node for GitHub Packages
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-          registry-url: https://npm.pkg.github.com
-          scope: "@idenflu"
 
       - name: Preview package contents
         run: |
@@ -114,6 +93,22 @@ jobs:
           else
             npm publish --workspace @idenflu/ui-icons
           fi
+
+      - name: Pin @idenflu workspace deps for publish
+        run: |
+          node <<'EOF'
+          const fs = require("fs");
+          const reactPath = "packages/ui-react/package.json";
+          const pkg = JSON.parse(fs.readFileSync(reactPath, "utf8"));
+          const tokens = JSON.parse(fs.readFileSync("packages/tokens/package.json", "utf8"));
+          const icons = JSON.parse(fs.readFileSync("packages/icons/package.json", "utf8"));
+          pkg.dependencies["@idenflu/ui-tokens"] = tokens.version;
+          pkg.dependencies["@idenflu/ui-icons"] = icons.version;
+          fs.writeFileSync(reactPath, JSON.stringify(pkg, null, 2) + "\n");
+          console.log(
+            `pinned ui-react deps: tokens@${tokens.version}, icons@${icons.version}`
+          );
+          EOF
 
       - name: Publish React components
         run: |

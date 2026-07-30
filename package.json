@@ -2,20 +2,18 @@
   "name": "idenflu-design-system",
   "private": true,
   "workspaces": [
-    "packages/*",
-    "examples/*"
+    "packages/*"
   ],
   "scripts": {
     "build:foundations": "npm run build:foundations -w @idenflu/ui-foundations",
     "build:tokens": "npm run build:tokens -w @idenflu/ui-tokens",
-    "dev:playground": "npm run dev -w playground",
     "check:docs": "node docs/scripts/verify-site.js",
     "check:packages": "node scripts/package-skeleton-check.js",
     "check:api-contracts": "npm run check:api-contracts -w @idenflu/ui-react",
     "check": "node docs/scripts/verify-site.js && node scripts/package-skeleton-check.js",
     "storybook:ui-react": "npm -w @idenflu/ui-react run storybook",
     "changeset": "changeset",
-    "version-packages": "changeset version && node scripts/reset-playground-deps.js",
+    "version-packages": "changeset version && node scripts/reset-workspace-deps.js",
     "release:tokens": "npm run build:tokens && changeset publish"
   },
   "devDependencies": {

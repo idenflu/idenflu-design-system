@@ -68,6 +68,8 @@ requireIncludes(".github/workflows/publish-packages.yml", [
   "changesets/action@v1",
   "npm run version-packages",
   "npm run release:tokens",
+  "npm ci",
+  "Pin @idenflu workspace deps for publish",
   "npm view @idenflu/ui-icons@$VERSION version",
   "npm view @idenflu/ui-react@$VERSION version",
   "npm publish --workspace @idenflu/ui-icons",
@@ -81,7 +83,6 @@ requireIncludes(".changeset/config.json", [
   '"access": "restricted"',
   "@idenflu/ui-icons",
   "@idenflu/ui-react",
-  "playground",
 ]);
 requireIncludes(".changeset/pre.json", ['"mode": "pre"', '"tag": "alpha"']);
 requireFile("packages/tokens/CHANGELOG.md");
@@ -93,9 +94,26 @@ if (exists("package.json")) {
   if (!packageJson.workspaces?.includes("packages/*")) {
     failures.push("package.json: missing packages/* workspace");
   }
+  if (packageJson.workspaces?.includes("examples/*")) {
+    failures.push("package.json: examples/* workspace must be removed");
+  }
+  if (packageJson.scripts?.["dev:playground"]) {
+    failures.push("package.json: remove obsolete dev:playground script");
+  }
+  if (packageJson.scripts?.["version-packages"] !== "changeset version && node scripts/reset-workspace-deps.js") {
+    failures.push("package.json: missing version-packages → reset-workspace-deps.js");
+  }
   if (packageJson.scripts?.["check:packages"] !== "node scripts/package-skeleton-check.js") {
     failures.push("package.json: missing check:packages script");
   }
+}
+
+requireFile("scripts/reset-workspace-deps.js");
+if (exists("scripts/reset-playground-deps.js")) {
+  failures.push("scripts/reset-playground-deps.js: obsolete; use reset-workspace-deps.js");
+}
+if (exists("examples/playground") || exists("examples")) {
+  failures.push("examples/: playground workspace must be removed");
 }
 
 [
@@ -242,40 +260,29 @@ requireIncludes("packages/tokens/dist/css/variables.css", [
 
 if (exists("packages/ui-react/package.json")) {
   const uiReact = readJson("packages/ui-react/package.json");
-  const uiTokens = exists("packages/tokens/package.json")
-    ? readJson("packages/tokens/package.json")
-    : undefined;
-  const uiIcons = exists("packages/icons/package.json")
-    ? readJson("packages/icons/package.json")
-    : undefined;
   if (!uiReact.peerDependencies?.react) {
     failures.push("packages/ui-react/package.json: missing react peer dependency");
   }
-  if (!uiReact.dependencies?.["@idenflu/ui-tokens"]) {
-    failures.push("packages/ui-react/package.json: missing token dependency");
-  }
-  if (!uiReact.dependencies?.["@idenflu/ui-icons"]) {
-    failures.push("packages/ui-react/package.json: missing icon dependency");
-  }
-  if (uiReact.dependencies?.["@idenflu/ui-tokens"]?.startsWith("workspace:")) {
-    failures.push(
-      "packages/ui-react/package.json: publish dependencies must not use workspace protocol"
-    );
-  }
-  if (uiReact.dependencies?.["@idenflu/ui-icons"]?.startsWith("workspace:")) {
-    failures.push(
-      "packages/ui-react/package.json: publish dependencies must not use workspace protocol"
-    );
-  }
-  if (uiTokens && uiReact.dependencies?.["@idenflu/ui-tokens"] !== uiTokens.version) {
-    failures.push(
-      "packages/ui-react/package.json: @idenflu/ui-tokens dependency must match package version"
-    );
-  }
-  if (uiIcons && uiReact.dependencies?.["@idenflu/ui-icons"] !== uiIcons.version) {
-    failures.push(
-      "packages/ui-react/package.json: @idenflu/ui-icons dependency must match package version"
-    );
+
+  // tokens/icons는 독립 배포한다. 모노레포에서는 "*"로 링크하고,
+  // ui-react publish 시에만 워크플로가 구체 버전으로 핀한다.
+  for (const name of ["@idenflu/ui-tokens", "@idenflu/ui-icons"]) {
+    const range = uiReact.dependencies?.[name];
+    if (!range) {
+      failures.push(`packages/ui-react/package.json: missing ${name} dependency`);
+      continue;
+    }
+    if (range.startsWith("workspace:")) {
+      failures.push(
+        `packages/ui-react/package.json: ${name} must not use workspace protocol (use "*")`
+      );
+      continue;
+    }
+    if (range !== "*") {
+      failures.push(
+        `packages/ui-react/package.json: ${name} must be "*" so packages can release independently`
+      );
+    }
   }
 }
 

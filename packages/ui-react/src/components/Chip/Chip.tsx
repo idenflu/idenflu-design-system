@@ -1,17 +1,12 @@
 import * as React from "react";
 import { cva } from "class-variance-authority";
-import { cn } from "@/utils/classNames";
+import { cn } from "../../utils/classNames";
 import { Icon } from "../Icon/Icon";
 import styles from "./Chip.module.css";
 
 export type ChipVariant = "filled" | "outlined";
-export type ChipColor =
-  | "neutral"
-  | "primary"
-  | "success"
-  | "warning"
-  | "danger";
-export type ChipSize = "sm" | "md" | "lg";
+export type ChipColor = "neutral" | "info" | "success" | "warning" | "error";
+export type ChipSize = "sm" | "md";
 
 export type ChipProps = Omit<
   React.HTMLAttributes<HTMLSpanElement>,
@@ -35,9 +30,9 @@ const chipClassName = cva(styles.root, {
   },
   variants: {
     color: {
-      danger: styles.colorDanger,
+      error: styles.colorError,
       neutral: styles.colorNeutral,
-      primary: styles.colorPrimary,
+      info: styles.colorInfo,
       success: styles.colorSuccess,
       warning: styles.colorWarning,
     },
@@ -46,7 +41,6 @@ const chipClassName = cva(styles.root, {
       true: styles.deletable,
     },
     size: {
-      lg: styles.sizeLg,
       md: styles.sizeMd,
       sm: styles.sizeSm,
     },
@@ -101,7 +95,7 @@ export const Chip = React.forwardRef<HTMLSpanElement, ChipProps>(
           }}
           type="button"
         >
-          <Icon name="close" />
+          <Icon name="close" size={size === "sm" ? 12 : 16} />
         </button>
       ) : null}
     </span>

@@ -1,0 +1,137 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { Table } from "../components/Table";
+import { Tabs, TabPanel } from "../components/Tabs";
+import { IconGallery } from "./components/IconGallery";
+
+<Meta title="Foundations/Icons" />
+
+# Icons
+
+Icons는 UI에서 동작을 암시하고 상태를 보조하는 **시각 기호**입니다.  
+Idenflu 아이콘은 `@idenflu/ui-icons` 스프라이트와 `Icon` 컴포넌트로 제공합니다.
+
+<Tabs
+  baseId="icons"
+  label="Icons documentation"
+  defaultTab="overview"
+  tabs={[
+    { id: "overview", label: "Overview" },
+    { id: "library", label: "Library" },
+  ]}
+>
+  <TabPanel id="overview">
+
+<br />
+
+## SVG Sprite
+
+모든 아이콘은 `icons.svg`의 `<symbol>`로 관리하고, `<use href="…#name">`로 참조합니다.
+
+각 심볼은 `viewBox="0 0 24 24"`, `fill="none"`, `stroke="currentColor"` 규격으로 정의됩니다.  
+색은 별도의 값을 갖지 않고 CSS `color`를 그대로 상속합니다.
+
+- **단일 소스**: 아이콘이 `@idenflu/ui-icons` 한 곳에만 존재하며, `iconNames`가 이름과 타입(`IconName`)의 원본입니다.
+- **중복 제거**: 같은 아이콘을 여러 번 사용해도 path가 DOM·번들에 복제되지 않습니다.
+- **캐싱**: 스프라이트를 한 번만 내려받아 재사용하므로 아이콘별 추가 네트워크 요청이 없습니다.
+- **테마 연동**: `currentColor` 기반이라 색을 토큰으로 제어할 수 있습니다.
+- **타입 안전**: `IconName` union으로 `name`을 제한해 컴파일 단계에서 타입을 관리합니다.
+
+<br />
+
+<Table
+  headers={["제공 요소", "역할"]}
+  rows={[
+    ["icons.svg", "모든 <symbol>을 담은 단일 스프라이트 원본"],
+    ["iconNames", "심볼 이름 목록 · IconName 타입의 원본"],
+    ["getIconHref(name)", "'<sprite-url>#name' 참조 문자열 생성"],
+    ["IconSpriteProvider", "앱 전역에 sprite URL 주입"],
+    ["Icon Component", "size · a11y · 색을 입혀 <use>로 심볼 렌더"],
+  ]}
+/>
+
+<br />
+<br />
+
+## 사용 가이드
+
+<br />
+
+### `<Icon>` 컴포넌트
+
+```tsx
+import spriteUrl from "@idenflu/ui-icons/icons.svg?url";
+import { Icon, IconSpriteProvider } from "@idenflu/ui-react";
+
+function App() {
+  return (
+    <IconSpriteProvider href={spriteUrl}>
+      <Icon name="star" size="medium" />
+      <Icon
+        name="warning"
+        label="경고"
+        style={{ color: "var(--text-warning)" }}
+      />
+    </IconSpriteProvider>
+  );
+}
+```
+
+### `<use>`로 직접 참조
+
+sprite URL과 심볼 `id`(`icons.svg#name`)로 직접 참조하는 방식
+
+#### tsx
+
+```tsx
+import spriteUrl from "@idenflu/ui-icons/icons.svg?url";
+
+// 장식용 — 스크린 리더에서 숨김
+<svg width={16} height={16} viewBox="0 0 24 24" aria-hidden focusable={false}>
+  <use href={`${spriteUrl}#star`} />
+</svg>;
+
+// 의미 전달 — 레이블 제공, 색은 currentColor로 상속
+<svg
+  width={16}
+  height={16}
+  viewBox="0 0 24 24"
+  role="img"
+  aria-label="경고"
+  style={{ color: "var(--text-warning)" }}
+>
+  <use href={`${spriteUrl}#warning`} />
+</svg>;
+```
+
+#### html
+
+```html
+<svg
+  width="16"
+  height="16"
+  viewBox="0 0 24 24"
+  aria-hidden="true"
+  focusable="false"
+>
+  <use href="/assets/icons.svg#star" />
+</svg>
+```
+
+> size 토큰 · 타입 안전(`IconName`) · a11y 기본값이 포함된 `Icon` 컴포넌트를 사용하는 것을 권장합니다.  
+> `<use>` 직접 참조는 `Icon`을 쓸 수 없는 환경을 위한 escape hatch입니다.
+
+컴포넌트 API·스토리는 Storybook [`Components/Icon`](?path=/story/components-icon--overview)을 참고하세요.
+
+  </TabPanel>
+  <TabPanel id="library">
+
+<br />
+
+## 라이브러리
+
+<IconGallery />
+
+`@idenflu/ui-icons`의 `iconNames`이 원본이며 각 UI 라이브러리의 `IconName`으로 제공됩니다.
+
+  </TabPanel>
+</Tabs>

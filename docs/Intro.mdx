@@ -1,0 +1,238 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Intro" />
+
+<div className="page">
+
+# Idenflu Design System
+
+<div className="description">
+  <div>
+    Idenflu 제품 전반의 일관성, 사용성, 확장성을 위해 설계된 디자인 언어입니다.
+  </div>
+  <div>
+    토큰, 컴포넌트, 패턴이 하나의 기준으로 연결되어 디자이너와 개발자가 같은
+    판단을 공유할 수 있도록 돕습니다.
+  </div>
+</div>
+
+<section className="section">
+  ## Identity
+  <div className="grid grid-three">
+    <article className="card">
+      <div className="card-header">
+        <span className="card-index">01</span>
+        <h3 className="card-title">Clarity</h3>
+      </div>
+      <div className="card-desc">
+        사용자가 무엇을 먼저 해야 하는지 맥락과 위계를 명확하게 전달합니다.
+      </div>
+    </article>
+    <article className="card">
+      <div className="card-header">
+        <span className="card-index">02</span>
+        <h3 className="card-title">Readability</h3>
+      </div>
+      <div className="card-desc">
+        밀도 높은 정보와 데이터 속에서도 시각적 흐름을 잃지 않도록 최적의
+        가독성을 제공합니다.
+      </div>
+    </article>
+    <article className="card">
+      <div className="card-header">
+        <span className="card-index">03</span>
+        <h3 className="card-title">Reliability</h3>
+      </div>
+      <div className="card-desc">
+        일관된 상태 표현과 예측 가능한 컴포넌트 구성으로 제품의 신뢰성을
+        보장합니다.
+      </div>
+    </article>
+  </div>
+</section>
+
+<section className="section">
+  ## Principles
+  <p className="description">
+    디자인과 의사결정의 기준이 되는 원칙
+  </p>
+
+  <div className="grid grid-two">
+    <article className="card">
+      <div className="card-header">
+        <span className="card-index">01</span>
+        <h3 className="card-title">맥락과 흐름</h3>
+      </div>
+      <div className="card-desc">
+        주요 액션은 하나의 흐름으로 드러내고, 보조 액션은 강도를 낮춰 배치합니다.
+        <p>
+        무엇을 먼저 해야 하는지 한눈에 구분할 수 있어야 합니다.
+        </p>
+      </div>
+    </article>
+    <article className="card">
+      <div className="card-header">
+        <span className="card-index">02</span>
+        <h3 className="card-title">간단, 명료한 구조</h3>
+      </div>
+      <div className="card-desc">
+        surface, hairline, spacing으로 밀도와 위계를 조절합니다.
+        <p>
+        운영 화면에서도 읽기 흐름을 잃지 않습니다.
+        </p>
+      </div>
+    </article>
+    <article className="card">
+      <div className="card-header">
+        <span className="card-index">03</span>
+        <h3 className="card-title">확장성</h3>
+      </div>
+      <div className="card-desc">
+        단일 화면 규칙이 아니라, 기능·도메인·데이터 등 제품 특성에 맞게 조합하고 발전할 수
+        있는 기반을 둡니다.
+      </div>
+    </article>
+    <article className="card">
+      <div className="card-header">
+        <span className="card-index">04</span>
+        <h3 className="card-title">신뢰성</h3>
+      </div>
+      <div className="card-desc">
+        상태와 액션을 색상 뿐 아니라, 텍스트와 보조 액션을 함께
+        제공해 다음 행동의 결과를 예측할 수 있게 합니다.
+      </div>
+    </article>
+  </div>
+</section>
+
+<section className="section">
+  ## 문서 구성
+  <p className="description">
+    토큰 → 사용 기준 → 컴포넌트 순으로 읽으면, 기초 원칙에서 실제 화면
+    구현까지 자연스럽게 이어집니다.
+  </p>
+
+  <div className="list">
+    <article className="item">
+      <strong>Foundations</strong>
+      <p>색, 타입, 간격, 라운딩 등 시각적 언어의 기본 토큰</p>
+    </article>
+    <article className="item">
+      <strong>Guidelines</strong>
+      <p>주요 액션, 상태 표현, 데이터 뷰 등 사용 기준</p>
+    </article>
+    <article className="item">
+      <strong>Components</strong>
+      <p>컴포넌트 구조, variants, states 등의 상세 문서</p>
+    </article>
+  </div>
+</section>
+
+</div>
+
+<style>
+  {`
+
+    .page > h1 {
+      font: var(--heading-md);
+      margin: 0;
+    }
+
+    .description {
+      margin-top: var(--spacing-06);  
+
+      p {
+        color: var(--text-secondary);
+        margin: 0;
+      }
+    }
+
+    .section {
+      margin-top: var(--spacing-10);
+    }
+
+    .section > h2 {
+      font: var(--heading-sm);
+    }
+
+    .grid {
+      display: grid;
+      gap: var(--spacing-06);
+    }
+
+    .grid-three {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .grid-two {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-05);
+      padding: var(--spacing-06, 24px);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .card-index {
+      font: var(--numeric-xs);
+      color: var(--text-brand);
+    }
+
+    .card-title {
+      font: var(--title-sm);
+      color: var(--text-primary, inherit);
+      margin: 0;
+    }
+
+    .card-desc {
+      flex: 1;
+      margin-block: var(--spacing-04);
+
+      p {
+      font: var(--body-sm);
+      color: var(--text-secondary);
+      margin: 0;
+      }
+    }
+
+    .list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-04);
+    }
+
+    .item {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: var(--spacing-04, 16px);
+      align-items: baseline;
+      padding: var(--spacing-04, 16px) var(--spacing-05, 20px);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .item strong {
+      font: var(--label-md, 600 0.875rem/1.4 system-ui, sans-serif);
+      color: var(--text-primary, inherit);
+    }
+
+    .item p {
+      margin: 0;
+      color: var(--text-secondary);
+    }
+
+    @media screen and (max-width: 800px) {
+      .grid--three,
+      .grid--two {
+        grid-template-columns: 1fr;
+      }
+
+      .item {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-02, 8px);
+      }
+    }
+  `}
+</style>

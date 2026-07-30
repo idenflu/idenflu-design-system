@@ -1,11 +1,11 @@
 import * as React from "react";
 import { cva } from "class-variance-authority";
-import { cn } from "@/utils/classNames";
-import type { TextInputSize, TextInputVariant } from "../TextInput/TextInput";
-import styles from "./TextArea.module.css";
+import { cn } from "../../utils/classNames";
+import type { TextInputVariant } from "../TextInput/TextInput";
+import textAreaStyles from "./TextArea.module.css";
+import inputSharedStyles from "../_fields/Field.module.css";
 
 export type TextAreaVariant = TextInputVariant;
-export type TextAreaSize = TextInputSize;
 
 export type TextAreaProps = Omit<
   React.TextareaHTMLAttributes<HTMLTextAreaElement>,
@@ -20,62 +20,43 @@ export type TextAreaProps = Omit<
   minRows?: number;
   rows?: number;
   showCount?: boolean;
-  size?: TextAreaSize;
   variant?: TextAreaVariant;
 };
 
-const textAreaClassName = cva(styles.root, {
+const textAreaClassName = cva(inputSharedStyles.root, {
   defaultVariants: {
     autoGrow: false,
     disabled: false,
     error: false,
     fullWidth: false,
     readOnly: false,
-    size: "md",
     variant: "default",
   },
   variants: {
     autoGrow: {
       false: null,
-      true: styles.autoGrow,
+      true: inputSharedStyles.autoGrow,
     },
     disabled: {
       false: null,
-      true: styles.disabled,
+      true: inputSharedStyles.disabled,
     },
     error: {
       false: null,
-      true: styles.error,
+      true: inputSharedStyles.error,
     },
     fullWidth: {
       false: null,
-      true: styles.fullWidth,
+      true: inputSharedStyles.fullWidth,
     },
     readOnly: {
       false: null,
-      true: styles.readOnly,
-    },
-    size: {
-      lg: styles.sizeLg,
-      md: styles.sizeMd,
-      sm: styles.sizeSm,
+      true: inputSharedStyles.readOnly,
     },
     variant: {
-      default: styles.variantDefault,
-      filled: styles.variantFilled,
-      outlined: styles.variantOutlined,
-    },
-  },
-});
-
-const controlClassName = cva(styles.control, {
-  defaultVariants: {
-    filled: false,
-  },
-  variants: {
-    filled: {
-      false: null,
-      true: styles.controlFilled,
+      default: inputSharedStyles.variantDefault,
+      filled: inputSharedStyles.variantFilled,
+      outlined: inputSharedStyles.variantOutlined,
     },
   },
 });
@@ -142,9 +123,9 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
       minRows,
       onChange,
       readOnly,
+      required,
       rows = 4,
       showCount = false,
-      size = "md",
       value,
       variant = "default",
       ...props
@@ -203,7 +184,11 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
     }, [syncHeight, value, charCount]);
 
     React.useEffect(() => {
-      if (process.env.NODE_ENV !== "production" && showCount && maxLength == null) {
+      if (
+        process.env.NODE_ENV !== "production" &&
+        showCount &&
+        maxLength == null
+      ) {
         console.warn("TextArea: showCount requires maxLength.");
       }
     }, [maxLength, showCount]);
@@ -224,10 +209,11 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
         id={textareaId}
         aria-describedby={describedBy}
         aria-invalid={hasError || undefined}
-        className={styles.textarea}
+        className={cn(inputSharedStyles.control, textAreaStyles.control)}
         disabled={disabled}
         maxLength={maxLength}
         readOnly={readOnly}
+        required={required}
         rows={autoGrow ? resolvedMinRows : rows}
         onChange={handleChange}
         {...(value !== undefined ? { value } : { defaultValue })}
@@ -246,50 +232,59 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             error: hasError,
             fullWidth,
             readOnly,
-            size,
             variant,
           }),
           className
         )}
       >
         {!isFilled && label ? (
-          <label className={styles.label} htmlFor={textareaId}>
-            {label}
+          <label className={inputSharedStyles.label} htmlFor={textareaId}>
+            <span>{label}</span>
+            {required ? (
+              <span className={inputSharedStyles.required}>Required*</span>
+            ) : null}
           </label>
         ) : null}
 
         {isFilled ? (
           <label
-            className={controlClassName({ filled: isFilled })}
+            className={inputSharedStyles.controlWrapper}
             htmlFor={textareaId}
           >
             {label ? (
-              <span className={styles.label}>{label}</span>
+              <span className={inputSharedStyles.label}>
+                <span>{label}</span>
+                {required ? (
+                  <span className={inputSharedStyles.required}>Required*</span>
+                ) : null}
+              </span>
             ) : null}
             {textarea}
           </label>
         ) : (
-          <div className={controlClassName({ filled: isFilled })}>
-            {textarea}
-          </div>
+          <div className={inputSharedStyles.controlWrapper}>{textarea}</div>
         )}
 
         {hasFooter ? (
-          <div className={styles.footer}>
+          <div className={textAreaStyles.footer}>
             {helperId ? (
               <p
                 id={helperId}
-                className={cn(styles.helper, hasError && styles.helperError)}
+                className={cn(
+                  inputSharedStyles.helper,
+                  textAreaStyles.helper,
+                  hasError && inputSharedStyles.helperError
+                )}
               >
                 {error || helperText}
               </p>
             ) : (
-              <span className={styles.footerSpacer} />
+              <span className={textAreaStyles.footerSpacer} />
             )}
             {showCounter ? (
               <p
                 id={countId}
-                className={styles.count}
+                className={textAreaStyles.count}
                 aria-live="polite"
               >
                 {charCount} / {maxLength}

@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "components": [
+    "alert",
+    "avatar",
+    "breadcrumb",
+    "button",
+    "chip",
+    "combobox",
+    "data-table",
+    "date-picker",
+    "date-time-picker",
+    "dialog",
+    "divider",
+    "drawer",
+    "dropdown",
+    "icon",
+    "icon-button",
+    "native-select",
+    "select",
+    "spinner",
+    "switch",
+    "tabs",
+    "text-area",
+    "text-input",
+    "time-picker",
+    "toast",
+    "tooltip",
+    "typography"
+  ]
+}

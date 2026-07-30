@@ -1,7 +1,7 @@
 import * as React from "react";
 import { getIconHref, type IconName } from "@idenflu/ui-icons";
 import { cva } from "class-variance-authority";
-import { cn } from "@/utils/classNames";
+import { cn } from "../../utils/classNames";
 import { IconSpriteContext } from "./IconSpriteContext";
 import styles from "./Icon.module.css";
 
@@ -40,7 +40,7 @@ export const Icon = React.forwardRef<SVGSVGElement, IconProps>(
         width={px}
         height={px}
         viewBox="0 0 24 24"
-        className={cn(iconClassName(), "nova-icon", className)}
+        className={cn(iconClassName(), className)}
         {...a11y}
         {...props}
       >

@@ -1,266 +1,51 @@
-/* Nova TextInput — Figma node 84:2177 */
-
-.root {
-  display: flex;
-  flex-direction: column;
-  width: 240px;
-}
-
-.fullWidth {
-  width: 100%;
-}
-
-.label {
-  color: var(--theme-text-secondary);
-  font: var(--label-md);
-  padding-bottom: 4px;
-}
-
-.disabled .label {
-  color: var(--theme-text-disabled);
-}
-
-.control {
-  align-items: stretch;
-  background: var(--theme-control-default);
-  border: 0 solid transparent;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-inline: 16px;
-  transition:
-    background-color 200ms ease,
-    border-color 200ms ease,
-    box-shadow 200ms ease;
-}
-
-.control:focus-within {
-  outline: none;
-}
-
-.input {
-  background: transparent;
-  border: 0;
-  color: var(--theme-text-primary);
-  font: var(--body-md);
-  margin: 0;
-  min-width: 0;
-  outline: none;
-  padding: 0;
-  width: 100%;
-}
-
-.input::placeholder {
-  color: var(--theme-text-tertiary);
-}
-
-.input:disabled {
-  color: var(--theme-text-disabled);
-  cursor: not-allowed;
-  -webkit-text-fill-color: var(--theme-text-disabled);
-}
-
-.input:read-only:not(:disabled) {
-  cursor: default;
-}
-
 .inputRow {
   align-items: center;
   display: flex;
-  gap: 8px;
+  gap: var(--spacing-04);
   width: 100%;
 }
 
-.inputRow .input {
+.inputRow .control {
   flex: 1 1 auto;
   min-width: 0;
+  width: auto;
 }
 
-.toggle {
+.adornment {
   align-items: center;
-  background: transparent;
-  border: 0;
-  color: var(--theme-text-secondary);
+  color: var(--text-muted);
+  display: inline-flex;
+  flex-shrink: 0;
+  font: var(--body-sm);
+  gap: var(--spacing-04);
+}
+
+.adornmentDisabled {
+  color: var(--text-disabled);
+}
+
+.actionButton {
+  align-items: center;
+  border-radius: var(--rounded-full);
+  color: var(--text-muted);
   cursor: pointer;
   display: inline-flex;
   flex-shrink: 0;
+  height: fit-content;
   justify-content: center;
   margin: 0;
-  padding: 0;
+  padding: 1px;
+  width: fit-content;
 }
 
-.toggle:disabled {
-  color: var(--theme-text-disabled);
-  cursor: not-allowed;
-}
-
-.toggle:focus-visible {
-  outline: 2px solid var(--theme-border-focused);
-  outline-offset: 1px;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .toggle:hover:not(:disabled) {
-    color: var(--theme-text-primary);
-  }
-}
-
-.helper {
-  color: var(--theme-text-tertiary);
-  font: var(--label-md);
-  margin: 0;
-  padding-top: 4px;
-}
-
-.helperError,
-.error .helper {
-  color: var(--theme-text-danger);
-}
-
-.disabled .helper {
-  color: var(--theme-text-disabled);
-}
-
-.sizeLg:not(.variantFilled) .control {
-  padding-block: 14px;
-}
-
-.sizeMd:not(.variantFilled) .control {
-  padding-block: 10px;
-}
-
-.sizeSm:not(.variantFilled) .control {
-  padding-block: 6px;
-}
-
-.variantFilled.sizeLg .control {
-  gap: 4px;
-  padding-block: 12px;
-}
-
-.variantFilled.sizeMd .control {
-  gap: 4px;
-  padding-block: 8px;
-}
-
-.variantFilled.sizeSm .control {
-  gap: 4px;
-  padding-block: 4px;
-}
-
-.variantDefault .control {
-  background: var(--theme-control-default);
-  border-bottom: 0;
-  box-shadow: inset 0 -1px 0 var(--theme-border-strong);
-}
-
-.variantDefault .control:focus-within {
-  box-shadow: inset 0 -2px 0 var(--theme-border-focused);
-}
-
-.variantDefault.error .control {
-  box-shadow: inset 0 -2px 0 var(--theme-border-error);
-}
-
-.variantDefault.error .control:focus-within {
-  box-shadow: inset 0 -2px 0 var(--theme-border-error);
-}
-
-.variantDefault.disabled .control {
-  background: var(--theme-control-disabled);
-  box-shadow: inset 0 -1px 0 var(--theme-border-disabled);
-}
-
-.variantOutlined .control {
-  background: var(--theme-control-primary);
-  border: 1px solid var(--theme-border-strong);
-}
-
-.variantOutlined .control:focus-within {
-  border-color: var(--theme-border-focused);
-  border-width: 2px;
-  padding-inline: 15px;
-}
-
-.variantOutlined.sizeLg:not(.variantFilled) .control:focus-within {
-  padding-block: 13px;
-}
-
-.variantOutlined.sizeMd:not(.variantFilled) .control:focus-within {
-  padding-block: 9px;
-}
-
-.variantOutlined.sizeSm:not(.variantFilled) .control:focus-within {
-  padding-block: 5px;
-}
-
-.variantOutlined.error .control {
-  border-color: var(--theme-border-error);
-  border-width: 2px;
-  padding-inline: 15px;
-}
-
-.variantOutlined.sizeLg.error:not(.variantFilled) .control {
-  padding-block: 13px;
-}
-
-.variantOutlined.sizeMd.error:not(.variantFilled) .control {
-  padding-block: 9px;
-}
-
-.variantOutlined.sizeSm.error:not(.variantFilled) .control {
-  padding-block: 5px;
-}
-
-.variantOutlined.disabled .control {
-  background: var(--theme-control-disabled);
-  border-color: var(--theme-border-disabled);
-}
-
-.variantFilled .control {
-  background: var(--theme-control-default);
-  border-bottom: 0;
-  box-shadow: inset 0 -1px 0 var(--theme-border-strong);
-  cursor: text;
-}
-
-.variantFilled .control .label {
-  padding-bottom: 0;
-}
-
-.variantFilled .control:focus-within {
-  box-shadow: inset 0 -2px 0 var(--theme-border-focused);
-}
-
-.variantFilled.error .control {
-  box-shadow: inset 0 -2px 0 var(--theme-border-error);
-}
-
-.variantFilled.error .control:focus-within {
-  box-shadow: inset 0 -2px 0 var(--theme-border-error);
-}
-
-.variantFilled.disabled .control {
-  background: var(--theme-control-disabled);
-  box-shadow: inset 0 -1px 0 var(--theme-border-disabled);
-  cursor: not-allowed;
-}
-
-.variantFilled.disabled .input {
+.actionButtonHidden {
   pointer-events: none;
+  visibility: hidden;
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .control {
-    transition:
-      background-color 200ms ease,
-      border-color 200ms ease,
-      box-shadow 200ms ease;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .control {
-    transition: none;
+  .actionButton:hover:not(:disabled) {
+    background-color: var(--background-transparent-active);
+    color: var(--text-secondary);
   }
 }

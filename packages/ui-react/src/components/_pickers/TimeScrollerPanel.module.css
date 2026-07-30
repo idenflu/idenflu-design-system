@@ -1,0 +1,146 @@
+/* TimeScrollerPanel — nova-time-scroller */
+
+/* ─── Panel ──────────────────────────────────────────────────────── */
+
+.panel {
+  align-items: center;
+  background: var(--surface-on-00);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: var(--spacing-05) var(--spacing-04);
+
+  --time-slot-h: 24px;
+}
+
+/* ─── Scroller ───────────────────────────────────────────────────── */
+
+.scroller {
+  display: flex;
+  position: relative;
+  padding-block: calc(var(--time-slot-h) / 2);
+}
+
+.slot:nth-child(1),
+.slot:nth-child(7) {
+  color: var(--text-muted);
+  opacity: 0.8;
+}
+
+.slot:nth-child(2):not(.slotSelected),
+.slot:nth-child(3):not(.slotSelected),
+.slot:nth-child(5):not(.slotSelected),
+.slot:nth-child(6):not(.slotSelected) {
+  opacity: 0.5;
+}
+
+/* ─── Current Time Overlay ───────────────────────────────────────── */
+/* Absolutely positioned bar that spans all 3 columns at the selected row.
+   Selected row index = 2 (0-based), so top = 2 × slot height. */
+
+.overlay {
+  background: var(--background-transparent-active);
+  border-radius: var(--rounded-sm);
+  height: var(--time-slot-h);
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  top: calc(4 * var(--time-slot-h) - calc(var(--time-slot-h) / 2) + 1px);
+  z-index: 0;
+}
+
+/* ─── Column (spinbutton) ────────────────────────────────────────── */
+
+.column {
+  display: flex;
+  flex-direction: column;
+  outline: none;
+  position: relative;
+  z-index: 1;
+}
+
+.column:focus-visible::after {
+  border: 2px solid var(--border-focused);
+  border-radius: var(--rounded-sm);
+  bottom: 0;
+  content: "";
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 2;
+}
+
+/* ─── Slot item ──────────────────────────────────────────────────── */
+
+.slot {
+  align-items: center;
+  appearance: none;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  font: var(--body-md);
+  height: var(--time-slot-h);
+  justify-content: center;
+  margin: 0;
+  padding: 0 16px;
+  position: relative;
+  transition:
+    background-color 200ms ease,
+    color 200ms ease,
+    opacity 200ms ease;
+  z-index: 1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .slot:not(.slotSelected):hover {
+    background: var(--background-transparent-hover);
+    color: var(--text-primary);
+    opacity: 1;
+  }
+}
+
+/* Selected slot: text is primary. Background comes from the overlay. */
+.slotSelected {
+  color: var(--text-primary);
+  cursor: default;
+  opacity: 1;
+}
+
+.slotArrow {
+  color: var(--text-secondary);
+}
+
+/* ─── Cylinder perspective — scale each row to simulate curvature ── */
+/*
+ * Rows further from centre appear as if curving away: slightly narrower
+ * vertically (scaleY) and horizontally (scaleX), mimicking a drum/cylinder.
+ * These are static transforms; no transition needed.
+ */
+
+.slot:nth-child(1),
+.slot:nth-child(7) {
+  transform: scaleY(0.75);
+}
+
+.slot:nth-child(2),
+.slot:nth-child(6) {
+  transform: scaleY(0.85) scaleX(0.92);
+}
+
+.slot:nth-child(3),
+.slot:nth-child(5) {
+  transform: scaleY(0.9) scaleX(0.96);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slot {
+    opacity: 1;
+    transform: none;
+  }
+}

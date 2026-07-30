@@ -23,22 +23,27 @@ const overviewStyles = {
   root: {
     display: "flex",
     flexDirection: "column" as const,
-    gap: "var(--spacing-08)",
-    maxWidth: "960px",
-    width: "100%",
+    alignItems: "flex-start",
+    gap: "40px",
+    fontFamily: "var(--if-font-family, Inter, system-ui, sans-serif)",
+    padding: "0 120px",
   },
   section: {
     display: "flex",
     flexDirection: "column" as const,
-    gap: "var(--spacing-04)",
+    gap: "16px",
   },
   heading: {
-    color: "var(--theme-text-secondary)",
-    font: "var(--label-md)",
+    fontSize: "14px",
+    font: "var(--title-md)",
+    fontWeight: 500,
+    letterSpacing: "0.02em",
     margin: 0,
+    textTransform: "uppercase" as const,
+    color: "var(--text-secondary)",
   },
   panel: {
-    color: "var(--theme-text-secondary)",
+    color: "var(--text-secondary)",
     paddingBlockStart: "var(--spacing-04)",
   },
   constrained: {
@@ -93,8 +98,16 @@ function DemoTabs({
 
   if (items.length === 0) {
     return (
-      <Tabs defaultValue={defaultValue} orientation={orientation} variant={variant}>
-        <TabsList aria-label={ariaLabel} orientation={orientation} variant={variant} />
+      <Tabs
+        defaultValue={defaultValue}
+        orientation={orientation}
+        variant={variant}
+      >
+        <TabsList
+          aria-label={ariaLabel}
+          orientation={orientation}
+          variant={variant}
+        />
         <TabsContent value={defaultValue}>
           <div style={overviewStyles.panel}>열린 탭이 없습니다.</div>
         </TabsContent>
@@ -160,7 +173,6 @@ type PlaygroundArgs = DemoTabsProps;
 const meta = {
   title: "Components/Tabs",
   component: Tabs,
-  tags: ["autodocs"],
   parameters: {
     docs: {
       description: {

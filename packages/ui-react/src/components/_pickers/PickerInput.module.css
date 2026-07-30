@@ -1,0 +1,11 @@
+.root {
+  min-width: 120px;
+}
+
+.range {
+  min-width: 240px;
+}
+
+.fullWidth {
+  width: 100%;
+}

@@ -1,0 +1,31 @@
+export {
+  DataTable,
+  DataTableActions,
+  DataTableContent,
+  DataTableDescription,
+  DataTableFooter,
+  DataTableHeader,
+  DataTableHeaderContent,
+  DataTableInstantSearch,
+  DataTablePagination,
+  DataTableRowCount,
+  DataTableTitle,
+} from "./DataTable";
+
+export type {
+  DataTableActionsProps,
+  DataTableColumn,
+  DataTableContentProps,
+  DataTableDensity,
+  DataTableDescriptionProps,
+  DataTableFooterProps,
+  DataTableHeaderContentProps,
+  DataTableHeaderProps,
+  DataTableInstantSearchProps,
+  DataTablePaginationProps,
+  DataTablePageSizeOption,
+  DataTableProps,
+  DataTableRowCountProps,
+  DataTableRowCountTextOptions,
+  DataTableTitleProps,
+} from "./DataTable";

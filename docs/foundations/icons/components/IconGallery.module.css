@@ -1,0 +1,107 @@
+.gallery {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-06, 16px);
+  margin: var(--spacing-07, 24px) 0;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-04, 8px);
+}
+
+.search {
+  flex: 1 1 200px;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: var(--spacing-03, 4px) var(--spacing-05, 12px);
+  border: 1px solid var(--border-subtle, #e1e1e1);
+  background: var(--surface-00, #fff);
+  color: var(--text-primary, #141414);
+  font: var(--body-sm, 14px/1.4 sans-serif);
+}
+
+.search:focus-visible {
+  outline: 2px solid var(--border-focused, #266ee1);
+  outline-offset: 2px;
+}
+
+.sizeToggle {
+  display: inline-flex;
+  border: 1px solid var(--border-subtle, #e1e1e1);
+}
+
+.sizeButton {
+  padding: var(--spacing-03, 4px) var(--spacing-05, 12px);
+  border: 0;
+  background: var(--surface-00, #fff);
+  color: var(--text-secondary, #555);
+  font: var(--label-md, 12px/1.3 sans-serif);
+  cursor: pointer;
+}
+
+.sizeButton[aria-pressed="true"] {
+  background: var(--background-primary-tint, #f0f6ff);
+  color: var(--text-primary, #141414);
+}
+
+.sizeButton:focus-visible {
+  outline: 2px solid var(--border-focused, #266ee1);
+  outline-offset: 2px;
+}
+
+.hint {
+  margin: 0;
+  font: var(--caption-md, 12px/1.3 sans-serif);
+  color: var(--text-muted, #737373);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  gap: var(--spacing-04, 8px);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-04, 8px);
+  padding: var(--spacing-05, 12px) var(--spacing-03, 4px);
+  border: 1px solid var(--border-subtle, #e1e1e1);
+  background: var(--surface-00, #fff);
+  color: var(--text-secondary, #555);
+  cursor: pointer;
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--border-focused, #266ee1);
+  outline-offset: 2px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card:hover {
+    border-color: var(--border-primary, #bebebe);
+    color: var(--text-primary, #141414);
+  }
+}
+
+.name {
+  margin: 0;
+  max-width: 100%;
+  font: var(--caption-md, 12px/1.3 monospace);
+  color: var(--text-muted, #737373);
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.empty {
+  margin: var(--spacing-08, 32px) 0;
+  font: var(--body-sm, 14px/1.4 sans-serif);
+  color: var(--text-muted, #737373);
+  text-align: center;
+}

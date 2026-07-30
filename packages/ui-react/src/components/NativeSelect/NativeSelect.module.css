@@ -1,0 +1,56 @@
+.root {
+  position: relative;
+  --chevron-inline-end-padding: 12px;
+}
+
+.controlWrapper {
+  position: relative;
+}
+
+/* ─── NativeSelect-specific ──────────────────────────────────────── */
+
+.control {
+  appearance: none;
+  padding-inline: 0 calc(16px + 8px);
+  text-align: start;
+
+  &::-ms-expand {
+    display: none;
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+.expandIcon {
+  color: var(--text-secondary);
+  display: inline-flex;
+  flex: 0 0 auto;
+  inset-inline-end: var(--chevron-inline-end-padding);
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.disabled .expandIcon {
+  color: var(--text-disabled);
+}
+
+.variantFilled.sizeLg .expandIcon {
+  bottom: 14px;
+}
+
+.variantFilled.sizeMd .expandIcon {
+  bottom: 10px;
+}
+
+.variantFilled.sizeSm .expandIcon {
+  bottom: 6px;
+}
+
+.variantFilled .expandIcon {
+  top: auto;
+  transform: none;
+}

@@ -8,17 +8,17 @@ import {
 } from "./Spinner";
 
 const sizes: SpinnerSize[] = ["xs", "sm", "md", "lg"];
-const colors: SpinnerColor[] = ["primary", "secondary", "inherit"];
-const variants: SpinnerVariant[] = ["ring", "dot", "equalizer"];
+const colors: SpinnerColor[] = ["primary", "neutral", "inherit"];
+const variants: SpinnerVariant[] = ["ring", "dot"];
 
 const overviewStyles = {
   root: {
     display: "flex",
     flexDirection: "column" as const,
+    alignItems: "flex-start",
     gap: "40px",
     fontFamily: "var(--if-font-family, Inter, system-ui, sans-serif)",
-    width: "100%",
-    maxWidth: "960px",
+    padding: "0 120px",
   },
   section: {
     display: "flex",
@@ -26,18 +26,19 @@ const overviewStyles = {
     gap: "16px",
   },
   heading: {
-    fontSize: "13px",
-    fontWeight: 600,
+    fontSize: "14px",
+    font: "var(--title-md)",
+    fontWeight: 500,
     letterSpacing: "0.02em",
     margin: 0,
     textTransform: "uppercase" as const,
-    color: "var(--theme-text-secondary, #566173)",
+    color: "var(--text-secondary)",
   },
   row: {
-    alignItems: "center",
+    alignItems: "flex-start",
     display: "flex",
     flexWrap: "wrap" as const,
-    gap: "16px",
+    gap: "40px",
   },
   cell: {
     alignItems: "center",
@@ -47,42 +48,32 @@ const overviewStyles = {
     minWidth: "72px",
   },
   label: {
-    color: "var(--theme-text-secondary, #8792a5)",
-    fontSize: "11px",
+    color: "var(--text-secondary)",
+    font: "var(--label-md)",
     margin: 0,
-    textAlign: "center" as const,
   },
   matrix: {
     display: "grid",
-    gap: "12px 16px",
+    gap: "var(--spacing-06) var(--spacing-07)",
     gridTemplateColumns: "80px repeat(3, minmax(72px, 1fr))",
     alignItems: "center",
+    justifyItems: "center",
   },
   matrixHeader: {
-    color: "var(--theme-text-secondary, #8792a5)",
-    fontSize: "11px",
-    fontWeight: 500,
+    color: "var(--text-secondary)",
+    font: "var(--label-md)",
     textAlign: "center" as const,
-    textTransform: "capitalize" as const,
   },
   matrixRowLabel: {
-    color: "var(--theme-text-secondary, #8792a5)",
-    fontSize: "11px",
-    fontWeight: 500,
+    color: "var(--text-secondary)",
+    font: "var(--label-md)",
     textTransform: "capitalize" as const,
   },
   inheritDemo: {
     alignItems: "center",
-    color: "var(--theme-text-brand)",
+    color: "var(--text-brand)",
     display: "flex",
     gap: "8px",
-  },
-  note: {
-    color: "var(--theme-text-secondary, #566173)",
-    fontSize: "13px",
-    lineHeight: 1.5,
-    margin: 0,
-    maxWidth: "640px",
   },
 };
 
@@ -120,8 +111,16 @@ function SizeColorMatrix({
         <React.Fragment key={size}>
           <span style={overviewStyles.matrixRowLabel}>{size}</span>
           {colors.map((color) => (
-            <div key={`${size}-${color}`} style={{ display: "flex", justifyContent: "center" }}>
-              <Spinner active={active} color={color} size={size} variant={variant} />
+            <div
+              key={`${size}-${color}`}
+              style={{ display: "flex", justifyContent: "center" }}
+            >
+              <Spinner
+                active={active}
+                color={color}
+                size={size}
+                variant={variant}
+              />
             </div>
           ))}
         </React.Fragment>
@@ -133,12 +132,11 @@ function SizeColorMatrix({
 const meta = {
   title: "Components/Spinner",
   component: Spinner,
-  tags: ["autodocs"],
   parameters: {
     docs: {
       description: {
         component:
-          "Indeterminate loading indicator. Announces status via `role=\"status\"` and `aria-label`. " +
+          'Indeterminate loading indicator. Announces status via `role="status"` and `aria-label`. ' +
           "Not focusable — pair with `aria-busy` on a parent region when loading page content. " +
           "Respects `prefers-reduced-motion`.",
       },
@@ -182,7 +180,12 @@ export const Overview: Story = {
         <div style={overviewStyles.row}>
           {variants.map((variant) => (
             <div key={variant} style={overviewStyles.cell}>
-              <Spinner active={false} color="primary" size="md" variant={variant} />
+              <Spinner
+                active={false}
+                color="primary"
+                size="md"
+                variant={variant}
+              />
               <span style={overviewStyles.label}>{variant}</span>
             </div>
           ))}
@@ -194,16 +197,6 @@ export const Overview: Story = {
           <Spinner color="inherit" size="md" />
           <span>Saving changes…</span>
         </div>
-      </OverviewSection>
-
-      <OverviewSection title="Accessibility">
-        <p style={overviewStyles.note}>
-          Active spinners expose <code>role=&quot;status&quot;</code>,{" "}
-          <code>aria-live=&quot;polite&quot;</code>, and <code>aria-label</code>{" "}
-          (default &quot;Loading&quot;). They are not in the tab order. When a
-          larger region is loading, set <code>aria-busy=&quot;true&quot;</code> on
-          that container and avoid duplicate live-region announcements.
-        </p>
       </OverviewSection>
     </div>
   ),

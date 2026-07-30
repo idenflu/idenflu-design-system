@@ -1,0 +1,58 @@
+/**
+ * Reserve the viewport scrollbar gutter so switching between tabs of
+ * different content heights never toggles the scrollbar on/off, which would
+ * otherwise shift the centered docs layout horizontally.
+ */
+:global(html) {
+  scrollbar-gutter: stable;
+}
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-05, 16px);
+  margin: var(--spacing-05, 16px) 0 var(--spacing-06, 24px);
+}
+
+.tablist {
+  display: flex;
+  gap: var(--spacing-05, 16px);
+  border-bottom: 1px solid var(--border-subtle, #e5e5e5);
+}
+
+.tab {
+  position: relative;
+  appearance: none;
+  background: none;
+  border: none;
+  padding: var(--spacing-03) var(--spacing-04);
+  margin-bottom: -1px;
+  cursor: pointer;
+  color: var(--text-muted);
+  font: var(--label-md);
+  border-bottom: 2px solid transparent;
+  transition:
+    color 200ms ease,
+    border-color 200ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .tab:hover {
+    color: var(--text-secondary);
+  }
+}
+
+.tab[data-selected] {
+  color: var(--text-primary, #141414);
+  border-bottom-color: var(--brand-500, #266ee1);
+}
+
+.tab:focus-visible {
+  outline: 2px solid var(--border-focused, #266ee1);
+  outline-offset: 2px;
+  border-radius: var(--rounded-01, 2px);
+}
+
+.panel:focus-visible {
+  outline: none;
+}

@@ -1,22 +1,17 @@
 import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import {
-  TextArea,
-  type TextAreaSize,
-  type TextAreaVariant,
-} from "./TextArea";
+import { TextArea, type TextAreaVariant } from "./TextArea";
 
 const variants: TextAreaVariant[] = ["default", "filled", "outlined"];
-const sizes: TextAreaSize[] = ["lg", "md", "sm"];
 
 const overviewStyles = {
   root: {
     display: "flex",
     flexDirection: "column" as const,
+    alignItems: "flex-start",
     gap: "40px",
-    fontFamily: "var(Inter, system-ui, sans-serif)",
-    width: "100%",
-    maxWidth: "960px",
+    fontFamily: "var(--if-font-family, Inter, system-ui, sans-serif)",
+    padding: "0 120px",
   },
   section: {
     display: "flex",
@@ -24,54 +19,48 @@ const overviewStyles = {
     gap: "16px",
   },
   heading: {
-    fontSize: "13px",
-    fontWeight: 600,
+    fontSize: "14px",
+    font: "var(--title-md)",
+    fontWeight: 500,
     letterSpacing: "0.02em",
     margin: 0,
     textTransform: "uppercase" as const,
-    color: "var(--theme-text-secondary, #566173)",
+    color: "var(--text-secondary)",
   },
   row: {
     alignItems: "flex-start",
     display: "flex",
     flexWrap: "wrap" as const,
-    gap: "24px",
+    gap: "40px",
   },
   cell: {
+    alignItems: "flex-start",
     display: "flex",
     flexDirection: "column" as const,
     gap: "8px",
-    minWidth: "280px",
+    minWidth: "72px",
   },
   label: {
-    color: "var(--theme-text-tertiary, #8792a5)",
-    fontSize: "11px",
+    color: "var(--text-secondary)",
+    font: "var(--label-md)",
     margin: 0,
   },
   matrix: {
     display: "grid",
-    gap: "16px 24px",
-    gridTemplateColumns: "80px repeat(3, minmax(240px, 1fr))",
+    gap: "var(--spacing-06) var(--spacing-07)",
+    gridTemplateColumns: "80px repeat(5, minmax(240px, 1fr))",
     alignItems: "start",
+    justifyItems: "center",
   },
   matrixHeader: {
-    color: "var(--theme-text-tertiary, #8792a5)",
-    fontSize: "11px",
-    fontWeight: 500,
+    color: "var(--text-secondary)",
+    font: "var(--label-md)",
     textAlign: "center" as const,
   },
   matrixRowLabel: {
-    color: "var(--theme-text-tertiary, #8792a5)",
-    fontSize: "11px",
-    fontWeight: 500,
+    color: "var(--text-secondary)",
+    font: "var(--label-md)",
     textTransform: "capitalize" as const,
-  },
-  a11yNote: {
-    color: "var(--theme-text-secondary, #566173)",
-    fontSize: "13px",
-    lineHeight: 1.5,
-    margin: 0,
-    maxWidth: "640px",
   },
 };
 
@@ -92,11 +81,13 @@ function OverviewSection({
 
 const stateColumns = [
   { id: "enabled", label: "Enabled", props: {} },
+  { id: "required", label: "Required", props: { required: true } },
+  { id: "read-only", label: "Read-only", props: { readOnly: true } },
   { id: "error", label: "Error", props: { error: "Helper Text" } },
   { id: "disabled", label: "Disabled", props: { disabled: true } },
 ] as const;
 
-function VariantStateMatrix({ variant }: { variant: TextAreaVariant }) {
+function VariantStateMatrix() {
   return (
     <div style={overviewStyles.matrix}>
       <div />
@@ -105,17 +96,16 @@ function VariantStateMatrix({ variant }: { variant: TextAreaVariant }) {
           {column.label}
         </span>
       ))}
-      {sizes.map((size) => (
-        <React.Fragment key={size}>
-          <span style={overviewStyles.matrixRowLabel}>{size}</span>
+      {variants.map((variant) => (
+        <React.Fragment key={variant}>
+          <span style={overviewStyles.matrixRowLabel}>{variant}</span>
           {stateColumns.map((column) => (
             <TextArea
-              key={`${variant}-${size}-${column.id}`}
+              key={`${variant}-${column.id}`}
               defaultValue="Value"
               helperText={column.id === "enabled" ? "Helper Text" : undefined}
               label="Label"
               rows={3}
-              size={size}
               variant={variant}
               {...column.props}
             />
@@ -131,7 +121,6 @@ type PlaygroundArgs = React.ComponentProps<typeof TextArea>;
 const meta = {
   title: "Components/TextArea",
   component: TextArea,
-  tags: ["autodocs"],
   parameters: {
     docs: {
       description: {
@@ -145,12 +134,12 @@ const meta = {
   },
   argTypes: {
     variant: { control: "select", options: variants },
-    size: { control: "select", options: sizes },
     fullWidth: { control: "boolean" },
     autoGrow: { control: "boolean" },
     showCount: { control: "boolean" },
     disabled: { control: "boolean" },
     readOnly: { control: "boolean" },
+    required: { control: "boolean" },
   },
 } satisfies Meta<PlaygroundArgs>;
 
@@ -164,11 +153,9 @@ export const Overview: Story = {
   },
   render: () => (
     <div style={overviewStyles.root}>
-      {variants.map((variant) => (
-        <OverviewSection key={variant} title={`${variant} — size × state`}>
-          <VariantStateMatrix variant={variant} />
-        </OverviewSection>
-      ))}
+      <OverviewSection title="Variant x State">
+        <VariantStateMatrix />
+      </OverviewSection>
 
       <OverviewSection title="Height modes">
         <div style={overviewStyles.row}>
@@ -216,17 +203,6 @@ export const Overview: Story = {
           </div>
         </div>
       </OverviewSection>
-
-      <OverviewSection title="Accessibility">
-        <p style={overviewStyles.a11yNote}>
-          Use a visible <code>label</code> (or <code>aria-label</code> when
-          label is omitted). Pair validation messages with <code>error</code> so
-          they are linked through <code>aria-describedby</code>. When{" "}
-          <code>showCount</code> is enabled, pass <code>maxLength</code> and the
-          counter is included in <code>aria-describedby</code> with{" "}
-          <code>aria-live=&quot;polite&quot;</code>.
-        </p>
-      </OverviewSection>
     </div>
   ),
 };
@@ -242,9 +218,9 @@ export const Playground: Story = {
     label: "Label",
     maxLength: 500,
     readOnly: false,
+    required: false,
     rows: 4,
     showCount: false,
-    size: "lg",
     variant: "default",
   },
   render: (args) => {

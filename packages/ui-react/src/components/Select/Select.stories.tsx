@@ -2,7 +2,7 @@ import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   Select,
-  type SelectOption,
+  SelectItem,
   type SelectSize,
   type SelectVariant,
 } from "./Select";
@@ -14,10 +14,10 @@ const overviewStyles = {
   root: {
     display: "flex",
     flexDirection: "column" as const,
+    alignItems: "flex-start",
     gap: "40px",
     fontFamily: "var(--if-font-family, Inter, system-ui, sans-serif)",
-    width: "100%",
-    maxWidth: "960px",
+    padding: "0 120px",
   },
   section: {
     display: "flex",
@@ -25,58 +25,50 @@ const overviewStyles = {
     gap: "16px",
   },
   heading: {
-    color: "var(--theme-text-secondary)",
-    fontSize: "13px",
-    fontWeight: 600,
+    fontSize: "14px",
+    font: "var(--title-md)",
+    fontWeight: 500,
     letterSpacing: "0.02em",
     margin: 0,
     textTransform: "uppercase" as const,
-  },
-  matrix: {
-    alignItems: "start",
-    display: "grid",
-    gap: "16px 24px",
-    gridTemplateColumns: "80px repeat(3, minmax(200px, 1fr))",
-  },
-  matrixHeader: {
-    color: "var(--theme-text-tertiary)",
-    fontSize: "11px",
-    fontWeight: 500,
-    textAlign: "center" as const,
-  },
-  matrixRowLabel: {
-    color: "var(--theme-text-tertiary)",
-    fontSize: "11px",
-    fontWeight: 500,
-    textTransform: "capitalize" as const,
+    color: "var(--text-secondary)",
   },
   row: {
     alignItems: "flex-start",
     display: "flex",
     flexWrap: "wrap" as const,
-    gap: "24px",
+    gap: "40px",
   },
-  note: {
-    color: "var(--theme-text-secondary)",
-    fontSize: "13px",
-    lineHeight: 1.5,
-    margin: 0,
-    maxWidth: "680px",
+  fullWidthExample: {
+    maxWidth: "100%",
+    width: "640px",
+  },
+  matrix: {
+    alignItems: "start",
+    display: "grid",
+    gap: "var(--spacing-06) var(--spacing-07)",
+    gridTemplateColumns: "80px repeat(5, minmax(200px, 1fr))",
+    justifyItems: "center",
+  },
+  matrixHeader: {
+    color: "var(--text-secondary)",
+    font: "var(--label-md)",
+    textAlign: "center" as const,
+  },
+  matrixRowLabel: {
+    color: "var(--text-secondary)",
+    font: "var(--label-md)",
+    textTransform: "capitalize" as const,
   },
 };
 
 const stateColumns = [
-  { id: "enabled", label: "Enabled", props: { helperText: "Helper Text" } },
-  { id: "error", label: "Error", props: { error: "Helper Text" } },
+  { id: "enabled", label: "Enabled", props: {} },
+  { id: "required", label: "Required", props: { required: true } },
+  { id: "read-only", label: "Read-only", props: { readOnly: true } },
+  { id: "error", label: "Error", props: { error: "Error Description" } },
   { id: "disabled", label: "Disabled", props: { disabled: true } },
 ] as const;
-
-const demoOptions: SelectOption[] = [
-  { value: "analytics", label: "Analytics" },
-  { value: "campaigns", label: "Campaigns" },
-  { value: "audiences", label: "Audiences" },
-  { value: "billing", label: "Billing", disabled: true },
-];
 
 function OverviewSection({
   children,
@@ -96,17 +88,17 @@ function OverviewSection({
 function renderDemoItems() {
   return (
     <>
-      <option value="analytics">Analytics</option>
-      <option value="campaigns">Campaigns</option>
-      <option value="audiences">Audiences</option>
-      <option value="billing" disabled>
+      <SelectItem value="analytics">Analytics</SelectItem>
+      <SelectItem value="campaigns">Campaigns</SelectItem>
+      <SelectItem value="audiences">Audiences</SelectItem>
+      <SelectItem value="billing" disabled>
         Billing
-      </option>
+      </SelectItem>
     </>
   );
 }
 
-function VariantStateMatrix({ variant }: { variant: SelectVariant }) {
+function VariantStateMatrix() {
   return (
     <div style={overviewStyles.matrix}>
       <div />
@@ -115,15 +107,15 @@ function VariantStateMatrix({ variant }: { variant: SelectVariant }) {
           {column.label}
         </span>
       ))}
-      {sizes.map((size) => (
-        <React.Fragment key={size}>
-          <span style={overviewStyles.matrixRowLabel}>{size}</span>
+      {variants.map((variant) => (
+        <React.Fragment key={variant}>
+          <span style={overviewStyles.matrixRowLabel}>{variant}</span>
           {stateColumns.map((column) => (
             <Select
-              key={`${variant}-${size}-${column.id}`}
+              key={`${variant}-${column.id}`}
               defaultValue="analytics"
               label="Label"
-              size={size}
+              size="md"
               variant={variant}
               {...column.props}
             >
@@ -136,19 +128,95 @@ function VariantStateMatrix({ variant }: { variant: SelectVariant }) {
   );
 }
 
+function SizeDefaultMatrix() {
+  return (
+    <div style={overviewStyles.row}>
+      {sizes.map((size) => (
+        <Select
+          key={size}
+          defaultValue="analytics"
+          helperText={size}
+          label="Label"
+          size={size}
+          variant="default"
+        >
+          {renderDemoItems()}
+        </Select>
+      ))}
+    </div>
+  );
+}
+
+function FullWidthExample() {
+  return (
+    <div style={overviewStyles.fullWidthExample}>
+      <Select
+        defaultValue="analytics"
+        fullWidth
+        label="Label"
+        variant="default"
+      >
+        {renderDemoItems()}
+      </Select>
+    </div>
+  );
+}
+
+function HelperTextExample() {
+  return (
+    <div style={overviewStyles.row}>
+      <Select
+        defaultValue="analytics"
+        helperText="Helper Text"
+        label="Label"
+        variant="default"
+      >
+        {renderDemoItems()}
+      </Select>
+      <Select
+        defaultValue="analytics"
+        error="Helper Text"
+        label="Label"
+        variant="default"
+      >
+        {renderDemoItems()}
+      </Select>
+    </div>
+  );
+}
+
+function OptionsPropExample() {
+  return (
+    <div style={overviewStyles.row}>
+      <Select
+        defaultValue="campaigns"
+        helperText="options prop"
+        label="With options"
+        options={[
+          { label: "Analytics", value: "analytics" },
+          { label: "Campaigns", value: "campaigns" },
+          { label: "Audiences", value: "audiences" },
+          { disabled: true, label: "Billing", value: "billing" },
+        ]}
+        variant="outlined"
+      />
+    </div>
+  );
+}
+
 type PlaygroundArgs = React.ComponentProps<typeof Select>;
 
 const meta = {
   title: "Components/Select",
   component: Select,
-  tags: ["autodocs"],
   parameters: {
     docs: {
       description: {
         component:
-          "Figma Input/Menu visual treatment adapted to a native select element. " +
-          "Keyboard and screen reader behavior follows the platform <select>/<option> semantics. " +
-          "Helper/error text is connected with aria-describedby and error state sets aria-invalid.",
+          "Custom select built on Radix Select with TextInput-aligned field chrome. " +
+          "Uses listbox semantics (not Dropdown Menu). `Select.Value` keeps the selected label " +
+          "after the panel closes. Keyboard: Arrow keys, typeahead, Enter/Space, Escape. " +
+          "Filterable/searchable input is not part of Radix Select — use a Combobox pattern for that.",
       },
     },
   },
@@ -158,6 +226,7 @@ const meta = {
     fullWidth: { control: "boolean" },
     disabled: { control: "boolean" },
     readOnly: { control: "boolean" },
+    required: { control: "boolean" },
   },
 } satisfies Meta<PlaygroundArgs>;
 
@@ -171,29 +240,24 @@ export const Overview: Story = {
   },
   render: () => (
     <div style={overviewStyles.root}>
-      {variants.map((variant) => (
-        <OverviewSection key={variant} title={`${variant} — size × state`}>
-          <VariantStateMatrix variant={variant} />
-        </OverviewSection>
-      ))}
-
-      <OverviewSection title="Options Prop">
-        <Select
-          defaultValue="analytics"
-          helperText="The same menu can be provided through the options prop."
-          label="Label"
-          options={demoOptions}
-          variant="outlined"
-        />
+      <OverviewSection title="Variant x State">
+        <VariantStateMatrix />
       </OverviewSection>
 
-      <OverviewSection title="Accessibility">
-        <p style={overviewStyles.note}>
-          Use a visible <code>label</code>, or provide <code>aria-label</code>{" "}
-          when the visual label is omitted. Validation messages should use{" "}
-          <code>error</code> so the trigger receives <code>aria-invalid</code>{" "}
-          and helper text remains linked through <code>aria-describedby</code>.
-        </p>
+      <OverviewSection title="Size">
+        <SizeDefaultMatrix />
+      </OverviewSection>
+
+      <OverviewSection title="FullWidth">
+        <FullWidthExample />
+      </OverviewSection>
+
+      <OverviewSection title="Helper Text">
+        <HelperTextExample />
+      </OverviewSection>
+
+      <OverviewSection title="Options prop">
+        <OptionsPropExample />
       </OverviewSection>
     </div>
   ),
@@ -208,17 +272,18 @@ export const Playground: Story = {
     label: "Label",
     placeholder: "Select",
     readOnly: false,
+    required: false,
     size: "md",
     variant: "default",
   },
   render: (args) => (
     <Select {...args}>
-      <option value="analytics">Analytics</option>
-      <option value="campaigns">Campaigns</option>
-      <option value="audiences">Audiences</option>
-      <option value="billing" disabled>
+      <SelectItem value="analytics">Analytics</SelectItem>
+      <SelectItem value="campaigns">Campaigns</SelectItem>
+      <SelectItem value="audiences">Audiences</SelectItem>
+      <SelectItem value="billing" disabled>
         Billing
-      </option>
+      </SelectItem>
     </Select>
   ),
 };

@@ -10,17 +10,17 @@ import type { ButtonSize } from "../Button/Button";
 import { Icon } from "../Icon/Icon";
 
 const variants: IconButtonVariant[] = ["default", "outlined", "ghost"];
-const colors: IconButtonColor[] = ["primary", "secondary", "danger"];
+const colors: IconButtonColor[] = ["primary", "neutral", "danger"];
 const sizes: ButtonSize[] = ["lg", "md", "sm", "xs"];
 
 const overviewStyles = {
   root: {
     display: "flex",
     flexDirection: "column" as const,
+    alignItems: "flex-start",
     gap: "40px",
     fontFamily: "var(--if-font-family, Inter, system-ui, sans-serif)",
-    width: "100%",
-    maxWidth: "960px",
+    padding: "0 120px",
   },
   section: {
     display: "flex",
@@ -28,18 +28,19 @@ const overviewStyles = {
     gap: "16px",
   },
   heading: {
-    fontSize: "13px",
-    fontWeight: 600,
+    fontSize: "14px",
+    font: "var(--title-md)",
+    fontWeight: 500,
     letterSpacing: "0.02em",
     margin: 0,
     textTransform: "uppercase" as const,
-    color: "#566173",
+    color: "var(--text-secondary)",
   },
   row: {
-    alignItems: "center",
+    alignItems: "flex-start",
     display: "flex",
     flexWrap: "wrap" as const,
-    gap: "12px",
+    gap: "40px",
   },
   cell: {
     alignItems: "center",
@@ -49,34 +50,26 @@ const overviewStyles = {
     minWidth: "72px",
   },
   label: {
-    color: "#8792a5",
-    fontSize: "11px",
+    color: "var(--text-secondary)",
+    font: "var(--label-md)",
     margin: 0,
   },
   matrix: {
     display: "grid",
-    gap: "12px 16px",
+    gap: "var(--spacing-06) var(--spacing-07)",
     gridTemplateColumns: "80px repeat(3, minmax(72px, 1fr))",
     alignItems: "center",
+    justifyItems: "center",
   },
   matrixHeader: {
-    color: "#8792a5",
-    fontSize: "11px",
-    fontWeight: 500,
+    color: "var(--text-secondary)",
+    font: "var(--label-md)",
     textAlign: "center" as const,
   },
   matrixRowLabel: {
-    color: "#8792a5",
-    fontSize: "11px",
-    fontWeight: 500,
+    color: "var(--text-secondary)",
+    font: "var(--label-md)",
     textTransform: "capitalize" as const,
-  },
-  note: {
-    color: "#566173",
-    fontSize: "13px",
-    lineHeight: 1.5,
-    margin: 0,
-    maxWidth: "640px",
   },
 };
 
@@ -136,7 +129,6 @@ function VariantColorMatrix({
 const meta = {
   title: "Components/IconButton",
   component: IconButton,
-  tags: ["autodocs"],
   parameters: {
     docs: {
       description: {
@@ -206,14 +198,6 @@ export const Overview: Story = {
 
       <OverviewSection title="Loading">
         <VariantColorMatrix loading />
-      </OverviewSection>
-
-      <OverviewSection title="Accessibility">
-        <p style={overviewStyles.note}>
-          Icon-only buttons must expose an accessible name via `label` (
-          `aria-label`). The icon child is decorative (`aria-hidden`). Use
-          native <code>&lt;button&gt;</code> semantics for keyboard activation.
-        </p>
       </OverviewSection>
     </div>
   ),

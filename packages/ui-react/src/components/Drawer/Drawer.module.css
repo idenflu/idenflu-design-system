@@ -1,0 +1,317 @@
+.viewport {
+  inset: 0;
+  position: fixed;
+  z-index: 1000;
+}
+
+.overlay {
+  animation-duration: var(--nova-drawer-out-duration, 160ms);
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  background: var(--surface-overlay);
+  inset: 0;
+  position: fixed;
+}
+
+.overlay[data-state="open"] {
+  animation-duration: var(--nova-drawer-enter-duration, 200ms);
+  animation-name: nova-drawer-overlay-enter;
+}
+
+.overlay[data-state="closed"] {
+  animation-name: nova-drawer-overlay-out;
+}
+
+.content {
+  animation-duration: var(--nova-drawer-out-duration, 160ms);
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  background: var(--surface-02);
+  border: 1px solid var(--border-subtle);
+  box-shadow:
+    0 2px 4px 2px var(--transparent-200),
+    0 1px 2px 0 color-mix(in srgb, var(--base-black) 10%, transparent);
+  box-sizing: border-box;
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  max-block-size: 100dvh;
+  max-inline-size: 100dvw;
+  outline: none;
+  overflow: hidden;
+  position: fixed;
+  z-index: 1;
+}
+
+.content[data-side="left"] {
+  border-inline-start: 0;
+  inset-block: 0;
+  inset-inline-start: 0;
+}
+
+.content[data-side="right"] {
+  border-inline-end: 0;
+  inset-block: 0;
+  inset-inline-end: 0;
+}
+
+.content[data-side="top"] {
+  border-block-start: 0;
+  inset-block-start: 0;
+  inset-inline: 0;
+}
+
+.content[data-side="bottom"] {
+  border-block-end: 0;
+  inset-block-end: 0;
+  inset-inline: 0;
+}
+
+.content[data-state="open"][data-side="left"] {
+  animation-duration: var(--nova-drawer-enter-duration, 200ms);
+  animation-name: nova-drawer-slide-in-left;
+}
+
+.content[data-state="closed"][data-side="left"] {
+  animation-name: nova-drawer-slide-out-left;
+}
+
+.content[data-state="open"][data-side="right"] {
+  animation-duration: var(--nova-drawer-enter-duration, 200ms);
+  animation-name: nova-drawer-slide-in-right;
+}
+
+.content[data-state="closed"][data-side="right"] {
+  animation-name: nova-drawer-slide-out-right;
+}
+
+.content[data-state="open"][data-side="top"] {
+  animation-duration: var(--nova-drawer-enter-duration, 200ms);
+  animation-name: nova-drawer-slide-in-top;
+}
+
+.content[data-state="closed"][data-side="top"] {
+  animation-name: nova-drawer-slide-out-top;
+}
+
+.content[data-state="open"][data-side="bottom"] {
+  animation-duration: var(--nova-drawer-enter-duration, 200ms);
+  animation-name: nova-drawer-slide-in-bottom;
+}
+
+.content[data-state="closed"][data-side="bottom"] {
+  animation-name: nova-drawer-slide-out-bottom;
+}
+
+.sizeSm {
+  inline-size: min(320px, 100dvw);
+}
+
+.sizeMd {
+  inline-size: min(420px, 100dvw);
+}
+
+.sizeLg {
+  inline-size: min(560px, 100dvw);
+}
+
+.content[data-side="top"],
+.content[data-side="bottom"] {
+  block-size: min(50dvh, 100dvh);
+  inline-size: 100dvw;
+}
+
+.header {
+  align-items: flex-start;
+  border-block-end: 1px solid var(--border-subtle);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  gap: var(--spacing-02);
+  inline-size: 100%;
+  justify-content: flex-start;
+  max-inline-size: 100%;
+  min-inline-size: 0;
+  padding-block: var(--spacing-05);
+  padding-inline-end: var(--spacing-06);
+  padding-inline-start: var(--spacing-06);
+}
+
+.content[data-show-close] .header {
+  padding-inline-end: calc(var(--spacing-06) + 40px);
+}
+
+.title {
+  color: var(--text-primary);
+  inline-size: 100%;
+  margin: 0;
+  max-inline-size: 100%;
+  min-inline-size: 0;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+.description {
+  color: var(--text-secondary);
+  inline-size: 100%;
+  margin: 0;
+  max-inline-size: 100%;
+  min-inline-size: 0;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+.body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: var(--spacing-06);
+  min-block-size: 0;
+  min-inline-size: 0;
+  overflow: auto;
+  padding: var(--spacing-06);
+}
+
+.body p {
+  margin: 0;
+}
+
+.footer {
+  align-items: center;
+  border-block-start: 1px solid var(--border-subtle);
+  display: flex;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  gap: var(--spacing-01);
+  justify-content: flex-end;
+  padding-block: var(--spacing-05);
+  padding-inline: var(--spacing-06);
+}
+
+.close {
+  inset-block-start: var(--spacing-01);
+  inset-inline-end: var(--spacing-01);
+  position: absolute;
+  z-index: 1;
+}
+
+@keyframes nova-drawer-overlay-enter {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes nova-drawer-overlay-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes nova-drawer-slide-in-left {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes nova-drawer-slide-out-left {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes nova-drawer-slide-in-right {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes nova-drawer-slide-out-right {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes nova-drawer-slide-in-top {
+  from {
+    transform: translateY(-100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes nova-drawer-slide-out-top {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes nova-drawer-slide-in-bottom {
+  from {
+    transform: translateY(100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes nova-drawer-slide-out-bottom {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .content[data-state="open"],
+  .content[data-state="closed"],
+  .overlay[data-state="open"],
+  .overlay[data-state="closed"] {
+    animation: none;
+  }
+
+  .content[data-state="open"],
+  .overlay[data-state="open"] {
+    opacity: 1;
+    transform: none;
+  }
+
+  .content[data-state="closed"],
+  .overlay[data-state="closed"] {
+    opacity: 0;
+  }
+}

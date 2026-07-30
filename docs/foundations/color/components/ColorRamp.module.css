@@ -1,0 +1,108 @@
+.ramp {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-04, 12px);
+  margin: var(--spacing-06, 24px) 0;
+}
+
+.heading {
+  margin: 0;
+  font-weight: var(--font-weight-regular);
+  color: var(--text-primary, #141414);
+}
+
+.hint {
+  margin: 0;
+  font: var(--caption-md, 12px/1.3 sans-serif);
+  color: var(--text-muted, #737373);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+}
+
+.semanticGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: var(--spacing-03, 8px);
+}
+
+.swatch {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.solid {
+  display: inline-block;
+  margin-right: var(--spacing-04, 12px);
+  margin-bottom: var(--spacing-04, 12px);
+  vertical-align: top;
+  width: 96px;
+}
+
+.chipButton {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 36px;
+  padding: 0;
+  box-sizing: border-box;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.chipButton:focus-visible {
+  outline: 2px solid var(--border-focused, #266ee1);
+  outline-offset: 2px;
+}
+
+.chipOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  background: color-mix(in srgb, var(--base-black, #000) 55%, transparent);
+  color: var(--base-white, #fff);
+  font: var(--caption-md, monospace);
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .chipButton:hover .chipOverlay {
+    opacity: 1;
+  }
+}
+
+.chipButton:focus-visible .chipOverlay,
+.chipButton:active .chipOverlay {
+  opacity: 1;
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.token {
+  font: var(--caption-md, 12px/1.3 monospace);
+  color: var(--text-secondary, #555);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.label {
+  font: var(--label-md, 12px/1.3 sans-serif);
+  font-size: 12px;
+  color: var(--text-muted, #737373);
+  padding-inline-start: 4px;
+}

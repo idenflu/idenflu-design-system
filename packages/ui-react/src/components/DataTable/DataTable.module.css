@@ -1,0 +1,163 @@
+.root {
+  background: var(--surface-raised);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  inline-size: 100%;
+  min-inline-size: 0;
+}
+
+.header {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-04) var(--spacing-06);
+  justify-content: space-between;
+  padding: var(--spacing-06);
+}
+
+.headerContent {
+  display: grid;
+  flex: 0 0 auto;
+  gap: var(--spacing-01);
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  min-inline-size: 0;
+}
+
+.actions {
+  align-items: center;
+  display: flex;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  gap: var(--spacing-02);
+  justify-content: flex-end;
+  min-inline-size: 0;
+}
+
+.instantSearch {
+  --instant-search-collapsed-size: 32px;
+  display: grid;
+  flex: 0 1 auto;
+  flex-basis: var(--instant-search-collapsed-size);
+  grid-template-areas: "instant-search";
+  justify-items: end;
+  max-inline-size: var(--instant-search-collapsed-size);
+  min-block-size: var(--instant-search-collapsed-size);
+  min-inline-size: 0;
+  overflow: hidden;
+  position: relative;
+  transition:
+    flex-basis 0.25s cubic-bezier(0.215, 0.61, 0.355, 1),
+    flex-grow 0.25s cubic-bezier(0.215, 0.61, 0.355, 1),
+    max-inline-size 0.25s cubic-bezier(0.215, 0.61, 0.355, 1);
+  will-change: flex-basis, flex-grow, max-inline-size;
+}
+
+.instantSearchSizeMd {
+  --instant-search-collapsed-size: 40px;
+}
+
+.instantSearchSizeLg {
+  --instant-search-collapsed-size: 48px;
+}
+
+.instantSearchExpanded {
+  flex-basis: 0;
+  flex-grow: 1;
+  max-inline-size: 100%;
+}
+
+.instantSearchButton,
+.instantSearchField {
+  grid-area: instant-search;
+  transition: opacity 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.instantSearchButton {
+  align-self: center;
+  position: relative;
+  z-index: 1;
+}
+
+.instantSearchField {
+  align-self: center;
+  inline-size: 100%;
+  inset-block: 0;
+  inset-inline: 0;
+  min-inline-size: 0;
+  position: absolute;
+}
+
+.instantSearchLayerHidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .instantSearch,
+  .instantSearchButton,
+  .instantSearchField {
+    transition: none;
+  }
+}
+
+.content {
+  min-inline-size: 0;
+  overflow-x: auto;
+}
+
+.table {
+  border-collapse: collapse;
+  color: var(--text-primary);
+  font: var(--body-sm);
+  inline-size: 100%;
+  min-inline-size: 100%;
+}
+
+.tableHeaderCell,
+.tableCell {
+  border-block-end: 1px solid var(--border-primary);
+  padding-block: 11px;
+  padding-inline: 12px;
+  text-align: start;
+  vertical-align: middle;
+}
+
+.tableHeaderCell {
+  background: var(--surface-primary);
+  color: var(--text-secondary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.emptyRow .tableCell {
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.densitySm .tableHeaderCell,
+.densitySm .tableCell {
+  padding-block: 8px;
+}
+
+.densityLg .tableHeaderCell,
+.densityLg .tableCell {
+  padding-block: 16px;
+}
+
+.footer {
+  align-items: center;
+  background: var(--surface-primary);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-04) var(--spacing-06);
+  justify-content: space-between;
+}
+
+.rowCount {
+  color: var(--text-secondary);
+  font: var(--body-sm);
+  margin: 0;
+  padding-block: 12px;
+  padding-inline: 16px;
+}

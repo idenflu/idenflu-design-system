@@ -1,0 +1,49 @@
+.root {
+  align-items: center;
+  background: var(--background-neutral-subtle);
+  border-radius: var(--rounded-full);
+  box-sizing: border-box;
+  color: var(--text-secondary);
+  display: inline-flex;
+  flex: 0 0 auto;
+  font: var(--label-md);
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
+.image {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.fallback {
+  align-items: center;
+  display: inline-flex;
+  height: 100%;
+  justify-content: center;
+  min-width: 0;
+  padding-inline: 4px;
+  text-align: center;
+  width: 100%;
+}
+
+.sizeSm {
+  height: 32px;
+  width: 32px;
+}
+
+.sizeMd {
+  height: 40px;
+  width: 40px;
+}
+
+.sizeLg {
+  font: var(--label-lg);
+  height: 48px;
+  width: 48px;
+}

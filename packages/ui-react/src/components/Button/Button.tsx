@@ -1,11 +1,11 @@
 import * as React from "react";
 import { cva } from "class-variance-authority";
-import { cn } from "@/utils/classNames";
+import { cn } from "../../utils/classNames";
 import styles from "./Button.module.css";
 import { ButtonSpinner } from "./ButtonSpinner";
 
 export type ButtonVariant = "default" | "outlined" | "ghost";
-export type ButtonColor = "primary" | "secondary" | "danger";
+export type ButtonColor = "primary" | "neutral" | "danger";
 export type ButtonSize = "xs" | "sm" | "md" | "lg";
 
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
@@ -14,6 +14,7 @@ export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   fullWidth?: boolean;
   loading?: boolean;
   size?: ButtonSize;
+  startIcon?: React.ReactNode;
   variant?: ButtonVariant;
 };
 
@@ -21,8 +22,8 @@ const buttonClassName = cva(styles.root, {
   defaultVariants: {
     color: "primary",
     fullWidth: false,
+    hasStartIcon: false,
     loading: false,
-    loadingSolo: false,
     size: "md",
     variant: "default",
   },
@@ -30,19 +31,19 @@ const buttonClassName = cva(styles.root, {
     color: {
       danger: styles.colorDanger,
       primary: styles.colorPrimary,
-      secondary: styles.colorSecondary,
+      neutral: styles.colorNeutral,
     },
     fullWidth: {
       false: null,
       true: styles.fullWidth,
     },
+    hasStartIcon: {
+      false: null,
+      true: styles.hasStartIcon,
+    },
     loading: {
       false: null,
       true: styles.loading,
-    },
-    loadingSolo: {
-      false: null,
-      true: styles.loadingSolo,
     },
     size: {
       lg: styles.sizeLg,
@@ -70,6 +71,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       loading = false,
       onClick,
       size = "md",
+      startIcon,
       type = "button",
       variant = "default",
       ...props
@@ -77,8 +79,44 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const isDisabled = disabled || loading;
-    const showSpinnerInIconSlot = loading && Boolean(endIcon);
-    const showSpinnerInsteadOfLabel = loading && !endIcon;
+    const hasIcon = Boolean(startIcon) || Boolean(endIcon);
+    const hasBothIcons = Boolean(startIcon) && Boolean(endIcon);
+    const showLoadingOverlay = loading && (!hasIcon || hasBothIcons);
+    const contentHiddenClass = showLoadingOverlay
+      ? styles.contentHidden
+      : undefined;
+
+    const labelEl =
+      children != null && children !== "" ? (
+        showLoadingOverlay ? (
+          <span className={contentHiddenClass}>{children}</span>
+        ) : (
+          children
+        )
+      ) : null;
+    const startIconEl = startIcon && (
+      <span
+        className={cn(styles.icon, styles.startIcon, contentHiddenClass)}
+        aria-hidden="true"
+      >
+        {loading && !hasBothIcons ? <ButtonSpinner size="md" /> : startIcon}
+      </span>
+    );
+
+    const endIconEl = endIcon && (
+      <span
+        className={cn(styles.icon, styles.endIcon, contentHiddenClass)}
+        aria-hidden="true"
+      >
+        {loading && !hasBothIcons ? <ButtonSpinner size="md" /> : endIcon}
+      </span>
+    );
+
+    const loadingOverlayEl = showLoadingOverlay && (
+      <span className={styles.loadingOverlay} aria-hidden="true">
+        <ButtonSpinner size="md" />
+      </span>
+    );
 
     return (
       <button
@@ -88,8 +126,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           buttonClassName({
             color,
             fullWidth,
+            hasStartIcon: Boolean(startIcon),
             loading,
-            loadingSolo: showSpinnerInsteadOfLabel,
             size,
             variant,
           }),
@@ -106,22 +144,10 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         type={type}
         {...props}
       >
-        {showSpinnerInsteadOfLabel ? (
-          <span className={styles.label} aria-hidden="true">
-            <ButtonSpinner size={size} />
-          </span>
-        ) : children != null && children !== "" ? (
-          <span className={styles.label}>{children}</span>
-        ) : null}
-        {showSpinnerInIconSlot ? (
-          <span className={styles.icon} aria-hidden="true">
-            <ButtonSpinner size={size} />
-          </span>
-        ) : endIcon ? (
-          <span className={styles.icon} aria-hidden="true">
-            {endIcon}
-          </span>
-        ) : null}
+        {startIconEl}
+        {labelEl}
+        {endIconEl}
+        {loadingOverlayEl}
       </button>
     );
   }

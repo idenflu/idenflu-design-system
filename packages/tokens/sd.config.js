@@ -14,6 +14,7 @@ const JS_BUILD_PATH = path.join(__dirname, "dist/js");
 const BASE_SOURCE = [
   "src/rounded/rounded.json",
   "src/colors/colors.json",
+  "src/size/size.json",
   "src/spacing/spacing.json",
   "src/typography/font.json",
   "src/typography/typo-styles.json",

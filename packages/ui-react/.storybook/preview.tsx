@@ -1,10 +1,67 @@
 import * as React from "react";
-import type { Preview } from "@storybook/react-vite";
+import type { Decorator, Preview, Renderer } from "@storybook/react-vite";
+import { DecoratorHelpers } from "@storybook/addon-themes";
+import { useEffect } from "storybook/preview-api";
 import spriteUrl from "@idenflu/ui-icons/icons.svg?url";
 import { IconSpriteProvider } from "../src/components/Icon/IconSpriteContext";
 import { TooltipProvider } from "../src/components/Tooltip";
 import "../src/styles.css";
-import { createTheme, ThemeProvider } from "../src/theme";
+import "./preview.css";
+
+const { initializeThemeState, pluckThemeFromContext } = DecoratorHelpers;
+
+type ThemeChoice = "system" | "light" | "dark";
+
+const THEME_NAMES: ThemeChoice[] = ["system", "light", "dark"];
+const DEFAULT_THEME: ThemeChoice = "system";
+const DARK_CLASS = "dark";
+
+initializeThemeState(THEME_NAMES, DEFAULT_THEME);
+
+const resolveIsDark = (theme: ThemeChoice): boolean => {
+  if (theme === "dark") {
+    return true;
+  }
+
+  if (theme === "light") {
+    return false;
+  }
+
+  return window.matchMedia("(prefers-color-scheme: dark)").matches;
+};
+
+const withIdenfluTheme: Decorator<Renderer> = (StoryFn, context) => {
+  const themeOverride = context.parameters.themes?.themeOverride as
+    | ThemeChoice
+    | undefined;
+  const selectedFromGlobals = pluckThemeFromContext(context) as ThemeChoice | "";
+  const selectedTheme: ThemeChoice =
+    themeOverride || selectedFromGlobals || DEFAULT_THEME;
+
+  useEffect(() => {
+    const root = document.documentElement;
+
+    const apply = () => {
+      root.classList.toggle(DARK_CLASS, resolveIsDark(selectedTheme));
+    };
+
+    apply();
+
+    if (selectedTheme !== "system") {
+      return;
+    }
+
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const onChange = () => apply();
+    mediaQuery.addEventListener("change", onChange);
+
+    return () => {
+      mediaQuery.removeEventListener("change", onChange);
+    };
+  }, [selectedTheme]);
+
+  return <StoryFn />;
+};
 
 const appendFontLink = (id: string, linkAttributes: Record<string, string>) => {
   if (typeof document === "undefined") {
@@ -43,29 +100,22 @@ const appendNotoSansKrFontLinks = () => {
 
 appendNotoSansKrFontLinks();
 
-const theme = createTheme({
-  components: {
-    Button: {
-      defaultProps: {
-        variant: "ghost",
-      },
-    },
-  },
-});
-
 const preview: Preview = {
   decorators: [
+    withIdenfluTheme,
     (Story) => (
-      <ThemeProvider theme={theme}>
-        <TooltipProvider>
-          <IconSpriteProvider href={spriteUrl}>
-            <Story />
-          </IconSpriteProvider>
-        </TooltipProvider>
-      </ThemeProvider>
+      <TooltipProvider>
+        <IconSpriteProvider href={spriteUrl}>
+          <Story />
+        </IconSpriteProvider>
+      </TooltipProvider>
     ),
   ],
   parameters: {
+    backgrounds: {
+      // Canvas background comes from token-backed preview.css + `.dark`.
+      disable: true,
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,

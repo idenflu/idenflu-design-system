@@ -1,0 +1,19 @@
+/**
+ * Preview canvas follows design tokens so the full iframe
+ * (not only components) switches with the toolbar theme.
+ */
+html {
+  color-scheme: light;
+  background-color: var(--surface-00);
+  color: var(--text-primary);
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background-color: var(--surface-00);
+  color: var(--text-primary);
+}

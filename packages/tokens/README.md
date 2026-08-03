@@ -37,5 +37,10 @@ Style Dictionary가 `src/**/*.json`을 읽어 `dist/css/`, `dist/js/`에 산출�
 
 ## 버전 · 변경 이력
 
-버전과 변경 이력은 Changesets로 관리하며, 상세 내용은 [CHANGELOG.md](./CHANGELOG.md)를 참고하세요.
-토큰을 변경한 PR에서는 루트에서 `npm run changeset`으로 변경 요약을 남깁니다.
+버전과 변경 이력은 수동으로 관리합니다.
+
+1. `package.json`의 `version`을 올립니다 (`1.0.0-alpha.N` 형태).
+2. [CHANGELOG.md](./CHANGELOG.md)에 소비자 관점 요약을 추가합니다 (가능하면 CSS 변수명 포함).
+3. `main` 머지 후 publish 워크플로가 해당 버전을 GitHub Packages에 배포합니다.
+
+로컬에서 바로 배포할 때는 루트에서 `npm run release:tokens`를 사용합니다.

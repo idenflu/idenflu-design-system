@@ -62,12 +62,11 @@ requireIncludes(".npmrc", ["@idenflu:registry=https://npm.pkg.github.com"]);
 requireIncludes(".github/workflows/publish-packages.yml", [
   "Publish GitHub Packages",
   "packages: write",
-  "pull-requests: write",
   "registry-url: https://npm.pkg.github.com",
   "NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}",
-  "changesets/action@v1",
-  "npm run version-packages",
-  "npm run release:tokens",
+  "npm run build:tokens",
+  "npm view @idenflu/ui-tokens@$VERSION version",
+  "npm publish --workspace @idenflu/ui-tokens --tag alpha",
   "npm ci",
   "Pin @idenflu workspace deps for publish",
   "npm view @idenflu/ui-icons@$VERSION version",
@@ -76,16 +75,13 @@ requireIncludes(".github/workflows/publish-packages.yml", [
   "npm publish --workspace @idenflu/ui-react",
 ]);
 
-requireFile(".changeset/config.json");
-requireFile(".changeset/pre.json");
-requireIncludes(".changeset/config.json", [
-  '"baseBranch": "main"',
-  '"access": "restricted"',
-  "@idenflu/ui-icons",
-  "@idenflu/ui-react",
-]);
-requireIncludes(".changeset/pre.json", ['"mode": "pre"', '"tag": "alpha"']);
 requireFile("packages/tokens/CHANGELOG.md");
+requireIncludes("packages/tokens/CHANGELOG.md", ["# @idenflu/ui-tokens"]);
+requireIncludes("packages/tokens/package.json", ['"version":']);
+requireIncludes("packages/tokens/README.md", [
+  "version",
+  "CHANGELOG.md",
+]);
 
 requireFile("package.json");
 if (exists("package.json")) {
@@ -100,17 +96,28 @@ if (exists("package.json")) {
   if (packageJson.scripts?.["dev:playground"]) {
     failures.push("package.json: remove obsolete dev:playground script");
   }
-  if (packageJson.scripts?.["version-packages"] !== "changeset version && node scripts/reset-workspace-deps.js") {
-    failures.push("package.json: missing version-packages → reset-workspace-deps.js");
+  if (packageJson.scripts?.changeset || packageJson.scripts?.["version-packages"]) {
+    failures.push("package.json: remove obsolete changesets scripts");
+  }
+  if (packageJson.devDependencies?.["@changesets/cli"]) {
+    failures.push("package.json: remove @changesets/cli");
+  }
+  if (
+    packageJson.scripts?.["release:tokens"] !==
+    "npm run build:tokens && npm publish --workspace @idenflu/ui-tokens --tag alpha"
+  ) {
+    failures.push("package.json: missing release:tokens publish script");
   }
   if (packageJson.scripts?.["check:packages"] !== "node scripts/package-skeleton-check.js") {
     failures.push("package.json: missing check:packages script");
   }
 }
 
-requireFile("scripts/reset-workspace-deps.js");
+if (exists(".changeset") || exists("scripts/reset-workspace-deps.js")) {
+  failures.push("changesets leftovers must be removed (.changeset/, reset-workspace-deps.js)");
+}
 if (exists("scripts/reset-playground-deps.js")) {
-  failures.push("scripts/reset-playground-deps.js: obsolete; use reset-workspace-deps.js");
+  failures.push("scripts/reset-playground-deps.js: obsolete; remove it");
 }
 if (exists("examples/playground") || exists("examples")) {
   failures.push("examples/: playground workspace must be removed");

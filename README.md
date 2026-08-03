@@ -18,7 +18,7 @@ scripts/    package 검증 스크립트
 
 GitHub Packages 배포 설정은 `.github/workflows/publish-packages.yml`에 있습니다.
 
-`@idenflu/ui-tokens`는 Changesets로 버전·CHANGELOG를 관리합니다. 자세한 내용은 `.changeset/README.md`를 참고하세요.
+`@idenflu/ui-tokens`는 `packages/tokens/package.json` 버전과 `CHANGELOG.md`를 수동으로 관리합니다. 토큰을 변경한 PR에서 버전을 올리고 CHANGELOG에 요약을 남긴 뒤 `main`에 머지하면 publish 워크플로가 새 버전을 배포합니다.
 
 ## Commands
 
@@ -26,8 +26,6 @@ GitHub Packages 배포 설정은 `.github/workflows/publish-packages.yml`에 있
 npm run check
 npm run check:docs
 npm run check:packages
-npm run changeset
-npm run version-packages
 npm run release:tokens
 ```
 

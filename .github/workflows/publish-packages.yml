@@ -11,13 +11,12 @@ concurrency:
   cancel-in-progress: true
 
 permissions:
-  contents: write
+  contents: read
   packages: write
-  pull-requests: write
 
 jobs:
   tokens:
-    name: Version or publish tokens
+    name: Publish tokens
     runs-on: ubuntu-latest
     env:
       # setup-node .npmrc의 //npm.pkg.github.com/:_authToken 치환용
@@ -26,8 +25,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -43,17 +40,17 @@ jobs:
       - name: Verify docs and packages
         run: npm run check
 
-      - name: Create Release Pull Request or Publish
-        id: changesets
-        uses: changesets/action@v1
-        with:
-          version: npm run version-packages
-          publish: npm run release:tokens
-          title: "chore(tokens): 버전 패키지"
-          commit: "chore(tokens): 버전 패키지"
-          createGithubReleases: false
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build tokens
+        run: npm run build:tokens
+
+      - name: Publish tokens
+        run: |
+          VERSION=$(node -p "require('./packages/tokens/package.json').version")
+          if npm view @idenflu/ui-tokens@$VERSION version --registry=https://npm.pkg.github.com >/dev/null 2>&1; then
+            echo "@idenflu/ui-tokens@$VERSION already exists. Skipping."
+          else
+            npm publish --workspace @idenflu/ui-tokens --tag alpha
+          fi
 
   icons-react:
     name: Publish icons and ui-react

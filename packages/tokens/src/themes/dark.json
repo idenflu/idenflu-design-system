@@ -142,7 +142,6 @@
       "$type": "color",
       "$value": "{Base.Gray.300}"
     },
-
     "error": {
       "$type": "color",
       "$value": "{Base.Red.500}"
@@ -157,11 +156,11 @@
     },
     "error-subtle": {
       "$type": "color",
-      "$value": "{Base.Red.800}"
+      "$value": "{Base.Red.700}"
     },
     "error-subtle-hover": {
       "$type": "color",
-      "$value": "{Base.Red.700}"
+      "$value": "{Base.Red.800}"
     },
     "error-tint": {
       "$type": "color",
@@ -181,11 +180,11 @@
     },
     "success-subtle": {
       "$type": "color",
-      "$value": "{Base.Green.800}"
+      "$value": "{Base.Green.700}"
     },
     "success-subtle-hover": {
       "$type": "color",
-      "$value": "{Base.Green.700}"
+      "$value": "{Base.Green.800}"
     },
     "success-tint": {
       "$type": "color",
@@ -205,11 +204,11 @@
     },
     "warning-subtle": {
       "$type": "color",
-      "$value": "{Base.Amber.800}"
+      "$value": "{Base.Amber.700}"
     },
     "warning-subtle-hover": {
       "$type": "color",
-      "$value": "{Base.Amber.700}"
+      "$value": "{Base.Amber.800}"
     },
     "warning-tint": {
       "$type": "color",
@@ -229,11 +228,11 @@
     },
     "info-subtle": {
       "$type": "color",
-      "$value": "{Base.Blue.800}"
+      "$value": "{Base.Blue.700}"
     },
     "info-subtle-hover": {
       "$type": "color",
-      "$value": "{Base.Blue.700}"
+      "$value": "{Base.Blue.800}"
     },
     "info-tint": {
       "$type": "color",

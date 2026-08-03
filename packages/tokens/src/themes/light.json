@@ -2,15 +2,15 @@
   "Border": {
     "primary": {
       "$type": "color",
-      "$value": "{Base.Gray.200}"
+      "$value": "{Base.Gray.300}"
     },
     "strong": {
       "$type": "color",
-      "$value": "{Base.Gray.400}"
+      "$value": "{Base.Gray.500}"
     },
     "disabled": {
       "$type": "color",
-      "$value": "{Base.Gray.300}"
+      "$value": "{Base.Gray.200}"
     },
     "focused": {
       "$type": "color",
@@ -142,7 +142,6 @@
       "$type": "color",
       "$value": "{Base.Gray.700}"
     },
-
     "error": {
       "$type": "color",
       "$value": "{Base.Red.500}"

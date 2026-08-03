@@ -24,7 +24,12 @@ export function isPxNumberToken(token, options = {}) {
   if (typeof root !== "string") return false;
 
   if (PX_NUMBER_TOKEN_NAMES.has(root)) return true;
-  if (root.startsWith("rounded-") || root.startsWith("spacing-")) return true;
+  if (
+    root.startsWith("rounded-") ||
+    root.startsWith("spacing-") ||
+    root.startsWith("size")
+  )
+    return true;
 
   return false;
 }

@@ -175,8 +175,15 @@
     }
   }
 
-  &:is(.colorPrimary, .colorNeutral, .colorDanger):active:not(:disabled) {
+  &:is(.colorPrimary, .colorNeutral, .colorDanger):is(
+      :active,
+      [data-state="open"]
+    ):not(:disabled) {
     color: var(--button-color-active);
+  }
+
+  &[data-state="open"]:not(:disabled) {
+    background: var(--button-bg-active);
   }
 }
 

@@ -87,7 +87,8 @@
   }
 }
 
-.variantGhost:active:not(:disabled) {
+.variantGhost:active:not(:disabled),
+.variantGhost[data-state="open"]:not(:disabled) {
   background: var(--background-transparent-active);
 }
 /* Variant + Colors */
@@ -205,7 +206,8 @@
   }
 }
 
-.variantGhost.colorPrimary:active:not(:disabled) {
+.variantGhost.colorPrimary:active:not(:disabled),
+.variantGhost.colorPrimary[data-state="open"]:not(:disabled) {
   color: var(--text-brand-active);
 }
 
@@ -219,7 +221,8 @@
   }
 }
 
-.variantGhost.colorSecondary:active:not(:disabled) {
+.variantGhost.colorSecondary:active:not(:disabled),
+.variantGhost.colorSecondary[data-state="open"]:not(:disabled) {
   color: var(--text-neutral-active);
 }
 
@@ -233,7 +236,8 @@
   }
 }
 
-.variantGhost.colorDanger:active:not(:disabled) {
+.variantGhost.colorDanger:active:not(:disabled),
+.variantGhost.colorDanger[data-state="open"]:not(:disabled) {
   color: var(--text-error-active);
 }
 

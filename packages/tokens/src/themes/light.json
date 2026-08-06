@@ -2,7 +2,7 @@
   "Border": {
     "primary": {
       "$type": "color",
-      "$value": "{Base.Gray.300}"
+      "$value": "{Base.Gray.200}"
     },
     "strong": {
       "$type": "color",
@@ -300,7 +300,7 @@
     },
     "secondary": {
       "$type": "color",
-      "$value": "{Base.Gray.600}"
+      "$value": "{Base.Gray.700}"
     },
     "muted": {
       "$type": "color",

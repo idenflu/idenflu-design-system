@@ -43,25 +43,20 @@ export type {
   TextAreaVariant,
 } from "./components/TextArea/index";
 
-export { NativeSelect } from "./components/NativeSelect/index";
-export type {
-  NativeSelectItemProps,
-  NativeSelectOption,
-  NativeSelectProps,
-  NativeSelectSize,
-  NativeSelectVariant,
-} from "./components/NativeSelect/index";
-
 export { Select, SelectItem } from "./components/Select/index";
 export type {
   SelectItemProps,
   SelectOption,
+  SelectOverflow,
   SelectProps,
   SelectSize,
+  SelectValueDisplay,
   SelectVariant,
 } from "./components/Select/index";
 
+/** @deprecated Use `Select` with `searchable` / `multiple` instead. */
 export { Combobox, ComboboxItem } from "./components/Combobox/index";
+/** @deprecated Use Select types instead. */
 export type {
   ComboboxItemProps,
   ComboboxOption,

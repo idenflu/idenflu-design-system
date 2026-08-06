@@ -229,9 +229,9 @@ const meta = {
     docs: {
       description: {
         component:
-          "Searchable combobox built with Radix Popover (positioning/dismiss) and a custom listbox. " +
-          "Radix has no Combobox primitive; Select cannot host a filter input reliably. " +
-          "With `multiple`, selected values render as deletable Chip. " +
+          "**Deprecated.** Prefer `Select` with `searchable` and/or `multiple`. " +
+          "This field-input combobox is kept for compatibility. " +
+          "Built with Radix Popover + custom listbox. " +
           "Keyboard: Arrow Up/Down, Enter, Escape, Backspace (remove last chip when input is empty).",
       },
     },
@@ -258,8 +258,8 @@ export const Overview: Story = {
   render: () => (
     <div style={overviewStyles.root}>
       <p style={overviewStyles.note}>
-        Prefer Combobox for type-to-filter and multi-select with chips. Use
-        Select for closed-list single choice without search.
+        Deprecated: migrate to Select (`searchable`, `multiple`, `valueDisplay`).
+        Prefer Select for new work.
       </p>
 
       <OverviewSection title="Multiple + Chip">

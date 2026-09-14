@@ -116,7 +116,7 @@ const tabsTriggerClassName = cva(styles.trigger, {
 });
 
 export const Tabs = React.forwardRef<
-  React.ElementRef<typeof TabsPrimitive.Root>,
+  React.ComponentRef<typeof TabsPrimitive.Root>,
   TabsProps
 >(
   (
@@ -147,7 +147,7 @@ export const Tabs = React.forwardRef<
 Tabs.displayName = "Tabs";
 
 export const TabsList = React.forwardRef<
-  React.ElementRef<typeof TabsPrimitive.List>,
+  React.ComponentRef<typeof TabsPrimitive.List>,
   TabsListProps
 >(
   (
@@ -270,7 +270,7 @@ export const TabsList = React.forwardRef<
 TabsList.displayName = "TabsList";
 
 export const TabsTrigger = React.forwardRef<
-  React.ElementRef<typeof TabsPrimitive.Trigger>,
+  React.ComponentRef<typeof TabsPrimitive.Trigger>,
   TabsTriggerProps
 >(
   (
@@ -337,7 +337,7 @@ export const TabsTrigger = React.forwardRef<
 TabsTrigger.displayName = "TabsTrigger";
 
 export const TabsContent = React.forwardRef<
-  React.ElementRef<typeof TabsPrimitive.Content>,
+  React.ComponentRef<typeof TabsPrimitive.Content>,
   TabsContentProps
 >(({ className, ...props }, ref) => (
   <TabsPrimitive.Content

@@ -17,7 +17,7 @@
 .tablist {
   display: flex;
   gap: var(--spacing-05, 16px);
-  border-bottom: 1px solid var(--border-subtle, #e5e5e5);
+  border-bottom: 1px solid var(--border-primary, #e5e5e5);
 }
 
 .tab {

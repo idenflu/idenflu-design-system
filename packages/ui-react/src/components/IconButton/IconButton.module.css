@@ -96,9 +96,9 @@
   --button-border: var(--border-neutral);
   --button-border-hover: var(--border-neutral-hover);
   --button-border-active: var(--border-neutral-active);
-  --button-color: var(--text-primary);
+  --button-color: var(--text-secondary);
   --button-color-hover: var(--text-hover);
-  --button-color-active: var(--text-active);
+  --button-color-active: var(--text-pressed);
 }
 
 .colorDanger {
@@ -141,6 +141,10 @@
   &:is(.colorPrimary, .colorNeutral, .colorDanger) {
     border-color: var(--button-border);
     color: var(--button-color);
+  }
+
+  &:is(.colorNeutral) {
+    border-color: var(--border-strong);
   }
 
   @media (hover: hover) and (pointer: fine) {

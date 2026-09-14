@@ -233,7 +233,10 @@ export const TabsList = React.forwardRef<
           assignRef(ref, node);
         }}
         data-slot="tabs-list"
-        className={cn(tabsListClassName({ orientation, variant }), className)}
+        className={cn(
+          tabsListClassName({ orientation, variant }),
+          !showScrollButtons && className
+        )}
         {...props}
       >
         {children}
@@ -250,7 +253,7 @@ export const TabsList = React.forwardRef<
     }
 
     return (
-      <div className={styles.nav}>
+      <div className={cn(styles.nav, className)}>
         <TabsScrollButton
           direction="previous"
           disabled={startScrollButtonDisabled}

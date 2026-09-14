@@ -1,7 +1,6 @@
 /* Nova Divider — separator pattern adapted from MUI Divider and Carbon UI shell dividers */
 
 .root {
-  border: 0;
   box-sizing: border-box;
   color: var(--text-muted);
   flex: 0 0 auto;
@@ -11,14 +10,14 @@
 }
 
 .orientationHorizontal {
-  border-block-start: 1px solid var(--border-subtle);
+  border-block-start: 1px solid var(--border-primary);
   inline-size: auto;
   margin-inline: 8px;
 }
 
 .orientationVertical {
+  border-inline-start: 1px solid var(--border-primary);
   align-self: stretch;
-  border-inline-start: 1px solid var(--border-subtle);
   margin-block: 8px;
   min-block-size: 24px;
 }
@@ -39,19 +38,19 @@
   align-items: center;
   border: 0;
   display: flex;
-  gap: 12px;
+  gap: var(--spacing-sm);
 }
 
 .withChildren::before,
 .withChildren::after {
-  border-color: var(--border-subtle);
+  border-color: var(--border-primary);
   content: "";
   flex: 1 1 auto;
 }
 
 .orientationHorizontal.withChildren::before,
 .orientationHorizontal.withChildren::after {
-  border-block-start: 1px solid var(--border-subtle);
+  border-block-start: 1px solid var(--border-primary);
 }
 
 .orientationVertical.withChildren {
@@ -61,11 +60,11 @@
 
 .orientationVertical.withChildren::before,
 .orientationVertical.withChildren::after {
-  border-inline-start: 1px solid var(--border-subtle);
+  border-inline-start: 1px solid var(--border-primary);
 }
 
-.textStart::before,
-.textEnd::after {
+.textStart::after,
+.textEnd::before {
   flex: 0 0 32px;
 }
 

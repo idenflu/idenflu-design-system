@@ -3,6 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { Tabs as TabsPrimitive } from "radix-ui";
 import { cn } from "../../utils/classNames";
 import { Icon } from "../Icon/Icon";
+import { IconButton } from "../IconButton/IconButton";
 import styles from "./Tabs.module.css";
 
 export type TabsOrientation = "horizontal" | "vertical";
@@ -42,7 +43,7 @@ export type TabsContentProps = React.ComponentPropsWithoutRef<
 
 export type TabsScrollButtonProps = Omit<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
-  "children"
+  "children" | "color"
 > & {
   direction: "previous" | "next";
 };
@@ -284,8 +285,7 @@ export const TabsList = React.forwardRef<
 
       const hostRect = nav.getBoundingClientRect();
       const triggerRect = activeTrigger.getBoundingClientRect();
-      const clipRect =
-        scrollerRef.current?.getBoundingClientRect() ?? hostRect;
+      const clipRect = scrollerRef.current?.getBoundingClientRect() ?? hostRect;
 
       let offset: number;
       let size: number;
@@ -547,18 +547,22 @@ export const TabsScrollButton = React.forwardRef<
   const isPrevious = direction === "previous";
 
   return (
-    <button
+    <IconButton
       ref={ref}
-      aria-label={isPrevious ? "이전 탭 보기" : "다음 탭 보기"}
-      className={cn(styles.scrollButton, className)}
       type={type}
       {...props}
-    >
-      <Icon
-        name={isPrevious ? "keyboard-arrow-left" : "keyboard-arrow-right"}
-        size="medium"
-      />
-    </button>
+      className={cn(styles.scrollButton, className)}
+      color="neutral"
+      icon={
+        <Icon
+          name={isPrevious ? "keyboard-arrow-left" : "keyboard-arrow-right"}
+          size="medium"
+        />
+      }
+      label={isPrevious ? "이전 탭 보기" : "다음 탭 보기"}
+      size="md"
+      variant="ghost"
+    />
   );
 });
 

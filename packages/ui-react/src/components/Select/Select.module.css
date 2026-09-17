@@ -1,76 +1,154 @@
 .root {
-  .trigger {
-    align-items: center;
-    appearance: none;
-    background: transparent;
-    border: 0;
-    box-sizing: border-box;
-    color: inherit;
-    cursor: pointer;
-    display: inline-flex;
-    gap: 8px;
-    inline-size: 100%;
-    justify-content: space-between;
-    margin: 0;
-    min-inline-size: 0;
-    outline: none;
-    padding: 0;
-    text-align: start;
-  }
-
-  .trigger:disabled {
-    cursor: not-allowed;
-  }
+  /* field chrome from Field.module.css */
 }
 
-.value {
+.controlRow {
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+  inline-size: 100%;
+  min-inline-size: 0;
+}
+
+.trigger {
+  align-items: flex-start;
+  appearance: none;
+  background: transparent;
+  border: 0;
+  box-sizing: border-box;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  flex: 1 1 auto;
+  gap: 8px;
+  inline-size: 100%;
+  justify-content: space-between;
+  margin: 0;
+  min-inline-size: 0;
+  outline: none;
+  padding: 0;
+  text-align: start;
+}
+
+.trigger:disabled {
+  cursor: not-allowed;
+}
+
+.valueArea {
+  align-items: center;
+  display: flex;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  gap: 4px;
+  min-inline-size: 0;
+}
+
+.valueAreaEllipsis {
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.valueAreaEllipsis::-webkit-scrollbar {
+  block-size: 0;
+  display: none;
+  inline-size: 0;
+}
+
+.chipSlot {
+  flex: 0 0 auto;
+  min-inline-size: 0;
+}
+
+.placeholder,
+.textValue {
+  color: inherit;
   flex: 1;
+  font: var(--body-sm);
   min-inline-size: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.value[data-placeholder] {
+.placeholder {
   color: var(--text-secondary);
 }
 
 .chevron {
+  align-self: flex-start;
   color: var(--text-secondary);
   display: inline-flex;
   flex: 0 0 auto;
+  margin-block-start: 2px;
 }
 
-.trigger:disabled .chevron {
+.disabled .chevron {
   color: var(--text-disabled);
 }
 
-.content {
+.panel {
   animation-duration: var(--nova-select-out-duration, 100ms);
   animation-fill-mode: both;
+  animation-name: nova-select-out;
   animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  background: var(--surface-on-00);
+  background: var(--surface-02);
   box-shadow:
     0 2px 4px 2px var(--transparent-200),
     0 1px 2px 0 color-mix(in srgb, var(--base-black) 10%, transparent);
   box-sizing: border-box;
-  min-inline-size: var(--radix-select-trigger-width, 240px);
+  inline-size: var(--nova-select-anchor-width, 240px);
+  min-inline-size: var(--nova-select-anchor-width, 240px);
   overflow: hidden;
+  position: fixed;
   z-index: 1000;
 }
 
-.content[data-state="open"] {
+.panel[data-state="open"] {
   animation-duration: var(--nova-select-enter-duration, 200ms);
   animation-name: nova-select-enter;
 }
 
-.content[data-state="closed"] {
-  animation-name: nova-select-out;
+.search {
+  align-items: center;
+  display: flex;
+  gap: var(--space-md);
+  border-block-end: 1px solid var(--border-primary);
+  box-sizing: border-box;
 }
 
-.viewport {
-  max-block-size: var(--radix-select-content-available-height, 320px);
+.searchInput {
+  background: transparent;
+  border: 0;
+  box-sizing: border-box;
+  color: var(--text-primary);
+  font: var(--body-sm);
+  inline-size: 100%;
+  margin: 0;
+  outline: none;
+  padding-block: 8px;
+  padding-inline: 12px;
+}
+
+.searchInput::placeholder {
+  color: var(--text-secondary);
+}
+
+.searchInput:disabled {
+  color: var(--text-disabled);
+  cursor: not-allowed;
+  -webkit-text-fill-color: var(--text-disabled);
+}
+
+.listbox {
+  list-style: none;
+  margin: 0;
+  max-block-size: 320px;
   overflow: auto;
+  padding: 0;
 }
 
 .item {
@@ -109,7 +187,7 @@
   pointer-events: none;
 }
 
-.item[data-state="checked"] {
+.item[data-selected] {
   color: var(--text-primary);
 }
 
@@ -121,32 +199,41 @@
   white-space: nowrap;
 }
 
+.itemCheck {
+  color: currentColor;
+  display: inline-flex;
+  flex: 0 0 auto;
+}
+
+.empty {
+  color: var(--text-secondary);
+  font: var(--label-md);
+  padding-block: 8px;
+  padding-inline: 16px;
+}
+
 @keyframes nova-select-enter {
   from {
     opacity: 0;
-    transform: scale(0.96);
   }
 
   to {
     opacity: 1;
-    transform: scale(1);
   }
 }
 
 @keyframes nova-select-out {
   from {
     opacity: 1;
-    transform: scale(1);
   }
 
   to {
     opacity: 0;
-    transform: scale(0.96);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .content {
+  .panel {
     animation: none;
   }
 }

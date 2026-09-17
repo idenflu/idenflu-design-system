@@ -147,7 +147,10 @@ const contentClassName = cva(styles.content, {
   },
 });
 
-/** Declarative option used as `children` of Combobox. Rendered by parent. */
+/**
+ * @deprecated Use `Select` with `searchable` and/or `multiple` instead.
+ * Field-input combobox pattern retained for compatibility only.
+ */
 export const ComboboxItem = (_props: ComboboxItemProps) => null;
 ComboboxItem.displayName = "ComboboxItem";
 
@@ -155,6 +158,9 @@ type ComboboxStyle = React.CSSProperties & {
   "--nova-combobox-anchor-width"?: string;
 };
 
+/**
+ * @deprecated Use `Select` with `searchable` and/or `multiple` instead.
+ */
 export type ComboboxProps = {
   children?: React.ReactNode;
   /**
@@ -187,6 +193,10 @@ export type ComboboxProps = {
   variant?: ComboboxVariant;
 };
 
+/**
+ * @deprecated Use `Select` with `searchable` and/or `multiple` instead.
+ * Field-input filter pattern retained for compatibility only.
+ */
 export const Combobox = React.forwardRef<HTMLInputElement, ComboboxProps>(
   (
     {

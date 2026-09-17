@@ -1,7 +1,7 @@
 {
   "id": "combobox",
   "label": "Combobox",
-  "status": "implemented",
+  "status": "deprecated",
   "props": [
     {
       "name": "children",
@@ -144,6 +144,7 @@
     }
   ],
   "notes": [
+    "Deprecated: prefer Select with searchable and/or multiple.",
     "Events (onOpenChange, onValueChange) are framework-specific and omitted.",
     "Built with Radix Popover + custom listbox (no Radix Combobox primitive).",
     "Synced from packages/ui-react ComboboxProps (engineering-first)."

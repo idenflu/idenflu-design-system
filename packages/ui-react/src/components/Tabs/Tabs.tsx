@@ -3,6 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { Tabs as TabsPrimitive } from "radix-ui";
 import { cn } from "../../utils/classNames";
 import { Icon } from "../Icon/Icon";
+import { IconButton } from "../IconButton/IconButton";
 import styles from "./Tabs.module.css";
 
 export type TabsOrientation = "horizontal" | "vertical";
@@ -42,7 +43,7 @@ export type TabsContentProps = React.ComponentPropsWithoutRef<
 
 export type TabsScrollButtonProps = Omit<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
-  "children"
+  "children" | "color"
 > & {
   direction: "previous" | "next";
 };
@@ -56,6 +57,68 @@ const TabsContext = React.createContext<TabsContextValue>({
   orientation: "horizontal",
   variant: "standard",
 });
+
+function getScrollBehavior(): ScrollBehavior {
+  if (
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  ) {
+    return "auto";
+  }
+
+  return "smooth";
+}
+
+function scrollTabToEdge(
+  tab: HTMLElement,
+  scroller: HTMLElement,
+  orientation: TabsOrientation
+) {
+  const scrollerRect = scroller.getBoundingClientRect();
+  const tabRect = tab.getBoundingClientRect();
+  const behavior = getScrollBehavior();
+
+  if (orientation === "horizontal") {
+    if (tabRect.left < scrollerRect.left - 1) {
+      scroller.scrollTo({
+        behavior,
+        left: scroller.scrollLeft + (tabRect.left - scrollerRect.left),
+      });
+      return;
+    }
+
+    if (tabRect.right > scrollerRect.right + 1) {
+      scroller.scrollTo({
+        behavior,
+        left: scroller.scrollLeft + (tabRect.right - scrollerRect.right),
+      });
+    }
+
+    return;
+  }
+
+  if (tabRect.top < scrollerRect.top - 1) {
+    scroller.scrollTo({
+      behavior,
+      top: scroller.scrollTop + (tabRect.top - scrollerRect.top),
+    });
+    return;
+  }
+
+  if (tabRect.bottom > scrollerRect.bottom + 1) {
+    scroller.scrollTo({
+      behavior,
+      top: scroller.scrollTop + (tabRect.bottom - scrollerRect.bottom),
+    });
+  }
+}
+
+type TabsListScrollContextValue = {
+  scrollTabIntoView: (tab: HTMLElement) => void;
+};
+
+const TabsListScrollContext =
+  React.createContext<TabsListScrollContextValue | null>(null);
 
 function assignRef<T>(ref: React.ForwardedRef<T>, value: T | null) {
   if (typeof ref === "function") {
@@ -116,7 +179,7 @@ const tabsTriggerClassName = cva(styles.trigger, {
 });
 
 export const Tabs = React.forwardRef<
-  React.ElementRef<typeof TabsPrimitive.Root>,
+  React.ComponentRef<typeof TabsPrimitive.Root>,
   TabsProps
 >(
   (
@@ -147,7 +210,7 @@ export const Tabs = React.forwardRef<
 Tabs.displayName = "Tabs";
 
 export const TabsList = React.forwardRef<
-  React.ElementRef<typeof TabsPrimitive.List>,
+  React.ComponentRef<typeof TabsPrimitive.List>,
   TabsListProps
 >(
   (
@@ -167,34 +230,113 @@ export const TabsList = React.forwardRef<
   ) => {
     const context = React.useContext(TabsContext);
     const listRef = React.useRef<HTMLDivElement | null>(null);
+    const navRef = React.useRef<HTMLDivElement | null>(null);
+    const scrollerRef = React.useRef<HTMLDivElement | null>(null);
+    const activeTriggerRef = React.useRef<HTMLElement | null>(null);
     const orientation = orientationProp ?? context.orientation;
     const variant = variantProp ?? context.variant;
 
+    const getScrollContainer = React.useCallback(() => {
+      if (scrollerRef.current) {
+        return scrollerRef.current;
+      }
+
+      const list = listRef.current;
+      if (!list) {
+        return null;
+      }
+
+      const canScroll =
+        orientation === "horizontal"
+          ? list.scrollWidth > list.clientWidth + 1
+          : list.scrollHeight > list.clientHeight + 1;
+
+      return canScroll ? list : null;
+    }, [orientation]);
+
+    const scrollTabIntoView = React.useCallback(
+      (tab: HTMLElement) => {
+        const scrollContainer = getScrollContainer();
+        if (!scrollContainer) {
+          return;
+        }
+
+        scrollTabToEdge(tab, scrollContainer, orientation);
+      },
+      [getScrollContainer, orientation]
+    );
+
+    const scrollContextValue = React.useMemo(
+      () => ({ scrollTabIntoView }),
+      [scrollTabIntoView]
+    );
+
     const updateIndicator = React.useCallback(() => {
       const list = listRef.current;
+      const nav = navRef.current;
       const activeTrigger = list?.querySelector<HTMLElement>(
         '[data-slot="tabs-trigger"][data-state="active"]'
       );
 
-      if (!list || !activeTrigger) {
-        list?.setAttribute("data-indicator-hidden", "true");
+      if (!list || !nav || !activeTrigger) {
+        nav?.setAttribute("data-indicator-hidden", "true");
         return;
       }
 
-      list.removeAttribute("data-indicator-hidden");
+      const hostRect = nav.getBoundingClientRect();
+      const triggerRect = activeTrigger.getBoundingClientRect();
+      const clipRect = scrollerRef.current?.getBoundingClientRect() ?? hostRect;
 
-      const offset =
-        orientation === "horizontal"
-          ? activeTrigger.offsetLeft
-          : activeTrigger.offsetTop;
-      const size =
-        orientation === "horizontal"
-          ? activeTrigger.offsetWidth
-          : activeTrigger.offsetHeight;
+      let offset: number;
+      let size: number;
 
-      list.style.setProperty("--nova-tabs-indicator-offset", `${offset}px`);
-      list.style.setProperty("--nova-tabs-indicator-size", `${size}px`);
+      if (orientation === "horizontal") {
+        const start = Math.max(triggerRect.left, clipRect.left);
+        const end = Math.min(triggerRect.right, clipRect.right);
+
+        if (end <= start) {
+          nav.setAttribute("data-indicator-hidden", "true");
+          return;
+        }
+
+        offset = start - hostRect.left;
+        size = end - start;
+      } else {
+        const start = Math.max(triggerRect.top, clipRect.top);
+        const end = Math.min(triggerRect.bottom, clipRect.bottom);
+
+        if (end <= start) {
+          nav.setAttribute("data-indicator-hidden", "true");
+          return;
+        }
+
+        offset = start - hostRect.top;
+        size = end - start;
+      }
+
+      nav.removeAttribute("data-indicator-hidden");
+      nav.style.setProperty("--nova-tabs-indicator-offset", `${offset}px`);
+      nav.style.setProperty("--nova-tabs-indicator-size", `${size}px`);
     }, [orientation]);
+
+    React.useLayoutEffect(() => {
+      const list = listRef.current;
+      const activeTrigger =
+        list?.querySelector<HTMLElement>(
+          '[data-slot="tabs-trigger"][data-state="active"]'
+        ) ?? null;
+
+      if (activeTrigger && activeTrigger !== activeTriggerRef.current) {
+        const shouldScroll = activeTriggerRef.current !== null;
+        activeTriggerRef.current = activeTrigger;
+
+        if (shouldScroll) {
+          scrollTabIntoView(activeTrigger);
+        }
+      }
+
+      updateIndicator();
+    });
 
     React.useLayoutEffect(() => {
       const list = listRef.current;
@@ -202,8 +344,6 @@ export const TabsList = React.forwardRef<
       if (!list) {
         return undefined;
       }
-
-      updateIndicator();
 
       const mutationObserver = new MutationObserver(updateIndicator);
       mutationObserver.observe(list, {
@@ -215,16 +355,29 @@ export const TabsList = React.forwardRef<
 
       const resizeObserver = new ResizeObserver(updateIndicator);
       resizeObserver.observe(list);
+      if (navRef.current) {
+        resizeObserver.observe(navRef.current);
+      }
+      if (scrollerRef.current) {
+        resizeObserver.observe(scrollerRef.current);
+      }
 
       list
         .querySelectorAll<HTMLElement>('[data-slot="tabs-trigger"]')
         .forEach((trigger) => resizeObserver.observe(trigger));
 
+      const scroller = scrollerRef.current;
+      const handleScroll = () => updateIndicator();
+      scroller?.addEventListener("scroll", handleScroll, { passive: true });
+      list.addEventListener("scroll", handleScroll, { passive: true });
+
       return () => {
         mutationObserver.disconnect();
         resizeObserver.disconnect();
+        scroller?.removeEventListener("scroll", handleScroll);
+        list.removeEventListener("scroll", handleScroll);
       };
-    }, [children, updateIndicator]);
+    }, [children, showScrollButtons, updateIndicator]);
 
     const list = (
       <TabsPrimitive.List
@@ -233,36 +386,55 @@ export const TabsList = React.forwardRef<
           assignRef(ref, node);
         }}
         data-slot="tabs-list"
-        className={cn(tabsListClassName({ orientation, variant }), className)}
+        className={tabsListClassName({ orientation, variant })}
         {...props}
       >
         {children}
-        <span
-          className={styles.indicator}
-          aria-hidden="true"
-          role="presentation"
-        />
       </TabsPrimitive.List>
     );
 
-    if (!showScrollButtons) {
-      return list;
-    }
-
     return (
-      <div className={styles.nav}>
-        <TabsScrollButton
-          direction="previous"
-          disabled={startScrollButtonDisabled}
-          onClick={onStartScrollButtonClick}
-        />
-        {list}
-        <TabsScrollButton
-          direction="next"
-          disabled={endScrollButtonDisabled}
-          onClick={onEndScrollButtonClick}
-        />
-      </div>
+      <TabsListScrollContext.Provider value={scrollContextValue}>
+        <div
+          ref={navRef}
+          className={cn(
+            styles.nav,
+            (showScrollButtons || variant === "fullWidth") && styles.navFill,
+            className
+          )}
+          data-orientation={orientation}
+          data-slot="tabs-nav"
+        >
+          {showScrollButtons ? (
+            <>
+              <TabsScrollButton
+                direction="previous"
+                disabled={startScrollButtonDisabled}
+                onClick={onStartScrollButtonClick}
+              />
+              <div
+                ref={scrollerRef}
+                className={styles.scroller}
+                data-slot="tabs-scroller"
+              >
+                {list}
+              </div>
+              <TabsScrollButton
+                direction="next"
+                disabled={endScrollButtonDisabled}
+                onClick={onEndScrollButtonClick}
+              />
+            </>
+          ) : (
+            list
+          )}
+          <span
+            className={styles.indicator}
+            aria-hidden="true"
+            role="presentation"
+          />
+        </div>
+      </TabsListScrollContext.Provider>
     );
   }
 );
@@ -270,7 +442,7 @@ export const TabsList = React.forwardRef<
 TabsList.displayName = "TabsList";
 
 export const TabsTrigger = React.forwardRef<
-  React.ElementRef<typeof TabsPrimitive.Trigger>,
+  React.ComponentRef<typeof TabsPrimitive.Trigger>,
   TabsTriggerProps
 >(
   (
@@ -285,59 +457,77 @@ export const TabsTrigger = React.forwardRef<
       ...props
     },
     ref
-  ) => (
-    <TabsPrimitive.Trigger
-      ref={ref}
-      data-slot="tabs-trigger"
-      className={cn(
-        tabsTriggerClassName({
-          hasCloseIcon: closable,
-          hasIcon: Boolean(icon),
-        }),
-        className
-      )}
-      onClick={(event) => {
-        if (event.currentTarget.dataset.state === "active") {
-          event.preventDefault();
-          return;
-        }
+  ) => {
+    const scrollContext = React.useContext(TabsListScrollContext);
 
-        onClick?.(event);
-      }}
-      {...props}
-    >
-      {icon ? (
-        <span className={styles.icon} aria-hidden="true">
-          {icon}
-        </span>
-      ) : null}
-      <span className={styles.label}>{children}</span>
-      {closable ? (
-        <span
-          className={styles.closeIcon}
-          role="button"
-          aria-label={closeLabel}
-          onClick={(event) => {
+    return (
+      <TabsPrimitive.Trigger
+        ref={ref}
+        data-slot="tabs-trigger"
+        className={cn(
+          tabsTriggerClassName({
+            hasCloseIcon: closable,
+            hasIcon: Boolean(icon),
+          }),
+          className
+        )}
+        {...props}
+        onClick={(event) => {
+          if (event.currentTarget.dataset.state === "active") {
             event.preventDefault();
-            event.stopPropagation();
-            onClose?.(event);
-          }}
-          onPointerDown={(event) => {
-            event.preventDefault();
-            event.stopPropagation();
-          }}
-        >
-          <Icon name="close" size="medium" />
-        </span>
-      ) : null}
-    </TabsPrimitive.Trigger>
-  )
+            return;
+          }
+
+          const tab = event.currentTarget;
+          onClick?.(event);
+
+          // Wait for controlled selection + layout, then align to the clipped edge.
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              scrollContext?.scrollTabIntoView(tab);
+            });
+          });
+        }}
+        onFocus={(event) => {
+          props.onFocus?.(event);
+          if (event.currentTarget.dataset.state === "active") {
+            scrollContext?.scrollTabIntoView(event.currentTarget);
+          }
+        }}
+      >
+        {icon ? (
+          <span className={styles.icon} aria-hidden="true">
+            {icon}
+          </span>
+        ) : null}
+        <span className={styles.label}>{children}</span>
+        {closable ? (
+          <span
+            className={styles.closeIcon}
+            role="button"
+            aria-label={closeLabel}
+            onClick={(event) => {
+              event.preventDefault();
+              event.stopPropagation();
+              onClose?.(event);
+            }}
+            onPointerDown={(event) => {
+              event.preventDefault();
+              event.stopPropagation();
+            }}
+          >
+            <Icon name="close" size="medium" />
+          </span>
+        ) : null}
+      </TabsPrimitive.Trigger>
+    );
+  }
 );
 
 TabsTrigger.displayName = "TabsTrigger";
 
 export const TabsContent = React.forwardRef<
-  React.ElementRef<typeof TabsPrimitive.Content>,
+  React.ComponentRef<typeof TabsPrimitive.Content>,
   TabsContentProps
 >(({ className, ...props }, ref) => (
   <TabsPrimitive.Content
@@ -357,18 +547,22 @@ export const TabsScrollButton = React.forwardRef<
   const isPrevious = direction === "previous";
 
   return (
-    <button
+    <IconButton
       ref={ref}
-      aria-label={isPrevious ? "이전 탭 보기" : "다음 탭 보기"}
-      className={cn(styles.scrollButton, className)}
       type={type}
       {...props}
-    >
-      <Icon
-        name={isPrevious ? "keyboard-arrow-left" : "keyboard-arrow-right"}
-        size="medium"
-      />
-    </button>
+      className={cn(styles.scrollButton, className)}
+      color="neutral"
+      icon={
+        <Icon
+          name={isPrevious ? "keyboard-arrow-left" : "keyboard-arrow-right"}
+          size="medium"
+        />
+      }
+      label={isPrevious ? "이전 탭 보기" : "다음 탭 보기"}
+      size="md"
+      variant="ghost"
+    />
   );
 });
 

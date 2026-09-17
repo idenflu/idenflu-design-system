@@ -11,10 +11,46 @@
 }
 
 .nav {
-  align-items: center;
+  align-items: stretch;
   display: inline-flex;
   max-width: 100%;
+  min-width: 0;
+  overflow: visible;
+  position: relative;
+  width: fit-content;
+}
+
+.navFill {
+  width: 100%;
+}
+
+.scroller {
+  flex: 1 1 auto;
+  isolation: isolate;
+  max-width: 100%;
+  min-width: 0;
   overflow: hidden;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.scroller::-webkit-scrollbar {
+  display: none;
+}
+
+.nav .list {
+  height: 100%;
+  max-width: none;
+  overflow: visible;
+}
+
+.nav .listHorizontal {
+  overflow: visible;
+}
+
+.nav .listScrollable {
+  flex: 0 0 auto;
+  width: max-content;
 }
 
 .list {
@@ -25,8 +61,9 @@
 }
 
 .listHorizontal {
-  align-items: center;
+  align-items: stretch;
   flex-direction: row;
+  min-height: 40px;
   overflow-x: auto;
   overflow-y: hidden;
   scrollbar-width: none;
@@ -67,7 +104,6 @@
   justify-content: flex-start;
   margin: 0;
   max-width: 200px;
-  min-height: 40px;
   min-width: 80px;
   overflow: hidden;
   padding-block: 8px;
@@ -91,26 +127,27 @@
     inline-size 200ms cubic-bezier(0.645, 0.045, 0.355, 1),
     opacity 200ms ease,
     transform 200ms cubic-bezier(0.645, 0.045, 0.355, 1);
-  z-index: 1;
+  z-index: 2;
 }
 
-.list[data-indicator-hidden="true"] .indicator {
+.nav[data-indicator-hidden="true"] > .indicator {
   opacity: 0;
 }
 
-.listHorizontal .indicator {
+.nav[data-orientation="horizontal"] > .indicator {
   block-size: 2px;
   inline-size: var(--nova-tabs-indicator-size, 0);
-  inset-block-end: 0;
+  /* Sit on the chrome border so the active mark paints above it. */
+  inset-block-end: -1px;
   inset-inline-start: 0;
   transform: translateX(var(--nova-tabs-indicator-offset, 0));
 }
 
-.listVertical .indicator {
+.nav[data-orientation="vertical"] > .indicator {
   block-size: var(--nova-tabs-indicator-size, 0);
   inline-size: 2px;
   inset-block-start: 0;
-  inset-inline-start: 0;
+  inset-inline-start: -1px;
   transform: translateY(var(--nova-tabs-indicator-offset, 0));
 }
 
@@ -162,6 +199,7 @@
 
 .listVertical .trigger {
   max-width: 160px;
+  min-height: 40px;
   width: 100%;
 }
 
@@ -215,38 +253,10 @@
 }
 
 .scrollButton {
-  align-items: center;
-  appearance: none;
-  background: var(--background-transparent);
-  border: 0;
-  color: var(--text-primary);
-  cursor: pointer;
-  display: inline-flex;
+  align-self: center;
   flex: 0 0 auto;
-  height: 40px;
-  justify-content: center;
-  margin: 0;
-  padding: 12px;
-  transition:
-    background-color 200ms ease,
-    color 200ms ease;
-  width: 40px;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .scrollButton:hover:not(:disabled) {
-    background: var(--background-transparent-hover);
-  }
-}
-
-.scrollButton:focus-visible {
-  outline: 2px solid var(--border-focused);
-  outline-offset: -2px;
-}
-
-.scrollButton:disabled {
-  color: var(--text-disabled);
-  cursor: not-allowed;
+  position: relative;
+  z-index: 1;
 }
 
 .content {
@@ -263,8 +273,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .trigger,
-  .indicator,
-  .scrollButton {
+  .indicator {
     transition: none;
   }
 }

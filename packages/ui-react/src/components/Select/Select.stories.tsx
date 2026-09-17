@@ -10,6 +10,19 @@ import {
 const variants: SelectVariant[] = ["default", "filled", "outlined"];
 const sizes: SelectSize[] = ["lg", "md", "sm"];
 
+const demoOptions = [
+  { label: "Analytics", value: "analytics" },
+  { label: "Campaigns", value: "campaigns" },
+  { label: "Audiences", value: "audiences" },
+  { label: "Billing", value: "billing", disabled: true },
+  { label: "Creators", value: "creators" },
+  { label: "Insights", value: "insights" },
+  { label: "Reports", value: "reports" },
+  { label: "Settings", value: "settings" },
+  { label: "Help", value: "help" },
+  { label: "Support", value: "support" },
+] as const;
+
 const overviewStyles = {
   root: {
     display: "flex",
@@ -25,7 +38,6 @@ const overviewStyles = {
     gap: "16px",
   },
   heading: {
-    fontSize: "14px",
     font: "var(--title-md)",
     fontWeight: 500,
     letterSpacing: "0.02em",
@@ -43,32 +55,13 @@ const overviewStyles = {
     maxWidth: "100%",
     width: "640px",
   },
-  matrix: {
-    alignItems: "start",
-    display: "grid",
-    gap: "var(--spacing-06) var(--spacing-07)",
-    gridTemplateColumns: "80px repeat(5, minmax(200px, 1fr))",
-    justifyItems: "center",
-  },
-  matrixHeader: {
+  note: {
     color: "var(--text-secondary)",
-    font: "var(--label-md)",
-    textAlign: "center" as const,
-  },
-  matrixRowLabel: {
-    color: "var(--text-secondary)",
-    font: "var(--label-md)",
-    textTransform: "capitalize" as const,
+    font: "var(--body-md)",
+    margin: 0,
+    maxWidth: "640px",
   },
 };
-
-const stateColumns = [
-  { id: "enabled", label: "Enabled", props: {} },
-  { id: "required", label: "Required", props: { required: true } },
-  { id: "read-only", label: "Read-only", props: { readOnly: true } },
-  { id: "error", label: "Error", props: { error: "Error Description" } },
-  { id: "disabled", label: "Disabled", props: { disabled: true } },
-] as const;
 
 function OverviewSection({
   children,
@@ -85,50 +78,76 @@ function OverviewSection({
   );
 }
 
-function renderDemoItems() {
-  return (
-    <>
-      <SelectItem value="analytics">Analytics</SelectItem>
-      <SelectItem value="campaigns">Campaigns</SelectItem>
-      <SelectItem value="audiences">Audiences</SelectItem>
-      <SelectItem value="billing" disabled>
-        Billing
-      </SelectItem>
-    </>
-  );
-}
+function SingleChipExample() {
+  const [value, setValue] = React.useState("analytics");
 
-function VariantStateMatrix() {
   return (
-    <div style={overviewStyles.matrix}>
-      <div />
-      {stateColumns.map((column) => (
-        <span key={column.id} style={overviewStyles.matrixHeader}>
-          {column.label}
-        </span>
-      ))}
-      {variants.map((variant) => (
-        <React.Fragment key={variant}>
-          <span style={overviewStyles.matrixRowLabel}>{variant}</span>
-          {stateColumns.map((column) => (
-            <Select
-              key={`${variant}-${column.id}`}
-              defaultValue="analytics"
-              label="Label"
-              size="md"
-              variant={variant}
-              {...column.props}
-            >
-              {renderDemoItems()}
-            </Select>
-          ))}
-        </React.Fragment>
-      ))}
+    <div style={overviewStyles.fullWidthExample}>
+      <Select
+        fullWidth
+        helperText="Single select uses string; chip display still available."
+        label="Channel"
+        options={[...demoOptions]}
+        value={value}
+        onValueChange={(next) => setValue(String(next))}
+      />
     </div>
   );
 }
 
-function SizeDefaultMatrix() {
+function SingleTextExample() {
+  const [value, setValue] = React.useState("campaigns");
+
+  return (
+    <Select
+      helperText='valueDisplay="text" for plain label.'
+      label="Channel"
+      options={[...demoOptions]}
+      value={value}
+      valueDisplay="text"
+      variant="outlined"
+      onValueChange={(next) => setValue(String(next))}
+    />
+  );
+}
+
+function MultipleExample() {
+  const [value, setValue] = React.useState<string[]>([
+    "analytics",
+    "campaigns",
+  ]);
+
+  return (
+    <div style={overviewStyles.fullWidthExample}>
+      <Select
+        fullWidth
+        helperText="Panel search filters options. Multi keeps the panel open."
+        label="Channels"
+        multiple
+        options={[...demoOptions]}
+        value={value}
+        onValueChange={(next) => setValue(next as string[])}
+      />
+    </div>
+  );
+}
+
+function NoSearchExample() {
+  const [value, setValue] = React.useState("");
+
+  return (
+    <Select
+      helperText="searchable={false} — button trigger only."
+      label="Stage"
+      options={[...demoOptions]}
+      searchable={false}
+      value={value}
+      onValueChange={(next) => setValue(String(next))}
+    />
+  );
+}
+
+function SizeMatrix() {
   return (
     <div style={overviewStyles.row}>
       {sizes.map((size) => (
@@ -138,67 +157,61 @@ function SizeDefaultMatrix() {
           helperText={size}
           label="Label"
           size={size}
-          variant="default"
         >
-          {renderDemoItems()}
+          <SelectItem value="analytics">Analytics</SelectItem>
+          <SelectItem value="campaigns">Campaigns</SelectItem>
+          <SelectItem value="audiences">Audiences</SelectItem>
         </Select>
       ))}
     </div>
   );
 }
 
-function FullWidthExample() {
+function VariantMatrix() {
   return (
-    <div style={overviewStyles.fullWidthExample}>
-      <Select
-        defaultValue="analytics"
-        fullWidth
-        label="Label"
-        variant="default"
-      >
-        {renderDemoItems()}
-      </Select>
+    <div style={overviewStyles.row}>
+      {variants.map((variant) => (
+        <Select
+          key={variant}
+          defaultValue={["campaigns"]}
+          helperText={variant}
+          label="Label"
+          multiple
+          options={[...demoOptions]}
+          variant={variant}
+        />
+      ))}
     </div>
   );
 }
 
-function HelperTextExample() {
+function StatesExample() {
   return (
     <div style={overviewStyles.row}>
       <Select
         defaultValue="analytics"
         helperText="Helper Text"
-        label="Label"
-        variant="default"
-      >
-        {renderDemoItems()}
-      </Select>
+        label="Enabled"
+        options={[...demoOptions]}
+      />
       <Select
         defaultValue="analytics"
-        error="Helper Text"
-        label="Label"
-        variant="default"
-      >
-        {renderDemoItems()}
-      </Select>
-    </div>
-  );
-}
-
-function OptionsPropExample() {
-  return (
-    <div style={overviewStyles.row}>
+        error="Error Description"
+        label="Error"
+        options={[...demoOptions]}
+      />
       <Select
-        defaultValue="campaigns"
-        helperText="options prop"
-        label="With options"
-        options={[
-          { label: "Analytics", value: "analytics" },
-          { label: "Campaigns", value: "campaigns" },
-          { label: "Audiences", value: "audiences" },
-          { disabled: true, label: "Billing", value: "billing" },
-        ]}
-        variant="outlined"
+        defaultValue="analytics"
+        disabled
+        helperText="Disabled"
+        options={[...demoOptions]}
+      />
+      <Select
+        defaultValue="analytics"
+        helperText="Read-only"
+        label="Read-only"
+        options={[...demoOptions]}
+        readOnly
       />
     </div>
   );
@@ -213,77 +226,79 @@ const meta = {
     docs: {
       description: {
         component:
-          "Custom select built on Radix Select with TextInput-aligned field chrome. " +
-          "Uses listbox semantics (not Dropdown Menu). `Select.Value` keeps the selected label " +
-          "after the panel closes. Keyboard: Arrow keys, typeahead, Enter/Space, Escape. " +
-          "Filterable/searchable input is not part of Radix Select — use a Combobox pattern for that.",
+          "Select with button trigger, optional panel search, multi-select, " +
+          "and chip or text values. No Radix. " +
+          "`value` / `defaultValue` / `onValueChange` use `string | string[]` " +
+          "(string when single, string[] when multiple). " +
+          "Prefer Select over deprecated Combobox.",
       },
     },
   },
+  args: {
+    label: "Label",
+    multiple: false,
+    options: [...demoOptions],
+    placeholder: "Select",
+    searchable: true,
+    size: "md",
+    valueDisplay: "chip",
+    variant: "default",
+  },
   argTypes: {
-    variant: { control: "select", options: variants },
-    size: { control: "select", options: sizes },
-    fullWidth: { control: "boolean" },
-    disabled: { control: "boolean" },
-    readOnly: { control: "boolean" },
-    required: { control: "boolean" },
+    multiple: { control: "boolean" },
+    searchable: { control: "boolean" },
+    size: { control: "inline-radio", options: sizes },
+    valueDisplay: { control: "inline-radio", options: ["chip", "text"] },
+    variant: { control: "inline-radio", options: variants },
   },
 } satisfies Meta<PlaygroundArgs>;
 
 export default meta;
-type Story = StoryObj<PlaygroundArgs>;
+type Story = StoryObj<typeof meta>;
 
 export const Overview: Story = {
-  parameters: {
-    layout: "padded",
-    controls: { disable: true },
-  },
   render: () => (
     <div style={overviewStyles.root}>
-      <OverviewSection title="Variant x State">
-        <VariantStateMatrix />
+      <p style={overviewStyles.note}>
+        Select supports single/multi selection, optional panel search, and chip
+        or text value display. Combobox is deprecated in favor of this component.
+      </p>
+      <OverviewSection title="Single + chip (string)">
+        <SingleChipExample />
       </OverviewSection>
-
-      <OverviewSection title="Size">
-        <SizeDefaultMatrix />
+      <OverviewSection title="Single + text">
+        <SingleTextExample />
       </OverviewSection>
-
-      <OverviewSection title="FullWidth">
-        <FullWidthExample />
+      <OverviewSection title="Multiple">
+        <MultipleExample />
       </OverviewSection>
-
-      <OverviewSection title="Helper Text">
-        <HelperTextExample />
+      <OverviewSection title="Without panel search">
+        <NoSearchExample />
       </OverviewSection>
-
-      <OverviewSection title="Options prop">
-        <OptionsPropExample />
+      <OverviewSection title="Sizes">
+        <SizeMatrix />
+      </OverviewSection>
+      <OverviewSection title="Variants">
+        <VariantMatrix />
+      </OverviewSection>
+      <OverviewSection title="States">
+        <StatesExample />
       </OverviewSection>
     </div>
   ),
 };
 
 export const Playground: Story = {
-  parameters: { layout: "centered" },
-  args: {
-    disabled: false,
-    fullWidth: false,
-    helperText: "Helper Text",
-    label: "Label",
-    placeholder: "Select",
-    readOnly: false,
-    required: false,
-    size: "md",
-    variant: "default",
+  render: (args) => {
+    const [value, setValue] = React.useState<string | string[]>(
+      args.multiple ? [] : ""
+    );
+    return (
+      <Select
+        {...args}
+        value={value}
+        onValueChange={(next) => setValue(next)}
+      />
+    );
   },
-  render: (args) => (
-    <Select {...args}>
-      <SelectItem value="analytics">Analytics</SelectItem>
-      <SelectItem value="campaigns">Campaigns</SelectItem>
-      <SelectItem value="audiences">Audiences</SelectItem>
-      <SelectItem value="billing" disabled>
-        Billing
-      </SelectItem>
-    </Select>
-  ),
 };

@@ -296,11 +296,11 @@
     },
     "primary": {
       "$type": "color",
-      "$value": "{Base.Gray.900}"
-    },
-    "secondary": {
-      "$type": "color",
       "$value": "{Base.Gray.700}"
+    },
+    "strong": {
+      "$type": "color",
+      "$value": "{Base.Gray.900}"
     },
     "muted": {
       "$type": "color",

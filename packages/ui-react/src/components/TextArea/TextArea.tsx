@@ -30,7 +30,7 @@ const textAreaClassName = cva(inputSharedStyles.root, {
     error: false,
     fullWidth: false,
     readOnly: false,
-    variant: "default",
+    variant: "outlined",
   },
   variants: {
     autoGrow: {
@@ -54,7 +54,7 @@ const textAreaClassName = cva(inputSharedStyles.root, {
       true: inputSharedStyles.readOnly,
     },
     variant: {
-      default: inputSharedStyles.variantDefault,
+      standard: inputSharedStyles.variantStandard,
       filled: inputSharedStyles.variantFilled,
       outlined: inputSharedStyles.variantOutlined,
     },
@@ -127,7 +127,7 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
       rows = 4,
       showCount = false,
       value,
-      variant = "default",
+      variant = "outlined",
       ...props
     },
     ref

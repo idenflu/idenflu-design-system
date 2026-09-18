@@ -1,2 +1,6 @@
 @import "./styles/normalize.css";
 @import "./styles/tokens.css";
+
+html {
+  font-family: var(--font-family-sans);
+}

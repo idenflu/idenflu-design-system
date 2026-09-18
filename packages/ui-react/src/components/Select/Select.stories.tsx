@@ -7,7 +7,7 @@ import {
   type SelectVariant,
 } from "./Select";
 
-const variants: SelectVariant[] = ["default", "filled", "outlined"];
+const variants: SelectVariant[] = ["standard", "filled", "outlined"];
 const sizes: SelectSize[] = ["lg", "md", "sm"];
 
 const demoOptions = [
@@ -242,7 +242,7 @@ const meta = {
     searchable: true,
     size: "md",
     valueDisplay: "chip",
-    variant: "default",
+    variant: "outlined",
   },
   argTypes: {
     multiple: { control: "boolean" },

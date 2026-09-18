@@ -8,7 +8,7 @@ import {
   type TextInputVariant,
 } from "./TextInput";
 
-const variants: TextInputVariant[] = ["default", "filled", "outlined"];
+const variants: TextInputVariant[] = ["standard", "filled", "outlined"];
 const sizes: TextInputSize[] = ["lg", "md", "sm"];
 const types: TextInputType[] = ["text", "password", "email"];
 
@@ -126,7 +126,7 @@ function SizeDefaultMatrix() {
           helperText={size}
           label="Label"
           size={size}
-          variant="default"
+          variant="outlined"
         />
       ))}
     </div>
@@ -140,7 +140,7 @@ function FullWidthExample() {
         defaultValue="Value"
         fullWidth
         label="Label"
-        variant="default"
+        variant="outlined"
       />
     </div>
   );
@@ -153,13 +153,13 @@ function HelperTextExample() {
         defaultValue="Value"
         helperText="Helper Text"
         label="Label"
-        variant="default"
+        variant="outlined"
       />
       <TextInput
         defaultValue="Value"
         error="Helper Text"
         label="Label"
-        variant="default"
+        variant="outlined"
       />
     </div>
   );
@@ -182,7 +182,7 @@ function TypeExample() {
                 : "Placeholder"
           }
           type={type}
-          variant="default"
+          variant="outlined"
         />
       ))}
     </div>
@@ -196,13 +196,13 @@ function AdornmentExample() {
         defaultValue="Value"
         label="Start adornment"
         startAdornment={<Icon name="search" size="medium" aria-hidden="true" />}
-        variant="default"
+        variant="outlined"
       />
       <TextInput
         defaultValue="Value"
         clearable
         label="Clearable"
-        variant="default"
+        variant="outlined"
       />
       <TextInput
         defaultValue="Value"
@@ -225,7 +225,7 @@ function AdornmentExample() {
           </button>
         }
         label="End adornment"
-        variant="default"
+        variant="outlined"
       />
       <TextInput
         defaultValue="Value"
@@ -249,7 +249,7 @@ function AdornmentExample() {
           </button>
         }
         label="Multiple end actions"
-        variant="default"
+        variant="outlined"
       />
     </div>
   );
@@ -331,7 +331,7 @@ export const Playground: Story = {
     required: false,
     size: "lg",
     type: "text",
-    variant: "default",
+    variant: "outlined",
   },
   render: (args) => {
     if (args.fullWidth) {

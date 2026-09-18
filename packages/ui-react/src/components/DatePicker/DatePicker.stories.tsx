@@ -35,7 +35,7 @@ export const WithValue: Story = {
 export const Variants: Story = {
   render: (args) => (
     <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
-      <DatePicker {...args} variant="default" label="Default" />
+      <DatePicker {...args} variant="standard" label="Standard" />
       <DatePicker {...args} variant="filled" label="Filled" />
       <DatePicker {...args} variant="outlined" label="Outlined" />
     </div>

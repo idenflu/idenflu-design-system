@@ -2,7 +2,7 @@ import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { TextArea, type TextAreaVariant } from "./TextArea";
 
-const variants: TextAreaVariant[] = ["default", "filled", "outlined"];
+const variants: TextAreaVariant[] = ["standard", "filled", "outlined"];
 
 const overviewStyles = {
   root: {
@@ -221,7 +221,7 @@ export const Playground: Story = {
     required: false,
     rows: 4,
     showCount: false,
-    variant: "default",
+    variant: "outlined",
   },
   render: (args) => {
     if (args.fullWidth) {

@@ -13,7 +13,7 @@ import { IconButton } from "../IconButton";
  * Select field with optional panel search, multi-select, and chip values.
  * Custom listbox (no Radix). Prefer this over deprecated Combobox.
  */
-export type SelectVariant = "default" | "filled" | "outlined";
+export type SelectVariant = "standard" | "filled" | "outlined";
 export type SelectSize = "lg" | "md" | "sm";
 export type SelectOverflow = "wrap" | "ellipsis";
 /** How selected values render in the field. */
@@ -111,7 +111,7 @@ const rootClassName = cva([inputSharedStyles.root, styles.root], {
     fullWidth: false,
     readOnly: false,
     size: "md",
-    variant: "default",
+    variant: "outlined",
   },
   variants: {
     disabled: {
@@ -136,7 +136,7 @@ const rootClassName = cva([inputSharedStyles.root, styles.root], {
       sm: inputSharedStyles.sizeSm,
     },
     variant: {
-      default: inputSharedStyles.variantDefault,
+      standard: inputSharedStyles.variantStandard,
       filled: inputSharedStyles.variantFilled,
       outlined: inputSharedStyles.variantOutlined,
     },
@@ -238,7 +238,7 @@ export const Select = React.forwardRef<
       size = "md",
       value: valueProp,
       valueDisplay = "chip",
-      variant = "default",
+      variant = "outlined",
     },
     ref
   ) => {

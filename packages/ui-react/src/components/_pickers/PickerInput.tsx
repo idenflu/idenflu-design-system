@@ -23,7 +23,7 @@ import {
 
 export type { PickerInputMask };
 
-export type PickerVariant = "default" | "filled" | "outlined";
+export type PickerVariant = "standard" | "filled" | "outlined";
 export type PickerSize = "lg" | "md" | "sm";
 
 export type PickerInputProps = {
@@ -84,7 +84,7 @@ export const PickerInput = React.forwardRef<HTMLInputElement, PickerInputProps>(
       readOnly = false,
       required,
       size = "md",
-      variant = "default",
+      variant = "outlined",
     },
     ref
   ) => {

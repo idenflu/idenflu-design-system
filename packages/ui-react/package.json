@@ -1,6 +1,6 @@
 {
   "name": "@idenflu/ui-react",
-  "version": "0.0.0-alpha.8",
+  "version": "0.0.0-alpha.9",
   "description": "React components for idenflu product interfaces.",
   "types": "./src/index.ts",
   "repository": {
@@ -12,10 +12,12 @@
     "registry": "https://npm.pkg.github.com"
   },
   "files": [
-    "src"
+    "src",
+    "README.md"
   ],
   "sideEffects": [
-    "./src/styles.css"
+    "./src/styles.css",
+    "./src/fonts.css"
   ],
   "peerDependencies": {
     "react": ">=18",
@@ -27,6 +29,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "modern-normalize": "^3.0.1",
+    "pretendard": "^1.3.9",
     "radix-ui": "^1.5.0"
   },
   "devDependencies": {
@@ -52,7 +55,8 @@
       "types": "./src/index.ts",
       "default": "./src/index.ts"
     },
-    "./styles.css": "./src/styles.css"
+    "./styles.css": "./src/styles.css",
+    "./fonts.css": "./src/fonts.css"
   },
   "scripts": {
     "check:api-contracts": "node ./scripts/validate-api-contracts.js",

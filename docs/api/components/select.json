@@ -147,9 +147,9 @@
     {
       "name": "variant",
       "kind": "enum",
-      "values": ["default", "filled", "outlined"],
+      "values": ["standard", "filled", "outlined"],
       "required": false,
-      "default": "default"
+      "default": "outlined"
     }
   ],
   "states": ["default", "disabled", "error", "open"],

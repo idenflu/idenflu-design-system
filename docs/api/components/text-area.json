@@ -56,7 +56,7 @@
       "name": "variant",
       "kind": "unknown",
       "required": false,
-      "default": "default"
+      "default": "outlined"
     }
   ],
   "states": [

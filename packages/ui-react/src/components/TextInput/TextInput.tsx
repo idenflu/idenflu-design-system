@@ -7,7 +7,7 @@ import textInputStyles from "./TextInput.module.css";
 import { IconButton } from "../IconButton/IconButton";
 
 export type TextInputType = "text" | "password" | "email";
-export type TextInputVariant = "default" | "filled" | "outlined";
+export type TextInputVariant = "standard" | "filled" | "outlined";
 export type TextInputSize = "lg" | "md" | "sm";
 
 export type TextInputProps = Omit<
@@ -35,7 +35,7 @@ const textInputClassName = cva(inputSharedStyles.root, {
     fullWidth: false,
     readOnly: false,
     size: "md",
-    variant: "default",
+    variant: "outlined",
   },
   variants: {
     disabled: {
@@ -60,7 +60,7 @@ const textInputClassName = cva(inputSharedStyles.root, {
       sm: inputSharedStyles.sizeSm,
     },
     variant: {
-      default: inputSharedStyles.variantDefault,
+      standard: inputSharedStyles.variantStandard,
       filled: inputSharedStyles.variantFilled,
       outlined: inputSharedStyles.variantOutlined,
     },
@@ -90,7 +90,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
       startAdornment,
       type = "text",
       value,
-      variant = "default",
+      variant = "outlined",
       ...props
     },
     ref

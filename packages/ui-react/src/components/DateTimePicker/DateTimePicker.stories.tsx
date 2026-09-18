@@ -35,7 +35,7 @@ export const WithValue: Story = {
 export const Variants: Story = {
   render: (args) => (
     <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
-      <DateTimePicker {...args} variant="default" label="Default" />
+      <DateTimePicker {...args} variant="standard" label="Standard" />
       <DateTimePicker {...args} variant="filled" label="Filled" />
       <DateTimePicker {...args} variant="outlined" label="Outlined" />
     </div>

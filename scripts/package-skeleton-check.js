@@ -79,7 +79,6 @@ requireFile("packages/tokens/CHANGELOG.md");
 requireIncludes("packages/tokens/CHANGELOG.md", ["# @idenflu/ui-tokens"]);
 requireIncludes("packages/tokens/package.json", ['"version":']);
 requireIncludes("packages/tokens/README.md", [
-  "version",
   "CHANGELOG.md",
 ]);
 

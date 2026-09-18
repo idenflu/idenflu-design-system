@@ -1,6 +1,6 @@
 {
   "name": "@idenflu/ui-tokens",
-  "version": "1.0.0-alpha.4",
+  "version": "1.0.0-alpha.5",
   "type": "module",
   "description": "Design tokens for idenflu product interfaces.",
   "types": "./dist/index.d.ts",

@@ -1,6 +1,6 @@
 {
   "name": "@idenflu/ui-react",
-  "version": "0.0.0-alpha.9",
+  "version": "0.0.0-alpha.10",
   "description": "React components for idenflu product interfaces.",
   "types": "./src/index.ts",
   "repository": {

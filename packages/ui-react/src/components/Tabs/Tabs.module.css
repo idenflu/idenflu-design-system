@@ -99,7 +99,7 @@
   cursor: pointer;
   display: inline-flex;
   flex: 0 0 auto;
-  font: var(--body-sm);
+  font: var(--body-md);
   gap: 12px;
   justify-content: flex-start;
   margin: 0;

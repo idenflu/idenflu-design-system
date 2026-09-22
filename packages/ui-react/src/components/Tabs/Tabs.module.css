@@ -158,7 +158,7 @@
 
 @media (hover: hover) and (pointer: fine) {
   .trigger:hover:not(:disabled):not([data-state="active"]) {
-    /* background: var(--background-transparent-hover); */
+    background: var(--background-transparent-hover);
     color: var(--text-hover);
   }
 

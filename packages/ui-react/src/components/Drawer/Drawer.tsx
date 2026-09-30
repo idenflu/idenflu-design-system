@@ -89,15 +89,15 @@ const DrawerRoot = React.forwardRef<HTMLDivElement, DrawerProps>(
       transition,
       ...props
     },
-    ref,
+    ref
   ) => {
+    const [uncontrolledOpen, setUncontrolledOpen] = React.useState(defaultOpen);
+    const [titlePresent, setTitlePresent] = React.useState(false);
+    const [descriptionPresent, setDescriptionPresent] = React.useState(false);
     const titleId = React.useId();
     const descriptionId = React.useId();
     const isControlled = controlledOpen !== undefined;
-    const [uncontrolledOpen, setUncontrolledOpen] = React.useState(defaultOpen);
     const open = controlledOpen ?? uncontrolledOpen;
-    const [titlePresent, setTitlePresent] = React.useState(false);
-    const [descriptionPresent, setDescriptionPresent] = React.useState(false);
 
     const setOpen = React.useCallback(
       (nextOpen: boolean) => {
@@ -105,7 +105,7 @@ const DrawerRoot = React.forwardRef<HTMLDivElement, DrawerProps>(
         onOpenChange?.(nextOpen);
         if (!nextOpen) onClose();
       },
-      [isControlled, onClose, onOpenChange],
+      [isControlled, onClose, onOpenChange]
     );
 
     const contextValue = React.useMemo<DrawerContextValue>(
@@ -118,7 +118,7 @@ const DrawerRoot = React.forwardRef<HTMLDivElement, DrawerProps>(
         titleId,
         titlePresent,
       }),
-      [descriptionId, descriptionPresent, setOpen, titleId, titlePresent],
+      [descriptionId, descriptionPresent, setOpen, titleId, titlePresent]
     );
 
     const outDuration = transition?.out ?? 160;
@@ -136,7 +136,7 @@ const DrawerRoot = React.forwardRef<HTMLDivElement, DrawerProps>(
           ref.current = node;
         }
       },
-      [ref],
+      [ref]
     );
 
     const contentStyle: DrawerStyle = {
@@ -309,7 +309,7 @@ const DrawerRoot = React.forwardRef<HTMLDivElement, DrawerProps>(
         </DrawerPortal>
       </DrawerContext.Provider>
     );
-  },
+  }
 );
 
 DrawerRoot.displayName = "Drawer";

@@ -17,7 +17,7 @@ export const DrawerBackdrop = React.forwardRef<
   HTMLDivElement,
   DrawerBackdropProps
 >(({ className, style, transition, visible = true, ...props }, ref) => {
-  const overlayStyle: DrawerStyle = {
+  const backdropStyle: DrawerStyle = {
     "--nova-drawer-enter-duration": `${transition?.enter ?? 200}ms`,
     "--nova-drawer-out-duration": `${transition?.out ?? 160}ms`,
     ...style,
@@ -29,7 +29,7 @@ export const DrawerBackdrop = React.forwardRef<
       aria-hidden="true"
       className={cn(styles.backdrop, className)}
       data-hidden={visible ? undefined : ""}
-      style={overlayStyle}
+      style={backdropStyle}
       {...props}
     />
   );

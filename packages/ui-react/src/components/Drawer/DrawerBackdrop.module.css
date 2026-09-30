@@ -1,4 +1,4 @@
-.overlay {
+.backdrop {
   animation-duration: var(--nova-drawer-out-duration, 160ms);
   animation-fill-mode: both;
   animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -7,16 +7,20 @@
   position: fixed;
 }
 
-.overlay[data-state="open"] {
+.backdrop[data-hidden] {
+  background: var(--surface-transparent);
+}
+
+.backdrop[data-state="open"] {
   animation-duration: var(--nova-drawer-enter-duration, 200ms);
-  animation-name: nova-drawer-overlay-enter;
+  animation-name: nova-drawer-backdrop-enter;
 }
 
-.overlay[data-state="closed"] {
-  animation-name: nova-drawer-overlay-out;
+.backdrop[data-state="closed"] {
+  animation-name: nova-drawer-backdrop-out;
 }
 
-@keyframes nova-drawer-overlay-enter {
+@keyframes nova-drawer-backdrop-enter {
   from {
     opacity: 0;
   }
@@ -26,7 +30,7 @@
   }
 }
 
-@keyframes nova-drawer-overlay-out {
+@keyframes nova-drawer-backdrop-out {
   from {
     opacity: 1;
   }
@@ -37,14 +41,14 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .overlay[data-state="open"],
-  .overlay[data-state="closed"] {
+  .backdrop[data-state="open"],
+  .backdrop[data-state="closed"] {
     animation: none;
   }
-  .overlay[data-state="open"] {
+  .backdrop[data-state="open"] {
     opacity: 1;
   }
-  .overlay[data-state="closed"] {
+  .backdrop[data-state="closed"] {
     opacity: 0;
   }
 }

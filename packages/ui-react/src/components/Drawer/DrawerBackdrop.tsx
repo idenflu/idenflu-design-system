@@ -1,21 +1,22 @@
 import * as React from "react";
 import { cn } from "../../utils/classNames";
 import { type DrawerTransition } from "./DrawerContext";
-import styles from "./DrawerOverlay.module.css";
+import styles from "./DrawerBackdrop.module.css";
 
 type DrawerStyle = React.CSSProperties & {
   "--nova-drawer-enter-duration"?: string;
   "--nova-drawer-out-duration"?: string;
 };
 
-export type DrawerOverlayProps = React.HTMLAttributes<HTMLDivElement> & {
+export type DrawerBackdropProps = React.HTMLAttributes<HTMLDivElement> & {
   transition?: DrawerTransition;
+  visible?: boolean;
 };
 
-export const DrawerOverlay = React.forwardRef<
+export const DrawerBackdrop = React.forwardRef<
   HTMLDivElement,
-  DrawerOverlayProps
->(({ className, style, transition, ...props }, ref) => {
+  DrawerBackdropProps
+>(({ className, style, transition, visible = true, ...props }, ref) => {
   const overlayStyle: DrawerStyle = {
     "--nova-drawer-enter-duration": `${transition?.enter ?? 200}ms`,
     "--nova-drawer-out-duration": `${transition?.out ?? 160}ms`,
@@ -26,11 +27,12 @@ export const DrawerOverlay = React.forwardRef<
     <div
       ref={ref}
       aria-hidden="true"
-      className={cn(styles.overlay, className)}
+      className={cn(styles.backdrop, className)}
+      data-hidden={visible ? undefined : ""}
       style={overlayStyle}
       {...props}
     />
   );
 });
 
-DrawerOverlay.displayName = "DrawerOverlay";
+DrawerBackdrop.displayName = "DrawerBackdrop";

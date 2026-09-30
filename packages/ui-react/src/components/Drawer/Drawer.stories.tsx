@@ -75,6 +75,7 @@ type SidebarDrawerProps = {
   dismissOnBackdrop?: boolean;
   dismissOnEscape?: boolean;
   onOpenChange?: (open: boolean) => void;
+  showBackdrop?: boolean;
   showClose?: boolean;
   showDescription?: boolean;
   side?: DrawerSide;
@@ -88,6 +89,7 @@ function SidebarDrawer({
   dismissOnBackdrop = true,
   dismissOnEscape = true,
   onOpenChange,
+  showBackdrop = true,
   showClose = true,
   showDescription = true,
   side = "left",
@@ -118,6 +120,7 @@ function SidebarDrawer({
         size={size}
         dismissOnBackdrop={dismissOnBackdrop}
         dismissOnEscape={dismissOnEscape}
+        showBackdrop={showBackdrop}
         showClose={showClose}
       >
         <Drawer.Header>
@@ -228,6 +231,7 @@ const meta = {
     },
     dismissOnBackdrop: { control: "boolean" },
     dismissOnEscape: { control: "boolean" },
+    showBackdrop: { control: "boolean" },
     showClose: { control: "boolean" },
     showDescription: { control: "boolean" },
     title: { control: "text" },
@@ -236,6 +240,7 @@ const meta = {
   args: {
     dismissOnBackdrop: true,
     dismissOnEscape: true,
+    showBackdrop: true,
     showClose: true,
     showDescription: true,
     side: "left",
@@ -303,6 +308,13 @@ export const Overview: Story = {
         />
       </OverviewSection>
 
+      <OverviewSection title="Invisible dismissible backdrop">
+        <SidebarDrawer
+          showBackdrop={false}
+          openButtonLabel="Open without backdrop fill"
+        />
+      </OverviewSection>
+
       <OverviewSection title="Accessibility">
         <p style={overviewStyles.note}>
           Tab과 Shift+Tab으로 drawer 내부 focus를 순환합니다. Escape는{" "}
@@ -336,6 +348,7 @@ export const Playground: Story = {
   render: ({
     dismissOnBackdrop,
     dismissOnEscape,
+    showBackdrop,
     showClose,
     showDescription,
     side,
@@ -346,6 +359,7 @@ export const Playground: Story = {
     <SidebarDrawer
       dismissOnBackdrop={dismissOnBackdrop}
       dismissOnEscape={dismissOnEscape}
+      showBackdrop={showBackdrop}
       onOpenChange={fn()}
       showClose={showClose}
       showDescription={showDescription}

@@ -15,7 +15,7 @@ import {
   usePresence,
 } from "./Drawer.utils";
 import { DrawerPortal } from "./DrawerPortal";
-import { DrawerOverlay } from "./DrawerOverlay";
+import { DrawerBackdrop } from "./DrawerBackdrop";
 import { DrawerHeader } from "./DrawerHeader";
 import { DrawerBody } from "./DrawerBody";
 import { DrawerFooter } from "./DrawerFooter";
@@ -52,6 +52,8 @@ export type DrawerProps = Omit<
   onEscapeKeyDown?: (event: KeyboardEvent) => void;
   onOpenChange?: (open: boolean) => void;
   open?: boolean;
+  /** When `false`, the backdrop remains clickable but has no visible fill. */
+  showBackdrop?: boolean;
   /** Renders `Drawer.Close` in the top-end corner. Defaults to `true`. */
   showClose?: boolean;
   /** Edge from which the drawer panel slides in. */
@@ -79,6 +81,7 @@ const DrawerRoot = React.forwardRef<HTMLDivElement, DrawerProps>(
       onEscapeKeyDown,
       onOpenChange,
       open: controlledOpen,
+      showBackdrop = true,
       showClose = true,
       side,
       size = "md",
@@ -277,10 +280,11 @@ const DrawerRoot = React.forwardRef<HTMLDivElement, DrawerProps>(
       <DrawerContext.Provider value={contextValue}>
         <DrawerPortal container={container} mounted={mounted}>
           <div className={styles.viewport}>
-            <DrawerOverlay
+            <DrawerBackdrop
               data-state={state}
               onMouseDown={handleBackdropClick}
               transition={transition}
+              visible={showBackdrop}
             />
             <div
               ref={setSurfaceRef}

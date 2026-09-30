@@ -39,6 +39,13 @@
       "description": "Controlled open state."
     },
     {
+      "name": "showBackdrop",
+      "kind": "boolean",
+      "required": false,
+      "default": true,
+      "description": "Controls the backdrop fill; the outside click area remains active."
+    },
+    {
       "name": "showClose",
       "kind": "boolean",
       "required": false,

@@ -3,15 +3,19 @@ import * as React from "react";
 export type DrawerSide = "bottom" | "left" | "right" | "top";
 export type DrawerSize = "lg" | "md" | "sm";
 
+export type DrawerTransition = {
+  /** Enter animation duration in milliseconds. Defaults to 200. */
+  enter?: number;
+  /** Exit animation duration in milliseconds. Defaults to 160. */
+  out?: number;
+};
+
 export type DrawerContextValue = {
   descriptionId: string;
   descriptionPresent: boolean;
-  open: boolean;
   setDescriptionPresent: (present: boolean) => void;
   setOpen: (open: boolean) => void;
   setTitlePresent: (present: boolean) => void;
-  side: DrawerSide;
-  size: DrawerSize;
   titleId: string;
   titlePresent: boolean;
 };

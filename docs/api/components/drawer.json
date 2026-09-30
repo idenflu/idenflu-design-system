@@ -9,10 +9,28 @@
       "required": false
     },
     {
+      "name": "container",
+      "kind": "unknown",
+      "required": false,
+      "description": "Portal mount target; defaults to document.body."
+    },
+    {
       "name": "defaultOpen",
       "kind": "boolean",
       "required": false,
       "default": false
+    },
+    {
+      "name": "dismissOnBackdrop",
+      "kind": "boolean",
+      "required": false,
+      "default": true
+    },
+    {
+      "name": "dismissOnEscape",
+      "kind": "boolean",
+      "required": false,
+      "default": true
     },
     {
       "name": "open",
@@ -21,32 +39,32 @@
       "description": "Controlled open state."
     },
     {
+      "name": "showClose",
+      "kind": "boolean",
+      "required": false,
+      "default": true
+    },
+    {
       "name": "side",
       "kind": "enum",
-      "values": [
-        "left",
-        "right"
-      ],
+      "values": ["left", "right", "top", "bottom"],
       "required": true
     },
     {
       "name": "size",
       "kind": "enum",
-      "values": [
-        "sm",
-        "md",
-        "lg"
-      ],
+      "values": ["sm", "md", "lg"],
       "required": false,
       "default": "md"
+    },
+    {
+      "name": "transition",
+      "kind": "unknown",
+      "required": false,
+      "description": "Enter and exit animation durations in milliseconds."
     }
   ],
-  "states": [
-    "default",
-    "open",
-    "focus",
-    "disabled"
-  ],
+  "states": ["default", "open", "focus"],
   "accessibility": [
     {
       "id": "dialog-role",
@@ -58,7 +76,7 @@
     }
   ],
   "notes": [
-    "Events (onClose, onOpenChange) are framework-specific and omitted.",
-    "Synced from packages/ui-react DrawerProps (engineering-first)."
+    "Events (onClose, onOpenChange, onBackdropClick, onEscapeKeyDown) are framework-specific and omitted.",
+    "Drawer renders its portal, overlay, and dialog surface internally."
   ]
 }

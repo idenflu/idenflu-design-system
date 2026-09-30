@@ -1,6 +1,6 @@
 import * as React from "react";
 import { cn } from "../../utils/classNames";
-import { type DrawerTransition } from "./DrawerContent";
+import { type DrawerTransition } from "./DrawerContext";
 import styles from "./DrawerOverlay.module.css";
 
 type DrawerStyle = React.CSSProperties & {

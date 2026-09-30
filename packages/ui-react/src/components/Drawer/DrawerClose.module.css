@@ -1,0 +1,6 @@
+.close {
+  inset-block-start: var(--spacing-01);
+  inset-inline-end: var(--spacing-01);
+  position: absolute;
+  z-index: 1;
+}

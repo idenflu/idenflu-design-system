@@ -1,0 +1,9 @@
+.description {
+  color: var(--text-secondary);
+  inline-size: 100%;
+  margin: 0;
+  max-inline-size: 100%;
+  min-inline-size: 0;
+  overflow-wrap: break-word;
+  white-space: normal;
+}

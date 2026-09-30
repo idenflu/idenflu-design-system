@@ -3,19 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { fn } from "storybook/test";
 
 import { Button } from "../Button/Button";
-import {
-  Drawer,
-  DrawerBody,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-  type DrawerSide,
-  type DrawerSize,
-} from "./Drawer";
+import { Drawer, type DrawerSide, type DrawerSize } from "./Drawer";
 
 const sides: DrawerSide[] = ["left", "right", "top", "bottom"];
 const sizes: DrawerSize[] = ["sm", "md", "lg"];
@@ -114,7 +102,7 @@ function SidebarDrawer({
       setOpen(nextOpen);
       onOpenChange?.(nextOpen);
     },
-    [onOpenChange]
+    [onOpenChange],
   );
 
   return (
@@ -125,23 +113,23 @@ function SidebarDrawer({
       side={side}
       size={size}
     >
-      <DrawerTrigger asChild>
+      <Drawer.Trigger asChild>
         <Button variant="outlined">{triggerLabel}</Button>
-      </DrawerTrigger>
-      <DrawerContent
+      </Drawer.Trigger>
+      <Drawer.Content
         dismissOnBackdrop={dismissOnBackdrop}
         dismissOnEscape={dismissOnEscape}
         showClose={showClose}
       >
-        <DrawerHeader>
-          <DrawerTitle>{title}</DrawerTitle>
+        <Drawer.Header>
+          <Drawer.Header.Title>{title}</Drawer.Header.Title>
           {showDescription ? (
-            <DrawerDescription>
+            <Drawer.Header.Description>
               Temporary navigation drawer for sidebar destinations.
-            </DrawerDescription>
+            </Drawer.Header.Description>
           ) : null}
-        </DrawerHeader>
-        <DrawerBody>
+        </Drawer.Header>
+        <Drawer.Body>
           <nav aria-label="Sidebar">
             <ul style={overviewStyles.nav}>
               {["Dashboard", "Campaigns", "Reports", "Settings"].map((item) => (
@@ -153,15 +141,15 @@ function SidebarDrawer({
               ))}
             </ul>
           </nav>
-        </DrawerBody>
-        <DrawerFooter>
-          <DrawerClose asChild>
+        </Drawer.Body>
+        <Drawer.Footer>
+          <Drawer.Close asChild>
             <Button color="neutral" size="lg" variant="outlined">
               Close
             </Button>
-          </DrawerClose>
-        </DrawerFooter>
-      </DrawerContent>
+          </Drawer.Close>
+        </Drawer.Footer>
+      </Drawer.Content>
     </Drawer>
   );
 }
@@ -181,17 +169,17 @@ function ControlledDrawerDemo() {
         side="right"
         size="md"
       >
-        <DrawerContent>
-          <DrawerHeader>
-            <DrawerTitle>Controlled drawer</DrawerTitle>
-          </DrawerHeader>
-          <DrawerBody>
+        <Drawer.Content>
+          <Drawer.Header>
+            <Drawer.Header.Title>Controlled drawer</Drawer.Header.Title>
+          </Drawer.Header>
+          <Drawer.Body>
             <p>
               <code>open</code>과 <code>onClose</code>로 외부에서 상태를
               제어합니다.
             </p>
-          </DrawerBody>
-        </DrawerContent>
+          </Drawer.Body>
+        </Drawer.Content>
       </Drawer>
     </div>
   );
@@ -206,21 +194,21 @@ function ScrollableDrawerDemo() {
         Open scrollable drawer
       </Button>
       <Drawer open={open} onClose={() => setOpen(false)} side="right" size="sm">
-        <DrawerContent>
-          <DrawerHeader>
-            <DrawerTitle>Filters</DrawerTitle>
-          </DrawerHeader>
-          <DrawerBody>
+        <Drawer.Content>
+          <Drawer.Header>
+            <Drawer.Header.Title>Filters</Drawer.Header.Title>
+          </Drawer.Header>
+          <Drawer.Body>
             {Array.from({ length: 24 }, (_, index) => (
               <p key={index}>Filter option {index + 1}</p>
             ))}
-          </DrawerBody>
-          <DrawerFooter>
+          </Drawer.Body>
+          <Drawer.Footer>
             <Button onClick={() => setOpen(false)} size="lg">
               Apply
             </Button>
-          </DrawerFooter>
-        </DrawerContent>
+          </Drawer.Footer>
+        </Drawer.Content>
       </Drawer>
     </>
   );
@@ -329,9 +317,9 @@ export const Overview: Story = {
         <p style={overviewStyles.note}>
           Surface는 <code>role=&quot;dialog&quot;</code>과{" "}
           <code>aria-modal=&quot;true&quot;</code>를 사용합니다.{" "}
-          <code>DrawerTitle</code>로 <code>aria-labelledby</code>를 연결하거나,
-          visible title이 없으면 <code>aria-label</code>을{" "}
-          <code>DrawerContent</code>에 전달합니다.
+          <code>Drawer.Header.Title</code>로 <code>aria-labelledby</code>를
+          연결하거나, visible title이 없으면 <code>aria-label</code>을{" "}
+          <code>Drawer.Content</code>에 전달합니다.
         </p>
         <SidebarDrawer triggerLabel="Try keyboard navigation" />
       </OverviewSection>

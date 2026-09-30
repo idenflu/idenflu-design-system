@@ -1,0 +1,11 @@
+.footer {
+  align-items: center;
+  border-block-start: var(--spacing-01) solid var(--border-subtle);
+  display: flex;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  gap: var(--spacing-01);
+  justify-content: flex-end;
+  padding-block: var(--spacing-05);
+  padding-inline: var(--spacing-06);
+}

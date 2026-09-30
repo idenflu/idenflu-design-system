@@ -146,30 +146,22 @@ export {
   Drawer,
   DrawerBody,
   DrawerClose,
-  DrawerContent,
   DrawerDescription,
   DrawerFooter,
   DrawerHeader,
-  DrawerOverlay,
-  DrawerPortal,
   DrawerTitle,
-  DrawerTrigger,
 } from "./components/Drawer/index";
 export type {
   DrawerBodyProps,
   DrawerCloseProps,
-  DrawerContentProps,
   DrawerDescriptionProps,
   DrawerFooterProps,
   DrawerHeaderProps,
-  DrawerOverlayProps,
-  DrawerPortalProps,
   DrawerProps,
   DrawerSide,
   DrawerSize,
   DrawerTitleProps,
   DrawerTransition,
-  DrawerTriggerProps,
 } from "./components/Drawer/index";
 
 export { Spinner } from "./components/Spinner/index";

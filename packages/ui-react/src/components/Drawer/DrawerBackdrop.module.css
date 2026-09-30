@@ -1,0 +1,54 @@
+.backdrop {
+  animation-duration: var(--nova-drawer-out-duration, 160ms);
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  background: var(--surface-overlay);
+  inset: 0;
+  position: fixed;
+}
+
+.backdrop[data-hidden] {
+  background: var(--surface-transparent);
+}
+
+.backdrop[data-state="open"] {
+  animation-duration: var(--nova-drawer-enter-duration, 200ms);
+  animation-name: nova-drawer-backdrop-enter;
+}
+
+.backdrop[data-state="closed"] {
+  animation-name: nova-drawer-backdrop-out;
+}
+
+@keyframes nova-drawer-backdrop-enter {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes nova-drawer-backdrop-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backdrop[data-state="open"],
+  .backdrop[data-state="closed"] {
+    animation: none;
+  }
+  .backdrop[data-state="open"] {
+    opacity: 1;
+  }
+  .backdrop[data-state="closed"] {
+    opacity: 0;
+  }
+}

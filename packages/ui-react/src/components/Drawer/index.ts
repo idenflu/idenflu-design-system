@@ -1,30 +1,12 @@
+export { Drawer, type DrawerProps } from "./Drawer";
+export type { DrawerTransition } from "./DrawerContext";
+export { DrawerHeader, type DrawerHeaderProps } from "./DrawerHeader";
+export { DrawerTitle, type DrawerTitleProps } from "./DrawerTitle";
 export {
-  Drawer,
-  DrawerBody,
-  DrawerClose,
-  DrawerContent,
   DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerOverlay,
-  DrawerPortal,
-  DrawerTitle,
-  DrawerTrigger,
-} from "./Drawer";
-
-export type {
-  DrawerBodyProps,
-  DrawerCloseProps,
-  DrawerContentProps,
-  DrawerDescriptionProps,
-  DrawerFooterProps,
-  DrawerHeaderProps,
-  DrawerOverlayProps,
-  DrawerPortalProps,
-  DrawerProps,
-  DrawerSide,
-  DrawerSize,
-  DrawerTitleProps,
-  DrawerTransition,
-  DrawerTriggerProps,
-} from "./Drawer";
+  type DrawerDescriptionProps,
+} from "./DrawerDescription";
+export { DrawerBody, type DrawerBodyProps } from "./DrawerBody";
+export { DrawerFooter, type DrawerFooterProps } from "./DrawerFooter";
+export { DrawerClose, type DrawerCloseProps } from "./DrawerClose";
+export type { DrawerSide, DrawerSize } from "./DrawerContext";

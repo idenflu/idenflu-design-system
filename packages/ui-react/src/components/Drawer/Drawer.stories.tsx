@@ -3,19 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { fn } from "storybook/test";
 
 import { Button } from "../Button/Button";
-import {
-  Drawer,
-  DrawerBody,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-  type DrawerSide,
-  type DrawerSize,
-} from "./Drawer";
+import { Drawer, type DrawerSide, type DrawerSize } from "./Drawer";
 
 const sides: DrawerSide[] = ["left", "right", "top", "bottom"];
 const sizes: DrawerSize[] = ["sm", "md", "lg"];
@@ -87,12 +75,13 @@ type SidebarDrawerProps = {
   dismissOnBackdrop?: boolean;
   dismissOnEscape?: boolean;
   onOpenChange?: (open: boolean) => void;
+  showBackdrop?: boolean;
   showClose?: boolean;
   showDescription?: boolean;
   side?: DrawerSide;
   size?: DrawerSize;
   title?: string;
-  triggerLabel?: string;
+  openButtonLabel?: string;
 };
 
 function SidebarDrawer({
@@ -100,12 +89,13 @@ function SidebarDrawer({
   dismissOnBackdrop = true,
   dismissOnEscape = true,
   onOpenChange,
+  showBackdrop = true,
   showClose = true,
   showDescription = true,
   side = "left",
   size = "md",
   title = "Navigation",
-  triggerLabel = "Open sidebar",
+  openButtonLabel = "Open sidebar",
 }: SidebarDrawerProps) {
   const [open, setOpen] = React.useState(defaultOpen);
 
@@ -114,34 +104,34 @@ function SidebarDrawer({
       setOpen(nextOpen);
       onOpenChange?.(nextOpen);
     },
-    [onOpenChange]
+    [onOpenChange],
   );
 
   return (
-    <Drawer
-      open={open}
-      onClose={() => handleOpenChange(false)}
-      onOpenChange={handleOpenChange}
-      side={side}
-      size={size}
-    >
-      <DrawerTrigger asChild>
-        <Button variant="outlined">{triggerLabel}</Button>
-      </DrawerTrigger>
-      <DrawerContent
+    <>
+      <Button onClick={() => setOpen(true)} variant="outlined">
+        {openButtonLabel}
+      </Button>
+      <Drawer
+        open={open}
+        onClose={() => setOpen(false)}
+        onOpenChange={handleOpenChange}
+        side={side}
+        size={size}
         dismissOnBackdrop={dismissOnBackdrop}
         dismissOnEscape={dismissOnEscape}
+        showBackdrop={showBackdrop}
         showClose={showClose}
       >
-        <DrawerHeader>
-          <DrawerTitle>{title}</DrawerTitle>
+        <Drawer.Header>
+          <Drawer.Header.Title>{title}</Drawer.Header.Title>
           {showDescription ? (
-            <DrawerDescription>
+            <Drawer.Header.Description>
               Temporary navigation drawer for sidebar destinations.
-            </DrawerDescription>
+            </Drawer.Header.Description>
           ) : null}
-        </DrawerHeader>
-        <DrawerBody>
+        </Drawer.Header>
+        <Drawer.Body>
           <nav aria-label="Sidebar">
             <ul style={overviewStyles.nav}>
               {["Dashboard", "Campaigns", "Reports", "Settings"].map((item) => (
@@ -153,16 +143,16 @@ function SidebarDrawer({
               ))}
             </ul>
           </nav>
-        </DrawerBody>
-        <DrawerFooter>
-          <DrawerClose asChild>
+        </Drawer.Body>
+        <Drawer.Footer>
+          <Drawer.Close asChild>
             <Button color="neutral" size="lg" variant="outlined">
               Close
             </Button>
-          </DrawerClose>
-        </DrawerFooter>
-      </DrawerContent>
-    </Drawer>
+          </Drawer.Close>
+        </Drawer.Footer>
+      </Drawer>
+    </>
   );
 }
 
@@ -181,17 +171,15 @@ function ControlledDrawerDemo() {
         side="right"
         size="md"
       >
-        <DrawerContent>
-          <DrawerHeader>
-            <DrawerTitle>Controlled drawer</DrawerTitle>
-          </DrawerHeader>
-          <DrawerBody>
-            <p>
-              <code>open</code>과 <code>onClose</code>로 외부에서 상태를
-              제어합니다.
-            </p>
-          </DrawerBody>
-        </DrawerContent>
+        <Drawer.Header>
+          <Drawer.Header.Title>Controlled drawer</Drawer.Header.Title>
+        </Drawer.Header>
+        <Drawer.Body>
+          <p>
+            <code>open</code>과 <code>onClose</code>로 외부에서 상태를
+            제어합니다.
+          </p>
+        </Drawer.Body>
       </Drawer>
     </div>
   );
@@ -206,21 +194,19 @@ function ScrollableDrawerDemo() {
         Open scrollable drawer
       </Button>
       <Drawer open={open} onClose={() => setOpen(false)} side="right" size="sm">
-        <DrawerContent>
-          <DrawerHeader>
-            <DrawerTitle>Filters</DrawerTitle>
-          </DrawerHeader>
-          <DrawerBody>
-            {Array.from({ length: 24 }, (_, index) => (
-              <p key={index}>Filter option {index + 1}</p>
-            ))}
-          </DrawerBody>
-          <DrawerFooter>
-            <Button onClick={() => setOpen(false)} size="lg">
-              Apply
-            </Button>
-          </DrawerFooter>
-        </DrawerContent>
+        <Drawer.Header>
+          <Drawer.Header.Title>Filters</Drawer.Header.Title>
+        </Drawer.Header>
+        <Drawer.Body>
+          {Array.from({ length: 24 }, (_, index) => (
+            <p key={index}>Filter option {index + 1}</p>
+          ))}
+        </Drawer.Body>
+        <Drawer.Footer>
+          <Button onClick={() => setOpen(false)} size="lg">
+            Apply
+          </Button>
+        </Drawer.Footer>
       </Drawer>
     </>
   );
@@ -245,20 +231,22 @@ const meta = {
     },
     dismissOnBackdrop: { control: "boolean" },
     dismissOnEscape: { control: "boolean" },
+    showBackdrop: { control: "boolean" },
     showClose: { control: "boolean" },
     showDescription: { control: "boolean" },
     title: { control: "text" },
-    triggerLabel: { control: "text" },
+    openButtonLabel: { control: "text" },
   },
   args: {
     dismissOnBackdrop: true,
     dismissOnEscape: true,
+    showBackdrop: true,
     showClose: true,
     showDescription: true,
     side: "left",
     size: "md",
     title: "Navigation",
-    triggerLabel: "Open sidebar",
+    openButtonLabel: "Open sidebar",
   },
 } satisfies Meta<PlaygroundArgs>;
 
@@ -283,7 +271,7 @@ export const Overview: Story = {
             <SidebarDrawer
               key={side}
               side={side}
-              triggerLabel={`${side} drawer`}
+              openButtonLabel={`${side} drawer`}
             />
           ))}
         </div>
@@ -295,7 +283,7 @@ export const Overview: Story = {
             <SidebarDrawer
               key={size}
               size={size}
-              triggerLabel={`${size} drawer`}
+              openButtonLabel={`${size} drawer`}
             />
           ))}
         </div>
@@ -303,8 +291,8 @@ export const Overview: Story = {
 
       <OverviewSection title="Controlled">
         <p style={overviewStyles.note}>
-          Trigger 없이 <code>open</code>과 <code>onClose</code>로 완전 제어할 수
-          있습니다.
+          외부 버튼에서 <code>open</code>과 <code>onClose</code>로 완전 제어할
+          수 있습니다.
         </p>
         <ControlledDrawerDemo />
       </OverviewSection>
@@ -316,7 +304,14 @@ export const Overview: Story = {
       <OverviewSection title="Non dismissible backdrop">
         <SidebarDrawer
           dismissOnBackdrop={false}
-          triggerLabel="Open non-dismissible backdrop"
+          openButtonLabel="Open non-dismissible backdrop"
+        />
+      </OverviewSection>
+
+      <OverviewSection title="Invisible dismissible backdrop">
+        <SidebarDrawer
+          showBackdrop={false}
+          openButtonLabel="Open without backdrop fill"
         />
       </OverviewSection>
 
@@ -324,20 +319,23 @@ export const Overview: Story = {
         <p style={overviewStyles.note}>
           Tab과 Shift+Tab으로 drawer 내부 focus를 순환합니다. Escape는{" "}
           <code>dismissOnEscape</code>가 활성화된 경우 drawer를 닫습니다. 닫힐
-          때 focus는 trigger로 복원됩니다.
+          때 focus는 열기 전 활성 요소로 복원됩니다.
         </p>
         <p style={overviewStyles.note}>
           Surface는 <code>role=&quot;dialog&quot;</code>과{" "}
           <code>aria-modal=&quot;true&quot;</code>를 사용합니다.{" "}
-          <code>DrawerTitle</code>로 <code>aria-labelledby</code>를 연결하거나,
-          visible title이 없으면 <code>aria-label</code>을{" "}
-          <code>DrawerContent</code>에 전달합니다.
+          <code>Drawer.Header.Title</code>로 <code>aria-labelledby</code>를
+          연결하거나, visible title이 없으면 <code>aria-label</code>을{" "}
+          <code>Drawer</code>에 전달합니다.
         </p>
-        <SidebarDrawer triggerLabel="Try keyboard navigation" />
+        <SidebarDrawer openButtonLabel="Try keyboard navigation" />
       </OverviewSection>
 
       <OverviewSection title="With actions">
-        <SidebarDrawer onOpenChange={fn()} triggerLabel="Open with actions" />
+        <SidebarDrawer
+          onOpenChange={fn()}
+          openButtonLabel="Open with actions"
+        />
       </OverviewSection>
     </div>
   ),
@@ -350,23 +348,25 @@ export const Playground: Story = {
   render: ({
     dismissOnBackdrop,
     dismissOnEscape,
+    showBackdrop,
     showClose,
     showDescription,
     side,
     size,
     title,
-    triggerLabel,
+    openButtonLabel,
   }) => (
     <SidebarDrawer
       dismissOnBackdrop={dismissOnBackdrop}
       dismissOnEscape={dismissOnEscape}
+      showBackdrop={showBackdrop}
       onOpenChange={fn()}
       showClose={showClose}
       showDescription={showDescription}
       side={side}
       size={size}
       title={title}
-      triggerLabel={triggerLabel}
+      openButtonLabel={openButtonLabel}
     />
   ),
 };

@@ -26,7 +26,6 @@ export type ChipProps = Omit<
 const chipClassName = cva(styles.root, {
   defaultVariants: {
     color: "neutral",
-    deletable: false,
     shape: "pill",
     size: "md",
     variant: "filled",
@@ -38,10 +37,6 @@ const chipClassName = cva(styles.root, {
       info: styles.colorInfo,
       success: styles.colorSuccess,
       warning: styles.colorWarning,
-    },
-    deletable: {
-      false: null,
-      true: styles.deletable,
     },
     shape: {
       pill: styles.shapePill,
@@ -79,7 +74,6 @@ export const Chip = React.forwardRef<HTMLSpanElement, ChipProps>(
       className={cn(
         chipClassName({
           color,
-          deletable: Boolean(onDelete),
           shape,
           size,
           variant,

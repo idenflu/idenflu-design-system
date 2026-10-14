@@ -1,7 +1,6 @@
 .root {
   align-items: center;
   border: 1px solid;
-  border-radius: var(--rounded-full);
   box-sizing: border-box;
   display: inline-flex;
   font: var(--label-md);
@@ -14,6 +13,14 @@
     border-color 200ms ease,
     color 200ms ease;
   vertical-align: middle;
+}
+
+.shapePill {
+  border-radius: var(--rounded-full);
+}
+
+.shapeRounded {
+  border-radius: var(--rounded-md);
 }
 
 .label {

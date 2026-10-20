@@ -1,10 +1,17 @@
 import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Chip, type ChipColor, type ChipSize, type ChipVariant } from "./Chip";
+import {
+  Chip,
+  type ChipColor,
+  type ChipShape,
+  type ChipSize,
+  type ChipVariant,
+} from "./Chip";
 import { Icon } from "../Icon/Icon";
 
 const variants: ChipVariant[] = ["filled", "outlined"];
 const colors: ChipColor[] = ["neutral", "info", "success", "warning", "error"];
+const shapes: ChipShape[] = ["rounded", "pill"];
 const sizes: ChipSize[] = ["md", "sm"];
 
 const overviewStyles = {
@@ -128,6 +135,7 @@ const meta = {
   argTypes: {
     variant: { control: "select", options: variants },
     color: { control: "select", options: colors },
+    shape: { control: "inline-radio", options: shapes },
     size: { control: "select", options: sizes },
     deleteLabel: { control: "text" },
     onDelete: { control: "boolean" },
@@ -191,9 +199,35 @@ export const Playground: Story = {
     children: "Audience",
     color: "neutral",
     deleteLabel: "Delete audience chip",
+    shape: "pill",
     size: "md",
     startIcon: <Icon name="filter" />,
     variant: "filled",
     onDelete: true,
   },
+};
+
+export const Shapes: Story = {
+  parameters: {
+    layout: "padded",
+    controls: { disable: true },
+  },
+  render: () => (
+    <div style={{ display: "flex", flexWrap: "wrap", gap: "var(--spacing-06)" }}>
+      {shapes.map((shape) =>
+        variants.map((variant) =>
+          sizes.map((size) => (
+            <Chip
+              key={`${shape}-${variant}-${size}`}
+              shape={shape}
+              variant={variant}
+              size={size}
+            >
+              {shape} / {variant} / {size}
+            </Chip>
+          ))
+        )
+      )}
+    </div>
+  ),
 };

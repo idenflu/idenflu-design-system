@@ -1,5 +1,6 @@
 import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, fn, userEvent, waitFor, within } from "storybook/test";
 
 import { Button } from "../Button/Button";
 import {
@@ -9,6 +10,7 @@ import {
   type TooltipPosition,
   type TooltipProps,
   TooltipTrigger,
+  TooltipProvider,
 } from "./Tooltip";
 
 const positions: TooltipPosition[] = [
@@ -212,17 +214,17 @@ const meta = {
   title: "Components/Tooltip",
   component: Tooltip,
   parameters: {
+    a11y: { test: "error" },
     docs: {
       description: {
         component:
-          "MUI Tooltip은 title, placement, arrow, enterDelay/leaveDelay, controlled open을 폭넓게 제공한다. Carbon Tooltip은 label, align, enterDelayMs/leaveDelayMs 중심이며 trigger의 기존 aria 속성을 존중한다. Nova Tooltip은 brief help text를 위한 단일 wrapper API로 두고, WAI-ARIA 패턴에 맞춰 trigger가 tooltip을 aria-describedby로 참조한다. tooltip content는 focus를 받지 않으며 Escape, blur, hover out으로 닫힌다.",
+          "TooltipProvider / Tooltip / TooltipTrigger / TooltipContent 합성 API로 짧은 보충 설명을 제공합니다. Hover는 기본 500ms 뒤, 키보드 focus는 즉시 열립니다. Escape, blur, 활성화는 닫힘 지연 없이 닫힙니다. Tooltip은 focus를 받지 않으며 기존 aria-describedby를 보존합니다. 아이콘 버튼에는 별도 접근 가능한 이름이 필요하고, 필수 정보 및 disabled 사유를 Tooltip에만 넣지 않습니다.",
       },
     },
   },
   argTypes: {
     arrow: { control: "boolean" },
     content: { control: "text" },
-    delay: { control: "number" },
     enterDelayMs: { control: "number" },
     leaveDelayMs: { control: "number" },
     position: {
@@ -260,16 +262,18 @@ export const Overview: Story = {
     <div style={overviewStyles.root}>
       <OverviewSection title="Variants">
         <div style={overviewStyles.variantGrid}>
-          {tooltipVariants.map(({ id, label, content, contentProps, rootProps }) => (
-            <TooltipExample
-              key={id}
-              content={content}
-              contentProps={contentProps}
-              rootProps={rootProps}
-            >
-              <Button variant="outlined">{label}</Button>
-            </TooltipExample>
-          ))}
+          {tooltipVariants.map(
+            ({ id, label, content, contentProps, rootProps }) => (
+              <TooltipExample
+                key={id}
+                content={content}
+                contentProps={contentProps}
+                rootProps={rootProps}
+              >
+                <Button variant="outlined">{label}</Button>
+              </TooltipExample>
+            )
+          )}
         </div>
       </OverviewSection>
 
@@ -326,6 +330,366 @@ export const Playground: Story = {
         transition={transition}
       >
         {content}
+      </TooltipContent>
+    </Tooltip>
+  ),
+};
+
+export const ImmediateDismissal: Story = {
+  render: () => (
+    <div>
+      <Tooltip leaveDelayMs={300}>
+        <TooltipTrigger>Dismissal target</TooltipTrigger>
+        <TooltipContent>Dismissal description</TooltipContent>
+      </Tooltip>
+      <button type="button">Next target</button>
+    </div>
+  ),
+  play: async ({ canvasElement }) => {
+    const user = userEvent.setup();
+    const canvas = within(canvasElement);
+    const trigger = canvas.getByRole("button", { name: "Dismissal target" });
+    await user.tab();
+    await expect(trigger).toHaveFocus();
+    await waitFor(() => expect(trigger).toHaveAttribute("aria-describedby"));
+    await user.keyboard("{Escape}");
+    await waitFor(
+      () => expect(trigger).not.toHaveAttribute("aria-describedby"),
+      { timeout: 150 }
+    );
+    await user.tab();
+    await user.tab({ shift: true });
+    await waitFor(() => expect(trigger).toHaveAttribute("aria-describedby"));
+    await user.tab();
+    await waitFor(
+      () => expect(trigger).not.toHaveAttribute("aria-describedby"),
+      { timeout: 150 }
+    );
+  },
+};
+
+const pause = (ms: number) =>
+  new Promise<void>((resolve) => setTimeout(resolve, ms));
+
+export const HoverTiming: Story = {
+  render: () => (
+    <TooltipProvider enterDelayMs={200} skipDelayMs={300}>
+      <div style={overviewStyles.row}>
+        <Tooltip leaveDelayMs={300}>
+          <TooltipTrigger>First hover target</TooltipTrigger>
+          <TooltipContent>First hover description</TooltipContent>
+        </Tooltip>
+        <Tooltip>
+          <TooltipTrigger>Second hover target</TooltipTrigger>
+          <TooltipContent>Second hover description</TooltipContent>
+        </Tooltip>
+        <button type="button">Outside target</button>
+      </div>
+    </TooltipProvider>
+  ),
+  play: async ({ canvasElement }) => {
+    const user = userEvent.setup();
+    const canvas = within(canvasElement);
+    const first = canvas.getByRole("button", { name: "First hover target" });
+    const second = canvas.getByRole("button", { name: "Second hover target" });
+    const outside = canvas.getByRole("button", { name: "Outside target" });
+    await user.hover(first);
+    await pause(60);
+    await expect(first).not.toHaveAttribute("aria-describedby");
+    await waitFor(() => expect(first).toHaveAttribute("aria-describedby"), {
+      timeout: 350,
+    });
+    const content = document.querySelector<HTMLElement>(
+      '[data-slot="tooltip-content"]'
+    )!;
+    await user.hover(content);
+    await pause(350);
+    await expect(first).toHaveAttribute("aria-describedby");
+    await user.pointer({
+      target: outside,
+      coords: {
+        clientX: outside.getBoundingClientRect().right,
+        clientY: outside.getBoundingClientRect().bottom,
+      },
+    });
+    await pause(60);
+    await expect(first).toHaveAttribute("aria-describedby");
+    await user.hover(first);
+    await pause(350);
+    await expect(first).toHaveAttribute("aria-describedby");
+    await user.pointer({
+      target: outside,
+      coords: {
+        clientX: outside.getBoundingClientRect().right,
+        clientY: outside.getBoundingClientRect().bottom,
+      },
+    });
+    await waitFor(() => expect(first).not.toHaveAttribute("aria-describedby"));
+    await waitFor(() =>
+      expect(within(document.body).queryByRole("tooltip")).toBeNull()
+    );
+    await user.hover(second);
+    await waitFor(() => expect(second).toHaveAttribute("aria-describedby"), {
+      timeout: 150,
+    });
+    await user.keyboard("{Escape}");
+    await waitFor(
+      () => expect(second).not.toHaveAttribute("aria-describedby"),
+      { timeout: 150 }
+    );
+    await user.unhover(second);
+    await pause(350);
+    await user.hover(second);
+    await pause(60);
+    await expect(second).not.toHaveAttribute("aria-describedby");
+    await waitFor(() => expect(second).toHaveAttribute("aria-describedby"), {
+      timeout: 350,
+    });
+    await user.keyboard("{Escape}");
+    await user.unhover(second);
+    await user.tab();
+    await waitFor(() => expect(first).toHaveAttribute("aria-describedby"));
+    await user.hover(first);
+    await user.pointer({
+      target: outside,
+      coords: {
+        clientX: outside.getBoundingClientRect().right,
+        clientY: outside.getBoundingClientRect().bottom,
+      },
+    });
+    await pause(350);
+    await expect(first).toHaveAttribute("aria-describedby");
+    await user.keyboard("{Escape}");
+  },
+};
+
+function ControlledDescriptionExample() {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <div>
+      <p id="tooltip-root-help">Root helper</p>
+      <p id="tooltip-child-help">Child helper</p>
+      <Tooltip open={open} onOpenChange={setOpen} leaveDelayMs={300}>
+        <TooltipTrigger asChild aria-describedby="tooltip-root-help">
+          <Button aria-describedby="tooltip-child-help">
+            Controlled target
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent>Controlled description</TooltipContent>
+      </Tooltip>
+      <output aria-label="Tooltip state">{open ? "open" : "closed"}</output>
+    </div>
+  );
+}
+
+export const ControlledDescription: Story = {
+  render: () => <ControlledDescriptionExample />,
+  play: async ({ canvasElement }) => {
+    const user = userEvent.setup();
+    const canvas = within(canvasElement);
+    const trigger = canvas.getByRole("button", { name: "Controlled target" });
+    const descriptionIds = () =>
+      trigger.getAttribute("aria-describedby")?.split(" ");
+    await expect(descriptionIds()).toEqual([
+      "tooltip-root-help",
+      "tooltip-child-help",
+    ]);
+    await user.tab();
+    await waitFor(() =>
+      expect(canvas.getByLabelText("Tooltip state")).toHaveTextContent("open")
+    );
+    const tooltip = within(document.body).getByRole("tooltip");
+    await expect(descriptionIds()).toEqual([
+      "tooltip-root-help",
+      "tooltip-child-help",
+      tooltip.id,
+    ]);
+    await user.keyboard("{Escape}");
+    await waitFor(
+      () =>
+        expect(canvas.getByLabelText("Tooltip state")).toHaveTextContent(
+          "closed"
+        ),
+      { timeout: 150 }
+    );
+    await expect(descriptionIds()).toEqual([
+      "tooltip-root-help",
+      "tooltip-child-help",
+    ]);
+    await expect(trigger).toHaveFocus();
+    await user.tab();
+    await user.tab({ shift: true });
+    await waitFor(() =>
+      expect(canvas.getByLabelText("Tooltip state")).toHaveTextContent("open")
+    );
+    await user.click(trigger);
+    await waitFor(
+      () =>
+        expect(canvas.getByLabelText("Tooltip state")).toHaveTextContent(
+          "closed"
+        ),
+      { timeout: 150 }
+    );
+  },
+};
+
+function LocalThemeExample() {
+  const [dark, setDark] = React.useState(true);
+  return (
+    <div
+      className={dark ? "dark" : undefined}
+      style={{ ...overviewStyles.root, background: "var(--surface-00)" }}
+    >
+      <button type="button" onClick={() => setDark((value) => !value)}>
+        Toggle local theme
+      </button>
+      <Tooltip open>
+        <TooltipTrigger>Local theme target</TooltipTrigger>
+        <TooltipContent arrow>
+          지역 테마도 Portal에 유지됩니다.\n긴 설명은 화면 너비에 맞춰
+          확인합니다.
+        </TooltipContent>
+      </Tooltip>
+    </div>
+  );
+}
+
+export const LocalDarkTheme: Story = {
+  parameters: { themes: { themeOverride: "light" } },
+  render: () => <LocalThemeExample />,
+  play: async ({ canvasElement }) => {
+    const user = userEvent.setup();
+    const canvas = within(canvasElement);
+    const content = document.querySelector<HTMLElement>(
+      '[data-slot="tooltip-content"]'
+    )!;
+    await waitFor(() =>
+      expect(getComputedStyle(content).backgroundColor).toBe(
+        "rgb(246, 246, 246)"
+      )
+    );
+    await expect(getComputedStyle(content).color).toBe("rgb(0, 0, 0)");
+    await expect(getComputedStyle(content).borderRadius).toBe("4px");
+    const arrow = content.querySelector('[data-slot="tooltip-arrow"]')!;
+    await expect(getComputedStyle(arrow).fill).toBe("rgb(246, 246, 246)");
+    await user.click(
+      canvas.getByRole("button", { name: "Toggle local theme" })
+    );
+    await waitFor(() =>
+      expect(getComputedStyle(content).backgroundColor).toBe(
+        "rgb(115, 115, 115)"
+      )
+    );
+    await expect(getComputedStyle(content).color).toBe("rgb(255, 255, 255)");
+    await expect(getComputedStyle(arrow).fill).toBe("rgb(115, 115, 115)");
+  },
+};
+
+function UnmountExample({ onOpenChange }: Pick<TooltipProps, "onOpenChange">) {
+  const [mounted, setMounted] = React.useState(true);
+  const timer = React.useRef<ReturnType<typeof setTimeout> | undefined>(
+    undefined
+  );
+  React.useEffect(() => () => clearTimeout(timer.current), []);
+  return (
+    <TooltipProvider enterDelayMs={700} skipDelayMs={0}>
+      <div style={overviewStyles.row}>
+        {mounted && (
+          <Tooltip
+            enterDelayMs={100}
+            leaveDelayMs={300}
+            onOpenChange={onOpenChange}
+          >
+            <TooltipTrigger>Unmount target</TooltipTrigger>
+            <TooltipContent>Unmount description</TooltipContent>
+          </Tooltip>
+        )}
+        <button
+          type="button"
+          onPointerEnter={() => {
+            clearTimeout(timer.current);
+            timer.current = setTimeout(() => setMounted(false), 60);
+          }}
+        >
+          Unmount after departure
+        </button>
+      </div>
+    </TooltipProvider>
+  );
+}
+
+export const DelayOverridesAndUnmount: Story = {
+  args: { onOpenChange: fn() },
+  render: ({ onOpenChange }) => <UnmountExample onOpenChange={onOpenChange} />,
+  play: async ({ canvasElement, args }) => {
+    const user = userEvent.setup();
+    const canvas = within(canvasElement);
+    const trigger = canvas.getByRole("button", { name: "Unmount target" });
+    await user.hover(trigger);
+    await pause(40);
+    await expect(trigger).not.toHaveAttribute("aria-describedby");
+    await waitFor(() => expect(trigger).toHaveAttribute("aria-describedby"), {
+      timeout: 200,
+    });
+    const outside = canvas.getByRole("button", {
+      name: "Unmount after departure",
+    });
+    await user.pointer({
+      target: outside,
+      coords: {
+        clientX: outside.getBoundingClientRect().right,
+        clientY: outside.getBoundingClientRect().bottom,
+      },
+    });
+    await waitFor(() =>
+      expect(
+        canvas.queryByRole("button", { name: "Unmount target" })
+      ).toBeNull()
+    );
+    await pause(350);
+    await expect(args.onOpenChange).toHaveBeenCalledTimes(1);
+    await expect(args.onOpenChange).toHaveBeenCalledWith(true);
+  },
+};
+
+export const DisabledReason: Story = {
+  render: () => (
+    <div style={overviewStyles.root}>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button disabled aria-describedby="tooltip-disabled-reason">
+            저장
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent>저장하려면 제목을 입력하세요.</TooltipContent>
+      </Tooltip>
+      <p id="tooltip-disabled-reason" style={overviewStyles.note}>
+        저장하려면 제목을 입력하세요.
+      </p>
+      <Button>다음 작업</Button>
+    </div>
+  ),
+  play: async ({ canvasElement }) => {
+    const user = userEvent.setup();
+    const canvas = within(canvasElement);
+    await expect(canvas.getByRole("button", { name: "저장" })).toBeDisabled();
+    await user.tab();
+    await expect(
+      canvas.getByRole("button", { name: "다음 작업" })
+    ).toHaveFocus();
+    await expect(
+      canvas.getByText("저장하려면 제목을 입력하세요.")
+    ).toBeVisible();
+  },
+};
+
+export const LongContent: Story = {
+  render: () => (
+    <Tooltip defaultOpen>
+      <TooltipTrigger>Long description target</TooltipTrigger>
+      <TooltipContent arrow position="right">
+        긴 설명과 공백 없는 단어도 화면 경계 안에서 줄바꿈합니다.
+        veryLongUnbrokenDescriptionForNarrowScreenVerification
       </TooltipContent>
     </Tooltip>
   ),

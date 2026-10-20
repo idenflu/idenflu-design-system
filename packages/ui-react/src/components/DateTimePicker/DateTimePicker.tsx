@@ -14,6 +14,7 @@ import { TimeScrollerPanel } from "../_pickers/TimeScrollerPanel";
 import { PickerInput } from "../_pickers/PickerInput";
 import type { PickerSize, PickerVariant } from "../_pickers/PickerInput";
 import { usePickerInputValidation } from "../_pickers/usePickerInputValidation";
+import { PickerPopover } from "../_pickers/PickerPopover";
 import { usePickerState } from "../_pickers/usePickerState";
 import styles from "./DateTimePicker.module.css";
 import { Divider } from "../Divider";
@@ -225,25 +226,18 @@ export const DateTimePicker = React.forwardRef<
         />
 
         {open ? (
-          <div
-            ref={(el) => {
-              popoverRef.current = el;
-            }}
+          <PickerPopover
+            open={open}
+            anchorRef={triggerRef}
+            popoverRef={popoverRef}
             id={popoverId}
-            role="dialog"
             aria-label={
               typeof label === "string"
                 ? label
                 : (ariaLabel ?? "Date and time picker")
             }
-            aria-modal="true"
             className={styles.popover}
-            onKeyDown={(e) => {
-              if (e.key === "Escape") {
-                e.preventDefault();
-                closePicker();
-              }
-            }}
+            onClose={closePicker}
           >
             <div className={styles.panelRow}>
               <CalendarPanel
@@ -267,7 +261,7 @@ export const DateTimePicker = React.forwardRef<
                 secondsStep={secondsStep}
               />
             </div>
-          </div>
+          </PickerPopover>
         ) : null}
       </div>
     );

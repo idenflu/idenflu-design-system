@@ -8,6 +8,7 @@ export type {
   TooltipContentProps,
   TooltipPosition,
   TooltipProps,
+  TooltipProviderProps,
   TooltipTransition,
   TooltipTriggerProps,
 } from "./Tooltip";

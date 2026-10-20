@@ -70,6 +70,7 @@ export { Chip } from "./components/Chip/index";
 export type {
   ChipColor,
   ChipProps,
+  ChipShape,
   ChipSize,
   ChipVariant,
 } from "./components/Chip/index";
@@ -185,6 +186,7 @@ export type {
   TooltipContentProps,
   TooltipPosition,
   TooltipProps,
+  TooltipProviderProps,
   TooltipTransition,
   TooltipTriggerProps,
 } from "./components/Tooltip/index";

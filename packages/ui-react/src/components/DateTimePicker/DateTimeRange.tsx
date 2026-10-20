@@ -15,6 +15,7 @@ import { TimeScrollerPanel } from "../_pickers/TimeScrollerPanel";
 import { PickerInput } from "../_pickers/PickerInput";
 import type { PickerSize, PickerVariant } from "../_pickers/PickerInput";
 import { usePickerInputValidation } from "../_pickers/usePickerInputValidation";
+import { PickerPopover } from "../_pickers/PickerPopover";
 import { usePickerState } from "../_pickers/usePickerState";
 import { Button } from "../Button/Button";
 import { Divider } from "../Divider";
@@ -355,25 +356,18 @@ export const DateTimeRange = React.forwardRef<
         />
 
         {open ? (
-          <div
-            ref={(el) => {
-              popoverRef.current = el;
-            }}
+          <PickerPopover
+            open={open}
+            anchorRef={triggerRef}
+            popoverRef={popoverRef}
             id={popoverId}
-            role="dialog"
             aria-label={
               typeof label === "string"
                 ? label
                 : (ariaLabel ?? "Date and time range picker")
             }
-            aria-modal="true"
             className={styles.popover}
-            onKeyDown={(e) => {
-              if (e.key === "Escape") {
-                e.preventDefault();
-                closePicker();
-              }
-            }}
+            onClose={closePicker}
           >
             <div className={styles.rangeStepHeader}>
               <span
@@ -460,7 +454,7 @@ export const DateTimeRange = React.forwardRef<
                 </div>
               </div>
             </div>
-          </div>
+          </PickerPopover>
         ) : null}
       </div>
     );

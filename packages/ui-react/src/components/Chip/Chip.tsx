@@ -7,6 +7,7 @@ import styles from "./Chip.module.css";
 export type ChipVariant = "filled" | "outlined";
 export type ChipColor = "neutral" | "info" | "success" | "warning" | "error";
 export type ChipSize = "sm" | "md";
+export type ChipShape = "rounded" | "pill";
 
 export type ChipProps = Omit<
   React.HTMLAttributes<HTMLSpanElement>,
@@ -16,6 +17,7 @@ export type ChipProps = Omit<
   color?: ChipColor;
   deleteLabel?: string;
   onDelete?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  shape?: ChipShape;
   size?: ChipSize;
   startIcon?: React.ReactNode;
   variant?: ChipVariant;
@@ -24,7 +26,7 @@ export type ChipProps = Omit<
 const chipClassName = cva(styles.root, {
   defaultVariants: {
     color: "neutral",
-    deletable: false,
+    shape: "pill",
     size: "md",
     variant: "filled",
   },
@@ -36,9 +38,9 @@ const chipClassName = cva(styles.root, {
       success: styles.colorSuccess,
       warning: styles.colorWarning,
     },
-    deletable: {
-      false: null,
-      true: styles.deletable,
+    shape: {
+      pill: styles.shapePill,
+      rounded: styles.shapeRounded,
     },
     size: {
       md: styles.sizeMd,
@@ -59,6 +61,7 @@ export const Chip = React.forwardRef<HTMLSpanElement, ChipProps>(
       color = "neutral",
       deleteLabel = "Delete chip",
       onDelete,
+      shape = "pill",
       size = "md",
       startIcon,
       variant = "filled",
@@ -71,7 +74,7 @@ export const Chip = React.forwardRef<HTMLSpanElement, ChipProps>(
       className={cn(
         chipClassName({
           color,
-          deletable: Boolean(onDelete),
+          shape,
           size,
           variant,
         }),

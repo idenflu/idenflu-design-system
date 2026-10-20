@@ -152,23 +152,27 @@
       "default": "outlined"
     }
   ],
-  "states": ["default", "disabled", "error", "open"],
+  "states": ["default", "disabled", "error", "open", "readOnly"],
   "accessibility": [
+    {
+      "id": "disabled-group",
+      "rule": "The field control is a labelled group with aria-disabled only when disabled. Its trigger is natively disabled and chip deletion is unavailable when disabled or readOnly. Helper text stays outside the disabled group with readable contrast; readOnly values retain readable contrast."
+    },
     {
       "id": "visible-label",
       "rule": "Provide a visible label or accessible name for the select field."
     },
     {
       "id": "listbox-select",
-      "rule": "Button trigger with aria-expanded/haspopup; options in a listbox with keyboard highlight and selection."
+      "rule": "Button trigger named by the field label and selected values, with aria-expanded/haspopup; options in a listbox with keyboard highlight and selection."
     },
     {
       "id": "panel-search",
-      "rule": "When searchable, panel search input filters options; Arrow keys move highlight, Enter selects."
+      "rule": "When searchable, a named search field with a decorative search icon filters options. Its clear button appears for a non-empty query and restores focus to the search field. Arrow keys move highlight, Enter selects an option, Escape closes the panel; no results are announced as a status."
     },
     {
       "id": "chips",
-      "rule": "When valueDisplay is chip, selected values are removable chips with accessible delete labels."
+      "rule": "When valueDisplay is chip, selected values are removable chips with accessible delete labels. Chip delete buttons are siblings of the trigger, never nested inside it; deleting restores focus to the trigger."
     }
   ],
   "notes": [

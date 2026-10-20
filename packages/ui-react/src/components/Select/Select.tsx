@@ -636,7 +636,7 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
                     disabled={locked}
                     fullWidth
                     placeholder={searchPlaceholder}
-                    size="md"
+                    size="sm"
                     startAdornment={<Icon name="search" aria-hidden="true" />}
                     value={query}
                     className={styles.searchInput}

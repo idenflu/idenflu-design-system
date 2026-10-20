@@ -4,7 +4,7 @@
 
 .panel {
   align-items: center;
-  background: var(--surface-on-00);
+  background: var(--surface-00);
   box-sizing: border-box;
   display: flex;
   flex-direction: column;

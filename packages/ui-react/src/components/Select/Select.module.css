@@ -131,7 +131,7 @@
 }
 
 .searchInput {
-  --field-control-radius: var(--rounded-lg);
+  --field-control-radius: var(--rounded-md);
   background-color: var(--surface-01);
 }
 

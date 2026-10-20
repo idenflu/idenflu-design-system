@@ -12,6 +12,7 @@ import { CalendarPanel } from "../_pickers/CalendarPanel";
 import { PickerInput } from "../_pickers/PickerInput";
 import type { PickerSize, PickerVariant } from "../_pickers/PickerInput";
 import { usePickerInputValidation } from "../_pickers/usePickerInputValidation";
+import { PickerPopover } from "../_pickers/PickerPopover";
 import { usePickerState } from "../_pickers/usePickerState";
 import styles from "./DatePicker.module.css";
 
@@ -254,25 +255,18 @@ export const DateRange = React.forwardRef<HTMLInputElement, DateRangeProps>(
         />
 
         {open ? (
-          <div
-            ref={(el) => {
-              popoverRef.current = el;
-            }}
+          <PickerPopover
+            open={open}
+            anchorRef={triggerRef}
+            popoverRef={popoverRef}
             id={popoverId}
-            role="dialog"
             aria-label={
               typeof label === "string"
                 ? label
                 : (ariaLabel ?? "Date range picker")
             }
-            aria-modal="true"
             className={styles.popover}
-            onKeyDown={(e) => {
-              if (e.key === "Escape") {
-                e.preventDefault();
-                closePicker();
-              }
-            }}
+            onClose={closePicker}
           >
             <CalendarPanel
               year={view.year}
@@ -300,7 +294,7 @@ export const DateRange = React.forwardRef<HTMLInputElement, DateRangeProps>(
               }}
               onHoverEnd={() => setHoverISO("")}
             />
-          </div>
+          </PickerPopover>
         ) : null}
       </div>
     );

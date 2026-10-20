@@ -4,12 +4,6 @@
   "status": "implemented",
   "props": [
     {
-      "name": "delay",
-      "kind": "number",
-      "required": false,
-      "default": 500
-    },
-    {
       "name": "enterDelayMs",
       "kind": "number",
       "required": false
@@ -21,20 +15,35 @@
       "default": 0
     }
   ],
-  "states": [
-    "default",
-    "hover",
-    "focus",
-    "open"
-  ],
+  "states": ["default", "hover", "focus", "open"],
   "accessibility": [
     {
-      "id": "documented",
-      "rule": "Public Tooltip accessibility is covered by component implementation and stories."
+      "id": "description",
+      "rule": "Tooltip uses role=tooltip and merges its ID with the trigger existing aria-describedby IDs. Icon triggers require their own accessible name."
+    },
+    {
+      "id": "keyboard",
+      "rule": "Keyboard focus opens immediately. Escape, blur and activation close without leaveDelayMs; focus remains on the trigger."
+    },
+    {
+      "id": "hover",
+      "rule": "Tooltip stays open over its trigger or content and while keyboard focus remains. leaveDelayMs applies only to pointer departure."
+    },
+    {
+      "id": "content",
+      "rule": "Tooltip content has no focusable controls. Required information and disabled reasons must also be available without a tooltip."
+    },
+    {
+      "id": "motion",
+      "rule": "Reduced motion disables tooltip animations."
     }
   ],
   "notes": [
     "Events are framework-specific and omitted from this contract.",
-    "Synced from packages/ui-react TooltipProps (engineering-first)."
+    "This props list covers Tooltip root; the current React contract parser does not validate inherited or companion-slot props.",
+    "enterDelayMs overrides deprecated delay; omission inherits TooltipProvider enterDelayMs (default 500ms). Keyboard focus is not delayed.",
+    "TooltipProvider supports enterDelayMs (500ms) and skipDelayMs (300ms), with existing delayDuration/skipDelayDuration aliases retained.",
+    "TooltipContent supports position (12 positions, default top), arrow (false), offset (8), and transition (enter 140ms/out 100ms).",
+    "Content uses rounded-md (4px). Dark theme uses background-neutral-strong and text-on-color, including locally themed triggers rendered through a Portal."
   ]
 }

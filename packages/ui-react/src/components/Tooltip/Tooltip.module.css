@@ -2,11 +2,13 @@
   animation-duration: var(--nova-tooltip-out-duration, 100ms);
   animation-fill-mode: both;
   animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  background: var(--base-gray-500);
+  background: var(--nova-tooltip-background, var(--background-neutral));
+  border-radius: var(--rounded-md);
   box-sizing: border-box;
-  color: var(--text-on-color);
+  color: var(--nova-tooltip-color, var(--text-on-color));
   font: var(--caption-md);
-  max-inline-size: 280px;
+  max-inline-size: min(280px, var(--radix-tooltip-content-available-width));
+  overflow-wrap: anywhere;
   padding-block: 8px;
   padding-inline: 12px;
   user-select: none;
@@ -25,7 +27,7 @@
 }
 
 .arrow {
-  fill: var(--base-gray-500);
+  fill: var(--nova-tooltip-background, var(--background-neutral));
 }
 
 @keyframes nova-tooltip-enter {
@@ -53,7 +55,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .content {
+  .content[data-state] {
     animation: none;
   }
 }

@@ -186,6 +186,7 @@ export type {
   TooltipContentProps,
   TooltipPosition,
   TooltipProps,
+  TooltipProviderProps,
   TooltipTransition,
   TooltipTriggerProps,
 } from "./components/Tooltip/index";

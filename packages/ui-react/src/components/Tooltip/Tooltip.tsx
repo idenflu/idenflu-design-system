@@ -1,4 +1,4 @@
-import { Tooltip as TooltipPrimitive } from "radix-ui";
+import { Slot, Tooltip as TooltipPrimitive } from "radix-ui";
 import * as React from "react";
 
 import { cn } from "../../utils/classNames";
@@ -31,11 +31,9 @@ type TooltipRootProps = Omit<
 >;
 
 export type TooltipProps = TooltipRootProps & {
-  /** Delay before the tooltip opens on hover or focus, in milliseconds. */
-  delay?: number;
-  /** Delay before the tooltip opens on hover or focus, in milliseconds. */
+  /** Hover delay in milliseconds. Inherits the Provider; keyboard focus opens immediately. */
   enterDelayMs?: number;
-  /** Delay before the tooltip closes after hover or focus leaves, in milliseconds. */
+  /** Pointer-leave delay only. Escape, blur and activation close immediately. */
   leaveDelayMs?: number;
 };
 
@@ -86,7 +84,6 @@ function getPosition(position: TooltipPosition): {
 
 export function Tooltip({
   children,
-  delay = 500,
   enterDelayMs,
   leaveDelayMs = 0,
   open,
@@ -94,12 +91,22 @@ export function Tooltip({
   onOpenChange,
   ...props
 }: TooltipProps) {
+  const provider = React.useContext(TooltipDelayContext);
+  const focusRef = React.useRef(false);
+  const pointerCloseRef = React.useRef(false);
+  const [trigger, setTrigger] = React.useState<HTMLButtonElement | null>(null);
   const closeTimerRef = React.useRef<number | undefined>(undefined);
   const isControlled = open !== undefined;
   const [uncontrolledOpen, setUncontrolledOpen] = React.useState(
     defaultOpen ?? false
   );
   const isOpen = open ?? uncontrolledOpen;
+  const previousOpen = React.useRef(isOpen);
+
+  React.useEffect(() => {
+    if (previousOpen.current && !isOpen) provider?.onClose();
+    previousOpen.current = isOpen;
+  }, [isOpen, provider?.onClose]);
 
   const clearCloseTimer = React.useCallback(() => {
     if (closeTimerRef.current !== undefined) {
@@ -128,7 +135,9 @@ export function Tooltip({
         return;
       }
 
-      if (leaveDelayMs <= 0) {
+      if (pointerCloseRef.current && focusRef.current) return;
+
+      if (!pointerCloseRef.current || leaveDelayMs <= 0) {
         setOpen(false);
         return;
       }
@@ -143,27 +152,182 @@ export function Tooltip({
   React.useEffect(() => clearCloseTimer, [clearCloseTimer]);
 
   return (
-    <TooltipPrimitive.Root
-      delayDuration={enterDelayMs ?? delay}
-      open={isOpen}
-      onOpenChange={handleOpenChange}
-      {...props}
+    <TooltipBehaviorContext.Provider
+      value={{
+        clearCloseTimer,
+        focusRef,
+        pointerCloseRef,
+        trigger,
+        setTrigger,
+      }}
     >
-      {children}
-    </TooltipPrimitive.Root>
+      <TooltipPrimitive.Root
+        delayDuration={
+          provider && Date.now() < provider.skipUntil
+            ? 0
+            : (enterDelayMs ?? 500)
+        }
+        open={isOpen}
+        onOpenChange={handleOpenChange}
+        {...props}
+      >
+        {children}
+      </TooltipPrimitive.Root>
+    </TooltipBehaviorContext.Provider>
   );
 }
 
 Tooltip.displayName = "Tooltip";
 
+type TooltipBehavior = {
+  clearCloseTimer: () => void;
+  focusRef: React.MutableRefObject<boolean>;
+  pointerCloseRef: React.MutableRefObject<boolean>;
+  trigger: HTMLButtonElement | null;
+  setTrigger: (element: HTMLButtonElement | null) => void;
+};
+
+const TooltipBehaviorContext = React.createContext<TooltipBehavior | null>(
+  null
+);
+
+// Receive Radix's generated description before merging the consumer's IDs.
+const TriggerElement = React.forwardRef<
+  HTMLButtonElement,
+  React.ButtonHTMLAttributes<HTMLButtonElement> & {
+    asChild?: boolean;
+    existingDescription?: string;
+  }
+>(
+  (
+    {
+      asChild,
+      existingDescription,
+      children,
+      "aria-describedby": description,
+      ...props
+    },
+    ref
+  ) => {
+    const child = asChild
+      ? (React.Children.only(children) as React.ReactElement<
+          React.HTMLAttributes<HTMLElement>
+        >)
+      : null;
+    const describedBy =
+      [
+        ...new Set(
+          [existingDescription, child?.props["aria-describedby"], description]
+            .filter(Boolean)
+            .join(" ")
+            .split(/\s+/)
+            .filter(Boolean)
+        ),
+      ].join(" ") || undefined;
+
+    if (child) {
+      return (
+        <Slot.Root {...props} ref={ref} aria-describedby={describedBy}>
+          {React.cloneElement(child, { "aria-describedby": describedBy })}
+        </Slot.Root>
+      );
+    }
+    return (
+      <button {...props} ref={ref} aria-describedby={describedBy}>
+        {children}
+      </button>
+    );
+  }
+);
+TriggerElement.displayName = "TooltipTriggerElement";
+
 export const TooltipTrigger = React.forwardRef<
   React.ElementRef<typeof TooltipPrimitive.Trigger>,
   TooltipTriggerProps
->(({ children, ...props }, ref) => (
-  <TooltipPrimitive.Trigger ref={ref} data-slot="tooltip-trigger" {...props}>
-    {children}
-  </TooltipPrimitive.Trigger>
-));
+>(
+  (
+    {
+      children,
+      asChild,
+      "aria-describedby": existingDescription,
+      onFocus,
+      onBlur,
+      onPointerMove,
+      onPointerLeave,
+      onPointerDown,
+      onClick,
+      ...props
+    },
+    ref
+  ) => {
+    const behavior = React.useContext(TooltipBehaviorContext);
+    const setRef = React.useCallback(
+      (element: HTMLButtonElement | null) => {
+        behavior?.setTrigger(element);
+        if (typeof ref === "function") ref(element);
+        else if (ref) ref.current = element;
+      },
+      [behavior?.setTrigger, ref]
+    );
+    return (
+      <TooltipPrimitive.Trigger
+        {...props}
+        ref={setRef}
+        asChild
+        data-slot="tooltip-trigger"
+        onFocus={(event) => {
+          onFocus?.(event);
+          if (!event.defaultPrevented && behavior) {
+            behavior.focusRef.current =
+              event.currentTarget.matches(":focus-visible");
+            behavior.pointerCloseRef.current = false;
+            behavior.clearCloseTimer();
+          }
+        }}
+        onBlur={(event) => {
+          onBlur?.(event);
+          if (!event.defaultPrevented && behavior) {
+            behavior.focusRef.current = false;
+            behavior.pointerCloseRef.current = false;
+          }
+        }}
+        onPointerMove={(event) => {
+          onPointerMove?.(event);
+          if (
+            !event.defaultPrevented &&
+            event.pointerType !== "touch" &&
+            behavior
+          ) {
+            behavior.clearCloseTimer();
+            behavior.pointerCloseRef.current = false;
+          }
+        }}
+        onPointerLeave={(event) => {
+          onPointerLeave?.(event);
+          if (!event.defaultPrevented && behavior)
+            behavior.pointerCloseRef.current = true;
+        }}
+        onPointerDown={(event) => {
+          onPointerDown?.(event);
+          if (!event.defaultPrevented && behavior)
+            behavior.pointerCloseRef.current = false;
+        }}
+        onClick={(event) => {
+          onClick?.(event);
+          if (!event.defaultPrevented && behavior)
+            behavior.pointerCloseRef.current = false;
+        }}
+      >
+        <TriggerElement
+          asChild={asChild}
+          existingDescription={existingDescription}
+        >
+          {children}
+        </TriggerElement>
+      </TooltipPrimitive.Trigger>
+    );
+  }
+);
 
 TooltipTrigger.displayName = "TooltipTrigger";
 
@@ -180,12 +344,49 @@ export const TooltipContent = React.forwardRef<
       position = "top",
       style,
       transition,
+      onEscapeKeyDown,
+      onPointerDownOutside,
+      onPointerEnter,
+      onPointerLeave,
       ...props
     },
     ref
   ) => {
+    const behavior = React.useContext(TooltipBehaviorContext);
+    const [themeStyle, setThemeStyle] = React.useState<React.CSSProperties>({});
+    React.useLayoutEffect(() => {
+      const trigger = behavior?.trigger;
+      if (!trigger) return;
+      const updateTheme = () => {
+        const computed = getComputedStyle(trigger);
+        const dark = Boolean(trigger.closest(".dark"));
+        setThemeStyle({
+          "--nova-tooltip-background": computed.getPropertyValue(
+            dark ? "--background-neutral-strong" : "--background-neutral"
+          ),
+          "--nova-tooltip-color": computed.getPropertyValue("--text-on-color"),
+          "--rounded-md": computed.getPropertyValue("--rounded-md"),
+          "--caption-md": computed.getPropertyValue("--caption-md"),
+        } as React.CSSProperties);
+      };
+      updateTheme();
+      // Portals must retain local theme values, including live theme changes.
+      const observer = new MutationObserver(updateTheme);
+      for (
+        let element: HTMLElement | null = trigger;
+        element;
+        element = element.parentElement
+      ) {
+        observer.observe(element, {
+          attributes: true,
+          attributeFilter: ["class", "style"],
+        });
+      }
+      return () => observer.disconnect();
+    }, [behavior?.trigger]);
     const { align, side } = getPosition(position);
     const contentStyle: TooltipStyle = {
+      ...themeStyle,
       "--nova-tooltip-enter-duration": `${transition?.enter ?? 140}ms`,
       "--nova-tooltip-out-duration": `${transition?.out ?? 100}ms`,
       ...style,
@@ -202,6 +403,28 @@ export const TooltipContent = React.forwardRef<
           sideOffset={offset}
           style={contentStyle}
           {...props}
+          onEscapeKeyDown={(event) => {
+            onEscapeKeyDown?.(event);
+            if (!event.defaultPrevented && behavior)
+              behavior.pointerCloseRef.current = false;
+          }}
+          onPointerDownOutside={(event) => {
+            onPointerDownOutside?.(event);
+            if (!event.defaultPrevented && behavior)
+              behavior.pointerCloseRef.current = false;
+          }}
+          onPointerEnter={(event) => {
+            onPointerEnter?.(event);
+            if (!event.defaultPrevented && behavior) {
+              behavior.clearCloseTimer();
+              behavior.pointerCloseRef.current = false;
+            }
+          }}
+          onPointerLeave={(event) => {
+            onPointerLeave?.(event);
+            if (!event.defaultPrevented && behavior)
+              behavior.pointerCloseRef.current = true;
+          }}
         >
           {children}
           {arrow ? (
@@ -218,16 +441,50 @@ export const TooltipContent = React.forwardRef<
 
 TooltipContent.displayName = "TooltipContent";
 
+export type TooltipProviderProps = React.ComponentProps<
+  typeof TooltipPrimitive.Provider
+> & {
+  /** Default hover delay. Defaults to 500ms. */
+  enterDelayMs?: number;
+  /** Skip hover delay when moving between tooltips within this window. Defaults to 300ms. */
+  skipDelayMs?: number;
+};
+
+const TooltipDelayContext = React.createContext<{
+  skipUntil: number;
+  onClose: () => void;
+} | null>(null);
+
 export const TooltipProvider = ({
-  delayDuration = 0,
+  enterDelayMs,
+  skipDelayMs,
+  delayDuration,
+  skipDelayDuration,
   ...props
-}: React.ComponentProps<typeof TooltipPrimitive.Provider>) => {
+}: TooltipProviderProps) => {
+  const skipDelay = skipDelayMs ?? skipDelayDuration ?? 300;
+  const [skipUntil, setSkipUntil] = React.useState(0);
+  React.useEffect(() => {
+    if (!skipUntil) return;
+    const timer = window.setTimeout(
+      () => setSkipUntil(0),
+      Math.max(0, skipUntil - Date.now())
+    );
+    return () => window.clearTimeout(timer);
+  }, [skipUntil]);
+  // Radix starts its window on a close request; leaveDelayMs postpones the actual close.
+  const onClose = React.useCallback(
+    () => setSkipUntil(Date.now() + skipDelay),
+    [skipDelay]
+  );
   return (
-    <TooltipPrimitive.Provider
-      data-slot="tooltip-provider"
-      delayDuration={delayDuration}
-      {...props}
-    />
+    <TooltipDelayContext.Provider value={{ skipUntil, onClose }}>
+      <TooltipPrimitive.Provider
+        {...props}
+        delayDuration={enterDelayMs ?? delayDuration ?? 500}
+        skipDelayDuration={skipDelay}
+      />
+    </TooltipDelayContext.Provider>
   );
 };
 

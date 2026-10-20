@@ -9,7 +9,7 @@
 /* ─── Popover ────────────────────────────────────────────────────── */
 
 .popover {
-  background: var(--surface-on-00);
+  background: var(--surface-00);
   border: 1px solid var(--border-subtle);
   border-radius: var(--rounded-none);
   box-shadow:

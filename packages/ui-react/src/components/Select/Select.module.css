@@ -4,6 +4,7 @@
 
 .controlRow {
   align-items: flex-start;
+  cursor: pointer;
   display: flex;
   flex-wrap: nowrap;
   gap: 8px;
@@ -11,8 +12,22 @@
   min-inline-size: 0;
 }
 
+.controlRow[data-disabled] {
+  color: var(--text-disabled);
+  cursor: not-allowed;
+}
+
+/* Read-only values remain readable despite the shared field text-fill rule. */
+.root.readOnly .controlRow {
+  -webkit-text-fill-color: currentColor;
+}
+
+.root .helper {
+  color: var(--text-secondary);
+}
+
 .trigger {
-  align-items: flex-start;
+  align-items: center;
   appearance: none;
   background: transparent;
   border: 0;
@@ -20,9 +35,9 @@
   color: inherit;
   cursor: pointer;
   display: flex;
-  flex: 1 1 auto;
+  flex: 0 0 auto;
   gap: 8px;
-  inline-size: 100%;
+  align-self: stretch;
   justify-content: space-between;
   margin: 0;
   min-inline-size: 0;
@@ -58,9 +73,8 @@
   inline-size: 0;
 }
 
-.chipSlot {
-  flex: 0 0 auto;
-  min-inline-size: 0;
+.chip[data-disabled] {
+  color: var(--text-disabled);
 }
 
 .placeholder,
@@ -79,11 +93,9 @@
 }
 
 .chevron {
-  align-self: flex-start;
   color: var(--text-secondary);
   display: inline-flex;
   flex: 0 0 auto;
-  margin-block-start: 2px;
 }
 
 .disabled .chevron {
@@ -113,34 +125,14 @@
 }
 
 .search {
-  align-items: center;
-  display: flex;
-  gap: var(--space-md);
-  border-block-end: 1px solid var(--border-primary);
   box-sizing: border-box;
+  padding-block: var(--spacing-04);
+  padding-inline: var(--spacing-06);
 }
 
 .searchInput {
-  background: transparent;
-  border: 0;
-  box-sizing: border-box;
-  color: var(--text-primary);
-  font: var(--body-sm);
-  inline-size: 100%;
-  margin: 0;
-  outline: none;
-  padding-block: 8px;
-  padding-inline: 12px;
-}
-
-.searchInput::placeholder {
-  color: var(--text-secondary);
-}
-
-.searchInput:disabled {
-  color: var(--text-disabled);
-  cursor: not-allowed;
-  -webkit-text-fill-color: var(--text-disabled);
+  --field-control-radius: var(--rounded-lg);
+  background-color: var(--surface-01);
 }
 
 .listbox {
@@ -149,6 +141,11 @@
   max-block-size: 320px;
   overflow: auto;
   padding: 0;
+}
+
+.listbox:focus-visible {
+  outline: auto;
+  outline-color: var(--border-focused);
 }
 
 .item {

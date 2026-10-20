@@ -7,7 +7,7 @@ import { Chip, type ChipSize } from "../Chip/Chip";
 import { Icon } from "../Icon/Icon";
 import inputSharedStyles from "../_fields/Field.module.css";
 import styles from "./Select.module.css";
-import { IconButton } from "../IconButton";
+import { TextInput } from "../TextInput";
 
 /**
  * Select field with optional panel search, multi-select, and chip values.
@@ -206,10 +206,7 @@ export type SelectProps = {
   variant?: SelectVariant;
 };
 
-export const Select = React.forwardRef<
-  HTMLButtonElement,
-  SelectProps
->(
+export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
   (
     {
       children,
@@ -245,6 +242,8 @@ export const Select = React.forwardRef<
     const generatedId = React.useId();
     const triggerId = id ?? generatedId;
     const listboxId = `${triggerId}-listbox`;
+    const labelId = `${triggerId}-label`;
+    const valueId = `${triggerId}-value`;
     const searchId = `${triggerId}-search`;
     const helperId = helperText || error ? `${triggerId}-helper` : undefined;
     const hasError = Boolean(error);
@@ -343,6 +342,7 @@ export const Select = React.forwardRef<
         emitValue([optionValue]);
         setQuery("");
         setOpen(false);
+        triggerRef.current?.focus();
       },
       [emitValue, locked, multiple, optionByValue, selectedValues, setOpen]
     );
@@ -425,6 +425,16 @@ export const Select = React.forwardRef<
       }
     }, [filteredOptions.length, highlightedIndex]);
 
+    React.useEffect(() => {
+      if (!open) return;
+      const option = filteredOptions[highlightedIndex];
+      if (option) {
+        document
+          .getElementById(`${triggerId}-option-${option.value}`)
+          ?.scrollIntoView({ block: "nearest" });
+      }
+    }, [open, highlightedIndex, filteredOptions, triggerId]);
+
     const handleTriggerKeyDown = (
       event: React.KeyboardEvent<HTMLButtonElement>
     ) => {
@@ -470,6 +480,7 @@ export const Select = React.forwardRef<
       }
 
       if (event.key === "Enter") {
+        if ((event.target as Element).closest("button")) return;
         const option = filteredOptions[highlightedIndex];
         if (option) {
           event.preventDefault();
@@ -514,25 +525,26 @@ export const Select = React.forwardRef<
           {selectedValues.map((selected, index) => {
             const chipLabel = selectedLabels[index] ?? selected;
             return (
-              <span key={selected} className={styles.chipSlot}>
-                <Chip
-                  color="neutral"
-                  deleteLabel={`Remove ${chipLabel}`}
-                  size={chipSizeResolved}
-                  variant="filled"
-                  onDelete={
-                    locked
-                      ? undefined
-                      : (event) => {
-                          event.stopPropagation();
-                          removeValue(selected);
-                          triggerRef.current?.focus();
-                        }
-                  }
-                >
-                  {chipLabel}
-                </Chip>
-              </span>
+              <Chip
+                key={selected}
+                color="neutral"
+                deleteLabel={`Remove ${chipLabel}`}
+                size={chipSizeResolved}
+                variant="filled"
+                className={styles.chip}
+                data-disabled={disabled || undefined}
+                onDelete={
+                  locked
+                    ? undefined
+                    : (event) => {
+                        event.stopPropagation();
+                        removeValue(selected);
+                        triggerRef.current?.focus();
+                      }
+                }
+              >
+                {chipLabel}
+              </Chip>
             );
           })}
         </div>
@@ -541,7 +553,20 @@ export const Select = React.forwardRef<
       );
 
     const fieldControl = (
-      <div className={styles.controlRow}>
+      <div
+        role="group"
+        aria-disabled={disabled || undefined}
+        aria-labelledby={label ? labelId : valueId}
+        aria-describedby={helperId}
+        className={cn(inputSharedStyles.control, styles.controlRow)}
+        data-disabled={disabled || undefined}
+        onClick={(event) => {
+          if (locked || (event.target as Element).closest("button")) return;
+          triggerRef.current?.focus();
+          triggerRef.current?.click();
+        }}
+      >
+        {valueContent}
         <button
           ref={triggerRef}
           id={triggerId}
@@ -549,16 +574,21 @@ export const Select = React.forwardRef<
           aria-controls={open ? listboxId : undefined}
           aria-expanded={open}
           aria-haspopup="listbox"
+          aria-labelledby={label ? `${labelId} ${valueId}` : valueId}
           aria-invalid={hasError || undefined}
           aria-describedby={helperId}
-          className={cn(inputSharedStyles.control, styles.trigger)}
+          className={styles.trigger}
           disabled={locked}
           onClick={() => {
             if (!locked) setOpen(!open);
           }}
           onKeyDown={handleTriggerKeyDown}
         >
-          {valueContent}
+          <span id={valueId} hidden>
+            {selectedLabels.length > 0
+              ? selectedLabels.join(", ")
+              : placeholder}
+          </span>
           <Icon
             name="keyboard-arrow-down"
             size={16}
@@ -594,34 +624,39 @@ export const Select = React.forwardRef<
             >
               {searchable ? (
                 <div className={styles.search}>
-                  <input
+                  <TextInput
                     ref={searchRef}
                     id={searchId}
-                    aria-autocomplete="list"
-                    aria-controls={listboxId}
+                    aria-label={`Search ${getTextValue(label) || placeholder}`}
+                    aria-controls={
+                      filteredOptions.length > 0 ? listboxId : undefined
+                    }
                     autoComplete="off"
-                    className={styles.searchInput}
+                    clearable
                     disabled={locked}
+                    fullWidth
                     placeholder={searchPlaceholder}
+                    size="md"
+                    startAdornment={<Icon name="search" aria-hidden="true" />}
                     value={query}
+                    className={styles.searchInput}
                     onChange={(event) => {
                       setQuery(event.target.value);
                       setHighlightedIndex(0);
                     }}
-                  />
-                  <IconButton
-                    aria-hidden="true"
-                    color="neutral"
-                    icon={<Icon name="restart" />}
-                    label="검색 초기화"
-                    variant="ghost"
-                    onClick={() => setQuery("")}
+                    onClear={() => {
+                      setQuery("");
+                      setHighlightedIndex(0);
+                      searchRef.current?.focus();
+                    }}
                   />
                 </div>
               ) : null}
 
               {filteredOptions.length === 0 ? (
-                <div className={styles.empty}>No results</div>
+                <div className={styles.empty} role="status">
+                  No results
+                </div>
               ) : (
                 <ul
                   id={listboxId}
@@ -629,6 +664,12 @@ export const Select = React.forwardRef<
                   aria-multiselectable={multiple || undefined}
                   className={styles.listbox}
                   role="listbox"
+                  tabIndex={0}
+                  aria-activedescendant={
+                    filteredOptions[highlightedIndex]
+                      ? `${triggerId}-option-${filteredOptions[highlightedIndex].value}`
+                      : undefined
+                  }
                 >
                   {filteredOptions.map((option, index) => {
                     const selected = selectedValues.includes(option.value);
@@ -680,12 +721,17 @@ export const Select = React.forwardRef<
               size,
               variant,
             }),
-            locked && styles.disabled,
+            disabled && styles.disabled,
+            readOnly && styles.readOnly,
             className
           )}
         >
           {!isFilled && label ? (
-            <label className={inputSharedStyles.label} htmlFor={triggerId}>
+            <label
+              id={labelId}
+              className={inputSharedStyles.label}
+              htmlFor={triggerId}
+            >
               <span>{label}</span>
               {required ? (
                 <span className={inputSharedStyles.required}>Required*</span>
@@ -694,25 +740,25 @@ export const Select = React.forwardRef<
           ) : null}
 
           {isFilled ? (
-            <div
-              ref={anchorRef}
-              className={inputSharedStyles.controlWrapper}
-            >
+            <div ref={anchorRef} className={inputSharedStyles.controlWrapper}>
               {label ? (
-                <label className={inputSharedStyles.label} htmlFor={triggerId}>
+                <label
+                  id={labelId}
+                  className={inputSharedStyles.label}
+                  htmlFor={triggerId}
+                >
                   <span>{label}</span>
                   {required ? (
-                    <span className={inputSharedStyles.required}>Required*</span>
+                    <span className={inputSharedStyles.required}>
+                      Required*
+                    </span>
                   ) : null}
                 </label>
               ) : null}
               {fieldControl}
             </div>
           ) : (
-            <div
-              ref={anchorRef}
-              className={inputSharedStyles.controlWrapper}
-            >
+            <div ref={anchorRef} className={inputSharedStyles.controlWrapper}>
               {fieldControl}
             </div>
           )}
@@ -722,6 +768,7 @@ export const Select = React.forwardRef<
               id={helperId}
               className={cn(
                 inputSharedStyles.helper,
+                disabled && !hasError && styles.helper,
                 hasError && inputSharedStyles.helperError
               )}
             >

@@ -19,11 +19,15 @@ export type TabsListProps = React.ComponentPropsWithoutRef<
   typeof TabsPrimitive.List
 > &
   Pick<TabsProps, "variant"> & {
+    /** Omit to derive the disabled state from the scroll boundary. */
     endScrollButtonDisabled?: boolean;
+    /** Overrides the built-in next-page scroll when provided. */
     onEndScrollButtonClick?: React.MouseEventHandler<HTMLButtonElement>;
+    /** Overrides the built-in previous-page scroll when provided. */
     onStartScrollButtonClick?: React.MouseEventHandler<HTMLButtonElement>;
     orientation?: TabsOrientation;
     showScrollButtons?: boolean;
+    /** Omit to derive the disabled state from the scroll boundary. */
     startScrollButtonDisabled?: boolean;
   };
 
@@ -63,7 +67,7 @@ function getScrollBehavior(): ScrollBehavior {
     typeof window !== "undefined" &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches
   ) {
-    return "auto";
+    return "instant";
   }
 
   return "smooth";
@@ -72,13 +76,18 @@ function getScrollBehavior(): ScrollBehavior {
 function scrollTabToEdge(
   tab: HTMLElement,
   scroller: HTMLElement,
-  orientation: TabsOrientation
+  orientation: TabsOrientation,
+  behavior = getScrollBehavior(),
 ) {
   const scrollerRect = scroller.getBoundingClientRect();
   const tabRect = tab.getBoundingClientRect();
-  const behavior = getScrollBehavior();
 
   if (orientation === "horizontal") {
+    if (
+      tabRect.left <= scrollerRect.left &&
+      tabRect.right >= scrollerRect.right
+    )
+      return;
     if (tabRect.left < scrollerRect.left - 1) {
       scroller.scrollTo({
         behavior,
@@ -97,6 +106,8 @@ function scrollTabToEdge(
     return;
   }
 
+  if (tabRect.top <= scrollerRect.top && tabRect.bottom >= scrollerRect.bottom)
+    return;
   if (tabRect.top < scrollerRect.top - 1) {
     scroller.scrollTo({
       behavior,
@@ -184,11 +195,11 @@ export const Tabs = React.forwardRef<
 >(
   (
     { className, orientation = "horizontal", variant = "standard", ...props },
-    ref
+    ref,
   ) => {
     const contextValue = React.useMemo(
       () => ({ orientation, variant }),
-      [orientation, variant]
+      [orientation, variant],
     );
 
     return (
@@ -204,7 +215,7 @@ export const Tabs = React.forwardRef<
         />
       </TabsContext.Provider>
     );
-  }
+  },
 );
 
 Tabs.displayName = "Tabs";
@@ -226,33 +237,62 @@ export const TabsList = React.forwardRef<
       variant: variantProp,
       ...props
     },
-    ref
+    ref,
   ) => {
     const context = React.useContext(TabsContext);
     const listRef = React.useRef<HTMLDivElement | null>(null);
     const navRef = React.useRef<HTMLDivElement | null>(null);
     const scrollerRef = React.useRef<HTMLDivElement | null>(null);
     const activeTriggerRef = React.useRef<HTMLElement | null>(null);
+    const geometryRef = React.useRef<string | null>(null);
+    const [scrollBounds, setScrollBounds] = React.useState({
+      start: false,
+      end: false,
+    });
+    const scrollBoundsRef = React.useRef(scrollBounds);
     const orientation = orientationProp ?? context.orientation;
     const variant = variantProp ?? context.variant;
 
-    const getScrollContainer = React.useCallback(() => {
-      if (scrollerRef.current) {
-        return scrollerRef.current;
+    const getScrollContainer = React.useCallback(
+      () => scrollerRef.current ?? listRef.current,
+      [],
+    );
+
+    const updateScrollBounds = React.useCallback(() => {
+      const scroller = getScrollContainer();
+      if (!scroller) return;
+      const horizontal = orientation === "horizontal";
+      const rtl = horizontal && getComputedStyle(scroller).direction === "rtl";
+      const position = horizontal
+        ? scroller.scrollLeft * (rtl ? -1 : 1)
+        : scroller.scrollTop;
+      const max = horizontal
+        ? scroller.scrollWidth - scroller.clientWidth
+        : scroller.scrollHeight - scroller.clientHeight;
+      const start = position > 1;
+      const end = position < max - 1;
+      if (
+        scrollBoundsRef.current.start !== start ||
+        scrollBoundsRef.current.end !== end
+      ) {
+        scrollBoundsRef.current = { start, end };
+        setScrollBounds(scrollBoundsRef.current);
       }
+    }, [getScrollContainer, orientation]);
 
-      const list = listRef.current;
-      if (!list) {
-        return null;
-      }
-
-      const canScroll =
-        orientation === "horizontal"
-          ? list.scrollWidth > list.clientWidth + 1
-          : list.scrollHeight > list.clientHeight + 1;
-
-      return canScroll ? list : null;
-    }, [orientation]);
+    const scrollPage = (direction: "previous" | "next") => {
+      const scroller = getScrollContainer();
+      if (!scroller) return;
+      const horizontal = orientation === "horizontal";
+      const rtl = horizontal && getComputedStyle(scroller).direction === "rtl";
+      const distance =
+        (horizontal ? scroller.clientWidth : scroller.clientHeight) * 0.75;
+      const delta = distance * (direction === "previous" ? -1 : 1);
+      scroller.scrollBy({
+        behavior: getScrollBehavior(),
+        ...(horizontal ? { left: delta * (rtl ? -1 : 1) } : { top: delta }),
+      });
+    };
 
     const scrollTabIntoView = React.useCallback(
       (tab: HTMLElement) => {
@@ -263,19 +303,19 @@ export const TabsList = React.forwardRef<
 
         scrollTabToEdge(tab, scrollContainer, orientation);
       },
-      [getScrollContainer, orientation]
+      [getScrollContainer, orientation],
     );
 
     const scrollContextValue = React.useMemo(
       () => ({ scrollTabIntoView }),
-      [scrollTabIntoView]
+      [scrollTabIntoView],
     );
 
     const updateIndicator = React.useCallback(() => {
       const list = listRef.current;
       const nav = navRef.current;
       const activeTrigger = list?.querySelector<HTMLElement>(
-        '[data-slot="tabs-trigger"][data-state="active"]'
+        '[data-slot="tabs-trigger"][data-state="active"]',
       );
 
       if (!list || !nav || !activeTrigger) {
@@ -319,65 +359,96 @@ export const TabsList = React.forwardRef<
       nav.style.setProperty("--nova-tabs-indicator-size", `${size}px`);
     }, [orientation]);
 
-    React.useLayoutEffect(() => {
+    const syncLayout = React.useCallback(() => {
       const list = listRef.current;
-      const activeTrigger =
-        list?.querySelector<HTMLElement>(
-          '[data-slot="tabs-trigger"][data-state="active"]'
-        ) ?? null;
-
-      if (activeTrigger && activeTrigger !== activeTriggerRef.current) {
-        const shouldScroll = activeTriggerRef.current !== null;
-        activeTriggerRef.current = activeTrigger;
-
-        if (shouldScroll) {
-          scrollTabIntoView(activeTrigger);
-        }
+      const scroller = getScrollContainer();
+      if (!list || !scroller) return;
+      const activeTrigger = list.querySelector<HTMLElement>(
+        '[data-slot="tabs-trigger"][data-state="active"]',
+      );
+      const triggers = list.querySelectorAll<HTMLElement>(
+        '[data-slot="tabs-trigger"]',
+      );
+      const geometry = [
+        orientation,
+        getComputedStyle(scroller).direction,
+        scroller.clientWidth,
+        scroller.clientHeight,
+        scroller.scrollWidth,
+        scroller.scrollHeight,
+        ...Array.from(
+          triggers,
+          (tab) =>
+            `${tab.offsetLeft},${tab.offsetTop},${tab.offsetWidth},${tab.offsetHeight}`,
+        ),
+      ].join(";");
+      const selectionChanged = activeTrigger !== activeTriggerRef.current;
+      const geometryChanged =
+        geometryRef.current !== null && geometry !== geometryRef.current;
+      if (activeTrigger && (selectionChanged || geometryChanged)) {
+        // Restore immediately; animate subsequent selections. Scroll events never realign the selection.
+        const behavior =
+          selectionChanged && activeTriggerRef.current !== null
+            ? getScrollBehavior()
+            : "instant";
+        scrollTabToEdge(activeTrigger, scroller, orientation, behavior);
       }
-
+      activeTriggerRef.current = activeTrigger;
+      geometryRef.current = geometry;
+      updateScrollBounds();
       updateIndicator();
+    }, [getScrollContainer, orientation, updateScrollBounds, updateIndicator]);
+
+    React.useLayoutEffect(() => {
+      syncLayout();
     });
 
     React.useLayoutEffect(() => {
       const list = listRef.current;
+      const scroller = getScrollContainer();
+      if (!list || !scroller) return;
 
-      if (!list) {
-        return undefined;
-      }
-
-      const mutationObserver = new MutationObserver(updateIndicator);
+      const resizeObserver = new ResizeObserver(() => syncLayout());
+      const observeLayout = () => {
+        resizeObserver.disconnect();
+        resizeObserver.observe(list);
+        resizeObserver.observe(scroller);
+        if (navRef.current) resizeObserver.observe(navRef.current);
+        list
+          .querySelectorAll<HTMLElement>('[data-slot="tabs-trigger"]')
+          .forEach((trigger) => resizeObserver.observe(trigger));
+      };
+      observeLayout();
+      const mutationObserver = new MutationObserver((records) => {
+        if (records.some((record) => record.type === "childList"))
+          observeLayout();
+        syncLayout();
+      });
       mutationObserver.observe(list, {
         attributes: true,
         attributeFilter: ["data-state"],
+        characterData: true,
         childList: true,
         subtree: true,
       });
-
-      const resizeObserver = new ResizeObserver(updateIndicator);
-      resizeObserver.observe(list);
-      if (navRef.current) {
-        resizeObserver.observe(navRef.current);
-      }
-      if (scrollerRef.current) {
-        resizeObserver.observe(scrollerRef.current);
-      }
-
-      list
-        .querySelectorAll<HTMLElement>('[data-slot="tabs-trigger"]')
-        .forEach((trigger) => resizeObserver.observe(trigger));
-
-      const scroller = scrollerRef.current;
-      const handleScroll = () => updateIndicator();
-      scroller?.addEventListener("scroll", handleScroll, { passive: true });
-      list.addEventListener("scroll", handleScroll, { passive: true });
-
+      const handleScroll = () => {
+        updateScrollBounds();
+        updateIndicator();
+      };
+      scroller.addEventListener("scroll", handleScroll, { passive: true });
       return () => {
         mutationObserver.disconnect();
         resizeObserver.disconnect();
-        scroller?.removeEventListener("scroll", handleScroll);
-        list.removeEventListener("scroll", handleScroll);
+        scroller.removeEventListener("scroll", handleScroll);
       };
-    }, [children, showScrollButtons, updateIndicator]);
+    }, [
+      getScrollContainer,
+      showScrollButtons,
+      variant,
+      syncLayout,
+      updateScrollBounds,
+      updateIndicator,
+    ]);
 
     const list = (
       <TabsPrimitive.List
@@ -399,8 +470,11 @@ export const TabsList = React.forwardRef<
           ref={navRef}
           className={cn(
             styles.nav,
-            (showScrollButtons || variant === "fullWidth") && styles.navFill,
-            className
+            (showScrollButtons ||
+              variant === "fullWidth" ||
+              variant === "scrollable") &&
+              styles.navFill,
+            className,
           )}
           data-orientation={orientation}
           data-slot="tabs-nav"
@@ -409,8 +483,10 @@ export const TabsList = React.forwardRef<
             <>
               <TabsScrollButton
                 direction="previous"
-                disabled={startScrollButtonDisabled}
-                onClick={onStartScrollButtonClick}
+                disabled={startScrollButtonDisabled ?? !scrollBounds.start}
+                onClick={
+                  onStartScrollButtonClick ?? (() => scrollPage("previous"))
+                }
               />
               <div
                 ref={scrollerRef}
@@ -421,10 +497,18 @@ export const TabsList = React.forwardRef<
               </div>
               <TabsScrollButton
                 direction="next"
-                disabled={endScrollButtonDisabled}
-                onClick={onEndScrollButtonClick}
+                disabled={endScrollButtonDisabled ?? !scrollBounds.end}
+                onClick={onEndScrollButtonClick ?? (() => scrollPage("next"))}
               />
             </>
+          ) : variant === "scrollable" ? (
+            <div
+              ref={scrollerRef}
+              className={styles.scroller}
+              data-slot="tabs-scroller"
+            >
+              {list}
+            </div>
           ) : (
             list
           )}
@@ -436,7 +520,7 @@ export const TabsList = React.forwardRef<
         </div>
       </TabsListScrollContext.Provider>
     );
-  }
+  },
 );
 
 TabsList.displayName = "TabsList";
@@ -456,7 +540,7 @@ export const TabsTrigger = React.forwardRef<
       onClose,
       ...props
     },
-    ref
+    ref,
   ) => {
     const scrollContext = React.useContext(TabsListScrollContext);
 
@@ -469,7 +553,7 @@ export const TabsTrigger = React.forwardRef<
             hasCloseIcon: closable,
             hasIcon: Boolean(icon),
           }),
-          className
+          className,
         )}
         {...props}
         onClick={(event) => {
@@ -478,19 +562,11 @@ export const TabsTrigger = React.forwardRef<
             return;
           }
 
-          const tab = event.currentTarget;
           onClick?.(event);
-
-          // Wait for controlled selection + layout, then align to the clipped edge.
-          requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-              scrollContext?.scrollTabIntoView(tab);
-            });
-          });
         }}
         onFocus={(event) => {
           props.onFocus?.(event);
-          if (event.currentTarget.dataset.state === "active") {
+          if (!event.defaultPrevented) {
             scrollContext?.scrollTabIntoView(event.currentTarget);
           }
         }}
@@ -521,7 +597,7 @@ export const TabsTrigger = React.forwardRef<
         ) : null}
       </TabsPrimitive.Trigger>
     );
-  }
+  },
 );
 
 TabsTrigger.displayName = "TabsTrigger";

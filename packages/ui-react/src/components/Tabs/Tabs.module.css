@@ -29,6 +29,7 @@
   isolation: isolate;
   max-width: 100%;
   min-width: 0;
+  min-height: 0;
   overflow: hidden;
   overflow-x: auto;
   scrollbar-width: none;
@@ -38,17 +39,39 @@
   display: none;
 }
 
-.nav .list {
-  height: 100%;
+.nav[data-orientation="vertical"] {
+  flex-direction: column;
+  max-block-size: 100%;
+  inline-size: fit-content;
+}
+
+.nav[data-orientation="vertical"] > .scroller {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.nav[data-orientation="vertical"] > .scroller > .list {
+  width: 100%;
+}
+
+.nav[data-orientation="vertical"] > .scrollButton svg {
+  transform: rotate(90deg);
+}
+
+.nav[data-orientation="horizontal"]:dir(rtl) > .scrollButton svg {
+  transform: rotate(180deg);
+}
+
+.scroller > .list {
   max-width: none;
   overflow: visible;
 }
 
-.nav .listHorizontal {
+.scroller > .listHorizontal {
   overflow: visible;
 }
 
-.nav .listScrollable {
+.scroller > .listScrollable {
   flex: 0 0 auto;
   width: max-content;
 }
@@ -139,7 +162,7 @@
   inline-size: var(--nova-tabs-indicator-size, 0);
   /* Sit on the chrome border so the active mark paints above it. */
   inset-block-end: -1px;
-  inset-inline-start: 0;
+  left: 0;
   transform: translateX(var(--nova-tabs-indicator-offset, 0));
 }
 

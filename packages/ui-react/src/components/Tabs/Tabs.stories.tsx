@@ -70,7 +70,6 @@ function DemoTabs({
 }: DemoTabsProps) {
   const [items, setItems] = React.useState(() => [...demoTabs]);
   const [value, setValue] = React.useState(defaultValue);
-  const listRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
     setItems([...demoTabs]);
@@ -86,13 +85,6 @@ function DemoTabs({
       }
 
       return nextItems;
-    });
-  };
-
-  const scrollTabs = (direction: "previous" | "next") => {
-    listRef.current?.scrollBy({
-      behavior: "smooth",
-      left: direction === "next" ? 160 : -160,
     });
   };
 
@@ -123,13 +115,10 @@ function DemoTabs({
       variant={variant}
     >
       <TabsList
-        ref={listRef}
         aria-label={ariaLabel}
         orientation={orientation}
         showScrollButtons={showScrollButtons}
         variant={variant}
-        onEndScrollButtonClick={() => scrollTabs("next")}
-        onStartScrollButtonClick={() => scrollTabs("previous")}
       >
         {items.map((tab) => (
           <TabsTrigger
@@ -177,7 +166,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "Figma Tabs를 Radix Tabs primitive 위에 구성한 컴포넌트입니다. `TabsList`에는 반드시 `aria-label` 또는 `aria-labelledby`를 제공하고, 방향키와 Home/End 이동 및 Enter/Space 활성화는 Radix의 WAI-ARIA tabs 패턴을 따릅니다.",
+          "Figma Tabs를 Radix Tabs primitive 위에 구성한 컴포넌트입니다. `TabsList`에는 반드시 `aria-label` 또는 `aria-labelledby`를 제공하고, `scrollable`은 선택 탭을 자동으로 노출하며, `showScrollButtons`는 기본 이동과 경계 비활성화를 제공합니다. 기존 버튼 클릭 콜백은 기본 이동을 대체하고, disabled prop을 명시하면 자동 계산보다 우선합니다. `ref`는 스크롤 래퍼가 아닌 tablist를 가리킵니다. 방향키와 Home/End 이동 및 Enter/Space 활성화는 Radix의 WAI-ARIA tabs 패턴을 따릅니다.",
       },
     },
   },

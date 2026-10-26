@@ -219,6 +219,10 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
                   textInputStyles.actionButton,
                   !showClearButton && textInputStyles.actionButtonHidden
                 )}
+                style={{
+                  height: "fit-content",
+                  width: "fit-content",
+                }}
               />
             ) : null}
             {endAdornment}
@@ -237,6 +241,10 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
                 }
                 onClick={() => setShowPassword((visible) => !visible)}
                 className={textInputStyles.actionButton}
+                style={{
+                  height: "fit-content",
+                  width: "fit-content",
+                }}
               />
             ) : null}
           </span>

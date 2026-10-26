@@ -214,6 +214,10 @@ export const PickerInput = React.forwardRef<HTMLInputElement, PickerInputProps>(
           }
         }}
         className={textInputStyles.actionButton}
+        style={{
+          height: "fit-content",
+          width: "fit-content",
+        }}
       />
     );
 

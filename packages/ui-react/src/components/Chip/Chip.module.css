@@ -13,8 +13,53 @@
     border-color 200ms ease,
     color 200ms ease;
   vertical-align: middle;
+
+  .icon {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    justify-content: center;
+    color: currentColor;
+    height: 16px;
+    width: 16px;
+  }
+
+  .label {
+    flex: 1;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .deleteButton {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    justify-content: center;
+    appearance: none;
+    background: transparent;
+    border: 0;
+    border-radius: var(--rounded-full);
+    color: currentColor;
+    cursor: pointer;
+    margin: 0;
+    padding: 2px;
+
+    &:focus-visible {
+      outline: 1px solid var(--border-focused);
+      outline-offset: 0px;
+    }
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .deleteButton:hover {
+      background: var(--chip-delete-button-bg-hover);
+    }
+  }
 }
 
+/* Shape */
 .shapePill {
   border-radius: var(--rounded-full);
 }
@@ -23,52 +68,18 @@
   border-radius: var(--rounded-md);
 }
 
-.label {
-  flex: 1;
-  overflow: hidden;
-  text-align: center;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.icon,
-.delete {
-  align-items: center;
-  display: inline-flex;
-  flex: 0 0 auto;
-  justify-content: center;
-}
-
-.icon {
-  color: currentColor;
-  height: 16px;
-  width: 16px;
-}
-
-.icon svg,
-.delete svg {
-  color: currentColor;
-}
-
-.delete {
-  appearance: none;
-  background: transparent;
-  border: 0;
-  border-radius: var(--rounded-full);
-  color: currentColor;
-  cursor: pointer;
-  margin: 0;
-  padding: 2px;
-}
-
-.delete:focus-visible {
-  outline: 1px solid var(--border-focused);
-  outline-offset: 0px;
-}
-
 /* Sizes */
 .sizeSm {
   padding-block: 1px;
+
+  .icon {
+    height: 14px;
+    width: 14px;
+  }
+
+  .deleteButton {
+    padding: 1px;
+  }
 }
 
 .sizeMd {
@@ -76,81 +87,70 @@
   padding-block: 2px;
 }
 
-/* Variants + Colors */
-/* Filled */
-.variantFilled.colorNeutral {
-  background: var(--background-neutral-subtle);
-  border-color: var(--background-neutral-subtle);
-  color: var(--text-secondary);
-  --i-chip-hover-bg: var(--background-neutral-subtle-hover);
+/* Color — token slots only */
+.colorNeutral {
+  --chip-bg: var(--background-neutral-subtle);
+  --chip-bg-hover: var(--background-neutral-subtle-hover);
+  --chip-bg-tint: var(--background-neutral-tint);
+  --chip-border: var(--border-strong);
+  --chip-color: var(--text-secondary);
+  --chip-color-ghost: var(--text-secondary);
 }
 
-.variantFilled.colorInfo {
-  background: var(--background-info-subtle);
-  border-color: var(--background-info-subtle);
-  color: var(--text-link-strong);
-  --i-chip-hover-bg: var(--background-info-subtle-hover);
+.colorInfo {
+  --chip-bg: var(--background-info-subtle);
+  --chip-bg-hover: var(--background-info-subtle-hover);
+  --chip-bg-tint: var(--background-info-tint);
+  --chip-border: var(--border-info);
+  --chip-color: var(--text-link-strong);
+  --chip-color-ghost: var(--text-link);
 }
 
-.variantFilled.colorSuccess {
-  background: var(--background-success-subtle);
-  border-color: var(--background-success-subtle);
-  color: var(--text-success-strong);
-  --i-chip-hover-bg: var(--background-success-subtle-hover);
+.colorSuccess {
+  --chip-bg: var(--background-success-subtle);
+  --chip-bg-hover: var(--background-success-subtle-hover);
+  --chip-bg-tint: var(--background-success-tint);
+  --chip-border: var(--border-success);
+  --chip-color: var(--text-success-strong);
+  --chip-color-ghost: var(--text-success);
 }
 
-.variantFilled.colorWarning {
-  background: var(--background-warning-subtle);
-  border-color: var(--background-warning-subtle);
-  color: var(--text-warning-strong);
-  --i-chip-hover-bg: var(--background-warning-subtle-hover);
+.colorWarning {
+  --chip-bg: var(--background-warning-subtle);
+  --chip-bg-hover: var(--background-warning-subtle-hover);
+  --chip-bg-tint: var(--background-warning-tint);
+  --chip-border: var(--border-warning);
+  --chip-color: var(--text-warning-strong);
+  --chip-color-ghost: var(--text-warning);
 }
 
-.variantFilled.colorError {
-  background: var(--background-error-subtle);
-  border-color: var(--background-error-subtle);
-  color: var(--text-error-strong);
-  --i-chip-hover-bg: var(--background-error-subtle-hover);
+.colorError {
+  --chip-bg: var(--background-error-subtle);
+  --chip-bg-hover: var(--background-error-subtle-hover);
+  --chip-bg-tint: var(--background-error-tint);
+  --chip-border: var(--border-error);
+  --chip-color: var(--text-error-strong);
+  --chip-color-ghost: var(--text-error);
 }
 
-/* Outlined */
-.variantOutlined.colorNeutral {
-  background: var(--background-neutral-tint);
-  border-color: var(--border-strong);
-  color: var(--text-secondary);
-  --i-chip-hover-bg: var(--background-neutral-subtle);
+/* Variant */
+.variantFilled {
+  background: var(--chip-bg);
+  border-color: var(--chip-bg);
+  color: var(--chip-color);
+  --chip-delete-button-bg-hover: var(--chip-bg-hover);
 }
 
-.variantOutlined.colorInfo {
-  background: var(--background-info-tint);
-  border-color: var(--border-info);
-  color: var(--text-link-strong);
-  --i-chip-hover-bg: var(--background-info-subtle);
+.variantOutlined {
+  background: var(--chip-bg-tint);
+  border-color: var(--chip-border);
+  color: var(--chip-color);
+  --chip-delete-button-bg-hover: var(--chip-bg);
 }
 
-.variantOutlined.colorSuccess {
-  background: var(--background-success-tint);
-  border-color: var(--border-success);
-  color: var(--text-success-strong);
-  --i-chip-hover-bg: var(--background-success-subtle);
-}
-
-.variantOutlined.colorWarning {
-  background: var(--background-warning-tint);
-  border-color: var(--border-warning);
-  color: var(--text-warning-strong);
-  --i-chip-hover-bg: var(--background-warning-subtle);
-}
-
-.variantOutlined.colorError {
-  background: var(--background-error-tint);
-  border-color: var(--border-error);
-  color: var(--text-error-strong);
-  --i-chip-hover-bg: var(--background-error-subtle);
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .delete:hover {
-    background: var(--i-chip-hover-bg);
-  }
+.variantGhost {
+  background: var(--background-transparent);
+  border: none;
+  color: var(--chip-color-ghost);
+  --chip-delete-button-bg-hover: var(--background-transparent-hover);
 }

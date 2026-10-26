@@ -9,7 +9,7 @@ import {
 } from "./Chip";
 import { Icon } from "../Icon/Icon";
 
-const variants: ChipVariant[] = ["filled", "outlined"];
+const variants: ChipVariant[] = ["filled", "outlined", "ghost"];
 const colors: ChipColor[] = ["neutral", "info", "success", "warning", "error"];
 const shapes: ChipShape[] = ["rounded", "pill"];
 const sizes: ChipSize[] = ["md", "sm"];

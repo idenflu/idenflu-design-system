@@ -41,7 +41,8 @@
     },
     {
       "name": "variant",
-      "kind": "unknown",
+      "kind": "enum",
+      "values": ["filled", "outlined", "ghost"],
       "required": false,
       "default": "filled"
     }

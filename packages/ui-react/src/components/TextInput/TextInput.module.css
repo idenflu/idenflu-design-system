@@ -24,20 +24,6 @@
   color: var(--text-disabled);
 }
 
-.actionButton {
-  align-items: center;
-  border-radius: var(--rounded-full);
-  color: var(--text-muted);
-  cursor: pointer;
-  display: inline-flex;
-  flex-shrink: 0;
-  height: fit-content;
-  justify-content: center;
-  margin: 0;
-  padding: 1px;
-  width: fit-content;
-}
-
 .actionButtonHidden {
   pointer-events: none;
   visibility: hidden;

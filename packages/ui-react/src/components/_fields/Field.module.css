@@ -148,7 +148,7 @@
 
 .variantOutlined .controlWrapper {
   background: var(--background-transparent);
-  border: 1px solid var(--base-gray-300);
+  border: 1px solid var(--border-primary);
   box-shadow: none;
 }
 

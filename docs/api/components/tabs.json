@@ -10,20 +10,27 @@
       "default": "standard"
     }
   ],
-  "states": [
-    "default",
-    "hover",
-    "focus",
-    "disabled"
-  ],
+  "states": ["default", "hover", "focus", "disabled"],
   "accessibility": [
     {
-      "id": "documented",
-      "rule": "Public Tabs accessibility is covered by component implementation and stories."
+      "id": "named-tablist",
+      "rule": "TabsList requires aria-label or aria-labelledby. Radix provides tab roles, selection and automatic/manual keyboard activation."
+    },
+    {
+      "id": "scroll-visibility",
+      "rule": "Initially selected tabs are revealed immediately. Later selections scroll only the tab viewport, with reduced motion respected. Focused tabs are revealed in manual activation mode without changing selection."
+    },
+    {
+      "id": "scroll-controls",
+      "rule": "Scroll controls derive disabled boundaries by default, support horizontal LTR/RTL and vertical layouts, and do not change the selected tab."
     }
   ],
   "notes": [
     "Events are framework-specific and omitted from this contract.",
-    "Synced from packages/ui-react TabsProps (engineering-first)."
+    "Synced from packages/ui-react TabsProps (engineering-first).",
+    "TabsList showScrollButtons defaults to false. When true, built-in controls scroll by 75% of the viewport. Explicit startScrollButtonDisabled/endScrollButtonDisabled values override automatic boundaries.",
+    "React scroll-button click handlers replace built-in movement when supplied. The forwarded TabsList ref still targets the tablist, not the internal scroll viewport.",
+    "Scrollable lists work with or without buttons. Selection and layout changes reveal the active tab; manual scrolling does not reset to the active tab.",
+    "Routing, persistence, close confirmation, next-selection policy and focus restoration after closing remain caller responsibilities."
   ]
 }

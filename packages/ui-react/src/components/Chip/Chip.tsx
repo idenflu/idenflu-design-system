@@ -4,7 +4,7 @@ import { cn } from "../../utils/classNames";
 import { Icon } from "../Icon/Icon";
 import styles from "./Chip.module.css";
 
-export type ChipVariant = "filled" | "outlined";
+export type ChipVariant = "filled" | "outlined" | "ghost";
 export type ChipColor = "neutral" | "info" | "success" | "warning" | "error";
 export type ChipSize = "sm" | "md";
 export type ChipShape = "rounded" | "pill";
@@ -48,6 +48,7 @@ const chipClassName = cva(styles.root, {
     },
     variant: {
       filled: styles.variantFilled,
+      ghost: styles.variantGhost,
       outlined: styles.variantOutlined,
     },
   },
@@ -91,14 +92,14 @@ export const Chip = React.forwardRef<HTMLSpanElement, ChipProps>(
       {onDelete ? (
         <button
           aria-label={deleteLabel}
-          className={styles.delete}
+          className={styles.deleteButton}
           onClick={(event) => {
             event.stopPropagation();
             onDelete(event);
           }}
           type="button"
         >
-          <Icon name="close" size={size === "sm" ? 12 : 16} />
+          <Icon name="close" size={size === "sm" ? 14 : 16} />
         </button>
       ) : null}
     </span>

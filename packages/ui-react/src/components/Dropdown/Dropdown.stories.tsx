@@ -1,6 +1,6 @@
 import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { fn } from "storybook/test";
+import { expect, fn, userEvent, waitFor, within } from "storybook/test";
 
 import { Icon } from "../Icon/Icon";
 import { IconButton } from "../IconButton/IconButton";
@@ -130,9 +130,9 @@ function DropdownExample({
 }
 
 type PlaygroundArgs = {
-  destructiveLabel: string;
   disabled: boolean;
   position: DropdownPosition;
+  showStartIcon: boolean;
   showEndIcon: boolean;
   showSeparator: boolean;
   size: DropdownSize;
@@ -143,6 +143,7 @@ const meta = {
   title: "Components/Dropdown",
   component: Dropdown,
   parameters: {
+    a11y: { test: "error" },
     docs: {
       description: {
         component:
@@ -161,16 +162,16 @@ const meta = {
       control: "radio",
       options: ["sm", "md", "lg"] satisfies DropdownSize[],
     },
+    showStartIcon: { control: "boolean" },
     showEndIcon: { control: "boolean" },
     showSeparator: { control: "boolean" },
     disabled: { control: "boolean" },
     triggerLabel: { control: "text" },
-    destructiveLabel: { control: "text" },
   },
   args: {
-    destructiveLabel: "Delete",
     disabled: false,
     position: "bottom-start",
+    showStartIcon: true,
     showEndIcon: false,
     showSeparator: true,
     size: "md",
@@ -239,10 +240,10 @@ export const Overview: Story = {
       <OverviewSection title="Grouped actions">
         <p style={overviewStyles.note}>
           `DropdownGroup`은 연관된 `DropdownItem`을 하나의 논리 단위로 묶습니다.
-          `DropdownLabel`은 그룹 제목을 스크린 리더에 전달하고, 그룹 간
-          `DropdownSeparator`는 `Divider`를 사용해 시각·의미적 경계를
-          표시합니다. 한 메뉴 안에서 계정 설정·위험 액션처럼 역할이 다른 항목을
-          구분할 때 사용합니다.
+          `DropdownLabel`의 id를 그룹의 aria-labelledby에 연결하면 그룹 제목을
+          스크린 리더에 전달합니다. 그룹 간 `DropdownSeparator`는 `Divider`를
+          사용해 시각·의미적 경계를 표시합니다. 한 메뉴 안에서 계정 설정·위험
+          액션처럼 역할이 다른 항목을 구분할 때 사용합니다.
         </p>
         <Dropdown size="md">
           <DropdownTrigger asChild>
@@ -255,8 +256,8 @@ export const Overview: Story = {
             />
           </DropdownTrigger>
           <DropdownContent>
-            <DropdownGroup>
-              <DropdownLabel>Account</DropdownLabel>
+            <DropdownGroup aria-labelledby="dropdown-account-label">
+              <DropdownLabel id="dropdown-account-label">Account</DropdownLabel>
               <DropdownItem onSelect={fn()}>Profile</DropdownItem>
               <DropdownItem onSelect={fn()}>Settings</DropdownItem>
             </DropdownGroup>
@@ -271,8 +272,9 @@ export const Overview: Story = {
       <OverviewSection title="Accessibility">
         <p style={overviewStyles.note}>
           Arrow keys로 항목을 이동하고 Enter 또는 Space로 선택합니다. Escape로
-          메뉴를 닫으며, Tab은 메뉴를 닫고 다음 focusable 요소로 이동합니다.
-          Trigger는 `aria-haspopup="menu"`와 `aria-expanded`를 제공합니다.
+          메뉴를 닫고 트리거로 포커스를 돌려줍니다. 열린 메뉴 안에서는 Tab
+          이동이 차단됩니다. Trigger는 `aria-haspopup="menu"`와
+          `aria-expanded`를 제공합니다.
         </p>
         <Dropdown size="md">
           <DropdownTrigger asChild>
@@ -304,11 +306,15 @@ export const Playground: Story = {
   render: ({
     disabled,
     position,
+    showStartIcon,
     showEndIcon,
     showSeparator,
     size,
     triggerLabel,
   }) => {
+    const startIcon = showStartIcon ? (
+      <Icon name="star" size={16} />
+    ) : undefined;
     const endIcon = showEndIcon ? <Icon name="star" size={16} /> : undefined;
     const iconSize = size;
 
@@ -325,16 +331,225 @@ export const Playground: Story = {
           />
         </DropdownTrigger>
         <DropdownContent position={position}>
-          <DropdownItem endIcon={endIcon} onSelect={fn()}>
+          <DropdownItem startIcon={startIcon} endIcon={endIcon} onSelect={fn()}>
             Menu Item
           </DropdownItem>
-          <DropdownItem endIcon={endIcon} onSelect={fn()}>
+          <DropdownItem startIcon={startIcon} endIcon={endIcon} onSelect={fn()}>
             Menu Item
           </DropdownItem>
           {showSeparator ? <DropdownSeparator /> : null}
           <DropdownItem onSelect={fn()}>Menu Item</DropdownItem>
         </DropdownContent>
       </Dropdown>
+    );
+  },
+};
+
+export const LinkItem: Story = {
+  render: () => (
+    <Dropdown>
+      <DropdownTrigger asChild>
+        <Button>Link menu</Button>
+      </DropdownTrigger>
+      <DropdownContent>
+        <DropdownItem asChild endIcon={<Icon name="star" />}>
+          <a
+            href="#dropdown-profile"
+            onClick={(event) => event.preventDefault()}
+          >
+            Profile link
+          </a>
+        </DropdownItem>
+      </DropdownContent>
+    </Dropdown>
+  ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const page = within(canvasElement.ownerDocument.body);
+    await userEvent.click(canvas.getByRole("button", { name: "Link menu" }));
+    const item = await page.findByRole("menuitem", { name: "Profile link" });
+    await expect(item.tagName).toBe("A");
+    await expect(item).toHaveAttribute("href", "#dropdown-profile");
+    await userEvent.click(item);
+    await expect(page.getByRole("menu")).toBeInTheDocument();
+    await userEvent.keyboard("{Escape}");
+    await waitFor(() =>
+      expect(page.queryByRole("menu")).not.toBeInTheDocument(),
+    );
+  },
+};
+
+export const KeyboardNavigation: Story = {
+  render: () => (
+    <Dropdown>
+      <DropdownTrigger asChild>
+        <Button>Keyboard actions</Button>
+      </DropdownTrigger>
+      <DropdownContent>
+        <DropdownGroup aria-labelledby="keyboard-actions-label">
+          <DropdownLabel id="keyboard-actions-label">
+            Account actions
+          </DropdownLabel>
+          <DropdownItem startIcon={<Icon name="star" />}>Alpha</DropdownItem>
+          <DropdownItem disabled>Bravo</DropdownItem>
+          <DropdownItem>Charlie</DropdownItem>
+        </DropdownGroup>
+      </DropdownContent>
+    </Dropdown>
+  ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const page = within(canvasElement.ownerDocument.body);
+    const trigger = canvas.getByRole("button", { name: "Keyboard actions" });
+    trigger.focus();
+    await userEvent.keyboard("{ArrowDown}");
+    await expect(
+      await page.findByRole("menuitem", { name: "Alpha" }),
+    ).toHaveFocus();
+    await expect(
+      page.getByRole("group", { name: "Account actions" }),
+    ).toBeInTheDocument();
+    await userEvent.keyboard("{ArrowDown}");
+    await expect(page.getByRole("menuitem", { name: "Charlie" })).toHaveFocus();
+    await userEvent.keyboard("{Home}");
+    await expect(page.getByRole("menuitem", { name: "Alpha" })).toHaveFocus();
+    await userEvent.keyboard("c");
+    await expect(page.getByRole("menuitem", { name: "Charlie" })).toHaveFocus();
+    await userEvent.tab();
+    await expect(page.getByRole("menuitem", { name: "Charlie" })).toHaveFocus();
+    await userEvent.keyboard("{Escape}");
+    await waitFor(() =>
+      expect(page.queryByRole("menu")).not.toBeInTheDocument(),
+    );
+    await expect(trigger).toHaveFocus();
+  },
+};
+
+const onAction = fn();
+const onOpenChange = fn();
+function ControlledExample() {
+  const [open, setOpen] = React.useState(false);
+  const [selection, setSelection] = React.useState("None");
+  return (
+    <>
+      <Dropdown
+        open={open}
+        onOpenChange={(next) => {
+          onOpenChange(next);
+          setOpen(next);
+        }}
+      >
+        <DropdownTrigger asChild>
+          <Button>Controlled actions</Button>
+        </DropdownTrigger>
+        <DropdownContent>
+          <DropdownItem disabled onSelect={onAction}>
+            Unavailable
+          </DropdownItem>
+          <DropdownItem
+            onSelect={() => {
+              onAction();
+              setSelection("Saved");
+            }}
+          >
+            Save
+          </DropdownItem>
+        </DropdownContent>
+      </Dropdown>
+      <output aria-label="Selection">{selection}</output>
+    </>
+  );
+}
+
+export const Controlled: Story = {
+  render: () => <ControlledExample />,
+  play: async ({ canvasElement }) => {
+    onAction.mockClear();
+    onOpenChange.mockClear();
+    const canvas = within(canvasElement);
+    const page = within(canvasElement.ownerDocument.body);
+    const trigger = canvas.getByRole("button", { name: "Controlled actions" });
+    await userEvent.click(trigger);
+    await expect(onOpenChange).toHaveBeenLastCalledWith(true);
+    const disabledItem = await page.findByRole("menuitem", {
+      name: "Unavailable",
+    });
+    await expect(disabledItem).toHaveAttribute("aria-disabled", "true");
+    // Dispatch directly because pointer interaction is intentionally blocked by CSS.
+    disabledItem.click();
+    await expect(onAction).not.toHaveBeenCalled();
+    await expect(page.getByRole("menu")).toBeInTheDocument();
+    await userEvent.keyboard("{Home}{Enter}");
+    await expect(onAction).toHaveBeenCalledTimes(1);
+    await expect(onOpenChange).toHaveBeenLastCalledWith(false);
+    await waitFor(() =>
+      expect(page.queryByRole("menu")).not.toBeInTheDocument(),
+    );
+    await expect(
+      canvas.getByRole("status", { name: "Selection" }),
+    ).toHaveTextContent("Saved");
+    await expect(trigger).toHaveFocus();
+  },
+};
+
+export const DisabledTrigger: Story = {
+  args: { disabled: true },
+  render: Playground.render,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const trigger = canvas.getByRole("button", { name: "Open menu" });
+    await expect(trigger).toBeDisabled();
+    trigger.click();
+    await userEvent.tab();
+    await userEvent.keyboard("{ArrowDown}");
+    await expect(
+      within(canvasElement.ownerDocument.body).queryByRole("menu"),
+    ).not.toBeInTheDocument();
+  },
+};
+
+export const LongMenu: Story = {
+  render: () => (
+    <Dropdown>
+      <DropdownTrigger asChild>
+        <Button>Long menu</Button>
+      </DropdownTrigger>
+      <DropdownContent>
+        {Array.from({ length: 50 }, (_, index) => (
+          <DropdownItem
+            key={index}
+            startIcon={<Icon name="star" />}
+            endIcon={<Icon name="star" />}
+          >
+            {`Action ${index + 1}: A long label that should truncate on a narrow screen`}
+          </DropdownItem>
+        ))}
+      </DropdownContent>
+    </Dropdown>
+  ),
+  play: async ({ canvasElement }) => {
+    const page = within(canvasElement.ownerDocument.body);
+    const trigger = within(canvasElement).getByRole("button", {
+      name: "Long menu",
+    });
+    trigger.focus();
+    await userEvent.keyboard("{ArrowDown}");
+    const menu = await page.findByRole("menu");
+    await expect(menu.scrollHeight).toBeGreaterThan(menu.clientHeight);
+    const style = getComputedStyle(menu);
+    await expect(style.paddingBlockStart).toBe("4px");
+    await expect(style.paddingBlockEnd).toBe("4px");
+    await userEvent.keyboard("{End}");
+    const last = page.getByRole("menuitem", { name: /^Action 50:/ });
+    await expect(last).toHaveFocus();
+    await expect(menu.scrollTop).toBeGreaterThan(0);
+    const menuRect = menu.getBoundingClientRect();
+    const itemRect = last.getBoundingClientRect();
+    await expect(itemRect.bottom).toBeLessThanOrEqual(menuRect.bottom + 1);
+    await expect(menuRect.right).toBeLessThanOrEqual(window.innerWidth + 1);
+    await userEvent.keyboard("{Escape}");
+    await waitFor(() =>
+      expect(page.queryByRole("menu")).not.toBeInTheDocument(),
     );
   },
 };

@@ -35,6 +35,12 @@
   scrollbar-width: none;
 }
 
+/* Keep horizontal triggers stretched when the navigation height changes. */
+.nav[data-orientation="horizontal"] > .scroller {
+  align-items: stretch;
+  display: flex;
+}
+
 .scroller::-webkit-scrollbar {
   display: none;
 }

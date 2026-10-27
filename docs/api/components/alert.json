@@ -32,17 +32,15 @@
       "default": "outlined"
     }
   ],
-  "states": [
-    "default",
-    "hover",
-    "focus",
-    "disabled",
-    "error"
-  ],
+  "states": ["default", "hover", "focus", "disabled", "error"],
   "accessibility": [
     {
       "id": "documented",
       "rule": "Public Alert accessibility is covered by component implementation and stories."
+    },
+    {
+      "id": "focus",
+      "rule": "Alert does not take focus automatically. Dismiss and action controls participate in the natural tab order and inherit visible keyboard focus rings from IconButton and Button; Enter/Space activate them."
     }
   ],
   "notes": [

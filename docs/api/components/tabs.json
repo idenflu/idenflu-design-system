@@ -31,6 +31,7 @@
     "TabsList showScrollButtons defaults to false. When true, built-in controls scroll by 75% of the viewport. Explicit startScrollButtonDisabled/endScrollButtonDisabled values override automatic boundaries.",
     "React scroll-button click handlers replace built-in movement when supplied. The forwarded TabsList ref still targets the tablist, not the internal scroll viewport.",
     "Scrollable lists work with or without buttons. Selection and layout changes reveal the active tab; manual scrolling does not reset to the active tab.",
+    "For horizontal TabsList, className styles the navigation wrapper. Setting its height or min-height stretches the inner list and triggers together, including scrollable lists with or without scroll buttons. The default minimum tab height and vertical scrolling layout are preserved.",
     "Routing, persistence, close confirmation, next-selection policy and focus restoration after closing remain caller responsibilities."
   ]
 }

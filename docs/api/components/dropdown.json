@@ -5,26 +5,37 @@
   "props": [
     {
       "name": "size",
-      "kind": "unknown",
+      "kind": "enum",
       "required": false,
-      "default": "md"
+      "default": "md",
+      "values": ["sm", "md", "lg"]
     }
   ],
-  "states": [
-    "default",
-    "hover",
-    "focus",
-    "disabled",
-    "open"
-  ],
+  "states": ["default", "hover", "focus", "disabled", "open"],
   "accessibility": [
     {
-      "id": "documented",
-      "rule": "Public Dropdown accessibility is covered by component implementation and stories."
+      "id": "keyboard",
+      "rule": "Radix menu keyboard navigation skips disabled items, supports typeahead, and restores trigger focus on Escape. Tab is blocked while the menu is open."
+    },
+    {
+      "id": "groups",
+      "rule": "Connect DropdownGroup aria-labelledby to the DropdownLabel id to name each group."
+    },
+    {
+      "id": "icons",
+      "rule": "startIcon and endIcon are decorative and hidden from assistive technology; item children provide the accessible label."
+    },
+    {
+      "id": "overflow",
+      "rule": "Content scrolls vertically within the available viewport; keyboard navigation scrolls focused items into view."
     }
   ],
   "notes": [
     "Events are framework-specific and omitted from this contract.",
-    "Synced from packages/ui-react DropdownProps (engineering-first)."
+    "Synced from packages/ui-react DropdownProps (engineering-first).",
+    "This props list covers Dropdown root; companion-slot props are documented separately because the contract parser only validates root props.",
+    "DropdownItem supports startIcon, endIcon, and asChild with a single ref-forwarding element, including links.",
+    "DropdownContent supports position (default bottom-start), offset (0), size override, and transition (enter 200ms/out 100ms). Content has spacing-03 block padding (4px).",
+    "The token package currently has no elevation, layer, motion, or 240px menu-width tokens. Existing shadow/layer/motion values remain; menu width is derived from spacing-09 (5 \u00d7 48px)."
   ]
 }

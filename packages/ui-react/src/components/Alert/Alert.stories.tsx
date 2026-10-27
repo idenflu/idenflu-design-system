@@ -1,6 +1,6 @@
 import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { fn } from "storybook/test";
+import { expect, fn, userEvent, within } from "storybook/test";
 import {
   Alert,
   AlertTitle,
@@ -203,3 +203,48 @@ export const Overview: Story = {
 };
 
 export const Playground: Story = {};
+
+const onKeyboardAction = fn();
+
+export const KeyboardFocus: Story = {
+  parameters: { a11y: { test: "error" } },
+  args: {
+    action: <Button onClick={onKeyboardAction}>Undo</Button>,
+  },
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement);
+    const alert = canvas.getByRole("status");
+    const dismiss = canvas.getByRole("button", { name: "Dismiss alert" });
+    const action = canvas.getByRole("button", { name: "Undo" });
+    onKeyboardAction.mockClear();
+
+    // Alert never takes focus; its controls inherit the shared button focus ring.
+    await expect(alert).not.toHaveAttribute("tabindex");
+    await expect(
+      alert.contains(canvasElement.ownerDocument.activeElement),
+    ).toBe(false);
+    await userEvent.tab();
+    await expect(dismiss).toHaveFocus();
+    await expect(dismiss.matches(":focus-visible")).toBe(true);
+    await expect(getComputedStyle(dismiss).boxShadow).not.toBe("none");
+    await userEvent.keyboard("{Enter}");
+    await expect(args.onClose).toHaveBeenCalledTimes(1);
+
+    await userEvent.tab();
+    await expect(action).toHaveFocus();
+    await expect(action.matches(":focus-visible")).toBe(true);
+    await expect(getComputedStyle(action).boxShadow).not.toBe("none");
+    await userEvent.keyboard(" ");
+    await expect(onKeyboardAction).toHaveBeenCalledTimes(1);
+    await userEvent.tab({ shift: true });
+    await expect(dismiss).toHaveFocus();
+  },
+};
+
+export const KeyboardFocusDark: Story = {
+  ...KeyboardFocus,
+  parameters: {
+    ...KeyboardFocus.parameters,
+    themes: { themeOverride: "dark" },
+  },
+};

@@ -10,16 +10,25 @@ description: Implements new idenflu ui-react components from Figma designs. Use 
 Use this skill for Figma to code implementation of new `packages/ui-react`
 components in the idenflu design system.
 
+For SVG icon creation or modification in `packages/icons`, follow
+`packages/icons/AGENTS.md` and `docs/foundations/icons/design-principles.md`
+instead of this Figma-to-component workflow. Icons are designed from those rules
+and existing SVGs without a Figma source or a separate React component per icon.
+This exception does not change the design-source workflow for other UI components.
+
 ## Required Inputs
 
-Ask for missing information before implementation when any required input is
-absent:
+Resolve inputs from the request, Figma, and local patterns before asking:
 
 - Component name
-- Target component path, usually `packages/ui-react/src/components/<Name>/`
+- Default target path: `packages/ui-react/src/components/<Name>/`
 - Figma URL or node ID when the component has a source design
 - Expected variants, sizes, states, or interaction requirements if they are not
   clear from Figma
+
+Ask only when an unresolved choice materially affects behavior, public API,
+accessibility, or scope. State routine assumptions and proceed. A missing default
+path or an already-authorized API choice does not require confirmation.
 
 The default Figma file is:
 
@@ -29,14 +38,20 @@ The default Figma file is:
 ## Workflow
 
 1. Gather design context.
+   - Load the available `figma-design-to-code` skill before calling
+     `get_design_context`; follow its Code Connect and token-mapping guidance.
    - If a Figma URL or node ID is provided, call Figma `get_design_context`.
    - Extract variants, states, spacing, color, typography, motion, and a11y
      hints.
    - Treat generated code as reference only.
+   - If Figma is unavailable, continue work supported by supplied specs or local
+     code, report the missing design verification, and ask only for decisions
+     that block implementation. Do not invent visual values.
 
 2. Compare equivalent libraries.
    - Check Carbon React docs or source for behavior and accessibility patterns.
-   - Use MUI MCP in this order: `useMuiDocs` then `fetchDocs`.
+   - Discover the available MUI documentation tools rather than assuming tool
+     names. If MCP documentation is unavailable, use the official MUI docs.
    - Do not copy MUI or Carbon API/code verbatim.
 
 3. Inspect local patterns.
@@ -48,30 +63,45 @@ The default Figma file is:
    - Summarize the recommended API and any meaningful MUI/Carbon differences.
    - Call out accessibility behavior: keyboard, ARIA, focus, disabled/loading
      states, and screen reader behavior.
-   - Ask for confirmation when the API has meaningful trade-offs.
+   - Ask only for consequential API choices that remain unresolved after checking
+     the request and existing contracts.
 
 5. Implement only after requirements are clear.
    - Create or update:
      - `<ComponentName>.tsx`
-     - `<ComponentName>.css`
+     - `<ComponentName>.module.css`
      - `<ComponentName>.stories.tsx`
      - `index.ts`
    - Add public exports in `packages/ui-react/src/index.ts`.
    - Export public types from the component `index.ts` and package index.
+   - Follow `docs/api/README.md`: register the component in `docs/api/index.json`
+     and synchronize `docs/api/components/<id>.json` in the same change. The
+     implemented public types are the source of truth for shared props.
 
 6. Validate.
-   - Check lints for edited files.
-   - Run focused package checks or tests when available and appropriate.
-   - Report any skipped validation clearly.
+   - From the repository root, run `npm run check:api-contracts` and
+     `npm run check:packages`. These check contracts and package structure;
+     they do not prove runtime behavior or accessibility.
+   - Check current package scripts before selecting additional checks. There is
+     currently no ui-react lint script; do not claim lint passed without running
+     an available linter.
+   - For component or story changes, run
+     `npm run build-storybook -w @idenflu/ui-react` to check preview compilation.
+   - Use `npm run storybook:ui-react` from the root and verify affected stories
+     in a browser: relevant variants, sizes, themes, keyboard/focus behavior,
+     disabled/loading states, and narrow-screen behavior where applicable.
+     Writing stories alone is not interaction verification.
+   - Run focused regression tests for meaningful behavior changes when useful.
+     Inspect the final diff and report failed or unrun checks explicitly.
 
 ## Component Conventions
 
 - Folder: `packages/ui-react/src/components/<Name>/`
-- CSS class prefix: `nova-<kebab-name>`
-- Styling must use CSS custom properties from `@idenflu/ui-foundations`.
+- Styling: CSS Modules, following the closest existing component.
+- Styling must use CSS custom properties from `@idenflu/ui-tokens`.
 - Import tokens through `packages/ui-react/src/styles/tokens.css` only.
 - Never hardcode visual values for color, spacing, radius, or typography.
-- Use `classNames` from `../../utils/classNames` when composing classes.
+- Use `cn` from `../../utils/classNames` when composing classes.
 - Keep TypeScript strict and avoid `any`.
 
 ## Storybook Requirements
@@ -90,5 +120,10 @@ Stories should cover:
 - Do not introduce visual values outside the token system.
 - Do not preserve compatibility with unshipped in-progress code unless the user
   explicitly asks for it.
-- Keep edits scoped to the new component and required exports.
+- Keep edits scoped to the component and necessary callers, exports, API
+  contracts, stories, and verification updates.
 
+## Maintenance
+
+This is the canonical skill. Keep `.cursor/skills/new-component/SKILL.md` in sync
+when updating it; do not maintain separate workflows in the two copies.

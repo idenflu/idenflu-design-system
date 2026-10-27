@@ -12,7 +12,7 @@ alwaysApply: false
 | ------------- | -------------------------------------------------------------------------------------------------- |
 | Figma file    | [Idenflu Design System](https://www.figma.com/design/aMK1ysrAI4RGk1mrFk0O41/Idenflu-Design-System) |
 | Figma fileKey | `aMK1ysrAI4RGk1mrFk0O41`                                                                           |
-| Tokens        | `packages/ui-react/src/styles/tokens.css` → `@idenflu/ui-foundations`                              |
+| Tokens        | `packages/ui-react/src/styles/tokens.css` → `@idenflu/ui-tokens`                              |
 | Package       | `packages/ui-react`                                                                                |
 
 ## Source Roles
@@ -20,9 +20,12 @@ alwaysApply: false
 | Source                               | Use for                                                 |
 | ------------------------------------ | ------------------------------------------------------- |
 | Figma MCP                            | Visual specs, variants, spacing, color, typography      |
-| MUI MCP (`useMuiDocs` → `fetchDocs`) | Props API, composition                                  |
+| MUI MCP (available documentation tools) | Props API, composition                                  |
 | Carbon React                         | API and a11y patterns                                   |
 | Codebase                             | Final implementation patterns (override generated code) |
+
+Use available MUI documentation tools; if unavailable, read the official MUI docs.
+Do not require tool names that are absent from the current session.
 
 Carbon references (until MCP):
 
@@ -33,9 +36,9 @@ Carbon references (until MCP):
 
 When a Figma URL or node is provided:
 
-1. `get_design_context` with fileKey `aMK1ysrAI4RGk1mrFk0O41` and nodeId from URL
+1. Load the available `figma-design-to-code` skill before calling `get_design_context` with fileKey `aMK1ysrAI4RGk1mrFk0O41` and nodeId from URL
 2. If Code Connect mapping exists, prefer mapped codebase component
-3. Map Figma variables to `@idenflu/ui-foundations` CSS custom properties
+3. Map Figma variables to `@idenflu/ui-tokens` CSS custom properties
 4. Adapt reference code to project conventions — do not paste Tailwind or raw hex values
 5. Match existing component folder structure (see below)
 
@@ -61,9 +64,9 @@ When updating an existing component:
 ## Component Conventions
 
 - Folder: `packages/ui-react/src/components/<Name>/` for complex components
-- Files: `<Name>.tsx`, `<Name>.css`, `<Name>.stories.tsx`, `index.ts`
-- CSS prefix: `nova-<component>` (e.g. `nova-button`)
-- Utilities: `classNames` from `../../utils/classNames`
+- Files: `<Name>.tsx`, `<Name>.module.css`, `<Name>.stories.tsx`, `index.ts`
+- Styling: CSS Modules; follow the nearest existing component, such as `Button.module.css`.
+- Utilities: `cn` from `../../utils/classNames`
 
 ## Prompt Templates
 

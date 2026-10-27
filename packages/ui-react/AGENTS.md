@@ -13,6 +13,7 @@
 - 기본 구성은 `src/components/<Name>/<Name>.tsx`, `<Name>.module.css`, `<Name>.stories.tsx`, `index.ts`이다. 역할상 필요한 보조 파일만 추가한다.
 - 현재 구현은 CSS Modules를 사용한다. 오래된 안내의 `<Name>.css` / `nova-*` 규칙을 이유로 기존 컴포넌트의 스타일 방식을 변경하지 않는다. 일반 CSS를 사용하는 작업에서는 `nova-<kebab-name>` 접두사를 따른다.
 - 컴포넌트와 공개 타입을 폴더 `index.ts` 및 `src/index.ts`에서 내보낸다. 내부 보조 구현은 공개 API에 불필요하게 추가하지 않는다.
+- 자동 생성 개별 아이콘은 예외로 `src/icons/index.ts`와 배포용 `@idenflu/ui-react/icons`에서만 공개한다. `SvgIconProps`도 이 하위 경로에서만 공개하며 공통 `SvgIcon` 구현은 내부에 둔다. SVG 원본 수정 후 루트에서 `npm run generate:icons`를 실행하고 생성 파일을 함께 커밋한다.
 - TypeScript strict를 유지하고 `any`를 사용하지 않는다. 유니온 타입과 해당 HTML 요소의 React 속성 타입으로 유효한 props를 표현한다.
 - DOM 기반 컴포넌트는 용도에 맞게 `ref`, `className`, 네이티브 속성·이벤트를 전달한다. 내부 전용 props가 DOM으로 새지 않도록 한다.
 - 상태가 필요한 컴포넌트는 기존 패턴에 맞춰 controlled/uncontrolled 동작, 기본값, 변경 콜백을 정의한다. 슬롯·합성 API는 현재 요구에 필요할 때만 추가한다.

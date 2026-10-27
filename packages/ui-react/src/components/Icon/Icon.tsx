@@ -4,6 +4,7 @@ import { cva } from "class-variance-authority";
 import { cn } from "../../utils/classNames";
 import { IconSpriteContext } from "./IconSpriteContext";
 import styles from "./Icon.module.css";
+import { iconAccessibility } from "./iconAccessibility";
 
 export type IconSize = "small" | "medium" | "large";
 
@@ -30,9 +31,7 @@ export const Icon = React.forwardRef<SVGSVGElement, IconProps>(
   ({ className, label, name, size = "medium", spriteHref, ...props }, ref) => {
     const contextHref = React.useContext(IconSpriteContext);
     const px = typeof size === "number" ? size : ICON_SIZES[size];
-    const a11y = label
-      ? ({ role: "img", "aria-label": label } as const)
-      : ({ "aria-hidden": true, focusable: false } as const);
+    const a11y = iconAccessibility(label);
 
     return (
       <svg

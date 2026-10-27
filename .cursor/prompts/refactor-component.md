@@ -20,7 +20,7 @@ Figma: @https://www.figma.com/design/aMK1ysrAI4RGk1mrFk0O41/Idenflu-Design-Syste
 
 1. MUI MCP + Carbon — API·a11y best practice 확인
 2. 기존 코드(`@packages/ui-react/src/components/{ComponentName}/`)와 diff 분석
-3. 토큰: `@idenflu/ui-foundations` (`packages/ui-react/src/styles/tokens.css`) 매핑 검증
+3. 토큰: `@idenflu/ui-tokens` (`packages/ui-react/src/styles/tokens.css`) 매핑 검증
 4. 필요 시에만 코드 수정 — scope 최소화
 
 ## 산출물

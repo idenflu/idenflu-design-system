@@ -7,7 +7,7 @@ React component package for the idenflu design system.
 | Package        | Path                                 | Role                |
 | -------------- | ------------------------------------ | ------------------- |
 | ui-react       | `packages/ui-react`                  | React components    |
-| ui-foundations | `@idenflu/ui-foundations` (external) | Design tokens (CSS) |
+| ui-tokens | `packages/tokens` | Design tokens (CSS) |
 
 ## Figma
 
@@ -16,13 +16,16 @@ React component package for the idenflu design system.
 
 Component work should start from a node-specific Figma URL (`?node-id=...`).
 
+SVG icon work in `packages/icons` follows `packages/icons/AGENTS.md` and
+`docs/foundations/icons/design-principles.md`. Generate icons from those rules
+and existing SVGs; no Figma source or node URL is required for icon authoring.
+
 ## Tokens
 
 `packages/ui-react/src/styles/tokens.css` imports:
 
 ```css
-@import "@idenflu/ui-foundations/css/tokens-light.css";
-@import "@idenflu/ui-foundations/css/tokens-dark.css";
+@import "@idenflu/ui-tokens/css/variables.css";
 ```
 
 All styling must use these CSS custom properties — no hardcoded visual values.
@@ -32,7 +35,7 @@ All styling must use these CSS custom properties — no hardcoded visual values.
 | Library      | Purpose                | Access                                                                                                                           |
 | ------------ | ---------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
 | Figma MCP    | Visual source of truth | `get_design_context`, Code Connect                                                                                               |
-| MUI          | API and a11y patterns  | MUI MCP (`useMuiDocs`, `fetchDocs`)                                                                                              |
+| MUI          | API and a11y patterns  | MUI MCP (available documentation tools)                                                                                              |
 | Carbon React | API and a11y patterns  | [Docs](https://react.carbondesignsystem.com/), [GitHub](https://github.com/carbon-design-system/carbon/tree/main/packages/react) |
 
 ## Cursor Rules
@@ -48,7 +51,7 @@ All styling must use these CSS custom properties — no hardcoded visual values.
 ```
 packages/ui-react/src/components/<Name>/
   <Name>.tsx
-  <Name>.css          # nova-<name> BEM-style classes
+  <Name>.module.css   # CSS Modules
   <Name>.stories.tsx
   index.ts
 ```

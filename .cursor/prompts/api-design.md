@@ -19,7 +19,7 @@ Figma: @https://www.figma.com/design/aMK1ysrAI4RGk1mrFk0O41/Idenflu-Design-Syste
 1. Carbon React — 동등 컴포넌트 props·a11y
    - Docs: https://react.carbondesignsystem.com/
    - Source: https://github.com/carbon-design-system/carbon/tree/main/packages/react/src/components/{Icons}
-2. MUI MCP — 동등 컴포넌트 props·composition (`useMuiDocs` → `fetchDocs`)
+2. MUI MCP — 동등 컴포넌트 props·composition (현재 사용 가능한 문서 도구, 없으면 MUI 공식 문서)
 
 ## 산출물 (문서 형식)
 
@@ -32,6 +32,6 @@ Figma: @https://www.figma.com/design/aMK1ysrAI4RGk1mrFk0O41/Idenflu-Design-Syste
 
 ## 제약
 
-- 시각 값은 `@idenflu/ui-foundations` 토큰 기준으로만 언급
+- 시각 값은 `@idenflu/ui-tokens` 토큰 기준으로만 언급
 - MUI/Carbon API를 그대로 복사하지 말고 idenflu 네이밍에 맞게 adapt
 - 구현·Storybook·CSS 파일 생성 금지

@@ -19,11 +19,10 @@ Never invent visual values. Map Figma output to project tokens.
 Import tokens via `packages/ui-react/src/styles/tokens.css`:
 
 ```css
-@import "@idenflu/ui-foundations/css/tokens-light.css";
-@import "@idenflu/ui-foundations/css/tokens-dark.css";
+@import "@idenflu/ui-tokens/css/variables.css";
 ```
 
-- Use CSS custom properties from `@idenflu/ui-foundations` only
+- Use CSS custom properties from `@idenflu/ui-tokens` only
 - Never hardcode colors, spacing, or typography values
 
 ## Component API

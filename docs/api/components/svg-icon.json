@@ -1,0 +1,26 @@
+{
+  "id": "svg-icon",
+  "label": "Individual SVG icons",
+  "status": "implemented",
+  "props": [
+    { "name": "size", "kind": "number", "required": false, "default": 16 },
+    { "name": "label", "kind": "string", "required": false }
+  ],
+  "states": ["default"],
+  "accessibility": [
+    {
+      "id": "decorative",
+      "rule": "Icons without label default to aria-hidden=true and focusable=false."
+    },
+    {
+      "id": "semantic",
+      "rule": "Icons with label default to role=img and aria-label. Label icon-only buttons on the button and leave the icon decorative."
+    }
+  ],
+  "notes": [
+    "All named icon components and SvgIconProps are exported only from @idenflu/ui-react/icons; the SvgIcon implementation is internal.",
+    "Numeric size controls width and height in pixels. Native SVG attributes, styles, className and SVG refs are forwarded. children, dangerouslySetInnerHTML, name and spriteHref are not public props.",
+    "Drawings are generated from packages/icons/src/icons.svg. No sprite URL, provider or stylesheet is needed. Color inherits currentColor.",
+    "Existing sprite-based Icon keeps its separate API."
+  ]
+}

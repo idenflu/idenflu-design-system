@@ -10,8 +10,10 @@
     "check:docs": "node docs/scripts/verify-site.js",
     "check:packages": "node scripts/package-skeleton-check.js",
     "check:api-contracts": "npm run check:api-contracts -w @idenflu/ui-react",
-    "check": "node docs/scripts/verify-site.js && node scripts/package-skeleton-check.js",
+    "check": "node docs/scripts/verify-site.js && node scripts/package-skeleton-check.js && npm run check:icons",
     "storybook:ui-react": "npm -w @idenflu/ui-react run storybook",
-    "release:tokens": "npm run build:tokens && npm publish --workspace @idenflu/ui-tokens --tag alpha"
+    "release:tokens": "npm run build:tokens && npm publish --workspace @idenflu/ui-tokens --tag alpha",
+    "generate:icons": "npm run generate:icons -w @idenflu/ui-react",
+    "check:icons": "npm run check:icons -w @idenflu/ui-react"
   }
 }

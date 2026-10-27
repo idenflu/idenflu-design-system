@@ -92,23 +92,28 @@ export function CampaignForm() {
 
 ## Icon
 
-`Icon`은 `@idenflu/ui-icons` sprite의 symbol을 타입 안전하게 렌더합니다. 앱 루트에서 `IconSpriteProvider`로 sprite URL을 한 번 주입합니다(번들러가 해석한 URL).
+새 React 코드에서는 개별 아이콘을 import합니다. sprite URL, Provider, 스타일시트 설정 없이 사용할 수 있습니다.
 
 ```tsx
-import spriteUrl from "@idenflu/ui-icons/icons.svg";
-import { Icon, IconSpriteProvider, Button } from "@idenflu/ui-react";
+import { Button } from "@idenflu/ui-react";
+import { SearchIcon, WarningIcon } from "@idenflu/ui-react/icons";
 
-function App() {
-  return (
-    <IconSpriteProvider href={spriteUrl}>
-      {/* 장식 아이콘 (기본 aria-hidden) — 버튼이 접근 이름 제공 */}
-      <Button icon={<Icon name="icon-search" />}>Search</Button>
+<Button icon={<SearchIcon />}>Search</Button>;
+<WarningIcon size={20} label="Warning" />;
+```
 
-      {/* 단독 의미 아이콘 — label로 노출 */}
-      <Icon name="icon-alert" label="Warning" size="large" />
-    </IconSpriteProvider>
-  );
-}
+`size?: number`의 기본값은 `16`이며 너비와 높이에 적용됩니다. 색은 `currentColor`로 상속합니다. `label`이 없으면 장식용, 있으면 `role="img"`와 `aria-label`을 제공합니다. 버튼 안에서는 아이콘의 레이블을 생략하고 버튼에 이름을 제공합니다. SVG 속성·이벤트, `className`, `style`, SVG ref를 지원하며 공통 타입 `SvgIconProps`도 같은 경로에서 import합니다. `children`, `name`, `spriteHref`는 받지 않습니다.
+
+기존 sprite API는 그대로 지원합니다. 앱에서 번들러가 해석한 URL을 `IconSpriteProvider`로 주입합니다.
+
+```tsx
+import spriteUrl from "@idenflu/ui-icons/icons.svg?url";
+import { Icon, IconSpriteProvider } from "@idenflu/ui-react";
+
+<IconSpriteProvider href={spriteUrl}>
+  <Icon name="search" />
+  <Icon name="warning" label="Warning" size="large" />
+</IconSpriteProvider>;
 ```
 
 ## Tabs

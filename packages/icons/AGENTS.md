@@ -33,7 +33,8 @@
 
 ## SVG 구조
 
-- `src/icons.svg`의 단일 스프라이트에 `<symbol>`로 등록한다. 아이콘별 React 컴포넌트나 별도 스프라이트를 만들지 않는다.
+- `src/icons.svg`의 단일 스프라이트에 `<symbol>`로 등록한다. 별도 SVG 원본이나 스프라이트를 만들지 않는다.
+- 개별 React 컴포넌트는 이 원본에서 `npm run generate:icons`로 `packages/ui-react/src/icons/generated`에 자동 생성한다. 생성 파일을 직접 수정하지 않는다. 공개 경로는 `@idenflu/ui-react/icons`이며 기존 sprite API도 유지한다.
 - 새 심볼의 공통 속성은 `viewBox="0 0 24 24"`, `fill="none"`, `stroke="currentColor"`, `stroke-width="1.5"`, `stroke-linecap="square"`, `stroke-linejoin="miter"`다. 부분 채움은 디자인 원칙이 허용하는 점·작은 식별 요소에만 적용한다.
 - 둥근 외곽 모서리가 필요한 경우 반경 1을 도형 경로에 반영한다. `stroke-linejoin="round"`나 `stroke-linecap="round"`로 대체하지 않는다.
 - 다른 외곽에 연결되는 내부선은 별도 경로로 분리해 필요한 경우 `stroke-linecap="butt"`를 적용한다. 외부에 드러나는 선 끝은 square를 유지하고, 끝점 보정으로 해결할 수 있으면 공통 속성을 유지한다. 별도 경로를 한 `d` 안의 하위 경로로 합쳐 예외를 모든 선 끝에 적용하지 않는다.
@@ -44,6 +45,7 @@
 
 - 이름은 의미 중심의 소문자 kebab-case로 짓고, 방향은 `arrow-left`처럼 접미사로 구분한다. 기존 명명 패턴을 따른다.
 - `symbol id`, `src/index.ts`의 `iconNames`, `src/index.d.ts`의 선언 목록을 함께 갱신한다. 중복 없이 세 곳의 이름 집합을 일치시킨다.
+- 등록 후 `npm run generate:icons`를 실행하고 생성 결과를 함께 커밋한다. `npm run check:icons`로 원본과 생성 결과의 일치를 확인한다.
 - `IconName`, `getIconHref`, 공개 export 경로와 스프라이트 참조 방식의 호환성을 유지한다.
 
 ## 접근성과 사용 책임
@@ -101,6 +103,7 @@ PY
 - 최종 diff에서 고정 색상·불투명도, 스크립트, 이벤트 속성, 외부 참조 등 금지 요소가 없는지 확인한다.
 - 출력된 부분 채움·접합용 butt가 허용된 용도에만 쓰였는지 확인한다. 변경 대상의 미해결 위반이 있으면 완료로 보고하지 않는다.
 - `npm run check:packages`도 실행한다. 이 명령은 패키지 구조와 필수 파일·문구를 검사하며, 위 아이콘 구조 검사나 브라우저 검증을 대신하지 않는다.
+- `npm run test:icons -w @idenflu/ui-react`로 개별 컴포넌트의 도형 보존, 기본 크기, 접근성, 내부 참조 및 트리 셰이킹도 확인한다.
 
 ### 브라우저 검증
 

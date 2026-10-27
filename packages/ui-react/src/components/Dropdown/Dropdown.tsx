@@ -148,7 +148,7 @@ export const DropdownContent = React.forwardRef<
       transition,
       ...props
     },
-    ref
+    ref,
   ) => {
     const context = React.useContext(DropdownContext);
     const size = sizeProp ?? context.size;
@@ -176,7 +176,7 @@ export const DropdownContent = React.forwardRef<
         </DropdownMenuPrimitive.Content>
       </DropdownMenuPrimitive.Portal>
     );
-  }
+  },
 );
 
 DropdownContent.displayName = "DropdownContent";
@@ -184,6 +184,8 @@ DropdownContent.displayName = "DropdownContent";
 export type DropdownItemProps = React.ComponentPropsWithoutRef<
   typeof DropdownMenuPrimitive.Item
 > & {
+  /** Optional decorative icon rendered before the label. */
+  startIcon?: React.ReactNode;
   /** Optional icon rendered at the end of the item row. */
   endIcon?: React.ReactNode;
 };
@@ -191,21 +193,42 @@ export type DropdownItemProps = React.ComponentPropsWithoutRef<
 export const DropdownItem = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Item>,
   DropdownItemProps
->(({ children, className, endIcon, ...props }, ref) => (
-  <DropdownMenuPrimitive.Item
-    ref={ref}
-    className={cn(styles.item, className)}
-    data-slot="dropdown-item"
-    {...props}
-  >
-    <span className={styles.label}>{children}</span>
-    {endIcon ? (
-      <span className={styles.endIcon} aria-hidden="true">
-        {endIcon}
+>(({ asChild, children, className, endIcon, startIcon, ...props }, ref) => {
+  const child = asChild
+    ? (React.Children.only(children) as React.ReactElement<{
+        children?: React.ReactNode;
+      }>)
+    : null;
+  const content = (
+    <>
+      {startIcon != null ? (
+        <span className={styles.icon} aria-hidden="true">
+          {startIcon}
+        </span>
+      ) : null}
+      <span className={styles.label}>
+        {child ? child.props.children : children}
       </span>
-    ) : null}
-  </DropdownMenuPrimitive.Item>
-));
+      {endIcon != null ? (
+        <span className={styles.icon} aria-hidden="true">
+          {endIcon}
+        </span>
+      ) : null}
+    </>
+  );
+
+  return (
+    <DropdownMenuPrimitive.Item
+      asChild={asChild}
+      ref={ref}
+      className={cn(styles.item, className)}
+      data-slot="dropdown-item"
+      {...props}
+    >
+      {child ? React.cloneElement(child, undefined, content) : content}
+    </DropdownMenuPrimitive.Item>
+  );
+});
 
 DropdownItem.displayName = "DropdownItem";
 

@@ -1,6 +1,6 @@
 {
   "name": "@idenflu/ui-react",
-  "version": "0.0.0-alpha.16",
+  "version": "0.0.0-alpha.17",
   "description": "React components for idenflu product interfaces.",
   "types": "./src/index.ts",
   "repository": {
@@ -69,7 +69,9 @@
   },
   "typesVersions": {
     "*": {
-      "icons": ["./src/icons/index.ts"]
+      "icons": [
+        "./src/icons/index.ts"
+      ]
     }
   },
   "scripts": {

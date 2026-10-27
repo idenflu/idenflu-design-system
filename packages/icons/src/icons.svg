@@ -19,7 +19,7 @@
     stroke-linecap="square"
     stroke-linejoin="miter"
   >
-    <path d="M4 12h15.25M13 5l7 7-7 7" transform="rotate(90 12 12)" />
+    <path d="M4 12h15M13 5l7 7-7 7" transform="rotate(90 12 12)" />
   </symbol>
   <symbol
     id="attach"
@@ -41,7 +41,7 @@
     stroke-linecap="square"
     stroke-linejoin="miter"
   >
-    <path d="M4 12h15.25M13 5l7 7-7 7" transform="rotate(180 12 12)" />
+    <path d="M4 12h15M13 5l7 7-7 7" transform="rotate(180 12 12)" />
   </symbol>
   <symbol
     id="arrow-right"
@@ -52,7 +52,7 @@
     stroke-linecap="square"
     stroke-linejoin="miter"
   >
-    <path d="M4 12h15.25M13 5l7 7-7 7" />
+    <path d="M4 12h15M13 5l7 7-7 7" />
   </symbol>
   <symbol
     id="arrow-up"
@@ -63,7 +63,7 @@
     stroke-linecap="square"
     stroke-linejoin="miter"
   >
-    <path d="M4 12h15.25M13 5l7 7-7 7" transform="rotate(270 12 12)" />
+    <path d="M4 12h15M13 5l7 7-7 7" transform="rotate(270 12 12)" />
   </symbol>
   <symbol
     id="check-circle"
@@ -97,7 +97,9 @@
     stroke-linecap="square"
     stroke-linejoin="miter"
   >
-    <path d="M6.75 2.75v13.5a1 1 0 0 0 1 1h13.5M17.25 21.25V7.75a1 1 0 0 0-1-1H2.75" />
+    <path
+      d="M6.75 2.75v14.5h14.5M17.25 21.25V6.75H2.75"
+    />
   </symbol>
   <symbol
     id="calendar"
@@ -108,7 +110,7 @@
     stroke-linecap="square"
     stroke-linejoin="miter"
   >
-    <rect x="3.75" y="4.75" width="16.5" height="16.5" rx="1" />
+    <rect x="3.75" y="4.75" width="16.5" height="16.5" />
     <path d="M8 2.75v4M16 2.75v4" />
     <path d="M3.75 10h16.5" stroke-linecap="butt" />
   </symbol>
@@ -155,9 +157,13 @@
     stroke-linecap="square"
     stroke-linejoin="miter"
   >
-    <path d="M10 3.75H4.75a1 1 0 0 0-1 1v14.5a1 1 0 0 0 1 1h14.5a1 1 0 0 0 1-1V14" />
-    <path d="M17.5 3l3.5 3.5-9.5 9.5-4 1 1-4Z" />
-    <path d="M15.5 5L19 8.5" stroke-linecap="butt" />
+    <path
+      d="M10 3.75H3.75v16.5h16.5V14"
+    />
+    <path
+      d="M7.75 13.25L17.25 3.75L20.25 6.75L10.75 16.25L7.75 16.25L7.75 13.25Z"
+    />
+    <path d="M7.75 13.25L10.75 16.25" stroke-linecap="butt" />
   </symbol>
   <symbol
     id="file"
@@ -168,7 +174,9 @@
     stroke-linecap="square"
     stroke-linejoin="miter"
   >
-    <path d="M13.75 2.75h-8a1 1 0 0 0-1 1v16.5a1 1 0 0 0 1 1h12.5a1 1 0 0 0 1-1v-12Z" />
+    <path
+      d="M13.75 2.75h-9v18.5h14.5V8.75Z"
+    />
     <path d="M13.75 2.75v6h5.5" stroke-linecap="butt" />
   </symbol>
   <symbol
@@ -191,7 +199,9 @@
     stroke-linecap="square"
     stroke-linejoin="miter"
   >
-    <path d="M3.75 4.75h5l2.5 2.5h9a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H3.75a1 1 0 0 1-1-1v-12.5a1 1 0 0 1 1-1Z" />
+    <path
+      d="M2.75 4.75h6l2.5 2.5h10v12H2.75Z"
+    />
   </symbol>
   <symbol
     id="expand"
@@ -213,10 +223,10 @@
     stroke-linecap="square"
     stroke-linejoin="miter"
   >
-    <rect x="3.75" y="3.75" width="6.5" height="6.5" rx="1" />
-    <rect x="13.75" y="3.75" width="6.5" height="6.5" rx="1" />
-    <rect x="3.75" y="13.75" width="6.5" height="6.5" rx="1" />
-    <rect x="13.75" y="13.75" width="6.5" height="6.5" rx="1" />
+    <rect x="3.75" y="3.75" width="6.5" height="6.5" />
+    <rect x="13.75" y="3.75" width="6.5" height="6.5" />
+    <rect x="3.75" y="13.75" width="6.5" height="6.5" />
+    <rect x="13.75" y="13.75" width="6.5" height="6.5" />
   </symbol>
   <symbol
     id="help"
@@ -240,7 +250,7 @@
     stroke-linecap="square"
     stroke-linejoin="miter"
   >
-    <rect x="3.75" y="3.75" width="16.5" height="16.5" rx="1" />
+    <rect x="3.75" y="3.75" width="16.5" height="16.5" />
     <circle cx="8.5" cy="8.5" r="1" fill="currentColor" stroke="none" />
     <path d="M3.75 16.75l4.5-4.5 4.5 4 3-3 4.5 3.5" stroke-linecap="butt" />
   </symbol>
@@ -312,9 +322,12 @@
     stroke-linecap="square"
     stroke-linejoin="miter"
   >
-    <rect x="5.75" y="10.75" width="12.5" height="10.5" rx="1" />
-    <path d="M8.25 10.75V6.5a3.75 3.75 0 0 1 7.5 0v4.25" stroke-linecap="butt" />
-    <circle cx="12" cy="16" r="0.9" fill="currentColor" stroke="none" />
+    <rect x="4.75" y="9.75" width="14.5" height="10.5" />
+    <path
+      d="M8.25 9.75V7.5a3.75 3.75 0 0 1 7.5 0v2.25"
+      stroke-linecap="butt"
+    />
+    <circle cx="12" cy="15" r="0.9" fill="currentColor" stroke="none" />
   </symbol>
   <symbol
     id="info"
@@ -338,7 +351,7 @@
     stroke-linecap="square"
     stroke-linejoin="miter"
   >
-    <rect x="2.75" y="4.75" width="18.5" height="14.5" rx="1" />
+    <rect x="2.75" y="4.75" width="18.5" height="14.5" />
     <path d="M2.75 6.25L12 13l9.25-6.75" stroke-linecap="butt" />
   </symbol>
   <symbol
@@ -399,7 +412,7 @@
     stroke-linejoin="miter"
   >
     <circle cx="12" cy="6.5" r="3.25" />
-    <path d="M4.5 20.25a7.5 7 0 0 1 15 0" />
+    <path d="M4.5 20.25v-2a7.5 5 0 0 1 15 0v2Z" />
   </symbol>
   <symbol
     id="play-disabled"
@@ -512,8 +525,11 @@
     stroke-linecap="square"
     stroke-linejoin="miter"
   >
-    <rect x="2.75" y="4.75" width="18.5" height="14.5" rx="1" />
-    <path d="M2.75 9.5h18.5M2.75 14.25h18.5M9 9.5v9.75M15 9.5v9.75" stroke-linecap="butt" />
+    <rect x="2.75" y="4.75" width="18.5" height="14.5" />
+    <path
+      d="M2.75 9.5h18.5M2.75 14.25h18.5M9 9.5v9.75M15 9.5v9.75"
+      stroke-linecap="butt"
+    />
   </symbol>
   <symbol
     id="text"
@@ -536,9 +552,9 @@
     stroke-linecap="square"
     stroke-linejoin="miter"
   >
-    <rect x="9.75" y="3.75" width="4.5" height="4.5" rx="1" />
-    <rect x="3.75" y="15.75" width="5.5" height="4.5" rx="1" />
-    <rect x="14.75" y="15.75" width="5.5" height="4.5" rx="1" />
+    <rect x="9.75" y="3.75" width="4.5" height="4.5" />
+    <rect x="3.75" y="15.75" width="5.5" height="4.5" />
+    <rect x="14.75" y="15.75" width="5.5" height="4.5" />
     <path d="M12 8.25V12M6.5 15.75V12h11v3.75" stroke-linecap="butt" />
   </symbol>
   <symbol
@@ -561,7 +577,11 @@
     stroke-linecap="square"
     stroke-linejoin="miter"
   >
-    <path d="M9.25 6.25C14.25 4.5 18.75 8 21.25 12c-.75 1.25-1.6 2.4-2.5 3.3M15 18c-5.75 1-9.5-2.25-12.25-6 .75-1.25 1.6-2.4 2.5-3.3M3.75 3.75l16.5 16.5" />
+    <path
+      d="M9.25 6.25C14.25 4.5 18.75 8 21.25 12c-.75 1.25-1.6 2.4-2.5 3.3M15 18c-5.75 1-9.5-2.25-12.25-6 .75-1.25 1.6-2.4 2.5-3.3"
+    />
+    <path d="M12 9a3 3 0 0 1 3 3M12 15a3 3 0 0 1-3-3" stroke-linecap="butt" />
+    <path d="M3.75 3.75l16.5 16.5" />
   </symbol>
   <symbol
     id="visibility"
@@ -609,7 +629,10 @@
     stroke-linejoin="miter"
   >
     <path d="M3.75 6.25h16.5M9.75 11v6M14.25 11v6" />
-    <path d="M5.25 6.25l1 14h11.5l1-14M9 6.25v-2.5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2.5" stroke-linecap="butt" />
+    <path
+      d="M5.25 6.25l1 14h11.5l1-14M9 6.25v-3.5h6v3.5"
+      stroke-linecap="butt"
+    />
   </symbol>
   <symbol
     id="calendar-clock"
@@ -620,9 +643,11 @@
     stroke-linecap="square"
     stroke-linejoin="miter"
   >
-    <path d="M16.25 10V5a1 1 0 0 0-1-1H3.75a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h6.5" />
-    <path d="M7 2.75v3.5M12 2.75v3.5" />
-    <path d="M2.75 9h13.5" stroke-linecap="butt" />
+    <path
+      d="M19.25 10V4H2.75v16h7.5"
+    />
+    <path d="M7 2.75v3.5M15 2.75v3.5" />
+    <path d="M2.75 9h16.5" stroke-linecap="butt" />
     <circle cx="17" cy="17" r="4.25" />
     <path d="M17 14.75V17h2" />
   </symbol>

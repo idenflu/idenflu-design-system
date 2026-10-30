@@ -1,6 +1,6 @@
 import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { fn } from "storybook/test";
+import { expect, fn, userEvent, within } from "storybook/test";
 
 import { Button } from "../Button/Button";
 import { TextInput } from "../TextInput/TextInput";
@@ -193,7 +193,6 @@ function FormDialogDemo() {
               Send an invitation email to add a new team member.
             </DialogDescription>
             <TextInput
-              autoFocus
               label="Email address"
               placeholder="name@company.com"
               type="email"
@@ -341,8 +340,7 @@ export const Overview: Story = {
 
       <OverviewSection title="Form dialog">
         <p style={overviewStyles.note}>
-          폼 필드가 있는 dialog에서는 첫 입력에 <code>autoFocus</code>를 두는
-          것이 일반적입니다.
+          기본 포커스는 dialog에 위치하며 Tab으로 입력란을 선택합니다.
         </p>
         <FormDialogDemo />
       </OverviewSection>
@@ -379,8 +377,7 @@ export const Overview: Story = {
           <code>DialogContent</code>에 전달합니다.
         </p>
         <p style={overviewStyles.note}>
-          Form dialog는 첫 입력에 focus를 두고, destructive confirmation은 덜
-          파괴적인 action에 초기 focus를 두는 편이 좋습니다.
+          열릴 때 dialog로 포커스를 옮기고, Tab 이동을 dialog 안으로 제한합니다.
         </p>
         <ConfirmationDialog triggerLabel="Try keyboard navigation" />
       </OverviewSection>
@@ -429,4 +426,18 @@ export const Playground: Story = {
       triggerLabel={triggerLabel}
     />
   ),
+};
+
+export const InitialFocus: Story = {
+  parameters: { a11y: { test: "error" } },
+  render: () => <FormDialogDemo />,
+  play: async ({ canvasElement }) => {
+    const trigger = within(canvasElement).getByRole("button", { name: "Invite member" });
+    trigger.focus();
+    await userEvent.keyboard("{Enter}");
+    const dialog = await within(document.body).findByRole("dialog", { name: "Invite member" });
+    await expect(dialog).toHaveFocus();
+    await userEvent.tab();
+    await expect(dialog.contains(document.activeElement)).toBe(true);
+  },
 };

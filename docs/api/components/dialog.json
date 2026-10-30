@@ -44,6 +44,10 @@
       "rule": "Expose dialog semantics (role=dialog, aria-modal) on the surface."
     },
     {
+      "id": "initial-focus",
+      "rule": "Focus the dialog surface on open."
+    },
+    {
       "id": "labelled",
       "rule": "Associate a title/description for accessible naming."
     }

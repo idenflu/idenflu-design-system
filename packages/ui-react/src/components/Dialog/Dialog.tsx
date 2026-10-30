@@ -94,17 +94,6 @@ function getTabbableElements(container: HTMLElement) {
   );
 }
 
-function getInitialFocusTarget(surface: HTMLElement) {
-  const tabbables = getTabbableElements(surface).filter(
-    (element) => element.dataset.slot !== "dialog-close"
-  );
-  const field = tabbables.find((element) =>
-    element.matches("input, textarea, select")
-  );
-
-  return field ?? tabbables[0] ?? getTabbableElements(surface)[0] ?? null;
-}
-
 function usePresence(open: boolean, duration: number) {
   const [mounted, setMounted] = React.useState(open);
   const [state, setState] = React.useState<"open" | "closed">(
@@ -423,12 +412,7 @@ export const DialogContent = React.forwardRef<
         return undefined;
       }
 
-      const target = getInitialFocusTarget(surface);
-      if (target) {
-        target.focus();
-      } else {
-        surface.focus();
-      }
+      surface.focus();
 
       return () => {
         restoreFocusRef.current?.focus?.();

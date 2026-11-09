@@ -11,17 +11,9 @@ const ROLES: { id: Role; label: string; tokens: readonly string[] }[] = [
     label: "Surface",
     tokens: [
       "surface-00",
-      "surface-on-00",
-      "surface-on-00-hover",
       "surface-01",
-      "surface-on-01",
-      "surface-on-01-hover",
       "surface-02",
-      "surface-on-02",
-      "surface-on-02-hover",
       "surface-03",
-      "surface-on-03",
-      "surface-on-03-hover",
       "surface-transparent",
       "surface-overlay",
     ],
@@ -219,7 +211,10 @@ export function ThemePreview() {
   const active = ROLES.find((item) => item.id === role) ?? ROLES[0];
 
   return (
-    <section className={`sb-unstyled ${styles.preview}`} aria-label="Theme roles">
+    <section
+      className={`sb-unstyled ${styles.preview}`}
+      aria-label="Theme roles"
+    >
       <div className={styles.toolbar}>
         <p className={styles.hint}>
           Light/Dark를 전환하고 역할별 토큰을 클릭해 CSS 변수를 복사합니다.

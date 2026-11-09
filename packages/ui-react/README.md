@@ -18,6 +18,10 @@ import "@idenflu/ui-react/styles.css";
 import { Button } from "@idenflu/ui-react";
 ```
 
+## React 문서 앱
+
+저장소 루트에서 `npm run docs:react`로 개발 서버를 실행하거나 `npm run build:react-docs`로 정적 사이트를 빌드합니다. 문서 앱은 `docs/react-studio`에 있으며 실제 패키지의 컴포넌트와 예제를 사용합니다.
+
 ## Select 마이그레이션
 
 `Select`는 단일 선택, `SearchSelect`는 검색 가능한 단일 선택, `MultiSelect`는 다중 선택에 사용합니다. 세 컴포넌트는 `options`와 `label`을 받습니다. 기존 `SelectItem`, `multiple`, `valueDisplay`, `searchable`(단일 선택) 및 `Combobox` API는 제거되었습니다. 검색 가능한 다중 선택은 `MultiSelect searchable`을 사용합니다.

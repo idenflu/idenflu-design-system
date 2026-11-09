@@ -14,6 +14,10 @@
     "storybook:ui-react": "npm -w @idenflu/ui-react run storybook",
     "release:tokens": "npm run build:tokens && npm publish --workspace @idenflu/ui-tokens --tag alpha",
     "generate:icons": "npm run generate:icons -w @idenflu/ui-react",
-    "check:icons": "npm run check:icons -w @idenflu/ui-react"
+    "check:icons": "npm run check:icons -w @idenflu/ui-react",
+    "docs:react": "vite --config docs/react-studio/vite.config.ts",
+    "build:react-docs": "vite build --config docs/react-studio/vite.config.ts",
+    "check:react-docs": "tsc -p docs/react-studio/tsconfig.json --noEmit",
+    "test:react-docs": "node docs/react-studio/scripts/verify.cjs"
   }
 }

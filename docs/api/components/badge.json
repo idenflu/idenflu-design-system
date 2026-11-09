@@ -1,0 +1,36 @@
+{
+  "id": "badge",
+  "label": "Badge",
+  "status": "implemented",
+  "props": [
+    {
+      "name": "size",
+      "kind": "unknown",
+      "required": false
+    },
+    {
+      "name": "variant",
+      "kind": "unknown",
+      "required": false,
+      "default": "neutral"
+    },
+    {
+      "name": "appearance",
+      "kind": "unknown",
+      "required": false,
+      "default": "default"
+    }
+  ],
+  "states": [
+    "default"
+  ],
+  "accessibility": [
+    {
+      "id": "text",
+      "rule": "Status meaning should be conveyed by text, not color alone."
+    }
+  ],
+  "notes": [
+    "Events are framework-specific and omitted from this contract."
+  ]
+}

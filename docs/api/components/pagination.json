@@ -1,0 +1,29 @@
+{
+  "id": "pagination",
+  "label": "Pagination",
+  "status": "implemented",
+  "props": [
+    {
+      "name": "page",
+      "kind": "number",
+      "required": true
+    },
+    {
+      "name": "pageCount",
+      "kind": "number",
+      "required": true
+    }
+  ],
+  "states": [
+    "default"
+  ],
+  "accessibility": [
+    {
+      "id": "semantics",
+      "rule": "Uses native HTML semantics."
+    }
+  ],
+  "notes": [
+    "Events are framework-specific and omitted from this contract."
+  ]
+}

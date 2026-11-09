@@ -1,0 +1,15 @@
+.root { align-items: center; color: var(--brand-500); display: inline-flex; flex: none; justify-content: center; vertical-align: middle; }
+.root > svg { block-size: 100%; display: block; inline-size: 100%; overflow: visible; }
+.track { opacity: .2; stroke: currentColor; stroke-width: 1.5; }
+.orbit { animation: turn 1.8s linear infinite; stroke: currentColor; stroke-width: 2.6; transform-origin: 54px 54px; }
+.facet { animation: light 1.8s ease-in-out infinite; }
+.left { animation-delay: -1.2s; fill: var(--brand-300); }
+.diagonal { animation-delay: -1s; fill: var(--brand-500); }
+.right { animation-delay: -.8s; fill: var(--brand-700); }
+.root[data-variant="neutral"] { color: var(--text-secondary); }
+.root[data-variant="inverse"] { color: var(--text-on-color); }
+.root[data-variant="neutral"] .facet, .root[data-variant="inverse"] .facet { fill: currentColor; }
+@keyframes turn { from { transform: rotate(-90deg); } to { transform: rotate(270deg); } }
+@keyframes light { 0%, 65%, 100% { opacity: .72; } 22%, 38% { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .orbit, .facet { animation: none; } }
+@media (forced-colors: active) { .root { color: CanvasText; } .root .facet { fill: CanvasText; } }

@@ -1,0 +1,9 @@
+.root, .children, .category { display: flex; flex-direction: column; gap: var(--spacing-02); }
+.root { color: var(--text-primary); }
+.children { padding-inline-start: var(--spacing-06); }
+.categoryLabel { color: var(--text-secondary); font: var(--label-md); margin: var(--spacing-03) 0; }
+.root summary, .item { background: transparent; border: 0; border-radius: var(--rounded-md); color: inherit; cursor: pointer; font: var(--body-md); padding: var(--spacing-04); text-align: start; }
+.root summary:hover, .item:hover:not(:disabled) { background: var(--background-neutral-tint); }
+.item[aria-current="true"] { background: var(--background-neutral-subtle); }
+.root summary:focus-visible, .item:focus-visible { outline: var(--spacing-02) solid var(--border-focused); }
+.root summary[aria-disabled="true"], .item:disabled { color: var(--text-disabled); cursor: not-allowed; }

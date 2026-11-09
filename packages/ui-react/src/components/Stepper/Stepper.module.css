@@ -1,0 +1,5 @@
+.root { display: flex; flex-wrap: wrap; gap: var(--spacing-06); list-style: none; margin: 0; padding: 0; }
+.root li { align-items: center; color: var(--text-secondary); display: flex; gap: var(--spacing-03); }
+.number { align-items: center; background: var(--background-neutral-subtle); border-radius: var(--rounded-full); display: inline-flex; justify-content: center; min-block-size: var(--spacing-07); min-inline-size: var(--spacing-07); }
+.root li[aria-current="step"] { color: var(--text-primary); }
+.root li[aria-current="step"] .number, .root li[data-complete] .number { background: var(--background-info); color: var(--text-on-color); }

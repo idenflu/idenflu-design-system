@@ -1,0 +1,5 @@
+.root { color: var(--text-primary); }
+.root details { border-block-end: var(--spacing-01) solid var(--border-primary); }
+.root summary { align-items: center; cursor: pointer; display: flex; font: var(--label-md); gap: var(--spacing-04); justify-content: space-between; list-style: none; padding: var(--spacing-06) 0; }
+.root summary::-webkit-details-marker { display: none; }
+.root summary:focus-visible { outline: var(--spacing-02) solid var(--border-focused); outline-offset: var(--spacing-01); }

@@ -1,0 +1,3 @@
+.root { accent-color: var(--background-info); cursor: pointer; inline-size: 100%; }
+.root:focus-visible { outline: var(--spacing-02) solid var(--border-focused); outline-offset: var(--spacing-01); }
+.root:disabled { cursor: not-allowed; }

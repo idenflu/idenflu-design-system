@@ -1,0 +1,34 @@
+{
+  "id": "number-field",
+  "label": "NumberField",
+  "status": "implemented",
+  "props": [
+    {
+      "name": "value",
+      "kind": "unknown",
+      "required": false
+    },
+    {
+      "name": "decimals",
+      "kind": "number",
+      "required": false
+    },
+    {
+      "name": "grouping",
+      "kind": "boolean",
+      "required": false
+    }
+  ],
+  "states": [
+    "default"
+  ],
+  "accessibility": [
+    {
+      "id": "spinbutton",
+      "rule": "Provides spinbutton value and keyboard increment and decrement controls."
+    }
+  ],
+  "notes": [
+    "Events are framework-specific and omitted from this contract."
+  ]
+}

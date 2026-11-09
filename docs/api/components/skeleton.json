@@ -1,0 +1,24 @@
+{
+  "id": "skeleton",
+  "label": "Skeleton",
+  "status": "implemented",
+  "props": [
+    {
+      "name": "children",
+      "kind": "node",
+      "required": false
+    }
+  ],
+  "states": [
+    "default"
+  ],
+  "accessibility": [
+    {
+      "id": "semantics",
+      "rule": "Uses native HTML semantics."
+    }
+  ],
+  "notes": [
+    "Events are framework-specific and omitted from this contract."
+  ]
+}

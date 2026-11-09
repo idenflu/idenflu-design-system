@@ -1,0 +1,29 @@
+{
+  "id": "stepper",
+  "label": "Stepper",
+  "status": "implemented",
+  "props": [
+    {
+      "name": "steps",
+      "kind": "unknown",
+      "required": true
+    },
+    {
+      "name": "currentStep",
+      "kind": "number",
+      "required": true
+    }
+  ],
+  "states": [
+    "default"
+  ],
+  "accessibility": [
+    {
+      "id": "semantics",
+      "rule": "Exposes the control state to assistive technology."
+    }
+  ],
+  "notes": [
+    "Events are framework-specific and omitted from this contract."
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "id": "data-grid",
+  "label": "DataGrid",
+  "status": "implemented",
+  "props": [
+    {
+      "name": "label",
+      "kind": "string",
+      "required": true
+    },
+    {
+      "name": "rows",
+      "kind": "unknown",
+      "required": true
+    },
+    {
+      "name": "columns",
+      "kind": "unknown",
+      "required": true
+    }
+  ],
+  "states": [
+    "default"
+  ],
+  "accessibility": [
+    {
+      "id": "table",
+      "rule": "Uses native table semantics with labelled sorting, filtering, editing, and selection controls."
+    }
+  ],
+  "notes": [
+    "Events are framework-specific and omitted from this contract.",
+    "DataGrid replaces the previous DataTable public API."
+  ]
+}

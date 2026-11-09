@@ -1,0 +1,50 @@
+.root { background: var(--surface-00); border: var(--spacing-01) solid var(--border-primary); border-radius: var(--rounded-md); color: var(--text-primary); font: var(--body-md); max-inline-size: 100%; min-inline-size: 0; }
+.root :global(.sr-only) { block-size: var(--spacing-01); clip-path: inset(50%); inline-size: var(--spacing-01); overflow: hidden; position: absolute; white-space: nowrap; }
+.root :global(.data-grid-toolbar), .root :global(.data-grid-footer) { align-items: center; display: flex; flex-wrap: wrap; gap: var(--spacing-04); justify-content: space-between; padding: var(--spacing-04); }
+.root :global(.data-grid-heading), .root :global(.data-grid-tools), .root :global(.data-grid-selection), .root :global(.data-grid-selection-actions), .root :global(.data-grid-toolbar-actions), .root :global(.data-grid-page-tools) { align-items: center; display: flex; flex-wrap: wrap; gap: var(--spacing-04); min-inline-size: 0; }
+.root :global(.data-grid-tools) { justify-content: flex-end; }
+.root :global(.data-grid-search) { max-inline-size: 100%; min-inline-size: 0; }
+.root :global(.grid-search-control), .root :global(.data-grid-number-filter), .root :global(.data-grid-cell-content), .root :global(.data-grid-editor) { align-items: center; display: flex; gap: var(--spacing-03); min-inline-size: 0; }
+.root input:not([type="checkbox"]) { background: var(--surface-00); border: var(--spacing-01) solid var(--border-primary); border-radius: var(--rounded-md); color: var(--text-primary); font: inherit; min-inline-size: 0; padding: var(--spacing-04); }
+.root :global(.data-grid-scroll) { border-block: var(--spacing-01) solid var(--border-primary); max-inline-size: 100%; overflow: auto; }
+.root :global(.data-grid-viewport) { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: minmax(0, 1fr) auto; min-inline-size: 0; }
+.root :global(.data-grid-viewport) > :global(.data-grid-scroll) { grid-area: 1 / 1; min-block-size: 0; min-inline-size: 0; }
+.root :global(.data-grid-native-vertical) { align-self: start; grid-area: 1 / 2; overflow: hidden scroll; }
+.root :global(.data-grid-native-horizontal) { grid-area: 2 / 1; min-inline-size: 0; overflow: scroll hidden; }
+.root :global(.data-grid-scrollbar-header) { grid-area: 1 / 2; position: relative; }
+.root :global(.data-grid-scrollbar-corner) { grid-area: 2 / 2; }
+.root :global(.data-grid-scroll)[data-native-scrollbars] { scrollbar-width: none; }
+.root :global(.data-grid-scroll)[data-native-scrollbars]::-webkit-scrollbar { display: none; }
+.root :global(.data-grid-table) { border-collapse: separate; border-spacing: 0; inline-size: 100%; min-inline-size: 0; table-layout: fixed; }
+.root :global(.data-grid-table) th, .root :global(.data-grid-table) td { border-block-end: var(--spacing-01) solid var(--border-primary); overflow-wrap: anywhere; padding: var(--spacing-04); }
+.root :global(.data-grid-table) thead th { background: var(--surface-01); position: sticky; top: 0; z-index: 3; }
+.root :global(.data-grid-sort) { align-items: center; background: transparent; border: 0; color: inherit; cursor: pointer; display: flex; font: inherit; gap: var(--spacing-02); inline-size: 100%; text-align: inherit; }
+.root :global(.data-grid-sort-icon) { color: var(--text-secondary); display: inline-flex; }
+.root :global(.data-grid-sort-icon.is-active) { color: var(--text-brand); }
+.root :global(.data-grid-resize) { cursor: col-resize; inline-size: var(--spacing-04); inset-block: 0; inset-inline-end: calc(-1 * var(--spacing-03)); position: absolute; touch-action: none; z-index: 5; }
+.root :global(.data-grid-resize)::after { background: var(--border-primary); content: ""; inline-size: var(--spacing-01); inset-block: var(--spacing-03); inset-inline-start: var(--spacing-03); position: absolute; }
+.root :global(.data-grid-filter-row) > td { background: var(--surface-01); position: sticky; top: var(--spacing-09); z-index: 2; }
+.root :global(.data-grid-pinned), .root :global(.data-grid-select-cell) { background: var(--surface-00); position: sticky; z-index: 1; }
+.root :global(.data-grid-select-cell) { inset-inline-start: 0; }
+.root :global(.data-grid-table) tr[data-selected="true"] > td { background: var(--background-info-tint); }
+.root :global(.data-grid-state) { align-items: center; display: flex; flex-direction: column; gap: var(--spacing-04); justify-content: center; padding: var(--spacing-09); }
+.root :global(.data-grid-page-tools) { margin-inline-start: auto; }
+.root :global(.data-grid-column-options) { display: grid; gap: var(--spacing-03); }
+.root :global(.data-grid-editor-error), .root :global(.data-grid-export-error) { color: var(--text-error); }
+.root :global(.data-grid-virtual-spacer) > td { border: 0; padding: 0; }
+.root :global(.data-grid-cell-content) > span:first-child { flex: 1; min-inline-size: 0; }
+.root button:focus-visible, .root input:focus-visible, .root :global(.data-grid-scroll):focus-visible, .root :global(.data-grid-resize):focus-visible { outline: var(--spacing-02) solid var(--border-focused); outline-offset: var(--spacing-01); }
+@media (max-width: 600px) { .root :global(.data-grid-tools) { inline-size: 100%; } .root :global(.data-grid-search) { flex: 1 1 100%; } .root :global(.data-grid-table) tbody :global(.data-grid-pinned), .root :global(.data-grid-table) tbody :global(.data-grid-select-cell) { position: static; } }
+
+.root :global(.grid-icon-button) { min-inline-size: var(--spacing-08); padding: var(--spacing-04); }
+.root :global(.data-grid-density-icon) { block-size: var(--spacing-06); inline-size: var(--spacing-06); }
+.root :global(.data-grid-sort-icon) svg { block-size: var(--spacing-06); inline-size: var(--spacing-06); }
+
+.root button[data-icon-only] { min-inline-size: var(--spacing-08); padding: var(--spacing-04); }
+.root { --data-grid-header-height: var(--spacing-09); }
+.root[data-density="compact"] { --data-grid-header-height: calc(var(--spacing-08) + var(--spacing-04)); }
+.root :global(.data-grid-table) thead th { block-size: var(--data-grid-header-height); box-sizing: border-box; }
+.root :global(.data-grid-filter-row) > td { top: var(--data-grid-header-height); }
+.root[data-density="compact"] :global(.data-grid-table) tbody td { padding-block: var(--spacing-03); }
+.root :global(.data-grid-table) thead th:is(:global(.data-grid-pinned), :global(.data-grid-select-cell)) { z-index: 5; }
+.root :global(.data-grid-filter-row) > td:is(:global(.data-grid-pinned), :global(.data-grid-select-cell)) { z-index: 4; }

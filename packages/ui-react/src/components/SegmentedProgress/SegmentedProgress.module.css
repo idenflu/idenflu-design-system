@@ -1,0 +1,3 @@
+.root { display: grid; gap: var(--spacing-02); }
+.root span { background: var(--background-neutral-subtle); block-size: var(--spacing-04); border-radius: var(--rounded-sm); }
+.root span[data-complete] { background: var(--background-info); }

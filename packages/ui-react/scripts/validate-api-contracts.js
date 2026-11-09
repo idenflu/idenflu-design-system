@@ -135,7 +135,7 @@ const extractPropNames = (absSourceFile) => {
     path.extname(absSourceFile)
   );
   let startMatch = source.match(
-    new RegExp(`export type ${componentName}Props\\s*=`)
+    new RegExp(`export type ${componentName}Props(?:<[^>]+>)?\\s*=`)
   );
   if (!startMatch) {
     startMatch = source.match(/export type (\w+Props)\s*=/);

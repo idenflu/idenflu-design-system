@@ -1,0 +1,24 @@
+{
+  "id": "page-header",
+  "label": "PageHeader",
+  "status": "implemented",
+  "props": [
+    {
+      "name": "title",
+      "kind": "node",
+      "required": true
+    }
+  ],
+  "states": [
+    "default"
+  ],
+  "accessibility": [
+    {
+      "id": "semantics",
+      "rule": "Uses native HTML semantics and keyboard behavior."
+    }
+  ],
+  "notes": [
+    "Events are framework-specific and omitted from this contract."
+  ]
+}

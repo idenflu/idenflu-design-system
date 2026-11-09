@@ -1,0 +1,24 @@
+{
+  "id": "accordion",
+  "label": "Accordion",
+  "status": "implemented",
+  "props": [
+    {
+      "name": "children",
+      "kind": "node",
+      "required": false
+    }
+  ],
+  "states": [
+    "default"
+  ],
+  "accessibility": [
+    {
+      "id": "semantics",
+      "rule": "Uses native HTML semantics and keyboard behavior."
+    }
+  ],
+  "notes": [
+    "Events are framework-specific and omitted from this contract."
+  ]
+}

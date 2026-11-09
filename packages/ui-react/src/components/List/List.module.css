@@ -1,0 +1,2 @@
+.list { color: var(--text-primary); display: flex; flex-direction: column; gap: var(--spacing-03); }
+.selectable { display: flex; flex-direction: column; gap: var(--spacing-02); }

@@ -1,0 +1,29 @@
+{
+  "id": "segmented-progress",
+  "label": "SegmentedProgress",
+  "status": "implemented",
+  "props": [
+    {
+      "name": "value",
+      "kind": "number",
+      "required": true
+    },
+    {
+      "name": "label",
+      "kind": "string",
+      "required": true
+    }
+  ],
+  "states": [
+    "default"
+  ],
+  "accessibility": [
+    {
+      "id": "progress",
+      "rule": "Exposes progress and an accessible name to assistive technology."
+    }
+  ],
+  "notes": [
+    "Events are framework-specific and omitted from this contract."
+  ]
+}

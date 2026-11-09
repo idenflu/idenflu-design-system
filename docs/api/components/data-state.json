@@ -1,0 +1,25 @@
+{
+  "id": "data-state",
+  "label": "DataState",
+  "status": "implemented",
+  "props": [
+    {
+      "name": "searchLabel",
+      "kind": "string",
+      "required": false,
+      "default": "검색"
+    }
+  ],
+  "states": [
+    "default"
+  ],
+  "accessibility": [
+    {
+      "id": "status",
+      "rule": "Announces loading, errors and results via a status region."
+    }
+  ],
+  "notes": [
+    "Events are framework-specific and omitted from this contract."
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "id": "progress",
+  "label": "Progress",
+  "status": "implemented",
+  "props": [
+    {
+      "name": "thickness",
+      "kind": "unknown",
+      "required": false,
+      "default": "normal"
+    }
+  ],
+  "states": [
+    "default"
+  ],
+  "accessibility": [
+    {
+      "id": "progress",
+      "rule": "Exposes progress and an accessible name to assistive technology."
+    }
+  ],
+  "notes": [
+    "Events are framework-specific and omitted from this contract."
+  ]
+}

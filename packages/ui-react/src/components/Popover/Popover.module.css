@@ -1,0 +1,2 @@
+.content { background: var(--surface-00); border: var(--spacing-01) solid var(--border-primary); border-radius: var(--rounded-md); color: var(--text-primary); padding: var(--spacing-06); }
+.content:focus-visible { outline: var(--spacing-02) solid var(--border-focused); outline-offset: var(--spacing-01); }

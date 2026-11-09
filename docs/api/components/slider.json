@@ -1,0 +1,29 @@
+{
+  "id": "slider",
+  "label": "Slider",
+  "status": "implemented",
+  "props": [
+    {
+      "name": "value",
+      "kind": "number",
+      "required": false
+    },
+    {
+      "name": "defaultValue",
+      "kind": "number",
+      "required": false
+    }
+  ],
+  "states": [
+    "default"
+  ],
+  "accessibility": [
+    {
+      "id": "semantics",
+      "rule": "Exposes the control state to assistive technology."
+    }
+  ],
+  "notes": [
+    "Events are framework-specific and omitted from this contract."
+  ]
+}

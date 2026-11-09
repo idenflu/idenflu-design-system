@@ -1,0 +1,7 @@
+.root { align-items: center; color: var(--text-primary); display: inline-flex; font: var(--body-md); gap: var(--spacing-04); }
+.root:has(.input:disabled) { color: var(--text-disabled); cursor: not-allowed; }
+.input { accent-color: var(--brand-500); block-size: var(--spacing-06); cursor: pointer; inline-size: var(--spacing-06); margin: 0; }
+.root[data-size="sm"] .input { block-size: var(--spacing-05); inline-size: var(--spacing-05); }
+.root[data-size="lg"] .input { block-size: var(--spacing-07); inline-size: var(--spacing-07); }
+.input:focus-visible { outline: var(--spacing-01) solid var(--border-focused); outline-offset: var(--spacing-01); }
+.input:disabled { cursor: not-allowed; }

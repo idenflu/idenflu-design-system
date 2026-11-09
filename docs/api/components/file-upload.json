@@ -1,0 +1,29 @@
+{
+  "id": "file-upload",
+  "label": "FileUpload",
+  "status": "implemented",
+  "props": [
+    {
+      "name": "label",
+      "kind": "string",
+      "required": false
+    },
+    {
+      "name": "maxSizeBytes",
+      "kind": "number",
+      "required": false
+    }
+  ],
+  "states": [
+    "default"
+  ],
+  "accessibility": [
+    {
+      "id": "input",
+      "rule": "A labelled file input supports keyboard selection and errors are announced."
+    }
+  ],
+  "notes": [
+    "Events are framework-specific and omitted from this contract."
+  ]
+}

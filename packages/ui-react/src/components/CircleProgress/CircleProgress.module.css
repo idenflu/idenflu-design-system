@@ -1,0 +1,8 @@
+.root { align-items: center; color: var(--text-primary); display: inline-grid; inline-size: calc(var(--spacing-09) * 2); position: relative; }
+.root svg, .root span { grid-area: 1 / 1; }
+.root span { font: var(--label-md); text-align: center; }
+.root svg { transform: rotate(-90deg); }
+.track, .value { fill: none; stroke-width: 3; }
+.track { stroke: var(--background-neutral-subtle); }
+.value { stroke: var(--background-info); }
+.root[data-variant="success"] .value { stroke: var(--background-success); }

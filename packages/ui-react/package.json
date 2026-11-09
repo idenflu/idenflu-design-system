@@ -27,6 +27,7 @@
   "dependencies": {
     "@idenflu/ui-icons": "*",
     "@idenflu/ui-tokens": "*",
+    "@tanstack/react-virtual": "^3.14.25",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "modern-normalize": "^3.0.1",
@@ -85,6 +86,7 @@
     "test:icons": "npm run build:icons && node --test scripts/icons.test.mjs",
     "prestorybook": "npm run build:icons",
     "prebuild-storybook": "npm run build:icons",
-    "prepack": "npm run build:icons"
+    "prepack": "npm run build:icons",
+    "test:data-grid": "node --test scripts/data-grid-exports.test.mjs"
   }
 }

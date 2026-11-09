@@ -1,0 +1,29 @@
+{
+  "id": "slides",
+  "label": "Slides",
+  "status": "implemented",
+  "props": [
+    {
+      "name": "slides",
+      "kind": "unknown",
+      "required": true
+    },
+    {
+      "name": "label",
+      "kind": "string",
+      "required": false
+    }
+  ],
+  "states": [
+    "default"
+  ],
+  "accessibility": [
+    {
+      "id": "semantics",
+      "rule": "Uses native keyboard controls and exposes the current state."
+    }
+  ],
+  "notes": [
+    "Events are framework-specific and omitted from this contract."
+  ]
+}

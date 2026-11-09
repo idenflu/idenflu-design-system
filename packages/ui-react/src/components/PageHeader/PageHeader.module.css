@@ -1,0 +1,6 @@
+.root { align-items: flex-start; color: var(--text-primary); display: flex; flex-wrap: wrap; gap: var(--spacing-06); justify-content: space-between; }
+.title { font: var(--heading-lg); margin: 0; }
+.eyebrow, .description { color: var(--text-secondary); font: var(--body-md); }
+.eyebrow { margin-block-end: var(--spacing-02); }
+.description { margin-block-start: var(--spacing-03); }
+.actions { display: flex; flex-wrap: wrap; gap: var(--spacing-04); }

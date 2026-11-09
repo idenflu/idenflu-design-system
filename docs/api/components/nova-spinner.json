@@ -1,0 +1,39 @@
+{
+  "id": "nova-spinner",
+  "label": "NovaSpinner",
+  "status": "implemented",
+  "props": [
+    {
+      "name": "size",
+      "kind": "number",
+      "required": false
+    },
+    {
+      "name": "label",
+      "kind": "string",
+      "required": false
+    },
+    {
+      "name": "appearance",
+      "kind": "unknown",
+      "required": false
+    },
+    {
+      "name": "variant",
+      "kind": "unknown",
+      "required": false
+    }
+  ],
+  "states": [
+    "default"
+  ],
+  "accessibility": [
+    {
+      "id": "status",
+      "rule": "Exposes a labelled status and respects reduced motion."
+    }
+  ],
+  "notes": [
+    "Events are framework-specific and omitted from this contract."
+  ]
+}

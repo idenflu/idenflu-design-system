@@ -1,0 +1,6 @@
+.root { accent-color: var(--background-info); block-size: var(--spacing-04); inline-size: 100%; }
+.root[data-thickness="thin"] { block-size: var(--spacing-03); }
+.root[data-thickness="thick"] { block-size: var(--spacing-05); }
+.root[data-variant="success"] { accent-color: var(--background-success); }
+.root[data-variant="warning"] { accent-color: var(--background-warning); }
+.root[data-variant="danger"] { accent-color: var(--background-error); }

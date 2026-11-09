@@ -1,0 +1,2 @@
+.root { color: var(--text-primary); display: grid; gap: var(--spacing-04); }
+.actions { display: flex; gap: var(--spacing-04); }

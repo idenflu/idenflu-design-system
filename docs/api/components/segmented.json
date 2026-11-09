@@ -1,0 +1,29 @@
+{
+  "id": "segmented",
+  "label": "Segmented",
+  "status": "implemented",
+  "props": [
+    {
+      "name": "label",
+      "kind": "string",
+      "required": true
+    },
+    {
+      "name": "options",
+      "kind": "unknown",
+      "required": true
+    }
+  ],
+  "states": [
+    "default"
+  ],
+  "accessibility": [
+    {
+      "id": "semantics",
+      "rule": "Exposes the control state to assistive technology."
+    }
+  ],
+  "notes": [
+    "Events are framework-specific and omitted from this contract."
+  ]
+}

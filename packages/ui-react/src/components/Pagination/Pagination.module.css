@@ -1,0 +1,6 @@
+.root { align-items: center; display: flex; flex-wrap: wrap; gap: var(--spacing-02); }
+.root button { background: transparent; border: var(--spacing-01) solid transparent; border-radius: var(--rounded-md); color: var(--text-primary); cursor: pointer; font: var(--body-md); min-block-size: var(--spacing-08); min-inline-size: var(--spacing-08); padding: var(--spacing-03) var(--spacing-04); }
+.root button:hover:not(:disabled) { background: var(--background-neutral-tint); }
+.root button[aria-current="page"] { background: var(--background-neutral-subtle); }
+.root button:focus-visible { outline: var(--spacing-02) solid var(--border-focused); outline-offset: var(--spacing-01); }
+.root button:disabled { color: var(--text-disabled); cursor: not-allowed; }

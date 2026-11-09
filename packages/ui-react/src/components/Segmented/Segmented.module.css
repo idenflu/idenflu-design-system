@@ -1,0 +1,7 @@
+.root { background: var(--background-neutral-tint); border-radius: var(--rounded-md); display: inline-flex; gap: var(--spacing-01); padding: var(--spacing-02); }
+.root button { background: transparent; border: 0; border-radius: var(--rounded-md); color: var(--text-secondary); cursor: pointer; font: var(--label-md); padding: var(--spacing-04); }
+.root[data-size="sm"] button { padding: var(--spacing-03); }
+.root[data-size="lg"] button { padding: var(--spacing-05); }
+.root button[aria-pressed="true"] { background: var(--surface-00); color: var(--text-primary); }
+.root button:focus-visible { outline: var(--spacing-02) solid var(--border-focused); }
+.root button:disabled { color: var(--text-disabled); cursor: not-allowed; }

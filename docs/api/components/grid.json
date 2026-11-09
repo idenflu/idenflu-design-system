@@ -1,0 +1,29 @@
+{
+  "id": "grid",
+  "label": "Grid",
+  "status": "implemented",
+  "props": [
+    {
+      "name": "columns",
+      "kind": "unknown",
+      "required": false
+    },
+    {
+      "name": "gap",
+      "kind": "unknown",
+      "required": false
+    }
+  ],
+  "states": [
+    "default"
+  ],
+  "accessibility": [
+    {
+      "id": "order",
+      "rule": "Preserves DOM reading order without introducing an interactive grid role."
+    }
+  ],
+  "notes": [
+    "Events are framework-specific and omitted from this contract."
+  ]
+}

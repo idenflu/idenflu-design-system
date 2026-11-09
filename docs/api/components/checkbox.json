@@ -1,0 +1,38 @@
+{
+  "id": "checkbox",
+  "label": "Checkbox",
+  "status": "implemented",
+  "props": [
+    {
+      "name": "label",
+      "kind": "node",
+      "required": true
+    },
+    {
+      "name": "size",
+      "kind": "unknown",
+      "required": false,
+      "default": "md"
+    },
+    {
+      "name": "indeterminate",
+      "kind": "boolean",
+      "required": false,
+      "default": false
+    }
+  ],
+  "states": [
+    "default",
+    "focus",
+    "disabled"
+  ],
+  "accessibility": [
+    {
+      "id": "native",
+      "rule": "Uses a native labelled input with keyboard interaction."
+    }
+  ],
+  "notes": [
+    "Events are framework-specific and omitted from this contract."
+  ]
+}

@@ -164,7 +164,7 @@ if (exists("examples/playground") || exists("examples")) {
   "packages/icons/src/icons.svg",
   "packages/ui-react/src/index.ts",
   "packages/ui-react/src/styles.css",
-  "packages/ui-react/src/fonts.css",
+  "packages/ui-react/src/styles/fonts.css",
   "packages/ui-react/src/styles/tokens.css",
   "packages/ui-react/src/utils/classNames.ts",
   "packages/ui-react/src/utils/dateUtils.ts",
@@ -229,9 +229,10 @@ requireIncludes("packages/ui-react/src/index.ts", [
 requireIncludes("packages/ui-react/src/styles.css", [
   '@import "./styles/normalize.css"',
   '@import "./styles/tokens.css"',
+  '@import "./styles/fonts.css"',
   "var(--font-family-body)",
 ]);
-requireIncludes("packages/ui-react/src/fonts.css", [
+requireIncludes("packages/ui-react/src/styles/fonts.css", [
   "pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css",
 ]);
 

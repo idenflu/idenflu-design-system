@@ -13,7 +13,6 @@ npm install @idenflu/ui-react
 ```
 
 ```tsx
-import "@idenflu/ui-react/fonts.css";
 import "@idenflu/ui-react/styles.css";
 import { Button } from "@idenflu/ui-react";
 ```
@@ -64,25 +63,19 @@ npm run test:icons -w @idenflu/ui-react
 
 ## Font
 
-기본 글꼴은 Pretendard Variable입니다.
-
-| Import | 역할 |
-|--------|------|
-| `@idenflu/ui-react/fonts.css` | Pretendard `@font-face` |
-| `@idenflu/ui-react/styles.css` | 토큰, `html { font-family: var(--font-family-body); }` |
+기본 글꼴은 Pretendard Variable입니다. `@idenflu/ui-react/styles.css`는 폰트, 토큰, 기본 글꼴 설정을 함께 불러옵니다. 기존의 `@idenflu/ui-react/fonts.css` 경로도 호환성을 위해 유지됩니다.
 
 컴포넌트와 본문의 기본 글꼴은 `--font-family-body`를 사용합니다.
 
 ### 기본 (Pretendard)
 
 ```tsx
-import "@idenflu/ui-react/fonts.css";
 import "@idenflu/ui-react/styles.css";
 ```
 
 ### 다른 글꼴
 
-`fonts.css`는 넣지 않습니다. `--font-family-body`를 덮고, 앱 글꼴 `@font-face`는 사용처에서 등록합니다.
+앱 글꼴의 `@font-face`를 사용처에서 등록하고 `--font-family-body`를 덮어씁니다. `styles.css`는 Pretendard 폰트 정의를 포함하지만 다른 글꼴을 사용하는 경우 해당 글꼴 파일을 요청하지 않습니다.
 
 ```css
 @import "@idenflu/ui-react/styles.css";

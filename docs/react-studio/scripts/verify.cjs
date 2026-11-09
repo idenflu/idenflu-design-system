@@ -25,6 +25,12 @@ function check(condition, message) { if (!condition) throw new Error(message); }
     const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
     const errors = [];
     page.on("pageerror", error => errors.push(error.message));
+    await page.goto(base);
+    const loadedFonts = await page.evaluate(async () => {
+      const faces = await document.fonts.load('14px "Pretendard Variable"', "한글");
+      return faces.filter(face => face.status === "loaded").length;
+    });
+    check(loadedFonts > 0, "styles.css did not load Pretendard");
     for (const id of ids) {
       await page.goto(`${base}#/components/${id}`);
       await page.locator("main h1").first().waitFor();

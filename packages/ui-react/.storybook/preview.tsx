@@ -5,7 +5,6 @@ import { useEffect } from "storybook/preview-api";
 import spriteUrl from "@idenflu/ui-icons/icons.svg?url";
 import { IconSpriteProvider } from "../src/components/Icon/IconSpriteContext";
 import { TooltipProvider } from "../src/components/Tooltip";
-import "../src/fonts.css";
 import "../src/styles.css";
 import "./preview.css";
 

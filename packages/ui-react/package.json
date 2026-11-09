@@ -18,7 +18,7 @@
   ],
   "sideEffects": [
     "./src/styles.css",
-    "./src/fonts.css"
+    "./src/styles/fonts.css"
   ],
   "peerDependencies": {
     "react": ">=18",
@@ -62,7 +62,7 @@
       "default": "./src/index.ts"
     },
     "./styles.css": "./src/styles.css",
-    "./fonts.css": "./src/fonts.css",
+    "./fonts.css": "./src/styles/fonts.css",
     "./icons": {
       "types": "./src/icons/index.ts",
       "default": "./dist/icons/index.mjs"

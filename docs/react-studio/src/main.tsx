@@ -3,7 +3,6 @@ import { createRoot } from "react-dom/client";
 import * as UI from "@idenflu/ui-react";
 import { IconSpriteProvider } from "@idenflu/ui-react";
 import spriteUrl from "@idenflu/ui-icons/icons.svg?url";
-import "@idenflu/ui-react/fonts.css";
 import "@idenflu/ui-react/styles.css";
 import "./studio.css";
 import { examples, FormExample, WorkspaceExample } from "./examples";
@@ -256,11 +255,11 @@ function Intro() {
         <div>
           <span className="section-kicker">GET STARTED</span>
           <UI.Typography component="h2" variant="heading-sm">시작하기</UI.Typography>
-          <p>패키지를 설치한 뒤 스타일과 글꼴을 앱의 진입점에 불러옵니다.</p>
+          <p>패키지를 설치한 뒤 스타일을 앱의 진입점에 불러옵니다.</p>
         </div>
         <Code>
           {
-            'npm install @idenflu/ui-react\n\nimport "@idenflu/ui-react/fonts.css";\nimport "@idenflu/ui-react/styles.css";\nimport { Button } from "@idenflu/ui-react";'
+            'npm install @idenflu/ui-react\n\nimport "@idenflu/ui-react/styles.css";\nimport { Button } from "@idenflu/ui-react";'
           }
         </Code>
       </section>

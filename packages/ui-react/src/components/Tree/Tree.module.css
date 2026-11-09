@@ -1,9 +1,13 @@
-.root, .children, .category { display: flex; flex-direction: column; gap: var(--spacing-02); }
-.root { color: var(--text-primary); }
-.children { padding-inline-start: var(--spacing-06); }
-.categoryLabel { color: var(--text-secondary); font: var(--label-md); margin: var(--spacing-03) 0; }
-.root summary, .item { background: transparent; border: 0; border-radius: var(--rounded-md); color: inherit; cursor: pointer; font: var(--body-md); padding: var(--spacing-04); text-align: start; }
-.root summary:hover, .item:hover:not(:disabled) { background: var(--background-neutral-tint); }
-.item[aria-current="true"] { background: var(--background-neutral-subtle); }
-.root summary:focus-visible, .item:focus-visible { outline: var(--spacing-02) solid var(--border-focused); }
-.root summary[aria-disabled="true"], .item:disabled { color: var(--text-disabled); cursor: not-allowed; }
+.root, .children, .category { display: flex; flex-direction: column; }
+.root { color: var(--text); max-width: calc(var(--space-unit) * 140); }
+.children { border-inline-start: calc(var(--space-unit) * .25) solid var(--divider); margin-inline-start: calc(var(--space-unit) * 4.5); }
+.category + .category { margin-block-start: var(--space-4); }
+.categoryLabel { color: var(--text-secondary); font: var(--font-weight-semibold) var(--font-size-caption)/var(--line-height-caption) var(--font-family-body); margin: 0; padding: var(--space-2) var(--space-3); }
+.root summary, .item { align-items: center; background: transparent; border: 0; color: var(--text-secondary); cursor: pointer; display: flex; font: var(--font-weight-regular) var(--font-size-body)/var(--line-height-control) var(--font-family-body); list-style: none; min-height: var(--control-height); padding: var(--space-2) var(--space-3); text-align: start; width: 100%; }
+.root summary { justify-content: space-between; }
+.root summary::-webkit-details-marker { display: none; }
+.root summary:hover, .item:hover:not(:disabled) { background: var(--surface); color: var(--text); }
+.item { border-inline-start: var(--focus-width) solid transparent; }
+.item[aria-current="true"] { border-inline-start-color: var(--primary); color: var(--primary); font-weight: var(--font-weight-medium); }
+.root summary:focus-visible, .item:focus-visible { outline: var(--focus-width) solid var(--focus-on-light); outline-offset: calc(-1 * var(--focus-width)); }
+.root summary[aria-disabled="true"], .item:disabled { color: var(--disabled-text); cursor: not-allowed; }

@@ -1,785 +1,255 @@
-import * as React from "react";
-import { createPortal } from "react-dom";
-import { cva } from "class-variance-authority";
+import * as React from 'react';
+import { useEscapeLayer } from './escape-layer';
+import { Icon } from '../Icon';
+import styles from './Select.module.css';
+import { InlineSelectTags } from './inline-select-tags';
 
-import { cn } from "../../utils/classNames";
-import { Chip, type ChipSize } from "../Chip/Chip";
-import { Icon } from "../Icon/Icon";
-import inputSharedStyles from "../_fields/Field.module.css";
-import styles from "./Select.module.css";
-import { TextInput } from "../TextInput";
+const useClientLayoutEffect = typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect;
 
-/**
- * Select field with optional panel search, multi-select, and chip values.
- * Custom listbox (no Radix). Prefer this over deprecated Combobox.
- */
-export type SelectVariant = "standard" | "filled" | "outlined";
-export type SelectSize = "lg" | "md" | "sm";
-export type SelectOverflow = "wrap" | "ellipsis";
-/** How selected values render in the field. */
-export type SelectValueDisplay = "chip" | "text";
+/** Values must be unique and stable; option icons are decorative. */
+export interface SelectOption { value: string; label: string; disabled?: boolean; description?: string; icon?: React.ReactNode }
+type Size = 'sm' | 'md' | 'lg';
 
-export type SelectOption = {
-  disabled?: boolean;
-  label: React.ReactNode;
-  textValue?: string;
-  value: string;
-};
+function useValue<T>(value: T | undefined, fallback: T, onChange?: (value: T) => void) {
+  const initial = React.useRef(fallback);
+  const [internal, setInternal] = React.useState(fallback);
+  const current = value === undefined ? internal : value;
+  const update = (next: T) => { if (value === undefined) setInternal(next); onChange?.(next); };
+  const reset = () => { if (value === undefined) setInternal(initial.current); };
+  return [current, update, reset] as const;
+}
 
-export type SelectItemProps = {
-  children: React.ReactNode;
-  disabled?: boolean;
-  textValue?: string;
-  value: string;
-};
-
-const getTextValue = (node: React.ReactNode): string => {
-  if (typeof node === "string" || typeof node === "number") return String(node);
-  if (Array.isArray(node)) return node.map(getTextValue).join(" ");
-  if (React.isValidElement<{ children?: React.ReactNode }>(node)) {
-    return getTextValue(node.props.children);
-  }
-  return "";
-};
-
-const REACT_FRAGMENT_TYPE = Symbol.for("react.fragment");
-
-const isFragmentElement = (
-  child: React.ReactElement
-): child is React.ReactElement<{ children?: React.ReactNode }> =>
-  child.type === React.Fragment ||
-  (child.type as unknown) === REACT_FRAGMENT_TYPE;
-
-const isSelectItemElement = (
-  child: React.ReactNode
-): child is React.ReactElement<SelectItemProps> => {
-  if (!React.isValidElement(child)) return false;
-  if (child.type === SelectItem) return true;
-  const type = child.type;
-  return (
-    typeof type === "function" &&
-    "displayName" in type &&
-    (type as { displayName?: string }).displayName === "SelectItem"
-  );
-};
-
-const collectOptionsFromChildren = (
-  nodes: React.ReactNode,
-  collected: SelectOption[] = []
-): SelectOption[] => {
-  React.Children.forEach(nodes, (child) => {
-    if (!React.isValidElement(child)) return;
-    if (isFragmentElement(child)) {
-      collectOptionsFromChildren(child.props.children, collected);
-      return;
-    }
-    if (isSelectItemElement(child)) {
-      const { children: label, disabled, textValue, value } = child.props;
-      collected.push({
-        disabled,
-        label,
-        textValue: textValue ?? getTextValue(label),
-        value,
-      });
-    }
-  });
-  return collected;
-};
-
-const matchesQuery = (option: SelectOption, query: string) => {
-  if (!query) return true;
-  const haystack = (
-    option.textValue ?? getTextValue(option.label)
-  ).toLowerCase();
-  return haystack.includes(query.toLowerCase());
-};
-
-/** Normalizes controlled/uncontrolled input to an internal `string[]`. */
-const normalizeValues = (
-  value: string | string[] | undefined,
-  multiple: boolean
-): string[] => {
-  if (value === undefined) return [];
-  if (multiple) return Array.isArray(value) ? value : value ? [value] : [];
-  return Array.isArray(value) ? value.slice(0, 1) : value ? [value] : [];
-};
-
-const rootClassName = cva([inputSharedStyles.root, styles.root], {
-  defaultVariants: {
-    disabled: false,
-    error: false,
-    fullWidth: false,
-    readOnly: false,
-    size: "md",
-    variant: "outlined",
-  },
-  variants: {
-    disabled: {
-      false: null,
-      true: inputSharedStyles.disabled,
-    },
-    error: {
-      false: null,
-      true: inputSharedStyles.error,
-    },
-    fullWidth: {
-      false: null,
-      true: inputSharedStyles.fullWidth,
-    },
-    readOnly: {
-      false: null,
-      true: inputSharedStyles.readOnly,
-    },
-    size: {
-      lg: inputSharedStyles.sizeLg,
-      md: inputSharedStyles.sizeMd,
-      sm: inputSharedStyles.sizeSm,
-    },
-    variant: {
-      standard: inputSharedStyles.variantStandard,
-      filled: inputSharedStyles.variantFilled,
-      outlined: inputSharedStyles.variantOutlined,
-    },
-  },
-});
-
-const panelClassName = cva(styles.panel, {
-  defaultVariants: { size: "md" },
-  variants: {
-    size: {
-      lg: styles.sizeLg,
-      md: styles.sizeMd,
-      sm: styles.sizeSm,
-    },
-  },
-});
-
-/** Declarative option used as `children` of Select. Rendered by parent. */
-export const SelectItem = (_props: SelectItemProps) => null;
-SelectItem.displayName = "SelectItem";
-
-type SelectStyle = React.CSSProperties & {
-  "--nova-select-anchor-width"?: string;
-};
+function useFormReset(ref: React.RefObject<HTMLElement | null>, reset: () => void) {
+  const latest = React.useRef(reset);
+  latest.current = reset;
+  React.useEffect(() => {
+    const form = ref.current?.closest('form');
+    if (!form) return;
+    let active = true;
+    const handler = (event: Event) => { queueMicrotask(() => { if (active && !event.defaultPrevented) latest.current(); }); };
+    form.addEventListener('reset', handler);
+    return () => { active = false; form.removeEventListener('reset', handler); };
+  }, [ref]);
+}
 
 export type SelectProps = {
-  children?: React.ReactNode;
-  /**
-   * Selected value presentation.
-   * - `chip` (default): chips for single and multiple.
-   * - `text`: plain label text (comma-joined when multiple).
-   */
-  valueDisplay?: SelectValueDisplay;
-  /**
-   * Chip row overflow inside the field when chips are shown.
-   * - `wrap` (default): chips wrap onto the next line.
-   * - `ellipsis`: keep one line with horizontal scroll (scrollbar hidden).
-   */
-  overflow?: SelectOverflow;
-  chipSize?: ChipSize;
-  className?: string;
-  defaultOpen?: boolean;
-  /** `string` when single, `string[]` when `multiple`. */
-  defaultValue?: string | string[];
-  disabled?: boolean;
-  error?: string;
-  fullWidth?: boolean;
-  helperText?: string;
-  id?: string;
-  label?: React.ReactNode;
-  multiple?: boolean;
+  options: readonly SelectOption[];
+  label: string;
+  /** Keep the label accessible while hiding it visually. */
+  hideLabel?: boolean;
   name?: string;
-  onOpenChange?: (open: boolean) => void;
-  /** Emits `string` when single, `string[]` when `multiple`. */
-  onValueChange?: (value: string | string[]) => void;
-  open?: boolean;
-  options?: SelectOption[];
+  disabled?: boolean;
   placeholder?: string;
-  readOnly?: boolean;
+  className?: string;
+  size?: Size;
   required?: boolean;
-  /** Show filter input at the top of the option panel. Defaults to `true`. */
-  searchable?: boolean;
-  searchPlaceholder?: string;
-  size?: SelectSize;
-  /** `string` when single, `string[]` when `multiple`. */
-  value?: string | string[];
-  variant?: SelectVariant;
+  helperText?: React.ReactNode;
+  error?: React.ReactNode;
+  /** Decorative icon shown before the value or placeholder. */
+  prefixIcon?: React.ReactNode;
+  /** Use fixed positioning for option lists inside scrolling or clipped containers. */
+  popupStrategy?: 'absolute' | 'fixed';
+  'aria-describedby'?: string;
+  'aria-invalid'?: boolean | 'true' | 'false';
+  value?: string;
+  defaultValue?: string;
+  onValueChange?: (value: string) => void;
 };
+type SelectShared = Omit<SelectProps, 'value' | 'defaultValue' | 'onValueChange'>;
+export interface MultiSelectProps extends SelectShared {
+  value?: readonly string[]; defaultValue?: readonly string[]; onValueChange?: (value: string[]) => void;
+  searchable?: boolean; presentation?: 'default' | 'inline'; clearable?: boolean;
+  /** Summarize additional labels as a count. Positive integers only; ignored for inline tags. */
+  maxVisibleLabels?: number;
+  /** Fit inline tags to the available width, optionally limiting their number. Zero shows only the count. */
+  maxVisibleTags?: number | 'responsive';
+}
 
-export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
-  (
-    {
-      children,
-      chipSize,
-      className,
-      defaultOpen = false,
-      defaultValue,
-      disabled = false,
-      error,
-      fullWidth = false,
-      helperText,
-      id,
-      label,
-      multiple = false,
-      name,
-      onOpenChange,
-      onValueChange,
-      open: openProp,
-      options,
-      overflow = "wrap",
-      placeholder = "Select",
-      readOnly = false,
-      required,
-      searchable = true,
-      searchPlaceholder = "Search…",
-      size = "md",
-      value: valueProp,
-      valueDisplay = "chip",
-      variant = "outlined",
-    },
-    ref
-  ) => {
-    const generatedId = React.useId();
-    const triggerId = id ?? generatedId;
-    const listboxId = `${triggerId}-listbox`;
-    const labelId = `${triggerId}-label`;
-    const valueId = `${triggerId}-value`;
-    const searchId = `${triggerId}-search`;
-    const helperId = helperText || error ? `${triggerId}-helper` : undefined;
-    const hasError = Boolean(error);
-    const isFilled = variant === "filled";
-    const locked = disabled || readOnly;
+interface SelectCoreProps extends SelectShared {
+  selected: readonly string[];
+  onSelect: (value: string) => void;
+  onReset: () => void;
+  multiple?: boolean;
+  searchable?: boolean;
+  presentation?: 'default' | 'inline';
+  clearable?: boolean;
+  maxVisibleLabels?: number;
+  maxVisibleTags?: number | 'responsive';
+  onClear?: () => void;
+  buttonRef?: React.ForwardedRef<HTMLButtonElement>;
+  inputRef?: React.ForwardedRef<HTMLInputElement>;
+}
 
-    const isValueControlled = valueProp !== undefined;
-    const isOpenControlled = openProp !== undefined;
+function SelectCore({options, label, hideLabel = false, name, disabled, placeholder = '선택하세요', className, size, required, helperText, error, prefixIcon, popupStrategy = 'absolute', selected, onSelect, onReset, multiple, searchable, presentation = 'default', clearable = false, maxVisibleLabels, maxVisibleTags = 'responsive', onClear, buttonRef, inputRef, ...aria}: SelectCoreProps) {
+  const id = React.useId();
+  const root = React.useRef<HTMLDivElement>(null);
+  const native = React.useRef<HTMLSelectElement>(null);
+  const trigger = React.useRef<HTMLButtonElement>(null);
+  const search = React.useRef<HTMLInputElement>(null);
+  React.useImperativeHandle(buttonRef, () => trigger.current!, [presentation, searchable, multiple]);
+  React.useImperativeHandle(inputRef, () => search.current!, [searchable, multiple]);
+  const popupElement = React.useRef<HTMLDivElement>(null);
+  const [popupPosition, setPopupPosition] = React.useState<{top:number; left:number; width:number; maxHeight:number} | null>(null);
+  const [open, setOpen] = React.useState(false);
+  const [query, setQuery] = React.useState('');
+  const [active, setActive] = React.useState<string | null>(null);
+  const [attempted, setAttempted] = React.useState(false);
+  const selectedOptions = options.filter(option => selected.includes(option.value));
+  const selectedLabels = selectedOptions.map(option => option.label);
+  const labelLimit = maxVisibleLabels !== undefined && Number.isInteger(maxVisibleLabels) && maxVisibleLabels > 0 ? maxVisibleLabels : Infinity;
+  const displayValue = multiple && selectedLabels.length > labelLimit
+    ? <span className="select-value-summary"><span className="select-summary-labels">{selectedLabels.slice(0, labelLimit).join(', ')}</span><span className="select-summary-count">{` 외 ${selectedLabels.length - labelLimit}개`}</span></span> : selectedLabels.join(', ');
+  const validSelected = selected.filter(value => value !== '' && options.some(option => option.value === value && !option.disabled));
+  useClientLayoutEffect(() => {
+    // A user-triggered native reset can run after reset listeners and React updates.
+    // Keep its defaults aligned with the committed selection so it cannot overwrite
+    // React's value with a stale placeholder after those updates have finished.
+    const values = new Set(multiple ? validSelected : [validSelected[0] ?? '']);
+    for (const option of native.current?.options ?? []) {
+      const isSelected = values.has(option.value);
+      if (option.defaultSelected !== isSelected) option.defaultSelected = isSelected;
+    }
+  });
+  const requiredInvalid = Boolean(attempted && required && !validSelected.length);
+  const message = error != null ? error : requiredInvalid ? '항목을 선택해주세요.' : null;
+  const invalid = message != null || aria['aria-invalid'] === true || aria['aria-invalid'] === 'true';
+  const describedBy = [aria['aria-describedby'], helperText != null && `${id}-help`, message != null && `${id}-error`].filter(Boolean).join(' ') || undefined;
+  const visible = options.filter(option => !searchable || option.label.toLocaleLowerCase().includes(query.toLocaleLowerCase()));
+  const enabled = visible.filter(option => !option.disabled);
+  useFormReset(root, () => { onReset(); setOpen(false); setQuery(''); setActive(null); setAttempted(false); });
 
-    const [uncontrolledValue, setUncontrolledValue] = React.useState(() =>
-      normalizeValues(defaultValue, multiple)
-    );
-    const [uncontrolledOpen, setUncontrolledOpen] = React.useState(defaultOpen);
-    const [query, setQuery] = React.useState("");
-    const [highlightedIndex, setHighlightedIndex] = React.useState(0);
-    const [panelRect, setPanelRect] = React.useState<{
-      left: number;
-      top: number;
-      width: number;
-    }>();
-
-    const rootRef = React.useRef<HTMLDivElement | null>(null);
-    const anchorRef = React.useRef<HTMLDivElement | null>(null);
-    const triggerRef = React.useRef<HTMLButtonElement | null>(null);
-    const panelRef = React.useRef<HTMLDivElement | null>(null);
-    const searchRef = React.useRef<HTMLInputElement | null>(null);
-    const chipsRef = React.useRef<HTMLDivElement | null>(null);
-
-    React.useImperativeHandle(
-      ref,
-      () => triggerRef.current as HTMLButtonElement
-    );
-
-    const selectedValues = isValueControlled
-      ? normalizeValues(valueProp, multiple)
-      : uncontrolledValue;
-    const open = isOpenControlled ? Boolean(openProp) : uncontrolledOpen;
-
-    const optionItems = React.useMemo(
-      () => options ?? collectOptionsFromChildren(children),
-      [children, options]
-    );
-
-    const optionByValue = React.useMemo(() => {
-      const map = new Map<string, SelectOption>();
-      optionItems.forEach((option) => map.set(option.value, option));
-      return map;
-    }, [optionItems]);
-
-    const filteredOptions = React.useMemo(
-      () =>
-        searchable
-          ? optionItems.filter((option) => matchesQuery(option, query))
-          : optionItems,
-      [optionItems, query, searchable]
-    );
-
-    const setOpen = React.useCallback(
-      (nextOpen: boolean) => {
-        if (locked && nextOpen) return;
-        if (!isOpenControlled) setUncontrolledOpen(nextOpen);
-        onOpenChange?.(nextOpen);
-        if (!nextOpen) {
-          setQuery("");
-          setHighlightedIndex(0);
-        }
-      },
-      [isOpenControlled, locked, onOpenChange]
-    );
-
-    const emitValue = React.useCallback(
-      (nextValues: string[]) => {
-        const normalized = normalizeValues(nextValues, multiple);
-        if (!isValueControlled) setUncontrolledValue(normalized);
-        if (multiple) onValueChange?.(normalized);
-        else onValueChange?.(normalized[0] ?? "");
-      },
-      [isValueControlled, multiple, onValueChange]
-    );
-
-    const selectOption = React.useCallback(
-      (optionValue: string) => {
-        const option = optionByValue.get(optionValue);
-        if (!option || option.disabled || locked) return;
-
-        if (multiple) {
-          const exists = selectedValues.includes(optionValue);
-          const next = exists
-            ? selectedValues.filter((value) => value !== optionValue)
-            : [...selectedValues, optionValue];
-          emitValue(next);
-          setQuery("");
-          return;
-        }
-
-        emitValue([optionValue]);
-        setQuery("");
-        setOpen(false);
-        triggerRef.current?.focus();
-      },
-      [emitValue, locked, multiple, optionByValue, selectedValues, setOpen]
-    );
-
-    const removeValue = React.useCallback(
-      (optionValue: string) => {
-        if (locked) return;
-        emitValue(selectedValues.filter((value) => value !== optionValue));
-      },
-      [emitValue, locked, selectedValues]
-    );
-
-    const updatePanelPosition = React.useCallback(() => {
-      const node = anchorRef.current;
-      if (!node) return;
-      const rect = node.getBoundingClientRect();
-      setPanelRect({
-        left: rect.left,
-        top: rect.bottom,
-        width: rect.width,
-      });
-    }, []);
-
-    React.useLayoutEffect(() => {
-      if (!open) return;
-      updatePanelPosition();
-
-      const node = anchorRef.current;
-      if (!node) return;
-
-      const observer = new ResizeObserver(updatePanelPosition);
-      observer.observe(node);
-      window.addEventListener("resize", updatePanelPosition);
-      window.addEventListener("scroll", updatePanelPosition, true);
-      return () => {
-        observer.disconnect();
-        window.removeEventListener("resize", updatePanelPosition);
-        window.removeEventListener("scroll", updatePanelPosition, true);
-      };
-    }, [open, updatePanelPosition, selectedValues.length, overflow]);
-
-    React.useEffect(() => {
-      if (!open) return;
-      if (searchable) {
-        searchRef.current?.focus();
-      } else {
-        triggerRef.current?.focus();
-      }
-    }, [open, searchable]);
-
-    React.useEffect(() => {
-      if (!open) return;
-
-      const handlePointerDown = (event: MouseEvent | TouchEvent) => {
-        const target = event.target;
-        if (!(target instanceof Node)) return;
-        if (rootRef.current?.contains(target)) return;
-        if (panelRef.current?.contains(target)) return;
-        setOpen(false);
-      };
-
-      document.addEventListener("mousedown", handlePointerDown);
-      document.addEventListener("touchstart", handlePointerDown);
-      return () => {
-        document.removeEventListener("mousedown", handlePointerDown);
-        document.removeEventListener("touchstart", handlePointerDown);
-      };
-    }, [open, setOpen]);
-
-    React.useEffect(() => {
-      if (overflow !== "ellipsis") return;
-      const node = chipsRef.current;
-      if (!node) return;
-      node.scrollLeft = node.scrollWidth;
-    }, [overflow, selectedValues.length]);
-
-    React.useEffect(() => {
-      if (highlightedIndex >= filteredOptions.length) {
-        setHighlightedIndex(Math.max(0, filteredOptions.length - 1));
-      }
-    }, [filteredOptions.length, highlightedIndex]);
-
-    React.useEffect(() => {
-      if (!open) return;
-      const option = filteredOptions[highlightedIndex];
-      if (option) {
-        document
-          .getElementById(`${triggerId}-option-${option.value}`)
-          ?.scrollIntoView({ block: "nearest" });
-      }
-    }, [open, highlightedIndex, filteredOptions, triggerId]);
-
-    const handleTriggerKeyDown = (
-      event: React.KeyboardEvent<HTMLButtonElement>
-    ) => {
-      if (locked) return;
-
-      if (
-        event.key === "ArrowDown" ||
-        event.key === "Enter" ||
-        event.key === " "
-      ) {
-        event.preventDefault();
-        setOpen(true);
-        return;
-      }
-
-      if (event.key === "Escape" && open) {
-        event.preventDefault();
-        setOpen(false);
-      }
+  React.useEffect(() => {
+    if (!open || popupStrategy !== 'fixed') { setPopupPosition(null); return; }
+    const control = root.current?.querySelector<HTMLElement>('.search-select-control,.multi-inline-control') || trigger.current;
+    const popup = popupElement.current;
+    const win = root.current?.ownerDocument.defaultView;
+    if (!control || !popup || !win) return;
+    const update = () => {
+      const rect = control.getBoundingClientRect();
+      const viewportWidth = win.document.documentElement.clientWidth || win.innerWidth;
+      const viewportHeight = win.innerHeight;
+      if (rect.bottom < 0 || rect.top > viewportHeight || rect.right < 0 || rect.left > viewportWidth) { setOpen(false); return; }
+      const list = popup.querySelector<HTMLElement>('.select-options');
+      const searchHeight = popup.querySelector<HTMLElement>('.multi-search-field')?.getBoundingClientRect().height || 0;
+      const style = win.getComputedStyle(popup);
+      const chromeHeight = ['paddingTop','paddingBottom','borderTopWidth','borderBottomWidth'].reduce((sum, key) => sum + (Number.parseFloat(style[key as 'paddingTop']) || 0), 0);
+      const desiredHeight = Math.min(list?.scrollHeight || popup.scrollHeight, 256) + searchHeight + chromeHeight;
+      const below = Math.max(0, viewportHeight - rect.bottom - 14), above = Math.max(0, rect.top - 14);
+      const opensAbove = below < desiredHeight && above > below;
+      const maxHeight = Math.max(0, opensAbove ? above : below);
+      const width = Math.min(Math.max(1, rect.width), Math.max(1, viewportWidth - 16));
+      const next = {top:opensAbove ? Math.max(8, rect.top - 6 - Math.min(desiredHeight, maxHeight)) : rect.bottom + 6, left:Math.max(8, Math.min(rect.left, viewportWidth - width - 8)), width, maxHeight};
+      setPopupPosition(previous => previous && previous.top === next.top && previous.left === next.left && previous.width === next.width && previous.maxHeight === next.maxHeight ? previous : next);
     };
+    update();
+    win.addEventListener('resize', update);
+    win.addEventListener('scroll', update, true);
+    const Observer = (win as Window & {ResizeObserver?: typeof ResizeObserver}).ResizeObserver;
+    const observer = Observer ? new Observer(update) : null;
+    observer?.observe(control);
+    return () => { win.removeEventListener('resize', update); win.removeEventListener('scroll', update, true); observer?.disconnect(); };
+  }, [open, popupStrategy, searchable, multiple, presentation, query, visible.length]);
 
-    const handlePanelKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-      if (locked) return;
-
-      if (event.key === "ArrowDown") {
-        event.preventDefault();
-        setHighlightedIndex((index) =>
-          filteredOptions.length === 0
-            ? 0
-            : (index + 1) % filteredOptions.length
-        );
-        return;
-      }
-
-      if (event.key === "ArrowUp") {
-        event.preventDefault();
-        setHighlightedIndex((index) =>
-          filteredOptions.length === 0
-            ? 0
-            : (index - 1 + filteredOptions.length) % filteredOptions.length
-        );
-        return;
-      }
-
-      if (event.key === "Enter") {
-        if ((event.target as Element).closest("button")) return;
-        const option = filteredOptions[highlightedIndex];
-        if (option) {
-          event.preventDefault();
-          selectOption(option.value);
-        }
-        return;
-      }
-
-      if (event.key === "Escape") {
-        event.preventDefault();
-        setOpen(false);
-        triggerRef.current?.focus();
-      }
+  React.useEffect(() => {
+    if (!open) return;
+    const handlePointer = (event: PointerEvent) => {
+      if (!root.current?.contains(event.target as Node)) { setOpen(false); setQuery(''); }
     };
+    document.addEventListener('pointerdown', handlePointer);
+    return () => document.removeEventListener('pointerdown', handlePointer);
+  }, [open]);
+  React.useEffect(() => { if (disabled) { setOpen(false); setQuery(''); } }, [disabled]);
+  const popupReady = popupStrategy !== 'fixed' || popupPosition !== null;
+  React.useEffect(() => { if (open && multiple && searchable && popupReady) search.current?.focus(); }, [open, multiple, searchable, popupReady]);
+  const openMenu = () => {
+    if (disabled) return;
+    setOpen(true);
+    setActive(enabled.find(option => selected.includes(option.value))?.value ?? enabled[0]?.value ?? null);
+  };
+  const closeMenu = (restoreFocus = false) => { setOpen(false); setQuery(''); if (restoreFocus) (searchable && !multiple ? search : trigger).current?.focus(); };
+  const focusInlineControl = () => { if (open && searchable) search.current?.focus(); else trigger.current?.focus(); };
+  const openInlineMenu = () => { if (disabled) return; focusInlineControl(); if (!open) openMenu(); };
+  useEscapeLayer(open, root, () => closeMenu(true));
+  const move = (delta: number) => {
+    if (!enabled.length) { setActive(null); return; }
+    const index = enabled.findIndex(option => option.value === active);
+    setActive(enabled[(index < 0 ? (delta > 0 ? 0 : enabled.length - 1) : (index + delta + enabled.length) % enabled.length)].value);
+  };
+  const selectOption = (value: string) => {
+    const option = options.find(item => item.value === value);
+    if (!option || option.disabled) return;
+    onSelect(value);
+    if (!multiple) closeMenu(true);
+  };
+  const onKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === 'Tab') { setOpen(false); setQuery(''); return; }
+    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+      event.preventDefault();
+      if (!open) openMenu(); else move(event.key === 'ArrowDown' ? 1 : -1);
+    } else if (open && (event.key === 'Home' || event.key === 'End') && !(event.target instanceof HTMLInputElement)) {
+      event.preventDefault(); setActive((event.key === 'Home' ? enabled[0] : enabled[enabled.length - 1])?.value ?? null);
+    } else if (open && (event.key === 'Enter' || (event.key === ' ' && !(event.target instanceof HTMLInputElement)))) {
+      event.preventDefault(); if (active) selectOption(active);
+    }
+  };
+  const activeIndex = options.findIndex(option => option.value === active && visible.includes(option));
+  const listId = `${id}-list`;
+  const prefix = prefixIcon != null ? <span className="select-prefix-icon" aria-hidden="true" onClick={() => {
+    if (disabled) return;
+    if (searchable && !multiple) search.current?.focus();
+  }}>{prefixIcon}</span> : null;
+  React.useEffect(() => {
+    if (open && activeIndex >= 0) root.current?.ownerDocument.getElementById(`${id}-option-${activeIndex}`)?.scrollIntoView?.({ block: 'nearest' });
+  }, [open, activeIndex, id]);
+  const popup = <div ref={popupElement} className="select-popup" data-popup-strategy={popupStrategy === 'fixed' ? 'fixed' : undefined} hidden={!open} style={popupStrategy === 'fixed' ? {position:'fixed', top:popupPosition?.top ?? 0, left:popupPosition?.left ?? 0, right:'auto', bottom:'auto', width:popupPosition?.width, maxHeight:popupPosition?.maxHeight, visibility:popupPosition ? 'visible' : 'hidden'} : undefined}>
+    {multiple && searchable && <div className="multi-search-field"><input ref={search} className="multi-search-input" type="search" role="combobox" aria-label={`${label} 검색`} aria-autocomplete="list" aria-expanded={open} aria-controls={listId} aria-activedescendant={open && activeIndex >= 0 ? `${id}-option-${activeIndex}` : undefined} value={query} onChange={event => { const next = event.target.value; setQuery(next); setActive(options.find(option => !option.disabled && option.label.toLocaleLowerCase().includes(next.toLocaleLowerCase()))?.value ?? null); }} onKeyDown={onKeyDown} />{query && <button type="button" className="input-action" aria-label="검색어 지우기" onClick={() => { setQuery(''); setActive(options.find(option => !option.disabled)?.value ?? null); search.current?.focus(); }}><Icon name="close" aria-hidden="true" /></button>}</div>}
+    <ul id={listId} className="select-options" role="listbox" aria-label={label} aria-multiselectable={multiple || undefined}>
+      {visible.map(option => {
+        const index = options.indexOf(option);
+        return <li key={option.value} id={`${id}-option-${index}`} className={`select-option${active === option.value ? ' is-active' : ''}`} role="option" aria-selected={selected.includes(option.value)} aria-disabled={option.disabled || undefined} onMouseDown={event => event.preventDefault()} onMouseMove={() => { if (!option.disabled) setActive(option.value); }} onClick={() => selectOption(option.value)}><span className="select-option-content">{option.icon && <span className="select-option-icon" aria-hidden="true">{option.icon}</span>}<span className="select-option-copy"><span className="option-label">{option.label}</span>{option.description && <span className="option-description">{option.description}</span>}</span></span><Icon name="check" className="option-check" aria-hidden="true" /></li>;
+      })}
+    </ul>
+    {!visible.length && <p className="search-select-empty" role="status">검색 결과가 없습니다.</p>}
+  </div>;
+  return <div className={styles.root}>
+    <label className={`field-label${hideLabel ? ' sr-only' : ''}`} htmlFor={`${id}-trigger`}>{label}</label>
+    <div ref={root} className={`custom-select${searchable && !multiple ? ' search-select' : ''}${open ? ' is-open' : ''}${invalid ? ' is-invalid' : ''}${className ? ` ${className}` : ''}`} data-size={size} data-multiselect={multiple ? '' : undefined}>
+    <select ref={native} className="sr-only" aria-hidden="true" tabIndex={-1} name={name} multiple={multiple} required={required} disabled={disabled} value={multiple ? validSelected : validSelected[0] ?? ''} onChange={() => {}} onInvalid={event => { event.preventDefault(); setAttempted(true); const control = event.currentTarget; const firstInvalid = control.form && Array.from(control.form.elements).find(element => { const candidate = element as HTMLInputElement; return candidate.willValidate && !candidate.validity.valid; }); if (!firstInvalid || firstInvalid === control) (searchable && !multiple ? search : trigger).current?.focus(); }}>
+      {!multiple && <option value="">{placeholder}</option>}
+      {options.filter(option => option.value !== '').map(option => <option key={option.value} value={option.value} disabled={option.disabled}>{option.label}</option>)}
+    </select>
+    {searchable && !multiple ? <div className="search-select-control">{prefix}<input id={`${id}-trigger`} ref={search} className="search-select-input" role="combobox" aria-label={label} aria-autocomplete="list" aria-expanded={open} aria-controls={listId} aria-activedescendant={open && activeIndex >= 0 ? `${id}-option-${activeIndex}` : undefined} aria-required={required || undefined} aria-describedby={describedBy} aria-invalid={invalid || aria['aria-invalid']} disabled={disabled} placeholder={placeholder} value={open ? query : selectedLabels[0] ?? ''} onFocus={() => { setQuery(''); openMenu(); }} onClick={() => { if (!open) openMenu(); }} onChange={event => { const next = event.target.value; setQuery(next); setOpen(true); setActive(options.find(option => !option.disabled && option.label.toLocaleLowerCase().includes(next.toLocaleLowerCase()))?.value ?? null); }} onKeyDown={onKeyDown} /></div>
+      : multiple && presentation === 'inline' ? <div className="multi-inline-control" onMouseDown={event => {
+          if (!disabled && event.button === 0 && !(event.target as Element).closest('button')) event.preventDefault();
+        }} onClick={event => {
+          if (disabled || (event.target as Element).closest('button')) return;
+          openInlineMenu();
+        }}>{prefix}<InlineSelectTags label={label} placeholder={placeholder} options={selectedOptions} disabled={disabled} maxVisibleTags={maxVisibleTags} open={open} listId={listId} onRemove={value => {onSelect(value); focusInlineControl();}} onOpen={openInlineMenu} onFocusControl={focusInlineControl} />{clearable && <button type="button" className="input-action multi-inline-clear" aria-label={`${label} 모두 지우기`} disabled={disabled || !selected.length} onClick={onClear}><Icon name="close" aria-hidden="true" /></button>}
+        <button id={`${id}-trigger`} ref={trigger} type="button" className="input-action multi-inline-trigger" role="combobox" aria-label={`${label}: ${selectedLabels.join(', ') || placeholder}`} aria-haspopup="listbox" aria-expanded={open} aria-controls={listId} aria-activedescendant={open && activeIndex >= 0 ? `${id}-option-${activeIndex}` : undefined} aria-required={required || undefined} aria-describedby={describedBy} aria-invalid={invalid || aria['aria-invalid']} disabled={disabled} onClick={() => open ? closeMenu() : openMenu()} onKeyDown={onKeyDown}><Icon name="keyboard-arrow-down" className="icon-caret" aria-hidden="true" /></button></div>
+      : <button id={`${id}-trigger`} ref={trigger} type="button" className="select-trigger" role="combobox" aria-label={`${label}: ${selectedLabels.join(', ') || placeholder}`} aria-haspopup="listbox" aria-expanded={open} aria-controls={listId} aria-activedescendant={open && activeIndex >= 0 ? `${id}-option-${activeIndex}` : undefined} aria-required={required || undefined} aria-describedby={describedBy} aria-invalid={invalid || aria['aria-invalid']} disabled={disabled} onClick={() => open ? closeMenu() : openMenu()} onKeyDown={onKeyDown}><span data-select-label className="select-value-content">{prefix}{!multiple && selectedOptions[0]?.icon && <span className="select-option-icon" aria-hidden="true">{selectedOptions[0].icon}</span>}<span className="select-value-text">{displayValue || placeholder}</span></span><Icon name="keyboard-arrow-down" className="icon-caret" aria-hidden="true" /></button>}
+    {popup}
+    {multiple && presentation !== 'inline' && clearable && <button type="button" className="button button--ghost button-inline multi-clear" disabled={disabled || !selected.length} onClick={onClear}>모두 지우기</button>}
+    </div>
+    {helperText != null && <p id={`${id}-help`} className="component-helper" style={{marginTop:'var(--space-1)'}}>{helperText}</p>}
+    {message != null && <p id={`${id}-error`} className="field-error" role={error == null && requiredInvalid ? 'alert' : undefined}>{message}</p>}
+  </div>;
+}
 
-    const chipSizeResolved = chipSize ?? "sm";
-    const useChips = valueDisplay === "chip";
-    const panelStyle: SelectStyle = {
-      "--nova-select-anchor-width": panelRect
-        ? `${panelRect.width}px`
-        : undefined,
-      left: panelRect?.left,
-      top: panelRect?.top,
-    };
-
-    const selectedLabels = selectedValues.map((selected) => {
-      const option = optionByValue.get(selected);
-      return option ? getTextValue(option.label) : selected;
-    });
-
-    const valueContent =
-      selectedValues.length === 0 ? (
-        <span className={styles.placeholder}>{placeholder}</span>
-      ) : useChips ? (
-        <div
-          ref={chipsRef}
-          className={cn(
-            styles.valueArea,
-            overflow === "ellipsis" && styles.valueAreaEllipsis
-          )}
-        >
-          {selectedValues.map((selected, index) => {
-            const chipLabel = selectedLabels[index] ?? selected;
-            return (
-              <Chip
-                key={selected}
-                color="neutral"
-                deleteLabel={`Remove ${chipLabel}`}
-                size={chipSizeResolved}
-                variant="filled"
-                className={styles.chip}
-                data-disabled={disabled || undefined}
-                onDelete={
-                  locked
-                    ? undefined
-                    : (event) => {
-                        event.stopPropagation();
-                        removeValue(selected);
-                        triggerRef.current?.focus();
-                      }
-                }
-              >
-                {chipLabel}
-              </Chip>
-            );
-          })}
-        </div>
-      ) : (
-        <span className={styles.textValue}>{selectedLabels.join(", ")}</span>
-      );
-
-    const fieldControl = (
-      <div
-        role="group"
-        aria-disabled={disabled || undefined}
-        aria-labelledby={label ? labelId : valueId}
-        aria-describedby={helperId}
-        className={cn(inputSharedStyles.control, styles.controlRow)}
-        data-disabled={disabled || undefined}
-        onClick={(event) => {
-          if (locked || (event.target as Element).closest("button")) return;
-          triggerRef.current?.focus();
-          triggerRef.current?.click();
-        }}
-      >
-        {valueContent}
-        <button
-          ref={triggerRef}
-          id={triggerId}
-          type="button"
-          aria-controls={open ? listboxId : undefined}
-          aria-expanded={open}
-          aria-haspopup="listbox"
-          aria-labelledby={label ? `${labelId} ${valueId}` : valueId}
-          aria-invalid={hasError || undefined}
-          aria-describedby={helperId}
-          className={styles.trigger}
-          disabled={locked}
-          onClick={() => {
-            if (!locked) setOpen(!open);
-          }}
-          onKeyDown={handleTriggerKeyDown}
-        >
-          <span id={valueId} hidden>
-            {selectedLabels.length > 0
-              ? selectedLabels.join(", ")
-              : placeholder}
-          </span>
-          <Icon
-            name="keyboard-arrow-down"
-            size={16}
-            className={styles.chevron}
-            aria-hidden="true"
-          />
-        </button>
-      </div>
-    );
-
-    const hiddenInputs =
-      name && selectedValues.length > 0
-        ? selectedValues.map((selected) => (
-            <input
-              key={selected}
-              type="hidden"
-              name={multiple ? `${name}[]` : name}
-              value={selected}
-            />
-          ))
-        : null;
-
-    const panel =
-      open && typeof document !== "undefined"
-        ? createPortal(
-            <div
-              ref={panelRef}
-              className={panelClassName({ size })}
-              data-size={size}
-              data-state="open"
-              style={panelStyle}
-              onKeyDown={handlePanelKeyDown}
-            >
-              {searchable ? (
-                <div className={styles.search}>
-                  <TextInput
-                    ref={searchRef}
-                    id={searchId}
-                    aria-label={`Search ${getTextValue(label) || placeholder}`}
-                    aria-controls={
-                      filteredOptions.length > 0 ? listboxId : undefined
-                    }
-                    autoComplete="off"
-                    clearable
-                    disabled={locked}
-                    fullWidth
-                    placeholder={searchPlaceholder}
-                    size="sm"
-                    startAdornment={<Icon name="search" aria-hidden="true" />}
-                    value={query}
-                    className={styles.searchInput}
-                    onChange={(event) => {
-                      setQuery(event.target.value);
-                      setHighlightedIndex(0);
-                    }}
-                    onClear={() => {
-                      setQuery("");
-                      setHighlightedIndex(0);
-                      searchRef.current?.focus();
-                    }}
-                  />
-                </div>
-              ) : null}
-
-              {filteredOptions.length === 0 ? (
-                <div className={styles.empty} role="status">
-                  No results
-                </div>
-              ) : (
-                <ul
-                  id={listboxId}
-                  aria-label={typeof label === "string" ? label : "Options"}
-                  aria-multiselectable={multiple || undefined}
-                  className={styles.listbox}
-                  role="listbox"
-                  tabIndex={0}
-                  aria-activedescendant={
-                    filteredOptions[highlightedIndex]
-                      ? `${triggerId}-option-${filteredOptions[highlightedIndex].value}`
-                      : undefined
-                  }
-                >
-                  {filteredOptions.map((option, index) => {
-                    const selected = selectedValues.includes(option.value);
-                    const highlighted = index === highlightedIndex;
-                    return (
-                      <li
-                        key={option.value}
-                        id={`${triggerId}-option-${option.value}`}
-                        aria-disabled={option.disabled || undefined}
-                        aria-selected={selected}
-                        className={styles.item}
-                        data-disabled={option.disabled || undefined}
-                        data-highlighted={highlighted || undefined}
-                        data-selected={selected || undefined}
-                        role="option"
-                        onMouseDown={(event) => {
-                          event.preventDefault();
-                          selectOption(option.value);
-                        }}
-                        onMouseEnter={() => setHighlightedIndex(index)}
-                      >
-                        <span className={styles.itemLabel}>{option.label}</span>
-                        {selected ? (
-                          <span className={styles.itemCheck} aria-hidden="true">
-                            <Icon name="check" size={16} />
-                          </span>
-                        ) : null}
-                      </li>
-                    );
-                  })}
-                </ul>
-              )}
-            </div>,
-            document.body
-          )
-        : null;
-
-    return (
-      <>
-        {hiddenInputs}
-        <div
-          ref={rootRef}
-          className={cn(
-            rootClassName({
-              disabled,
-              error: hasError,
-              fullWidth,
-              readOnly,
-              size,
-              variant,
-            }),
-            disabled && styles.disabled,
-            readOnly && styles.readOnly,
-            className
-          )}
-        >
-          {!isFilled && label ? (
-            <label
-              id={labelId}
-              className={inputSharedStyles.label}
-              htmlFor={triggerId}
-            >
-              <span>{label}</span>
-              {required ? (
-                <span className={inputSharedStyles.required}>Required*</span>
-              ) : null}
-            </label>
-          ) : null}
-
-          {isFilled ? (
-            <div ref={anchorRef} className={inputSharedStyles.controlWrapper}>
-              {label ? (
-                <label
-                  id={labelId}
-                  className={inputSharedStyles.label}
-                  htmlFor={triggerId}
-                >
-                  <span>{label}</span>
-                  {required ? (
-                    <span className={inputSharedStyles.required}>
-                      Required*
-                    </span>
-                  ) : null}
-                </label>
-              ) : null}
-              {fieldControl}
-            </div>
-          ) : (
-            <div ref={anchorRef} className={inputSharedStyles.controlWrapper}>
-              {fieldControl}
-            </div>
-          )}
-
-          {helperId ? (
-            <p
-              id={helperId}
-              className={cn(
-                inputSharedStyles.helper,
-                disabled && !hasError && styles.helper,
-                hasError && inputSharedStyles.helperError
-              )}
-            >
-              {error || helperText}
-            </p>
-          ) : null}
-        </div>
-        {panel}
-      </>
-    );
-  }
-);
-
-Select.displayName = "Select";
+export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(function Select(
+  {value, defaultValue = '', onValueChange, ...props}, ref,
+) {
+  const [selected, setSelected, reset] = useValue(value, defaultValue, onValueChange);
+  return <SelectCore {...props} buttonRef={ref} selected={selected ? [selected] : []} onSelect={setSelected} onReset={reset} />;
+});
+export const SearchSelect = React.forwardRef<HTMLInputElement, SelectProps>(function SearchSelect(
+  {value, defaultValue = '', onValueChange, ...props}, ref,
+) {
+  const [selected, setSelected, reset] = useValue(value, defaultValue, onValueChange);
+  return <SelectCore {...props} inputRef={ref} searchable selected={selected ? [selected] : []} onSelect={setSelected} onReset={reset} />;
+});
+export const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>(function MultiSelect(
+  {value, defaultValue = [], onValueChange, ...props}, ref,
+) {
+  const [selected, setSelected, reset] = useValue<readonly string[]>(value, defaultValue, next => onValueChange?.([...next]));
+  return <SelectCore {...props} buttonRef={ref} multiple selected={selected} onClear={() => setSelected([])} onSelect={next => setSelected(selected.includes(next) ? selected.filter(item => item !== next) : [...selected, next])} onReset={reset} />;
+});

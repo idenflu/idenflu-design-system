@@ -8,14 +8,14 @@
   animation-duration: var(--nova-drawer-out-duration, 160ms);
   animation-fill-mode: both;
   animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  background: var(--surface-02);
-  border: var(--spacing-01) solid var(--border-subtle);
+  background: var(--surface-raised);
+  border: calc(var(--space-unit) * .25) solid var(--border-subtle);
   box-shadow:
-    0 var(--spacing-02) var(--spacing-03) var(--spacing-02)
-      var(--transparent-200),
-    0 var(--spacing-01) var(--spacing-02) 0 var(--transparent-200);
+    0 calc(var(--space-unit) * .5) calc(var(--space-unit) * 1) calc(var(--space-unit) * .5)
+      rgba(0, 0, 0, 0.06),
+    0 calc(var(--space-unit) * .25) calc(var(--space-unit) * .5) 0 rgba(0, 0, 0, 0.06);
   box-sizing: border-box;
-  color: var(--text-primary);
+  color: var(--text);
   display: flex;
   flex-direction: column;
   max-block-size: 100dvh;
@@ -201,5 +201,6 @@
 }
 
 .content[data-show-close] [data-drawer-header] {
-  padding-inline-end: calc(var(--spacing-06) + var(--size-10));
+  padding-inline-end: calc(calc(var(--space-unit) * 4) + 40px);
 }
+.content { background: var(--field-background); border-color: var(--border); box-shadow: var(--shadow-dialog); color: var(--text); }

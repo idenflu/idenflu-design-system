@@ -1,12 +1,12 @@
 .root {
   align-items: center;
-  background: var(--background-neutral-subtle);
-  border-radius: var(--rounded-full);
+  background: var(--surface-pressed);
+  border-radius: var(--radius-pill);
   box-sizing: border-box;
   color: var(--text-secondary);
   display: inline-flex;
   flex: 0 0 auto;
-  font: var(--label-md);
+  font: var(--font-weight-regular) var(--font-size-caption)/var(--line-height-caption) var(--font-family-body);
   justify-content: center;
   overflow: hidden;
   position: relative;
@@ -43,7 +43,11 @@
 }
 
 .sizeLg {
-  font: var(--label-lg);
+  font: var(--font-weight-regular) var(--font-size-caption)/var(--line-height-caption) var(--font-family-body);
   height: 48px;
   width: 48px;
 }
+.root { background: var(--info-surface); color: var(--primary); font-weight: var(--font-weight-semibold); }
+.sizeSm { height: var(--space-8); width: var(--space-8); }
+.sizeMd { font-size: var(--font-size-body); height: calc(var(--space-unit) * 9.5); width: calc(var(--space-unit) * 9.5); }
+.sizeLg { font-size: calc(var(--font-size-base) + var(--space-unit) * .5); height: calc(var(--space-unit) * 11); width: calc(var(--space-unit) * 11); }

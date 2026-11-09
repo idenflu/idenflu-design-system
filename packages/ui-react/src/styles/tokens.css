@@ -1,1 +1,704 @@
-@import "@idenflu/ui-tokens/css/variables.css";
+/* @import "@idenflu/ui-tokens/css/variables.css"; */
+
+/* Primitive palette → semantic roles → component dimensions. This file owns all theme values. */
+:root {
+  /* Public preview inputs; also supported by standalone consumer stylesheets. */
+  --font-size-base: 14px;
+  --line-height-base: 22px;
+  --space-unit: 4px;
+  --control-base-height: 36px;
+  --radius-control: 0px;
+
+  --color-white: #ffffff;
+  --color-ink: #1c1c1c;
+  --color-neutral-50: #f5f5f5;
+  --color-neutral-100: #ededed;
+  --color-neutral-200: #e4e4e4;
+  --color-neutral-225: #e0e0e0;
+  --color-neutral-250: #dadada;
+  --color-neutral-300: #c6c6c6;
+  --color-neutral-350: #bcbcbc;
+  --color-neutral-400: #b3b3b3;
+  --color-neutral-425: #a6a6a6;
+  --color-neutral-450: #999999;
+  --color-neutral-475: #949494;
+  --color-neutral-500: #888888;
+  --color-neutral-525: #808080;
+  --color-neutral-550: #737373;
+  --color-neutral-575: #6e6e6e;
+  --color-neutral-600: #666666;
+  --color-neutral-650: #606060;
+  --color-neutral-700: #444444;
+  --color-neutral-725: #393939;
+  --color-neutral-735: #383838;
+  --color-neutral-750: #333333;
+  --color-neutral-780: #2e2e2e;
+  --color-neutral-800: #2a2a2a;
+  --color-neutral-825: #262626;
+  --color-neutral-850: #222222;
+  --color-neutral-875: #1a1a1a;
+  --color-neutral-890: #161616;
+  --color-neutral-900: #141414;
+  --color-blue-50: #eaf1fc;
+  --color-blue-100: #e0ebfc;
+  --color-blue-150: #d2e2fa;
+  --color-blue-200: #b3cef4;
+  --color-blue-250: #9bc4fd;
+  --color-blue-300: #7fb3fd;
+  --color-blue-350: #9ec5fd;
+  --color-blue-400: #6ba3f0;
+  --color-blue-450: #4d7dc3;
+  --color-blue-475: #3c72c2;
+  --color-blue-500: #1062d3;
+  --color-blue-550: #0057bf;
+  --color-blue-600: #004ca8;
+  --color-blue-650: #336abb;
+  --color-blue-700: #3c74c6;
+  --color-blue-750: #255aa6;
+  --color-blue-800: #2e5083;
+  --color-blue-825: #2a4468;
+  --color-blue-850: #22334b;
+  --color-blue-875: #1f2b3e;
+  --color-red-50: #f5e4e2;
+  --color-red-100: #edbfb9;
+  --color-red-200: #efb2b6;
+  --color-red-300: #f2a3a7;
+  --color-red-400: #b3574e;
+  --color-red-425: #b1544b;
+  --color-red-500: #c1332f;
+  --color-red-600: #aa2724;
+  --color-red-700: #8f1d1b;
+  --color-red-750: #ab444d;
+  --color-red-800: #ba4f58;
+  --color-red-850: #963943;
+  --color-red-900: #382428;
+  --color-green-50: #e9f4ea;
+  --color-green-300: #9acba6;
+  --color-green-600: #2a783c;
+  --color-green-650: #538059;
+  --color-green-900: #23332a;
+  --color-amber-50: #ffefde;
+  --color-amber-300: #e2c27f;
+  --color-amber-500: #9b6b2d;
+  --color-amber-600: #955e02;
+  --color-amber-900: #352e20;
+  --color-switch-off-light: #a3a3a3;
+  --color-switch-off-dark: #666666;
+  --color-divider-light: #e6e6e6;
+  --color-disabled-light: #efefef;
+  --color-disabled-text-light: #8a8a8a;
+  --color-focus-primary-dark: #ddebff;
+  --color-border-hover-dark: #999999;
+  /* Filled primary controls sit near 50–70% saturation so they read calmly on the neutral surfaces. */
+  --color-primary-control-light: #2466c8;
+  --color-primary-control-light-hover: #1f5ab3;
+  --color-primary-control-light-pressed: #1a4f9e;
+  --color-primary-control-dark: #3b6cae;
+  --color-primary-control-dark-hover: #4376b8;
+  --color-primary-control-dark-pressed: #34619f;
+
+  /* Semantic roles retain the public variable names used by existing components. */
+  --canvas: var(--color-white);
+  --surface-raised: var(--color-white);
+  --surface: var(--color-neutral-50);
+  --surface-hover: var(--color-neutral-100);
+  --surface-pressed: var(--color-neutral-200);
+  --primary: var(--color-blue-500);
+  --primary-hover: var(--color-blue-550);
+  --primary-pressed: var(--color-blue-600);
+  --primary-control: var(--color-primary-control-light);
+  --primary-control-hover: var(--color-primary-control-light-hover);
+  --primary-control-pressed: var(--color-primary-control-light-pressed);
+  --text-on-primary: var(--color-white);
+  --text-on-danger: var(--color-white);
+  --focus-on-primary: var(--color-blue-200);
+  --focus-on-light: var(--color-blue-450);
+  --focus-on-danger: var(--color-red-400);
+  --focus-on-danger-control: var(--color-red-100);
+  --text: var(--color-ink);
+  --text-secondary: var(--color-neutral-650);
+  --text-muted: var(--color-neutral-575);
+  --border: var(--color-neutral-225);
+  --border-hover: var(--color-neutral-450);
+  --border-subtle: var(--color-divider-light);
+  /* Structural rules stay quiet while controls retain a distinct boundary. */
+  --border-control: var(--color-neutral-300);
+  --border-control-hover: var(--border-hover);
+  --divider: var(--color-divider-light);
+  --disabled: var(--color-disabled-light);
+  --disabled-text: var(--color-disabled-text-light);
+  --danger: var(--color-red-500);
+  --danger-text: var(--color-red-600);
+  --danger-surface: var(--color-red-50);
+  --danger-control: var(--color-red-500);
+  --danger-control-hover: var(--color-red-600);
+  --danger-control-pressed: var(--color-red-700);
+  --success: var(--color-green-600);
+  --success-surface: var(--color-green-50);
+  --warning: var(--color-amber-600);
+  --warning-surface: var(--color-amber-50);
+  --info: var(--color-blue-500);
+  --info-surface: var(--color-blue-50);
+  /* Selected rows and items sit one step above info-surface so primary badges stay visible on them. */
+  --selected-surface: var(--color-blue-100);
+  --badge-primary-background: var(--color-blue-150);
+  --badge-primary-text: var(--color-blue-600);
+  --inverse-canvas: var(--color-ink);
+  --inverse-text: var(--color-white);
+  --badge-solid-neutral-background: var(--color-neutral-550);
+  --badge-solid-primary-background: var(--color-blue-475);
+  --badge-solid-success-background: var(--color-green-650);
+  --badge-solid-warning-background: var(--color-amber-500);
+  --badge-solid-warning-text: var(--color-white);
+  --badge-solid-danger-background: var(--color-red-425);
+  --toast-on-info: var(--inverse-text);
+  --toast-on-success: var(--inverse-text);
+  --toast-on-warning: var(--inverse-text);
+  --toast-on-danger: var(--inverse-text);
+  --selection-background: var(--color-blue-100);
+  --selection-text: var(--color-ink);
+  --switch-off: var(--color-switch-off-light);
+  --switch-thumb-color: var(--color-white);
+  --error: var(--danger-text);
+  --field-background: var(--surface-raised);
+  --surface-subtle: var(--surface);
+  --icon-on-primary-filter: brightness(0) invert(1);
+  --icon-filter: none;
+  --select-arrow-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23606060' stroke-width='1.5'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  --overlay-backdrop: rgb(28 28 28 / 32%);
+  --shadow-popup: 0 8px 20px rgb(20 20 20 / 8%);
+  --shadow-dialog: 0 16px 48px rgb(20 20 20 / 12%);
+  --space-0: calc(var(--space-unit) * 0);
+  --space-1: calc(var(--space-unit) * 1);
+  --space-2: calc(var(--space-unit) * 2);
+  --space-3: calc(var(--space-unit) * 3);
+  --space-4: calc(var(--space-unit) * 4);
+  --space-5: calc(var(--space-unit) * 5);
+  --space-6: calc(var(--space-unit) * 6);
+  --space-7: calc(var(--space-unit) * 7);
+  --space-8: calc(var(--space-unit) * 8);
+  --space-10: calc(var(--space-unit) * 10);
+  --space-12: calc(var(--space-unit) * 12);
+  --font-family-body:
+    "Pretendard Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-size-caption: max(11px, calc(var(--font-size-base) - 2px));
+  --font-size-body: var(--font-size-base);
+  --font-size-title: calc(var(--font-size-base) + 4px);
+  --font-size-heading: calc(var(--font-size-base) + 10px);
+  --line-height-caption: max(
+    calc(var(--font-size-caption) + 2px),
+    calc(var(--line-height-base) - 4px)
+  );
+  --line-height-control: calc(var(--font-size-base) + 6px);
+  --line-height-body: max(var(--font-size-body), var(--line-height-base));
+  --line-height-title: max(
+    var(--font-size-title),
+    calc(var(--line-height-base) + 4px)
+  );
+  --line-height-heading: max(
+    var(--font-size-heading),
+    calc(var(--line-height-base) + 10px)
+  );
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --focus-width: 2px;
+  --z-focus: 2;
+  --z-sticky: 10;
+  --z-toast: 20;
+  --z-tooltip: 25;
+  --z-popover: 25;
+  --z-dropdown: 30;
+  --z-backdrop: 50;
+  --z-sidebar: 60;
+  --z-skip-link: 70;
+  --motion-fast: 120ms;
+  --motion-normal: 200ms;
+  --motion-slow: 320ms;
+  --motion-easing: ease;
+  --motion-spinner: 800ms;
+  --motion-pulse: 1600ms;
+}
+:root[data-theme="dark"] {
+  --canvas: var(--color-neutral-890);
+  --surface-raised: var(--color-neutral-850);
+  --surface: var(--color-neutral-825);
+  --surface-hover: var(--color-neutral-780);
+  --surface-pressed: var(--color-neutral-735);
+  --primary: var(--color-blue-300);
+  --primary-hover: var(--color-blue-350);
+  --primary-pressed: var(--color-blue-400);
+  --primary-control: var(--color-primary-control-dark);
+  --primary-control-hover: var(--color-primary-control-dark-hover);
+  --primary-control-pressed: var(--color-primary-control-dark-pressed);
+  --focus-on-primary: var(--color-focus-primary-dark);
+  --focus-on-light: var(--color-blue-250);
+  --focus-on-danger: var(--color-red-200);
+  --focus-on-danger-control: var(--color-red-200);
+  --text: var(--color-neutral-100);
+  --text-secondary: var(--color-neutral-425);
+  --text-muted: var(--color-neutral-475);
+  --border: var(--color-neutral-725);
+  --border-hover: var(--color-border-hover-dark);
+  --border-subtle: var(--color-neutral-750);
+  --border-control: var(--color-neutral-550);
+  --border-control-hover: var(--border-hover);
+  --divider: var(--color-neutral-750);
+  --disabled: var(--color-neutral-825);
+  --disabled-text: var(--color-neutral-500);
+  --danger: var(--color-red-300);
+  --danger-text: var(--danger);
+  --danger-surface: var(--color-red-900);
+  --danger-control: var(--color-red-750);
+  --danger-control-hover: var(--color-red-800);
+  --danger-control-pressed: var(--color-red-850);
+  --success: var(--color-green-300);
+  --success-surface: var(--color-green-900);
+  --warning: var(--color-amber-300);
+  --warning-surface: var(--color-amber-900);
+  --info: var(--color-blue-300);
+  --info-surface: var(--color-blue-850);
+  --selected-surface: var(--color-blue-875);
+  --badge-primary-background: var(--color-blue-825);
+  --badge-primary-text: var(--color-blue-250);
+  --inverse-canvas: var(--color-neutral-100);
+  --inverse-text: var(--color-neutral-900);
+  --badge-solid-neutral-background: var(--color-neutral-450);
+  --badge-solid-primary-background: var(--info);
+  --badge-solid-success-background: var(--success);
+  --badge-solid-warning-background: var(--warning);
+  --badge-solid-warning-text: var(--inverse-text);
+  --badge-solid-danger-background: var(--danger);
+  --selection-background: var(--color-blue-800);
+  --selection-text: var(--color-white);
+  --switch-off: var(--color-switch-off-dark);
+  --switch-thumb-color: var(--color-neutral-100);
+  --icon-filter: brightness(0) invert(0.84);
+  --select-arrow-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23b3b3b3' stroke-width='1.5'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  --overlay-backdrop: rgb(0 0 0 / 64%);
+  --shadow-popup: 0 12px 28px rgb(0 0 0 / 30%);
+  --shadow-dialog: 0 16px 48px rgb(0 0 0 / 30%);
+}
+
+/* Component dimensions: md is the default; data-size also scopes children. */
+:root {
+  --control-effective-height: max(
+    32px,
+    var(--control-base-height),
+    calc(var(--font-size-base) + 18px)
+  );
+  --size-sm-height: calc(var(--control-effective-height) - 6px);
+  --size-md-height: var(--control-effective-height);
+  --size-lg-height: calc(var(--control-effective-height) + 6px);
+  --size-sm-padding: calc(var(--space-unit) * 2.5);
+  --size-md-padding: var(--space-3);
+  --size-lg-padding: var(--space-4);
+  --size-sm-icon: 14px;
+  --size-md-icon: 16px;
+  --size-lg-icon: 18px;
+  --badge-sm-font-size: var(--font-size-caption);
+  --badge-md-font-size: max(12px, calc(var(--font-size-base) - 1px));
+  --badge-lg-font-size: var(--font-size-body);
+  --badge-sm-line-height: max(
+    calc(var(--badge-sm-font-size) + 4px),
+    calc(var(--line-height-base) - 6px)
+  );
+  --badge-md-line-height: max(
+    calc(var(--badge-md-font-size) + 5px),
+    calc(var(--line-height-base) - 4px)
+  );
+  --badge-lg-line-height: max(
+    calc(var(--badge-lg-font-size) + 6px),
+    calc(var(--line-height-base) - 2px)
+  );
+  --badge-sm-height: max(20px, calc(var(--badge-sm-line-height) + 4px));
+  --badge-md-height: max(24px, calc(var(--badge-md-line-height) + 4px));
+  --badge-lg-height: max(28px, calc(var(--badge-lg-line-height) + 4px));
+  --badge-sm-icon-size: 12px;
+  --badge-md-icon-size: 14px;
+  --badge-lg-icon-size: 16px;
+  --badge-sm-padding-inline: calc(var(--space-unit) * 1.5);
+  --badge-md-padding-inline: var(--space-2);
+  --badge-lg-padding-inline: calc(var(--space-unit) * 2.5);
+  --badge-gap: var(--space-1);
+  --control-height: var(--size-md-height);
+  --control-px: var(--size-md-padding);
+  --control-gap: var(--space-2);
+  --icon-size: var(--size-md-icon);
+  --range-thumb-width: 12px;
+  --range-thumb-height: 20px;
+  --choice-size: 18px;
+  --switch-width: 36px;
+  --switch-height: 20px;
+  --switch-thumb: 16px;
+  --switch-inset: 2px;
+  --badge-height: var(--badge-md-height);
+  --badge-font-size: var(--badge-md-font-size);
+  --badge-line-height: var(--badge-md-line-height);
+  --badge-icon-size: var(--badge-md-icon-size);
+  --badge-padding-inline: var(--badge-md-padding-inline);
+  --multi-chip-height: max(24px, calc(var(--font-size-base) + 10px));
+  --multi-tag-padding-y: max(
+    0px,
+    calc((var(--control-height) - var(--multi-chip-height) - 2px) / 2)
+  );
+}
+[data-size="sm"] {
+  --control-height: var(--size-sm-height);
+  --control-px: var(--size-sm-padding);
+  --control-gap: calc(var(--space-unit) * 1.5);
+  --icon-size: var(--size-sm-icon);
+  --range-thumb-width: 10px;
+  --range-thumb-height: 18px;
+  --choice-size: 16px;
+  --switch-width: 28px;
+  --switch-height: 16px;
+  --switch-thumb: 12px;
+  --badge-height: var(--badge-sm-height);
+  --badge-font-size: var(--badge-sm-font-size);
+  --badge-line-height: var(--badge-sm-line-height);
+  --badge-icon-size: var(--badge-sm-icon-size);
+  --badge-padding-inline: var(--badge-sm-padding-inline);
+  --multi-chip-height: max(24px, calc(var(--font-size-base) + 10px));
+  --multi-tag-padding-y: max(
+    0px,
+    calc((var(--control-height) - var(--multi-chip-height) - 2px) / 2)
+  );
+}
+[data-size="md"] {
+  --control-height: var(--size-md-height);
+  --control-px: var(--size-md-padding);
+  --control-gap: var(--space-2);
+  --icon-size: var(--size-md-icon);
+  --range-thumb-width: 12px;
+  --range-thumb-height: 20px;
+  --choice-size: 18px;
+  --switch-width: 36px;
+  --switch-height: 20px;
+  --switch-thumb: 16px;
+  --badge-height: var(--badge-md-height);
+  --badge-font-size: var(--badge-md-font-size);
+  --badge-line-height: var(--badge-md-line-height);
+  --badge-icon-size: var(--badge-md-icon-size);
+  --badge-padding-inline: var(--badge-md-padding-inline);
+  --multi-chip-height: max(24px, calc(var(--font-size-base) + 10px));
+  --multi-tag-padding-y: max(
+    0px,
+    calc((var(--control-height) - var(--multi-chip-height) - 2px) / 2)
+  );
+}
+[data-size="lg"] {
+  --control-height: var(--size-lg-height);
+  --control-px: var(--size-lg-padding);
+  --control-gap: calc(var(--space-unit) * 2.5);
+  --icon-size: var(--size-lg-icon);
+  --range-thumb-width: 14px;
+  --range-thumb-height: 22px;
+  --choice-size: 20px;
+  --switch-width: 44px;
+  --switch-height: 24px;
+  --switch-thumb: 20px;
+  --badge-height: var(--badge-lg-height);
+  --badge-font-size: var(--badge-lg-font-size);
+  --badge-line-height: var(--badge-lg-line-height);
+  --badge-icon-size: var(--badge-lg-icon-size);
+  --badge-padding-inline: var(--badge-lg-padding-inline);
+  --multi-chip-height: max(28px, calc(var(--font-size-base) + 10px));
+  --multi-tag-padding-y: max(
+    0px,
+    calc((var(--control-height) - var(--multi-chip-height) - 2px) / 2)
+  );
+}
+
+/* Compatibility aliases for components and Tabs using the previous token names. */
+/* :root {
+  --rounded-none: var(--radius-control);
+  --rounded-sm: var(--radius-control);
+  --rounded-md: var(--radius-control);
+  --rounded-lg: var(--radius-control);
+  --rounded-full: 9999px;
+  --base-white: var(--color-white);
+  --base-black: var(--color-ink);
+  --base-blue-100: var(--color-blue-50);
+  --base-blue-200: var(--color-blue-100);
+  --base-blue-300: var(--color-blue-200);
+  --base-blue-400: var(--color-blue-400);
+  --base-blue-500: var(--color-blue-500);
+  --base-blue-600: var(--color-blue-600);
+  --base-blue-700: var(--color-blue-750);
+  --base-blue-800: var(--color-blue-800);
+  --base-blue-900: var(--color-blue-875);
+  --base-green-100: var(--color-green-50);
+  --base-green-200: var(--color-green-50);
+  --base-green-300: var(--color-green-300);
+  --base-green-400: var(--color-green-650);
+  --base-green-500: var(--color-green-600);
+  --base-green-600: var(--color-green-600);
+  --base-green-700: var(--color-green-650);
+  --base-green-800: var(--color-green-900);
+  --base-green-900: var(--color-green-900);
+  --base-red-100: var(--color-red-50);
+  --base-red-200: var(--color-red-100);
+  --base-red-300: var(--color-red-200);
+  --base-red-400: var(--color-red-400);
+  --base-red-500: var(--color-red-500);
+  --base-red-600: var(--color-red-600);
+  --base-red-700: var(--color-red-700);
+  --base-red-800: var(--color-red-850);
+  --base-red-900: var(--color-red-900);
+  --base-amber-100: var(--color-amber-50);
+  --base-amber-200: var(--color-amber-50);
+  --base-amber-300: var(--color-amber-300);
+  --base-amber-400: var(--color-amber-500);
+  --base-amber-500: var(--color-amber-500);
+  --base-amber-600: var(--color-amber-600);
+  --base-amber-700: var(--color-amber-600);
+  --base-amber-800: var(--color-amber-900);
+  --base-amber-900: var(--color-amber-900);
+  --base-gray-100: var(--color-neutral-50);
+  --base-gray-200: var(--color-neutral-200);
+  --base-gray-300: var(--color-neutral-300);
+  --base-gray-400: var(--color-neutral-450);
+  --base-gray-500: var(--color-neutral-550);
+  --base-gray-600: var(--color-neutral-650);
+  --base-gray-700: var(--color-neutral-750);
+  --base-gray-800: var(--color-neutral-800);
+  --base-gray-900: var(--color-neutral-900);
+  --transparent-0: rgba(0, 0, 0, 0);
+  --transparent-100: rgba(0, 0, 0, 0.03);
+  --transparent-200: rgba(0, 0, 0, 0.06);
+  --transparent-300: rgba(0, 0, 0, 0.3);
+  --transparent-400: rgba(0, 0, 0, 0.4);
+  --transparent-500: rgba(0, 0, 0, 0.5);
+  --transparent-600: rgba(0, 0, 0, 0.6);
+  --transparent-700: rgba(0, 0, 0, 0.7);
+  --transparent-800: rgba(0, 0, 0, 0.8);
+  --transparent-900: rgba(0, 0, 0, 0.9);
+  --size-1: 4px;
+  --size-2: 8px;
+  --size-3: 12px;
+  --size-4: 16px;
+  --size-5: 20px;
+  --size-6: 24px;
+  --size-7: 28px;
+  --size-8: 32px;
+  --size-9: 36px;
+  --size-10: 40px;
+  --size-11: 44px;
+  --size-12: 48px;
+  --size-13: 52px;
+  --size-14: 56px;
+  --size-15: 60px;
+  --size-16: 64px;
+  --size-0-5: 2px;
+  --spacing-01: calc(var(--space-unit) * .25);
+  --spacing-02: calc(var(--space-unit) * .5);
+  --spacing-03: calc(var(--space-unit) * 1);
+  --spacing-04: calc(var(--space-unit) * 2);
+  --spacing-05: calc(var(--space-unit) * 3);
+  --spacing-06: calc(var(--space-unit) * 4);
+  --spacing-07: calc(var(--space-unit) * 6);
+  --spacing-08: calc(var(--space-unit) * 8);
+  --spacing-09: calc(var(--space-unit) * 12);
+  --spacing-10: calc(var(--space-unit) * 16);
+  --spacing-11: calc(var(--space-unit) * 20);
+  --spacing-12: calc(var(--space-unit) * 24);
+  --spacing-13: calc(var(--space-unit) * 32);
+  --spacing-14: calc(var(--space-unit) * 40);
+  --spacing-15: calc(var(--space-unit) * 48);
+  --font-family-base: var(--font-family-body);
+  --font-family-sans: var(--font-family-body);
+  --font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  --font-weight-light: 300;
+  --font-size-10: 40px;
+  --font-size-11: 48px;
+  --font-size-12: 56px;
+  --font-size-13: 64px;
+  --font-size-14: 72px;
+  --font-size-15: 80px;
+  --font-size-16: 92px;
+  --font-size-17: 104px;
+  --font-size-18: 116px;
+  --font-size-19: 128px;
+  --font-size-20: 140px;
+  --font-size-01: 12px;
+  --font-size-02: 14px;
+  --font-size-03: 16px;
+  --font-size-04: 18px;
+  --font-size-05: 20px;
+  --font-size-06: 24px;
+  --font-size-07: 28px;
+  --font-size-08: 32px;
+  --font-size-09: 36px;
+  --font-numeric-tabular: tabular-nums;
+  --font-numeric-proportional: proportional-nums;
+  --font-line-height-10: 48px;
+  --font-line-height-11: 56px;
+  --font-line-height-12: 64px;
+  --font-line-height-13: 72px;
+  --font-line-height-14: 80px;
+  --font-line-height-15: 88px;
+  --font-line-height-16: 100px;
+  --font-line-height-17: 112px;
+  --font-line-height-18: 124px;
+  --font-line-height-19: 136px;
+  --font-line-height-20: 148px;
+  --font-line-height-01: 16px;
+  --font-line-height-02: 20px;
+  --font-line-height-03: 24px;
+  --font-line-height-04: 26px;
+  --font-line-height-05: 28px;
+  --font-line-height-06: 32px;
+  --font-line-height-07: 36px;
+  --font-line-height-08: 40px;
+  --font-line-height-09: 44px;
+  --brand-100: var(--base-blue-100);
+  --brand-200: var(--base-blue-200);
+  --brand-300: var(--base-blue-300);
+  --brand-400: var(--base-blue-400);
+  --brand-500: var(--base-blue-500);
+  --brand-600: var(--base-blue-600);
+  --brand-700: var(--base-blue-700);
+  --brand-800: var(--base-blue-800);
+  --brand-900: var(--base-blue-900);
+  --spacing-2xs: var(--size-0-5);
+  --spacing-xs: var(--size-1);
+  --spacing-sm: var(--size-2);
+  --spacing-md: var(--size-4);
+  --spacing-lg: var(--size-8);
+  --spacing-xl: var(--size-12);
+  --spacing-2xl: var(--size-16);
+  --heading-lg: var(--font-weight-light) var(--font-size-09)/var(--font-line-height-09) var(--font-family-sans);
+  --heading-md: var(--font-weight-light) var(--font-size-08)/var(--font-line-height-08) var(--font-family-sans);
+  --heading-sm: var(--font-weight-regular) var(--font-size-07)/var(--font-line-height-07) var(--font-family-sans);
+  --title-lg: var(--font-weight-light) var(--font-size-07)/var(--font-line-height-07) var(--font-family-sans);
+  --title-md: var(--font-weight-light) var(--font-size-06)/var(--font-line-height-06) var(--font-family-sans);
+  --title-sm: var(--font-weight-regular) var(--font-size-05)/var(--font-line-height-05) var(--font-family-sans);
+  --body-lg: var(--font-weight-regular) var(--font-size-body)/var(--line-height-body) var(--font-family-body);
+  --body-md: var(--font-weight-regular) var(--font-size-body)/var(--line-height-body) var(--font-family-body);
+  --body-sm: var(--font-weight-regular) var(--font-size-body)/var(--line-height-body) var(--font-family-body);
+  --label-lg: var(--font-weight-regular) var(--font-size-caption)/var(--line-height-caption) var(--font-family-body);
+  --label-md: var(--font-weight-regular) var(--font-size-caption)/var(--line-height-caption) var(--font-family-body);
+  --caption-lg: var(--font-weight-regular) var(--font-size-caption)/var(--line-height-caption) var(--font-family-body);
+  --caption-md: var(--font-weight-regular) var(--font-size-caption)/var(--line-height-caption) var(--font-family-body);
+  --numeric-xl: var(--font-weight-regular) var(--font-size-10)/var(--font-line-height-10) var(--font-family-sans);
+  --numeric-lg: var(--font-weight-regular) var(--font-size-08)/var(--font-line-height-08) var(--font-family-sans);
+  --numeric-md: var(--font-weight-regular) var(--font-size-06)/var(--font-line-height-06) var(--font-family-sans);
+  --numeric-sm: var(--font-weight-regular) var(--font-size-04)/var(--font-line-height-04) var(--font-family-sans);
+  --numeric-xs: var(--font-weight-regular) var(--font-size-02)/var(--font-line-height-02) var(--font-family-sans);
+  --code-lg: var(--font-weight-regular) var(--font-size-08)/var(--font-line-height-08) var(--font-family-mono);
+  --code-md: var(--font-weight-regular) var(--font-size-06)/var(--font-line-height-06) var(--font-family-mono);
+  --code-sm: var(--font-weight-regular) var(--font-size-04)/var(--font-line-height-04) var(--font-family-mono);
+  --border-primary: var(--border);
+  --border-strong: var(--border-control);
+  --border-disabled: var(--border-subtle);
+  --border-focused: var(--focus-on-light);
+  --border-error: var(--danger);
+  --border-error-hover: var(--danger-control-hover);
+  --border-error-active: var(--danger-control-pressed);
+  --border-neutral: var(--base-gray-900);
+  --border-neutral-hover: var(--base-gray-700);
+  --border-neutral-active: var(--base-gray-500);
+  --border-info: var(--base-blue-500);
+  --border-info-hover: var(--base-blue-600);
+  --border-info-active: var(--base-blue-700);
+  --border-success: var(--base-green-500);
+  --border-success-hover: var(--base-green-600);
+  --border-success-active: var(--base-green-700);
+  --border-warning: var(--base-amber-500);
+  --border-warning-hover: var(--base-amber-600);
+  --border-warning-active: var(--base-amber-700);
+  --background-neutral: var(--color-neutral-550);
+  --background-neutral-subtle: var(--surface-pressed);
+  --background-neutral-subtle-hover: var(--surface-pressed);
+  --background-neutral-tint: var(--surface);
+  --background-neutral-strong: var(--text);
+  --background-neutral-strong-hover: var(--text-secondary);
+  --background-neutral-strong-active: var(--text-muted);
+  --background-error: var(--danger-control);
+  --background-error-hover: var(--danger-control-hover);
+  --background-error-active: var(--danger-control-pressed);
+  --background-error-subtle: var(--danger-surface);
+  --background-error-subtle-hover: var(--base-red-300);
+  --background-error-tint: var(--danger-surface);
+  --background-success: var(--success);
+  --background-success-hover: var(--base-green-600);
+  --background-success-active: var(--base-green-700);
+  --background-success-subtle: var(--success-surface);
+  --background-success-subtle-hover: var(--base-green-300);
+  --background-success-tint: var(--success-surface);
+  --background-warning: var(--warning);
+  --background-warning-hover: var(--base-amber-600);
+  --background-warning-active: var(--base-amber-700);
+  --background-warning-subtle: var(--warning-surface);
+  --background-warning-subtle-hover: var(--base-amber-300);
+  --background-warning-tint: var(--warning-surface);
+  --background-info: var(--primary);
+  --background-info-hover: var(--primary-hover);
+  --background-info-active: var(--primary-pressed);
+  --background-info-subtle: var(--badge-primary-background);
+  --background-info-subtle-hover: var(--base-blue-300);
+  --background-info-tint: var(--info-surface);
+  --background-transparent: var(--transparent-0);
+  --background-transparent-hover: var(--transparent-100);
+  --background-transparent-active: var(--transparent-200);
+  --background-disabled: var(--disabled);
+  --surface-00: var(--canvas);
+  --surface-01: var(--surface);
+  --surface-02: var(--surface-raised);
+  --surface-03: var(--surface-hover);
+  --surface-transparent: var(--transparent-0);
+  --surface-overlay: var(--overlay-backdrop);
+  --text-brand: var(--primary);
+  --text-brand-hover: var(--primary-hover);
+  --text-brand-active: var(--primary-pressed);
+  --text-primary: var(--text);
+  --text-on-color: var(--text-on-primary);
+  --text-hover: var(--text);
+  --text-active: var(--text-secondary);
+  --text-disabled: var(--disabled-text);
+  --text-link: var(--primary);
+  --text-link-hover: var(--primary-hover);
+  --text-link-active: var(--primary-pressed);
+  --text-link-strong: var(--base-blue-700);
+  --text-error: var(--danger-text);
+  --text-error-hover: var(--base-red-600);
+  --text-error-active: var(--base-red-700);
+  --text-error-strong: var(--danger-text);
+  --text-success: var(--success);
+  --text-success-hover: var(--base-green-600);
+  --text-success-active: var(--base-green-700);
+  --text-success-strong: var(--success);
+  --text-warning: var(--warning);
+  --text-warning-hover: var(--base-amber-600);
+  --text-warning-active: var(--base-amber-700);
+  --text-warning-strong: var(--warning);
+  --border-brand: var(--primary);
+  --border-brand-hover: var(--primary-hover);
+  --border-brand-active: var(--primary-pressed);
+  --background-primary: var(--primary-control);
+  --background-primary-hover: var(--primary-control-hover);
+  --background-primary-active: var(--primary-control-pressed);
+  --background-primary-subtle: var(--badge-primary-background);
+  --background-primary-subtle-hover: var(--brand-300);
+  --background-primary-tint: var(--info-surface);
+} */
+
+/* Legacy tokens are scoped to Tabs; other components use mono tokens directly. */
+[data-slot="tabs"] {
+  --theme-text-primary: var(--text);
+  --background-primary: var(--primary-control);
+  --background-transparent: rgba(0, 0, 0, 0);
+  --background-transparent-active: rgba(0, 0, 0, 0.06);
+  --background-transparent-hover: rgba(0, 0, 0, 0.03);
+  --body-md: var(--font-weight-regular) var(--font-size-body)/var(--line-height-body) var(--font-family-body);
+  --border-focused: var(--focus-on-light);
+  --rounded-full: var(--radius-pill);
+  --spacing-13: calc(var(--space-unit) * 32);
+  --text-disabled: var(--disabled-text);
+  --text-hover: var(--text);
+  --text-primary: var(--text);
+}
+
+:root { --radius-pill: 999px; }

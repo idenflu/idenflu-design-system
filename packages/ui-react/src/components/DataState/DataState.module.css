@@ -1,1 +1,2 @@
-.root { color: var(--text-primary); display: grid; gap: var(--spacing-04); }
+.root { color: var(--text); display: grid; gap: calc(var(--space-unit) * 2); }
+.root { color: var(--text); gap: var(--space-4); }

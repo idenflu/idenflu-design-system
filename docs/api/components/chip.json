@@ -24,7 +24,10 @@
     {
       "name": "shape",
       "kind": "enum",
-      "values": ["rounded", "pill"],
+      "values": [
+        "rounded",
+        "pill"
+      ],
       "required": false,
       "default": "pill"
     },
@@ -42,9 +45,23 @@
     {
       "name": "variant",
       "kind": "enum",
-      "values": ["filled", "outlined", "ghost"],
+      "values": [
+        "filled",
+        "outlined",
+        "ghost"
+      ],
       "required": false,
       "default": "filled"
+    },
+    {
+      "name": "density",
+      "kind": "enum",
+      "values": [
+        "comfortable",
+        "compact"
+      ],
+      "required": false,
+      "default": "comfortable"
     }
   ],
   "states": [

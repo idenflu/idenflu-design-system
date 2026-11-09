@@ -238,7 +238,7 @@ const STATE_PATTERNS = {
   loading: [/\bloading\b/i],
   disabled: [/\bdisabled\b/i, /:disabled\b/],
   selected: [/\bselected\b/i, /\baria-pressed\b/, /\baria-selected\b/],
-  error: [/\berror\b/i, /\binvalid\b/i, /\baria-invalid\b/],
+  error: [/\berror\b/i, /\bdanger\b/i, /\binvalid\b/i, /\baria-invalid\b/],
   readonly: [/\breadonly\b/i, /\breadOnly\b/],
   open: [/\bopen\b/i, /\bexpanded\b/i, /\baria-expanded\b/],
 };

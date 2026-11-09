@@ -9,9 +9,9 @@
 /* ─── Popover ────────────────────────────────────────────────────── */
 
 .popover {
-  background: var(--surface-00);
+  background: var(--canvas);
   border: 1px solid var(--border-subtle);
-  border-radius: var(--rounded-none);
+  border-radius: var(--radius-control);
   box-shadow:
     0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -2px rgba(0, 0, 0, 0.1);
@@ -21,3 +21,5 @@
 .dateRange {
   min-width: 240px;
 }
+
+.popover { background: var(--surface-raised); border-color: var(--border); border-radius: var(--radius-control); box-shadow: var(--shadow-popup); }

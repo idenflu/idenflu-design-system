@@ -4,19 +4,19 @@
   box-sizing: border-box;
   color: var(--text-muted);
   flex: 0 0 auto;
-  font: var(--label-md);
+  font: var(--font-weight-regular) var(--font-size-caption)/var(--line-height-caption) var(--font-family-body);
   margin: 0;
   padding: 0;
 }
 
 .orientationHorizontal {
-  border-block-start: 1px solid var(--border-primary);
+  border-block-start: 1px solid var(--border);
   inline-size: auto;
   margin-inline: 8px;
 }
 
 .orientationVertical {
-  border-inline-start: 1px solid var(--border-primary);
+  border-inline-start: 1px solid var(--border);
   align-self: stretch;
   margin-block: 8px;
   min-block-size: 24px;
@@ -38,19 +38,19 @@
   align-items: center;
   border: 0;
   display: flex;
-  gap: var(--spacing-sm);
+  gap: 8px;
 }
 
 .withChildren::before,
 .withChildren::after {
-  border-color: var(--border-primary);
+  border-color: var(--border);
   content: "";
   flex: 1 1 auto;
 }
 
 .orientationHorizontal.withChildren::before,
 .orientationHorizontal.withChildren::after {
-  border-block-start: 1px solid var(--border-primary);
+  border-block-start: 1px solid var(--border);
 }
 
 .orientationVertical.withChildren {
@@ -60,7 +60,7 @@
 
 .orientationVertical.withChildren::before,
 .orientationVertical.withChildren::after {
-  border-inline-start: 1px solid var(--border-primary);
+  border-inline-start: 1px solid var(--border);
 }
 
 .textStart::after,
@@ -73,3 +73,5 @@
   flex: 0 0 auto;
   white-space: nowrap;
 }
+.root { color: var(--text-secondary); gap: var(--space-3); }
+.label { color: var(--text-secondary); font: var(--font-weight-regular) var(--font-size-caption)/var(--line-height-caption) var(--font-family-body); }

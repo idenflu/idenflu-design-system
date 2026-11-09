@@ -50,30 +50,30 @@ const components: TypographyElement[] = [
 
 const overviewStyles = {
   root: {
-    color: "var(--text-primary)",
+    color: "var(--text)",
     display: "flex",
     flexDirection: "column" as const,
-    gap: "var(--spacing-07)",
+    gap: "calc(var(--space-unit) * 6)",
     maxWidth: "760px",
   },
   section: {
     display: "flex",
     flexDirection: "column" as const,
-    gap: "var(--spacing-04)",
+    gap: "calc(var(--space-unit) * 2)",
   },
   row: {
     alignItems: "baseline",
     display: "grid",
-    gap: "var(--spacing-05)",
+    gap: "calc(var(--space-unit) * 3)",
     gridTemplateColumns: "120px minmax(0, 1fr)",
   },
   label: {
     color: "var(--text-secondary)",
-    font: "var(--label-md)",
+    font: "var(--font-weight-regular) var(--font-size-caption)/var(--line-height-caption) var(--font-family-body)",
   },
   truncateBox: {
     border: "1px solid var(--border-subtle)",
-    padding: "var(--spacing-04)",
+    padding: "calc(var(--space-unit) * 2)",
     width: "280px",
   },
 };

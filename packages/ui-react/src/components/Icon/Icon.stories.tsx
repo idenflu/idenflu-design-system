@@ -23,7 +23,7 @@ const overviewStyles = {
   },
   heading: {
     fontSize: "14px",
-    font: "var(--title-md)",
+    font: "300 var(--font-size-body)/var(--line-height-body) var(--font-family-body)",
     fontWeight: 500,
     letterSpacing: "0.02em",
     margin: 0,
@@ -49,7 +49,7 @@ const overviewStyles = {
   },
   grid: {
     display: "grid",
-    gap: "var(--spacing-08) var(--spacing-07)",
+    gap: "calc(var(--space-unit) * 8) calc(var(--space-unit) * 6)",
     gridTemplateColumns: "repeat(auto-fill, minmax(80px, 1fr))",
     width: "100%",
   },
@@ -142,7 +142,7 @@ export const Overview: Story = {
           </p>
           <p
             style={overviewStyles.note}
-          >{`style={{ color: "var(--text-link)" }}`}</p>
+          >{`style={{ color: "var(--primary)" }}`}</p>
         </div>
         <div style={overviewStyles.row}>
           <span>
@@ -152,14 +152,14 @@ export const Overview: Story = {
             <Icon
               name="info"
               size="large"
-              style={{ color: "var(--text-link)" }}
+              style={{ color: "var(--primary)" }}
             />
           </span>
           <span>
             <Icon
               name="warning"
               size="large"
-              style={{ color: "var(--text-error)" }}
+              style={{ color: "var(--danger-text)" }}
             />
           </span>
         </div>

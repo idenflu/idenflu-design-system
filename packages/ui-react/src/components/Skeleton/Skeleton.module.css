@@ -1,1 +1,4 @@
-.root { background: var(--background-neutral-subtle); border-radius: var(--rounded-md); display: inline-block; min-block-size: var(--spacing-06); min-inline-size: var(--spacing-09); }
+.root { animation: pulse var(--motion-pulse) ease-in-out infinite; background: var(--surface-pressed); display: inline-block; min-block-size: var(--space-4); min-inline-size: var(--space-12); }
+@keyframes pulse { 50% { opacity: .55; } }
+@media (prefers-reduced-motion: reduce) { .root { animation: none; } }
+@media (forced-colors: active) { .root { border: calc(var(--space-unit) * .25) solid CanvasText; } }

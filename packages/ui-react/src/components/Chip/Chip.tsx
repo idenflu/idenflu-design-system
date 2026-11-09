@@ -1,12 +1,12 @@
 import * as React from "react";
 import { cva } from "class-variance-authority";
 import { cn } from "../../utils/classNames";
-import { Icon } from "../Icon/Icon";
+import { XIcon } from "../../icons/generated/XIcon";
 import styles from "./Chip.module.css";
 
 export type ChipVariant = "filled" | "outlined" | "ghost";
 export type ChipColor = "neutral" | "info" | "success" | "warning" | "error";
-export type ChipSize = "sm" | "md";
+export type ChipSize = "sm" | "md" | "lg";
 export type ChipShape = "rounded" | "pill";
 
 export type ChipProps = Omit<
@@ -15,6 +15,7 @@ export type ChipProps = Omit<
 > & {
   children: React.ReactNode;
   color?: ChipColor;
+  density?: "comfortable" | "compact";
   deleteLabel?: string;
   onDelete?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   shape?: ChipShape;
@@ -43,6 +44,7 @@ const chipClassName = cva(styles.root, {
       rounded: styles.shapeRounded,
     },
     size: {
+      lg: styles.sizeLg,
       md: styles.sizeMd,
       sm: styles.sizeSm,
     },
@@ -60,6 +62,7 @@ export const Chip = React.forwardRef<HTMLSpanElement, ChipProps>(
       children,
       className,
       color = "neutral",
+      density = "comfortable",
       deleteLabel = "Delete chip",
       onDelete,
       shape = "pill",
@@ -79,6 +82,7 @@ export const Chip = React.forwardRef<HTMLSpanElement, ChipProps>(
           size,
           variant,
         }),
+        density === "compact" && styles.compact,
         className
       )}
       {...props}
@@ -99,7 +103,7 @@ export const Chip = React.forwardRef<HTMLSpanElement, ChipProps>(
           }}
           type="button"
         >
-          <Icon name="close" size={size === "sm" ? 14 : 16} />
+          <XIcon size={size === "sm" ? 14 : size === "lg" ? 18 : 16} />
         </button>
       ) : null}
     </span>

@@ -9,9 +9,9 @@
 /* ─── Popover ────────────────────────────────────────────────────── */
 
 .popover {
-  background: var(--surface-00);
+  background: var(--canvas);
   border: 1px solid var(--border-subtle);
-  border-radius: var(--rounded-md);
+  border-radius: var(--radius-control);
   box-shadow:
     0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -2px rgba(0, 0, 0, 0.1);
@@ -26,19 +26,19 @@
   align-items: center;
   border-bottom: 1px solid var(--border-subtle);
   display: flex;
-  gap: var(--spacing-04);
-  padding: var(--spacing-04) var(--spacing-05);
+  gap: calc(var(--space-unit) * 2);
+  padding: calc(var(--space-unit) * 2) calc(var(--space-unit) * 3);
 }
 
 .rangeStepTitle {
   color: var(--text-muted);
-  font: var(--label-md);
-  padding: var(--spacing-02) var(--spacing-03);
+  font: var(--font-weight-regular) var(--font-size-caption)/var(--line-height-caption) var(--font-family-body);
+  padding: calc(var(--space-unit) * .5) calc(var(--space-unit) * 1);
   width: 40px;
 }
 
 .rangeStepTitleActive {
-  color: var(--text-primary);
+  color: var(--text);
   font-weight: var(--font-weight-medium);
 }
 
@@ -54,11 +54,11 @@
   align-items: center;
   border-top: 1px solid var(--border-subtle);
   display: grid;
-  gap: var(--spacing-02);
+  gap: calc(var(--space-unit) * .5);
   grid-template-columns: 1fr 1fr;
   margin-top: auto;
   min-width: calc(var(--range-step-action-width) * 2);
-  padding: var(--spacing-04) var(--spacing-05);
+  padding: calc(var(--space-unit) * 2) calc(var(--space-unit) * 3);
 
   & > button {
     max-width: var(--range-step-action-width);
@@ -73,8 +73,10 @@
 }
 
 .rangeStepError {
-  color: var(--text-error);
-  font: var(--label-md);
+  color: var(--danger-text);
+  font: var(--font-weight-regular) var(--font-size-caption)/var(--line-height-caption) var(--font-family-body);
   margin: 0;
-  padding: 0 var(--spacing-05) var(--spacing-03);
+  padding: 0 calc(var(--space-unit) * 3) calc(var(--space-unit) * 1);
 }
+
+.popover { background: var(--surface-raised); border-color: var(--border); border-radius: var(--radius-control); box-shadow: var(--shadow-popup); }

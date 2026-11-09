@@ -1,5 +1,12 @@
 import * as React from "react";
 import styles from "./ThemePreview.module.css";
+import tokenStyles from "@idenflu/ui-tokens/css/variables.css?raw";
+
+// This page documents the separate ui-tokens package; keep its variables scoped
+// to the example rather than restoring them to the ui-react theme globally.
+const previewTokenStyles = tokenStyles
+  .replace(/:root\s*\{/g, "[data-token-preview] {")
+  .replace(/\.dark\s*\{/g, 'html[data-theme="dark"] [data-token-preview] {');
 
 type Role = "surface" | "background" | "border" | "text";
 type Mode = "light" | "dark";
@@ -214,12 +221,28 @@ function RoleSwatch({ token, role }: { token: string; role: Role }) {
 }
 
 export function ThemePreview() {
-  const [mode, setMode] = React.useState<Mode>("light");
+  const [mode, setMode] = React.useState<Mode>(() =>
+    typeof document !== "undefined" && document.documentElement.dataset.theme === "dark"
+      ? "dark"
+      : "light"
+  );
+  React.useEffect(() => {
+    const root = document.documentElement;
+    const previous = root.getAttribute("data-theme");
+    return () => {
+      if (previous === null) root.removeAttribute("data-theme");
+      else root.setAttribute("data-theme", previous);
+    };
+  }, []);
+  React.useEffect(() => {
+    document.documentElement.dataset.theme = mode;
+  }, [mode]);
   const [role, setRole] = React.useState<Role>("surface");
   const active = ROLES.find((item) => item.id === role) ?? ROLES[0];
 
   return (
     <section className={`sb-unstyled ${styles.preview}`} aria-label="Theme roles">
+      <style>{previewTokenStyles}</style>
       <div className={styles.toolbar}>
         <p className={styles.hint}>
           Light/Dark를 전환하고 역할별 토큰을 클릭해 CSS 변수를 복사합니다.
@@ -261,7 +284,8 @@ export function ThemePreview() {
       </div>
 
       <div
-        className={`${styles.stage}${mode === "dark" ? " dark" : ""}`}
+        className={styles.stage}
+        data-token-preview=""
         role="tabpanel"
       >
         <div className={styles.grid}>

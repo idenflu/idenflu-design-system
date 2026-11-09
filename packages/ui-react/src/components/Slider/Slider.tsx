@@ -6,7 +6,7 @@ export type SliderProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "typ
   defaultValue?: number;
   onValueChange?: (value: number) => void;
 };
-export function Slider({ value, defaultValue = 0, onValueChange, min = 0, max = 100, className, ...props }: SliderProps) {
+export function Slider({ value, defaultValue = 0, onValueChange, min = 0, max = 100, className, style, ...props }: SliderProps) {
   const [internal, setInternal] = React.useState(defaultValue);
   const input = React.useRef<HTMLInputElement>(null);
   const initial = React.useRef(defaultValue);
@@ -18,5 +18,9 @@ export function Slider({ value, defaultValue = 0, onValueChange, min = 0, max = 
     form.addEventListener("reset", reset);
     return () => { active = false; form.removeEventListener("reset", reset); };
   }, [value]);
-  return <input {...props} ref={input} type="range" className={cn(styles.root, className)} min={min} max={max} value={value ?? internal} onChange={(event) => { const next = event.currentTarget.valueAsNumber; if (value === undefined) setInternal(next); onValueChange?.(next); }} />;
+  const current = value ?? internal;
+  const low = Number(min), high = Number(max);
+  const percent = high > low ? Math.max(0, Math.min(100, ((current - low) / (high - low)) * 100)) : 0;
+  const fillStyle = { ...style, "--fill": `${percent}%`, "--fill-position": `calc(${percent}% + ${12 * (0.5 - percent / 100)}px)` } as React.CSSProperties;
+  return <input {...props} style={fillStyle} ref={input} type="range" className={cn(styles.root, className)} min={min} max={max} value={value ?? internal} onChange={(event) => { const next = event.currentTarget.valueAsNumber; if (value === undefined) setInternal(next); onValueChange?.(next); }} />;
 }

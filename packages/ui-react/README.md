@@ -18,6 +18,19 @@ import "@idenflu/ui-react/styles.css";
 import { Button } from "@idenflu/ui-react";
 ```
 
+## Select 마이그레이션
+
+`Select`는 단일 선택, `SearchSelect`는 검색 가능한 단일 선택, `MultiSelect`는 다중 선택에 사용합니다. 세 컴포넌트는 `options`와 `label`을 받습니다. 기존 `SelectItem`, `multiple`, `valueDisplay`, `searchable`(단일 선택) 및 `Combobox` API는 제거되었습니다. 검색 가능한 다중 선택은 `MultiSelect searchable`을 사용합니다.
+
+```tsx
+import { Select, SearchSelect, MultiSelect } from "@idenflu/ui-react";
+
+const options = [{ value: "design", label: "Design" }];
+<Select label="Team" options={options} />;
+<SearchSelect label="Team" options={options} />;
+<MultiSelect label="Teams" options={options} searchable presentation="inline" />;
+```
+
 ## Icons
 
 새 React 코드에서는 개별 아이콘을 사용합니다. SVG 도형이 포함되어 sprite URL, Provider, 스타일시트 설정 없이 렌더링됩니다.
@@ -52,9 +65,9 @@ npm run test:icons -w @idenflu/ui-react
 | Import | 역할 |
 |--------|------|
 | `@idenflu/ui-react/fonts.css` | Pretendard `@font-face` |
-| `@idenflu/ui-react/styles.css` | 토큰, `html { font-family: var(--font-family-sans); }` |
+| `@idenflu/ui-react/styles.css` | 토큰, `html { font-family: var(--font-family-body); }` |
 
-컴포넌트 타입 스타일도 `var(--font-family-sans)`를 사용합니다. 이 변수를 덮으면 본문과 컴포넌트가 같이 바뀝니다.
+컴포넌트와 본문의 기본 글꼴은 `--font-family-body`를 사용합니다.
 
 ### 기본 (Pretendard)
 
@@ -65,15 +78,25 @@ import "@idenflu/ui-react/styles.css";
 
 ### 다른 글꼴
 
-`fonts.css`는 넣지 않습니다. `--font-family-sans`와 `--font-family-base`를 덮고, 앱 글꼴 `@font-face`는 사용처에서 등록합니다.
+`fonts.css`는 넣지 않습니다. `--font-family-body`를 덮고, 앱 글꼴 `@font-face`는 사용처에서 등록합니다.
 
 ```css
 @import "@idenflu/ui-react/styles.css";
 
 :root {
-  --font-family-sans: "App Sans", sans-serif;
-  --font-family-base: "App Sans", sans-serif;
+  --font-family-body: "App Sans", sans-serif;
 }
 ```
 
 `html { font-family }`만 바꾸면 본문만 바뀌고 컴포넌트는 Pretendard 스택을 유지합니다.
+
+
+## Theme
+
+`@idenflu/ui-react/styles.css`는 mono 토큰을 포함합니다. 테마는 문서 루트의 `data-theme`으로 설정합니다. 기본값은 light입니다.
+
+```html
+<html data-theme="dark">
+```
+
+기존 `.dark` 클래스는 ui-react 테마를 전환하지 않습니다. 사용처에서 운영체제 설정을 따르려면 `prefers-color-scheme`을 감지해 `data-theme`에 `light` 또는 `dark`를 설정하세요.

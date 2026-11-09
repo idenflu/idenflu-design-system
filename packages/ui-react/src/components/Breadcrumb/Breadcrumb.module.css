@@ -1,18 +1,18 @@
 .root {
   color: var(--text-secondary);
-  font: var(--label-lg);
+  font: var(--font-weight-regular) var(--font-size-caption)/var(--line-height-caption) var(--font-family-body);
   max-inline-size: 100%;
 }
 
 .sizeSm {
-  font: var(--label-md);
+  font: var(--font-weight-regular) var(--font-size-caption)/var(--line-height-caption) var(--font-family-body);
 }
 
 .list {
   align-items: center;
   display: flex;
   flex-wrap: wrap;
-  gap: var(--spacing-sm);
+  gap: 8px;
   list-style: none;
   margin: 0;
   min-inline-size: 0;
@@ -24,14 +24,14 @@
   color: var(--text-muted);
   display: inline-flex;
   font: inherit;
-  gap: var(--spacing-xs);
+  gap: 4px;
   margin: 0;
   max-inline-size: 100%;
   min-inline-size: 0;
 }
 
 .itemCurrent {
-  color: var(--text-primary);
+  color: var(--text);
 }
 
 .separator {

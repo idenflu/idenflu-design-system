@@ -3,17 +3,18 @@
  * (not only components) switches with the toolbar theme.
  */
 html {
+  --if-font-family: var(--font-family-body);
   color-scheme: light;
-  background-color: var(--surface-00);
-  color: var(--text-primary);
+  background-color: var(--canvas);
+  color: var(--text);
 }
 
-html.dark {
+html[data-theme="dark"] {
   color-scheme: dark;
 }
 
 body {
   margin: 0;
-  background-color: var(--surface-00);
-  color: var(--text-primary);
+  background-color: var(--canvas);
+  color: var(--text);
 }

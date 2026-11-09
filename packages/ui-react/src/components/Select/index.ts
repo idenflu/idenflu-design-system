@@ -1,11 +1,2 @@
-export { Select, SelectItem } from "./Select";
-
-export type {
-  SelectItemProps,
-  SelectOption,
-  SelectOverflow,
-  SelectProps,
-  SelectSize,
-  SelectValueDisplay,
-  SelectVariant,
-} from "./Select";
+export { Select, SearchSelect, MultiSelect } from "./Select";
+export type { SelectOption, SelectProps, MultiSelectProps } from "./Select";

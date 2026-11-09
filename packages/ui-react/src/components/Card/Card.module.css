@@ -1,1 +1,1 @@
-.root { background: var(--surface-01); border: var(--spacing-01) solid var(--border-primary); border-radius: var(--rounded-lg); color: var(--text-primary); padding: var(--spacing-06); }
+.root { background: var(--field-background); border: calc(var(--space-unit) * .25) solid var(--border); border-radius: var(--radius-control); color: var(--text); padding: var(--space-6); }

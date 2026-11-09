@@ -1,10 +1,10 @@
-.root { border: var(--spacing-01) dashed var(--border-primary); border-radius: var(--rounded-md); color: var(--text-primary); display: grid; gap: var(--spacing-04); padding: var(--spacing-06); }
-.dragging { border-color: var(--border-focused); }
-.label, .remove { background: var(--surface-00); border: var(--spacing-01) solid var(--border-primary); border-radius: var(--rounded-md); color: var(--text-primary); cursor: pointer; font: var(--label-md); padding: var(--spacing-04); width: fit-content; }
-.input { block-size: var(--spacing-01); clip-path: inset(50%); inline-size: var(--spacing-01); overflow: hidden; position: absolute; white-space: nowrap; }
-.root:has(.input:focus-visible) .label { outline: var(--spacing-02) solid var(--border-focused); }
-.root:has(.input:disabled) .label { color: var(--text-disabled); cursor: not-allowed; }
-.input:disabled, .remove:disabled { cursor: not-allowed; }
-.error { color: var(--text-error); font: var(--body-md); margin: 0; }
-.result { display: flex; gap: var(--spacing-04); justify-content: space-between; }
+.root { align-items: center; background: var(--surface); border: calc(var(--space-unit) * .25) dashed var(--border); color: var(--text); display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-8) var(--space-5); text-align: center; }
+.dragging { background: var(--info-surface); border-color: var(--primary); }
+.label, .remove { background: var(--surface-raised); border: 0; box-shadow: inset 0 0 0 calc(var(--space-unit) * .25) var(--border); color: var(--text); cursor: pointer; font: var(--font-weight-medium) var(--font-size-body)/var(--line-height-control) var(--font-family-body); padding: var(--space-2) var(--control-px); width: fit-content; }
+.input { block-size: calc(var(--space-unit) * .25); clip-path: inset(50%); inline-size: calc(var(--space-unit) * .25); overflow: hidden; position: absolute; white-space: nowrap; }
+.root:has(.input:focus-visible) .label { outline: var(--focus-width) solid var(--focus-on-light); outline-offset: calc(-1 * var(--focus-width)); }
+.root:has(.input:disabled) .label { background: var(--disabled); color: var(--disabled-text); cursor: not-allowed; }
+.remove:disabled { cursor: not-allowed; }
+.error { color: var(--danger-text); font: var(--font-weight-regular) var(--font-size-caption)/var(--line-height-caption) var(--font-family-body); margin: 0; }
+.result { display: flex; gap: var(--space-4); justify-content: space-between; }
 .result strong { display: block; }

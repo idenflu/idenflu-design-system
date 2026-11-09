@@ -43,28 +43,8 @@ export type {
   TextAreaVariant,
 } from "./components/TextArea/index";
 
-export { Select, SelectItem } from "./components/Select/index";
-export type {
-  SelectItemProps,
-  SelectOption,
-  SelectOverflow,
-  SelectProps,
-  SelectSize,
-  SelectValueDisplay,
-  SelectVariant,
-} from "./components/Select/index";
-
-/** @deprecated Use `Select` with `searchable` / `multiple` instead. */
-export { Combobox, ComboboxItem } from "./components/Combobox/index";
-/** @deprecated Use Select types instead. */
-export type {
-  ComboboxItemProps,
-  ComboboxOption,
-  ComboboxOverflow,
-  ComboboxProps,
-  ComboboxSize,
-  ComboboxVariant,
-} from "./components/Combobox/index";
+export { Select, SearchSelect, MultiSelect } from "./components/Select/index";
+export type { SelectOption, SelectProps, MultiSelectProps } from "./components/Select/index";
 
 export { Chip } from "./components/Chip/index";
 export type {

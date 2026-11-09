@@ -20,7 +20,7 @@ const overviewStyles = {
   },
   heading: {
     fontSize: "14px",
-    font: "var(--title-md)",
+    font: "300 var(--font-size-body)/var(--line-height-body) var(--font-family-body)",
     fontWeight: 500,
     letterSpacing: "0.02em",
     margin: 0,
@@ -42,24 +42,24 @@ const overviewStyles = {
   },
   label: {
     color: "var(--text-secondary)",
-    font: "var(--label-md)",
+    font: "var(--font-weight-regular) var(--font-size-caption)/var(--line-height-caption) var(--font-family-body)",
     margin: 0,
   },
   matrix: {
     display: "grid",
-    gap: "var(--spacing-06) var(--spacing-07)",
+    gap: "calc(var(--space-unit) * 4) calc(var(--space-unit) * 6)",
     gridTemplateColumns: "80px repeat(5, minmax(240px, 1fr))",
     alignItems: "start",
     justifyItems: "center",
   },
   matrixHeader: {
     color: "var(--text-secondary)",
-    font: "var(--label-md)",
+    font: "var(--font-weight-regular) var(--font-size-caption)/var(--line-height-caption) var(--font-family-body)",
     textAlign: "center" as const,
   },
   matrixRowLabel: {
     color: "var(--text-secondary)",
-    font: "var(--label-md)",
+    font: "var(--font-weight-regular) var(--font-size-caption)/var(--line-height-caption) var(--font-family-body)",
     textTransform: "capitalize" as const,
   },
 };

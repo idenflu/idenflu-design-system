@@ -1,5 +1,5 @@
 .root {
-  color: var(--theme-text-secondary);
+  color: currentColor;
   display: inline-block;
   flex: 0 0 auto;
   fill: currentColor;

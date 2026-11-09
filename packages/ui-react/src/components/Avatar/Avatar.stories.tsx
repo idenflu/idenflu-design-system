@@ -21,7 +21,7 @@ const overviewStyles = {
   },
   heading: {
     fontSize: "14px",
-    font: "var(--title-md)",
+    font: "300 var(--font-size-body)/var(--line-height-body) var(--font-family-body)",
     fontWeight: 500,
     letterSpacing: "0.02em",
     margin: 0,
@@ -39,16 +39,16 @@ const overviewStyles = {
     color: "var(--text-secondary)",
     flexDirection: "column" as const,
     display: "inline-flex",
-    font: "var(--label-md)",
-    gap: "var(--spacing-03)",
+    font: "var(--font-weight-regular) var(--font-size-caption)/var(--line-height-caption) var(--font-family-body)",
+    gap: "calc(var(--space-unit) * 1)",
   },
   scenario: {
     alignItems: "center",
     color: "var(--text-secondary)",
     display: "inline-flex",
     flexDirection: "column" as const,
-    font: "var(--label-md)",
-    gap: "var(--spacing-03)",
+    font: "var(--font-weight-regular) var(--font-size-caption)/var(--line-height-caption) var(--font-family-body)",
+    gap: "calc(var(--space-unit) * 1)",
   },
 };
 

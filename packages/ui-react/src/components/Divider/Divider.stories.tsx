@@ -196,7 +196,7 @@ export const Playground: Story = {
     }
 
     return (
-      <div style={{ width: "min(100vw, var(--spacing-12))" }}>
+      <div style={{ width: "min(100vw, calc(var(--space-unit) * 24))" }}>
         <Divider orientation="horizontal" {...args} />
       </div>
     );

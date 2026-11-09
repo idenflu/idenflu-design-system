@@ -1,5 +1,5 @@
 .title {
-  color: var(--text-primary);
+  color: var(--text);
   inline-size: 100%;
   margin: 0;
   max-inline-size: 100%;
@@ -7,3 +7,4 @@
   overflow-wrap: break-word;
   white-space: normal;
 }
+.title { color: var(--text); font: var(--font-weight-semibold) var(--font-size-heading)/var(--line-height-heading) var(--font-family-body); }

@@ -4,72 +4,19 @@
   "status": "implemented",
   "props": [
     {
-      "name": "children",
-      "kind": "node",
-      "required": false
-    },
-    {
-      "name": "chipSize",
-      "kind": "enum",
-      "values": ["sm", "md"],
-      "required": false,
-      "default": "sm",
-      "description": "Chip size when valueDisplay is chip."
-    },
-    {
-      "name": "className",
-      "kind": "string",
-      "required": false
-    },
-    {
-      "name": "defaultOpen",
-      "kind": "boolean",
-      "required": false,
-      "default": false
-    },
-    {
-      "name": "defaultValue",
+      "name": "options",
       "kind": "unknown",
-      "required": false,
-      "description": "string | string[] depending on multiple."
-    },
-    {
-      "name": "disabled",
-      "kind": "boolean",
-      "required": false,
-      "default": false
-    },
-    {
-      "name": "error",
-      "kind": "string",
-      "required": false
-    },
-    {
-      "name": "fullWidth",
-      "kind": "boolean",
-      "required": false,
-      "default": false
-    },
-    {
-      "name": "helperText",
-      "kind": "string",
-      "required": false
-    },
-    {
-      "name": "id",
-      "kind": "string",
-      "required": false
+      "required": true
     },
     {
       "name": "label",
-      "kind": "node",
-      "required": false
+      "kind": "string",
+      "required": true
     },
     {
-      "name": "multiple",
+      "name": "hideLabel",
       "kind": "boolean",
-      "required": false,
-      "default": false
+      "required": false
     },
     {
       "name": "name",
@@ -77,34 +24,29 @@
       "required": false
     },
     {
-      "name": "open",
+      "name": "disabled",
       "kind": "boolean",
       "required": false
     },
     {
-      "name": "options",
-      "kind": "unknown",
-      "required": false,
-      "description": "SelectOption[] alternative to SelectItem children."
-    },
-    {
-      "name": "overflow",
-      "kind": "enum",
-      "values": ["wrap", "ellipsis"],
-      "required": false,
-      "default": "wrap"
-    },
-    {
       "name": "placeholder",
       "kind": "string",
-      "required": false,
-      "default": "Select"
+      "required": false
     },
     {
-      "name": "readOnly",
-      "kind": "boolean",
+      "name": "className",
+      "kind": "string",
+      "required": false
+    },
+    {
+      "name": "size",
+      "kind": "enum",
       "required": false,
-      "default": false
+      "values": [
+        "sm",
+        "md",
+        "lg"
+      ]
     },
     {
       "name": "required",
@@ -112,72 +54,59 @@
       "required": false
     },
     {
-      "name": "searchPlaceholder",
-      "kind": "string",
-      "required": false,
-      "default": "Search…"
+      "name": "helperText",
+      "kind": "node",
+      "required": false
     },
     {
-      "name": "searchable",
-      "kind": "boolean",
-      "required": false,
-      "default": true,
-      "description": "Show filter input at the top of the option panel."
+      "name": "error",
+      "kind": "node",
+      "required": false
     },
     {
-      "name": "size",
+      "name": "prefixIcon",
+      "kind": "node",
+      "required": false
+    },
+    {
+      "name": "popupStrategy",
       "kind": "enum",
-      "values": ["lg", "md", "sm"],
       "required": false,
-      "default": "md"
+      "values": [
+        "absolute",
+        "fixed"
+      ]
     },
     {
       "name": "value",
-      "kind": "unknown",
-      "required": false,
-      "description": "string | string[] depending on multiple."
+      "kind": "string",
+      "required": false
     },
     {
-      "name": "valueDisplay",
-      "kind": "enum",
-      "values": ["chip", "text"],
-      "required": false,
-      "default": "chip"
-    },
-    {
-      "name": "variant",
-      "kind": "enum",
-      "values": ["standard", "filled", "outlined"],
-      "required": false,
-      "default": "outlined"
+      "name": "defaultValue",
+      "kind": "string",
+      "required": false
     }
   ],
-  "states": ["default", "disabled", "error", "open", "readOnly"],
+  "states": [
+    "default",
+    "disabled",
+    "error",
+    "open",
+    "readOnly"
+  ],
   "accessibility": [
     {
-      "id": "disabled-group",
-      "rule": "The field control is a labelled group with aria-disabled only when disabled. Its trigger is natively disabled and chip deletion is unavailable when disabled or readOnly. Helper text stays outside the disabled group with readable contrast; readOnly values retain readable contrast."
+      "id": "label",
+      "rule": "Each control exposes an accessible label and listbox relationships."
     },
     {
-      "id": "visible-label",
-      "rule": "Provide a visible label or accessible name for the select field."
-    },
-    {
-      "id": "listbox-select",
-      "rule": "Button trigger named by the field label and selected values, with aria-expanded/haspopup; options in a listbox with keyboard highlight and selection."
-    },
-    {
-      "id": "panel-search",
-      "rule": "When searchable, a named search field with a decorative search icon filters options. Its clear button appears for a non-empty query and restores focus to the search field. Arrow keys move highlight, Enter selects an option, Escape closes the panel; no results are announced as a status."
-    },
-    {
-      "id": "chips",
-      "rule": "When valueDisplay is chip, selected values are removable chips with accessible delete labels. Chip delete buttons are siblings of the trigger, never nested inside it; deleting restores focus to the trigger."
+      "id": "keyboard",
+      "rule": "Arrow keys navigate options; Enter selects and Escape closes the list."
     }
   ],
   "notes": [
-    "Events (onOpenChange, onValueChange) are framework-specific and omitted.",
-    "Custom portal listbox (no Radix). Replaces former Radix Select and covers Combobox use cases.",
-    "Synced from packages/ui-react SelectProps (engineering-first)."
+    "Select and SearchSelect use string values; MultiSelect uses string arrays.",
+    "SearchSelect supports filtering; MultiSelect supports searchable and inline presentations."
   ]
 }

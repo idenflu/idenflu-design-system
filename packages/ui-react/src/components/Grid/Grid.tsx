@@ -46,7 +46,7 @@ function variables<T>(name: string, values: T[], format: (value: T) => string | 
 }
 
 const integer = (value: number) => Number.isFinite(value) && value > 0 ? Math.floor(value) || 1 : 1;
-const spacing = (value: GridSpacing) => `calc(var(--spacing-03) * ${value})`;
+const spacing = (value: GridSpacing) => `calc(calc(var(--space-unit) * 1) * ${value})`;
 
 /** Layout only: preserves DOM reading order and adds no interactive grid role. */
 export const Grid = React.forwardRef<HTMLDivElement, GridProps>(function Grid({

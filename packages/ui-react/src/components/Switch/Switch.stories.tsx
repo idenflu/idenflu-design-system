@@ -22,7 +22,7 @@ const overviewStyles = {
   },
   heading: {
     color: "var(--text-secondary)",
-    font: "var(--title-md)",
+    font: "300 var(--font-size-body)/var(--line-height-body) var(--font-family-body)",
     letterSpacing: "0.02em",
     margin: 0,
     textTransform: "uppercase" as const,
@@ -42,12 +42,12 @@ const overviewStyles = {
   },
   label: {
     color: "var(--text-secondary)",
-    font: "var(--label-md)",
+    font: "var(--font-weight-regular) var(--font-size-caption)/var(--line-height-caption) var(--font-family-body)",
     margin: 0,
   },
   a11yText: {
     color: "var(--text-secondary)",
-    font: "var(--body-md)",
+    font: "var(--font-weight-regular) var(--font-size-body)/var(--line-height-body) var(--font-family-body)",
     lineHeight: 1.6,
     margin: 0,
     maxWidth: "720px",
@@ -217,10 +217,10 @@ export const WithLabel: Story = {
       htmlFor={labelledSwitchId}
       style={{
         alignItems: "center",
-        color: "var(--text-primary)",
+        color: "var(--text)",
         display: "inline-flex",
-        font: "var(--body-md)",
-        gap: "var(--spacing-04)",
+        font: "var(--font-weight-regular) var(--font-size-body)/var(--line-height-body) var(--font-family-body)",
+        gap: "calc(var(--space-unit) * 2)",
       }}
     >
       마케팅 알림 받기

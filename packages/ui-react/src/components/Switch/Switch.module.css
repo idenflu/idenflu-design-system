@@ -1,8 +1,8 @@
 .root {
   align-items: center;
-  background: var(--background-neutral-subtle);
-  border: 1px solid var(--border-primary);
-  border-radius: var(--rounded-full);
+  background: var(--surface-pressed);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
   box-sizing: border-box;
   color: var(--text-secondary);
   cursor: pointer;
@@ -18,30 +18,30 @@
 }
 
 .root[data-state="checked"] {
-  background: var(--base-blue-500);
-  border-color: var(--base-blue-500);
+  background: var(--color-blue-500);
+  border-color: var(--color-blue-500);
 }
 
 .root:active:not(:disabled) {
-  border-color: var(--base-blue-700);
+  border-color: var(--color-blue-750);
 }
 
 .root:focus-visible {
-  border-color: var(--border-focused);
-  outline: 2px solid var(--border-focused);
-  outline-offset: var(--spacing-01);
+  border-color: var(--focus-on-light);
+  outline: 2px solid var(--focus-on-light);
+  outline-offset: calc(var(--space-unit) * .25);
 }
 
 .root:disabled {
-  background: var(--background-disabled);
-  border-color: var(--border-disabled);
-  color: var(--text-disabled);
+  background: var(--disabled);
+  border-color: var(--border-subtle);
+  color: var(--disabled-text);
   cursor: not-allowed;
   opacity: 0.75;
 }
 
 .root[aria-invalid="true"] {
-  border-color: var(--border-error);
+  border-color: var(--danger);
 }
 
 .sizeSm {
@@ -56,8 +56,8 @@
 
 .thumb {
   align-items: center;
-  background: var(--base-white);
-  border-radius: var(--rounded-full);
+  background: var(--color-white);
+  border-radius: var(--radius-pill);
   color: var(--text-muted);
   display: block;
   flex-shrink: 0;
@@ -68,7 +68,7 @@
 }
 
 .root:disabled .thumb {
-  color: var(--text-disabled);
+  color: var(--disabled-text);
 }
 
 .sizeSm[data-state="checked"] .thumb {
@@ -122,3 +122,10 @@
     transition: none;
   }
 }
+.root { background: var(--switch-off); border: 0; height: var(--switch-height); transition: background-color var(--motion-fast) var(--motion-easing); width: var(--switch-width); }
+.root[data-state="checked"] { background: var(--primary-control); }
+.root:focus-visible { box-shadow: inset 0 0 0 var(--focus-width) var(--focus-on-primary); outline: var(--focus-width) solid var(--focus-on-light); outline-offset: var(--focus-width); }
+.root:disabled { background: var(--switch-off); opacity: .45; }
+.root[data-state="checked"]:disabled { background: var(--primary-control); }
+.root .thumb { background: var(--switch-thumb-color); block-size: var(--switch-thumb); inline-size: var(--switch-thumb); transform: translateX(var(--switch-inset)); transition: transform var(--motion-fast) var(--motion-easing); }
+.root[data-state="checked"] .thumb { transform: translateX(calc(var(--switch-width) - var(--switch-thumb) - var(--switch-inset))); }

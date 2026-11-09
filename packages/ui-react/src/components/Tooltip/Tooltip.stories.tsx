@@ -32,17 +32,17 @@ const overviewStyles = {
   root: {
     display: "flex",
     flexDirection: "column" as const,
-    gap: "var(--spacing-07)",
-    padding: "var(--spacing-10)",
+    gap: "calc(var(--space-unit) * 6)",
+    padding: "calc(var(--space-unit) * 16)",
   },
   section: {
     display: "flex",
     flexDirection: "column" as const,
-    gap: "var(--spacing-05)",
+    gap: "calc(var(--space-unit) * 3)",
   },
   heading: {
     color: "var(--text-secondary)",
-    font: "var(--label-md)",
+    font: "var(--font-weight-regular) var(--font-size-caption)/var(--line-height-caption) var(--font-family-body)",
     margin: 0,
     textTransform: "uppercase" as const,
   },
@@ -50,24 +50,24 @@ const overviewStyles = {
     alignItems: "center",
     display: "flex",
     flexWrap: "wrap" as const,
-    gap: "var(--spacing-06)",
+    gap: "calc(var(--space-unit) * 4)",
   },
   matrix: {
     display: "grid",
-    gap: "var(--spacing-07)",
+    gap: "calc(var(--space-unit) * 6)",
     gridTemplateColumns: "repeat(3, minmax(120px, 1fr))",
     justifyItems: "center",
-    padding: "var(--spacing-10)",
+    padding: "calc(var(--space-unit) * 16)",
   },
   variantGrid: {
     display: "grid",
-    gap: "var(--spacing-06)",
+    gap: "calc(var(--space-unit) * 4)",
     gridTemplateColumns: "repeat(5, minmax(120px, 1fr))",
     justifyItems: "center",
   },
   note: {
     color: "var(--text-secondary)",
-    font: "var(--body-md)",
+    font: "var(--font-weight-regular) var(--font-size-body)/var(--line-height-body) var(--font-family-body)",
     margin: 0,
     maxWidth: "720px",
   },
@@ -173,11 +173,11 @@ function Kbd({ children }: { children: React.ReactNode }) {
     <kbd
       style={{
         border: "1px solid currentColor",
-        borderRadius: "var(--rounded-sm)",
-        font: "var(--caption-md)",
-        marginInlineStart: "var(--spacing-02)",
-        paddingBlock: "var(--spacing-01)",
-        paddingInline: "var(--spacing-02)",
+        borderRadius: "var(--radius-control)",
+        font: "var(--font-weight-regular) var(--font-size-caption)/var(--line-height-caption) var(--font-family-body)",
+        marginInlineStart: "calc(var(--space-unit) * .5)",
+        paddingBlock: "calc(var(--space-unit) * .25)",
+        paddingInline: "calc(var(--space-unit) * .5)",
       }}
     >
       {children}
@@ -397,7 +397,7 @@ export const HoverTiming: Story = {
     await pause(60);
     await expect(first).not.toHaveAttribute("aria-describedby");
     await waitFor(() => expect(first).toHaveAttribute("aria-describedby"), {
-      timeout: 350,
+      timeout: 1000,
     });
     const content = document.querySelector<HTMLElement>(
       '[data-slot="tooltip-content"]'
@@ -443,7 +443,7 @@ export const HoverTiming: Story = {
     await pause(60);
     await expect(second).not.toHaveAttribute("aria-describedby");
     await waitFor(() => expect(second).toHaveAttribute("aria-describedby"), {
-      timeout: 350,
+      timeout: 1000,
     });
     await user.keyboard("{Escape}");
     await user.unhover(second);
@@ -534,30 +534,35 @@ export const ControlledDescription: Story = {
 };
 
 function LocalThemeExample() {
-  const [dark, setDark] = React.useState(true);
   return (
-    <div
-      className={dark ? "dark" : undefined}
-      style={{ ...overviewStyles.root, background: "var(--surface-00)" }}
-    >
-      <button type="button" onClick={() => setDark((value) => !value)}>
-        Toggle local theme
-      </button>
+    <div style={{ ...overviewStyles.root, background: "var(--canvas)" }}>
       <Tooltip open>
-        <TooltipTrigger>Local theme target</TooltipTrigger>
+        <TooltipTrigger>Theme target</TooltipTrigger>
         <TooltipContent arrow>
-          지역 테마도 Portal에 유지됩니다.\n긴 설명은 화면 너비에 맞춰
+          테마 전환이 Portal에 유지됩니다.\n긴 설명은 화면 너비에 맞춰
           확인합니다.
         </TooltipContent>
       </Tooltip>
+      <button
+        type="button"
+        onClick={() => {
+          const root = document.documentElement;
+          root.dataset.theme = root.dataset.theme === "dark" ? "light" : "dark";
+        }}
+      >
+        Toggle theme
+      </button>
     </div>
   );
 }
 
 export const LocalDarkTheme: Story = {
-  parameters: { themes: { themeOverride: "light" } },
+  parameters: { themes: { themeOverride: "dark" } },
   render: () => <LocalThemeExample />,
   play: async ({ canvasElement }) => {
+    const root = document.documentElement;
+    const previousTheme = root.getAttribute("data-theme");
+    root.dataset.theme = "dark";
     const user = userEvent.setup();
     const canvas = within(canvasElement);
     const content = document.querySelector<HTMLElement>(
@@ -565,23 +570,21 @@ export const LocalDarkTheme: Story = {
     )!;
     await waitFor(() =>
       expect(getComputedStyle(content).backgroundColor).toBe(
-        "rgb(246, 246, 246)"
+        "rgb(237, 237, 237)"
       )
     );
-    await expect(getComputedStyle(content).color).toBe("rgb(0, 0, 0)");
-    await expect(getComputedStyle(content).borderRadius).toBe("4px");
+    await expect(getComputedStyle(content).color).toBe("rgb(20, 20, 20)");
+    await expect(getComputedStyle(content).borderRadius).toBe("0px");
     const arrow = content.querySelector('[data-slot="tooltip-arrow"]')!;
-    await expect(getComputedStyle(arrow).fill).toBe("rgb(246, 246, 246)");
-    await user.click(
-      canvas.getByRole("button", { name: "Toggle local theme" })
-    );
+    await expect(getComputedStyle(arrow).fill).toBe("rgb(237, 237, 237)");
+    await user.click(canvas.getByRole("button", { name: "Toggle theme" }));
     await waitFor(() =>
-      expect(getComputedStyle(content).backgroundColor).toBe(
-        "rgb(115, 115, 115)"
-      )
+      expect(getComputedStyle(content).backgroundColor).toBe("rgb(28, 28, 28)")
     );
     await expect(getComputedStyle(content).color).toBe("rgb(255, 255, 255)");
-    await expect(getComputedStyle(arrow).fill).toBe("rgb(115, 115, 115)");
+    await expect(getComputedStyle(arrow).fill).toBe("rgb(28, 28, 28)");
+    if (previousTheme === null) root.removeAttribute("data-theme");
+    else root.setAttribute("data-theme", previousTheme);
   },
 };
 

@@ -17,8 +17,8 @@ const overviewStyles = {
   root: {
     display: "flex",
     flexDirection: "column" as const,
-    gap: "var(--spacing-07)",
-    padding: "0 var(--spacing-10)",
+    gap: "calc(var(--space-unit) * 6)",
+    padding: "0 calc(var(--space-unit) * 16)",
   },
   section: {
     display: "flex",
@@ -27,7 +27,7 @@ const overviewStyles = {
   },
   heading: {
     fontSize: "14px",
-    font: "var(--title-md)",
+    font: "300 var(--font-size-body)/var(--line-height-body) var(--font-family-body)",
     fontWeight: 500,
     letterSpacing: "0.02em",
     margin: 0,
@@ -36,24 +36,24 @@ const overviewStyles = {
   },
   matrix: {
     display: "grid",
-    gap: "var(--spacing-06) var(--spacing-07)",
+    gap: "calc(var(--space-unit) * 4) calc(var(--space-unit) * 6)",
     gridTemplateColumns: "minmax(88px, 120px) repeat(2, minmax(240px, 1fr))",
     alignItems: "center",
     justifyItems: "center",
   },
   matrixHeader: {
     color: "var(--text-secondary)",
-    font: "var(--label-md)",
+    font: "var(--font-weight-regular) var(--font-size-caption)/var(--line-height-caption) var(--font-family-body)",
     textAlign: "center" as const,
   },
   matrixRowLabel: {
     color: "var(--text-secondary)",
-    font: "var(--label-md)",
+    font: "var(--font-weight-regular) var(--font-size-caption)/var(--line-height-caption) var(--font-family-body)",
     textTransform: "capitalize" as const,
   },
   stack: {
     display: "grid",
-    gap: "var(--spacing-04)",
+    gap: "calc(var(--space-unit) * 2)",
     maxWidth: "720px",
   },
 };

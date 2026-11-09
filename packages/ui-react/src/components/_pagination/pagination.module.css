@@ -8,14 +8,14 @@
   align-items: center;
   display: inline-flex;
   flex-wrap: wrap;
-  gap: var(--spacing-02);
+  gap: calc(var(--space-unit) * .5);
   padding-block: 14px;
   padding-inline: 16px;
 }
 
 .label {
   color: var(--text-secondary);
-  font: var(--body-sm);
+  font: var(--font-weight-regular) var(--font-size-body)/var(--line-height-body) var(--font-family-body);
   margin: 0;
   white-space: nowrap;
 }
@@ -24,12 +24,12 @@
   align-items: center;
   display: inline-flex;
   flex-wrap: wrap;
-  gap: var(--spacing-02);
+  gap: calc(var(--space-unit) * .5);
 }
 
 .pageCountSuffix {
   color: var(--text-secondary);
-  font: var(--body-sm);
+  font: var(--font-weight-regular) var(--font-size-body)/var(--line-height-body) var(--font-family-body);
   margin: 0;
   white-space: nowrap;
 }
@@ -45,5 +45,5 @@
   align-items: center;
   display: inline-flex;
   flex-wrap: wrap;
-  gap: var(--spacing-02);
+  gap: calc(var(--space-unit) * .5);
 }

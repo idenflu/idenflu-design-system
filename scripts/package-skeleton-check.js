@@ -229,7 +229,7 @@ requireIncludes("packages/ui-react/src/index.ts", [
 requireIncludes("packages/ui-react/src/styles.css", [
   '@import "./styles/normalize.css"',
   '@import "./styles/tokens.css"',
-  "var(--font-family-sans)",
+  "var(--font-family-body)",
 ]);
 requireIncludes("packages/ui-react/src/fonts.css", [
   "pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css",

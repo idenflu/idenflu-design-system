@@ -15,7 +15,6 @@ type ThemeChoice = "system" | "light" | "dark";
 
 const THEME_NAMES: ThemeChoice[] = ["system", "light", "dark"];
 const DEFAULT_THEME: ThemeChoice = "system";
-const DARK_CLASS = "dark";
 
 initializeThemeState(THEME_NAMES, DEFAULT_THEME);
 
@@ -45,7 +44,7 @@ const withIdenfluTheme: Decorator<Renderer> = (StoryFn, context) => {
     const root = document.documentElement;
 
     const apply = () => {
-      root.classList.toggle(DARK_CLASS, resolveIsDark(selectedTheme));
+      root.dataset.theme = resolveIsDark(selectedTheme) ? "dark" : "light";
     };
 
     apply();
@@ -116,7 +115,7 @@ const preview: Preview = {
   ],
   parameters: {
     backgrounds: {
-      // Canvas background comes from token-backed preview.css + `.dark`.
+      // Canvas background comes from token-backed preview.css and `data-theme`.
       disable: true,
     },
     controls: {

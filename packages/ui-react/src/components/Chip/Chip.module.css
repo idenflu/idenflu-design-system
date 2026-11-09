@@ -3,7 +3,7 @@
   border: 1px solid;
   box-sizing: border-box;
   display: inline-flex;
-  font: var(--label-md);
+  font: var(--font-weight-regular) var(--font-size-caption)/var(--line-height-caption) var(--font-family-body);
   gap: 8px;
   justify-content: space-between;
   min-width: 48px;
@@ -40,14 +40,14 @@
     appearance: none;
     background: transparent;
     border: 0;
-    border-radius: var(--rounded-full);
+    border-radius: var(--radius-pill);
     color: currentColor;
     cursor: pointer;
     margin: 0;
     padding: 2px;
 
     &:focus-visible {
-      outline: 1px solid var(--border-focused);
+      outline: 1px solid var(--focus-on-light);
       outline-offset: 0px;
     }
   }
@@ -61,11 +61,11 @@
 
 /* Shape */
 .shapePill {
-  border-radius: var(--rounded-full);
+  border-radius: var(--radius-pill);
 }
 
 .shapeRounded {
-  border-radius: var(--rounded-md);
+  border-radius: var(--radius-control);
 }
 
 /* Sizes */
@@ -83,54 +83,54 @@
 }
 
 .sizeMd {
-  font: var(--label-lg);
+  font: var(--font-weight-regular) var(--font-size-caption)/var(--line-height-caption) var(--font-family-body);
   padding-block: 2px;
 }
 
 /* Color — token slots only */
 .colorNeutral {
-  --chip-bg: var(--background-neutral-subtle);
-  --chip-bg-hover: var(--background-neutral-subtle-hover);
-  --chip-bg-tint: var(--background-neutral-tint);
-  --chip-border: var(--border-strong);
+  --chip-bg: var(--surface-pressed);
+  --chip-bg-hover: var(--surface-pressed);
+  --chip-bg-tint: var(--surface);
+  --chip-border: var(--border-control);
   --chip-color: var(--text-secondary);
   --chip-color-ghost: var(--text-secondary);
 }
 
 .colorInfo {
-  --chip-bg: var(--background-info-subtle);
-  --chip-bg-hover: var(--background-info-subtle-hover);
-  --chip-bg-tint: var(--background-info-tint);
-  --chip-border: var(--border-info);
-  --chip-color: var(--text-link-strong);
-  --chip-color-ghost: var(--text-link);
+  --chip-bg: var(--badge-primary-background);
+  --chip-bg-hover: var(--color-blue-200);
+  --chip-bg-tint: var(--info-surface);
+  --chip-border: var(--color-blue-500);
+  --chip-color: var(--color-blue-750);
+  --chip-color-ghost: var(--primary);
 }
 
 .colorSuccess {
-  --chip-bg: var(--background-success-subtle);
-  --chip-bg-hover: var(--background-success-subtle-hover);
-  --chip-bg-tint: var(--background-success-tint);
-  --chip-border: var(--border-success);
-  --chip-color: var(--text-success-strong);
-  --chip-color-ghost: var(--text-success);
+  --chip-bg: var(--success-surface);
+  --chip-bg-hover: var(--color-green-300);
+  --chip-bg-tint: var(--success-surface);
+  --chip-border: var(--color-green-600);
+  --chip-color: var(--success);
+  --chip-color-ghost: var(--success);
 }
 
 .colorWarning {
-  --chip-bg: var(--background-warning-subtle);
-  --chip-bg-hover: var(--background-warning-subtle-hover);
-  --chip-bg-tint: var(--background-warning-tint);
-  --chip-border: var(--border-warning);
-  --chip-color: var(--text-warning-strong);
-  --chip-color-ghost: var(--text-warning);
+  --chip-bg: var(--warning-surface);
+  --chip-bg-hover: var(--color-amber-300);
+  --chip-bg-tint: var(--warning-surface);
+  --chip-border: var(--color-amber-500);
+  --chip-color: var(--warning);
+  --chip-color-ghost: var(--warning);
 }
 
 .colorError {
-  --chip-bg: var(--background-error-subtle);
-  --chip-bg-hover: var(--background-error-subtle-hover);
-  --chip-bg-tint: var(--background-error-tint);
-  --chip-border: var(--border-error);
-  --chip-color: var(--text-error-strong);
-  --chip-color-ghost: var(--text-error);
+  --chip-bg: var(--danger-surface);
+  --chip-bg-hover: var(--color-red-200);
+  --chip-bg-tint: var(--danger-surface);
+  --chip-border: var(--danger);
+  --chip-color: var(--danger-text);
+  --chip-color-ghost: var(--danger-text);
 }
 
 /* Variant */
@@ -149,8 +149,26 @@
 }
 
 .variantGhost {
-  background: var(--background-transparent);
+  background: rgba(0, 0, 0, 0);
   border: none;
   color: var(--chip-color-ghost);
-  --chip-delete-button-bg-hover: var(--background-transparent-hover);
+  --chip-delete-button-bg-hover: rgba(0, 0, 0, 0.03);
 }
+.root { border-radius: var(--radius-control); font: var(--font-weight-regular) var(--font-size-body)/var(--line-height-control) var(--font-family-body); gap: var(--control-gap); justify-content: center; min-height: var(--control-height); min-width: 0; padding: 0 var(--control-px); transition: background-color var(--motion-fast) var(--motion-easing), border-color var(--motion-fast) var(--motion-easing), color var(--motion-fast) var(--motion-easing); }
+.shapePill { border-radius: var(--radius-pill); }
+.shapeRounded { border-radius: var(--radius-control); }
+.sizeSm { --control-px: var(--size-sm-padding); --control-gap: calc(var(--space-unit) * 1.5); --chip-icon-size: var(--size-sm-icon); min-height: var(--size-sm-height); padding-block: 0; }
+.sizeMd { --control-px: var(--size-md-padding); --control-gap: var(--space-2); --chip-icon-size: var(--size-md-icon); min-height: var(--size-md-height); padding-block: 0; }
+.sizeLg { --control-px: var(--size-lg-padding); --control-gap: calc(var(--space-unit) * 2.5); --chip-icon-size: var(--size-lg-icon); min-height: var(--size-lg-height); padding-block: 0; }
+.root .icon { height: var(--chip-icon-size); width: var(--chip-icon-size); }
+.root .icon > svg { height: 100%; width: 100%; }
+.compact { --chip-compact-height: calc(var(--size-md-height) - var(--space-2) - var(--space-unit) * .5); --chip-compact-font: max(calc(var(--space-unit) * 2.75), calc(var(--font-size-body) - var(--space-unit) * .25)); min-height: var(--chip-compact-height); padding: calc(var(--space-unit) * .5) max(calc(var(--space-unit) * 1.5), calc(var(--control-px) - var(--space-unit) * .5)); font-size: var(--chip-compact-font); line-height: calc(var(--chip-compact-font) + var(--space-unit) * 1.5); gap: max(var(--space-1), calc(var(--control-gap) - var(--space-unit) * .5)); }
+.compact.sizeSm { --chip-compact-height: calc(var(--size-sm-height) - var(--space-2)); --chip-compact-font: max(calc(var(--space-unit) * 2.75), calc(var(--font-size-body) - var(--space-unit) * .5)); }
+.compact.sizeLg { --chip-compact-height: calc(var(--size-lg-height) - var(--space-3)); --chip-compact-font: var(--font-size-body); }
+.root.compact .icon { height: min(var(--chip-icon-size), 1em); width: min(var(--chip-icon-size), 1em); }
+.root.compact .deleteButton svg { height: min(var(--chip-icon-size), 1em); width: min(var(--chip-icon-size), 1em); }
+.colorNeutral { --chip-bg: var(--surface-hover); --chip-bg-hover: var(--surface-pressed); --chip-bg-tint: var(--surface); --chip-border: var(--border); --chip-color: var(--text); --chip-color-ghost: var(--text-secondary); }
+.colorInfo { --chip-bg: var(--info-surface); --chip-bg-hover: var(--selected-surface); --chip-bg-tint: var(--info-surface); --chip-border: var(--primary); --chip-color: var(--primary); --chip-color-ghost: var(--primary); }
+.colorSuccess { --chip-bg: var(--success-surface); --chip-bg-hover: var(--success-surface); --chip-bg-tint: var(--success-surface); --chip-border: var(--success); --chip-color: var(--success); --chip-color-ghost: var(--success); }
+.colorWarning { --chip-bg: var(--warning-surface); --chip-bg-hover: var(--warning-surface); --chip-bg-tint: var(--warning-surface); --chip-border: var(--warning); --chip-color: var(--warning); --chip-color-ghost: var(--warning); }
+.colorError { --chip-bg: var(--danger-surface); --chip-bg-hover: var(--danger-surface); --chip-bg-tint: var(--danger-surface); --chip-border: var(--danger-text); --chip-color: var(--danger-text); --chip-color-ghost: var(--danger-text); }

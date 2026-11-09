@@ -1,5 +1,9 @@
-.root { color: var(--text-primary); }
-.root details { border-block-end: var(--spacing-01) solid var(--border-primary); }
-.root summary { align-items: center; cursor: pointer; display: flex; font: var(--label-md); gap: var(--spacing-04); justify-content: space-between; list-style: none; padding: var(--spacing-06) 0; }
+.root { color: var(--text); }
+.root details { border-block-end: calc(var(--space-unit) * .25) solid var(--border); }
+.root summary { align-items: center; cursor: pointer; display: flex; font: var(--font-weight-regular) var(--font-size-caption)/var(--line-height-caption) var(--font-family-body); gap: calc(var(--space-unit) * 2); justify-content: space-between; list-style: none; padding: calc(var(--space-unit) * 4) 0; }
 .root summary::-webkit-details-marker { display: none; }
-.root summary:focus-visible { outline: var(--spacing-02) solid var(--border-focused); outline-offset: var(--spacing-01); }
+.root summary:focus-visible { outline: calc(var(--space-unit) * .5) solid var(--focus-on-light); outline-offset: calc(var(--space-unit) * .25); }
+.root { border-top: calc(var(--space-unit) * .25) solid var(--border); color: var(--text); }
+.root details { border-bottom-color: var(--border); }
+.root summary { font: var(--font-weight-medium) var(--font-size-body)/var(--line-height-body) var(--font-family-body); gap: var(--space-4); min-height: calc(var(--space-unit) * 12.5); padding-block: calc(var(--space-unit) * 3.5); }
+.root summary:focus-visible { outline: var(--focus-width) solid var(--focus-on-light); outline-offset: calc(-1 * var(--focus-width)); }

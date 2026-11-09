@@ -1,8 +1,13 @@
-.root { align-items: center; color: var(--text-primary); display: inline-grid; inline-size: calc(var(--spacing-09) * 2); position: relative; }
+.root { align-items: center; color: var(--text); display: inline-grid; inline-size: calc(calc(var(--space-unit) * 12) * 2); position: relative; }
 .root svg, .root span { grid-area: 1 / 1; }
-.root span { font: var(--label-md); text-align: center; }
+.root span { font: var(--font-weight-regular) var(--font-size-caption)/var(--line-height-caption) var(--font-family-body); text-align: center; }
 .root svg { transform: rotate(-90deg); }
 .track, .value { fill: none; stroke-width: 3; }
-.track { stroke: var(--background-neutral-subtle); }
-.value { stroke: var(--background-info); }
-.root[data-variant="success"] .value { stroke: var(--background-success); }
+.track { stroke: var(--surface-pressed); }
+.value { stroke: var(--primary); }
+.root[data-variant="success"] .value { stroke: var(--success); }
+.root { flex: 0 0 calc(var(--space-unit) * 18); inline-size: calc(var(--space-unit) * 18); }
+.root span { font: var(--font-weight-semibold) var(--font-size-body)/var(--line-height-control) var(--font-family-body); font-variant-numeric: tabular-nums; }
+.track { stroke: var(--disabled); }
+.value { stroke: var(--primary); }
+.root[data-variant="success"] .value { stroke: var(--success); }

@@ -1,7 +1,8 @@
-.root { background: var(--background-neutral-tint); border-radius: var(--rounded-md); display: inline-flex; gap: var(--spacing-01); padding: var(--spacing-02); }
-.root button { background: transparent; border: 0; border-radius: var(--rounded-md); color: var(--text-secondary); cursor: pointer; font: var(--label-md); padding: var(--spacing-04); }
-.root[data-size="sm"] button { padding: var(--spacing-03); }
-.root[data-size="lg"] button { padding: var(--spacing-05); }
-.root button[aria-pressed="true"] { background: var(--surface-00); color: var(--text-primary); }
-.root button:focus-visible { outline: var(--spacing-02) solid var(--border-focused); }
-.root button:disabled { color: var(--text-disabled); cursor: not-allowed; }
+.root { background: var(--field-background); border: calc(var(--space-unit) * .25) solid var(--border); border-radius: var(--radius-control); display: inline-grid; grid-auto-columns: minmax(0, 1fr); grid-auto-flow: column; height: var(--control-height); max-width: 100%; width: fit-content; }
+.root button { background: transparent; border: 0; color: var(--text-secondary); cursor: pointer; font: var(--font-weight-medium) var(--font-size-body)/var(--line-height-control) var(--font-family-body); min-width: 0; padding: 0 var(--control-px); white-space: nowrap; }
+.root button + button { border-inline-start: calc(var(--space-unit) * .25) solid var(--divider); }
+.root button:hover:not(:disabled) { background: var(--surface-hover); color: var(--text); }
+.root button:active:not(:disabled) { background: var(--surface-pressed); }
+.root button[aria-pressed="true"] { background: var(--info-surface); color: var(--primary); }
+.root button:focus-visible { box-shadow: inset 0 0 0 var(--focus-width) var(--focus-on-light); outline: none; }
+.root button:disabled { background: var(--surface); color: var(--disabled-text); cursor: not-allowed; }

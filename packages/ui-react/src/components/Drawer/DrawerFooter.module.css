@@ -1,11 +1,12 @@
 .footer {
   align-items: center;
-  border-block-start: var(--spacing-01) solid var(--border-subtle);
+  border-block-start: calc(var(--space-unit) * .25) solid var(--border-subtle);
   display: flex;
   flex-shrink: 0;
   flex-wrap: wrap;
-  gap: var(--spacing-01);
+  gap: calc(var(--space-unit) * .25);
   justify-content: flex-end;
-  padding-block: var(--spacing-05);
-  padding-inline: var(--spacing-06);
+  padding-block: calc(var(--space-unit) * 3);
+  padding-inline: calc(var(--space-unit) * 4);
 }
+.footer { border-color: var(--divider); gap: var(--space-2); padding: var(--space-6); }

@@ -36,8 +36,8 @@ export const SizesAndAccessibility: Story = {
         style={{
           display: "flex",
           flexWrap: "wrap",
-          gap: "var(--spacing-04)",
-          color: "var(--theme-text-primary)",
+          gap: "calc(var(--space-unit) * 2)",
+          color: "var(--text)",
         }}
       >
         <PlusIcon
@@ -51,7 +51,7 @@ export const SizesAndAccessibility: Story = {
         <WarningIcon
           size={20}
           label="경고"
-          style={{ color: "var(--theme-text-secondary)" }}
+          style={{ color: "var(--text-secondary)" }}
         />
         <button
           aria-label="추가"
@@ -90,8 +90,8 @@ export const Gallery: Story = {
       style={{
         display: "flex",
         flexWrap: "wrap",
-        gap: "var(--spacing-04)",
-        color: "var(--theme-text-primary)",
+        gap: "calc(var(--space-unit) * 2)",
+        color: "var(--text)",
       }}
     >
       {Object.entries(icons).map(([name, Component]) => (

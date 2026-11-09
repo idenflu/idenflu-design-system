@@ -1,7 +1,7 @@
 import * as React from "react";
 import { iconNames, type IconName } from "@idenflu/ui-icons";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { fn } from "storybook/test";
+import { expect, fn, within } from "storybook/test";
 import {
   Button,
   type ButtonColor,
@@ -31,7 +31,7 @@ const overviewStyles = {
   },
   heading: {
     fontSize: "14px",
-    font: "var(--title-md)",
+    font: "300 var(--font-size-body)/var(--line-height-body) var(--font-family-body)",
     fontWeight: 500,
     letterSpacing: "0.02em",
     margin: 0,
@@ -53,24 +53,24 @@ const overviewStyles = {
   },
   label: {
     color: "var(--text-secondary)",
-    font: "var(--label-md)",
+    font: "var(--font-weight-regular) var(--font-size-caption)/var(--line-height-caption) var(--font-family-body)",
     margin: 0,
   },
   matrix: {
     display: "grid",
-    gap: "var(--spacing-06) var(--spacing-07)",
+    gap: "calc(var(--space-unit) * 4) calc(var(--space-unit) * 6)",
     gridTemplateColumns: "80px repeat(3, minmax(120px, 1fr))",
     alignItems: "center",
     justifyItems: "center",
   },
   matrixHeader: {
     color: "var(--text-secondary)",
-    font: "var(--label-md)",
+    font: "var(--font-weight-regular) var(--font-size-caption)/var(--line-height-caption) var(--font-family-body)",
     textAlign: "center" as const,
   },
   matrixRowLabel: {
     color: "var(--text-secondary)",
-    font: "var(--label-md)",
+    font: "var(--font-weight-regular) var(--font-size-caption)/var(--line-height-caption) var(--font-family-body)",
     textTransform: "capitalize" as const,
   },
   fullWidthContainer: {
@@ -334,5 +334,33 @@ export const Playground: Story = {
     size: "md",
     type: "button",
     variant: "default",
+  },
+};
+
+
+export const MonoSizeParity: Story = {
+  render: () => (
+    <div>
+      {(["sm", "md", "lg"] as const).map((size) => (
+        <Button key={size} size={size} startIcon={<Icon name="star" />} data-testid={`button-${size}`}>
+          Button
+        </Button>
+      ))}
+      <Button disabled data-testid="button-disabled">Disabled</Button>
+    </div>
+  ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    for (const [size, height, padding, gap, iconSize] of [
+      ["sm", 30, 10, 6, 14], ["md", 36, 12, 8, 16], ["lg", 42, 16, 10, 18],
+    ] as const) {
+      const button = canvas.getByTestId(`button-${size}`);
+      const computed = getComputedStyle(button);
+      await expect(button.getBoundingClientRect().height).toBeCloseTo(height, 0);
+      await expect(parseFloat(computed.paddingInlineStart)).toBeCloseTo(padding, 0);
+      await expect(parseFloat(computed.columnGap)).toBeCloseTo(gap, 0);
+      await expect(button.querySelector("svg")?.getBoundingClientRect().width).toBeCloseTo(iconSize, 0);
+    }
+    await expect(canvas.getByTestId("button-disabled")).toBeDisabled();
   },
 };

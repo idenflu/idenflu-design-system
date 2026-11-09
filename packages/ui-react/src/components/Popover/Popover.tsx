@@ -16,7 +16,7 @@ export type PopoverProps = {
 };
 export function Popover({ trigger, children, label, triggerLabel, iconOnly = false, align = "start", open, defaultOpen, onOpenChange }: PopoverProps) {
   return <Primitive.Root open={open} defaultOpen={defaultOpen} onOpenChange={onOpenChange}>
-    <Primitive.Trigger asChild><Button variant="outlined" aria-label={triggerLabel} data-icon-only={iconOnly || undefined}>{trigger}</Button></Primitive.Trigger>
+    <Primitive.Trigger asChild><Button variant="outlined" color="neutral" aria-label={triggerLabel} data-icon-only={iconOnly || undefined}>{trigger}</Button></Primitive.Trigger>
     <Primitive.Portal><Primitive.Content className={styles.content} align={align} aria-label={label}>{children}</Primitive.Content></Primitive.Portal>
   </Primitive.Root>;
 }

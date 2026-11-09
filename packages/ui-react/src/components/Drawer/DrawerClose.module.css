@@ -1,6 +1,6 @@
 .close {
-  inset-block-start: var(--spacing-01);
-  inset-inline-end: var(--spacing-01);
+  inset-block-start: calc(var(--space-unit) * .25);
+  inset-inline-end: calc(var(--space-unit) * .25);
   position: absolute;
   z-index: 1;
 }

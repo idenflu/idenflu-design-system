@@ -31,7 +31,7 @@
 .count {
   color: var(--text-muted);
   flex-shrink: 0;
-  font: var(--label-md);
+  font: var(--font-weight-regular) var(--font-size-caption)/var(--line-height-caption) var(--font-family-body);
   margin: 0;
   text-align: right;
   white-space: nowrap;

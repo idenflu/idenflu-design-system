@@ -5,13 +5,13 @@
 }
 
 .colorPrimary {
-  --nova-spinner-track: var(--background-primary-subtle);
-  --nova-spinner-indicator: var(--background-primary);
+  --nova-spinner-track: var(--badge-primary-background);
+  --nova-spinner-indicator: var(--primary-control);
 }
 
 .colorNeutral {
-  --nova-spinner-track: var(--background-neutral-subtle);
-  --nova-spinner-indicator: var(--background-neutral);
+  --nova-spinner-track: var(--surface-pressed);
+  --nova-spinner-indicator: var(--color-neutral-550);
 }
 
 .colorInherit {
@@ -23,7 +23,7 @@
 .ring {
   animation: nova-spinner-spin 0.8s linear infinite;
   border-color: var(--nova-spinner-track);
-  border-radius: var(--rounded-full);
+  border-radius: var(--radius-pill);
   border-style: solid;
   border-top-color: var(--nova-spinner-indicator);
   border-width: 2px;
@@ -66,7 +66,7 @@
 .dot {
   animation: nova-spinner-dot-bounce 1.4s ease-in-out infinite;
   background-color: var(--nova-spinner-indicator);
-  border-radius: var(--rounded-full);
+  border-radius: var(--radius-pill);
   display: block;
   flex: 0 0 auto;
   height: var(--nova-spinner-dot-size);
@@ -153,3 +153,9 @@
     animation: none;
   }
 }
+.colorPrimary { --nova-spinner-track: var(--divider); --nova-spinner-indicator: var(--primary); }
+.colorNeutral { --nova-spinner-track: var(--divider); --nova-spinner-indicator: var(--text-secondary); }
+.ring { animation-duration: var(--motion-spinner); }
+.sizeSm .ring { height: var(--space-4); width: var(--space-4); }
+.sizeMd .ring { height: var(--space-6); width: var(--space-6); }
+.sizeLg .ring { height: var(--space-8); width: var(--space-8); }

@@ -359,14 +359,9 @@ export const TooltipContent = React.forwardRef<
       if (!trigger) return;
       const updateTheme = () => {
         const computed = getComputedStyle(trigger);
-        const dark = Boolean(trigger.closest(".dark"));
         setThemeStyle({
-          "--nova-tooltip-background": computed.getPropertyValue(
-            dark ? "--background-neutral-strong" : "--background-neutral"
-          ),
-          "--nova-tooltip-color": computed.getPropertyValue("--text-on-color"),
-          "--rounded-md": computed.getPropertyValue("--rounded-md"),
-          "--caption-md": computed.getPropertyValue("--caption-md"),
+          "--nova-tooltip-background": computed.getPropertyValue("--inverse-canvas"),
+          "--nova-tooltip-color": computed.getPropertyValue("--inverse-text"),
         } as React.CSSProperties);
       };
       updateTheme();
@@ -379,7 +374,7 @@ export const TooltipContent = React.forwardRef<
       ) {
         observer.observe(element, {
           attributes: true,
-          attributeFilter: ["class", "style"],
+          attributeFilter: ["data-theme", "style"],
         });
       }
       return () => observer.disconnect();

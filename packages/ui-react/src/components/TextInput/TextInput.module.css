@@ -1,7 +1,7 @@
 .inputRow {
   align-items: center;
   display: flex;
-  gap: var(--spacing-04);
+  gap: calc(var(--space-unit) * 2);
   width: 100%;
 }
 
@@ -16,12 +16,12 @@
   color: var(--text-muted);
   display: inline-flex;
   flex-shrink: 0;
-  font: var(--body-sm);
-  gap: var(--spacing-04);
+  font: var(--font-weight-regular) var(--font-size-body)/var(--line-height-body) var(--font-family-body);
+  gap: calc(var(--space-unit) * 2);
 }
 
 .adornmentDisabled {
-  color: var(--text-disabled);
+  color: var(--disabled-text);
 }
 
 .actionButtonHidden {
@@ -31,7 +31,10 @@
 
 @media (hover: hover) and (pointer: fine) {
   .actionButton:hover:not(:disabled) {
-    background-color: var(--background-transparent-active);
+    background-color: rgba(0, 0, 0, 0.06);
     color: var(--text-secondary);
   }
 }
+.inputRow { gap: var(--control-gap); }
+.adornment { color: var(--text-secondary); gap: var(--control-gap); }
+.adornmentDisabled { color: var(--disabled-text); }

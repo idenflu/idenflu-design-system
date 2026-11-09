@@ -1,6 +1,9 @@
-.root { accent-color: var(--background-info); block-size: var(--spacing-04); inline-size: 100%; }
-.root[data-thickness="thin"] { block-size: var(--spacing-03); }
-.root[data-thickness="thick"] { block-size: var(--spacing-05); }
-.root[data-variant="success"] { accent-color: var(--background-success); }
-.root[data-variant="warning"] { accent-color: var(--background-warning); }
-.root[data-variant="danger"] { accent-color: var(--background-error); }
+.root { --progress-fill: var(--primary); appearance: none; background: var(--disabled); block-size: var(--space-2); border: 0; border-radius: var(--radius-control); display: block; inline-size: 100%; }
+.root::-webkit-progress-bar { background: var(--disabled); }
+.root::-webkit-progress-value { background: var(--progress-fill); }
+.root::-moz-progress-bar { background: var(--progress-fill); }
+.root[data-thickness="thin"] { block-size: var(--space-1); }
+.root[data-thickness="thick"] { block-size: var(--space-3); }
+.root[data-variant="success"] { --progress-fill: var(--success); }
+.root[data-variant="warning"] { --progress-fill: var(--warning); }
+.root[data-variant="danger"] { --progress-fill: var(--danger); }

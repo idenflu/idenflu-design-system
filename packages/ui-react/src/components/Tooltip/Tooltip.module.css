@@ -2,11 +2,11 @@
   animation-duration: var(--nova-tooltip-out-duration, 100ms);
   animation-fill-mode: both;
   animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  background: var(--nova-tooltip-background, var(--background-neutral));
-  border-radius: var(--rounded-md);
+  background: var(--nova-tooltip-background, var(--color-neutral-550));
+  border-radius: var(--radius-control);
   box-sizing: border-box;
-  color: var(--nova-tooltip-color, var(--text-on-color));
-  font: var(--caption-md);
+  color: var(--nova-tooltip-color, var(--text-on-primary));
+  font: var(--font-weight-regular) var(--font-size-caption)/var(--line-height-caption) var(--font-family-body);
   max-inline-size: min(280px, var(--radix-tooltip-content-available-width));
   overflow-wrap: anywhere;
   padding-block: 8px;
@@ -27,7 +27,7 @@
 }
 
 .arrow {
-  fill: var(--nova-tooltip-background, var(--background-neutral));
+  fill: var(--nova-tooltip-background, var(--color-neutral-550));
 }
 
 @keyframes nova-tooltip-enter {
@@ -59,3 +59,4 @@
     animation: none;
   }
 }
+.content { border-radius: var(--radius-control); font: var(--font-weight-regular) var(--font-size-caption)/var(--line-height-caption) var(--font-family-body); padding: var(--space-2) calc(var(--space-unit) * 2.5); }

@@ -1,5 +1,6 @@
 import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, fn, userEvent, within } from "storybook/test";
 import {
   Chip,
   type ChipColor,
@@ -12,7 +13,7 @@ import { Icon } from "../Icon/Icon";
 const variants: ChipVariant[] = ["filled", "outlined", "ghost"];
 const colors: ChipColor[] = ["neutral", "info", "success", "warning", "error"];
 const shapes: ChipShape[] = ["rounded", "pill"];
-const sizes: ChipSize[] = ["md", "sm"];
+const sizes: ChipSize[] = ["sm", "md", "lg"];
 
 const overviewStyles = {
   root: {
@@ -30,7 +31,7 @@ const overviewStyles = {
   },
   heading: {
     fontSize: "14px",
-    font: "var(--title-md)",
+    font: "300 var(--font-size-body)/var(--line-height-body) var(--font-family-body)",
     fontWeight: 500,
     letterSpacing: "0.02em",
     margin: 0,
@@ -40,25 +41,25 @@ const overviewStyles = {
   matrix: {
     alignItems: "center",
     display: "grid",
-    gap: "var(--spacing-06) var(--spacing-07)",
+    gap: "calc(var(--space-unit) * 4) calc(var(--space-unit) * 6)",
     gridTemplateColumns: "80px repeat(5, minmax(116px, 1fr))",
     justifyItems: "center",
   },
   stateMatrix: {
     alignItems: "center",
     display: "grid",
-    gap: "var(--spacing-06) var(--spacing-07)",
+    gap: "calc(var(--space-unit) * 4) calc(var(--space-unit) * 6)",
     gridTemplateColumns: "80px repeat(2, minmax(116px, 1fr))",
     justifyItems: "center",
   },
   matrixHeader: {
     color: "var(--text-secondary)",
-    font: "var(--label-md)",
+    font: "var(--font-weight-regular) var(--font-size-caption)/var(--line-height-caption) var(--font-family-body)",
     textAlign: "center" as const,
   },
   matrixRowLabel: {
     color: "var(--text-secondary)",
-    font: "var(--label-md)",
+    font: "var(--font-weight-regular) var(--font-size-caption)/var(--line-height-caption) var(--font-family-body)",
     textTransform: "capitalize" as const,
   },
 };
@@ -213,7 +214,7 @@ export const Shapes: Story = {
     controls: { disable: true },
   },
   render: () => (
-    <div style={{ display: "flex", flexWrap: "wrap", gap: "var(--spacing-06)" }}>
+    <div style={{ display: "flex", flexWrap: "wrap", gap: "calc(var(--space-unit) * 4)" }}>
       {shapes.map((shape) =>
         variants.map((variant) =>
           sizes.map((size) => (
@@ -231,3 +232,56 @@ export const Shapes: Story = {
     </div>
   ),
 };
+
+export const MonoSizes: Story = {
+  render: () => (
+    <div>
+      {sizes.map((size) => (
+        <Chip key={size} size={size} data-testid={`chip-${size}`} startIcon={<Icon name="filter" />} onDelete={handleDelete}>
+          Label
+        </Chip>
+      ))}
+    </div>
+  ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    for (const [size, height, padding, gap, icon] of [
+      ["sm", 30, 10, 6, 14], ["md", 36, 12, 8, 16], ["lg", 42, 16, 10, 18],
+    ] as const) {
+      const chip = canvas.getByTestId(`chip-${size}`);
+      const style = getComputedStyle(chip);
+      await expect(chip.getBoundingClientRect().height).toBeCloseTo(height, 0);
+      await expect(parseFloat(style.paddingInlineStart)).toBeCloseTo(padding, 0);
+      await expect(parseFloat(style.columnGap)).toBeCloseTo(gap, 0);
+      for (const svg of chip.querySelectorAll("svg")) {
+        await expect(svg.getBoundingClientRect().width).toBeCloseTo(icon, 0);
+      }
+    }
+  },
+};
+
+export const CompactSizes: Story = {
+  render: () => <div>{sizes.map(size => <Chip key={size} size={size} density="compact" data-testid={`compact-${size}`} startIcon={<Icon name="filter" />}>Label</Chip>)}</div>,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    for (const [size, height, font] of [["sm", 24, 12], ["md", 26, 13], ["lg", 30, 14]] as const) {
+      const chip = canvas.getByTestId(`compact-${size}`);
+      await expect(chip.getBoundingClientRect().height).toBeCloseTo(height, 0);
+      await expect(parseFloat(getComputedStyle(chip).fontSize)).toBeCloseTo(font, 0);
+      await expect(chip.querySelector("svg")?.getBoundingClientRect().width).toBeCloseTo(font, 0);
+    }
+  },
+};
+
+export const DeleteInteraction: Story = {
+  render: () => <Chip deleteLabel="Remove audience" onDelete={onDelete}>Audience</Chip>,
+  play: async ({ canvasElement }) => {
+    const button = within(canvasElement).getByRole("button", { name: "Remove audience" });
+    await expect(button.querySelector("svg path")).toBeInTheDocument();
+    onDelete.mockClear();
+    await userEvent.click(button);
+    await expect(onDelete).toHaveBeenCalledOnce();
+  },
+};
+
+const onDelete = fn();

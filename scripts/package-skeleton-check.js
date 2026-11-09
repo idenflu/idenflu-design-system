@@ -52,7 +52,7 @@ requireIncludes("README.md", ["docs/ui-react-usage.md"]);
 
 requireIncludes("docs/ui-react-usage.md", [
   "@idenflu/ui-react",
-  "npm install @idenflu/ui-react @idenflu/ui-tokens @idenflu/ui-icons",
+  "npm install @idenflu/ui-react @idenflu/ui-icons",
   "import \"@idenflu/ui-react/styles.css\";",
   "Button",
   "IconButton",
@@ -64,9 +64,6 @@ requireIncludes(".github/workflows/publish-packages.yml", [
   "packages: write",
   "registry-url: https://npm.pkg.github.com",
   "NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}",
-  "npm run build:tokens",
-  "npm view @idenflu/ui-tokens@$VERSION version",
-  "npm publish --workspace @idenflu/ui-tokens --tag alpha",
   "npm ci",
   "Pin @idenflu workspace deps for publish",
   "npm view @idenflu/ui-icons@$VERSION version",
@@ -100,12 +97,6 @@ if (exists("package.json")) {
   }
   if (packageJson.devDependencies?.["@changesets/cli"]) {
     failures.push("package.json: remove @changesets/cli");
-  }
-  if (
-    packageJson.scripts?.["release:tokens"] !==
-    "npm run build:tokens && npm publish --workspace @idenflu/ui-tokens --tag alpha"
-  ) {
-    failures.push("package.json: missing release:tokens publish script");
   }
   if (packageJson.scripts?.["check:packages"] !== "node scripts/package-skeleton-check.js") {
     failures.push("package.json: missing check:packages script");
@@ -276,9 +267,9 @@ if (exists("packages/ui-react/package.json")) {
     failures.push("packages/ui-react/package.json: missing react peer dependency");
   }
 
-  // tokens/icons는 독립 배포한다. 모노레포에서는 "*"로 링크하고,
+  // icons는 독립 배포한다. 모노레포에서는 "*"로 링크하고,
   // ui-react publish 시에만 워크플로가 구체 버전으로 핀한다.
-  for (const name of ["@idenflu/ui-tokens", "@idenflu/ui-icons"]) {
+  for (const name of ["@idenflu/ui-icons"]) {
     const range = uiReact.dependencies?.[name];
     if (!range) {
       failures.push(`packages/ui-react/package.json: missing ${name} dependency`);

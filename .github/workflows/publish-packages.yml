@@ -1,9 +1,6 @@
 name: Publish GitHub Packages
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 concurrency:
@@ -15,43 +12,6 @@ permissions:
   packages: write
 
 jobs:
-  tokens:
-    name: Publish tokens
-    runs-on: ubuntu-latest
-    env:
-      # setup-node .npmrc의 //npm.pkg.github.com/:_authToken 치환용
-      NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-          registry-url: https://npm.pkg.github.com
-          scope: "@idenflu"
-          cache: npm
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Verify docs and packages
-        run: npm run check
-
-      - name: Build tokens
-        run: npm run build:tokens
-
-      - name: Publish tokens
-        run: |
-          VERSION=$(node -p "require('./packages/tokens/package.json').version")
-          if npm view @idenflu/ui-tokens@$VERSION version --registry=https://npm.pkg.github.com >/dev/null 2>&1; then
-            echo "@idenflu/ui-tokens@$VERSION already exists. Skipping."
-          else
-            npm publish --workspace @idenflu/ui-tokens --tag alpha
-          fi
-
   icons-react:
     name: Publish icons and ui-react
     if: github.event_name == 'workflow_dispatch'
@@ -97,14 +57,10 @@ jobs:
           const fs = require("fs");
           const reactPath = "packages/ui-react/package.json";
           const pkg = JSON.parse(fs.readFileSync(reactPath, "utf8"));
-          const tokens = JSON.parse(fs.readFileSync("packages/tokens/package.json", "utf8"));
           const icons = JSON.parse(fs.readFileSync("packages/icons/package.json", "utf8"));
-          pkg.dependencies["@idenflu/ui-tokens"] = tokens.version;
           pkg.dependencies["@idenflu/ui-icons"] = icons.version;
           fs.writeFileSync(reactPath, JSON.stringify(pkg, null, 2) + "\n");
-          console.log(
-            `pinned ui-react deps: tokens@${tokens.version}, icons@${icons.version}`
-          );
+          console.log(`pinned ui-react dep: icons@${icons.version}`);
           EOF
 
       - name: Publish React components

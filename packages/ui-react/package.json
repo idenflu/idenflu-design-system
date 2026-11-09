@@ -26,7 +26,6 @@
   },
   "dependencies": {
     "@idenflu/ui-icons": "*",
-    "@idenflu/ui-tokens": "*",
     "@tanstack/react-virtual": "^3.14.25",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

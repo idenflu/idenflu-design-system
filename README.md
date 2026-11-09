@@ -18,7 +18,7 @@ scripts/    package 검증 스크립트
 
 GitHub Packages 배포 설정은 `.github/workflows/publish-packages.yml`에 있습니다.
 
-`@idenflu/ui-tokens`는 `packages/tokens/package.json` 버전과 `CHANGELOG.md`를 수동으로 관리합니다. 토큰을 변경한 PR에서 버전을 올리고 CHANGELOG에 요약을 남긴 뒤 `main`에 머지하면 publish 워크플로가 새 버전을 배포합니다.
+`@idenflu/ui-icons`와 `@idenflu/ui-react`는 GitHub Actions에서 수동으로 배포합니다. tokens 패키지는 배포하지 않습니다.
 
 ## Commands
 
@@ -26,12 +26,11 @@ GitHub Packages 배포 설정은 `.github/workflows/publish-packages.yml`에 있
 npm run check
 npm run check:docs
 npm run check:packages
-npm run release:tokens
 ```
 
 ## Docs
 
-문서 사이트 진입점은 `docs/index.html`입니다.
+`main`에 push하면 React 문서 사이트가 GitHub Pages에 자동 배포됩니다. 저장소의 Pages 배포 소스는 GitHub Actions로 설정해야 합니다.
 
 - `docs/react-package-plan.md`
 - `docs/ui-react-usage.md`

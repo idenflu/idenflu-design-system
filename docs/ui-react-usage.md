@@ -14,7 +14,7 @@ GitHub Packages 접근 권한이 필요합니다. 로컬에서는 GitHub classic
 
 ```bash
 npm login --scope=@idenflu --auth-type=legacy --registry=https://npm.pkg.github.com
-npm install @idenflu/ui-react @idenflu/ui-tokens @idenflu/ui-icons
+npm install @idenflu/ui-react @idenflu/ui-icons
 ```
 
 ## Import

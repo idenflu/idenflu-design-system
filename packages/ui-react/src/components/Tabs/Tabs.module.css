@@ -238,9 +238,9 @@
   color: currentColor;
   display: inline-flex;
   flex: 0 0 auto;
-  height: 16px;
+  height: 14px;
   justify-content: center;
-  width: 16px;
+  width: 14px;
 }
 
 .closeIcon {
@@ -271,8 +271,8 @@
 }
 
 .closeIcon svg {
-  height: 16px;
-  width: 16px;
+  height: 14px;
+  width: 14px;
 }
 
 .label {

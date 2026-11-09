@@ -1,7 +1,5 @@
 import * as React from "react";
-import { Icon } from "../Icon";
 import { cn } from "../../utils/classNames";
-import type { IconName } from "@idenflu/ui-icons";
 import { Button as BaseButton, type ButtonProps as BaseButtonProps } from "../Button";
 import { Select as BaseSelect, MultiSelect as BaseMultiSelect, type SelectOption } from "../Select";
 import { Tooltip as BaseTooltip, TooltipProvider, TooltipTrigger, TooltipContent } from "../Tooltip";
@@ -9,8 +7,7 @@ export { Checkbox } from "../Checkbox";
 export { Popover } from "../Popover";
 export { Spinner } from "../Spinner";
 
-function makeIcon(name: IconName) { return function GridIcon(props: React.SVGAttributes<SVGSVGElement>) { return <Icon {...props} name={name} />; }; }
-export const ArrowDownIcon = makeIcon("arrow-down"), ArrowUpIcon = makeIcon("arrow-up"), DownloadIcon = makeIcon("download"), EditIcon = makeIcon("edit"), ExcelIcon = makeIcon("file"), FilterIcon = makeIcon("filter"), GridIcon = makeIcon("grid"), SearchIcon = makeIcon("search"), XIcon = makeIcon("x" as IconName), CheckIcon = makeIcon("check");
+export { ArrowDownIcon, ArrowUpIcon, DownloadIcon, EditIcon, FileIcon as ExcelIcon, FilterIcon, GridIcon, SearchIcon, XIcon, CheckIcon } from "../../icons/generated";
 
 type GridButtonProps = Omit<BaseButtonProps, "variant"> & { variant?: "primary" | "outline" | "ghost"; iconOnly?: boolean };
 export const Button = React.forwardRef<HTMLButtonElement, GridButtonProps>(function Button({ variant, iconOnly, className, ...props }, ref) { return <BaseButton {...props} ref={ref} color={variant === "primary" ? "primary" : "neutral"} className={cn(iconOnly && "grid-icon-button", className)} variant={variant === "outline" ? "outlined" : variant === "ghost" ? "ghost" : "default"} />; });

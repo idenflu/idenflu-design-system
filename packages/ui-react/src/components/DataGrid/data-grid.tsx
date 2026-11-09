@@ -4,6 +4,7 @@ import { Pagination } from "../Pagination";
 import styles from "./DataGrid.module.css";
 import { DataGridCellEditor, downloadDataGridCsv } from "./data-grid-tools";
 import { downloadDataGridXlsx } from "./data-grid-xlsx-download";
+import { DataGridScrollbar } from "./data-grid-scrollbar";
 import { dataGridFileName, type DataGridExportFormat } from "./data-grid-file";
 import {
   DataGridBody,
@@ -1650,6 +1651,15 @@ export function DataGrid<T>({
             />
           </Table>
         </div>
+        <DataGridScrollbar
+          enabled={!blocked && count > 0}
+          headerRef={header}
+          scrollRef={scroll}
+          prepareScrollRef={prepareScroll}
+          viewportWidth={viewportWidth}
+          controls={`${id}-scroll`}
+          label={`${label} 세로 스크롤`}
+        />
       </div>
       {footer !== undefined && footerStatus}
       {showFooter && (

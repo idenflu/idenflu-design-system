@@ -1,5 +1,6 @@
 import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, userEvent, within } from "storybook/test";
 import { Icon } from "../Icon/Icon";
 import {
   TextInput,
@@ -342,5 +343,38 @@ export const Playground: Story = {
       );
     }
     return <TextInput {...args} />;
+  },
+};
+
+function StableHeightExample() {
+  const [error, setError] = React.useState(false);
+  return <div>
+    <button type="button" onClick={() => setError(value => !value)}>Toggle error</button>
+    {sizes.map(size => <TextInput key={size} label={size} size={size} helperText="Help" error={error ? "Error" : undefined} />)}
+  </div>;
+}
+
+export const StableHeight: Story = {
+  render: () => <StableHeightExample />,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const fields = sizes.map(size => canvas.getByRole("textbox", { name: size }));
+    const wrappers = fields.map(field => {
+      if (!field.parentElement) throw new Error("Missing field wrapper");
+      return field.parentElement;
+    });
+    const heights = wrappers.map(wrapper => wrapper.getBoundingClientRect().height);
+    for (let index = 0; index < fields.length; index++) {
+      await userEvent.click(fields[index]);
+      await expect(wrappers[index].getBoundingClientRect().height).toBeCloseTo(heights[index], 1);
+      await expect(getComputedStyle(wrappers[index]).boxShadow).not.toBe("none");
+    }
+    await userEvent.click(canvas.getByRole("button", { name: "Toggle error" }));
+    for (let index = 0; index < fields.length; index++) {
+      await expect(fields[index]).toHaveAttribute("aria-invalid", "true");
+      await expect(wrappers[index].getBoundingClientRect().height).toBeCloseTo(heights[index], 1);
+      await userEvent.click(fields[index]);
+      await expect(wrappers[index].getBoundingClientRect().height).toBeCloseTo(heights[index], 1);
+    }
   },
 };

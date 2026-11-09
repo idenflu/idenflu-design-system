@@ -5,6 +5,7 @@ import { cn } from "../../utils/classNames";
 import { Icon } from "../Icon/Icon";
 import { IconButton } from "../IconButton/IconButton";
 import styles from "./Tabs.module.css";
+import { XIcon } from "../../icons";
 
 export type TabsOrientation = "horizontal" | "vertical";
 export type TabsVariant = "standard" | "scrollable" | "fullWidth";
@@ -77,7 +78,7 @@ function scrollTabToEdge(
   tab: HTMLElement,
   scroller: HTMLElement,
   orientation: TabsOrientation,
-  behavior = getScrollBehavior(),
+  behavior = getScrollBehavior()
 ) {
   const scrollerRect = scroller.getBoundingClientRect();
   const tabRect = tab.getBoundingClientRect();
@@ -91,7 +92,7 @@ function scrollTabToEdge(
     if (tabRect.left < scrollerRect.left - 1) {
       scroller.scrollTo({
         behavior,
-        left: scroller.scrollLeft + (tabRect.left - scrollerRect.left),
+        left: scroller.scrollLeft - Math.ceil(scrollerRect.left - tabRect.left),
       });
       return;
     }
@@ -99,7 +100,8 @@ function scrollTabToEdge(
     if (tabRect.right > scrollerRect.right + 1) {
       scroller.scrollTo({
         behavior,
-        left: scroller.scrollLeft + (tabRect.right - scrollerRect.right),
+        left:
+          scroller.scrollLeft + Math.ceil(tabRect.right - scrollerRect.right),
       });
     }
 
@@ -111,7 +113,7 @@ function scrollTabToEdge(
   if (tabRect.top < scrollerRect.top - 1) {
     scroller.scrollTo({
       behavior,
-      top: scroller.scrollTop + (tabRect.top - scrollerRect.top),
+      top: scroller.scrollTop - Math.ceil(scrollerRect.top - tabRect.top),
     });
     return;
   }
@@ -119,7 +121,7 @@ function scrollTabToEdge(
   if (tabRect.bottom > scrollerRect.bottom + 1) {
     scroller.scrollTo({
       behavior,
-      top: scroller.scrollTop + (tabRect.bottom - scrollerRect.bottom),
+      top: scroller.scrollTop + Math.ceil(tabRect.bottom - scrollerRect.bottom),
     });
   }
 }
@@ -195,11 +197,11 @@ export const Tabs = React.forwardRef<
 >(
   (
     { className, orientation = "horizontal", variant = "standard", ...props },
-    ref,
+    ref
   ) => {
     const contextValue = React.useMemo(
       () => ({ orientation, variant }),
-      [orientation, variant],
+      [orientation, variant]
     );
 
     return (
@@ -215,7 +217,7 @@ export const Tabs = React.forwardRef<
         />
       </TabsContext.Provider>
     );
-  },
+  }
 );
 
 Tabs.displayName = "Tabs";
@@ -237,7 +239,7 @@ export const TabsList = React.forwardRef<
       variant: variantProp,
       ...props
     },
-    ref,
+    ref
   ) => {
     const context = React.useContext(TabsContext);
     const listRef = React.useRef<HTMLDivElement | null>(null);
@@ -255,7 +257,7 @@ export const TabsList = React.forwardRef<
 
     const getScrollContainer = React.useCallback(
       () => scrollerRef.current ?? listRef.current,
-      [],
+      []
     );
 
     const updateScrollBounds = React.useCallback(() => {
@@ -303,19 +305,19 @@ export const TabsList = React.forwardRef<
 
         scrollTabToEdge(tab, scrollContainer, orientation);
       },
-      [getScrollContainer, orientation],
+      [getScrollContainer, orientation]
     );
 
     const scrollContextValue = React.useMemo(
       () => ({ scrollTabIntoView }),
-      [scrollTabIntoView],
+      [scrollTabIntoView]
     );
 
     const updateIndicator = React.useCallback(() => {
       const list = listRef.current;
       const nav = navRef.current;
       const activeTrigger = list?.querySelector<HTMLElement>(
-        '[data-slot="tabs-trigger"][data-state="active"]',
+        '[data-slot="tabs-trigger"][data-state="active"]'
       );
 
       if (!list || !nav || !activeTrigger) {
@@ -364,10 +366,10 @@ export const TabsList = React.forwardRef<
       const scroller = getScrollContainer();
       if (!list || !scroller) return;
       const activeTrigger = list.querySelector<HTMLElement>(
-        '[data-slot="tabs-trigger"][data-state="active"]',
+        '[data-slot="tabs-trigger"][data-state="active"]'
       );
       const triggers = list.querySelectorAll<HTMLElement>(
-        '[data-slot="tabs-trigger"]',
+        '[data-slot="tabs-trigger"]'
       );
       const geometry = [
         orientation,
@@ -379,7 +381,7 @@ export const TabsList = React.forwardRef<
         ...Array.from(
           triggers,
           (tab) =>
-            `${tab.offsetLeft},${tab.offsetTop},${tab.offsetWidth},${tab.offsetHeight}`,
+            `${tab.offsetLeft},${tab.offsetTop},${tab.offsetWidth},${tab.offsetHeight}`
         ),
       ].join(";");
       const selectionChanged = activeTrigger !== activeTriggerRef.current;
@@ -474,7 +476,7 @@ export const TabsList = React.forwardRef<
               variant === "fullWidth" ||
               variant === "scrollable") &&
               styles.navFill,
-            className,
+            className
           )}
           data-orientation={orientation}
           data-slot="tabs-nav"
@@ -520,7 +522,7 @@ export const TabsList = React.forwardRef<
         </div>
       </TabsListScrollContext.Provider>
     );
-  },
+  }
 );
 
 TabsList.displayName = "TabsList";
@@ -540,7 +542,7 @@ export const TabsTrigger = React.forwardRef<
       onClose,
       ...props
     },
-    ref,
+    ref
   ) => {
     const scrollContext = React.useContext(TabsListScrollContext);
 
@@ -553,7 +555,7 @@ export const TabsTrigger = React.forwardRef<
             hasCloseIcon: closable,
             hasIcon: Boolean(icon),
           }),
-          className,
+          className
         )}
         {...props}
         onClick={(event) => {
@@ -592,12 +594,12 @@ export const TabsTrigger = React.forwardRef<
               event.stopPropagation();
             }}
           >
-            <Icon name="close" size="medium" />
+            <XIcon />
           </span>
         ) : null}
       </TabsPrimitive.Trigger>
     );
-  },
+  }
 );
 
 TabsTrigger.displayName = "TabsTrigger";

@@ -153,15 +153,13 @@
 }
 
 .variantOutlined.error .controlWrapper {
-  border-color: var(--danger);
-  border-width: 2px;
-  padding-inline: 11px;
+  border-color: transparent;
+  box-shadow: inset 0 0 0 var(--focus-width) var(--danger);
 }
 
 .root.variantOutlined:not(.readOnly):not(.error) .controlWrapper:focus-within {
-  border-color: var(--focus-on-light);
-  border-width: 2px;
-  padding-inline: 11px;
+  border-color: transparent;
+  box-shadow: inset 0 0 0 var(--focus-width) var(--focus-on-light);
 }
 
 .sizeLg.variantOutlined .controlWrapper {
@@ -174,21 +172,6 @@
 
 .sizeSm.variantOutlined .controlWrapper {
   padding-block: 5px;
-}
-
-.variantOutlined.sizeLg.error .controlWrapper,
-.variantOutlined.sizeLg:not(.readOnly) .controlWrapper:focus-within {
-  padding-block: 12px;
-}
-
-.variantOutlined.sizeMd.error .controlWrapper,
-.variantOutlined.sizeMd:not(.readOnly) .controlWrapper:focus-within {
-  padding-block: 8px;
-}
-
-.variantOutlined.sizeSm.error .controlWrapper,
-.variantOutlined.sizeSm:not(.readOnly) .controlWrapper:focus-within {
-  padding-block: 4px;
 }
 
 .variantOutlined.disabled .controlWrapper {
